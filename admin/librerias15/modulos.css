@@ -1,0 +1,538 @@
+body {
+	background-color: #cccccc;
+	background-repeat: no-repeat;
+	background-attachment: fixed ;
+	background-position: top ;
+	-webkit-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	height: 100%;
+	overflow: hidden;
+}
+#trabajo{
+	margin:10px;
+	/* bottom: 10px; */
+    /* overflow: auto; */
+    /* position: absolute; */
+    /* top: 70px; */
+    /* left: 10px; */
+    /* right: 10px; */
+}
+
+.autocompletar{
+	border: 1px solid silver;
+	position: absolute;
+	z-index: 100;
+	background-color: #f6f6f6;
+	width: 500px;
+	overflow: auto;
+	max-height:300px;
+	display:none;
+	border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+	-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.12);
+	-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.12);
+	box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.12);
+}
+
+ .logincard{
+    font-family: "myriad-pro",sans-serif;
+    font-style: normal;
+    font-weight: 100;
+
+    margin-bottom:25px;
+    margin-top:50px;
+
+		max-width: 350px;
+		background-color: #FFFFFF;
+    /* just in case there no content*/
+    padding: 1px 25px 30px;
+    margin: 0 auto 25px;
+    margin-top: 15%x;
+    /* shadows and rounded borders */
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+:root {
+  --main-bg-color: #343a40;
+}
+
+.flotante{
+	border: 1px solid silver;
+    position: absolute;
+    width: 800px;
+    height: 300px;
+    z-index: 50;
+    background-color: white;
+    overflow: auto;
+	display:none;
+	-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+	box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
+i{
+	color:silver;
+	width: 21px;
+}
+i:hover{
+	color:#8f9d80;
+}
+.btn i{
+	color:black;
+	width: 21px;
+}
+
+label{
+	font-weight: bold;
+}
+
+/*Comienza la SIDEBAR*/
+/*//////////////////////////////////////////////////////////////////////////*/
+.sidebar{
+	position: fixed;
+	z-index: 10;
+	top: 56px;
+	/*background-color: var(--main-bg-color);*/
+	background-color: #000000;
+	overflow-x: hidden;
+	left: 0;
+	height: 100%;
+	transition: 0.5s all;
+	padding-top: 20px;
+
+	-webkit-box-shadow: 2px 0px 5px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 2px 0px 5px 0px rgba(0,0,0,0.75);
+	box-shadow: 2px 0px 5px 0px rgba(0,0,0,0.75);
+	opacity: .7;
+}
+.sidebar a, .dropdown-btn {
+	padding: 6px 8px 6px 16px;
+	text-decoration: none;
+	font-size: 15px;
+	color: #818181;
+	display: block;
+	border: none;
+	background: none;
+	width: 100%;
+	text-align: left;
+	cursor: pointer;
+	outline: none;
+	border-left: 6px solid var(--main-bg-color);
+}
+.sidebar a:hover{
+	text-decoration: none;
+}
+/* On mouse-over */
+.sidebar a:hover, .dropdown-btn:hover {
+	color: #f1f1f1;
+	border-left: 6px solid #909090;
+}
+
+/* Main content */
+.main {
+	margin-left: 1px; /* Same as the width of the sidenav */
+	padding: 10px;
+	padding-top:0px;
+	overflow:auto;
+	position: fixed;
+	z-index: 1;
+	top: 65px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	transition: 0.5s all;
+
+	background-repeat: no-repeat;
+    background-attachment: fixed ;
+    background-position: top ;
+	-webkit-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+/* Add an active class to the active dropdown button */
+.activeside {
+	background-color: #909090 !important;
+	color: white !important;
+}
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.dropdown-container {
+
+	background-color: #262626;
+	padding-left: 8px;
+}
+
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+	float: right;
+	padding-right: 8px;
+}
+
+
+@media (max-width: 575.98px) {
+	.sidebar{
+		width: 1px;
+	}
+	.sidenav {
+		width: 100%;
+	}
+
+	.main{
+		margin-left: 0px;
+	}
+	.fijaproceso{
+
+	}
+}
+@media (min-width: 576px) and (max-width: 1199.98px) {
+	.sidebar{
+		width: 58px;
+	}
+	.sidebar span{
+		display: none;
+	}
+	.sidenav {
+		width: 180px;
+	}
+	.sidenav span{
+		display: inline-block;
+	}
+	.main {
+		margin-left: 56px;
+	}
+	.fijaproceso{
+		margin-left: 1px; /* Same as the width of the sidenav */
+		padding-left: 1px; /* Same as the width of the sidenav */
+	}
+
+}
+
+@media (min-width: 1200px) {
+	.sidebar{
+		width: 58px;
+	}
+	.sidebar span{
+		display: none;
+	}
+
+	.sidenav {
+		width: 180px;
+	}
+	.sidenav span{
+		display: inline-block;
+	}
+
+	.main {
+		margin-left: 56px;
+	}
+	.fijaproceso{
+		margin-left: 1px; /* Same as the width of the sidenav */
+		padding-left: 1px;
+	}
+
+}
+
+
+
+
+
+/********************/
+/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+.flip-card {
+  background-color: transparent;
+
+  border: 1px solid #f1f1f1;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+/* Style the front side (fallback if image is missing) */
+.flip-card-front {
+  background-color: #white;
+  color: black;
+}
+
+/* Style the back side */
+.flip-card-back {
+  background-color: dodgerblue;
+  color: black;
+  transform: rotateY(180deg);
+}
+
+
+/*********************************************************************************/
+
+
+DIV.box1{  /*ventana donde esta el iframe*/
+	float: left;
+	color: #000000;
+	top: 63px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	position: absolute;
+	overflow: hidden;
+	padding-top: 10px;
+	padding-bottom: 0px;
+	padding-left: 15px;
+	padding-right: 15px;
+	overflow: auto;
+	z-index: 1;
+}
+
+.card {
+	-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.12);
+	-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.12);
+	box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.12);
+}
+.card-header{
+	font-weight: bold;
+	text-align: center;
+
+}
+
+
+#myInput {
+
+}
+
+.filex{
+	width:100%;
+	overflow: auto;
+	height:100px;
+	position:relative;
+}
+.filex > div {
+	float: left;
+	width: 80px;
+	height: 30px;
+	margin-left: 2px;
+	margin-top: 2px;
+	font-size: 10px;
+	color: transparent;
+	background: #ffffff;
+	text-align: center;
+	text-decoration: none;
+	border: 1px solid #87CEEB;
+	vertical-align: middle;
+	border-radius:5px;
+}
+.filex > div > input {
+	position: absolute;
+	top: 0px;
+	left:0px;
+    display: block !important;
+    width: 80px !important;
+    height: 30px !important;
+    opacity: 0 !important;
+    overflow: hidden !important;
+	z-index: 1;
+}
+.filex > div > i {
+	color: black;
+	font-size: 22px;
+}
+.filex > .div> > span{
+	position: absolute;
+	top: 17px;
+	left:20px;
+	width: 40px;
+	height: 40px;
+	color: black;
+}
+
+.filex > .archivosdrop{
+	position: absolute;
+	border: 1px solid #87CEEB;
+	bottom:2px;
+	top:2px;
+	right:2px;
+	left:2px;
+    text-align: center;
+	z-index:1;
+}
+.filex > .archivosdrop:before{
+	position: absolute;
+	border: 0px;
+	bottom:2px;
+	top: 80%;
+	right:2px;
+	left:2px;
+    text-align: center;
+	z-index: -1;
+	color:#4f5f70;
+	content: "Arrastre aqui los archivos a subir!";
+}
+
+
+.barra{
+	background-color: #006b96 !important;
+	color:white;
+}
+.barra .navbar-nav>li>a{
+	color:white;
+}
+/*
+.navbar{
+	opacity: .5;
+	background-color: #000 !important;
+}
+.navbar-nav a{
+	color:white !important;
+}
+*/
+.moneda{
+	text-align: right;
+}
+
+#calendar {
+	font-family:Arial;
+	font-size:12px;
+}
+#calendar caption {
+	text-align:left;
+	padding:5px 10px;
+	background-color:#003366;
+	color:#fff;
+	font-weight:bold;
+}
+
+#calendar .hoy {
+	background-color:red;
+}
+.fc-event-inner {
+	font-family: 'Roboto', sans-serif;
+	font-size: 12px!important;
+	font-weight: 500!important;
+	padding: 1px 0px!important;
+	margin: 1px !important;
+}
+.card-calendario{
+	padding: 0 !important;
+}
+.navbar-default {
+    background-color: rgba(255, 255, 255, 0.96);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+
+
+#no-more-tables th { text-align: center; }
+#no-more-tables td {
+	vertical-align: top;
+	height:73px;
+}
+
+@media only screen and (max-width: 800px) {
+
+    /* Force table to not be like tables anymore */
+    #no-more-tables table,
+	#no-more-tables thead,
+	#no-more-tables tbody,
+	#no-more-tables th,
+	#no-more-tables td,
+	#no-more-tables tr {
+		display: block;
+	}
+
+	/* Hide table headers (but not display: none;, for accessibility) */
+	#no-more-tables thead tr {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+
+	#no-more-tables tr { border: 1px solid #ccc; }
+
+
+	#no-more-tables td {
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee;
+		position: relative;
+		padding-left: 50%;
+		white-space: normal;
+		text-align:left;
+
+	}
+
+	#no-more-tables td:before {
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%;
+		padding-right: 10px;
+		white-space: nowrap;
+		text-align:left;
+		font-weight: bold;
+	}
+
+	/*
+	Label the data
+	*/
+	#no-more-tables td:before { content: attr(data-title); }
+}
+
+/***************************        imagenes              **********************/
+.gallery:after {
+    content: '';
+    display: block;
+    height: 2px;
+    margin: .5em 0 1.4em;
+    background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0) 0%, rgba(77,77,77,1) 50%, rgba(0, 0, 0, 0) 100%);
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(77,77,77,1) 50%, rgba(0, 0, 0, 0) 100%);
+}
+
+.gallery img {
+    height: 100%;
+}
+
+.gallery a {
+    width: 140px;
+    height: 180px;
+    display: inline-block;
+    overflow: hidden;
+    margin: 4px 6px;
+    box-shadow: 0 0 4px -1px #000;
+}
+
+
+
+.comite{
+	border: 1px solid silver;
+	border-radius: 5px;
+}
+.comite a{
+	color: black;
+}
