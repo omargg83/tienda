@@ -18,10 +18,10 @@
 
 		public function __construct(){
 			date_default_timezone_set("America/Mexico_City");
-			$_SESSION['mysqluser']="saludpublica";
-			$_SESSION['mysqlpass']="saludp123$";
-			$_SESSION['bdd']="tienda";
-			$_SESSION['servidor'] ="localhost";
+			$_SESSION['mysqluser']="sagyccom_esponda";
+			$_SESSION['mysqlpass']="esponda123$";
+			$_SESSION['servidor'] ="sagyc.com.mx";
+			$_SESSION['bdd']="sagycrmr_txpika";
 			$this->dbh = new PDO("mysql:host=".$_SESSION['servidor'].";dbname=".$_SESSION['bdd']."", $_SESSION['mysqluser'], $_SESSION['mysqlpass']);
 			$_SESSION['n_sistema']="Protecta SNTE";
 			self::set_names();
