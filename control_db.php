@@ -12,10 +12,10 @@
 			$this->Salud = array();
 			date_default_timezone_set("America/Mexico_City");
 
-			$_SESSION['mysqluser']="saludpublica";
-			$_SESSION['mysqlpass']="saludp123$";
+			$_SESSION['mysqluser']="sagyccom_esponda";
+			$_SESSION['mysqlpass']="esponda123$";
+			$_SESSION['servidor'] ="sagyc.com.mx";
 			$_SESSION['bdd']="sagycrmr_txpika";
-			$_SESSION['servidor'] ="localhost";
 			$this->dbh = new PDO("mysql:host=".$_SESSION['servidor'].";dbname=".$_SESSION['bdd']."", $_SESSION['mysqluser'], $_SESSION['mysqlpass']);
 			self::set_names();
 			$_SESSION['n_sistema']="Protecta SNTE";
