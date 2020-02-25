@@ -53,13 +53,13 @@
 	var hash=url.substring(url.indexOf("#")+1);
 
 	if(hash===url || hash===''){
-		hash='form/index';
+		hash='dashboard';
 	}
 	function loadContent(hash){
 		$("#cargando").addClass("is-active");
 		var id=$(this).attr('id');
 		if(hash===''){
-			hash= 'form/index';
+			hash= 'dashboard';
 		}
 		$('html, body').animate({strollTop:0},'600','swing');
 
@@ -141,7 +141,7 @@
 			url:   'control_db.php',
 			type:  'post',
 			success:  function (response) {
-				window.location.hash="afiliado/index";
+				window.location.hash="dashboard";
 				acceso();
 			}
 		});
