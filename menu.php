@@ -1,8 +1,8 @@
 <!-- menu -->
 <ul class="main-menu">
   <li><a href="index.php">Home</a></li>
-  <li><a href="#">Women</a></li>
-  <li><a href="#">Men</a></li>
+  <li><a href="#">Mujer</a></li>
+  <li><a href="#">Hombre</a></li>
   <li><a href="#">Jewelry
     <span class="new">New</span>
   </a></li>

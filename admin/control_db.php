@@ -35,7 +35,7 @@
 				///////////////////////////sesion abierta
 				$valor=$_SESSION['idfondo'];
 				$x="";
-				$x.="<nav class='navbar navbar-expand-sm navbar-dark fixed-top bg-dark'>";
+				$x.="<nav class='navbar navbar-expand-sm navbar-dark fixed-top barra'>";
 					$x.="<img src='img/logo_.png' width='40' height='30'>";
 					$x.="<img src='img/casa.png' width='40' height='30'>";
 					$x.="<img src='img/auto.png' width='40' height='30'>";
@@ -183,110 +183,45 @@
 			$_SESSION['idpersona']="";
 		}
 		public function acceso(){
-			$userPOST = htmlspecialchars($_REQUEST["userAcceso"]);
-			$passPOST=md5($_REQUEST["passAcceso"]);
-			$sql="SELECT nombre, usuario, pass, idpersona FROM usuarios where (usuario=:usuario) and (UPPER(pass)=UPPER(:pass)) and autoriza=1";
-			$sth = $this->dbh->prepare($sql);
-			$sth->bindValue(":usuario",$userPOST);
-			$sth->bindValue(":pass",$passPOST);
-			$sth->execute();
-			 if ($sth->rowCount()>0){
-				$suma=1;
-				$CLAVE=$sth->fetch();
-				$_SESSION['autoriza']=1;
-				$_SESSION['nombre']=$CLAVE['nombre'];
-				$_SESSION['usuario'] = $CLAVE['usuario'];
-				$_SESSION['pass'] = $CLAVE['pass'];
-				$_SESSION['pagnivel']=40;
-				$_SESSION['idpersona']=$CLAVE['idpersona'];
-
-				//$fondo=mysqli_fetch_array(mysqli_query($link,"select * from config_fondo where idfondo='".$CLAVE['idfondo']."'"));
-				//$_SESSION['fondo']=$fondo['fondo'];
-				$_SESSION['anio']=date("Y");
-				$_SESSION['mes']=date("m");
-				$_SESSION['dia']=date("d");
-				$_SESSION['hasta']=2016;
-				$_SESSION['foco']=mktime(date("H"),date("i"),date("s"),date("m"),date("d"),date("Y"));
-
-				$arr=array();
-				$arr=array('acceso'=>1,'idpersona'=>$_SESSION['idpersona']);
-				return json_encode($arr);
-			}
-			else {
-				$arr=array();
-				$arr=array('acceso'=>0,'idpersona'=>0);
-				return json_encode($arr);
-			}
-			return $obj;
-			/*
-
-
-			self::set_names();
-			$sql="SELECT nombre, usuario, pass, nick, estudio, idpersona, file_foto, personal.idarea, idcargo, correo, personal_orga.cargo, personal_orga.parentid, personal_orga.orden as puesto, idfondo FROM personal left outer join personal_orga on personal_orga.id=personal.idcargo where (usuario=:usuario or correo=:correo) and pass=:pass and autoriza=1";
-			$sth = $this->dbh->prepare($sql);
-			$sth->bindValue(":usuario",$userPOST);
-			$sth->bindValue(":correo",$userPOST);
-			$sth->bindValue(":pass",$passPOST);
-			$sth->execute();
-			$CLAVE=$sth->fetch();
-
-			if(is_array($CLAVE)){
-				if(($userPOST == $CLAVE['usuario'] or $userPOST == $CLAVE['correo']) and strtoupper($passPOST)==strtoupper($CLAVE['pass'])){
+			try{
+				$userPOST = htmlspecialchars($_REQUEST["userAcceso"]);
+				$passPOST=md5($_REQUEST["passAcceso"]);
+				$sql="SELECT * FROM usuarios where usuario=:usuario and UPPER(pass)=UPPER(:pass) and autoriza=1";
+				return $sql;
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(":usuario",$userPOST);
+				$sth->bindValue(":pass",$passPOST);
+				$sth->execute();
+				 if ($sth->rowCount()>0){
+					$suma=1;
+					$CLAVE=$sth->fetch();
 					$_SESSION['autoriza']=1;
 					$_SESSION['nombre']=$CLAVE['nombre'];
 					$_SESSION['usuario'] = $CLAVE['usuario'];
 					$_SESSION['pass'] = $CLAVE['pass'];
-					$_SESSION['puesto']=$CLAVE['puesto'];
-					$_SESSION['cargo']=$CLAVE['cargo'];
-
-					$superior = $this->superior($CLAVE['parentid']);
-					$_SESSION['superior']=$superior['idpersona'];
-
-					$_SESSION['idfondo']=$CLAVE['idfondo'];
-					$_SESSION['nick']=$CLAVE['nick'];
-					$_SESSION['estudio']=$CLAVE['estudio'];
+					$_SESSION['pagnivel']=40;
 					$_SESSION['idpersona']=$CLAVE['idpersona'];
-					$_SESSION['idarea']=$CLAVE['idarea'];
-					$_SESSION['foto']=$CLAVE['file_foto'];
-					$_SESSION['cargo']=$CLAVE['cargo'];
 
-					$fecha=date("Y-m-d");
-					list($anyo,$mes,$dia) = explode("-",$fecha);
-
-					$lema = $this->lema($mes,$anyo);
-					$_SESSION['lema']=$lema['lema'];
-
-					$_SESSION['avatar']="librerias/img/1220140826130455.png";
-					$_SESSION['n_sistema']="Salud";
-
-					$centro = $this->centro($CLAVE['idarea']);
-					$_SESSION['idcentro']=$centro['idcentro'];
-
-					$_SESSION['cfondo']="white";
 					$_SESSION['anio']=date("Y");
 					$_SESSION['mes']=date("m");
 					$_SESSION['dia']=date("d");
-					$_SESSION['nocuenta'] = 1;
-					if($CLAVE['idpersona']==7){
-						$_SESSION['administrador']=1;
-					}
-					else{
-						$_SESSION['administrador']=0;
-					}
-					$_SESSION['hasta']=2020;
+					$_SESSION['hasta']=2016;
 					$_SESSION['foco']=mktime(date("H"),date("i"),date("s"),date("m"),date("d"),date("Y"));
 					$_SESSION['cfondo']="white";
 					$arr=array();
 					$arr=array('acceso'=>1,'idpersona'=>$_SESSION['idpersona']);
 					return json_encode($arr);
 				}
+				else {
+					$arr=array();
+					$arr=array('acceso'=>0,'idpersona'=>0);
+					return json_encode($arr);
+				}
+				return $obj;
 			}
-			else {
-				$arr=array();
-				$arr=array('acceso'=>0,'idpersona'=>0);
-				return json_encode($arr);
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
 			}
-			*/
 		}
 
 		public function insert($DbTableName, $values = array()){

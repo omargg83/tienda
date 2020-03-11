@@ -34,7 +34,7 @@
 					$("#header").html(datos.header);
 					$("#bodyx").html(datos.cuerpo);
 
-					loadContent(location.hash.slice(1));
+
 					$("#cargando").removeClass("is-active");
 				}
 			},

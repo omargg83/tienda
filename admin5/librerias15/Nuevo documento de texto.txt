@@ -1,0 +1,40 @@
+form  id='form_xxx'
+data-funcion='guardar'
+data-lugar='a_corresp/correspondencia_db' 
+data-destino='a_corresp/editar'
+data-div='div_afectado'
+
+
+echo "<form id='form_corresp' action='' data-lugar='a_personal/correspondencia_db' data-destino='a_corresp/permiso' data-funcion='permiso' data-div='permisos'>";
+echo "<button class='btn btn-outline-primary btn-sm' type='submit'><i class='fa fa-check'></i>Guardar</button>";
+
+
+//////////////////////////para eliminar
+id='eliminar_comision' 
+data-lugar='a_comision/comision_db' 
+data-destino='a_comision/lista' data-id='".$pd[$i]['idcomision']."' 
+data-funcion='borrar' 
+data-div='trabajo'>
+
+
+<i class='fas fa-pencil-alt'></i> editar
+<i class='far fa-trash-alt'></i> ///////Boton borrar
+<i class='far fa-save'></i> //////////Boton guardar
+<i class='far fa-eye'></i>  //////////Boton ver
+<i class='fas fa-plus'></i> //////////Boton nuevo
+<i class="fas fa-times"></i>  /////////////Cancelar
+<i class='fas fa-list-ul'></i>  ///////////todo  o lista
+<i class='fas fa-print'></i>	///////////Imprimir
+<i class='fas fa-undo-alt'></i> atras
+<i class='fas fa-cloud-upload-alt'></i>   subir archivos
+<i class='fas fa-paperclip'></i> ver archivos
+fas fa-sign-out-alt cerrar
+<i class="fas fa-search"></i> 		buscar
+btn btn-outline-secondary btn-sm
+
+emmet
+.col-2*5>label+input[type=text][placeholder=][id=][name=][value=].form-control
+
+table compact cell-border    ////////////tablas
+
+
