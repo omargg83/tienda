@@ -30,9 +30,63 @@
  	</nav>
 
 <?php
-  echo "<div class='container'>";
+
    echo "<div id='trabajo' style='margin-top:5px;'>";
     include 'lista.php';
    echo "</div>";
-  echo "</div>";
+
  ?>
+<script type="text/javascript">
+
+ function cat_borra(idseguro,idafiliado){
+   $.confirm({
+     title: 'Cancelar',
+     content: '¿Desea eliminar la categoria seleccionada?',
+     buttons: {
+       Aceptar: function () {
+         $.ajax({
+           data:  {
+             "function":"poliza_baja",
+             "idseguro":idseguro,
+             "idafiliado":idafiliado
+           },
+           url:   'a_polizas/db_.php',
+           type:  'post',
+           success:  function (response) {
+             if (response==1){
+               Swal.fire({
+                   type: 'success',
+                   title: 'Se canceló correctamente',
+                   showConfirmButton: false,
+                   timer: 1000
+               })
+
+               $.ajax({
+                 data:  {
+                   "id":idseguro
+                 },
+                 url:   'a_polizas/editar_pol_ver.php',
+                 type:  'post',
+                 success:  function (response) {
+                   $("#datos_x").html(response);
+                 }
+               });
+             }
+             else{
+               Swal.fire({
+                   type: 'error',
+                   title: 'Error, favor de verificar',
+                   showConfirmButton: false,
+                   timer: 1000
+               })
+             }
+           }
+         });
+       },
+       Cancelar: function () {
+
+       }
+     }
+   });
+ }
+</script>

@@ -11,8 +11,10 @@
 			<th>#</th>
 			<th>SKU</th>
 			<th>Nombre</th>
-			<th>Hasta</th>
-			<th>Lugar</th>
+			<th>precio</th>
+			<th>Descripcion</th>
+			<th>Cantidad</th>
+			<th>Categoria</th>
 			</tr>
 			</thead>
 			<tbody>
@@ -31,6 +33,13 @@
 						echo "<td>".$key["nombre"]."</td>";
 						echo "<td>".$key["precio"]."</td>";
 						echo "<td>".$key["descripcion"]."</td>";
+						echo "<td>".$key["cantidad"]."</td>";
+						echo "<td>";
+							foreach($db->producto_categoria($key['idproducto']) as $catx){
+									echo "<span class='badge badge-secondary'>".$catx->descripcion."</span>";
+							}
+
+						echo "</td>";
 						echo "</tr>";
 					}
 				}
