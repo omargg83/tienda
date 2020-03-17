@@ -209,7 +209,7 @@ label{
 	}
 	.fijaproceso{
 		margin-left: 1px; /* Same as the width of the sidenav */
-		padding-left: 1px; /* Same as the width of the sidenav */
+		padding-left: 180px; /* Same as the width of the sidenav */
 	}
 
 }
@@ -234,7 +234,7 @@ label{
 	}
 	.fijaproceso{
 		margin-left: 1px; /* Same as the width of the sidenav */
-		padding-left: 1px;
+		padding-left: 185px;
 	}
 
 }

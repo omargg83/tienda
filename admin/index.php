@@ -1,13 +1,13 @@
 <?php
 	session_start();
 	require_once("control_db.php");
-	$bdd = new Sagyc();
+	$bdd = new Tienda();
 
 ?>
 <!DOCTYPE HTML>
 <html lang="es">
 <head>
-	<title><?php echo $_SESSION['n_sistema']; ?></title>
+	<title>Tic Shop </title>
 	<link rel="icon" type="image/png" href="img/favicon.ico">
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -76,7 +76,6 @@
   <script src="librerias15/summernote8.12/summernote-lite.js"></script>
 	<script src="librerias15/summernote8.12/lang/summernote-es-ES.js"></script>
 
-
 	<!--   Alertas   -->
 	<script src="librerias15/swal/dist/sweetalert2.min.js"></script>
 	<link rel="stylesheet" href="librerias15/swal/dist/sweetalert2.min.css">
@@ -89,7 +88,7 @@
 	<script src="librerias15/jqueryconfirm/js/jquery-confirm.js"></script>
 
 	<!--   iconos   -->
-	<link rel="stylesheet" href="librerias15/fontawesome-free-5.8.1-web/css/all.css">
+	<link rel="stylesheet" href="librerias15/fontawesome-free-5.12.1-web/css/all.css">
 
 
 	<!--   carrusel de imagenes   -->
@@ -101,11 +100,11 @@
 	<script src="librerias15/tooltip.js"></script>
 
 	<!--   Chat   -->
-	<script src="chat/chat.js" type="text/javascript"></script>
+	<!--<script src="chat/chat.js" type="text/javascript"></script>
 	<link rel="stylesheet" type="text/css" href="chat/chat.css"/>
-
+-->
 	<!--   Propios   -->
-	<script src="sagyc.js"></script>
+	<script src="salud.js"></script>
 	<link rel="stylesheet" type="text/css" href="librerias15/modulos.css"/>
 
 	<script src="librerias15/chartjs/Chart.js"></script>
