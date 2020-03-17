@@ -100,9 +100,9 @@
 	<script src="librerias15/tooltip.js"></script>
 
 	<!--   Chat   -->
-	<script src="chat/chat.js" type="text/javascript"></script>
+	<!--<script src="chat/chat.js" type="text/javascript"></script>
 	<link rel="stylesheet" type="text/css" href="chat/chat.css"/>
-
+-->
 	<!--   Propios   -->
 	<script src="salud.js"></script>
 	<link rel="stylesheet" type="text/css" href="librerias15/modulos.css"/>

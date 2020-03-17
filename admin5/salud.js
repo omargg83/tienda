@@ -42,7 +42,7 @@
 					$("#bodyx").load("dash/menu.php");
 
 					setTimeout(fondos, 2000);
-					setTimeout(chat_inicia, 3000);
+				//setTimeout(chat_inicia, 3000);
 					setTimeout(correo, 6000);
 					if (datos.admin=="1"){
 						if(notif==""){
