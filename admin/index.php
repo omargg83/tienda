@@ -18,7 +18,7 @@
 	<meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
 	<meta http-equiv="Pragma" content="no-cache">
 
-	<link rel="stylesheet" href="librerias15/load/dist/css-loader.css">
+	<link rel="stylesheet" href="librerias15/load/css-loader.css">
 </head>
 <?php
 	if(isset($_SESSION['idpersona']) and $_SESSION['autoriza'] == 1) {
