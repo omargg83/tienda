@@ -6,7 +6,7 @@
   	}
   }
   $destino="file.json";
-  echo date("Y-m-d H:i:s");
+  echo "<br>".date("Y-m-d H:i:s");
   class ftp{
       public $conn;
 
@@ -50,30 +50,31 @@
 
   $ftp->descargar("catalogo_xml/productos.json",$destino,FTP_BINARY);
   $ftp->desconectar();
-
+  $fmodif=date("Y-m-d H:i:s");
   if (file_exists ($destino)){
     ///////////////////////////////////////    PROCESO  /////////////////////////////////////////////////////////////
     $db = new Productos();
-
-    $sql="TRUNCATE TABLE producto_exist ";
+/*
+    $sql="TRUNCATE TABLE producto_exist";
     $sth0 = $db->dbh->prepare($sql);
-    $sth0->execute();
+    echo "Truncate:".$sth0->execute();
 
     $sql="ALTER TABLE producto_exist AUTO_INCREMENT = 1";
     $sth0 = $db->dbh->prepare($sql);
     $sth0->execute();
+*/
 
     $data = file_get_contents($destino);
     $products = json_decode($data, true);
     $x="";
-    echo "<div class='container' style='background-color:".$_SESSION['cfondo']."; '>";
+
     $i=0;
     foreach ($products as $product) {
         try{
           $sql="select * from productos where idProducto='".$product['idProducto']."' limit 1";
           $stmt= $db->dbh->query($sql);
           if($stmt->rowCount()==0){
-            $sql="insert into productos (idProducto, clave, numParte, nombre, modelo, idMarca, marca, idCategoria, categoria, idSubCategoria, subcategoria, descripcion_corta, precio, moneda, tipoCambio, imagen, upc, activo) values (:idProducto, :clave, :numParte, :nombre, :modelo, :idMarca, :marca, :idCategoria, :categoria, :idSubCategoria, :subcategoria, :descripcion_corta, :precio, :moneda, :tipoCambio, :imagen, :upc, :activo)";
+            $sql="insert into productos (idProducto, clave, numParte, nombre, modelo, idMarca, marca, idCategoria, categoria, idSubCategoria, subcategoria, descripcion_corta, precio, moneda, tipoCambio, imagen, upc, activo, modificado) values (:idProducto, :clave, :numParte, :nombre, :modelo, :idMarca, :marca, :idCategoria, :categoria, :idSubCategoria, :subcategoria, :descripcion_corta, :precio, :moneda, :tipoCambio, :imagen, :upc, :activo, :modificado)";
             $sth = $db->dbh->prepare($sql);
             $sth->bindValue(':idProducto', $product['idProducto']);
             $sth->bindValue(':clave', $product['clave']);
@@ -91,7 +92,7 @@
             $sth->bindValue(':upc', $product['upc']);
           }
           else{
-            $sql="update productos set precio=:precio, moneda=:moneda, tipoCambio=:tipoCambio, imagen=:imagen, activo=:activo where idprod='".$product['idProducto']."'";
+            $sql="update productos set precio=:precio, moneda=:moneda, tipoCambio=:tipoCambio, imagen=:imagen, activo=:activo, modificado=:modificado where idProducto='".$product['idProducto']."'";
             $sth = $db->dbh->prepare($sql);
           }
           $sth->bindValue(':precio', $product['precio']);
@@ -99,11 +100,16 @@
           $sth->bindValue(':tipoCambio', $product['tipoCambio']);
           $sth->bindValue(':imagen', $product['imagen']);
           $sth->bindValue(':activo', $product['activo']);
+          $sth->bindValue(':modificado', $fmodif);
           $sth->execute();
+
+          $sql="delete from producto_exist where idProducto='".$product['idProducto']."'";
+          $sth3 = $db->dbh->prepare($sql);
+          $sth3->execute();
 
           while (current($product['existencia'])) {
             $name=key($product['existencia']);
-            $valor= $product['existencia'][$name];
+            $valor=$product['existencia'][$name];
 
             $sql="insert into producto_exist (idProducto, almacen, existencia) values (:idProducto, :almacen, :existencia)";
             $sth2 = $db->dbh->prepare($sql);
@@ -113,17 +119,30 @@
             $sth2->execute();
             next($product['existencia']);
           }
-          
+
+          $sql="delete from producto_espe where idProducto='".$product['idProducto']."'";
+          $sth3 = $db->dbh->prepare($sql);
+          $sth3->execute();
+
+          foreach($product['especificaciones'] as $key){
+            $sql="insert into producto_espe (idProducto, tipo, valor) values (:idProducto, :tipo, :valor)";
+            $sth2 = $db->dbh->prepare($sql);
+            $sth2->bindValue(':idProducto', $product['idProducto']);
+            $sth2->bindValue(':tipo', $key['tipo']);
+            $sth2->bindValue(':valor', $key['valor']);
+            $sth2->execute();
+          }
+
         }
         catch(PDOException $e){
           return "Database access FAILED! ".$e->getMessage();
         }
         $i++;
-        /*
-        if ($i==20){
+/*
+        if ($i==2){
           break;
         }
-        */
+*/
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////

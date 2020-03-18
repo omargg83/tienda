@@ -7,15 +7,12 @@ class Productos extends Tienda{
 	public function __construct(){
 		parent::__construct();
 	}
-
-
 	public function productos_lista(){
 		try{
 			parent::set_names();
-			$poliza="";
 			if (isset($_REQUEST['buscar']) and strlen(trim($_REQUEST['buscar']))>0){
 				$texto=trim(htmlspecialchars($_REQUEST['buscar']));
-				$sql="SELECT * from productos where clave like '%$texto%' or nombre like '%$texto%' or modelo like '%$texto%' or marca like '%$texto%' limit 100";
+				$sql="SELECT * from productos where clave like '%$texto%' or nombre like '%$texto%' or modelo like '%$texto%' or marca like '%$texto%' or idProducto like '%$texto%' limit 100";
 			}
 			else{
 				$sql="SELECT * from productos limit 100";
@@ -41,6 +38,35 @@ class Productos extends Tienda{
 			return "Database access FAILED!".$e->getMessage();
 		}
 	}
+	public function producto_exist($id){
+		try{
+			parent::set_names();
+			$sql="select * from producto_exist where idProducto=:id";
+			$sth = $this->dbh->prepare($sql);
+			$sth->bindValue(':id', "$id");
+			$sth->execute();
+			return $sth->fetchAll(PDO::FETCH_OBJ);
+		}
+		catch(PDOException $e){
+			return "Database access FAILED!".$e->getMessage();
+		}
+	}
+	public function producto_espe($id){
+		try{
+			parent::set_names();
+			$sql="select * from producto_espe where idProducto=:id";
+			$sth = $this->dbh->prepare($sql);
+			$sth->bindValue(':id', "$id");
+			$sth->execute();
+			return $sth->fetchAll(PDO::FETCH_OBJ);
+		}
+		catch(PDOException $e){
+			return "Database access FAILED!".$e->getMessage();
+		}
+	}
+
+
+
 	public function producto_categoria($id){
 		try{
 			parent::set_names();
@@ -146,111 +172,22 @@ class Productos extends Tienda{
 			return "Database access FAILED!".$e->getMessage();
 		}
 	}
-
-	public function cargarjson(){
-		$idProducto=$_REQUEST['idProducto'];
-		return $idProducto;
-	}
-
-	public function subir_file(){
-		$contarx=0;
-		$arr=array();
-
-		foreach ($_FILES as $key){
-			$extension = pathinfo($key['name'], PATHINFO_EXTENSION);
-			$n = $key['name'];
-			$s = $key['size'];
-			$string = trim($n);
-			$string = str_replace( $extension,"", $string);
-			$string = str_replace( array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'), array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'), $string );
-			$string = str_replace( array('é', 'è', 'ë', 'ê', 'É', 'È', 'Ê', 'Ë'), array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'), $string );
-			$string = str_replace( array('í', 'ì', 'ï', 'î', 'Í', 'Ì', 'Ï', 'Î'), array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'), $string );
-			$string = str_replace( array('ó', 'ò', 'ö', 'ô', 'Ó', 'Ò', 'Ö', 'Ô'), array('o', 'o', 'o', 'o', 'O', 'O', 'O', 'O'), $string );
-			$string = str_replace( array('ú', 'ù', 'ü', 'û', 'Ú', 'Ù', 'Û', 'Ü'), array('u', 'u', 'u', 'u', 'U', 'U', 'U', 'U'), $string );
-			$string = str_replace( array('ñ', 'Ñ', 'ç', 'Ç'), array('n', 'N', 'c', 'C',), $string );
-			$string = str_replace( array(' '), array('_'), $string);
-			$string = str_replace(array("\\","¨","º","-","~","#","@","|","!","\"","·","$","%","&","/","(",")","?","'","¡","¿","[","^","`","]","+","}","{","¨","´",">","<",";",",",":","."),'', $string );
-			$string.=".".$extension;
-			$n_nombre=date("YmdHis")."_".$contarx."_".rand(1,1983).".".$extension;
-			$destino="../historial/".$n_nombre;
-
-			if(move_uploaded_file($key['tmp_name'],$destino)){
-				chmod($destino,0666);
-				$arr = array("archivo" => $n_nombre,"error"=>0);
-			}
-			else{
-				$arr = array("archivo" => $n_nombre,"error"=>1);
-			}
-			$contarx++;
-		}
-		$myJSON = json_encode($arr);
-		return $myJSON;
-	}
-	public function subida_orden(){
-		$destino=$_REQUEST['direccion'];
+	public function almacen_busca($clave){
 		try{
 			parent::set_names();
-			$sql="TRUNCATE TABLE productos";
+			$sql="select * from almacen where homoclave=:id";
 			$sth = $this->dbh->prepare($sql);
+			$sth->bindValue(':id', "$clave");
 			$sth->execute();
+			return $sth->fetch(PDO::FETCH_OBJ);
 		}
 		catch(PDOException $e){
-			return "Database access FAILED! ".$e->getMessage();
+			return "Database access FAILED!".$e->getMessage();
 		}
-		try{
-			parent::set_names();
-			$sql="ALTER TABLE productos AUTO_INCREMENT = 1 ";
-			$sth = $this->dbh->prepare($sql);
-			$sth->execute();
-		}
-		catch(PDOException $e){
-			return "Database access FAILED! ".$e->getMessage();
-		}
-		$x="";
-		if(strlen($destino)>2){
-			$x.= "<div class='container' >";
-				$x.= "<div class='card'>";
-					$x.= "<div class='card-header'>";
-					$x.= "Procesar archivo Xlsx";
-					$x.= "</div>";
-					$x.= "<div class='card-body'>";
-						$x.= "<center><table class='info'>";
-						$x.= "<tr><td>El archivo se subio correctamente: <b>$destino</b></td></tr>";
-						$x.= "<tr><td>Paso 1: Obtener información del archivo de excel</td></tr>";
-						$x.= "<input type='hidden' id='direccion' name='direccion' value='$destino'>";
-						$x.= "<tr><td><button type='button' title='Editar' class='btn btn-outline-warning btn-sm' onclick='migrar()'><i class='fa fa-arrow-right'></i>Siguiente</button></td></tr>";
-						$x.= "</table>";
-					$x.="</div>";
-				$x.="</div>";
-			$x.="</div>";
-		}
-		return $x;
 	}
-	public function migrar(){
-		$direccion=$_REQUEST['direccion'];
-		$data = file_get_contents("../historial/".$direccion);
-		$products = json_decode($data, true);
-		$x="";
-		echo "<div class='container' style='background-color:".$_SESSION['cfondo']."; '>";
-		foreach ($products as $product) {
-				$sql="insert into productos (idprod, clave, nombre, modelo, idMarca, marca, idCategoria, categoria, subcategoria, descripcion_corta) values (:idProducto, :clave, :nombre, :modelo, :idMarca, :marca, :idCategoria, :categoria, :subcategoria, :descripcion_corta)";
 
-				$sth = $this->dbh->prepare($sql);
-				$sth->bindValue(':idProducto', $product['idProducto']);
-				$sth->bindValue(':clave', $product['clave']);
-				$sth->bindValue(':nombre', $product['nombre']);
-				$sth->bindValue(':modelo', $product['modelo']);
-				$sth->bindValue(':idMarca', $product['idMarca']);
-				$sth->bindValue(':marca', $product['marca']);
-				$sth->bindValue(':idCategoria', $product['idCategoria']);
-				$sth->bindValue(':subcategoria', $product['subcategoria']);
-				$sth->bindValue(':categoria', $product['categoria']);
-				$sth->bindValue(':descripcion_corta', $product['descripcion_corta']);
-				$sth->execute();
-		}
-		return 0;
-		echo "</div> fin de archivo";
-	}
+
+
 }
 $db = new Productos();
 if(strlen($function)>0){
