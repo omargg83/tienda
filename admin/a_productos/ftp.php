@@ -6,7 +6,7 @@
   	}
   }
   $destino="file.json";
-
+  echo date("Y-m-d H:i:s");
   class ftp{
       public $conn;
 
@@ -54,23 +54,14 @@
   if (file_exists ($destino)){
     ///////////////////////////////////////    PROCESO  /////////////////////////////////////////////////////////////
     $db = new Productos();
-    try{
-      $sql="TRUNCATE TABLE productos";
-      $sth = $db->dbh->prepare($sql);
-      $sth->execute();
-    }
-    catch(PDOException $e){
-      return "Database access FAILED! ".$e->getMessage();
-    }
 
-    try{
-      $sql="ALTER TABLE productos AUTO_INCREMENT = 1 ";
-      $sth = $db->dbh->prepare($sql);
-      $sth->execute();
-    }
-    catch(PDOException $e){
-      return "Database access FAILED! ".$e->getMessage();
-    }
+    $sql="TRUNCATE TABLE producto_exist ";
+    $sth0 = $db->dbh->prepare($sql);
+    $sth0->execute();
+
+    $sql="ALTER TABLE producto_exist AUTO_INCREMENT = 1";
+    $sth0 = $db->dbh->prepare($sql);
+    $sth0->execute();
 
     $data = file_get_contents($destino);
     $products = json_decode($data, true);
@@ -79,47 +70,67 @@
     $i=0;
     foreach ($products as $product) {
         try{
-          $sql="select * from productos where idProducto='".$product['idProducto']."'";
+          $sql="select * from productos where idProducto='".$product['idProducto']."' limit 1";
           $stmt= $db->dbh->query($sql);
           if($stmt->rowCount()==0){
             $sql="insert into productos (idProducto, clave, numParte, nombre, modelo, idMarca, marca, idCategoria, categoria, idSubCategoria, subcategoria, descripcion_corta, precio, moneda, tipoCambio, imagen, upc, activo) values (:idProducto, :clave, :numParte, :nombre, :modelo, :idMarca, :marca, :idCategoria, :categoria, :idSubCategoria, :subcategoria, :descripcion_corta, :precio, :moneda, :tipoCambio, :imagen, :upc, :activo)";
+            $sth = $db->dbh->prepare($sql);
+            $sth->bindValue(':idProducto', $product['idProducto']);
+            $sth->bindValue(':clave', $product['clave']);
+            $sth->bindValue(':numParte', $product['numParte']);
+            $sth->bindValue(':nombre', $product['nombre']);
+            $sth->bindValue(':modelo', $product['modelo']);
+            $sth->bindValue(':idMarca', $product['idMarca']);
+            $sth->bindValue(':marca', $product['marca']);
+            $sth->bindValue(':idCategoria', $product['idCategoria']);
+            $sth->bindValue(':categoria', $product['categoria']);
+            $sth->bindValue(':idSubCategoria', $product['idSubCategoria']);
+            $sth->bindValue(':subcategoria', $product['subcategoria']);
+            $sth->bindValue(':descripcion_corta', $product['descripcion_corta']);
+            $sth->bindValue(':imagen', $product['imagen']);
+            $sth->bindValue(':upc', $product['upc']);
           }
           else{
-            $sql="update productos set precio=:precio, moneda=:moneda where idprod='".$product['idProducto']."'";
+            $sql="update productos set precio=:precio, moneda=:moneda, tipoCambio=:tipoCambio, imagen=:imagen, activo=:activo where idprod='".$product['idProducto']."'";
+            $sth = $db->dbh->prepare($sql);
           }
-          $sth = $db->dbh->prepare($sql);
-          $sth->bindValue(':idProducto', $product['idProducto']);
-          $sth->bindValue(':clave', $product['clave']);
-          $sth->bindValue(':numParte', $product['numParte']);
-          $sth->bindValue(':nombre', $product['nombre']);
-          $sth->bindValue(':modelo', $product['modelo']);
-          $sth->bindValue(':idMarca', $product['idMarca']);
-          $sth->bindValue(':marca', $product['marca']);
-          $sth->bindValue(':idCategoria', $product['idCategoria']);
-          $sth->bindValue(':categoria', $product['categoria']);
-          $sth->bindValue(':idSubCategoria', $product['idSubCategoria']);
-          $sth->bindValue(':subcategoria', $product['subcategoria']);
-          $sth->bindValue(':descripcion_corta', $product['descripcion_corta']);
           $sth->bindValue(':precio', $product['precio']);
           $sth->bindValue(':moneda', $product['moneda']);
           $sth->bindValue(':tipoCambio', $product['tipoCambio']);
           $sth->bindValue(':imagen', $product['imagen']);
-          $sth->bindValue(':upc', $product['upc']);
           $sth->bindValue(':activo', $product['activo']);
           $sth->execute();
+
+          while (current($product['existencia'])) {
+            $name=key($product['existencia']);
+            $valor= $product['existencia'][$name];
+
+            $sql="insert into producto_exist (idProducto, almacen, existencia) values (:idProducto, :almacen, :existencia)";
+            $sth2 = $db->dbh->prepare($sql);
+            $sth2->bindValue(':idProducto', $product['idProducto']);
+            $sth2->bindValue(':almacen', $name);
+            $sth2->bindValue(':existencia', $valor);
+            $sth2->execute();
+            next($product['existencia']);
+          }
+          
         }
         catch(PDOException $e){
           return "Database access FAILED! ".$e->getMessage();
         }
         $i++;
-        if ($i==100){
+        /*
+        if ($i==20){
           break;
         }
+        */
     }
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////
   }
+
   $date=date("YmdHis");
   $file="file_".$date.".json";
   rename($destino, "../historial/$file");
-
+  echo "<br>".date("Y-m-d H:i:s");
 ?>
