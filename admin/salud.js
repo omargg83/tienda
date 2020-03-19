@@ -429,7 +429,8 @@
 				url: proceso,
 				type: "post",
 				success:  function (response) {
-					if (!isNaN(response)){
+					var datos = JSON.parse(response);
+					if (datos.error==0){
 						lugar=destino+".php?id="+iddest;
 						$("#trabajo").load(lugar);
 						$('#myModal').modal('hide');
@@ -441,7 +442,7 @@
 						});
 					}
 					else{
-						$.alert(response);
+						$.alert(datos.terror);
 					}
 				}
 			});
@@ -740,6 +741,9 @@
 						url: lugar,
 						type:  'post',
 						timeout:10000,
+						beforeSend: function () {
+							$("#cargando").addClass("is-active");
+						},
 						success:  function (response) {
 							if (!isNaN(response)){
 								if (destino != undefined) {
@@ -759,13 +763,16 @@
 								  showConfirmButton: false,
 								  timer: 700
 								});
+								$("#cargando").removeClass("is-active");
 							}
 							else{
+								$("#cargando").removeClass("is-active");
 								alert(response);
 							}
 						},
 						error: function(jqXHR, textStatus, errorThrown) {
 							if(textStatus==="timeout") {
+								$("#cargando").removeClass("is-active");
 								Swal.fire({
 								  type: 'error',
 								  title: textStatus,

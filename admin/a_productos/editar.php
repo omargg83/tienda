@@ -45,7 +45,7 @@
 		$precio=$per->precio;
 		$moneda=$per->moneda;
 		$tipoCambio=$per->tipoCambio;
-		$imagen=$per->imagen;
+		$imagen=$per->img;
 		$upc=$per->upc;
 		$activo=$per->activo;
 		$moneda=$per->moneda;
@@ -63,29 +63,29 @@
 				<div class='row'>
 					<div class='col-3'>
 						<?php
-							echo "<img src='$imagen' width='100%' />";
+							echo "<img src='../admin/a_imagen/$imagen' width='100%' />";
 						 ?>
 					</div>
 					<div class='col-9'>
 						<div class="form-row">
-						 <div class="form-group col-md-3">
+						 <div class="form-group col-md-4">
 							 <label for="sku">Clave</label>
 							 <input type="text" class="form-control" id="clave" name='clave' placeholder="CLAVE" value="<?php echo $clave; ?>" readonly>
 						 </div>
 
-						 <div class="form-group col-md-3">
+						 <div class="form-group col-md-4">
 							 <label for="sku">Idproducto</label>
 							 <input type="text" class="form-control" id="idProducto" name='idProducto' placeholder="CLAVE" value="<?php echo $idProducto; ?>" readonly>
 						 </div>
 
-					    <div class="form-group col-md-3">
+					    <div class="form-group col-md-4">
 					      <label for="nombre">Numero de parte</label>
 					      <input type="text" class="form-control" id="numParte" name='numParte' placeholder="Numero de parte" value="<?php echo $numParte; ?>" readonly>
 					    </div>
 					  </div>
 
 						<div class="form-row">
-					    <div class="form-group col-md-9">
+					    <div class="form-group col-md-12">
 					      <label for="descripcion">Nombre</label>
 					      <input type="text" class="form-control" id="nombre" name='nombre' placeholder="Nombre" value="<?php echo $nombre; ?>" readonly>
 					    </div>
@@ -150,36 +150,11 @@
 			<div class='card-footer'>
 				<div class='btn-group'>
 		  		<button type="submit" class="btn btn-outline-secondary btn-sm"><i class='far fa-save'></i>Guardar</button>
-		  		<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_pass' data-id='<?php echo $id; ?>' data-lugar='a_productos/form_categoria' title='Categorias' ><i class="fab fa-buffer"></i>Categorias</button>
 					<button class='btn btn-outline-secondary btn-sm' id='lista_cat' data-lugar='a_productos/lista' title='regresar'><i class='fas fa-undo-alt'></i>Regresar</button>
 				</div>
 			</div>
 
 		<?php
-			if($id>0){
-
-				echo "<div class='card-header'>";
-					echo "Existencias";
-				echo "</div>";
-				echo "<div class='card-body'>";
-					echo "<table class='table table-sm'>";
-						foreach($alma as $key){
-							 $almacen=$db->almacen_busca($key->almacen);
-							echo "<tr>";
-								echo "<td>";
-								echo "(".$key->almacen.")";
-								echo $almacen->sucursal;
-								echo "</td>";
-
-								echo "<td>";
-								echo $key->existencia;
-								echo "</td>";
-							echo "</tr>";
-						}
-					echo "</table>";
-				echo "</div>";
-			}
-
 			if($id>0){
 				echo "<div class='card-header'>";
 					echo "Especificaciones";
@@ -201,7 +176,74 @@
 					}
 					echo "</table>";
 				echo "</div>";
+
+				echo "<div class='card-header'>";
+					echo "Existencias";
+				echo "</div>";
+				echo "<div class='card-body'>";
+					echo "<table class='table table-sm'>";
+						foreach($alma as $key){
+							 $almacen=$db->almacen_busca($key->almacen);
+							echo "<tr>";
+								echo "<td>";
+								echo "(".$key->almacen.")";
+								echo $almacen->sucursal;
+								echo "</td>";
+
+								echo "<td>";
+								echo $key->existencia;
+								echo "</td>";
+							echo "</tr>";
+						}
+					echo "</table>";
+				echo "</div>";
+
+				$c_archivoc = $db->imagen($id);
+				////////////////////////////////////////////////////////////////imagenes extra
+				echo "<div class='card-header '> Imagenes extra</div>";
+					echo "<div class='card-body'>";
+						echo "<div class='row' >";
+							echo "<div class='baguetteBoxOne gallery'>";
+								foreach($c_archivoc as $key){
+									echo "<div style='border:.1px solid silver;float:left;margin:10px'>";
+
+										if(file_exists("../".$db->doc.$key['direccion'])){
+											echo "<a href='".$db->doc.$key['direccion']."' data-caption='Correspondencia'>";
+											echo "<img src='".$db->doc.$key['direccion']."' alt='Correspondencia' >";
+											echo "</a><br>";
+
+											echo "<button class='btn btn-outline-secondary btn-sm' title='Eliminar archivo'
+											id='delfile_orden'
+											data-ruta='".$db->doc.$key['direccion']."'
+											data-keyt='id'
+											data-key='".$key['id']."'
+											data-tabla='producto_img'
+											data-campo='direccion'
+											data-tipo='2'
+											data-iddest='$id'
+											data-divdest='trabajo'
+											data-borrafile='1'
+											data-dest='a_productos/editar.php?id='
+											><i class='far fa-trash-alt'></i></button>";
+										}
+									echo "</div>";
+								}
+							echo "</div>";
+						echo "</div>";
+					echo "</div>";
+					echo "<div class='card-footer'>";
+						echo "<div class='btn-group'>";
+						echo "<button type='button' class='btn btn-outline-secondary btn-sm' data-toggle='modal' data-target='#myModal' id='fileup_respuesta' data-ruta='".$db->doc."' data-tabla='producto_img' data-campo='direccion' data-tipo='2' data-id='$id' data-keyt='idproducto' data-destino='a_productos/editar' data-iddest='$id' data-ext='.jpg,.png' ><i class='fas fa-cloud-upload-alt'></i>Subir</button>";
+
+						echo "</div>";
+					echo "</div>";
 			}
 		?>
 	</form>
 </div>
+
+<script type="text/javascript">
+	$(function() {
+		baguetteBox.run('.baguetteBoxOne');
+	});
+</script>

@@ -28,8 +28,42 @@
 			<div class='card-footer'>
 				<div class='btn-group'>
 		  		<button type="submit" class="btn btn-outline-secondary btn-sm"><i class='far fa-save'></i>Guardar</button>
+					<?php
+						if($id>0){
+							echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_pass' data-id='$id' data-lugar='a_categorias/form_grupo' title='Cambiar contraseña' ><i class='far fa-object-group'></i>Agrupar</button>";
+						}
+					?>
 					<button class='btn btn-outline-secondary btn-sm' id='lista_cat' data-lugar='a_categorias/lista' title='regresar'><i class='fas fa-undo-alt'></i>Regresar</button>
 				</div>
 			</div>
+			<?php
+				if($id>0){
+					echo "<div class='card-body'>";
+						echo "<table class='table table-sm' id='x_listacat' class='display compact hover'>";
+						$row=$db->producto_cat($id);
+						echo "<thead><tr><th>-</th><th>categoria</th></tr></thead>";
+						foreach($row as $key){
+							echo "<tr>";
+							echo "<td>";
+								echo "<div class='btn-group'>";
+									echo "<button class='btn btn-outline-secondary btn-sm' id='eliminar_cat' data-lugar='a_categorias/db_' data-destino='a_categorias/editar' data-id='".$key['idcatprod']."' data-iddest='$id' data-funcion='quitar_categoria' data-div='trabajo'><i class='far fa-trash-alt'></i></i></button>";
+								echo "</div>";
+							echo "</td>";
+							echo "<td>";
+							echo $key['categoria'];
+							echo "</td>";
+							echo "<tr>";
+						}
+					echo "</div>";
+				}
+			?>
+
 	</form>
+
 </div>
+
+<script>
+	$(document).ready( function () {
+		lista("x_listacat");
+	} );
+</script>

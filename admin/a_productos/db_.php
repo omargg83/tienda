@@ -6,6 +6,8 @@ class Productos extends Tienda{
 
 	public function __construct(){
 		parent::__construct();
+
+		$this->doc="a_imagenextra/";
 	}
 	public function productos_lista(){
 		try{
@@ -186,7 +188,18 @@ class Productos extends Tienda{
 		}
 	}
 
-
+	public function imagen($id){
+		try{
+			parent::set_names();
+			$sql="select * from producto_img where idproducto='$id'";
+			$sth = $this->dbh->prepare($sql);
+			$sth->execute();
+			return $sth->fetchAll();
+		}
+		catch(PDOException $e){
+			return "Database access FAILED!".$e->getMessage();
+		}
+	}
 
 }
 $db = new Productos();

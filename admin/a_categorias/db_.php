@@ -32,7 +32,55 @@ class Categorias extends Tienda{
 			return "Database access FAILED!".$e->getMessage();
 		}
 	}
+	public function agrupa_cat(){
+		try{
+			parent::set_names();
+			$sql="SELECT categoria from productos group by categoria asc";
+			$sth = $this->dbh->prepare($sql);
+			$sth->execute();
+			return $sth->fetchAll();
+		}
+		catch(PDOException $e){
+			return "Database access FAILED!".$e->getMessage();
+		}
+	}
+	public function agrega_categoria(){
+		try{
+			parent::set_names();
+			$id=$_REQUEST['id'];
+			$categoria=$_REQUEST['categoria'];
+			$arreglo =array();
+			$arreglo+= array('idcategoria'=>$id);
+			$arreglo+= array('categoria'=>$categoria);
+			$x=$this->insert('producto_cat', $arreglo);
 
+			$tmp=json_decode($x);
+			$arreglo=array();
+			$arreglo+=array('id'=>$id);
+			$arreglo+=array('error'=>$tmp->error);
+			$arreglo+=array('terror'=>$tmp->terror);
+			$arreglo+=array('param1'=>$tmp->id);
+			$arreglo+=array('param2'=>"");
+			$arreglo+=array('param3'=>"");
+			return json_encode($arreglo);
+		}
+		catch(PDOException $e){
+			return "Database access FAILED!".$e->getMessage();
+		}
+	}
+	public function producto_cat($idcategoria){
+		try{
+			parent::set_names();
+			$sql="SELECT * from producto_cat where idcategoria=:id";
+			$sth = $this->dbh->prepare($sql);
+			$sth->bindValue(':id', $idcategoria);
+			$sth->execute();
+			return $sth->fetchAll();
+		}
+		catch(PDOException $e){
+			return "Database access FAILED!".$e->getMessage();
+		}
+	}
 	public function guardar_categoria(){
 		try{
 			parent::set_names();
@@ -55,13 +103,9 @@ class Categorias extends Tienda{
 			return "Database access FAILED!".$e->getMessage();
 		}
 	}
-	public function borrar_oficio(){
-		if (isset($_POST['id'])){$id=$_POST['id'];}
-
-		$arreglo =array();
-		$arreglo+=array('idcomision'=>NULL);
-		$this->update('zsalidacal',array('idcomision'=>$id), $arreglo);
-		return $this->borrar('zofcomision',"idcomision",$id);
+	public function quitar_categoria(){
+		if (isset($_POST['id'])){$id=$_REQUEST['id'];}
+		return $this->borrar('producto_cat',"idcatprod",$id);
 	}
 
 }

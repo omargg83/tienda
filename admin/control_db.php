@@ -316,6 +316,91 @@
 		public function leerfondo(){
 			return $_SESSION['idfondo'];
 		}
+		public function subir_file(){
+			$contarx=0;
+			$arr=array();
+
+			foreach ($_FILES as $key){
+				$extension = pathinfo($key['name'], PATHINFO_EXTENSION);
+				$n = $key['name'];
+				$s = $key['size'];
+				$string = trim($n);
+				$string = str_replace( $extension,"", $string);
+				$string = str_replace( array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'), array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'), $string );
+				$string = str_replace( array('é', 'è', 'ë', 'ê', 'É', 'È', 'Ê', 'Ë'), array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'), $string );
+				$string = str_replace( array('í', 'ì', 'ï', 'î', 'Í', 'Ì', 'Ï', 'Î'), array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'), $string );
+				$string = str_replace( array('ó', 'ò', 'ö', 'ô', 'Ó', 'Ò', 'Ö', 'Ô'), array('o', 'o', 'o', 'o', 'O', 'O', 'O', 'O'), $string );
+				$string = str_replace( array('ú', 'ù', 'ü', 'û', 'Ú', 'Ù', 'Û', 'Ü'), array('u', 'u', 'u', 'u', 'U', 'U', 'U', 'U'), $string );
+				$string = str_replace( array('ñ', 'Ñ', 'ç', 'Ç'), array('n', 'N', 'c', 'C',), $string );
+				$string = str_replace( array(' '), array('_'), $string);
+				$string = str_replace(array("\\","¨","º","-","~","#","@","|","!","\"","·","$","%","&","/","(",")","?","'","¡","¿","[","^","`","]","+","}","{","¨","´",">","<",";",",",":","."),'', $string );
+				$string.=".".$extension;
+				$n_nombre=date("YmdHis")."_".$contarx."_".rand(1,1983).".".$extension;
+				$destino="historial/".$n_nombre;
+
+				if(move_uploaded_file($key['tmp_name'],$destino)){
+					chmod($destino,0666);
+					$arr[$contarx] = array("archivo" => $n_nombre);
+				}
+				else{
+
+				}
+				$contarx++;
+			}
+			$myJSON = json_encode($arr);
+			return $myJSON;
+		}
+		public function guardar_file(){
+			$arreglo =array();
+			$x="";
+			if (isset($_REQUEST['id'])){$id=$_REQUEST['id'];}
+			if (isset($_REQUEST['ruta'])){$ruta=$_REQUEST['ruta'];}
+			if (isset($_REQUEST['tipo'])){$tipo=$_REQUEST['tipo'];}
+			if (isset($_REQUEST['ext'])){$ext=$_REQUEST['ext'];}
+			if (isset($_REQUEST['tabla'])){$tabla=$_REQUEST['tabla'];}
+			if (isset($_REQUEST['campo'])){$campo=$_REQUEST['campo'];}
+			if (isset($_REQUEST['direccion'])){$direccion=$_REQUEST['direccion'];}
+			if (isset($_REQUEST['keyt'])){$keyt=$_REQUEST['keyt'];}
+			if($tipo==1){	//////////////update
+				$arreglo+=array($campo=>$direccion);
+				$x=$this->update($tabla,array($keyt=>$id), $arreglo);
+				rename("historial/$direccion", "$ruta/$direccion");
+			}
+			else{
+				$arreglo+=array($campo=>$direccion);
+				$arreglo+=array($keyt=>$id);
+				$x=$this->insert($tabla, $arreglo);
+				rename("historial/$direccion", "$ruta/$direccion");
+			}
+			return $x;
+		}
+		public function eliminar_file(){
+			$arreglo =array();
+			$x="";
+			if (isset($_REQUEST['ruta'])){$ruta=$_REQUEST['ruta'];}
+			if (isset($_REQUEST['key'])){$key=$_REQUEST['key'];}
+			if (isset($_REQUEST['keyt'])){$keyt=$_REQUEST['keyt'];}
+			if (isset($_REQUEST['tabla'])){$tabla=$_REQUEST['tabla'];}
+			if (isset($_REQUEST['campo'])){$campo=$_REQUEST['campo'];}
+			if (isset($_REQUEST['tipo'])){$tipo=$_REQUEST['tipo'];}
+			if (isset($_REQUEST['borrafile'])){$borrafile=$_REQUEST['borrafile'];}
+
+			if($borrafile==1){
+				if ( file_exists($_REQUEST['ruta']) ) {
+					unlink($_REQUEST['ruta']);
+				}
+				else{
+				}
+			}
+			if($tipo==1){ ////////////////actualizar tabla
+				$arreglo+=array($campo=>"");
+				$x.=$this->update($tabla,array($keyt=>$key), $arreglo);
+			}
+			if($tipo==2){
+				$x.=$this->borrar($tabla,$keyt,$key);
+			}
+			return "$x";
+		}
 }
 	if(strlen($ctrl)>0){
 		$db = new Tienda();

@@ -12,7 +12,6 @@
         <div class='form-inline my-2 my-lg-0' id='daigual' action='' >
 					<input class='form-control mr-sm-2' type='search' placeholder='Buscar' aria-label='Search' name='buscar' id='buscar'  onkeyup='Javascript: if (event.keyCode==13) buscarx()'>
           <div class='btn-group'>
-            <div class="input-group-text"><label><input type='checkbox' value='1' id='c_pol' name='c_pol'><span>Productos</span></label></div>
             <button type='button' class='btn btn-outline-warning btn-sm' onclick='buscarx()'><i class='fas fa-search'></i>Buscar</button>
           </div>
 				</div>
