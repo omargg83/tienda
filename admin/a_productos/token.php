@@ -1,6 +1,9 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
+
+echo "MI IP:".$_SERVER['SERVER_ADDR'];
+echo "<br>";
 //@AUTOR ING. JOSE DANIEL SOLIS VELARDE
 //AQUI SE DEFINE LA FUNCION GENERICA PARA CONSUMIR UN SERVICIO
 //servicioApi(METODO, RUTA_SERVICIO, DATOS_JSON, TOKEN)
@@ -19,28 +22,35 @@ function servicioApi($metodo, $servicio, $json = null, $token = null) {
     curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 20);
     $result = curl_exec($ch);
 
-  //////////////////////////////////////////////////////////////////
-  if (empty($ret)) {
-      // some kind of an error happened
-      die(curl_error($ch));
-      curl_close($ch); // close cURL handler
-  } else {
-      $info = curl_getinfo($ch);
-      curl_close($ch); // close cURL handler
 
-      if (empty($info['http_code'])) {
-              die("No HTTP code was returned");
-      } else {
-          // load the HTTP codes
-          $http_codes = parse_ini_file("path/to/the/ini/file/I/pasted/above");
+    echo curl_error($ch);
+    die(curl_error($ch));
+    curl_close($ch); // close cURL handler
 
-          // echo results
-          echo "The server responded: <br />";
-          echo $info['http_code'] . " " . $http_codes[$info['http_code']];
-      }
+    //////////////////////////////////////////////////////////////////
+    if (empty($ret)) {
+        // some kind of an error happened
 
-  }
-  //////////////////////////////////////////////////////////////////
+        die(curl_error($ch));
+        curl_close($ch); // close cURL handler
+    } else {
+        $info = curl_getinfo($ch);
+        curl_close($ch); // close cURL handler
+
+        if (empty($info['http_code'])) {
+                die("No HTTP code was returned");
+        } else {
+            // load the HTTP codes
+            $http_codes = parse_ini_file("path/to/the/ini/file/I/pasted/above");
+
+            // echo results
+            echo "The server responded: <br />";
+            echo $info['http_code'] . " " . $http_codes[$info['http_code']];
+        }
+
+    }
+    //////////////////////////////////////////////////////////////////
+
 
     curl_close($ch);
     return json_decode($result);
@@ -61,7 +71,6 @@ function crearNuevoToken() {
 
 $token = crearNuevoToken();
 echo $token;
-
 echo var_dump($token);
 // //AQUI SE IMPRIME EL TOKEN CON EL QUE SE CONSUMEN LOS SERVICIO
 echo "token:".$token;

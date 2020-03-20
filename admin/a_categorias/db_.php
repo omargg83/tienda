@@ -10,13 +10,19 @@ class Categorias extends Tienda{
 	public function categorias_lista(){
 		try{
 			parent::set_names();
-			$sql="SELECT * from categorias";
+			if (isset($_REQUEST['buscar']) and strlen(trim($_REQUEST['buscar']))>0){
+				$texto=trim(htmlspecialchars($_REQUEST['buscar']));
+				$sql="SELECT * from categorias where descripcion like '%$texto%' limit 100";
+			}
+			else{
+				$sql="SELECT * from categorias";
+			}
 			$sth = $this->dbh->prepare($sql);
 			$sth->execute();
 			return $sth->fetchAll();
 		}
 		catch(PDOException $e){
-			return "Database access FAILED!".$e->getMessage();
+			return "Database access FAILED! ".$e->getMessage();
 		}
 	}
 	public function categoria_editar($id){
