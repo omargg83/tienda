@@ -22,37 +22,9 @@ function servicioApi($metodo, $servicio, $json = null, $token = null) {
     curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 20);
     $result = curl_exec($ch);
 
-
     echo curl_error($ch);
-    die(curl_error($ch));
     curl_close($ch); // close cURL handler
 
-    //////////////////////////////////////////////////////////////////
-    if (empty($ret)) {
-        // some kind of an error happened
-
-        die(curl_error($ch));
-        curl_close($ch); // close cURL handler
-    } else {
-        $info = curl_getinfo($ch);
-        curl_close($ch); // close cURL handler
-
-        if (empty($info['http_code'])) {
-                die("No HTTP code was returned");
-        } else {
-            // load the HTTP codes
-            $http_codes = parse_ini_file("path/to/the/ini/file/I/pasted/above");
-
-            // echo results
-            echo "The server responded: <br />";
-            echo $info['http_code'] . " " . $http_codes[$info['http_code']];
-        }
-
-    }
-    //////////////////////////////////////////////////////////////////
-
-
-    curl_close($ch);
     return json_decode($result);
 }
 

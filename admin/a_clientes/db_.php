@@ -166,6 +166,43 @@ class Clientes extends Tienda{
 		}
 
 	}
+	public function dir_envio(){
+		try{
+			parent::set_names();
+			$id=$_REQUEST['id'];
+			$idcliente=$_REQUEST['idcliente'];
+
+			$sql="update clientes_direccion set envio=null where idcliente='$idcliente'";
+			$sth = $this->dbh->prepare($sql);
+			$sth->execute();
+
+			$sql="update clientes_direccion set envio=1 where iddireccion='$id'";
+			$sth = $this->dbh->prepare($sql);
+			$sth->execute();
+		}
+		catch(PDOException $e){
+			return "Database access FAILED!".$e->getMessage();
+		}
+	}
+	public function dir_factura(){
+		try{
+			parent::set_names();
+			$id=$_REQUEST['id'];
+			$idcliente=$_REQUEST['idcliente'];
+
+			$sql="update clientes_direccion set factura=null where idcliente='$idcliente'";
+			$sth = $this->dbh->prepare($sql);
+			$sth->execute();
+
+			$sql="update clientes_direccion set factura=1 where iddireccion='$id'";
+			$sth = $this->dbh->prepare($sql);
+			$sth->execute();
+
+		}
+		catch(PDOException $e){
+			return "Database access FAILED!".$e->getMessage();
+		}
+	}
 }
 $db = new Clientes();
 if(strlen($function)>0){

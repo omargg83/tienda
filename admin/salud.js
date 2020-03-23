@@ -725,7 +725,7 @@
 			div="trabajo";
 		}
 		$.confirm({
-			title: 'Guardar',
+			title: 'Eliminar',
 			content: '¿Desea borrar el registro seleccionado?',
 			buttons: {
 				Aceptar: function () {
@@ -745,46 +745,46 @@
 							$("#cargando").addClass("is-active");
 						},
 						success:  function (response) {
-							if (!isNaN(response)){
-								if (destino != undefined) {
-									$("#"+div).html("");
-									$.ajax({
-										data:  {"id":iddest},
-										url:   destino,
-										type:  'post',
-										success:  function (response) {
-											$("#"+div).html(response);
-										}
+							if (isJSON(response)){
+								var datos = JSON.parse(response);
+								if (datos.error==0){
+									if (destino != undefined) {
+										$("#"+div).html("");
+										$.ajax({
+											data:  {"id":iddest},
+											url:   destino,
+											type:  'post',
+											success:  function (response) {
+												$("#"+div).html(response);
+											}
+										});
+									}
+									Swal.fire({
+									  type: 'success',
+									  title: "Se eliminó correctamente",
+									  showConfirmButton: false,
+									  timer: 700
 									});
+									$("#cargando").removeClass("is-active");
 								}
-								Swal.fire({
-								  type: 'success',
-								  title: "Se eliminó correctamente",
-								  showConfirmButton: false,
-								  timer: 700
-								});
-								$("#cargando").removeClass("is-active");
+								else{
+									$("#cargando").removeClass("is-active");
+									$.alert("error"+datos.terror);
+								}
 							}
 							else{
 								$("#cargando").removeClass("is-active");
-								alert(response);
+								$.alert("error"+response);
 							}
 						},
 						error: function(jqXHR, textStatus, errorThrown) {
 							if(textStatus==="timeout") {
-								$("#cargando").removeClass("is-active");
-								Swal.fire({
-								  type: 'error',
-								  title: textStatus,
-								  showConfirmButton: false,
-								  timer: 700
-								});
+								$.alert("<div class='container' style='background-color:white; width:300px'><center><img src='img/giphy.gif' width='300px'></center></div><br><center><div class='alert alert-danger' role='alert'>Ocurrio un error intente de nuevo en unos minutos, vuelva a entrar o presione ctrl + F5, para reintentar</div></center> ");
 							}
 						}
 					});
 				},
 				Cancelar: function () {
-
 				}
 			}
 		});

@@ -59,13 +59,19 @@
 					echo "</div>";
 					echo "<div class='card-body'>";
 						echo "<table class='table table-sm'>";
-						echo "<tr><th>-</th><th>Nombre</th><th>Apellidos</th><th>Empresa</th></tr>";
+						echo "<tr><th>-</th><th>Nombre</th><th>Apellidos</th><th>Empresa</th><th>Ciudad</th><th>Estado</th></tr>";
 						foreach($row as $key){
 							echo "<tr id='".$key['iddireccion']."' class='edit-t'>";
 								echo "<td>";
 									echo "<div class='btn-group'>";
 
 										echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_pass' data-id='".$key['iddireccion']."' data-id2='$id' data-lugar='a_clientes/form_direccion' title='Editar' ><i class='fas fa-pencil-alt'></i></button>";
+										if($key['envio']==1){
+											echo "<button class='btn btn-outline-secondary btn-sm' type='button' title='Dirección de envio'><i class='fas fa-map-marked-alt'></i></button>";
+										}
+										if($key['factura']==1){
+											echo "<button class='btn btn-outline-secondary btn-sm' type='button'  title='Dirección de facturación'><i class='far fa-id-badge'></i></button>";
+										}
 
 									echo "</div>";
 								echo "</td>";
@@ -77,6 +83,12 @@
 								echo "</td>";
 								echo "<td>";
 									echo $key['empresa'];
+								echo "</td>";
+								echo "<td>";
+									echo $key['ciudad'];
+								echo "</td>";
+								echo "<td>";
+									echo $key['estado'];
 								echo "</td>";
 							echo "</tr>";
 						}

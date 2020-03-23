@@ -36,8 +36,8 @@
 	</div>
 	  <div class='modal-body' >
 		<?php
-			echo "<input type='text' id='id' NAME='id' value='$id'>";
-			echo "<input type='text' id='id2' NAME='id2' value='$id2'>";
+			echo "<input type='hidden' id='id' NAME='id' value='$id'>";
+			echo "<input type='hidden' id='id2' NAME='id2' value='$id2'>";
 		?>
 			<div class='row'>
 				<div class="col-4">
@@ -102,6 +102,12 @@
 
 			<div class='btn-group'>
 			<button class='btn btn-outline-secondary btn-sm' type='submit' id='acceso' title='Guardar'><i class='far fa-save'></i>Guardar</button>
+			<?php
+				if($id>0){
+					echo "<button class='btn btn-outline-secondary btn-sm' type='button' id='acceso' title='Dirección de envío' onclick='dir_envio($id,$id2)'><i class='fas fa-map-marked-alt'></i>Envío</button>";
+					echo "<button class='btn btn-outline-secondary btn-sm' type='button' id='acceso' title='Dirección de facturación' onclick='dir_factura($id,$id2)'><i class='far fa-id-badge'></i>Facturación</button>";
+				}
+			?>
 			<button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal" title='Cancelar'><i class="fas fa-sign-out-alt"></i>Cancelar</button>
 			</div>
 	  </div>

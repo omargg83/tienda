@@ -16,7 +16,8 @@
   curl_setopt($ch, CURLOPT_TIMEOUT, 20);
   curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 20);
   $result = curl_exec($ch);
-
+  echo "resultado:".$result;
+  echo "<br>";
   echo die(curl_error($ch));
   curl_close($ch); // close cURL handler
 

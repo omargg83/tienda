@@ -2,7 +2,7 @@
   require_once("db_.php");
  ?>
  <nav class='navbar navbar-expand-lg navbar-light bg-light'>
- 		  <a class='navbar-brand' ><i class="fas fa-user-tag"></i>Clientes</a>
+ 		  <a class='navbar-brand' ><i class="fas fa-ticket-alt"></i>Clientes</a>
  		  <button class='navbar-toggler navbar-toggler-right' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
  			<span class='navbar-toggler-icon'></span>
  		  </button>
@@ -41,6 +41,90 @@
       type:  'post',
       success:  function (response) {
         $("#trabajo").html(response);
+      }
+    });
+  }
+  function dir_envio(id,idcliente){
+    $.confirm({
+      title: 'Direción de envío',
+      content: '¿Desea establecerla como dirección de envío?',
+      buttons: {
+        Aceptar: function () {
+          $.ajax({
+            data:  {
+              "function":"dir_envio",
+              "id":id,
+              "idcliente":idcliente
+            },
+            url:   'a_clientes/db_.php',
+            type:  'post',
+            success:  function (response) {
+
+              $.ajax({
+                data:  {
+                  "id":idcliente
+                },
+                url:   'a_clientes/editar.php',
+                type:  'post',
+                success:  function (response) {
+                  $("#trabajo").html(response);
+                }
+              });
+              Swal.fire({
+                  type: 'success',
+                  title: 'Se establecio correctamente',
+                  showConfirmButton: false,
+                  timer: 1000
+              })
+              $('#myModal').modal('hide');
+
+            }
+          });
+        },
+        Cancelar: function () {
+
+        }
+      }
+    });
+  }
+  function dir_factura(id,idcliente){
+    $.confirm({
+      title: 'Direción de facturación',
+      content: '¿Desea establecerla como dirección de facturación?',
+      buttons: {
+        Aceptar: function () {
+          $.ajax({
+            data:  {
+              "function":"dir_factura",
+              "id":id,
+              "idcliente":idcliente
+            },
+            url:   'a_clientes/db_.php',
+            type:  'post',
+            success:  function (response) {
+              $.ajax({
+                data:  {
+                  "id":idcliente
+                },
+                url:   'a_clientes/editar.php',
+                type:  'post',
+                success:  function (response) {
+                  $("#trabajo").html(response);
+                }
+              });
+              Swal.fire({
+                  type: 'success',
+                  title: 'Se establecio correctamente',
+                  showConfirmButton: false,
+                  timer: 1000
+              })
+              $('#myModal').modal('hide');
+            }
+          });
+        },
+        Cancelar: function () {
+
+        }
       }
     });
   }

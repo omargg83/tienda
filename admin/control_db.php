@@ -82,9 +82,11 @@
 					$x.="<button class='btn btn-outline-secondary' type='button' id='sidebarCollapse'>";
 						$x.="<span class='navbar-toggler-icon'></span>";
 					$x.="</button>";
+					/*
 					$x.="<img src='img/escudo.png' width='40' height='30' alt=''>";
 					$x.="<img src='img/SSH.png' width='40' height='30' alt=''>";
-					$x.="<a class='navbar-brand' href='#escritorio/dashboard' style='font-size:10px'>Sistema Administrativo de Salud Pública</a>";
+					*/
+					$x.="<a class='navbar-brand' href='#escritorio/dashboard' style='font-size:10px'>Tic Shop</a>";
 
 					$x.="<button class='navbar-toggler navbar-toggler-right' type='button' data-toggle='collapse' data-target='#principal' aria-controls='principal' aria-expanded='false' aria-label='Toggle navigation'>";
 						$x.="<i class='fab fa-rocketchat'></i>";
@@ -267,24 +269,52 @@
 				return json_encode($arreglo);
 			}
 		}
-
-		public function borrar($DbTableName, $key,$id){
+		public function borrar($DbTableName, $key, $id){
+			$arreglo=array();
 			try{
 				self::set_names();
 				$sql="delete from $DbTableName where $key=$id";
-				$this->dbh->query($sql);
-				return 1;
+				$sth = $this->dbh->prepare($sql);
+				$a=$sth->execute();
+				if($a){
+					$arreglo+=array('id'=>$id);
+					$arreglo+=array('error'=>0);
+					$arreglo+=array('terror'=>'');
+					$arreglo+=array('param1'=>'');
+					$arreglo+=array('param2'=>'');
+					$arreglo+=array('param3'=>'');
+					return json_encode($arreglo);
+				}
+				else{
+					$arreglo+=array('id'=>$id);
+					$arreglo+=array('error'=>1);
+					$arreglo+=array('terror'=>$sql.$sth->errorInfo());
+					$arreglo+=array('param1'=>'');
+					$arreglo+=array('param2'=>'');
+					$arreglo+=array('param3'=>'');
+					return json_encode($arreglo);
+				}
 			}
 			catch(PDOException $e){
-				return "------->$sql <------------- Database access FAILED!".$e->getMessage();
+				$arreglo+=array('id'=>0);
+				$arreglo+=array('error'=>1);
+				$arreglo+=array('terror'=>$e->getMessage());
+				return json_encode($arreglo);
 			}
 		}
-		public function general($sql){
+
+
+		public function general($sql,$key=""){
 			try{
 				self::set_names();
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
-				return $sth->fetchAll();
+				if(strlen($key)==0){
+					return $sth->fetchAll();
+				}
+				else{
+					return $sth->fetch();
+				}
 			}
 			catch(PDOException $e){
 				return "Database access FAILED!".$e->getMessage();
