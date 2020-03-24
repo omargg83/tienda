@@ -73,15 +73,15 @@
   		});
   	}
   }
-  function buscar_producto(){
+  function buscar_prodpedido(){
   	var texto=$("#prod_venta").val();
-  	var idcliente=$("#idcliente").val();
+  	var idproducto=$("#idproducto").val();
   	var idpedido=$("#idpedido").val();
   	if(texto.length>=-1){
   		$.ajax({
   			data:  {
   				"texto":texto,
-  				"idcliente":idcliente,
+  				"idproducto":idproducto,
   				"idpedido":idpedido,
   				"function":"busca_producto"
   			},
@@ -141,6 +141,19 @@
         Cancelar: function () {
           $.alert('Canceled!');
         }
+      }
+    });
+  }
+  function prod_add(id,idpedido){
+    $.ajax({
+      data:  {
+        "id":id,
+        "idpedido":idpedido
+      },
+      url:   'a_pedidos/form_prodver.php',
+      type:  'post',
+      success:  function (response) {
+        $("#resultadosx").html(response);
       }
     });
   }

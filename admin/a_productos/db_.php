@@ -40,10 +40,16 @@ class Productos extends Tienda{
 			return "Database access FAILED!".$e->getMessage();
 		}
 	}
-	public function producto_exist($id){
+	public function producto_exist($id,$tipo=0){
 		try{
 			parent::set_names();
-			$sql="select * from producto_exist where idProducto=:id";
+			if($tipo==0){
+				$sql="select * from producto_exist where idProducto=:id";
+			}
+			else{
+				$sql="select existencia, almacen from producto_exist where idProducto=:id and almacen='PAC' UNION
+					select existencia, almacen from producto_exist where idProducto=:id and almacen!='PAC' group by idProducto";
+			}
 			$sth = $this->dbh->prepare($sql);
 			$sth->bindValue(':id', "$id");
 			$sth->execute();
@@ -66,8 +72,6 @@ class Productos extends Tienda{
 			return "Database access FAILED!".$e->getMessage();
 		}
 	}
-
-
 
 	public function producto_categoria($id){
 		try{
@@ -200,6 +204,7 @@ class Productos extends Tienda{
 			return "Database access FAILED!".$e->getMessage();
 		}
 	}
+
 
 }
 $db = new Productos();

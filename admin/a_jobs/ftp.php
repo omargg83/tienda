@@ -6,10 +6,8 @@
   	}
   }
   $destino="file.json";     //////////////////////ARCHIVO JSON
-  echo "<br>".date("Y-m-d H:i:s");
 
   ///////////////////////////////////////CLASE PARA EL FTP
-  echo "<br>CLASE FTP";
   class ftp{
       public $conn;
 
@@ -53,12 +51,10 @@
   }
   $ftp->descargar("catalogo_xml/productos.json",$destino,FTP_BINARY);
   $ftp->desconectar();
-  echo "<br>DESCARGA DEL ARCHIVO";
 
   $fmodif=date("Y-m-d H:i:s");    ///////////////   HORA DE MOFIDICACION
   $update_hora=date("H");         ///////////////   VARIABLE PARA ACTUALIZAR
   /////////////////////////////////SI SE DESCARGA EL JSON HAY PROCESO
-  echo "<br>HORA PROCESO ".$fmodif;
 
   if (file_exists ($destino)){
     ///////////////////////////////////////    PROCESO  /////////////////////////////////////////////////////////////
@@ -68,7 +64,8 @@
     $data = file_get_contents($destino);
     $products = json_decode($data, true);
     $x="";
-    echo "<br>A ARREGLO";
+
+
 
     $i=0;
     ////////////////////////////////////     SE RECORRE CADA PRODUCTO DEL JSON
@@ -78,7 +75,7 @@
           $sql="select idProducto from productos where idProducto='".$product['idProducto']."' limit 1";
           $stmt= $db->dbh->query($sql);
           if($stmt->rowCount()==0){
-            $sql="insert into productos (idProducto, clave, numParte, nombre, modelo, idMarca, marca, idCategoria, categoria, idSubCategoria, subcategoria, descripcion_corta, precio, moneda, tipoCambio, imagen, upc, activo, modificado) values (:idProducto, :clave, :numParte, :nombre, :modelo, :idMarca, :marca, :idCategoria, :categoria, :idSubCategoria, :subcategoria, :descripcion_corta, :precio, :moneda, :tipoCambio, :imagen, :upc, :activo, :modificado)";
+            $sql="insert into productos (idProducto, clave, numParte, nombre, modelo, idMarca, marca, idCategoria, categoria, idSubCategoria, subcategoria, descripcion_corta, precio, moneda, tipoCambio, preciof, imagen, upc, activo, modificado) values (:idProducto, :clave, :numParte, :nombre, :modelo, :idMarca, :marca, :idCategoria, :categoria, :idSubCategoria, :subcategoria, :descripcion_corta, :precio, :moneda, :tipoCambio, :preciof,:imagen, :upc, :activo, :modificado)";
             $sth = $db->dbh->prepare($sql);
             $sth->bindValue(':idProducto', $product['idProducto']);
             $sth->bindValue(':clave', $product['clave']);
@@ -96,7 +93,7 @@
             $sth->bindValue(':upc', $product['upc']);
           }
           else{
-            $sql="update productos set precio=:precio, moneda=:moneda, tipoCambio=:tipoCambio, imagen=:imagen, activo=:activo, modificado=:modificado where idProducto='".$product['idProducto']."'";
+            $sql="update productos set precio=:precio, moneda=:moneda, tipoCambio=:tipoCambio, preciof=:preciof, imagen=:imagen, activo=:activo, modificado=:modificado where idProducto='".$product['idProducto']."'";
             $sth = $db->dbh->prepare($sql);
           }
 
@@ -104,6 +101,8 @@
           $sth->bindValue(':precio', $product['precio']);
           $sth->bindValue(':moneda', $product['moneda']);
           $sth->bindValue(':tipoCambio', $product['tipoCambio']);
+          $total=round($product['precio']*$product['tipoCambio'],2);
+          $sth->bindValue(':preciof', $total);
           $sth->bindValue(':imagen', $product['imagen']);
           $sth->bindValue(':activo', $product['activo']);
           $sth->bindValue(':modificado', $fmodif);
@@ -181,7 +180,6 @@
     $date=date("YmdHis");
     $file="file_".$date.".json";
     rename($destino, "../historial/$file");
-    echo "<br>".date("Y-m-d H:i:s");
   }
 
 

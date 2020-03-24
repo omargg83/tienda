@@ -1,34 +1,12 @@
 <?php
-	require_once("db_.php");
-	$id=$_REQUEST['id'];
- 	$idProducto="";
- 	$clave="";
- 	$numParte="";
- 	$nombre="";
+	require_once("../a_productos/db_.php");
+	   $id=$_REQUEST['id'];
+	   $idpedido=$_REQUEST['idpedido'];
 
-	$modelo="";
-	$idMarca="";
-	$marca="";
-	$idCategoria="";
-	$categoria="";
-	$idSubCategoria="";
-	$subcategoria="";
-	$descripcion_corta="";
-	$precio="";
-	$moneda="";
-	$tipoCambio="";
-	$imagen="";
-	$upc="";
-	$activo="";
-	$moneda="";
-	$tipoCambio="";
-	$preciof="";
-
-	if($id>0){
 		$per = $db->producto_editar($id);
 		$idProducto=$per->idProducto;
-		$alma = $db->producto_exist($idProducto);
-		$espe = $db->producto_espe($idProducto);
+    $espe = $db->producto_espe($idProducto);
+		$alma = $db->producto_exist($idProducto,1);
 		$nombre=$per->nombre;
 		$clave=$per->clave;
 		$numParte=$per->numParte;
@@ -52,16 +30,13 @@
 		$moneda=$per->moneda;
 		$tipoCambio=$per->tipoCambio;
 		$preciof=$per->preciof;
-	}
+
 ?>
-<div class='container'>
-	<form id='form_comision' action='' data-lugar='a_productos/db_' data-destino='a_productos/editar' data-funcion='guardar_producto'>
-		<div class='card'>
-			<div class='card-header'>
-				Producto <?php echo $id; ?>
-			</div>
+
+	<form id='form_agregaprod' action='' data-lugar='a_pedidos/db_' data-destino='a_pedidos/editar' data-funcion='producto_add'>
 			<div class='card-body'>
 				<input type="hidden" class="form-control" id="id" name='id' value="<?php echo $id; ?>">
+				<input type="hidden" class="form-control" id="idpedido" name='idpedido' value="<?php echo $idpedido; ?>">
 				<div class='row'>
 					<div class='col-3'>
 						<?php
@@ -103,67 +78,38 @@
 				</div>
 
 				<div class="form-row">
-			    <div class="form-group col-md-6">
+			    <div class="form-group col-md-3">
 			      <label for="descripcion">Modelo</label>
 			      <input type="text" class="form-control" id="modelo" name='modelo' placeholder="Nombre" value="<?php echo $modelo; ?>" readonly>
 			    </div>
 
-			    <div class="form-group col-md-6">
+			    <div class="form-group col-md-3">
 			      <label for="descripcion">Marca</label>
 			      <input type="text" class="form-control" id="marca" name='marca' placeholder="Marca" value="<?php echo $marca; ?>" readonly>
 			    </div>
-			  </div>
 
-				<div class="form-row">
-			    <div class="form-group col-md-6">
+			    <div class="form-group col-md-3">
 			      <label for="descripcion">Categoria</label>
 			      <input type="text" class="form-control" id="categoria" name='categoria' placeholder="Categoria" value="<?php echo $categoria; ?>" readonly>
 			    </div>
 
-			    <div class="form-group col-md-6">
+			    <div class="form-group col-md-3">
 			      <label for="descripcion">Subcategoria</label>
 			      <input type="text" class="form-control" id="subcategoria" name='subcategoria' placeholder="Subcategoria" value="<?php echo $subcategoria; ?>" readonly>
 			    </div>
 			  </div>
 
 				<div class="form-row">
-			    <div class="form-group col-md-3">
-			      <label for="descripcion">Precio</label>
-			      <input type="text" class="form-control" id="precio" name='precio' placeholder="Precio" value="<?php echo $precio; ?>" readonly>
-			    </div>
 
-					<div class="form-group col-md-3">
-			      <label for="descripcion">Moneda</label>
-			      <input type="text" class="form-control" id="moneda" name='moneda' placeholder="Moneda" value="<?php echo $moneda; ?>" readonly>
-			    </div>
-
-					<div class="form-group col-md-3">
-			      <label for="descripcion">Tipo de cambio</label>
-			      <input type="text" class="form-control" id="tipoCambio" name='tipoCambio' placeholder="Tipo de cambio" value="<?php echo $tipoCambio; ?>" readonly>
-			    </div>
-
-					<div class="form-group col-md-3">
-			      <label for="preciof">Costo </label>
-			      <input type="text" class="form-control" id="preciof" name='preciof' placeholder="Costo" value="<?php echo $preciof; ?>" readonly>
-			    </div>
-
+          <div class="form-group col-md-3">
+            <label for="preciof">Costo </label>
+            <input type="text" class="form-control" id="preciof" name='preciof' placeholder="Costo" value="<?php echo $preciof; ?>" readonly>
+          </div>
 			  </div>
 			</div>
-
-			<div class='card-footer'>
-				<div class='btn-group'>
-		  		<button type="submit" class="btn btn-outline-secondary btn-sm"><i class='far fa-save'></i>Guardar</button>
-					<button class='btn btn-outline-secondary btn-sm' id='lista_cat' data-lugar='a_productos/lista' title='regresar'><i class='fas fa-undo-alt'></i>Regresar</button>
-				</div>
-			</div>
-
 		<?php
 			if($id>0){
-				echo "<div class='card-header'>";
-					echo "Especificaciones";
-				echo "</div>";
-				echo "<div class='card-body'>";
-					echo "<table class='table table-sm'>";
+					echo "<table class='table table-sm' style='font-size:10px;'>";
 					foreach($espe as $key){
 						echo "<tr>";
 
@@ -178,7 +124,6 @@
 						echo "</tr>";
 					}
 					echo "</table>";
-				echo "</div>";
 
 				echo "<div class='card-header'>";
 					echo "Existencias";
@@ -186,7 +131,7 @@
 				echo "<div class='card-body'>";
 					echo "<table class='table table-sm'>";
 						foreach($alma as $key){
-							 $almacen=$db->almacen_busca($key->almacen);
+							$almacen=$db->almacen_busca($key->almacen);
 							echo "<tr>";
 								echo "<td>";
 								echo "(".$key->almacen.")";
@@ -234,16 +179,12 @@
 							echo "</div>";
 						echo "</div>";
 					echo "</div>";
-					echo "<div class='card-footer'>";
-						echo "<div class='btn-group'>";
-						echo "<button type='button' class='btn btn-outline-secondary btn-sm' data-toggle='modal' data-target='#myModal' id='fileup_respuesta' data-ruta='".$db->doc."' data-tabla='producto_img' data-campo='direccion' data-tipo='2' data-id='$id' data-keyt='idproducto' data-destino='a_productos/editar' data-iddest='$id' data-ext='.jpg,.png' ><i class='fas fa-cloud-upload-alt'></i>Subir</button>";
-
-						echo "</div>";
-					echo "</div>";
 			}
+      echo "<button type='submit' class='btn btn-outline-secondary btn-sm'><i class='far fa-save'></i>Guardar</button>";
 		?>
+
 	</form>
-</div>
+
 
 <script type="text/javascript">
 	$(function() {

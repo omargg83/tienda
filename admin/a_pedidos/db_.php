@@ -158,7 +158,7 @@ class Pedidos extends Tienda{
 		try{
 			parent::set_names();
 			$texto=$_REQUEST['texto'];
-			$idcliente=$_REQUEST['idcliente'];
+			$idproducto=$_REQUEST['idproducto'];
 			$idpedido=$_REQUEST['idpedido'];
 
 			$sql="SELECT * from productos where clave like '%$texto%' or numParte like '%$texto%' or nombre like '%$texto%' or modelo like '%$texto%' or marca like '%$texto%' limit 100";
@@ -170,7 +170,7 @@ class Pedidos extends Tienda{
 				echo "<tr>";
 					echo "<td>";
 						echo "<div class='btn-group'>";
-						echo "<button type='button' onclick='cliente_add(".$key['id'].",$idpedido)' class='btn btn-outline-secondary btn-sm' title='Seleccionar cliente'><i class='fas fa-plus'></i></button>";
+						echo "<button type='button' onclick='prod_add(".$key['id'].",$idpedido)' class='btn btn-outline-secondary btn-sm' title='Seleccionar cliente'><i class='fas fa-plus'></i></button>";
 						echo "</div>";
 					echo "</td>";
 					echo "<td>";
@@ -189,6 +189,88 @@ class Pedidos extends Tienda{
 		catch(PDOException $e){
 			return "Database access FAILED! ".$e->getMessage();
 		}
+	}
+	public function producto_add(){
+		try{
+			parent::set_names();
+			$x="";
+			$idproducto=$_REQUEST['id'];
+			$id=$_REQUEST['idpedido'];
+			$arreglo =array();
+			if($id==0){
+				$arreglo+= array('estado'=>"pendiente");
+				$x=$this->insert('pedidos', $arreglo);
+				$ped=json_decode($x);
+				$id=$ped->id;
+			}
+			$arreglo =array();
+			$arreglo+= array('idprod'=>$idproducto);
+			$arreglo+= array('idpedido'=>$id);
+			$precio=$_REQUEST['preciof'];
+			$arreglo+= array('precio'=>$precio);
+			$arreglo+= array('cantidad'=>1);
+			$arreglo+= array('total'=>$precio);
+
+			if (isset($_REQUEST['idProducto'])){
+				$arreglo+= array('idProducto'=>$_REQUEST['idProducto']);
+			}
+			if (isset($_REQUEST['clave'])){
+				$arreglo+= array('clave'=>$_REQUEST['clave']);
+			}
+			if (isset($_REQUEST['numParte'])){
+				$arreglo+= array('numParte'=>$_REQUEST['numParte']);
+			}
+			if (isset($_REQUEST['nombre'])){
+				$arreglo+= array('nombre'=>$_REQUEST['nombre']);
+			}
+			if (isset($_REQUEST['modelo'])){
+				$arreglo+= array('modelo'=>$_REQUEST['modelo']);
+			}
+			if (isset($_REQUEST['marca'])){
+				$arreglo+= array('marca'=>$_REQUEST['marca']);
+			}
+			if (isset($_REQUEST['categoria'])){
+				$arreglo+= array('categoria'=>$_REQUEST['categoria']);
+			}
+			if (isset($_REQUEST['descripcion_corta'])){
+				$arreglo+= array('descripcion_corta'=>$_REQUEST['descripcion_corta']);
+			}
+			$x=$this->insert('pedidos_prod', $arreglo);
+			$ped=json_decode($x);
+			if($ped->error==0){
+				$arreglo =array();
+				$arreglo+=array('id'=>$id);
+				$arreglo+=array('error'=>0);
+				$arreglo+=array('terror'=>0);
+				$arreglo+=array('param1'=>"");
+				$arreglo+=array('param2'=>"");
+				$arreglo+=array('param3'=>"");
+				return json_encode($arreglo);
+			}
+			else{
+				return $x;
+			}
+		}
+		catch(PDOException $e){
+			return "Database access FAILED! ".$e->getMessage();
+		}
+	}
+	public function productos_pedido($idpedido){
+		try{
+			parent::set_names();
+			$sql="SELECT * from pedidos_prod where pedidos_prod.idpedido=$idpedido";
+			$sth = $this->dbh->prepare($sql);
+			$sth->execute();
+			return $sth->fetchAll();
+		}
+		catch(PDOException $e){
+			return "Database access FAILED! ".$e->getMessage();
+		}
+	}
+
+	public function borrar_prodped(){
+		if (isset($_POST['id'])){$id=$_REQUEST['id'];}
+		return $this->borrar('pedidos_prod',"id",$id);
 	}
 }
 $db = new Pedidos();
