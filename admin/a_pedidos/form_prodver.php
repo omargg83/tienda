@@ -35,8 +35,8 @@
 
 	<form id='form_agregaprod' action='' data-lugar='a_pedidos/db_' data-destino='a_pedidos/editar' data-funcion='producto_add'>
 			<div class='card-body'>
-				<input type="hidden" class="form-control" id="id" name='id' value="<?php echo $id; ?>">
-				<input type="hidden" class="form-control" id="idpedido" name='idpedido' value="<?php echo $idpedido; ?>">
+				<input type="hidden" class="form-control form-control-sm" id="id" name='id' value="<?php echo $id; ?>">
+				<input type="hidden" class="form-control form-control-sm" id="idpedido" name='idpedido' value="<?php echo $idpedido; ?>">
 				<div class='row'>
 					<div class='col-3'>
 						<?php
@@ -47,31 +47,31 @@
 						<div class="form-row">
 						 <div class="form-group col-md-4">
 							 <label for="sku">Clave</label>
-							 <input type="text" class="form-control" id="clave" name='clave' placeholder="CLAVE" value="<?php echo $clave; ?>" readonly>
+							 <input type="text" class="form-control form-control-sm" id="clave" name='clave' placeholder="CLAVE" value="<?php echo $clave; ?>" readonly>
 						 </div>
 
 						 <div class="form-group col-md-4">
 							 <label for="sku">Idproducto</label>
-							 <input type="text" class="form-control" id="idProducto" name='idProducto' placeholder="CLAVE" value="<?php echo $idProducto; ?>" readonly>
+							 <input type="text" class="form-control form-control-sm" id="idProducto" name='idProducto' placeholder="CLAVE" value="<?php echo $idProducto; ?>" readonly>
 						 </div>
 
 					    <div class="form-group col-md-4">
 					      <label for="nombre">Numero de parte</label>
-					      <input type="text" class="form-control" id="numParte" name='numParte' placeholder="Numero de parte" value="<?php echo $numParte; ?>" readonly>
+					      <input type="text" class="form-control form-control-sm" id="numParte" name='numParte' placeholder="Numero de parte" value="<?php echo $numParte; ?>" readonly>
 					    </div>
 					  </div>
 
 						<div class="form-row">
 					    <div class="form-group col-md-12">
 					      <label for="descripcion">Nombre</label>
-					      <input type="text" class="form-control" id="nombre" name='nombre' placeholder="Nombre" value="<?php echo $nombre; ?>" readonly>
+					      <input type="text" class="form-control form-control-sm" id="nombre" name='nombre' placeholder="Nombre" value="<?php echo $nombre; ?>" readonly>
 					    </div>
 					  </div>
 
 						<div class="form-row">
 					    <div class="form-group col-md-12">
 					      <label for="descripcion">Descripción corta</label>
-					      <input type="text" class="form-control" id="descripcion_corta" name='descripcion_corta' placeholder="Descripción corta" value="<?php echo $descripcion_corta; ?>" readonly>
+					      <input type="text" class="form-control form-control-sm" id="descripcion_corta" name='descripcion_corta' placeholder="Descripción corta" value="<?php echo $descripcion_corta; ?>" readonly>
 					    </div>
 					  </div>
 					</div>
@@ -80,22 +80,22 @@
 				<div class="form-row">
 			    <div class="form-group col-md-3">
 			      <label for="descripcion">Modelo</label>
-			      <input type="text" class="form-control" id="modelo" name='modelo' placeholder="Nombre" value="<?php echo $modelo; ?>" readonly>
+			      <input type="text" class="form-control form-control-sm" id="modelo" name='modelo' placeholder="Nombre" value="<?php echo $modelo; ?>" readonly>
 			    </div>
 
 			    <div class="form-group col-md-3">
 			      <label for="descripcion">Marca</label>
-			      <input type="text" class="form-control" id="marca" name='marca' placeholder="Marca" value="<?php echo $marca; ?>" readonly>
+			      <input type="text" class="form-control form-control-sm" id="marca" name='marca' placeholder="Marca" value="<?php echo $marca; ?>" readonly>
 			    </div>
 
 			    <div class="form-group col-md-3">
 			      <label for="descripcion">Categoria</label>
-			      <input type="text" class="form-control" id="categoria" name='categoria' placeholder="Categoria" value="<?php echo $categoria; ?>" readonly>
+			      <input type="text" class="form-control form-control-sm" id="categoria" name='categoria' placeholder="Categoria" value="<?php echo $categoria; ?>" readonly>
 			    </div>
 
 			    <div class="form-group col-md-3">
 			      <label for="descripcion">Subcategoria</label>
-			      <input type="text" class="form-control" id="subcategoria" name='subcategoria' placeholder="Subcategoria" value="<?php echo $subcategoria; ?>" readonly>
+			      <input type="text" class="form-control form-control-sm" id="subcategoria" name='subcategoria' placeholder="Subcategoria" value="<?php echo $subcategoria; ?>" readonly>
 			    </div>
 			  </div>
 
@@ -103,7 +103,7 @@
 
           <div class="form-group col-md-3">
             <label for="preciof">Costo </label>
-            <input type="text" class="form-control" id="preciof" name='preciof' placeholder="Costo" value="<?php echo $preciof; ?>" readonly>
+            <input type="text" class="form-control form-control-sm" id="preciof" name='preciof' placeholder="Costo" value="<?php echo $preciof; ?>" readonly>
           </div>
 			  </div>
 			</div>

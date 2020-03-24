@@ -11,14 +11,7 @@ body {
 }
 #trabajo{
 	margin:10px;
-	/* bottom: 10px; */
-    /* overflow: auto; */
-    /* position: absolute; */
-    /* top: 70px; */
-    /* left: 10px; */
-    /* right: 10px; */
 }
-
 .autocompletar{
 	border: 1px solid silver;
 	position: absolute;
@@ -29,13 +22,12 @@ body {
 	max-height:300px;
 	display:none;
 	border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 	-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.12);
 	-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.12);
 	box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.12);
 }
-
- .logincard{
+.logincard{
     font-family: "myriad-pro",sans-serif;
     font-style: normal;
     font-weight: 100;
@@ -57,11 +49,9 @@ body {
     -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 }
-
 :root {
   --main-bg-color: #343a40;
 }
-
 .flotante{
 	border: 1px solid silver;
     position: absolute;
@@ -75,7 +65,6 @@ body {
 	-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
 	box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
 }
-
 i{
 	color:silver;
 	width: 21px;
@@ -109,7 +98,7 @@ label{
 	-webkit-box-shadow: 2px 0px 5px 0px rgba(0,0,0,0.75);
 	-moz-box-shadow: 2px 0px 5px 0px rgba(0,0,0,0.75);
 	box-shadow: 2px 0px 5px 0px rgba(0,0,0,0.75);
-	opacity: .7;
+	/*opacity: .7;*/
 }
 .sidebar a, .dropdown-btn {
 	padding: 6px 8px 6px 16px;
@@ -238,10 +227,6 @@ label{
 	}
 
 }
-
-
-
-
 
 /********************/
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
@@ -444,14 +429,6 @@ DIV.box1{  /*ventana donde esta el iframe*/
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-
-
-#no-more-tables th { text-align: center; }
-#no-more-tables td {
-	vertical-align: top;
-	height:73px;
-}
-
 @media only screen and (max-width: 800px) {
 
     /* Force table to not be like tables anymore */
@@ -527,12 +504,9 @@ DIV.box1{  /*ventana donde esta el iframe*/
     box-shadow: 0 0 4px -1px #000;
 }
 
+.acceso{
 
-
-.comite{
-	border: 1px solid silver;
-	border-radius: 5px;
 }
-.comite a{
-	color: black;
+.acceso:hover{
+	border:1px solid white;
 }

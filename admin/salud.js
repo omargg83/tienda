@@ -42,7 +42,6 @@
 					$("#bodyx").load("dash/menu.php");
 
 					setTimeout(fondos, 2000);
-				//setTimeout(chat_inicia, 3000);
 					setTimeout(correo, 6000);
 					if (datos.admin=="1"){
 						if(notif==""){
@@ -68,13 +67,13 @@
 	var hash=url.substring(url.indexOf("#")+1);
 
 	if(hash===url || hash===''){
-		hash='escritorio/dashboard';
+		hash='dash/index';
 	}
 	function loadContent(hash){
 		$("#cargando").addClass("is-active");
 		var id=$(this).attr('id');
 		if(hash===''){
-			hash= 'escritorio/dashboard';
+			hash= 'dash/index';
 		}
 		$('html, body').animate({strollTop:0},'600','swing');
 
@@ -801,7 +800,7 @@
 			url:   "control_db.php",
 			type:  'post',
 			success:  function (response) {
-				$("#contenido").load('escritorio/dashboard.php');
+				$("#contenido").load('dash/index.php');
 				Swal.fire({
 				  type: 'success',
 				  title: response,

@@ -100,31 +100,16 @@
 						$x.="</ul>";
 						$x.="<ul class='nav navbar-nav navbar-right' id='notificaciones'></ul>";
 
-						$x.="<ul class='nav navbar-nav navbar-right' id='chatx'>";
-							$x.="<li class='nav-item dropdown'>";
-								$x.= "<a class='nav-link dropdown-toggle' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-									<i class='fab fa-rocketchat fa-spin' style='color:#96ff57 !important;'></i> Chat";
-								$x.= "</a>";
-
-								$x.= "<div id='myUL' class='dropdown-menu' aria-labelledby='navbarDropdown' style='width:200px;max-height:400px !important; overflow: scroll; overflow-x: hidden;'>";
-								$x.="<div class='row'><div class='col-12'><input type='text' id='myInput' placeholder='Buscar..' title='Buscar' class='form-control' autocomplete='off'></div></div>";
-									$x.="<div id='conecta_x'>";
-									$x.= "</div>";
-								$x.= "</div>";
-							$x.= "</li>";
-						$x.="</ul>";
-
 						$x.="<ul class='nav navbar-nav navbar-right' id='fondo'></ul>";
 						$x.="<ul class='nav navbar-nav navbar-right'>";
 							$x.="<li class='nav-item dropdown'>";
 								$x.="<a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>";
-
-									$x.=" <img src='a_personal/Screenshot_1.png' alt='Cuenta' class='rounded-circle' width='20px' height='20px'>";
+									$x.="<i class='fas fa-user-check'></i>";
 									$x.=$_SESSION['nombre'];
 								$x.="</a>";
-								$x.="<div class='dropdown-menu' aria-labelledby='navbarDropdown'>";
-									$x.="<a class='dropdown-item' id='winmodal_pass' data-id='".$_SESSION['idpersona']."' data-lugar='a_personal/form_pass' title='Cambiar contraseña' ><i class='fas fa-key'></i>Contraseña</a>";
 
+								$x.="<div class='dropdown-menu' aria-labelledby='navbarDropdown'>";
+									$x.="<a class='dropdown-item' id='winmodal_pass' data-id='".$_SESSION['idpersona']."' data-lugar='a_usuarios/form_pass' title='Cambiar contraseña' ><i class='fas fa-key'></i>Contraseña</a>";
 								$x.="</div>";
 							$x.="</li>";
 						$x.="</ul>";
@@ -179,7 +164,7 @@
 								</div>
 								<button class='btn btn-secondary btn-block' type='submit'><i class='fa fa-check'></i>Aceptar</button>
 								<button class='btn btn-secondary btn-block' type='button' id='recuperar'><i class='fas fa-key'></i>Recuperar contraseña</button>
-								<center>http://spublicahgo.ddns.net</center>
+								<center>http://tic-shop.com.mx/</center>
 						</div>
 					</form>";
 				$arreglo=array('sess'=>"cerrada", 'fondo'=>$valor, 'carga'=>$x);

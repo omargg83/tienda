@@ -127,13 +127,13 @@
 									echo "<b> Marca: </b>";
 										echo $key['marca'];
 									echo "</td>";
-									echo "<td>";
+									echo "<td class='text-right'>";
 										echo moneda($key['precio']);
 									echo "</td>";
-									echo "<td>";
+									echo "<td class='text-center'>";
 										echo $key['cantidad'];
 									echo "</td>";
-									echo "<td>";
+									echo "<td class='text-right'>";
 										echo moneda($key['total']);
 									echo "</td>";
 								echo "</tr>";
