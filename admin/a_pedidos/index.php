@@ -152,8 +152,12 @@
       },
       url:   'a_pedidos/form_prodver.php',
       type:  'post',
+      beforeSend: function () {
+        $("#cargando").addClass("is-active");
+      },
       success:  function (response) {
         $("#resultadosx").html(response);
+        $("#cargando").removeClass("is-active");
       }
     });
   }

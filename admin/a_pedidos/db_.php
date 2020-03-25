@@ -164,27 +164,38 @@ class Pedidos extends Tienda{
 			$sql="SELECT * from productos where clave like '%$texto%' or numParte like '%$texto%' or nombre like '%$texto%' or modelo like '%$texto%' or marca like '%$texto%' limit 100";
 			$sth = $this->dbh->prepare($sql);
 			$sth->execute();
-			echo "<table class='table table-sm'>";
-			echo "<tr><th>-</th><th>Clave</th><th>Num Parte</th><th>Nombre</th></tr>";
+			echo "<div class='row'>";
+				echo "<div class='col-1'>-</div>";
+				echo "<div class='col-2'><b>Clave</b></div>";
+				echo "<div class='col-1'><b>Num Parte</b></div>";
+				echo "<div class='col-2'><b>Nombre</b></div>";
+				echo "<div class='col-2'><b>Existencia</b></div>";
+				echo "<div class='col-2'><b>Precio</b></div>";
+			echo "</div>";
 			foreach($sth->fetchAll() as $key){
-				echo "<tr>";
-					echo "<td>";
+				echo "<div class='row' style='border-bottom: 1px solid silver;'>";
+					echo "<div class='col-1' >";
 						echo "<div class='btn-group'>";
 						echo "<button type='button' onclick='prod_add(".$key['id'].",$idpedido)' class='btn btn-outline-secondary btn-sm' title='Seleccionar cliente'><i class='fas fa-plus'></i></button>";
 						echo "</div>";
-					echo "</td>";
-					echo "<td>";
+					echo "</div>";
+					echo "<div class='col-2' >";
 							echo $key['clave'];
-					echo "</td>";
-					echo "<td>";
+					echo "</div>";
+					echo "<div class='col-1' >";
 							echo $key['numParte'];
-					echo "</td>";
-					echo "<td>";
+					echo "</div>";
+					echo "<div class='col-2' >";
 							echo $key['nombre'];
-					echo "</td>";
-				echo "</tr>";
+					echo "</div>";
+					echo "<div class='col-2' >";
+							echo $key['existencia'];
+					echo "</div>";
+					echo "<div class='col-2 text-right'>";
+							echo moneda($key['preciof']);
+					echo "</div>";
+				echo "</div>";
 			}
-			echo "</table>";
 		}
 		catch(PDOException $e){
 			return "Database access FAILED! ".$e->getMessage();

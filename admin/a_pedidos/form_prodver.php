@@ -6,7 +6,7 @@
 		$per = $db->producto_editar($id);
 		$idProducto=$per->idProducto;
     $espe = $db->producto_espe($idProducto);
-		$alma = $db->producto_exist($idProducto,1);
+		$alma = $db->producto_exist($idProducto,2);
 		$nombre=$per->nombre;
 		$clave=$per->clave;
 		$numParte=$per->numParte;
@@ -30,7 +30,20 @@
 		$moneda=$per->moneda;
 		$tipoCambio=$per->tipoCambio;
 		$preciof=$per->preciof;
-
+		$existencia=$per->existencia;
+		/*
+				echo "remoto:".$_SESSION['remoto'];
+				if($_SESSION['remoto']==1){
+					$resp = crearNuevoToken();
+					if($resp){
+						$tok=$resp->token;
+						$servicio = "existencia/$clave/TOTAL";
+						$metodo="GET";
+						$resp =servicioApi($metodo,$servicio,NULL,$tok);
+						$existencia=$resp->existencia_total;
+					}
+				}
+		*/
 ?>
 
 	<form id='form_agregaprod' action='' data-lugar='a_pedidos/db_' data-destino='a_pedidos/editar' data-funcion='producto_add'>
@@ -104,6 +117,11 @@
           <div class="form-group col-md-3">
             <label for="preciof">Costo </label>
             <input type="text" class="form-control form-control-sm" id="preciof" name='preciof' placeholder="Costo" value="<?php echo $preciof; ?>" readonly>
+          </div>
+
+					<div class="form-group col-md-3">
+            <label for="preciof">Existencias</label>
+            <input type="text" class="form-control form-control-sm" id="existe" name='existe' placeholder="Existencias" value="<?php echo $existencia; ?>" readonly>
           </div>
 			  </div>
 			</div>
@@ -180,7 +198,7 @@
 						echo "</div>";
 					echo "</div>";
 			}
-      echo "<button type='submit' class='btn btn-outline-secondary btn-sm'><i class='far fa-save'></i>Guardar</button>";
+      echo "<button type='submit' class='btn btn-outline-secondary btn-sm'><i class='far fa-save'></i>Agregar</button>";
 		?>
 
 	</form>

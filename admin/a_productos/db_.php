@@ -44,14 +44,16 @@ class Productos extends Tienda{
 		try{
 			parent::set_names();
 			if($tipo==0){
-				$sql="select * from producto_exist where idProducto=:id";
+				$sql="select * from producto_exist where idProducto=$id";
 			}
-			else{
-				$sql="select existencia, almacen from producto_exist where idProducto=:id and almacen='PAC' UNION
-					select existencia, almacen from producto_exist where idProducto=:id and almacen!='PAC' group by idProducto";
+			if($tipo==1){
+				$sql="select existencia, almacen from producto_exist where idProducto=$id and almacen='PAC' UNION
+					select existencia, almacen from producto_exist where idProducto=$id and almacen!='PAC' group by idProducto";
+			}
+			if($tipo==2){
+				$sql="select sum(existencia) as existencia, almacen from producto_exist where idProducto=$id";
 			}
 			$sth = $this->dbh->prepare($sql);
-			$sth->bindValue(':id', "$id");
 			$sth->execute();
 			return $sth->fetchAll(PDO::FETCH_OBJ);
 		}

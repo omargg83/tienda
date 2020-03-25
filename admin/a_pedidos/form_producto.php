@@ -24,4 +24,5 @@ echo "<input  type='hidden' id='idpedido' NAME='idpedido' value='$id2'>";
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal"><i class="fas fa-sign-out-alt"></i>Cerrar</button>
+		
   </div>

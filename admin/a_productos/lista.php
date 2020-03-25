@@ -15,7 +15,7 @@
 			<th>Moneda</th>
 			<th>Modelo</th>
 			<th>Marca</th>
-			<th>Categoria</th>
+			<th>Existencia</th>
 			</tr>
 			</thead>
 			<tbody>
@@ -36,6 +36,7 @@
 						echo "<td>".$key["moneda"]."</td>";
 						echo "<td>".$key["modelo"]."</td>";
 						echo "<td>".$key["marca"]."</td>";
+						echo "<td>".$key["existencia"]."</td>";
 						echo "<td>";
 						/*
 							foreach($db->producto_categoria($key['idproducto']) as $catx){

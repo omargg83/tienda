@@ -65,8 +65,6 @@
     $products = json_decode($data, true);
     $x="";
 
-
-
     $i=0;
     ////////////////////////////////////     SE RECORRE CADA PRODUCTO DEL JSON
     foreach ($products as $product) {

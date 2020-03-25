@@ -35,35 +35,36 @@
               echo "<input type='text' class='form-control fechaclass' id='fecha' name='fecha' value='$fecha' readonly>";
             echo "</div>";
 
-            echo "<div class='col-3'>";
-              echo "<label>Estado</label>";
-              echo "<select id='estado' name='estado' class='form-control'>";
-                echo "<option value='pendiente'"; if($estado=='pendiente'){ echo " selected"; } echo ">Pendiente de pago</option>";
-                echo "<option value='procesando'"; if($estado=='procesando'){ echo " selected"; } echo ">Procesando</option>";
-                echo "<option value='espera'"; if($estado=='espera'){ echo " selected"; } echo ">En espera</option>";
-                echo "<option value='completado'"; if($estado=='completado'){ echo " selected"; } echo ">Completado</option>";
-                echo "<option value='cancelado'"; if($estado=='cancelado'){ echo " selected"; } echo ">Cancelado</option>";
-                echo "<option value='reembolsado'"; if($estado=='reembolsado'){ echo " selected"; } echo ">Reembolsado</option>";
-                echo "<option value='fallido'"; if($estado=='fallido'){ echo " selected"; } echo ">Fallido</option>";
-              echo "</select>";
-            echo "</div>";
-          echo "</div>";
 
-          echo "<div class='row'>";
+
             echo "<div class='col-4'>";
               echo "<label>Cliente:</label>";
               echo "<input type='text' class='form-control' id='cliente' name='cliente' value='$nombre_cli' readonly>";
             echo "</div>";
 
-            echo "<div class='col-4'>";
+            echo "<div class='col-3'>";
               echo "<label>Correo:</label>";
               echo "<input type='text' class='form-control' id='correo' name='correo' value='$correo_cli' readonly>";
             echo "</div>";
+
+						echo "<div class='col-3'>";
+							echo "<label>Estado</label>";
+							echo "<select id='estado' name='estado' class='form-control'>";
+								echo "<option value='pendiente'"; if($estado=='pendiente'){ echo " selected"; } echo ">Pendiente de pago</option>";
+								echo "<option value='procesando'"; if($estado=='procesando'){ echo " selected"; } echo ">Procesando</option>";
+								echo "<option value='espera'"; if($estado=='espera'){ echo " selected"; } echo ">En espera</option>";
+								echo "<option value='completado'"; if($estado=='completado'){ echo " selected"; } echo ">Completado</option>";
+								echo "<option value='cancelado'"; if($estado=='cancelado'){ echo " selected"; } echo ">Cancelado</option>";
+								echo "<option value='reembolsado'"; if($estado=='reembolsado'){ echo " selected"; } echo ">Reembolsado</option>";
+								echo "<option value='fallido'"; if($estado=='fallido'){ echo " selected"; } echo ">Fallido</option>";
+							echo "</select>";
+						echo "</div>";
+
           echo "</div>";
 
           if($id>0){
             echo "<div class='row'>";
-              echo "<div class='col-4'>";
+              echo "<div class='col-6'>";
                 echo "<label>Dirección de Envio:</label>";
                 echo "<select class='form-control' id='idenvio' name='idenvio' >";
                 foreach($db->direccion($idcliente) as $row){
@@ -71,7 +72,7 @@
                 }
                 echo "</select>";
               echo "</div>";
-              echo "<div class='col-4'>";
+              echo "<div class='col-6'>";
                 echo "<label>Dirección de Facturación:</label>";
                 echo "<select class='form-control' id='idfactura' name='idfactura' >";
                 foreach($db->direccion($idcliente) as $row){
@@ -107,6 +108,7 @@
 						echo "<div class='card-body'>";
 							echo "<table class='table table-sm'>";
 							echo "<tr><th>-</th><th>Clave</th><th>Num. Parte</th><th>Nombre</th><th>Precio</th><th>Cantidad</th><th>Total</th></tr>";
+							$total=0;
 							foreach($row as $key){
 								echo "<tr id='".$key['id']."' class='edit-t'>";
 									echo "<td>";
@@ -135,18 +137,24 @@
 									echo "</td>";
 									echo "<td class='text-right'>";
 										echo moneda($key['total']);
+										$total+=$key['total'];
 									echo "</td>";
 								echo "</tr>";
 							}
+							echo "<tr>";
+								echo "<td colspan=6 class='text-right'>";
+									echo "<b>Total:</b>";
+								echo "</td>";
+								echo "<td class='text-right'>";
+									echo moneda($total);
+								echo "</td>";
+							echo "</tr>";
 							echo "</table>";
 						echo "</div>";
 					}
-
       echo "</div>";
     echo "</form>";
   echo "</div>";
-
-
  ?>
  <script>
    $(function() {

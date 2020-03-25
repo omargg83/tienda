@@ -1,7 +1,7 @@
 <?php
   require_once("db_.php");
   $productos=$db->productos_numero();
-  
+
  ?>
 
   <div class='container-fluid'>
@@ -18,7 +18,10 @@
       </div>
       <div class="card bg-light acceso">
         <div class="card-body text-center">
-          <p class="card-text">Some text inside the second card</p>
+          <p class="card-text">Pedidos</p>
+        </div>
+        <div class="card-footer">
+          <a class="btn btn-light btn-sm btn-lg btn-block" href='#a_pedidos/index'><i class="fas fa-shopping-basket"></i>Ver</a>
         </div>
       </div>
       <div class="card bg-light acceso">

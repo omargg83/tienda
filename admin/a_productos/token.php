@@ -1,9 +1,5 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
-
-echo "MI IP:".$_SERVER['SERVER_ADDR'];
-echo "<br>";
+if (!isset($_SESSION)) { session_start(); }
 //@AUTOR ING. JOSE DANIEL SOLIS VELARDE
 //AQUI SE DEFINE LA FUNCION GENERICA PARA CONSUMIR UN SERVICIO
 //servicioApi(METODO, RUTA_SERVICIO, DATOS_JSON, TOKEN)
@@ -22,12 +18,10 @@ function servicioApi($metodo, $servicio, $json = null, $token = null) {
     curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 20);
     $result = curl_exec($ch);
 
-    echo curl_error($ch);
+    //echo curl_error($ch);
     curl_close($ch); // close cURL handler
-
     return json_decode($result);
 }
-
 function crearNuevoToken() {
     //Credenciales del cliente para poder consumir el servicio de TOKEN
     $cliente = 'PAC0736';
@@ -41,15 +35,14 @@ function crearNuevoToken() {
     return servicioApi('POST', $servicio, $json, null);
 }
 
-$token = crearNuevoToken();
-echo $token;
-echo var_dump($token);
-// //AQUI SE IMPRIME EL TOKEN CON EL QUE SE CONSUMEN LOS SERVICIO
-echo "token:".$token;
 
-echo "<pre>";
-print_r(
-    array('TOKEN: '=>$token)
-);
-echo "</pre>";
+$resp = crearNuevoToken();
+$tok=$resp->token;
+
+$servicio = 'existencia/MTFHPI1535/TOTAL';
+$metodo="GET";
+$resp =servicioApi($metodo,$servicio,NULL,$tok);
+echo $resp->existencia_total;
+
+
 ?>

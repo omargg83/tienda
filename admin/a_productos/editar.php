@@ -23,6 +23,7 @@
 	$moneda="";
 	$tipoCambio="";
 	$preciof="";
+	$existencia="";
 
 	if($id>0){
 		$per = $db->producto_editar($id);
@@ -52,6 +53,7 @@
 		$moneda=$per->moneda;
 		$tipoCambio=$per->tipoCambio;
 		$preciof=$per->preciof;
+		$existencia=$per->existencia;
 	}
 ?>
 <div class='container'>
@@ -127,25 +129,31 @@
 			  </div>
 
 				<div class="form-row">
+					<div class="form-group col-md-2">
+						<label for="existencia">Existencia </label>
+						<input type="text" class="form-control" id="existencia" name='existencia' placeholder="Existencia" value="<?php echo $existencia; ?>" readonly>
+					</div>
+
 			    <div class="form-group col-md-3">
 			      <label for="descripcion">Precio</label>
 			      <input type="text" class="form-control" id="precio" name='precio' placeholder="Precio" value="<?php echo $precio; ?>" readonly>
 			    </div>
 
-					<div class="form-group col-md-3">
+					<div class="form-group col-md-2">
 			      <label for="descripcion">Moneda</label>
 			      <input type="text" class="form-control" id="moneda" name='moneda' placeholder="Moneda" value="<?php echo $moneda; ?>" readonly>
 			    </div>
 
-					<div class="form-group col-md-3">
+					<div class="form-group col-md-2">
 			      <label for="descripcion">Tipo de cambio</label>
 			      <input type="text" class="form-control" id="tipoCambio" name='tipoCambio' placeholder="Tipo de cambio" value="<?php echo $tipoCambio; ?>" readonly>
 			    </div>
 
 					<div class="form-group col-md-3">
 			      <label for="preciof">Costo </label>
-			      <input type="text" class="form-control" id="preciof" name='preciof' placeholder="Costo" value="<?php echo $preciof; ?>" readonly>
+			      <input type="text" class="form-control text-right" id="preciof" name='preciof' placeholder="Costo" value="<?php echo $preciof; ?>" readonly>
 			    </div>
+
 
 			  </div>
 			</div>
@@ -163,7 +171,7 @@
 					echo "Especificaciones";
 				echo "</div>";
 				echo "<div class='card-body'>";
-					echo "<table class='table table-sm'>";
+					echo "<table class='table table-sm' style='font-size:10px'>";
 					foreach($espe as $key){
 						echo "<tr>";
 
