@@ -54,6 +54,30 @@
 					<div class='col-3'>
 						<?php
 							echo "<img src='../admin/a_imagen/$imagen' width='100%' />";
+							$c_archivoc = $db->imagen($id);
+							////////////////////////////////////////////////////////////////imagenes extra
+							echo "<div class='row'>";
+								echo "<div class='baguetteBoxOne '>";
+									echo "<div style='border:.1px solid silver;float:left;margin:10px'>";
+										echo "<a href='../admin/a_imagen/$imagen' data-caption='Producto' >";
+											echo "<img src='../admin/a_imagen/$imagen' alt='Producto' width='30px' height='30px'/>";
+										echo "</a>";
+									echo "</div>";
+
+									foreach($c_archivoc as $key){
+										echo "<div style='border:.1px solid silver;float:left;margin:10px'>";
+											if(file_exists("../".$db->doc.$key['direccion'])){
+												echo "<a href='".$db->doc.$key['direccion']."' data-caption='Producto'>";
+												echo "<img src='".$db->doc.$key['direccion']."' alt='Producto' width='30px' height='30px'>";
+												echo "</a><br>";
+											}
+										echo "</div>";
+									}
+								echo "</div>";
+							echo "</div>";
+
+
+
 						 ?>
 					</div>
 					<div class='col-9'>
@@ -163,42 +187,8 @@
 						}
 					echo "</table>";
 				echo "</div>";
-
-				$c_archivoc = $db->imagen($id);
-				////////////////////////////////////////////////////////////////imagenes extra
-				echo "<div class='card-header '> Imagenes extra</div>";
-					echo "<div class='card-body'>";
-						echo "<div class='row' >";
-							echo "<div class='baguetteBoxOne gallery'>";
-								foreach($c_archivoc as $key){
-									echo "<div style='border:.1px solid silver;float:left;margin:10px'>";
-
-										if(file_exists("../".$db->doc.$key['direccion'])){
-											echo "<a href='".$db->doc.$key['direccion']."' data-caption='Correspondencia'>";
-											echo "<img src='".$db->doc.$key['direccion']."' alt='Correspondencia' >";
-											echo "</a><br>";
-
-											echo "<button class='btn btn-outline-secondary btn-sm' title='Eliminar archivo'
-											id='delfile_orden'
-											data-ruta='".$db->doc.$key['direccion']."'
-											data-keyt='id'
-											data-key='".$key['id']."'
-											data-tabla='producto_img'
-											data-campo='direccion'
-											data-tipo='2'
-											data-iddest='$id'
-											data-divdest='trabajo'
-											data-borrafile='1'
-											data-dest='a_productos/editar.php?id='
-											><i class='far fa-trash-alt'></i></button>";
-										}
-									echo "</div>";
-								}
-							echo "</div>";
-						echo "</div>";
-					echo "</div>";
 			}
-      echo "<button type='submit' class='btn btn-outline-secondary btn-sm'><i class='far fa-save'></i>Agregar</button>";
+      echo "<button type='submit' class='btn btn-outline-secondary btn-sm'><i class='fas fa-plus'></i>Agregar</button>";
 		?>
 
 	</form>

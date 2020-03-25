@@ -847,9 +847,9 @@
 						url: "control_db.php",
 						type: "POST",
 						data: parametros
-					}).done(function(echo){
-
-						if (!isNaN(echo)){
+					}).done(function(response){
+						var datos = JSON.parse(response);
+						if (datos.error==0){
 							$("#"+divdest).load(dest+iddest);
 							Swal.fire({
 							  type: 'success',

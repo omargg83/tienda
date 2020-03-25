@@ -6,17 +6,18 @@
 	echo "<hr>";
 ?>
 		<div class="content table-responsive table-full-width" >
-			<table id='x_lista' class='display compact hover' style='font-size:10pt;'>
-			<thead>
-			<th>#</th>
-			<th>Clave</th>
-			<th>Nombre</th>
-			<th>Precio</th>
-			<th>Moneda</th>
-			<th>Modelo</th>
-			<th>Marca</th>
-			<th>Existencia</th>
-			</tr>
+			<table id='x_prod' class='dataTable compact hover row-border' style='font-size:10pt;'>
+				<thead>
+				<tr>
+					<th>#</th>
+					<th>Clave</th>
+					<th>Nombre</th>
+					<th>Precio</th>
+					<th>Moneda</th>
+					<th>Modelo</th>
+					<th>Marca</th>
+					<th>Existencia</th>
+				</tr>
 			</thead>
 			<tbody>
 			<?php
@@ -37,13 +38,6 @@
 						echo "<td>".$key["modelo"]."</td>";
 						echo "<td>".$key["marca"]."</td>";
 						echo "<td>".$key["existencia"]."</td>";
-						echo "<td>";
-						/*
-							foreach($db->producto_categoria($key['idproducto']) as $catx){
-									echo "<span class='badge badge-secondary'>".$catx->descripcion."</span>";
-							}
-						*/
-						echo "</td>";
 						echo "</tr>";
 					}
 				}
@@ -55,6 +49,6 @@
 
 <script>
 	$(document).ready( function () {
-		lista("x_lista");
+		lista("x_prod");
 	} );
 </script>

@@ -32,24 +32,24 @@
           echo "<div class='row'>";
             echo "<div class='col-2'>";
               echo "<label>Fecha</label>";
-              echo "<input type='text' class='form-control fechaclass' id='fecha' name='fecha' value='$fecha' readonly>";
+              echo "<input type='text' class='form-control form-control-sm fechaclass' id='fecha' name='fecha' value='$fecha' readonly>";
             echo "</div>";
 
 
 
             echo "<div class='col-4'>";
               echo "<label>Cliente:</label>";
-              echo "<input type='text' class='form-control' id='cliente' name='cliente' value='$nombre_cli' readonly>";
+              echo "<input type='text' class='form-control form-control-sm' id='cliente' name='cliente' value='$nombre_cli' readonly>";
             echo "</div>";
 
             echo "<div class='col-3'>";
               echo "<label>Correo:</label>";
-              echo "<input type='text' class='form-control' id='correo' name='correo' value='$correo_cli' readonly>";
+              echo "<input type='text' class='form-control form-control-sm' id='correo' name='correo' value='$correo_cli' readonly>";
             echo "</div>";
 
 						echo "<div class='col-3'>";
 							echo "<label>Estado</label>";
-							echo "<select id='estado' name='estado' class='form-control'>";
+							echo "<select id='estado' name='estado' class='form-control form-control-sm'>";
 								echo "<option value='pendiente'"; if($estado=='pendiente'){ echo " selected"; } echo ">Pendiente de pago</option>";
 								echo "<option value='procesando'"; if($estado=='procesando'){ echo " selected"; } echo ">Procesando</option>";
 								echo "<option value='espera'"; if($estado=='espera'){ echo " selected"; } echo ">En espera</option>";
@@ -66,7 +66,7 @@
             echo "<div class='row'>";
               echo "<div class='col-6'>";
                 echo "<label>Dirección de Envio:</label>";
-                echo "<select class='form-control' id='idenvio' name='idenvio' >";
+                echo "<select class='form-control form-control-sm' id='idenvio' name='idenvio' >";
                 foreach($db->direccion($idcliente) as $row){
                   echo "<option value='".$row['iddireccion']."'"; if($idenvio==$row['iddireccion']){ echo " selected";} echo ">".$row['direccion1']."</option>";
                 }
@@ -74,7 +74,7 @@
               echo "</div>";
               echo "<div class='col-6'>";
                 echo "<label>Dirección de Facturación:</label>";
-                echo "<select class='form-control' id='idfactura' name='idfactura' >";
+                echo "<select class='form-control form-control-sm' id='idfactura' name='idfactura' >";
                 foreach($db->direccion($idcliente) as $row){
                   echo "<option value='".$row['iddireccion']."'"; if($idfactura==$row['iddireccion']){ echo " selected";} echo ">".$row['direccion1']."</option>";
                 }
@@ -85,7 +85,7 @@
           echo "<div class='row'>";
             echo "<div class='col-12'>";
               echo "<label>Notas del pedido</label>";
-              echo "<input type='text' class='form-control' id='notas' name='notas' value='$notas' placeholder='Notas del pedido'>";
+              echo "<input type='text' class='form-control form-control-sm' id='notas' name='notas' value='$notas' placeholder='Notas del pedido'>";
             echo "</div>";
           echo "</div>";
 
@@ -93,8 +93,14 @@
         echo "<div class='card-footer'>";
           echo "<div class='btn-group'>";
             echo "<button type='submit' class='btn btn-outline-secondary btn-sm'><i class='far fa-save'></i>Guardar</button>";
-            	echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_cli' data-id='$idcliente' data-id2='$id' data-lugar='a_pedidos/form_cliente' title='Agregar cliennte' ><i class='fas fa-plus'></i>Cliente</button>";
-              echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_prod' data-id='$idcliente' data-id2='$id' data-lugar='a_pedidos/form_producto' title='Agregar cliennte' ><i class='fas fa-plus'></i>Producto</button>";
+
+            	echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_cli' data-id='$idcliente' data-id2='$id' data-lugar='a_pedidos/form_cliente' title='Agregar Cliente' ><i class='fas fa-user-tag'></i>Cliente</button>";
+
+              echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_prod' data-id='$idcliente' data-id2='$id' data-lugar='a_pedidos/form_producto' title='Agregar Producto' ><i class='fab fa-product-hunt'></i>Producto</button>";
+
+							echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_cup' data-id='$idcliente' data-id2='$id' data-lugar='a_pedidos/form_cupon' title='Agregar Cupón' ><i class='fas fa-ticket-alt'></i>Cupón</button>";
+
+
             echo "<button class='btn btn-outline-secondary btn-sm' id='lista_cat' data-lugar='a_pedidos/lista' title='regresar'><i class='fas fa-undo-alt'></i>Regresar</button>";
           echo "</div>";
         echo "</div>";
@@ -102,9 +108,6 @@
 
 					if($id>0){
 						$row=$db->productos_pedido($id);
-						echo "<div class='card-header'>";
-							echo "Incluir productos";
-						echo "</div>";
 						echo "<div class='card-body'>";
 							echo "<table class='table table-sm'>";
 							echo "<tr><th>-</th><th>Clave</th><th>Num. Parte</th><th>Nombre</th><th>Precio</th><th>Cantidad</th><th>Total</th></tr>";

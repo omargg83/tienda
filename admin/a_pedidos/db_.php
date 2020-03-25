@@ -12,7 +12,9 @@ class Pedidos extends Tienda{
 			parent::set_names();
 			if (isset($_REQUEST['buscar']) and strlen(trim($_REQUEST['buscar']))>0){
 				$texto=trim(htmlspecialchars($_REQUEST['buscar']));
-				$sql="SELECT * from pedidos where id like '%$texto%' or estado like '%$texto%' limit 100";
+				$sql="SELECT * from pedidos
+				left outer join clientes on clientes.id=pedidos.idcliente
+				where pedidos.id like '%$texto%' or pedidos.estado like '%$texto%' or clientes.nombre like '%$texto' limit 100";
 			}
 			else{
 				$sql="SELECT * from pedidos where estado='pendiente'";
@@ -167,13 +169,12 @@ class Pedidos extends Tienda{
 			echo "<div class='row'>";
 				echo "<div class='col-1'>-</div>";
 				echo "<div class='col-2'><b>Clave</b></div>";
-				echo "<div class='col-1'><b>Num Parte</b></div>";
-				echo "<div class='col-2'><b>Nombre</b></div>";
-				echo "<div class='col-2'><b>Existencia</b></div>";
+				echo "<div class='col-5'><b>Nombre</b></div>";
+				echo "<div class='col-2 text-center'><b>Existencia</b></div>";
 				echo "<div class='col-2'><b>Precio</b></div>";
 			echo "</div>";
 			foreach($sth->fetchAll() as $key){
-				echo "<div class='row' style='border-bottom: 1px solid silver;'>";
+				echo "<div class='row' style='border-bottom: 1px solid silver;font-size:12px'>";
 					echo "<div class='col-1' >";
 						echo "<div class='btn-group'>";
 						echo "<button type='button' onclick='prod_add(".$key['id'].",$idpedido)' class='btn btn-outline-secondary btn-sm' title='Seleccionar cliente'><i class='fas fa-plus'></i></button>";
@@ -182,13 +183,11 @@ class Pedidos extends Tienda{
 					echo "<div class='col-2' >";
 							echo $key['clave'];
 					echo "</div>";
-					echo "<div class='col-1' >";
-							echo $key['numParte'];
+					echo "<div class='col-5' >";
+							echo $key['nombre']."<br>";
+							echo "<b>Parte: </b>".$key['numParte'];
 					echo "</div>";
-					echo "<div class='col-2' >";
-							echo $key['nombre'];
-					echo "</div>";
-					echo "<div class='col-2' >";
+					echo "<div class='col-2 text-center' >";
 							echo $key['existencia'];
 					echo "</div>";
 					echo "<div class='col-2 text-right'>";
@@ -283,6 +282,50 @@ class Pedidos extends Tienda{
 		if (isset($_POST['id'])){$id=$_REQUEST['id'];}
 		return $this->borrar('pedidos_prod',"id",$id);
 	}
+	public function busca_cupon(){
+		try{
+			parent::set_names();
+			$texto=$_REQUEST['texto'];
+			$idpedido=$_REQUEST['idpedido'];
+
+			$sql="SELECT * from cupon where codigo like '%$texto%' limit 100";
+			echo $sql;
+			$sth = $this->dbh->prepare($sql);
+			$sth->execute();
+			echo "<div class='row'>";
+				echo "<div class='col-1'>-</div>";
+				echo "<div class='col-2'><b>Código</b></div>";
+				echo "<div class='col-5'><b>Descripción</b></div>";
+				echo "<div class='col-2 text-center'><b>Existencia</b></div>";
+				echo "<div class='col-2'><b>Precio</b></div>";
+			echo "</div>";
+			foreach($sth->fetchAll() as $key){
+				echo "<div class='row' style='border-bottom: 1px solid silver;font-size:12px'>";
+					echo "<div class='col-1' >";
+						echo "<div class='btn-group'>";
+						echo "<button type='button' onclick='prod_add(".$key['id'].",$idpedido)' class='btn btn-outline-secondary btn-sm' title='Seleccionar cliente'><i class='fas fa-plus'></i></button>";
+						echo "</div>";
+					echo "</div>";
+					echo "<div class='col-2' >";
+							echo $key['codigo'];
+					echo "</div>";
+					echo "<div class='col-5' >";
+							echo $key['descripcion'];
+					echo "</div>";
+					echo "<div class='col-2 text-center' >";
+							echo $key['existencia'];
+					echo "</div>";
+					echo "<div class='col-2 text-right'>";
+							echo moneda($key['preciof']);
+					echo "</div>";
+				echo "</div>";
+			}
+		}
+		catch(PDOException $e){
+			return "Database access FAILED! ".$e->getMessage();
+		}
+	}
+
 }
 $db = new Pedidos();
 if(strlen($function)>0){

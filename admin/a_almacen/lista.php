@@ -6,7 +6,7 @@
 	echo "<hr>";
 ?>
 		<div class="content table-responsive table-full-width" >
-			<table id='x_lista' class='display compact hover' style='font-size:10pt;'>
+			<table id='x_lista' class='dataTable compact hover row-border' style='font-size:10pt;'>
 			<thead>
 			<th>#</th>
 			<th>Sucursal</th>
