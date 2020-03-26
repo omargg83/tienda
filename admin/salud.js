@@ -60,6 +60,8 @@
 			}
 		});
 	}
+
+
 	$(window).on('hashchange',function(){
 		loadContent(location.hash.slice(1));
 	});
