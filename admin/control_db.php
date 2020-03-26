@@ -287,8 +287,6 @@
 				return json_encode($arreglo);
 			}
 		}
-
-
 		public function general($sql,$key=""){
 			try{
 				self::set_names();
@@ -305,6 +303,7 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
+
 		public function fondo(){
 			$_SESSION['idfondo']=$_REQUEST['imagen'];
 			$this->update('usuarios',array('idpersona'=>$_SESSION['idpersona']), array('idfondo'=>$_SESSION['idfondo']));

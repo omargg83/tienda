@@ -3,10 +3,7 @@
   $productos=$db->productos_numero();
 
  ?>
-
   <div class='container-fluid'>
-
-
     <div class="card-group">
       <div class="card bg-light acceso">
         <div class="card-body text-center">
