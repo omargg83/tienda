@@ -52,6 +52,7 @@
 
   foreach($stmt as $key){
     $url=$key['imagen'];
+    echo "<br>".$url;
     $nombre=trim(basename(trim($key['imagen'])));
     if (!file_exists("../a_imagen/".$nombre)) {
       $imagen = file_get_contents($url);
