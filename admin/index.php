@@ -42,7 +42,7 @@
 ?>
 
 <header class="d-block p-2" id='header'>
-	<h2><span style='font-color:white'>el sistema se ha actualizado, presionar ctrl+f5 para continuar...</span></h2>
+
 </header>
 
 <div class="page-wrapper d-block p-2" id='bodyx'>

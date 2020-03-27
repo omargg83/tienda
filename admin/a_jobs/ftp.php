@@ -73,7 +73,7 @@
           $sql="select idProducto from productos where idProducto='".$product['idProducto']."' limit 1";
           $stmt= $db->dbh->query($sql);
           if($stmt->rowCount()==0){
-            $sql="insert into productos (idProducto, clave, numParte, nombre, modelo, idMarca, marca, idCategoria, categoria, idSubCategoria, subcategoria, descripcion_corta, precio, moneda, tipoCambio, preciof, imagen, upc, activo, modificado) values (:idProducto, :clave, :numParte, :nombre, :modelo, :idMarca, :marca, :idCategoria, :categoria, :idSubCategoria, :subcategoria, :descripcion_corta, :precio, :moneda, :tipoCambio, :preciof,:imagen, :upc, :activo, :modificado)";
+            $sql="insert into productos (idProducto, clave, numParte, nombre, modelo, idMarca, marca, idCategoria, categoria, idSubCategoria, subcategoria, descripcion_corta, precio, moneda, tipoCambio, preciof, imagen, upc, activo, modificado, interno) values (:idProducto, :clave, :numParte, :nombre, :modelo, :idMarca, :marca, :idCategoria, :categoria, :idSubCategoria, :subcategoria, :descripcion_corta, :precio, :moneda, :tipoCambio, :preciof,:imagen, :upc, :activo, :modificado, :interno)";
             $sth = $db->dbh->prepare($sql);
             $sth->bindValue(':idProducto', $product['idProducto']);
             $sth->bindValue(':clave', $product['clave']);
@@ -91,7 +91,7 @@
             $sth->bindValue(':upc', $product['upc']);
           }
           else{
-            $sql="update productos set precio=:precio, moneda=:moneda, tipoCambio=:tipoCambio, preciof=:preciof, imagen=:imagen, activo=:activo, modificado=:modificado where idProducto='".$product['idProducto']."'";
+            $sql="update productos set precio=:precio, moneda=:moneda, tipoCambio=:tipoCambio, preciof=:preciof, imagen=:imagen, activo=:activo, modificado=:modificado, interno=:interno where idProducto='".$product['idProducto']."'";
             $sth = $db->dbh->prepare($sql);
           }
 
@@ -104,6 +104,7 @@
           $sth->bindValue(':imagen', $product['imagen']);
           $sth->bindValue(':activo', $product['activo']);
           $sth->bindValue(':modificado', $fmodif);
+          $sth->bindValue(':interno', 0);
           $sth->execute();
 
           //////////////////////////// SE BORRAN LAS EXISTENCIAS DEL PRODUCTO PARA ACTUALIZARLAS
@@ -156,7 +157,7 @@
     }
 
     /////////////////////////////////////// BUSCAMOS PRODUCTOS QUE NO SE ACTUALIZARON PARA ELIMINAR EXISTENCIAS
-    $sql="select * from productos where modificado!='$fmodif'";
+    $sql="select * from productos where modificado!='$fmodif' where interno=0";
     $stmt= $db->dbh->query($sql);
 
     ///////////// se borran existencias

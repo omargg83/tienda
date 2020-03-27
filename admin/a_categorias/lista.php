@@ -9,7 +9,9 @@
 			<table id='x_lista' class='dataTable compact hover row-border' style='font-size:10pt;'>
 			<thead>
 			<th>#</th>
-			<th>Descrición</th>
+			<th>Nombre heredado</th>
+			<th>Nombre para mostrar</th>
+			<th>Subcategorias</th>
 			</tr>
 			</thead>
 			<tbody>
@@ -23,6 +25,16 @@
 							echo "</div>";
 						echo "</td>";
 						echo "<td>".$key["descripcion"]."</td>";
+						echo "<td>".$key["categoria_usuario"]."</td>";
+
+						echo "<td>";
+						$row=$db->producto_cat($key['idcategoria']);
+						foreach($row as $key){
+							echo $key['categoria'].", ";
+						}
+
+						echo "</td>";
+
 						echo "</tr>";
 					}
 				}

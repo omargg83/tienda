@@ -147,7 +147,7 @@
 				$valor=$_SESSION['idfondo'];
 				$x="<form id='acceso' action=''>
 						<div class='container'>
-								<center><img src='img/SSH.png' width='250px'></center>
+								<center><img src='img/LOGO.png' width='250px'></center>
 								<p class='input_title'>Usuario o correo:</p>
 								<div class='form-group input-group'>
 									<div class='input-group-prepend'>

@@ -93,28 +93,64 @@ class Productos extends Tienda{
 			parent::set_names();
 			$id=$_REQUEST['id'];
 			$arreglo =array();
+			if (isset($_REQUEST['clave'])){
+				$arreglo+= array('clave'=>$_REQUEST['clave']);
+			}
+			if (isset($_REQUEST['idProducto'])){
+				$arreglo+= array('idProducto'=>$_REQUEST['idProducto']);
+			}
+			if (isset($_REQUEST['numParte'])){
+				$arreglo+= array('numParte'=>$_REQUEST['numParte']);
+			}
 			if (isset($_REQUEST['nombre'])){
-				$arreglo = array('nombre'=>$_REQUEST['nombre']);
+				$arreglo+= array('nombre'=>$_REQUEST['nombre']);
 			}
-			if (isset($_REQUEST['descripcion'])){
-				$arreglo += array('descripcion'=>$_REQUEST['descripcion']);
+			if (isset($_REQUEST['descripcion_corta'])){
+				$arreglo+= array('descripcion_corta'=>$_REQUEST['descripcion_corta']);
 			}
-			if (isset($_REQUEST['sku'])){
-				$arreglo += array('sku'=>$_REQUEST['sku']);
+			if (isset($_REQUEST['modelo'])){
+				$arreglo+= array('modelo'=>$_REQUEST['modelo']);
+			}
+			if (isset($_REQUEST['marca'])){
+				$arreglo+= array('marca'=>$_REQUEST['marca']);
+			}
+			if (isset($_REQUEST['categoria'])){
+				$arreglo+= array('categoria'=>$_REQUEST['categoria']);
+			}
+			if (isset($_REQUEST['subcategoria'])){
+				$arreglo+= array('subcategoria'=>$_REQUEST['subcategoria']);
+			}
+			if (isset($_REQUEST['existencia'])){
+				$arreglo+= array('existencia'=>$_REQUEST['existencia']);
 			}
 			if (isset($_REQUEST['precio'])){
-				$arreglo += array('precio'=>$_REQUEST['precio']);
+				$arreglo+= array('precio'=>$_REQUEST['precio']);
 			}
-			if (isset($_REQUEST['cantidad'])){
-				$arreglo += array('cantidad'=>$_REQUEST['cantidad']);
+			if (isset($_REQUEST['moneda'])){
+				$arreglo+= array('moneda'=>$_REQUEST['moneda']);
 			}
-
+			if (isset($_REQUEST['tipoCambio'])){
+				$arreglo+= array('tipoCambio'=>$_REQUEST['tipoCambio']);
+			}
+			if (isset($_REQUEST['preciof'])){
+				$arreglo+= array('preciof'=>$_REQUEST['preciof']);
+			}
+			if (isset($_REQUEST['precio_tic'])){
+				$arreglo+= array('precio_tic'=>$_REQUEST['precio_tic']);
+			}
+			if (isset($_REQUEST['costo_envio'])){
+				$arreglo+= array('costo_envio'=>$_REQUEST['costo_envio']);
+			}
+			if (isset($_REQUEST['descripcion_larga'])){
+				$arreglo+= array('descripcion_larga'=>$_REQUEST['descripcion_larga']);
+			}
 			$x="";
 			if($id==0){
+				$arreglo+= array('interno'=>1);
 				$x=$this->insert('productos', $arreglo);
 			}
 			else{
-				$x=$this->update('productos',array('idproducto'=>$id), $arreglo);
+				$x=$this->update('productos',array('id'=>$id), $arreglo);
 			}
 			return $x;
 		}

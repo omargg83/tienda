@@ -16,12 +16,14 @@
 	<form id='form_comision' action='' data-lugar='a_clientes/db_' data-destino='a_clientes/editar' data-funcion='guardar_cliente'>
 		<div class='card'>
 			<div class='card-header'>
-				Usuarios <?php echo $id; ?>
+				Datos Cliente
 			</div>
 			<div class='card-body'>
 				<input type="hidden" class="form-control" id="id" name='id' value="<?php echo $id; ?>">
 
 			  <div class="form-row">
+
+					
 			    <div class="form-group col-md-4">
 			      <label>Nombre</label>
 			      <input type="text" class="form-control" id="nombre" name='nombre' placeholder="Nombre" value="<?php echo $nombre; ?>" required>
@@ -45,19 +47,27 @@
 						if($id>0){
 							echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_pass' data-id='$id' data-lugar='a_clientes/form_pass' title='Cambiar contraseña' ><i class='fas fa-key'></i>Contraseña</button>";
 
-							echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_pass' data-id='0' data-id2='$id' data-lugar='a_clientes/form_direccion' title='Cambiar contraseña' ><i class='fas fa-street-view'></i>Direccion</button>";
+
 						}
 					?>
 					<button class='btn btn-outline-secondary btn-sm' id='lista_cat' data-lugar='a_clientes/lista' title='regresar'><i class='fas fa-undo-alt'></i>Regresar</button>
 				</div>
 			</div>
+		</div>
+		<hr>
+		<div class='card'>
 			<?php
 				if($id>0){
+
+
 					$row=$db->direcciones($id);
 					echo "<div class='card-header'>";
-						echo "Direcciones";
+						echo "Direcciones adicionales";
+
 					echo "</div>";
 					echo "<div class='card-body'>";
+						echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_pass' data-id='0' data-id2='$id' data-lugar='a_clientes/form_direccion' title='Cambiar contraseña' ><i class='fas fa-street-view'></i>Agregar Direccion</button>";
+
 						echo "<table class='table table-sm'>";
 						echo "<tr><th>-</th><th>Nombre</th><th>Apellidos</th><th>Empresa</th><th>Ciudad</th><th>Estado</th></tr>";
 						foreach($row as $key){

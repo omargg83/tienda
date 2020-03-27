@@ -18,6 +18,9 @@
 			url:   'control_db.php',
 			type:  'post',
 			timeout:30000,
+			beforeSend: function () {
+				$("#cargando").addClass("is-active");
+			},
 			success:  function (response) {
 				var datos = JSON.parse(response);
 				if (datos.sess=="cerrada"){
@@ -29,7 +32,9 @@
 					$('#myModal').modal('show');
 				}
 				if (datos.sess=="abierta"){
-					$("#cargando").addClass("is-active");
+					$("#header").load("dash/header.php");
+					$("#bodyx").load("dash/menu.php");
+
 					$("#modal_dispo").addClass("modal-lg");
 					if(datos.fondo.length>0){
 						$("body").css("background-image","url('"+datos.fondo+"')");
@@ -37,30 +42,19 @@
 					else{
 						$("body").css("background-image","url('fondo/ssh.jpg')");
 					}
-					$("#header").html(datos.header);
-
-					$("#bodyx").load("dash/menu.php");
-
 					setTimeout(fondos, 2000);
-					setTimeout(correo, 6000);
-					if (datos.admin=="1"){
-						if(notif==""){
-							notif=window.setInterval("notificarx()",30000);
-						}
-					}
-					notifyMe();
 					loadContent(location.hash.slice(1));
 					$("#cargando").removeClass("is-active");
 				}
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
 				if(textStatus==="timeout") {
+					$("#cargando").removeClass("is-active");
 					$("#bodyx").html("<div class='container' style='background-color:white; width:300px'><center><img src='img/giphy.gif' width='300px'></center></div><br><center><div class='alert alert-danger' role='alert'>Ocurrio un error intente de nuevo en unos minutos, vuelva a entrar o presione ctrl + F5, para reintentar</div></center> ");
 				}
 			}
 		});
 	}
-
 
 	$(window).on('hashchange',function(){
 		loadContent(location.hash.slice(1));
@@ -99,139 +93,6 @@
 		$("#cargando").removeClass("is-active");
 	}
 
-	function notificarx(){
-		$.ajax({
-			data:  {
-				"ctrl":"control",
-				"function":"notificarx"
-			},
-			url:   'control_db.php',
-			type:  'post',
-			timeout:3000,
-			success:  function (response) {
-				var data = JSON.parse(response);
-				if(data.correo==1){
-					msg_notificacion(data.texto);
-				}
-			}	,
-			error: function(jqXHR, textStatus, errorThrown) {
-				if(textStatus==="timeout") {
-				}
-			}
-		});
-
-		$.ajax({
-			data:  {
-				"ctrl":"control",
-				"function":"alertas"
-			},
-			url:   'control_db.php',
-			type:  'post',
-			timeout:2000,
-			success:  function (response) {
-				var data = JSON.parse(response);
-				if(data.entra==1){
-					msg_notificacion(data.texto);
-					Swal.fire({
-					  title: '¿Aprobar correspondencia?',
-					  text: data.numero+" - >"+data.nombre+" <----> "+data.asunto,
-					  type: 'question',
-					  showCancelButton: true,
-					  confirmButtonColor: '#3085d6',
-					  cancelButtonColor: '#d33',
-					  confirmButtonText: 'Turnar'
-					}).then((result) => {
-					  if (result.value) {
-							if(data.tipo==1){
-								lugar="a_corresp/db_.php";
-							}
-							if(data.tipo==2){
-								lugar="a_corresps/db_.php";
-							}
-							$.ajax({
-								data:  {
-									"id":data.idoficio,
-									"idrel":data.id,
-									"function":"turnasol"
-								},
-								url:   lugar,
-								type:  'post',
-								success:  function (response) {
-									Swal.fire(
-							      'Turnado!'+response,
-							      'Oficio turnado',
-							      'success'
-							    )
-								}
-							});
-
-							$.ajax({
-								data:  {
-									"texto":"Oficio No:"+ data.numero+" Turnado ",
-									"id":data.idpersona,
-									"function":"manda"
-								},
-								url:   "chat/chat.php",
-								type:  'post',
-								success:  function (response) {
-								}
-							});
-					  }
-					});
-				}
-			}
-		});
-	}
-	function msg_notificacion(texto){
-		if  (Notification.permission  ===  "granted")  {
-			var  options  =   {
-					body:   texto,
-					icon:   "img/escudo.jpg",
-					dir :   "ltr"
-			};
-			var  notification  =  new  Notification("Sistema Administrativo de Salud Pública", options);
-		//	hover2.playclip();
-		}
-	}
-	function notifyMe(){
-    if  (!("Notification"  in  window))  {
-
-    }
-    else  if  (Notification.permission  ===  "granted")  {
-
-    }
-    else  if  (Notification.permission  !==  'denied')  {
-        Notification.requestPermission(function (permission)  {
-            if  (!('permission'  in  Notification))  {
-                Notification.permission  =  permission;
-            }
-            if  (permission  ===  "granted")  {
-
-            }
-        });
-    }
-	}
-	function correo(){
-		var parametros={
-			"ctrl":"control",
-			"function":"correo"
-		};
-		$.ajax({
-			data:  parametros,
-			url: "control_db.php",
-			type: "post",
-			beforeSend: function () {
-
-			},
-			success:  function (response) {
-				if(response=="correo"){
-					$('#myModal').modal('show');
-					$("#modal_form").load("escritorio/correo.php");
-				}
-
-			}
-		});
-	}
 	function fondos(){
 		var parametros={
 			"ctrl":"control",
@@ -306,8 +167,12 @@
 			},
 			url:   'control_db.php',
 			type:  'post',
+			beforeSend: function () {
+				$("#cargando").addClass("is-active");
+			},
 			success:  function (response) {
 				acceso();
+				$("#cargando").removeClass("is-active");
 			}
 		});
 	}

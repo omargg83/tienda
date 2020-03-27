@@ -2,10 +2,12 @@
 	require_once("db_.php");
 	$id=$_REQUEST['id'];
 	$descripcion="";
+	$categoria_usuario="";
 
 	if($id>0){
 		$per = $db->categoria_editar($id);
 		$descripcion=$per->descripcion;
+		$categoria_usuario=$per->categoria_usuario;
 	}
 ?>
 <div class='container'>
@@ -19,8 +21,14 @@
 
 			  <div class="form-row">
 			    <div class="form-group col-md-6">
-			      <label for="inputEmail4">Descripción</label>
-			      <input type="text" class="form-control" id="descripcion" name='descripcion' placeholder="Descripción" value="<?php echo $descripcion; ?>">
+			      <label for="descripcion">Nombre heredado</label>
+			      <input type="text" class="form-control" id="descripcion" name='descripcion' placeholder="Nombre" value="<?php echo $descripcion; ?>">
+			    </div>
+			  </div>
+			  <div class="form-row">
+			    <div class="form-group col-md-6">
+			      <label for="descripcion">Nombre para mostrar</label>
+			      <input type="text" class="form-control" id="categoria_usuario" name='categoria_usuario' placeholder="Nombre" value="<?php echo $categoria_usuario; ?>">
 			    </div>
 			  </div>
 
@@ -30,7 +38,7 @@
 		  		<button type="submit" class="btn btn-outline-secondary btn-sm"><i class='far fa-save'></i>Guardar</button>
 					<?php
 						if($id>0){
-							echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_pass' data-id='$id' data-lugar='a_categorias/form_grupo' title='Cambiar contraseña' ><i class='far fa-object-group'></i>Agrupar</button>";
+							echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_pass' data-id='$id' data-lugar='a_categorias/form_grupo' title='Subcategorias' ><i class='far fa-object-group'></i>Subcategorias</button>";
 						}
 					?>
 					<button class='btn btn-outline-secondary btn-sm' id='lista_cat' data-lugar='a_categorias/lista' title='regresar'><i class='fas fa-undo-alt'></i>Regresar</button>

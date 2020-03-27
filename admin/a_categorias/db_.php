@@ -95,6 +95,9 @@ class Categorias extends Tienda{
 			if (isset($_REQUEST['descripcion'])){
 				$arreglo = array('descripcion'=>$_REQUEST['descripcion']);
 			}
+			if (isset($_REQUEST['categoria_usuario'])){
+				$arreglo = array('categoria_usuario'=>$_REQUEST['categoria_usuario']);
+			}
 
 			$x="";
 			if($id==0){

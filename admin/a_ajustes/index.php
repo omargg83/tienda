@@ -1,49 +1,42 @@
 <?php
-  require_once("db_.php");
-  $_SESSION['nivel_captura']=1;
- ?>
- <nav class='navbar navbar-expand-sm navbar-light bg-light'>
- 		  <a class='navbar-brand' ><i class="fas fa-tools"></i>Ajustes</a>
- 		  <button class='navbar-toggler navbar-toggler-right' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
- 			<span class='navbar-toggler-icon'></span>
- 		  </button>
- 		  <div class='collapse navbar-collapse' id='navbarSupportedContent'>
- 			<ul class='navbar-nav mr-auto'>
-        <div class='form-inline my-2 my-lg-0' id='daigual' action='' >
-          <div class="input-group  mr-sm-2">
-            <input type="text" class="form-control form-control-sm" placeholder="Buscar" aria-label="Buscar" aria-describedby="basic-addon2"  id='buscar' onkeyup='Javascript: if (event.keyCode==13) buscar_almacen()'>
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary btn-sm" type="button" onclick='buscar_almacen()'><i class='fas fa-search'></i></button>
-            </div>
-          </div>
-				</div>
- 				<li class='nav-item active'><a class='nav-link barranav' title='Mostrar todo' id='new_poliza' data-lugar='a_almacen/editar'><i class="fas fa-folder-plus"></i><span>Nuevo</span></a></li>
- 				<li class='nav-item active'><a class='nav-link barranav' title='Mostrar todo' id='lista_prod' data-lugar='a_almacen/lista'><i class="fas fa-list"></i><span>Lista</span></a></li>
-      </li>
- 			</ul>
- 		</div>
- 	  </div>
- 	</nav>
+	require_once("db_.php");
 
-<?php
-  echo "<div class='container'>";
-   echo "<div id='trabajo' style='margin-top:5px;'>";
-    include 'lista.php';
-   echo "</div>";
-  echo "</div>";
- ?>
-<script type="text/javascript">
- function buscar_almacen(){
-   var buscar = $("#buscar").val();
-   $.ajax({
-     data:  {
-       "buscar":buscar
-     },
-     url:   'a_almacen/lista.php',
-     type:  'post',
-     success:  function (response) {
-       $("#trabajo").html(response);
-     }
-   });
- }
- </script>
+	$per = $db->ajustes_editar();
+	$c_envio=$per->c_envio;
+	$p_general=$per->p_general;
+
+?>
+<div class='container'>
+	<form id='form_comision' action='' data-lugar='a_ajustes/db_' data-destino='a_ajustes/editar' data-funcion='guardar_ajustes'>
+		<div class='card'>
+			<div class='card-header'>
+				Ajuste
+			</div>
+			<div class='card-body'>
+				<input type="hidden" class="form-control" id="id" name='id' value="<?php echo $id; ?>">
+
+
+        <div class="form-group row">
+          <label for="staticEmail" class="col-sm-3 col-form-label">Costo general de envío nacional</label>
+          <div class="col-sm-9">
+            <input type="text"  class="form-control" id="c_envio" name='c_envio' value="<?php echo $c_envio; ?>" placeholder='Costo general de envio nacional'>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="inputPassword" class="col-sm-3 col-form-label">Porcentaje general de ganancia por producto</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="p_general" name='p_general' value="<?php echo $p_general; ?>" placeholder='Porcentaje general de ganancia por producto'>
+          </div>
+        </div>
+
+
+			</div>
+			<div class='card-footer'>
+				<div class='btn-group'>
+		  		<button type="submit" class="btn btn-outline-secondary btn-sm"><i class='far fa-save'></i>Guardar</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
