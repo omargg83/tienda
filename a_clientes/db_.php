@@ -43,14 +43,42 @@ class Clientes extends Tienda{
 			parent::set_names();
 			$id=$_REQUEST['id'];
 			$arreglo =array();
+
+			if (isset($_REQUEST['rfc'])){
+				$arreglo+= array('rfc'=>$_REQUEST['rfc']);
+			}
+			if (isset($_REQUEST['cfdi'])){
+				$arreglo+= array('cfdi'=>$_REQUEST['cfdi']);
+			}
 			if (isset($_REQUEST['nombre'])){
-				$arreglo = array('nombre'=>$_REQUEST['nombre']);
+				$arreglo+= array('nombre'=>$_REQUEST['nombre']);
 			}
 			if (isset($_REQUEST['apellido'])){
 				$arreglo+= array('apellido'=>$_REQUEST['apellido']);
 			}
 			if (isset($_REQUEST['correo'])){
 				$arreglo+= array('correo'=>$_REQUEST['correo']);
+			}
+			if (isset($_REQUEST['direccion1'])){
+				$arreglo+= array('direccion1'=>$_REQUEST['direccion1']);
+			}
+			if (isset($_REQUEST['direccion2'])){
+				$arreglo+= array('direccion2'=>$_REQUEST['direccion2']);
+			}
+			if (isset($_REQUEST['ciudad'])){
+				$arreglo+= array('ciudad'=>$_REQUEST['ciudad']);
+			}
+			if (isset($_REQUEST['cp'])){
+				$arreglo+= array('cp'=>$_REQUEST['cp']);
+			}
+			if (isset($_REQUEST['pais'])){
+				$arreglo+= array('pais'=>$_REQUEST['pais']);
+			}
+			if (isset($_REQUEST['estado'])){
+				$arreglo+= array('estado'=>$_REQUEST['estado']);
+			}
+			if (isset($_REQUEST['telefono'])){
+				$arreglo+= array('telefono'=>$_REQUEST['telefono']);
 			}
 
 			$x="";
