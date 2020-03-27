@@ -6,10 +6,10 @@
     <span class='navbar-toggler-icon'></span>
   </button>
 
-  
 
 
-  <a class='navbar-brand' href='#escritorio/dashboard' style='font-size:10px'>Tic Shop</a>
+
+  <a class='navbar-brand' href='#escritorio/dashboard'>Tic Shop</a>
 
   <button class='navbar-toggler navbar-toggler-right' type='button' data-toggle='collapse' data-target='#principal' aria-controls='principal' aria-expanded='false' aria-label='Toggle navigation'>
     <i class='fab fa-rocketchat'></i>
