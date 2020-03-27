@@ -157,7 +157,7 @@
     }
 
     /////////////////////////////////////// BUSCAMOS PRODUCTOS QUE NO SE ACTUALIZARON PARA ELIMINAR EXISTENCIAS
-    $sql="select * from productos where modificado!='$fmodif' where interno=0";
+    $sql="select * from productos where modificado!='$fmodif' and interno=0";
     $stmt= $db->dbh->query($sql);
 
     ///////////// se borran existencias
