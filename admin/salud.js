@@ -34,7 +34,6 @@
 				if (datos.sess=="abierta"){
 					$("#header").load("dash/header.php");
 					$("#bodyx").load("dash/menu.php");
-
 					$("#modal_dispo").addClass("modal-lg");
 					if(datos.fondo.length>0){
 						$("body").css("background-image","url('"+datos.fondo+"')");
@@ -44,8 +43,8 @@
 					}
 					setTimeout(fondos, 2000);
 					loadContent(location.hash.slice(1));
-					$("#cargando").removeClass("is-active");
 				}
+				$("#cargando").removeClass("is-active");
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
 				if(textStatus==="timeout") {

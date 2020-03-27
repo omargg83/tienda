@@ -75,7 +75,14 @@
 	<form id='form_comision' action='' data-lugar='a_productos/db_' data-destino='a_productos/editar' data-funcion='guardar_producto'>
 		<div class='card'>
 			<div class='card-header'>
-				Producto: <?php echo $nombre; ?>
+				Producto: <?php echo $nombre;
+					if($interno==0){
+						echo "(CT)";
+					}
+					else{
+						echo "(TIC)";
+					}
+				?>
 			</div>
 			<div class='card-body'>
 				<input type="hidden" class="form-control" id="id" name='id' value="<?php echo $id; ?>">

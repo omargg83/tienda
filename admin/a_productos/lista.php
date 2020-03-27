@@ -11,6 +11,7 @@
 				<tr>
 					<th>#</th>
 					<th>Clave</th>
+					<th>Producto</th>
 					<th>Nombre</th>
 					<th>Precio</th>
 					<th>Moneda</th>
@@ -32,6 +33,14 @@
 						echo "</td>";
 
 						echo "<td>".$key["clave"]."</td>";
+						echo "<td>";
+						if($key["interno"]==0){
+							echo "CT";
+						}
+						else{
+							echo "TIC";
+						}
+						echo "</td>";
 						echo "<td>".$key["nombre"]."</td>";
 						echo "<td>".$key["precio"]."</td>";
 						echo "<td>".$key["moneda"]."</td>";
