@@ -12,6 +12,9 @@
       $this->dbh = new PDO("mysql:host=".$_SESSION['servidor'].";dbname=".$_SESSION['bdd']."", $_SESSION['mysqluser'], $_SESSION['mysqlpass']);
       self::set_names();
     }
+    public function set_names(){
+			return $this->dbh->query("SET NAMES 'utf8'");
+		}
   }
   $db = new Imagen();
 /*
