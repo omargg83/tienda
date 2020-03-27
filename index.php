@@ -90,7 +90,6 @@
 	<!--   iconos   -->
 	<link rel="stylesheet" href="librerias15/fontawesome-free-5.12.1-web/css/all.css">
 
-
 	<!--   carrusel de imagenes   -->
 	<link rel="stylesheet" href="librerias15/baguetteBox.js-dev/baguetteBox.css">
 	<script src="librerias15/baguetteBox.js-dev/baguetteBox.js" async></script>
@@ -108,11 +107,6 @@
 	<link rel="stylesheet" type="text/css" href="librerias15/modulos.css"/>
 
 	<script src="librerias15/chartjs/Chart.js"></script>
-	<link href='librerias15/fullcalendar-4.0.1/packages/core/main.css' rel='stylesheet' />
-	<link href='librerias15/fullcalendar-4.0.1/packages/daygrid/main.css' rel='stylesheet' />
-	<script src='librerias15/fullcalendar-4.0.1/packages/core/main.js'></script>
-	<script src='librerias15/fullcalendar-4.0.1/packages/interaction/main.js'></script>
-	<script src='librerias15/fullcalendar-4.0.1/packages/daygrid/main.js'></script>
 
 	<!--   Tablas  -->
 	<script type="text/javascript" src="librerias15/DataTables/datatables.js"></script>
@@ -133,5 +127,7 @@
 	<script src="librerias15/js/bootstrap.js"></script>
 
 	<script src="librerias15/jQuery-MD5-master/jquery.md5.js"></script>
+
+
 
 </html>

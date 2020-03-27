@@ -7,6 +7,7 @@ class Productos extends Tienda{
 	public function __construct(){
 		parent::__construct();
 
+		$this->doc1="a_imagen/";
 		$this->doc="a_imagenextra/";
 	}
 	public function productos_lista(){

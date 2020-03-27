@@ -71,125 +71,141 @@
 		$bloqueo="";
 	}
 ?>
+
 <div class='container'>
 	<form id='form_comision' action='' data-lugar='a_productos/db_' data-destino='a_productos/editar' data-funcion='guardar_producto'>
 		<div class='card'>
 			<div class='card-header'>
-				Producto: <?php echo $nombre;
+				<?php echo $nombre;
 					if($interno==0){
-						echo "(CT)";
+						echo " (CT)";
 					}
 					else{
-						echo "(TIC)";
+						echo " (TIC)";
 					}
 				?>
 			</div>
 			<div class='card-body'>
-				<input type="hidden" class="form-control" id="id" name='id' value="<?php echo $id; ?>">
+				<input type="hidden" class="form-control form-control-sm" id="id" name='id' value="<?php echo $id; ?>" readonly>
 				<div class='row'>
 					<div class='col-3'>
 						<?php
-							echo "<img src='../admin/a_imagen/$imagen' width='100%' />";
+							if(file_exists("../".$db->doc1."$imagen")){
+								echo "<img src='".$db->doc1."$imagen' width='100%' /><br>";
+							}
+							echo "<button type='button' class='btn btn-outline-secondary btn-sm' data-toggle='modal' data-target='#myModal' id='fileup_imagenx' data-ruta='a_imagen/' data-tabla='productos' data-campo='img' data-tipo='1' data-id='$id' data-keyt='id' data-destino='a_productos/editar' data-iddest='$id' data-ext='.jpg,.png' ><i class='fas fa-cloud-upload-alt'></i>Agregar imagen</button>";
 						 ?>
 					</div>
 					<div class='col-9'>
-						<div class="form-row">
-						 <div class="form-group col-md-4">
+						<div class="row">
+						 <div class="col-4">
 							 <label for="sku">Clave</label>
-							 <input type="text" class="form-control" id="clave" name='clave' placeholder="CLAVE" value="<?php echo $clave; ?>"  >
+							 <input type="text" class="form-control form-control-sm" id="clave" name='clave' placeholder="CLAVE" value="<?php echo $clave; ?>" <?php  echo $bloqueo;  ?> >
 						 </div>
 
-						 <div class="form-group col-md-4">
-							 <label for="sku">Idproducto</label>
-							 <input type="text" class="form-control" id="idProducto" name='idProducto' placeholder="CLAVE" value="<?php echo $idProducto; ?>"  >
+						 <div class="col-4">
+							 <label for="sku">Idproducto (CT)</label>
+							 <input type="text" class="form-control form-control-sm" id="idProducto" name='idProducto' placeholder="CLAVE" value="<?php echo $idProducto; ?>"  <?php  echo $bloqueo;  ?>>
 						 </div>
 
-					    <div class="form-group col-md-4">
-					      <label for="nombre">Numero de parte</label>
-					      <input type="text" class="form-control" id="numParte" name='numParte' placeholder="Numero de parte" value="<?php echo $numParte; ?>" <?php  echo $bloqueo;  ?>>
+					    <div class="col-4">
+					      <label for="nombre">Numero de parte (CT)</label>
+					      <input type="text" class="form-control form-control-sm" id="numParte" name='numParte' placeholder="Numero de parte" value="<?php echo $numParte; ?>" <?php  echo $bloqueo;  ?> >
 					    </div>
 					  </div>
 
-						<div class="form-row">
-					    <div class="form-group col-md-12">
+						<div class="row">
+					    <div class="col-12">
 					      <label for="descripcion">Nombre</label>
-					      <input type="text" class="form-control" id="nombre" name='nombre' placeholder="Nombre" value="<?php echo $nombre; ?>" <?php  echo $bloqueo;  ?>>
+					      <input type="text" class="form-control form-control-sm" id="nombre" name='nombre' placeholder="Nombre" value="<?php echo $nombre; ?>" <?php  echo $bloqueo;  ?>>
 					    </div>
+
+							<div class="col-12">
+								<label for="descripcion">Descripción corta</label>
+								<input type="text" class="form-control form-control-sm" id="descripcion_corta" name='descripcion_corta' placeholder="Descripción corta" value="<?php echo $descripcion_corta; ?>" <?php  echo $bloqueo;  ?>>
+							</div>
 					  </div>
 					</div>
 				</div>
 
-				<div class="form-row">
-					<div class="form-group col-md-12">
-						<label for="descripcion">Descripción corta</label>
-						<input type="text" class="form-control" id="descripcion_corta" name='descripcion_corta' placeholder="Descripción corta" value="<?php echo $descripcion_corta; ?>" <?php  echo $bloqueo;  ?>>
-					</div>
+				<div class="row">
+
 				</div>
-				<div class="form-row">
-					<div class="form-group col-md-12">
+				<div class="row">
+					<div class="col-12">
 						<label for="descripcion">Descripción larga</label>
 						<textarea rows='10' id='descripcion_larga' NAME='descripcion_larga'><?php echo $descripcion_larga; ?></textarea>
 					</div>
 				</div>
 
-				<div class="form-row">
-			    <div class="form-group col-md-6">
+				<div class="row">
+			    <div class="col-6">
 			      <label for="descripcion">Modelo</label>
-			      <input type="text" class="form-control" id="modelo" name='modelo' placeholder="Nombre" value="<?php echo $modelo; ?>" <?php  echo $bloqueo;  ?>>
+			      <input type="text" class="form-control form-control-sm" id="modelo" name='modelo' placeholder="Nombre" value="<?php echo $modelo; ?>" <?php  echo $bloqueo;  ?>>
 			    </div>
 
-			    <div class="form-group col-md-6">
+			    <div class="col-6">
 			      <label for="descripcion">Marca</label>
-			      <input type="text" class="form-control" id="marca" name='marca' placeholder="Marca" value="<?php echo $marca; ?>" <?php  echo $bloqueo;  ?>>
+			      <input type="text" class="form-control form-control-sm" id="marca" name='marca' placeholder="Marca" value="<?php echo $marca; ?>" <?php  echo $bloqueo;  ?>>
 			    </div>
 			  </div>
 
-				<div class="form-row">
-			    <div class="form-group col-md-6">
+				<div class="row">
+			    <div class="col-6">
 			      <label for="descripcion">Categoria</label>
-			      <input type="text" class="form-control" id="categoria" name='categoria' placeholder="Categoria" value="<?php echo $categoria; ?>" <?php  echo $bloqueo;  ?>>
+			      <input type="text" class="form-control form-control-sm" id="categoria" name='categoria' placeholder="Categoria" value="<?php echo $categoria; ?>" <?php  echo $bloqueo;  ?>>
 			    </div>
 
-			    <div class="form-group col-md-6">
+			    <div class="col-6">
 			      <label for="descripcion">Subcategoria</label>
-			      <input type="text" class="form-control" id="subcategoria" name='subcategoria' placeholder="Subcategoria" value="<?php echo $subcategoria; ?>" <?php  echo $bloqueo;  ?>>
+			      <input type="text" class="form-control form-control-sm" id="subcategoria" name='subcategoria' placeholder="Subcategoria" value="<?php echo $subcategoria; ?>" <?php  echo $bloqueo;  ?>>
 			    </div>
 			  </div>
 
-				<div class="form-row">
-					<div class="form-group col-md-2">
-						<label for="existencia">Existencia </label>
-						<input type="text" class="form-control" id="existencia" name='existencia' placeholder="Existencia" value="<?php echo $existencia; ?>" <?php  echo $bloqueo;  ?>>
-					</div>
-
-			    <div class="form-group col-md-3">
-			      <label for="descripcion">Precio base</label>
-			      <input type="text" class="form-control" id="precio" name='precio' placeholder="Precio" value="<?php echo $precio; ?>" <?php  echo $bloqueo;  ?>>
+				<div class="row">
+			    <div class="col-3">
+			      <label for="descripcion">Precio base (CT)</label>
+			      <input type="text" class="form-control form-control-sm" id="precio" name='precio' placeholder="Precio" value="<?php echo $precio; ?>" <?php  echo $bloqueo;  ?>>
 			    </div>
 
-					<div class="form-group col-md-2">
-			      <label for="descripcion">Moneda</label>
-			      <input type="text" class="form-control" id="moneda" name='moneda' placeholder="Moneda" value="<?php echo $moneda; ?>" <?php  echo $bloqueo;  ?>>
+					<div class="col-3">
+			      <label for="descripcion">Moneda (CT)</label>
+						<?php
+							echo "<select id='estado' name='estado' class='form-control form-control-sm' $bloqueo>";
+								echo "<option value='MXN'"; if($moneda=='MXN'){ echo " selected"; } echo ">MXN</option>";
+								echo "<option value='USD'"; if($moneda=='USD'){ echo " selected"; } echo ">USD</option>";
+							echo "</select>";
+						?>
 			    </div>
 
-					<div class="form-group col-md-2">
-			      <label for="descripcion">Tipo de cambio</label>
-			      <input type="text" class="form-control" id="tipoCambio" name='tipoCambio' placeholder="Tipo de cambio" value="<?php echo $tipoCambio; ?>" <?php  echo $bloqueo;  ?>>
+					<div class="col-3">
+			      <label for="descripcion">Tipo de cambio (CT)</label>
+			      <input type="text" class="form-control form-control-sm" id="tipoCambio" name='tipoCambio' placeholder="Tipo de cambio" value="<?php echo $tipoCambio; ?>" <?php  echo $bloqueo;  ?>>
 			    </div>
 
-					<div class="form-group col-md-3">
+					<div class="col-3">
 			      <label for="preciof">Precio CT</label>
-			      <input type="text" class="form-control text-right" id="preciof" name='preciof' placeholder="Costo" value="<?php echo $preciof; ?>" <?php  echo $bloqueo;  ?>>
+			      <input type="text" class="form-control form-control-sm text-right" id="preciof" name='preciof' placeholder="Costo" value="<?php echo $preciof; ?>" <?php  echo $bloqueo;  ?>>
+			    </div>
+				</div>
+				<div class="row">
+					<div class="col-3">
+			      <label for="preciof">Precio final</label>
+			      <input type="text" class="form-control form-control-sm text-right" id="precio_tic" name='precio_tic' placeholder="Precio TIC" value="<?php echo $precio_tic; ?>" >
 			    </div>
 
-					<div class="form-group col-md-3">
-			      <label for="preciof">Precio final</label>
-			      <input type="text" class="form-control text-right" id="precio_tic" name='precio_tic' placeholder="Precio TIC" value="<?php echo $precio_tic; ?>" <?php  echo $bloqueo;  ?>>
-			    </div>
-					<div class="form-group col-md-3">
+
+
+					<div class="col-3">
 			      <label for="preciof">Costo de envío</label>
-			      <input type="text" class="form-control text-right" id="costo_envio" name='costo_envio' placeholder="Costo de envío" value="<?php echo $costo_envio; ?>" <?php  echo $bloqueo;  ?>>
+			      <input type="text" class="form-control form-control-sm text-right" id="costo_envio" name='costo_envio' placeholder="Costo de envío" value="<?php echo $costo_envio; ?>"
+						data-toggle="tooltip" data-placement="top" title="Tooltip on top">
 			    </div>
+
+					<div class="col-2">
+						<label for="existencia">Existencia </label>
+						<input type="text" class="form-control form-control-sm" id="existencia" name='existencia' placeholder="Existencia" value="<?php echo $existencia; ?>" <?php  echo $bloqueo;  ?>>
+					</div>
 			  </div>
 			</div>
 
@@ -279,7 +295,8 @@
 					echo "</div>";
 					echo "<div class='card-footer'>";
 						echo "<div class='btn-group'>";
-						echo "<button type='button' class='btn btn-outline-secondary btn-sm' data-toggle='modal' data-target='#myModal' id='fileup_respuesta' data-ruta='".$db->doc."' data-tabla='producto_img' data-campo='direccion' data-tipo='2' data-id='$id' data-keyt='idproducto' data-destino='a_productos/editar' data-iddest='$id' data-ext='.jpg,.png' ><i class='fas fa-cloud-upload-alt'></i>Subir</button>";
+
+						echo "<button type='button' class='btn btn-outline-secondary btn-sm' data-toggle='modal' data-target='#myModal' id='fileup_respuesta' data-ruta='".$db->doc."' data-tabla='producto_img' data-campo='direccion' data-tipo='2' data-id='$id' data-keyt='idproducto' data-destino='a_productos/editar' data-iddest='$id' data-ext='.jpg,.png' ><i class='fas fa-cloud-upload-alt'></i>Agregar imagen</button>";
 
 						echo "</div>";
 					echo "</div>";
@@ -291,11 +308,12 @@
 <script type="text/javascript">
 	$(function() {
 		baguetteBox.run('.baguetteBoxOne');
+		$('#example').tooltip({ boundary: 'window' })
 		$('#descripcion_larga').summernote({
 			lang: 'es-ES',
-			placeholder: 'Mensaje de texto',
+			placeholder: 'Descripción larga del producto',
 			tabsize: 5,
-			height: 200
+			height: 150
 		});
 
 	});
