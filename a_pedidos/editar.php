@@ -37,7 +37,7 @@
 
             echo "<div class='col-4'>";
               echo "<label>Cliente:</label>";
-              echo "<input type='text' class='form-control form-control-sm' id='winmodal_cli' name='winmodal_cli' value='$nombre_cli' readonly  data-id='$idcliente' data-id2='$id' data-lugar='a_pedidos/form_cliente' title='Agregar Cliente'>";
+              echo "<input type='text' class='form-control form-control-sm' id='winmodal_cliente' name='winmodal_cliente' value='$nombre_cli' readonly  data-id='$idcliente' data-id2='$id' data-lugar='a_pedidos/form_cliente' title='Agregar Cliente'>";
             echo "</div>";
 
             echo "<div class='col-3'>";
