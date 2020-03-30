@@ -1,5 +1,11 @@
 <?php
-  $res=$db->carrito_sum();
+  $contar=0;
+  $suma=0;
+  if(isset($_SESSION['idcliente'])){
+    $res=$db->carrito_sum();
+    $contar=$res->contar;
+    $suma=$res->sumar;
+  }
 ?>
   <!-- Top Bar -->
 
@@ -106,11 +112,11 @@
               <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                 <div class="cart_icon">
                   <img src="images/cart.png" alt="">
-                  <div class="cart_count"><span><?php echo $res->contar; ?></span></div>
+                  <div class="cart_count"><span><?php echo $contar; ?></span></div>
                 </div>
                 <div class="cart_content">
                   <div class="cart_text"><a href="cart.php">Cart</a></div>
-                  <div class="cart_price"><?php echo moneda($res->sumar); ?></div>
+                  <div class="cart_price"><?php echo moneda($sumar); ?></div>
                 </div>
               </div>
             </div>

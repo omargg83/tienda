@@ -229,6 +229,7 @@
 			}
 		}
 		public function carrito_sum(){
+			
 			try{
 				self::set_names();
 				$sql="select count(productos.id) as contar, sum(productos.preciof) as sumar from cliente_carro
