@@ -1,0 +1,34 @@
+.top_bar{
+  background-color: black;
+  color:white !important;
+
+
+}
+
+.button{
+  background-color: yellow !important;
+  color: black !important;
+}
+
+.button a{
+  color: black !important;
+}
+
+.product_cart_button{
+  background-color: yellow !important;
+  color: black !important;
+}
+
+.header_search_button{
+  background-color: yellow !important;
+  color: black !important;
+}
+
+.cat_menu_container{
+  background-color: yellow !important;
+  color: black !important;
+}
+
+.cat_menu_text{
+  color: black !important;
+}

@@ -76,7 +76,18 @@
 			$_SESSION['autoriza']=0;
 			$_SESSION['correo']="";
 		}
-
+		public function categorias(){
+			try{
+				self::set_names();
+				$sql="select * from categorias";
+				$sth = $this->dbh->prepare($sql);
+				$sth->execute();
+				return $sth->fetchAll(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
 
 		public function producto_ver($id){
 			try{
@@ -229,7 +240,7 @@
 			}
 		}
 		public function carrito_sum(){
-			
+
 			try{
 				self::set_names();
 				$sql="select count(productos.id) as contar, sum(productos.preciof) as sumar from cliente_carro

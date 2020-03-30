@@ -13,15 +13,15 @@
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
 <link rel="stylesheet" type="text/css" href="styles/blog_single_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/blog_single_responsive.css">
-
+<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
 
 <div class="super_container">
-	
+
 	<!-- Header -->
-	
+
 	<header class="header">
 
 		<!-- Top Bar -->
@@ -61,7 +61,7 @@
 						</div>
 					</div>
 				</div>
-			</div>		
+			</div>
 		</div>
 
 		<!-- Header Main -->
@@ -134,14 +134,14 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<!-- Main Navigation -->
 
 		<nav class="main_nav">
 			<div class="container">
 				<div class="row">
 					<div class="col">
-						
+
 						<div class="main_nav_content d-flex flex-row">
 
 							<!-- Categories Menu -->
@@ -251,16 +251,16 @@
 				</div>
 			</div>
 		</nav>
-		
+
 		<!-- Menu -->
 
 		<div class="page_menu">
 			<div class="container">
 				<div class="row">
 					<div class="col">
-						
+
 						<div class="page_menu_content">
-							
+
 							<div class="page_menu_search">
 								<form action="#">
 									<input type="search" required="required" class="page_menu_search_input" placeholder="Search for products...">
@@ -327,7 +327,7 @@
 								<li class="page_menu_item"><a href="blog.html">blog<i class="fa fa-angle-down"></i></a></li>
 								<li class="page_menu_item"><a href="contact.html">contact<i class="fa fa-angle-down"></i></a></li>
 							</ul>
-							
+
 							<div class="menu_contact">
 								<div class="menu_contact_item"><div class="menu_contact_icon"><img src="images/phone_white.png" alt=""></div>+38 068 005 3570</div>
 								<div class="menu_contact_item"><div class="menu_contact_icon"><img src="images/mail_white.png" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
@@ -399,7 +399,7 @@
 						</div>
 
 					</div>
-				</div>	
+				</div>
 			</div>
 		</div>
 	</div>
@@ -512,7 +512,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col">
-					
+
 					<div class="copyright_container d-flex flex-sm-row flex-column align-items-center justify-content-start">
 						<div class="copyright_content"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>

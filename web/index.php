@@ -13,7 +13,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>OneTech</title>
+<title>TIC SHOP</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
@@ -26,6 +26,7 @@
 <link rel="stylesheet" type="text/css" href="plugins/slick-1.8.0/slick.css">
 <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/responsive.css">
+<link rel="stylesheet" type="text/css" href="style.css">
 
 </head>
 
@@ -42,7 +43,7 @@
 	<!-- Banner -->
 
 	<div class="banner">
-		<div class="banner_background" style="background-image:url(images/banner_background.jpg)"></div>
+		<div class="banner_background" style="background-image:url(img/banner_home.jpg)"></div>
 		<div class="container fill_height">
 			<div class="row fill_height">
 				<div class="banner_product_image"><img src="images/banner_product.png" alt=""></div>
@@ -67,10 +68,9 @@
 				<div class="col-lg-3 col-md-6 char_col">
 
 					<div class="char_item d-flex flex-row align-items-center justify-content-start">
-						<div class="char_icon"><img src="images/char_1.png" alt=""></div>
+						<div class="char_icon"><img src="img/comprasegura.png" alt="" width="50px"></div>
 						<div class="char_content">
-							<div class="char_title">Free Delivery</div>
-							<div class="char_subtitle">from $50</div>
+							<div class="char_title">Compras seguras</div>
 						</div>
 					</div>
 				</div>
@@ -79,10 +79,9 @@
 				<div class="col-lg-3 col-md-6 char_col">
 
 					<div class="char_item d-flex flex-row align-items-center justify-content-start">
-						<div class="char_icon"><img src="images/char_2.png" alt=""></div>
+						<div class="char_icon"><img src="img/enviosseguros.png" alt="" width="50px"></div>
 						<div class="char_content">
-							<div class="char_title">Free Delivery</div>
-							<div class="char_subtitle">from $50</div>
+							<div class="char_title">Envíos seguros</div>
 						</div>
 					</div>
 				</div>
@@ -91,10 +90,10 @@
 				<div class="col-lg-3 col-md-6 char_col">
 
 					<div class="char_item d-flex flex-row align-items-center justify-content-start">
-						<div class="char_icon"><img src="images/char_3.png" alt=""></div>
+						<div class="char_icon"><img src="img/devolucion.png" alt="" width="50px"></div>
 						<div class="char_content">
-							<div class="char_title">Free Delivery</div>
-							<div class="char_subtitle">from $50</div>
+							<div class="char_title">Devoluciones fáciles</div>
+
 						</div>
 					</div>
 				</div>
@@ -103,10 +102,9 @@
 				<div class="col-lg-3 col-md-6 char_col">
 
 					<div class="char_item d-flex flex-row align-items-center justify-content-start">
-						<div class="char_icon"><img src="images/char_4.png" alt=""></div>
+						<div class="char_icon"><img src="img/tarjetas.png" alt="" width="50px"></div>
 						<div class="char_content">
-							<div class="char_title">Free Delivery</div>
-							<div class="char_subtitle">from $50</div>
+							<div class="char_title">Aceptamos diferentes métodos de pago</div>
 						</div>
 					</div>
 				</div>

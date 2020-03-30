@@ -10,7 +10,7 @@
 <link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="styles/regular_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/regular_responsive.css">
-
+<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
@@ -23,7 +23,7 @@
 			include "a_header.php";
 		?>
 	</header>
-	
+
 	<!-- Single Blog Post -->
 	<div class="single_post">
 		<div class="container">
