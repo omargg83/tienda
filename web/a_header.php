@@ -1,10 +1,10 @@
 <?php
   $contar=0;
-  $suma=0;
+  $sumar=0;
   if(isset($_SESSION['idcliente'])){
     $res=$db->carrito_sum();
     $contar=$res->contar;
-    $suma=$res->sumar;
+    $sumar=$res->sumar;
   }
 ?>
   <!-- Top Bar -->
