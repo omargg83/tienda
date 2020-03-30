@@ -44,6 +44,7 @@
     }
   }
 */
+//$sql="select * from productos where activo=1 and interno=0 limit 100";
   $sql="select * from productos where activo=1 and imagen_exist=0 and interno=0 limit 75";
   $stmt= $db->dbh->query($sql);
 

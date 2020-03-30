@@ -1,15 +1,15 @@
 <?php
-	session_start();
 	require_once("control_db.php");
 	$db = new Tienda();
 	$id=$_REQUEST['id'];
-	$per = $db->producto_ver($id);
+	$prod = $db->producto_ver($id);
+	$imextra=$db->producto_imagen($id);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title><?php   echo $per->nombre;  ?></title>
+<title><?php   echo $prod->nombre;  ?></title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
@@ -44,26 +44,28 @@
 				<div class="col-lg-2 order-lg-1 order-2">
 					<ul class="image_list">
 						<?php
-							echo "<li data-image='".$db->doc.$per->imagen."'><img src='".$db->doc.$per->imagen."' alt=''></li>";
+							echo "<li data-image='".$db->doc.$prod->img."'><img src='".$db->doc.$prod->img."' alt=''></li>";
+							foreach($imextra as $key){
+								echo "<li data-image='".$db->extra.$key->direccion."'><img src='".$db->extra.$key->direccion."' alt=''></li>";
+							}
 						?>
-						<li data-image="images/single_4.jpg"><img src="images/single_4.jpg" alt=""></li>
-						<li data-image="images/single_2.jpg"><img src="images/single_2.jpg" alt=""></li>
-						<li data-image="images/single_3.jpg"><img src="images/single_3.jpg" alt=""></li>
 					</ul>
 				</div>
 
 				<!-- Selected Image -->
 				<div class="col-lg-5 order-lg-2 order-1">
-					<div class="image_selected"><img src="images/single_4.jpg" alt=""></div>
+					<?php
+						echo "<div class='image_selected'><img src='".$db->doc.$prod->img."' alt=''></div>";
+					?>
 				</div>
 
 				<!-- Description -->
 				<div class="col-lg-5 order-3">
 					<div class="product_description">
 						<div class="product_category">Laptops</div>
-						<div class="product_name"><?php   echo $per->nombre;  ?></div>
+						<div class="product_name"><?php   echo $prod->nombre;  ?></div>
 						<div class="rating_r rating_r_4 product_rating"><i></i><i></i><i></i><i></i><i></i></div>
-						<div class="product_text"><p><?php   echo $per->descripcion_corta;  ?></p></div>
+						<div class="product_text"><p><?php   echo $prod->descripcion_corta;  ?></p></div>
 						<div class="order_info d-flex flex-row">
 							<form action="#">
 								<div class="clearfix" style="z-index: 1000;">
@@ -95,7 +97,7 @@
 
 								</div>
 
-								<div class="product_price"><?php   echo "$".$per->preciof;  ?></div>
+								<div class="product_price"><?php   echo moneda($prod->preciof);  ?></div>
 								<div class="button_container">
 									<button type="button" class="button cart_button">Add to Cart</button>
 									<div class="product_fav"><i class="fas fa-heart"></i></div>
@@ -158,6 +160,7 @@
 <script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
 <script src="plugins/easing/easing.js"></script>
 <script src="js/product_custom.js"></script>
+<script src="sagyc.js"></script>
 </body>
 
 </html>

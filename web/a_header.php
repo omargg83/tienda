@@ -1,4 +1,6 @@
-
+<?php
+  $res=$db->carrito_sum();
+?>
   <!-- Top Bar -->
 
   <div class="top_bar">
@@ -30,8 +32,16 @@
             </div>
             <div class="top_bar_user">
               <div class="user_icon"><img src="images/user.svg" alt=""></div>
-              <div><a href="#">Register</a></div>
-              <div><a href="#">Sign in</a></div>
+              <?php
+                if(isset($_SESSION['autoriza']) and $_SESSION['autoriza']==1 and strlen($_SESSION['correo'])>0){
+                  echo "<div><a href='cart.php'>".$_SESSION['correo']."</a></div>";
+                  echo "<div><a href='#' onclick='salir()'>Salir</a></div>";
+                }
+    						else{
+                  echo "<div><a href='registro.php'>Registro</a></div>";
+                  echo "<div><a href='acceso.php'>Ingresar</a></div>";
+                }
+              ?>
             </div>
           </div>
         </div>
@@ -48,7 +58,7 @@
         <!-- Logo -->
         <div class="col-lg-2 col-sm-3 col-3 order-1">
           <div class="logo_container">
-            <div class="logo"><a href="#">OneTech</a></div>
+            <div class="logo"><a href="index.php">OneTech</a></div>
           </div>
         </div>
 
@@ -96,11 +106,11 @@
               <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                 <div class="cart_icon">
                   <img src="images/cart.png" alt="">
-                  <div class="cart_count"><span>10</span></div>
+                  <div class="cart_count"><span><?php echo $res->contar; ?></span></div>
                 </div>
                 <div class="cart_content">
-                  <div class="cart_text"><a href="#">Cart</a></div>
-                  <div class="cart_price">$85</div>
+                  <div class="cart_text"><a href="cart.php">Cart</a></div>
+                  <div class="cart_price"><?php echo moneda($res->sumar); ?></div>
                 </div>
               </div>
             </div>
