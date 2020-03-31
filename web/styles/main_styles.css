@@ -117,11 +117,11 @@ p a:hover::after
 }
 ::selection
 {
-	
+
 }
 p::selection
 {
-	
+
 }
 h1{font-size: 48px;}
 h2{font-size: 36px;}
@@ -136,14 +136,14 @@ h1, h2, h3, h4, h5, h6
 	-webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
 	text-shadow: rgba(0,0,0,.01) 0 0 1px;
 }
-h1::selection, 
-h2::selection, 
-h3::selection, 
-h4::selection, 
-h5::selection, 
+h1::selection,
+h2::selection,
+h3::selection,
+h4::selection,
+h5::selection,
 h6::selection
 {
-	
+
 }
 .form-control
 {
@@ -236,7 +236,7 @@ section
 .button
 {
 	display: inline-block;
-	background: #0e8ce4;
+	background: #ffff00;
 	border-radius: 5px;
 	height: 48px;
 	-webkit-transition: all 200ms ease;
@@ -251,7 +251,7 @@ section
 	font-size: 18px;
 	font-weight: 400;
 	line-height: 48px;
-	color: #FFFFFF;
+	color: #000;
 	padding-left: 35px;
 	padding-right: 35px;
 }
@@ -279,9 +279,10 @@ section
 {
 	width: 100%;
 	height: 56px;
-	background: #fafafa;
+	background: #000;
 	border-bottom: solid 1px rgba(0,0,0,0.05);
 	z-index: 2;
+	color:white !important;
 }
 .header.scrolled .top_bar
 {
@@ -307,7 +308,7 @@ section
 	font-size: 16px;
 	font-weight: 300;
 	line-height: 56px;
-	color: #000;
+	color: #fff;
 	-webkit-transition: all 200ms ease;
 	-moz-transition: all 200ms ease;
 	-ms-transition: all 200ms ease;
@@ -476,7 +477,7 @@ section
 	font-size: 16px;
 	font-weight: 300;
 	line-height: 56px;
-	color: #000;
+	color: #fff;
 	-webkit-transition: all 200ms ease;
 	-moz-transition: all 200ms ease;
 	-ms-transition: all 200ms ease;
@@ -580,15 +581,15 @@ section
 	line-height: 50px;
 	color: #a3a3a3 !important;
 }
-.header_search_input::-moz-placeholder /* Firefox 19+ */ 
+.header_search_input::-moz-placeholder /* Firefox 19+ */
 {
 	font-size: 16px !important;
 	font-weight: 300;
 	line-height: 50px;
 	color: #a3a3a3 !important;
-} 
+}
 .header_search_input:-ms-input-placeholder
-{ 
+{
 	font-size: 16px !important;
 	font-weight: 300;
 	line-height: 50px;
@@ -647,7 +648,7 @@ section
 }
 .custom_dropdown_placeholder i
 {
-	
+
 }
 .custom_list
 {
@@ -1700,7 +1701,7 @@ select option
 .product_name div
 {
 	width: 100%;
-	
+
 }
 .product_name div a
 {
@@ -1791,12 +1792,12 @@ select option
 	opacity: 0;
 	width: 100%;
 	height: 48px;
-	background: #0e8ce4;
+	background: #ffff00;
 	border: none;
 	outline: none;
 	font-size: 18px;
 	font-weight: 400;
-	color: #FFFFFF;
+	color: #000;
 	cursor: pointer;
 	margin-top: 19px;
 	border-bottom-left-radius: 5px;
@@ -1809,7 +1810,7 @@ select option
 }
 .product_cart_button:hover
 {
-	background: rgba(14, 140, 228, 0.8);
+	/*background: rgba(14, 140, 228, 0.8);*/
 }
 .featured_slider .slick-dots
 {
@@ -1984,7 +1985,7 @@ select option
 {
 	display: inline-block;
 	visibility: visible;
-	opacity: 1;	
+	opacity: 1;
 }
 
 /*********************************
@@ -2422,7 +2423,7 @@ select option
 {
 	margin-top: 9px;
 }
-.arrivals_single_marks 
+.arrivals_single_marks
 {
 	display: block;
 	position: absolute;
@@ -3457,9 +3458,9 @@ select option
 {
 	font-size: 16px;
 	color: rgba(0,0,0,0.3);
-} 
+}
 .newsletter_input:-ms-input-placeholder
-{ 
+{
 	font-size: 16px;
 	color: rgba(0,0,0,0.3);
 }
@@ -3517,6 +3518,8 @@ select option
 {
 	padding-top: 52px;
 	padding-bottom: 40px;
+	background-color: #000;
+	color: #fff;
 }
 .footer .logo_container
 {
@@ -3535,7 +3538,7 @@ select option
 }
 .footer .logo a
 {
-	color: #000000;
+	color: #FFF;
 }
 .footer_title
 {
@@ -3622,7 +3625,7 @@ select option
 }
 .footer_list_2
 {
-	margin-top: 42px !important; 
+	margin-top: 42px !important;
 }
 
 .copyright
@@ -3646,7 +3649,7 @@ select option
 }
 .logos
 {
-	
+
 }
 .logos_list li
 {

@@ -21,13 +21,13 @@
 
 			  <div class="form-row">
 			    <div class="form-group col-md-6">
-			      <label for="descripcion">Nombre heredado</label>
+			      <label for="descripcion">Nombre para mostraro</label>
 			      <input type="text" class="form-control" id="descripcion" name='descripcion' placeholder="Nombre" value="<?php echo $descripcion; ?>">
 			    </div>
 			  </div>
 			  <div class="form-row">
 			    <div class="form-group col-md-6">
-			      <label for="descripcion">Nombre para mostrar</label>
+			      <label for="descripcion">Nombre heredad</label>
 			      <input type="text" class="form-control" id="categoria_usuario" name='categoria_usuario' placeholder="Nombre" value="<?php echo $categoria_usuario; ?>">
 			    </div>
 			  </div>

@@ -88,6 +88,19 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
+		public function cat_ct($id){
+			try{
+				self::set_names();
+				$sql="select * from producto_cat where idcategoria=:id";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(':id', "$id");
+				$sth->execute();
+				return $sth->fetchAll(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
 
 		public function producto_ver($id){
 			try{
@@ -165,11 +178,10 @@
 			}
 		}
 
-
 		public function nuevos(){
 			try{
 				self::set_names();
-				$sql="select * from productos limit 16";
+				$sql="select * from productos limit 64";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
 				return $sth->fetchAll(PDO::FETCH_OBJ);

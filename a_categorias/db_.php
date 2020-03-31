@@ -41,7 +41,7 @@ class Categorias extends Tienda{
 	public function agrupa_cat(){
 		try{
 			parent::set_names();
-			$sql="SELECT categoria from productos group by categoria asc";
+			$sql="SELECT * from categoria_ct group by categoria asc";
 			$sth = $this->dbh->prepare($sql);
 			$sth->execute();
 			return $sth->fetchAll();

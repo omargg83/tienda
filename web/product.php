@@ -21,7 +21,6 @@
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
 <link rel="stylesheet" type="text/css" href="styles/product_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/product_responsive.css">
-<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
@@ -115,7 +114,7 @@
 	<!-- Recently Viewed -->
 	<div class="viewed">
 		<?php
-			include "a_recientes.php";
+			include "a_relacionados.php";
 		?>
 	</div>
 
@@ -123,13 +122,6 @@
 	<div class="brands">
 		<?php
 			include "a_brand.php";
-		?>
-	</div>
-
-	<!-- Newsletter -->
-	<div class="newsletter">
-		<?php
-			include "a_newsletter.php";
 		?>
 	</div>
 

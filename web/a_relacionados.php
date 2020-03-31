@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col">
       <div class="viewed_title_container">
-        <h3 class="viewed_title">Recently Viewed</h3>
+        <h3 class="viewed_title">Productos relacionados</h3>
         <div class="viewed_nav_container">
           <div class="viewed_nav viewed_prev"><i class="fas fa-chevron-left"></i></div>
           <div class="viewed_nav viewed_next"><i class="fas fa-chevron-right"></i></div>
