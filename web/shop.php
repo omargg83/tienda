@@ -5,16 +5,20 @@
 	$contar=0;
 	if(isset($_REQUEST['cat'])){
 		$tipo=1;
-		$cat=$_REQUEST['cat'];
-		echo "global $cat";
+		$id_re=$_REQUEST['cat'];
+		$ncat=$_REQUEST['ncat'];
+		$nombre=$ncat;
+		$resp=$db->cat_categoriatic($id_re);
+		//echo "global $cat";
 	}
 	if(isset($_REQUEST['cat1'])){
 		$tipo=2;
 		$cat1=$_REQUEST['cat1'];
 		$ncat=$_REQUEST['ncat'];
-		
-		$resp=$db->sub_categoria($ncat);
-		echo "cat1 $cat1  cat $ncat";
+		$nombre=$ncat;
+		$resp=$db->cat_categoria($ncat);
+		$contar=count($resp);
+//		echo "cat1 $cat1  cat $ncat";
 	}
 	if(isset($_REQUEST['sub'])){
 		$tipo=3;
@@ -79,20 +83,27 @@
 
 						<?php
 							if($tipo==1 or $tipo==2){
-								echo "<div class='sidebar_section'>
-									<div class='sidebar_title'>Categories</div>
-									<ul class='sidebar_categories'>
-										<li><a href='#'>Computers & Laptops</a></li>
-										<li><a href='#'>Cameras & Photos</a></li>
-										<li><a href='#'>Hardware</a></li>
-										<li><a href='#'>Smartphones & Tablets</a></li>
-										<li><a href='#'>TV & Audio</a></li>
-										<li><a href='#'>Gadgets</a></li>
-										<li><a href='#'>Car Electronics</a></li>
-										<li><a href='#'>Video Games & Consoles</a></li>
-										<li><a href='#'>Accessories</a></li>
-									</ul>
-								</div>";
+								if($tipo==1){
+									echo "<div class='sidebar_section'>
+										<div class='sidebar_title'>Categories</div>
+										<ul class='sidebar_categories'>";
+										foreach($db->cat_ct($id_re) as $key2){
+											echo "<li><a href='shop.php?cat1=".$key2->id."&ncat=".$key2->categoria."'>".$key2->categoria."</a></li>";
+										}
+										echo "</ul>
+										</div>";
+								}
+								if($tipo==2){
+									echo "<div class='sidebar_section'>
+										<div class='sidebar_title'>Categories</div>
+										<ul class='sidebar_categories'>";
+										 foreach($db->sub_cat($key2->id) as $key3){
+											echo "<li><a href='shop.php?cat1=".$key2->id."&ncat=".$key2->categoria."'>".$key2->categoria."</a></li>";
+										}
+										echo "</ul>
+										</div>";
+								}
+
 							}
 						?>
 

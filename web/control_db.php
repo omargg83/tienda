@@ -281,8 +281,18 @@
 			}
 		}
 
-		public function cat_global(){
-
+		public function cat_categoria($cat){
+			try{
+				self::set_names();
+				$sql="select * from productos where categoria=:id and activo=1";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(":id",$cat);
+				$sth->execute();
+				return $sth->fetchAll(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
 		}
 		public function sub_categoria($cat){
 			try{
@@ -296,6 +306,24 @@
 			catch(PDOException $e){
 				return "Database access FAILED!".$e->getMessage();
 			}
+		}
+		public function cat_categoriatic($cat){
+			try{
+				self::set_names();
+				$sql="select productos.* from producto_cat
+							left outer join categoria_ct on categoria_ct.id=producto_cat.idcategoria_ct
+							left outer join productos on productos.categoria=categoria_ct.categoria
+							where producto_cat.idcategoria=:cat and productos.activo=1";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(":cat",$cat);
+				$sth->execute();
+				return $sth->fetchAll(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+
+
 		}
 }
 

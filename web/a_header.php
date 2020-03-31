@@ -126,7 +126,7 @@
                 <?php
                   foreach($cat as $key){
                     echo "<li class='hassubs'>
-                      <a href='shop.php?cat=".$key->idcategoria."'>".$key->descripcion."<i class='fas fa-chevron-right'></i></a>
+                      <a href='shop.php?cat=".$key->idcategoria."&ncat=".$key->descripcion."'>".$key->descripcion."<i class='fas fa-chevron-right'></i></a>
                       <ul>";
                       foreach($db->cat_ct($key->idcategoria) as $key2){
                         echo "<li class='hassubs'>
