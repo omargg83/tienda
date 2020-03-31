@@ -57,12 +57,6 @@
 		</div>
 	</form>
 
-	<!-- Newsletter -->
-	<div class="newsletter">
-		<?php
-			include "a_newsletter.php";
-		?>
-	</div>
 
 	<!-- Footer -->
 	<footer class="footer">

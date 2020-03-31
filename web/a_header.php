@@ -6,7 +6,6 @@
     $contar=$res->contar;
     $sumar=$res->sumar;
   }
-
   $cat=$db->categorias();
 ?>
   <!-- Top Bar -->
@@ -22,7 +21,7 @@
             <div class="top_bar_user">
               <div class="user_icon"><img src="images/user.svg" alt=""></div>
               <?php
-                if(isset($_SESSION['autoriza']) and $_SESSION['autoriza']==1 and strlen($_SESSION['correo'])>0){
+                if(isset($_SESSION['autoriza_web']) and $_SESSION['autoriza']==1 and strlen($_SESSION['correo'])>0){
                   echo "<div><a href='cart.php'>".$_SESSION['correo']."</a></div>";
                   echo "<div><a href='#' onclick='salir()'>Salir</a></div>";
                 }
@@ -127,61 +126,22 @@
                 <?php
                   foreach($cat as $key){
                     echo "<li class='hassubs'>
-                      <a href='#'>".$key->descripcion."<i class='fas fa-chevron-right'></i></a>
+                      <a href='shop.php?cat=".$key->idcategoria."'>".$key->descripcion."<i class='fas fa-chevron-right'></i></a>
                       <ul>";
-
                       foreach($db->cat_ct($key->idcategoria) as $key2){
                         echo "<li class='hassubs'>
-                            <a href='#'>".$key2->categoria."<i class='fas fa-chevron-right'></i></a>
-                            <ul>
-                              <li><a href='#'>Menu Item<i class='fas fa-chevron-right'></i></a></li>
-                              <li><a href='#'>Menu Item<i class='fas fa-chevron-right'></i></a></li>
-                              <li><a href='#'>Menu Item<i class='fas fa-chevron-right'></i></a></li>
-                              <li><a href='#'>Menu Item<i class='fas fa-chevron-right'></i></a></li>
-                            </ul>
-                          </li>";
+                            <a href='shop.php?cat1=".$key2->id."&ncat=".$key2->categoria."'>".$key2->categoria."<i class='fas fa-chevron-right'></i></a>
+                            <ul>";
+                            foreach($db->sub_cat($key2->id) as $key3){
+                              echo " <li><a href='shop.php?sub=".$key3->id."&ncat=".$key3->subcategoria."'>".$key3->subcategoria."<i class='fas fa-chevron-right'></i></a></li>";
+                            }
+                            echo "</ul>";
+                          echo "</li>";
                       }
-                      /*
-                      echo "<li class='hassubs'>
-                          <a href='#'>Menu Item<i class='fas fa-chevron-right'></i></a>
-                          <ul>
-                            <li><a href='#'>Menu Item<i class='fas fa-chevron-right'></i></a></li>
-                            <li><a href='#'>Menu Item<i class='fas fa-chevron-right'></i></a></li>
-                            <li><a href='#'>Menu Item<i class='fas fa-chevron-right'></i></a></li>
-                            <li><a href='#'>Menu Item<i class='fas fa-chevron-right'></i></a></li>
-                          </ul>
-                        </li>
-                        <li><a href='#'>Menu Item<i class='fas fa-chevron-right'></i></a></li>
-                        <li><a href='#'>Menu Item<i class='fas fa-chevron-right'></i></a></li>
-                        <li><a href='#'>Menu Item<i class='fas fa-chevron-right'></i></a></li>
-                        */
                       echo "</ul>";
                     echo "</li>";
-
-
-
-                      $db->cat_ct($key->descripcion);
-
-
                   }
                 ?>
-                <li class="hassubs">
-                  <a href="#">Hardware<i class="fas fa-chevron-right"></i></a>
-                  <ul>
-                    <li class="hassubs">
-                      <a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
-                      <ul>
-                        <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                        <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                        <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                        <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                      </ul>
-                    </li>
-                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                  </ul>
-                </li>
 
               </ul>
             </div>

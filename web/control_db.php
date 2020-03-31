@@ -48,7 +48,7 @@
 				$CLAVE=$sth->fetch();
 				if($CLAVE){
 					if($userPOST == $CLAVE['correo'] and strtoupper($passPOST)==strtoupper($CLAVE['pass'])){
-						$_SESSION['autoriza']=1;
+						$_SESSION['autoriza_web']=1;
 						$_SESSION['correo']=$CLAVE['correo'];
 						$_SESSION['idcliente']=$CLAVE['id'];
 						$arr=array();
@@ -91,7 +91,20 @@
 		public function cat_ct($id){
 			try{
 				self::set_names();
-				$sql="SELECT * from producto_cat left outer join categoria_ct on categoria_ct.id=producto_cat.idcategoria_ct where producto_cat.idcategoria=:id";
+				$sql="SELECT categoria_ct.id, categoria_ct.categoria from producto_cat left outer join categoria_ct on categoria_ct.id=producto_cat.idcategoria_ct where producto_cat.idcategoria=:id";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(':id', "$id");
+				$sth->execute();
+				return $sth->fetchAll(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
+		public function sub_cat($id){
+			try{
+				self::set_names();
+				$sql="SELECT * from categoriasub_ct where idcategoria=:id";
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(':id', "$id");
 				$sth->execute();
@@ -267,7 +280,25 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
+
+		public function cat_global(){
+
+		}
+		public function sub_categoria($cat){
+			try{
+				self::set_names();
+				$sql="select * from productos where subcategoria=:id and activo=1";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(":id",$cat);
+				$sth->execute();
+				return $sth->fetchAll(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
 }
+
 	if(strlen($ctrl)>0){
 		$db = new Tienda();
 		if(strlen($function)>0){

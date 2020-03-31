@@ -1,3 +1,34 @@
+<?php
+	require_once("control_db.php");
+	$db = new Tienda();
+	$nombre="";
+	$contar=0;
+	if(isset($_REQUEST['cat'])){
+		$tipo=1;
+		$cat=$_REQUEST['cat'];
+		echo "global $cat";
+	}
+	if(isset($_REQUEST['cat1'])){
+		$tipo=2;
+		$cat1=$_REQUEST['cat1'];
+		$ncat=$_REQUEST['ncat'];
+		
+		$resp=$db->sub_categoria($ncat);
+		echo "cat1 $cat1  cat $ncat";
+	}
+	if(isset($_REQUEST['sub'])){
+		$tipo=3;
+		$sub=$_REQUEST['sub'];
+		$ncat=$_REQUEST['ncat'];
+		$nombre=$ncat;
+//		echo "sub $sub cat $cat ";
+		$resp=$db->sub_categoria($ncat);
+		$contar=count($resp);
+	}
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +64,7 @@
 		<div class="home_background parallax-window" data-parallax="scroll" data-image-src="images/shop_background.jpg"></div>
 		<div class="home_overlay"></div>
 		<div class="home_content d-flex flex-column align-items-center justify-content-center">
-			<h2 class="home_title">Smartphones & Tablets</h2>
+			<h2 class="home_title"><?php echo $nombre; ?></h2>
 		</div>
 	</div>
 
@@ -45,20 +76,26 @@
 
 					<!-- Shop Sidebar -->
 					<div class="shop_sidebar">
-						<div class="sidebar_section">
-							<div class="sidebar_title">Categories</div>
-							<ul class="sidebar_categories">
-								<li><a href="#">Computers & Laptops</a></li>
-								<li><a href="#">Cameras & Photos</a></li>
-								<li><a href="#">Hardware</a></li>
-								<li><a href="#">Smartphones & Tablets</a></li>
-								<li><a href="#">TV & Audio</a></li>
-								<li><a href="#">Gadgets</a></li>
-								<li><a href="#">Car Electronics</a></li>
-								<li><a href="#">Video Games & Consoles</a></li>
-								<li><a href="#">Accessories</a></li>
-							</ul>
-						</div>
+
+						<?php
+							if($tipo==1 or $tipo==2){
+								echo "<div class='sidebar_section'>
+									<div class='sidebar_title'>Categories</div>
+									<ul class='sidebar_categories'>
+										<li><a href='#'>Computers & Laptops</a></li>
+										<li><a href='#'>Cameras & Photos</a></li>
+										<li><a href='#'>Hardware</a></li>
+										<li><a href='#'>Smartphones & Tablets</a></li>
+										<li><a href='#'>TV & Audio</a></li>
+										<li><a href='#'>Gadgets</a></li>
+										<li><a href='#'>Car Electronics</a></li>
+										<li><a href='#'>Video Games & Consoles</a></li>
+										<li><a href='#'>Accessories</a></li>
+									</ul>
+								</div>";
+							}
+						?>
+
 						<div class="sidebar_section filter_by_section">
 							<div class="sidebar_title">Filter By</div>
 							<div class="sidebar_subtitle">Price</div>
@@ -68,17 +105,7 @@
 								<p><input type="text" id="amount" class="amount" readonly style="border:0; font-weight:bold;"></p>
 							</div>
 						</div>
-						<div class="sidebar_section">
-							<div class="sidebar_subtitle color_subtitle">Color</div>
-							<ul class="colors_list">
-								<li class="color"><a href="#" style="background: #b19c83;"></a></li>
-								<li class="color"><a href="#" style="background: #000000;"></a></li>
-								<li class="color"><a href="#" style="background: #999999;"></a></li>
-								<li class="color"><a href="#" style="background: #0e8ce4;"></a></li>
-								<li class="color"><a href="#" style="background: #df3b3b;"></a></li>
-								<li class="color"><a href="#" style="background: #ffffff; border: solid 1px #e1e1e1;"></a></li>
-							</ul>
-						</div>
+
 						<div class="sidebar_section">
 							<div class="sidebar_subtitle brands_subtitle">Brands</div>
 							<ul class="brands_list">
@@ -102,7 +129,7 @@
 
 					<div class="shop_content">
 						<div class="shop_bar clearfix">
-							<div class="shop_product_count"><span>186</span> products found</div>
+							<div class="shop_product_count"><span><?php echo $contar; ?></span> products found</div>
 							<div class="shop_sorting">
 								<span>Sort by:</span>
 								<ul>
@@ -122,305 +149,23 @@
 							<div class="product_grid_border"></div>
 
 							<!-- Product Item -->
-							<div class="product_item is_new">
-								<div class="product_border"></div>
-								<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/new_5.jpg" alt=""></div>
-								<div class="product_content">
-									<div class="product_price">$225</div>
-									<div class="product_name"><div><a href="#" tabindex="0">Philips BT6900A</a></div></div>
-								</div>
-								<div class="product_fav"><i class="fas fa-heart"></i></div>
-								<ul class="product_marks">
-									<li class="product_mark product_discount">-25%</li>
-									<li class="product_mark product_new">new</li>
-								</ul>
-							</div>
-
-							<!-- Product Item -->
-							<div class="product_item discount">
-								<div class="product_border"></div>
-								<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/featured_1.png" alt=""></div>
-								<div class="product_content">
-									<div class="product_price">$225<span>$300</span></div>
-									<div class="product_name"><div><a href="#" tabindex="0">Huawei MediaPad...</a></div></div>
-								</div>
-								<div class="product_fav"><i class="fas fa-heart"></i></div>
-								<ul class="product_marks">
-									<li class="product_mark product_discount">-25%</li>
-									<li class="product_mark product_new">new</li>
-								</ul>
-							</div>
-
-							<!-- Product Item -->
-							<div class="product_item">
-								<div class="product_border"></div>
-								<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/featured_2.png" alt=""></div>
-								<div class="product_content">
-									<div class="product_price">$379</div>
-									<div class="product_name"><div><a href="#" tabindex="0">Apple iPod shuffle</a></div></div>
-								</div>
-								<div class="product_fav"><i class="fas fa-heart"></i></div>
-								<ul class="product_marks">
-									<li class="product_mark product_discount">-25%</li>
-									<li class="product_mark product_new">new</li>
-								</ul>
-							</div>
-
-							<!-- Product Item -->
-							<div class="product_item">
-								<div class="product_border"></div>
-								<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/featured_3.png" alt=""></div>
-								<div class="product_content">
-									<div class="product_price">$225</div>
-									<div class="product_name"><div><a href="#" tabindex="0">Sony MDRZX310W</a></div></div>
-								</div>
-								<div class="product_fav"><i class="fas fa-heart"></i></div>
-								<ul class="product_marks">
-									<li class="product_mark product_discount">-25%</li>
-									<li class="product_mark product_new">new</li>
-								</ul>
-							</div>
-
-							<!-- Product Item -->
-							<div class="product_item is_new">
-								<div class="product_border"></div>
-								<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/featured_4.png" alt=""></div>
-								<div class="product_content">
-									<div class="product_price">$379</div>
-									<div class="product_name"><div><a href="#" tabindex="0">LUNA Smartphone</a></div></div>
-								</div>
-								<div class="product_fav"><i class="fas fa-heart"></i></div>
-								<ul class="product_marks">
-									<li class="product_mark product_discount">-25%</li>
-									<li class="product_mark product_new">new</li>
-								</ul>
-							</div>
-
-							<!-- Product Item -->
-							<div class="product_item is_new">
-								<div class="product_border"></div>
-								<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/shop_1.jpg" alt=""></div>
-								<div class="product_content">
-									<div class="product_price">$379</div>
-									<div class="product_name"><div><a href="#" tabindex="0">Canon IXUS 175...</a></div></div>
-								</div>
-								<div class="product_fav"><i class="fas fa-heart"></i></div>
-								<ul class="product_marks">
-									<li class="product_mark product_discount">-25%</li>
-									<li class="product_mark product_new">new</li>
-								</ul>
-							</div>
-
-							<!-- Product Item -->
-							<div class="product_item">
-								<div class="product_border"></div>
-								<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/featured_5.png" alt=""></div>
-								<div class="product_content">
-									<div class="product_price">$379<span>$300</span></div>
-									<div class="product_name"><div><a href="#" tabindex="0">Canon STM Kit...</a></div></div>
-								</div>
-								<div class="product_fav"><i class="fas fa-heart"></i></div>
-								<ul class="product_marks">
-									<li class="product_mark product_discount">-25%</li>
-									<li class="product_mark product_new">new</li>
-								</ul>
-							</div>
-
-							<!-- Product Item -->
-							<div class="product_item">
-								<div class="product_border"></div>
-								<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/featured_6.png" alt=""></div>
-								<div class="product_content">
-									<div class="product_price">$225<span>$300</span></div>
-									<div class="product_name"><div><a href="#" tabindex="0">Samsung J330F</a></div></div>
-								</div>
-								<div class="product_fav"><i class="fas fa-heart"></i></div>
-								<ul class="product_marks">
-									<li class="product_mark product_discount">-25%</li>
-									<li class="product_mark product_new">new</li>
-								</ul>
-							</div>
-
-							<!-- Product Item -->
-							<div class="product_item">
-								<div class="product_border"></div>
-								<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/featured_7.png" alt=""></div>
-								<div class="product_content">
-									<div class="product_price">$225</div>
-									<div class="product_name"><div><a href="#" tabindex="0">Lenovo IdeaPad</a></div></div>
-								</div>
-								<div class="product_fav"><i class="fas fa-heart"></i></div>
-								<ul class="product_marks">
-									<li class="product_mark product_discount">-25%</li>
-									<li class="product_mark product_new">new</li>
-								</ul>
-							</div>
-
-							<!-- Product Item -->
-							<div class="product_item">
-								<div class="product_border"></div>
-								<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/featured_8.png" alt=""></div>
-								<div class="product_content">
-									<div class="product_price">$379</div>
-									<div class="product_name"><div><a href="#" tabindex="0">Digitus EDNET...</a></div></div>
-								</div>
-								<div class="product_fav"><i class="fas fa-heart"></i></div>
-								<ul class="product_marks">
-									<li class="product_mark product_discount">-25%</li>
-									<li class="product_mark product_new">new</li>
-								</ul>
-							</div>
-
-							<!-- Product Item -->
-							<div class="product_item is_new">
-								<div class="product_border"></div>
-								<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/new_1.jpg" alt=""></div>
-								<div class="product_content">
-									<div class="product_price">$225</div>
-									<div class="product_name"><div><a href="#" tabindex="0">Astro M2 Black</a></div></div>
-								</div>
-								<div class="product_fav"><i class="fas fa-heart"></i></div>
-								<ul class="product_marks">
-									<li class="product_mark product_discount">-25%</li>
-									<li class="product_mark product_new">new</li>
-								</ul>
-							</div>
-
-							<!-- Product Item -->
-							<div class="product_item is_new">
-								<div class="product_border"></div>
-								<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/new_2.jpg" alt=""></div>
-								<div class="product_content">
-									<div class="product_price">$225</div>
-									<div class="product_name"><div><a href="#" tabindex="0">Transcend T.Sonic</a></div></div>
-								</div>
-								<div class="product_fav"><i class="fas fa-heart"></i></div>
-								<ul class="product_marks">
-									<li class="product_mark product_discount">-25%</li>
-									<li class="product_mark product_new">new</li>
-								</ul>
-							</div>
-
-							<!-- Product Item -->
-							<div class="product_item is_new">
-								<div class="product_border"></div>
-								<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/new_3.jpg" alt=""></div>
-								<div class="product_content">
-									<div class="product_price">$225</div>
-									<div class="product_name"><div><a href="#" tabindex="0">Xiaomi Band 2...</a></div></div>
-								</div>
-								<div class="product_fav"><i class="fas fa-heart"></i></div>
-								<ul class="product_marks">
-									<li class="product_mark product_discount">-25%</li>
-									<li class="product_mark product_new">new</li>
-								</ul>
-							</div>
-
-							<!-- Product Item -->
-							<div class="product_item is_new">
-								<div class="product_border"></div>
-								<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/new_4.jpg" alt=""></div>
-								<div class="product_content">
-									<div class="product_price">$379</div>
-									<div class="product_name"><div><a href="#" tabindex="0">Rapoo T8 White</a></div></div>
-								</div>
-								<div class="product_fav"><i class="fas fa-heart"></i></div>
-								<ul class="product_marks">
-									<li class="product_mark product_discount">-25%</li>
-									<li class="product_mark product_new">new</li>
-								</ul>
-							</div>
-
-							<!-- Product Item -->
-							<div class="product_item discount">
-								<div class="product_border"></div>
-								<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/featured_1.png" alt=""></div>
-								<div class="product_content">
-									<div class="product_price">$225<span>$300</span></div>
-									<div class="product_name"><div><a href="#" tabindex="0">Huawei MediaPad...</a></div></div>
-								</div>
-								<div class="product_fav"><i class="fas fa-heart"></i></div>
-								<ul class="product_marks">
-									<li class="product_mark product_discount">-25%</li>
-									<li class="product_mark product_new">new</li>
-								</ul>
-							</div>
-
-							<!-- Product Item -->
-							<div class="product_item is_new">
-								<div class="product_border"></div>
-								<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/new_6.jpg" alt=""></div>
-								<div class="product_content">
-									<div class="product_price">$379</div>
-									<div class="product_name"><div><a href="#" tabindex="0">Nokia 3310 (2017)</a></div></div>
-								</div>
-								<div class="product_fav"><i class="fas fa-heart"></i></div>
-								<ul class="product_marks">
-									<li class="product_mark product_discount">-25%</li>
-									<li class="product_mark product_new">new</li>
-								</ul>
-							</div>
-
-							<!-- Product Item -->
-							<div class="product_item is_new">
-								<div class="product_border"></div>
-								<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/new_7.jpg" alt=""></div>
-								<div class="product_content">
-									<div class="product_price">$225</div>
-									<div class="product_name"><div><a href="#" tabindex="0">Rapoo 7100p Gray</a></div></div>
-								</div>
-								<div class="product_fav"><i class="fas fa-heart"></i></div>
-								<ul class="product_marks">
-									<li class="product_mark product_discount">-25%</li>
-									<li class="product_mark product_new">new</li>
-								</ul>
-							</div>
-
-							<!-- Product Item -->
-							<div class="product_item is_new">
-								<div class="product_border"></div>
-								<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/new_8.jpg" alt=""></div>
-								<div class="product_content">
-									<div class="product_price">$379</div>
-									<div class="product_name"><div><a href="#" tabindex="0">Canon EF</a></div></div>
-								</div>
-								<div class="product_fav"><i class="fas fa-heart"></i></div>
-								<ul class="product_marks">
-									<li class="product_mark product_discount">-25%</li>
-									<li class="product_mark product_new">new</li>
-								</ul>
-							</div>
-
-							<!-- Product Item -->
-							<div class="product_item is_new">
-								<div class="product_border"></div>
-								<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/shop_2.jpg" alt=""></div>
-								<div class="product_content">
-									<div class="product_price">$225</div>
-									<div class="product_name"><div><a href="#" tabindex="0">Gembird SPK-103</a></div></div>
-								</div>
-								<div class="product_fav"><i class="fas fa-heart"></i></div>
-								<ul class="product_marks">
-									<li class="product_mark product_discount">-25%</li>
-									<li class="product_mark product_new">new</li>
-								</ul>
-							</div>
-
-							<!-- Product Item -->
-							<div class="product_item is_new">
-								<div class="product_border"></div>
-								<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/featured_5.png" alt=""></div>
-								<div class="product_content">
-									<div class="product_price">$379</div>
-									<div class="product_name"><div><a href="#" tabindex="0">Canon STM Kit...</a></div></div>
-								</div>
-								<div class="product_fav"><i class="fas fa-heart"></i></div>
-								<ul class="product_marks">
-									<li class="product_mark product_discount">-25%</li>
-									<li class="product_mark product_new">new</li>
-								</ul>
-							</div>
-
+							<?php
+								foreach($resp as $key){
+									echo "<a href='product.php?id=".$key->id."'><div class='product_item is_new'>
+										<div class='product_border'></div>
+										<div class='product_image d-flex flex-column align-items-center justify-content-center'><img src='".$db->doc.$key->img."' alt='' width='100px'></div>
+										<div class='product_content'>
+											<div class='product_price'>".moneda($key->preciof)."</div>
+											<div class='product_name'><div><a href='#' tabindex='0'>".$key->nombre."</a></div></div>
+										</div>
+										<div class='product_fav'><i class='fas fa-heart'></i></div>
+										<ul class='product_marks'>
+											<li class='product_mark product_discount'>-25%</li>
+											<li class='product_mark product_new'>new</li>
+										</ul>
+									</div></a>";
+								}
+							 ?>
 						</div>
 
 						<!-- Shop Page Navigation -->
@@ -444,24 +189,10 @@
 		</div>
 	</div>
 
-	<!-- Recently Viewed -->
-	<div class="viewed">
-		<?php
-			include "a_recientes.php";
-		?>
-	</div>
-
 	<!-- Brands -->
 	<div class="brands">
 		<?php
 			include "a_brand.php";
-		?>
-	</div>
-
-	<!-- Newsletter -->
-	<div class="newsletter">
-		<?php
-			include "a_newsletter.php";
 		?>
 	</div>
 
