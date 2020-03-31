@@ -19,7 +19,7 @@
 			<?php
 				echo "<select class='form-control' name='categoria' id='categoria' >";
 				foreach($cat as $key){
-					echo  "<option value='".$key['categoria']."'";
+					echo  "<option value='".$key['id']."'";
 					echo  ">".$key['categoria']."</option>";
 				}
 				echo  "</select>";

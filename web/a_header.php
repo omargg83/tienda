@@ -126,9 +126,41 @@
               <ul class="cat_menu">
                 <?php
                   foreach($cat as $key){
-                      echo "<li><a href='#'>".$key->descripcion."<i class='fas fa-chevron-right ml-auto'></i></a></li>";
+                    echo "<li class='hassubs'>
+                      <a href='#'>".$key->descripcion."<i class='fas fa-chevron-right'></i></a>
+                      <ul>";
 
-                    //  $db->cat_ct($key->descripcion);
+                      foreach($db->cat_ct($key->idcategoria) as $key2){
+                        echo "<li class='hassubs'>
+                            <a href='#'>".$key2->categoria."<i class='fas fa-chevron-right'></i></a>
+                            <ul>
+                              <li><a href='#'>Menu Item<i class='fas fa-chevron-right'></i></a></li>
+                              <li><a href='#'>Menu Item<i class='fas fa-chevron-right'></i></a></li>
+                              <li><a href='#'>Menu Item<i class='fas fa-chevron-right'></i></a></li>
+                              <li><a href='#'>Menu Item<i class='fas fa-chevron-right'></i></a></li>
+                            </ul>
+                          </li>";
+                      }
+                      /*
+                      echo "<li class='hassubs'>
+                          <a href='#'>Menu Item<i class='fas fa-chevron-right'></i></a>
+                          <ul>
+                            <li><a href='#'>Menu Item<i class='fas fa-chevron-right'></i></a></li>
+                            <li><a href='#'>Menu Item<i class='fas fa-chevron-right'></i></a></li>
+                            <li><a href='#'>Menu Item<i class='fas fa-chevron-right'></i></a></li>
+                            <li><a href='#'>Menu Item<i class='fas fa-chevron-right'></i></a></li>
+                          </ul>
+                        </li>
+                        <li><a href='#'>Menu Item<i class='fas fa-chevron-right'></i></a></li>
+                        <li><a href='#'>Menu Item<i class='fas fa-chevron-right'></i></a></li>
+                        <li><a href='#'>Menu Item<i class='fas fa-chevron-right'></i></a></li>
+                        */
+                      echo "</ul>";
+                    echo "</li>";
+
+
+
+                      $db->cat_ct($key->descripcion);
 
 
                   }

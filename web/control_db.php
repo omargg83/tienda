@@ -91,7 +91,7 @@
 		public function cat_ct($id){
 			try{
 				self::set_names();
-				$sql="select * from producto_cat where idcategoria=:id";
+				$sql="SELECT * from producto_cat left outer join categoria_ct on categoria_ct.id=producto_cat.idcategoria_ct where producto_cat.idcategoria=:id";
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(':id', "$id");
 				$sth->execute();
@@ -268,22 +268,16 @@
 			}
 		}
 }
-
-
 	if(strlen($ctrl)>0){
 		$db = new Tienda();
 		if(strlen($function)>0){
 			echo $db->$function();
 		}
 	}
-
-
 	function moneda($valor){
 		return "$ ".number_format( $valor, 2, "." , "," );
 	}
 	/////////////////////////////////////////////token
-
-
 	function servicioApi($metodo, $servicio, $json = null, $token = null) {
 	    $ch = curl_init('http://187.210.141.12:3001/' . $servicio);
 	    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $metodo);

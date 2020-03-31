@@ -41,7 +41,7 @@ class Categorias extends Tienda{
 	public function agrupa_cat(){
 		try{
 			parent::set_names();
-			$sql="SELECT * from categoria_ct group by categoria asc";
+			$sql="SELECT * from categoria_ct";
 			$sth = $this->dbh->prepare($sql);
 			$sth->execute();
 			return $sth->fetchAll();
@@ -57,7 +57,7 @@ class Categorias extends Tienda{
 			$categoria=$_REQUEST['categoria'];
 			$arreglo =array();
 			$arreglo+= array('idcategoria'=>$id);
-			$arreglo+= array('categoria'=>$categoria);
+			$arreglo+= array('idcategoria_ct'=>$categoria);
 			$x=$this->insert('producto_cat', $arreglo);
 
 			$tmp=json_decode($x);
@@ -77,7 +77,9 @@ class Categorias extends Tienda{
 	public function producto_cat($idcategoria){
 		try{
 			parent::set_names();
-			$sql="SELECT * from producto_cat where idcategoria=:id";
+			$sql="SELECT * from producto_cat
+			left outer join categoria_ct on categoria_ct.id=producto_cat.idcategoria_ct
+			where idcategoria=:id";
 			$sth = $this->dbh->prepare($sql);
 			$sth->bindValue(':id', $idcategoria);
 			$sth->execute();
