@@ -1,6 +1,7 @@
 <?php
   $contar=0;
   $sumar=0;
+  $contar_wish=0;
   if(isset($_SESSION['idcliente'])){
     $res=$db->carrito_sum();
     $contar=$res->contar;
