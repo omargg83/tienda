@@ -306,29 +306,30 @@
 					$sth->bindValue(":idproducto",$id);
 					$sth->bindValue(":fecha",date("Y-m-d H:i:s"));
 					$resp=$sth->execute();
-					if($resp){
-						$arr=array();
-						$arr=array('error'=>0);
-						return json_encode($arr);
-					}
-					else{
-						$arr=array();
-						$arr=array('error'=>1);
-						$arr=array('terror'=>$resp);
-						return json_encode($arr);
-					}
-				}
-				else{
-					$arr=array();
-					$arr=array('error'=>2);
-					return json_encode($arr);
+
+					$res2=$this->wish_sum();
+					return $res2->contar;
 				}
 			}
 			catch(PDOException $e){
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
-
+		public function wish_list(){
+			try{
+				self::set_names();
+				$sql="select * from cliente_wish
+				left outer join productos on productos.id=cliente_wish.idproducto
+				where cliente_wish.idcliente=:id";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(":id",$_SESSION['idcliente']);
+				$sth->execute();
+				return $sth->fetchAll(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
 
 		public function carrito_sum(){
 
@@ -347,7 +348,6 @@
 			}
 		}
 		public function wish_sum(){
-
 			try{
 				self::set_names();
 				$sql="select count(id) as contar from cliente_wish where cliente_wish.idcliente=:id";
@@ -409,7 +409,8 @@
 			try{
 				self::set_names();
 				$texto=trim(htmlspecialchars($_REQUEST['texto']));
-				$sql="SELECT * from productos where clave like :texto or nombre like :texto or modelo like :texto or marca like :texto or idProducto like :texto limit 100";
+				$sql="SELECT * from productos where activo=1 and
+				(clave like :texto or nombre like :texto or modelo like :texto or marca like :texto or idProducto like :texto) limit 100";
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(":texto","%".$texto."%");
 				$sth->execute();

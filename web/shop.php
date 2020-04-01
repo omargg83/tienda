@@ -9,7 +9,8 @@
 		$ncat=$_REQUEST['ncat'];
 		$nombre=$ncat;
 		$resp=$db->cat_categoriatic($id_re);
-		//echo "global $cat";
+		$contar=count($resp);
+		echo "contar".$contar;
 	}
 	if(isset($_REQUEST['cat1'])){
 		$tipo=2;
@@ -18,16 +19,16 @@
 		$nombre=$ncat;
 		$resp=$db->cat_categoria($ncat);
 		$contar=count($resp);
-//		echo "cat1 $cat1  cat $ncat";
+		echo "contar".$contar;
 	}
 	if(isset($_REQUEST['sub'])){
 		$tipo=3;
 		$sub=$_REQUEST['sub'];
 		$ncat=$_REQUEST['ncat'];
 		$nombre=$ncat;
-//		echo "sub $sub cat $cat ";
 		$resp=$db->sub_categoria($ncat);
 		$contar=count($resp);
+		echo "contar".$contar;
 	}
 
 
@@ -130,16 +131,15 @@
 
 					<div class="shop_content">
 						<div class="shop_bar clearfix">
-							<div class="shop_product_count"><span><?php echo $contar; ?></span> products found</div>
+							<div class="shop_product_count"><span><?php echo $contar; ?></span> Productos encontrados</div>
 							<div class="shop_sorting">
-								<span>Sort by:</span>
+								<span>Ordernar por:</span>
 								<ul>
 									<li>
 										<span class="sorting_text">highest rated<i class="fas fa-chevron-down"></span></i>
 										<ul>
-											<li class="shop_sorting_button" data-isotope-option='{ "sortBy": "original-order" }'>highest rated</li>
-											<li class="shop_sorting_button" data-isotope-option='{ "sortBy": "name" }'>name</li>
-											<li class="shop_sorting_button"data-isotope-option='{ "sortBy": "price" }'>price</li>
+											<li class="shop_sorting_button" data-isotope-option='{ "sortBy": "name" }'>Nombre</li>
+											<li class="shop_sorting_button"data-isotope-option='{ "sortBy": "price" }'>Precio</li>
 										</ul>
 									</li>
 								</ul>

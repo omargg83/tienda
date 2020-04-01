@@ -110,8 +110,9 @@ function wish(id){
     },
     url:   'control_db.php',
     type:  'post',
-    timeout:300,
+    timeout:3000,
     success:  function (response) {
+      $("#wish_count").html(response);
     }
   });
 

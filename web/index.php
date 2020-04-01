@@ -320,7 +320,6 @@
 	</div>
 
 	<!-- Hot New Arrivals -->
-
 	<div class="new_arrivals">
 		<div class="container">
 			<div class="row">
