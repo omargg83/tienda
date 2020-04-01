@@ -36,39 +36,45 @@
 	</header>
 
 	<!-- Cart -->
-	<form>
+	<form id='registro' action=''>
 		<div class="cart_section">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-10 offset-lg-1">
-						<div class="col-4">
-				      <label>Nombre</label>
-				      <input type="text" class="form-control form-control-sm" id="nombre" name='nombre' placeholder="Nombre" value="<?php echo $nombre; ?>" required>
-				    </div>
-				    <div class="col-4">
-				      <label>Apellidos</label>
-				      <input type="text" class="form-control form-control-sm" id="apellido" name='apellido' placeholder="Apellidos" value="<?php echo $apellido; ?>" required>
-				    </div>
-				    <div class="col-4">
-				      <label>Correo</label>
-				      <input type="text" class="form-control form-control-sm" id="correo" name='correo' placeholder="Correo" value="<?php echo $correo; ?>" required>
-				    </div>
-						<div class="col-4">
-				      <label>Contraseña</label>
-				      <input type="password" class="form-control form-control-sm" id="pass" name='pass' placeholder="Contraseña" value="<?php echo $pass; ?>" required>
-				    </div>
+
+					<div class="col-4">
+			      <label>Nombre</label>
+			      <input type="text" class="form-control" id="nombre" name='nombre' placeholder="Nombre" value="<?php echo $nombre; ?>" required>
+			    </div>
+			    <div class="col-4">
+			      <label>Apellidos</label>
+			      <input type="text" class="form-control" id="apellido" name='apellido' placeholder="Apellidos" value="<?php echo $apellido; ?>" required>
+			    </div>
+			    <div class="col-4">
+			      <label>Correo</label>
+			      <input type="text" class="form-control" id="correo" name='correo' placeholder="Correo" value="<?php echo $correo; ?>" required>
+			    </div>
+			   </div>
+
+				<div class="row">
+					<div class="col-4">
+			      <label>Contraseña</label>
+			      <input type="password" class="form-control" id="pass" name='pass' placeholder="Contraseña" value="<?php echo $pass; ?>" required>
+			    </div>
+					<div class="col-4">
+			      <label>Repetir contraseña</label>
+			      <input type="password" class="form-control" id="pass2" name='pass2' placeholder="Contraseña" value="<?php echo $pass; ?>" required>
+			    </div>
+				</div>
+
+				<div class="row">
+					<div class="col-4">
+						<button type="submit" class="btn btn-primary">Registrar</button>
 					</div>
 				</div>
 			</div>
 		</div>
 </form>
 
-	<!-- Newsletter -->
-	<div class="newsletter">
-		<?php
-			include "a_newsletter.php";
-		?>
-	</div>
 
 	<!-- Footer -->
 	<footer class="footer">

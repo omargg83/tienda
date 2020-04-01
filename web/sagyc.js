@@ -58,6 +58,7 @@ $(document).on('submit','#acceso',function(e){
     }
   });
 });
+
 function salir(){
   $.ajax({
     url: "control_db.php",
@@ -71,7 +72,6 @@ function salir(){
     }
   });
 }
-
 function carrito(id){
   $.ajax({
     data:  {
@@ -117,9 +117,14 @@ function wish(id){
   });
 
 }
-
 function buscar(){
   var buscar_text=$("#bucar_text").val();
   window.location.href="busca.php?texto="+buscar_text;
 
 }
+
+
+$(document).on('submit','#registro',function(e){
+  e.preventDefault();
+  alert("entra");
+});
