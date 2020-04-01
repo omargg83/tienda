@@ -35,35 +35,34 @@
 		<div class="cart_section">
 			<h3 class='text-center'>Lista de deseos</h3>
 		</div>
-		<div class='row'>
 			<?php
 				$total=0;
 				foreach($carro as $key){
-					echo "<li class='cart_item clearfix'>
-						<div class='cart_item_image'><img src='".$db->doc.$key->img."' alt=''></div>
-						<div class='cart_item_info d-flex flex-md-row flex-column justify-content-between'>
-							<div class='cart_item_name cart_info_col'>
-								<div class='cart_item_title'>Nombre</div>
-								<div class='cart_item_text'>".$key->nombre."</div>
-							</div>
-							<div class='cart_item_quantity cart_info_col'>
-								<div class='cart_item_title'>Cantidad</div>
-								<div class='cart_item_text'>1</div>
-							</div>
-							<div class='cart_item_price cart_info_col'>
-								<div class='cart_item_title'>Precio</div>
-								<div class='cart_item_text'>".moneda($key->preciof)."</div>
-							</div>
-							<div class='cart_item_total cart_info_col'>
-								<div class='cart_item_title'>Total</div>
-								<div class='cart_item_text'>".moneda($key->preciof)."</div>
-							</div>
-						</div>
-					</li>";
+					echo "<div class='row' style='border-bottom:1px solid silver'>";
+						echo "<div class='col-3'><img src='".$db->doc.$key->img."' alt='' width='100px'></div>";
+							echo "
+								<div class='col-3'>
+									<div class='cart_item_title'>Nombre</div>
+									<div class='cart_item_text'>".$key->nombre."</div>
+								</div>
+								<div class='col-2'>
+									<div class='cart_item_title'>Cantidad</div>
+									<div class='cart_item_text'>1</div>
+								</div>
+								<div class='col-2'>
+									<div class='cart_item_title'>Precio</div>
+									<div class='cart_item_text'>".moneda($key->preciof)."</div>
+								</div>
+								<div class='col-2'>
+									<div class='cart_item_title'>Total</div>
+									<div class='cart_item_text'>".moneda($key->preciof)."</div>
+								</div>
+							";
+						echo "</div>";
 					$total+=$key->preciof;
 				}
 			?>
-		</div>
+
 
 	</div>
 
