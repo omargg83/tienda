@@ -29,7 +29,7 @@
 			include "a_header.php";
 		?>
 	</header>
-	
+
 	<!-- Cart -->
 	<div class="cart_section">
 		<div class="container">

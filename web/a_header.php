@@ -5,6 +5,9 @@
     $res=$db->carrito_sum();
     $contar=$res->contar;
     $sumar=$res->sumar;
+
+    $res2=$db->wish_sum();
+    $contar_wish=$res2->contar;
   }
   $cat=$db->categorias();
 ?>
@@ -21,7 +24,7 @@
             <div class="top_bar_user">
               <div class="user_icon"><img src="images/user.svg" alt=""></div>
               <?php
-                if(isset($_SESSION['autoriza_web']) and $_SESSION['autoriza']==1 and strlen($_SESSION['correo'])>0){
+                if(isset($_SESSION['autoriza_web']) and $_SESSION['autoriza_web']==1 and strlen($_SESSION['idcliente'])>0 and $_SESSION['interno']==1){
                   echo "<div><a href='cart.php'>".$_SESSION['correo']."</a></div>";
                   echo "<div><a href='#' onclick='salir()'>Salir</a></div>";
                 }
@@ -55,9 +58,9 @@
           <div class="header_search">
             <div class="header_search_content">
               <div class="header_search_form_container">
-                <form action="#" class="header_search_form clearfix">
-                  <input type="search" required="required" class="header_search_input" placeholder="Buscar productos...">
-                  <button type="submit" class="header_search_button trans_300" value="Submit"><img src="images/search.png" alt=""></button>
+                <form class="header_search_form clearfix">
+                  <input type="search" required="required" class="header_search_input" id='bucar_text' name='bucar_text' placeholder="Buscar productos..." onkeyup='Javascript: if (event.keyCode==13) buscar()'>
+                  <button type="button" class="header_search_button trans_300" value="Submit" onclick="buscar()"><img src="images/search.png" alt=""></button>
 
                   <div class="custom_dropdown">
                     <div class="custom_dropdown_list">
@@ -81,8 +84,8 @@
             <div class="wishlist d-flex flex-row align-items-center justify-content-end">
               <div class="wishlist_icon"><img src="images/heart.png" alt=""></div>
               <div class="wishlist_content">
-                <div class="wishlist_text"><a href="#">Wishlist</a></div>
-                <div class="wishlist_count">115</div>
+                <div class="wishlist_text"><a href="wish.php">Deseos</a></div>
+                <div class="wishlist_count"><?php echo $contar_wish; ?></div>
               </div>
             </div>
 
@@ -94,7 +97,7 @@
                   <div class="cart_count"><span><?php echo $contar; ?></span></div>
                 </div>
                 <div class="cart_content">
-                  <div class="cart_text"><a href="cart.php">Cart</a></div>
+                  <div class="cart_text"><a href="cart.php">Carrito</a></div>
                   <div class="cart_price"><?php echo moneda($sumar); ?></div>
                 </div>
               </div>
@@ -185,69 +188,23 @@
 
             <div class="page_menu_search">
               <form action="#">
-                <input type="search" required="required" class="page_menu_search_input" placeholder="Search for products...">
+                <input type="search" required="required" class="page_menu_search_input" placeholder="Search for products..." onkeyup='Javascript: if (event.keyCode==13) buscar()'>
               </form>
             </div>
             <ul class="page_menu_nav">
-              <li class="page_menu_item has-children">
-                <a href="#">Language<i class="fa fa-angle-down"></i></a>
-                <ul class="page_menu_selection">
-                  <li><a href="#">English<i class="fa fa-angle-down"></i></a></li>
-                  <li><a href="#">Italian<i class="fa fa-angle-down"></i></a></li>
-                  <li><a href="#">Spanish<i class="fa fa-angle-down"></i></a></li>
-                  <li><a href="#">Japanese<i class="fa fa-angle-down"></i></a></li>
-                </ul>
+              <li class="page_menu_item">
+                <a href="index.php">Inicio<i class="fa fa-angle-down"></i></a>
               </li>
-              <li class="page_menu_item has-children">
-                <a href="#">Currency<i class="fa fa-angle-down"></i></a>
-                <ul class="page_menu_selection">
-                  <li><a href="#">US Dollar<i class="fa fa-angle-down"></i></a></li>
-                  <li><a href="#">EUR Euro<i class="fa fa-angle-down"></i></a></li>
-                  <li><a href="#">GBP British Pound<i class="fa fa-angle-down"></i></a></li>
-                  <li><a href="#">JPY Japanese Yen<i class="fa fa-angle-down"></i></a></li>
-                </ul>
+
+              <li class="page_menu_item">
+                <a href="index.php">Nosotros<i class="fa fa-angle-down"></i></a>
               </li>
               <li class="page_menu_item">
-                <a href="#">Home<i class="fa fa-angle-down"></i></a>
+                <a href="index.php">Lo más vendid<i class="fa fa-angle-down"></i></a>
               </li>
-              <li class="page_menu_item has-children">
-                <a href="#">Super Deals<i class="fa fa-angle-down"></i></a>
-                <ul class="page_menu_selection">
-                  <li><a href="#">Super Deals<i class="fa fa-angle-down"></i></a></li>
-                  <li class="page_menu_item has-children">
-                    <a href="#">Menu Item<i class="fa fa-angle-down"></i></a>
-                    <ul class="page_menu_selection">
-                      <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                      <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                      <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                      <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                    </ul>
-                  </li>
-                  <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                  <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                  <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                </ul>
+              <li class="page_menu_item">
+                <a href="index.php">Contacto<i class="fa fa-angle-down"></i></a>
               </li>
-              <li class="page_menu_item has-children">
-                <a href="#">Featured Brands<i class="fa fa-angle-down"></i></a>
-                <ul class="page_menu_selection">
-                  <li><a href="#">Featured Brands<i class="fa fa-angle-down"></i></a></li>
-                  <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                  <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                  <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                </ul>
-              </li>
-              <li class="page_menu_item has-children">
-                <a href="#">Trending Styles<i class="fa fa-angle-down"></i></a>
-                <ul class="page_menu_selection">
-                  <li><a href="#">Trending Styles<i class="fa fa-angle-down"></i></a></li>
-                  <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                  <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                  <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                </ul>
-              </li>
-              <li class="page_menu_item"><a href="blog.html">blog<i class="fa fa-angle-down"></i></a></li>
-              <li class="page_menu_item"><a href="contact.html">contact<i class="fa fa-angle-down"></i></a></li>
             </ul>
 
             <div class="menu_contact">

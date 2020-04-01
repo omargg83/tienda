@@ -97,8 +97,8 @@
 									echo "<div class='sidebar_section'>
 										<div class='sidebar_title'>Categories</div>
 										<ul class='sidebar_categories'>";
-										 foreach($db->sub_cat($key2->id) as $key3){
-											echo "<li><a href='shop.php?cat1=".$key2->id."&ncat=".$key2->categoria."'>".$key2->categoria."</a></li>";
+										 foreach($db->sub_cat($cat1) as $key3){
+											echo "<li><a href='shop.php?sub=".$key3->id."&ncat=".$key3->subcategoria."'>".$key3->subcategoria."</a></li>";
 										}
 										echo "</ul>
 										</div>";
@@ -107,18 +107,8 @@
 							}
 						?>
 
-						<div class="sidebar_section filter_by_section">
-							<div class="sidebar_title">Filter By</div>
-							<div class="sidebar_subtitle">Price</div>
-							<div class="filter_price">
-								<div id="slider-range" class="slider_range"></div>
-								<p>Range: </p>
-								<p><input type="text" id="amount" class="amount" readonly style="border:0; font-weight:bold;"></p>
-							</div>
-						</div>
-
 						<div class="sidebar_section">
-							<div class="sidebar_subtitle brands_subtitle">Brands</div>
+							<div class="sidebar_subtitle brands_subtitle">Marcas</div>
 							<ul class="brands_list">
 								<li class="brand"><a href="#">Apple</a></li>
 								<li class="brand"><a href="#">Beoplay</a></li>
@@ -162,14 +152,14 @@
 							<!-- Product Item -->
 							<?php
 								foreach($resp as $key){
-									echo "<a href='product.php?id=".$key->id."'><div class='product_item is_new'>
+									echo "<a href='product.php?id=".$key->id."'><div class='product_item'>
 										<div class='product_border'></div>
 										<div class='product_image d-flex flex-column align-items-center justify-content-center'><img src='".$db->doc.$key->img."' alt='' width='100px'></div>
 										<div class='product_content'>
 											<div class='product_price'>".moneda($key->preciof)."</div>
 											<div class='product_name'><div><a href='#' tabindex='0'>".$key->nombre."</a></div></div>
 										</div>
-										<div class='product_fav'><i class='fas fa-heart'></i></div>
+										<div class='product_fav' onclick='wish(".$key->id.")'><i class='fas fa-heart'></i></div>
 										<ul class='product_marks'>
 											<li class='product_mark product_discount'>-25%</li>
 											<li class='product_mark product_new'>new</li>
@@ -237,6 +227,9 @@
 <script src="plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
 <script src="plugins/parallax-js-master/parallax.min.js"></script>
 <script src="js/shop_custom.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<script src="sagyc.js"></script>
 </body>
 
 </html>

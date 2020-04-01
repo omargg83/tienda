@@ -1,3 +1,34 @@
+
+if (Cookies.get('ticshop_x')==undefined){
+  $.ajax({
+    url: "control_db.php",
+    type: "POST",
+    data: {
+      "ctrl":"control",
+      "galleta":"",
+      "function":"galleta"
+    },
+    success: function( response ) {
+      Cookies.set('ticshop_x', response);
+    }
+  });
+}
+else{
+  var galleta=Cookies.get('ticshop_x');
+  $.ajax({
+    url: "control_db.php",
+    type: "POST",
+    data: {
+      "ctrl":"control",
+      "galleta":galleta,
+      "function":"galleta"
+    },
+    success: function( response ) {
+
+    }
+  });
+}
+
 $(document).on('submit','#acceso',function(e){
   e.preventDefault();
   var userAcceso=document.getElementById("userAcceso").value;
@@ -68,5 +99,26 @@ function carrito(id){
 
     }
   });
+
+}
+function wish(id){
+  $.ajax({
+    data:  {
+      "ctrl":"control",
+      "id":id,
+      "function":"wish"
+    },
+    url:   'control_db.php',
+    type:  'post',
+    timeout:300,
+    success:  function (response) {
+    }
+  });
+
+}
+
+function buscar(){
+  var buscar_text=$("#bucar_text").val();
+  window.location.href="busca.php?texto="+buscar_text;
 
 }

@@ -26,6 +26,36 @@
 			return $this->dbh->query("SET NAMES 'utf8'");
 		}
 
+		public function galleta(){
+			try{
+				$galleta=$_REQUEST['galleta'];
+				if(strlen($galleta)==0){
+					$galleta=$this->genera_random();
+					$sql="insert into clientes (galleta, fechacreado) values (:galleta, :fechacreado)";
+					$sth = $this->dbh->prepare($sql);
+					$sth->bindValue(":galleta",$galleta);
+					$sth->bindValue(":fechacreado",date("Y-m-d H:i:s"));
+					$sth->execute();
+				}
+				$sql="SELECT * FROM clientes where galleta=:galleta";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(":galleta",$galleta);
+				$sth->execute();
+				$CLAVE=$sth->fetch();
+				$_SESSION['autoriza_web']=1;
+				$_SESSION['interno']=0;
+				$_SESSION['correo']="";
+				$_SESSION['idcliente']=$CLAVE['id'];
+				return $galleta;
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
+		public function genera_random($length = 15) {
+    	return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
+		}
+
 		public function login(){
 
 
@@ -51,6 +81,7 @@
 						$_SESSION['autoriza_web']=1;
 						$_SESSION['correo']=$CLAVE['correo'];
 						$_SESSION['idcliente']=$CLAVE['id'];
+						$_SESSION['interno']=1;
 						$arr=array();
 						$arr=array('acceso'=>1);
 						return json_encode($arr);
@@ -73,7 +104,7 @@
 			}
 		}
 		public function salir(){
-			$_SESSION['autoriza']=0;
+			$_SESSION['autoriza_web']=0;
 			$_SESSION['correo']="";
 		}
 		public function categorias(){
@@ -235,7 +266,7 @@
 			try{
 				self::set_names();
 				$id=$_REQUEST['id'];
-				if(isset($_SESSION['autoriza']) and $_SESSION['autoriza']==1 and strlen($_SESSION['correo'])>0){
+				if(isset($_SESSION['autoriza_web']) and $_SESSION['autoriza_web']==1 and strlen($_SESSION['idcliente'])>0){
 					$sql="insert into cliente_carro (idcliente, idproducto, fechaagrega) values (:idcliente, :idproducto, :fecha)";
 					$sth = $this->dbh->prepare($sql);
 					$sth->bindValue(":idcliente",$_SESSION['idcliente']);
@@ -264,6 +295,41 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
+		public function wish(){
+			try{
+				self::set_names();
+				$id=$_REQUEST['id'];
+				if(isset($_SESSION['autoriza_web']) and $_SESSION['autoriza_web']==1 and strlen($_SESSION['idcliente'])>0){
+					$sql="insert into cliente_wish (idcliente, idproducto, fechaagrega) values (:idcliente, :idproducto, :fecha)";
+					$sth = $this->dbh->prepare($sql);
+					$sth->bindValue(":idcliente",$_SESSION['idcliente']);
+					$sth->bindValue(":idproducto",$id);
+					$sth->bindValue(":fecha",date("Y-m-d H:i:s"));
+					$resp=$sth->execute();
+					if($resp){
+						$arr=array();
+						$arr=array('error'=>0);
+						return json_encode($arr);
+					}
+					else{
+						$arr=array();
+						$arr=array('error'=>1);
+						$arr=array('terror'=>$resp);
+						return json_encode($arr);
+					}
+				}
+				else{
+					$arr=array();
+					$arr=array('error'=>2);
+					return json_encode($arr);
+				}
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
+
+
 		public function carrito_sum(){
 
 			try{
@@ -280,7 +346,20 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
+		public function wish_sum(){
 
+			try{
+				self::set_names();
+				$sql="select count(id) as contar from cliente_wish where cliente_wish.idcliente=:id";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(":id",$_SESSION['idcliente']);
+				$sth->execute();
+				return $sth->fetch(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
 		public function cat_categoria($cat){
 			try{
 				self::set_names();
@@ -325,6 +404,25 @@
 
 
 		}
+
+		public function busca() {
+			try{
+				self::set_names();
+				$texto=trim(htmlspecialchars($_REQUEST['texto']));
+				$sql="SELECT * from productos where clave like :texto or nombre like :texto or modelo like :texto or marca like :texto or idProducto like :texto limit 100";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(":texto","%".$texto."%");
+				$sth->execute();
+				return $sth->fetchAll(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+
+		}
+
+
+
 }
 
 	if(strlen($ctrl)>0){

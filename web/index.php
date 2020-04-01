@@ -26,6 +26,7 @@
 <link rel="stylesheet" type="text/css" href="plugins/slick-1.8.0/slick.css">
 <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/responsive.css">
+<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
@@ -193,7 +194,7 @@
 															<button class='product_cart_button' onclick='carrito(".$key->id.")'>Agregar al carrito</button>
 														</div>
 													</div>
-													<div class='product_fav'><i class='fas fa-heart'></i></div>
+													<div class='product_fav' onclick='wish(".$key->id.")'><i class='fas fa-heart'></i></div>
 													<ul class='product_marks'>
 														<li class='product_mark product_discount'>-25%</li>
 														<li class='product_mark product_new'>new</li>
@@ -357,7 +358,7 @@
 																<button class='product_cart_button' onclick='carrito(".$key->id.")'>Agregar al carrito</button>
 															</div>
 														</div>
-														<div class='product_fav'><i class='fas fa-heart'></i></div>
+														<div class='product_fav' onclick='wish(".$key->id.")'><i class='fas fa-heart'></i></div>
 														<ul class='product_marks'>
 															<li class='product_mark product_discount'>-25%</li>
 															<li class='product_mark product_new'>new</li>
@@ -470,6 +471,8 @@
 <script src="plugins/slick-1.8.0/slick.js"></script>
 <script src="plugins/easing/easing.js"></script>
 <script src="js/custom.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 <script src="sagyc.js"></script>
 </body>
 
