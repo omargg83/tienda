@@ -1,3 +1,8 @@
+<?php
+	require_once("control_db.php");
+	$db = new Tienda();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
