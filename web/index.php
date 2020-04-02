@@ -26,7 +26,7 @@
 <link rel="stylesheet" type="text/css" href="plugins/slick-1.8.0/slick.css">
 <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/responsive.css">
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 </head>
 
 <body>
@@ -186,11 +186,6 @@
 														<div class='product_price discount'>".moneda($key->preciof)."<span>".moneda($key->preciof)."</span></div>
 														<div class='product_name'><div><a href='product.php?id=".$key->id."'>".$key->nombre."</a></div></div>
 														<div class='product_extras'>
-															<div class='product_color'>
-																<input type='radio' checked name='product_color' style='background:#b19c83'>
-																<input type='radio' name='product_color' style='background:#000000'>
-																<input type='radio' name='product_color' style='background:#999999'>
-															</div>
 															<button class='product_cart_button' onclick='carrito(".$key->id.")'>Agregar al carrito</button>
 														</div>
 													</div>
@@ -349,11 +344,6 @@
 															<div class='product_price'>".moneda($key->preciof)."</div>
 															<div class='product_name'><div><a href='product.php?id=".$key->id."'>".$key->nombre."</a></div></div>
 															<div class='product_extras'>
-																<div class='product_color'>
-																	<input type='radio' checked name='product_color' style='background:#b19c83'>
-																	<input type='radio' name='product_color' style='background:#000000'>
-																	<input type='radio' name='product_color' style='background:#999999'>
-																</div>
 																<button class='product_cart_button' onclick='carrito(".$key->id.")'>Agregar al carrito</button>
 															</div>
 														</div>

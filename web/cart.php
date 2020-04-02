@@ -16,7 +16,7 @@
 <link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="styles/cart_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/cart_responsive.css">
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 </head>
 
 <body>
@@ -29,7 +29,7 @@
 			include "a_header.php";
 		?>
 	</header>
-	
+
 	<!-- Cart -->
 	<div class="cart_section">
 		<div class="container">

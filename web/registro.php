@@ -21,7 +21,7 @@
 <link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="styles/cart_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/cart_responsive.css">
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 </head>
 
 <body>
@@ -39,29 +39,31 @@
 	<form id='registro' action=''>
 		<div class="cart_section">
 			<div class="container">
+				<h3 class='text-center'>Registro</h3>
 				<div class="row">
-
-					<div class="col-4">
-			      <label>Nombre</label>
+					<div class="col-4 offset-4">
+			      <label class='text-center'>Nombre</label>
 			      <input type="text" class="form-control" id="nombre" name='nombre' placeholder="Nombre" value="<?php echo $nombre; ?>" required>
 			    </div>
-			    <div class="col-4">
-			      <label>Apellidos</label>
+		    </div>
+				<div class="row">
+					<div class="col-4 offset-4">
+			      <label class='text-center'>Apellidos</label>
 			      <input type="text" class="form-control" id="apellido" name='apellido' placeholder="Apellidos" value="<?php echo $apellido; ?>" required>
 			    </div>
 			    <div class="col-4">
-			      <label>Correo</label>
+			      <label class='text-center'>Correo</label>
 			      <input type="text" class="form-control" id="correo" name='correo' placeholder="Correo" value="<?php echo $correo; ?>" required>
 			    </div>
 			   </div>
 
 				<div class="row">
 					<div class="col-4">
-			      <label>Contraseña</label>
+			      <label class='text-center'>Contraseña</label>
 			      <input type="password" class="form-control" id="pass" name='pass' placeholder="Contraseña" value="<?php echo $pass; ?>" required>
 			    </div>
 					<div class="col-4">
-			      <label>Repetir contraseña</label>
+			      <label class='text-center'>Repetir contraseña</label>
 			      <input type="password" class="form-control" id="pass2" name='pass2' placeholder="Contraseña" value="<?php echo $pass; ?>" required>
 			    </div>
 				</div>

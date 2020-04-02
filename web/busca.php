@@ -23,7 +23,7 @@
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
 <link rel="stylesheet" type="text/css" href="plugins/slick-1.8.0/slick.css">
 
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 </head>
 
 <body>
@@ -74,7 +74,7 @@
 															</div>
 															<div class='product_fav' onclick='wish(".$key->id.")'><i class='fas fa-heart'></i></div>
 															<ul class='product_marks'>
-																
+
 															</ul>
 														</div>
 													</div>";
