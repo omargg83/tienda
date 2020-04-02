@@ -8,7 +8,6 @@
 	date_default_timezone_set("America/Mexico_City");
 
 	class Tienda{
-
 		public function __construct(){
 			$this->Salud = array();
 			date_default_timezone_set("America/Mexico_City");
@@ -42,9 +41,16 @@
 				$sth->bindValue(":galleta",$galleta);
 				$sth->execute();
 				$CLAVE=$sth->fetch();
-				$_SESSION['autoriza_web']=1;
-				$_SESSION['interno']=0;
-				$_SESSION['correo']="";
+				if(strlen($CLAVE['correo'])>0){
+					$_SESSION['autoriza_web']=1;
+					$_SESSION['interno']=1;
+					$_SESSION['correo']=$CLAVE['correo'];
+				}
+				else{
+					$_SESSION['autoriza_web']=1;
+					$_SESSION['interno']=0;
+					$_SESSION['correo']="";
+				}
 				$_SESSION['idcliente']=$CLAVE['id'];
 				return $galleta;
 			}
@@ -56,13 +62,50 @@
     	return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
 		}
 
-		public function login(){
+		public function registro(){
+			//Obtenemos los datos del formulario de acceso
+			try{
+				$nombre = trim(htmlspecialchars($_REQUEST["nombre"]));
+				$apellido = trim(htmlspecialchars($_REQUEST["apellido"]));
+				$correo = trim(htmlspecialchars($_REQUEST["correo"]));
+				$pass = trim(htmlspecialchars($_REQUEST["pass"]));
+				$pass2 = trim(htmlspecialchars($_REQUEST["pass2"]));
 
-
-
-			return "algo";
-
-
+				$sql="SELECT * FROM clientes where id=:id";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(":id",$_SESSION['idcliente']);
+				$sth->execute();
+				$CLAVE=$sth->fetch();
+				if($CLAVE){
+					$passPOST=md5(trim($pass));
+					$sql="update clientes set nombre=:nombre, apellido=:apellido, correo=:correo, pass=:pass where id=:id";
+					$sth = $this->dbh->prepare($sql);
+					$sth->bindValue(":id",$_SESSION['idcliente']);
+					$sth->bindValue(":nombre",$nombre);
+					$sth->bindValue(":apellido",$apellido);
+					$sth->bindValue(":correo",$correo);
+					$sth->bindValue(":pass",$passPOST);
+					if($sth->execute()){
+						$_SESSION['autoriza_web']=1;
+						$_SESSION['correo']=$correo;
+						$_SESSION['idcliente']=$_SESSION['idcliente'];
+						$_SESSION['interno']=1;
+					}
+				}
+				else {
+					$sql="insert into clientes (nombre, apellido, correo) values (:nombre, :apellido, :correo, :pass)";
+					$sth = $this->dbh->prepare($sql);
+					$sth->bindValue(":nombre",$nombre);
+					$sth->bindValue(":apellido",$apellido);
+					$sth->bindValue(":correo",$correo);
+					$sth->bindValue(":pass",$passPOST);
+					$sth->execute();
+					return "No existe".$_SESSION['idcliente'];
+				}
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
 		}
 		public function acceso(){
 			//Obtenemos los datos del formulario de acceso
@@ -102,6 +145,69 @@
 			catch(PDOException $e){
 				return "Database access FAILED!".$e->getMessage();
 			}
+		}
+		public function datos(){
+			try{
+				$sql="SELECT * FROM clientes where id=:id";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(":id",$_SESSION['idcliente']);
+				$sth->execute();
+				return $sth->fetch(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
+		public function datos_update(){
+			try{
+				$nombre = trim(htmlspecialchars($_REQUEST["nombre"]));
+				$apellido = trim(htmlspecialchars($_REQUEST["apellido"]));
+				$rfc = trim(htmlspecialchars($_REQUEST["rfc"]));
+				$cfdi = trim(htmlspecialchars($_REQUEST["cfdi"]));
+				$direccion1 = trim(htmlspecialchars($_REQUEST["direccion1"]));
+				$direccion2 = trim(htmlspecialchars($_REQUEST["direccion2"]));
+				$ciudad = trim(htmlspecialchars($_REQUEST["ciudad"]));
+				$cp = trim(htmlspecialchars($_REQUEST["cp"]));
+				$pais = trim(htmlspecialchars($_REQUEST["pais"]));
+				$pais = trim(htmlspecialchars($_REQUEST["pais"]));
+				$estado = trim(htmlspecialchars($_REQUEST["estado"]));
+				$telefono = trim(htmlspecialchars($_REQUEST["telefono"]));
+
+				$sql="update clientes set nombre=:nombre, apellido=:apellido, rfc=:rfc, cfdi=:cfdi, direccion1=:direccion1, direccion2=:direccion2, ciudad=:ciudad, cp=:cp, pais=:pais, estado=:estado, telefono=:telefono  where id=:id";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(":nombre",$nombre);
+				$sth->bindValue(":apellido",$apellido);
+				$sth->bindValue(":rfc",$rfc);
+				$sth->bindValue(":cfdi",$cfdi);
+				$sth->bindValue(":direccion1",$direccion1);
+				$sth->bindValue(":direccion2",$direccion2);
+				$sth->bindValue(":ciudad",$ciudad);
+				$sth->bindValue(":cp",$cp);
+				$sth->bindValue(":pais",$pais);
+				$sth->bindValue(":estado",$estado);
+				$sth->bindValue(":telefono",$telefono);
+				$sth->bindValue(":id",$_SESSION['idcliente']);
+
+				if($sth->execute()){
+					$arr=array();
+					$arr+=array('error'=>0);
+					$arr+=array('terror'=>"");
+					return json_encode($arr);
+				}
+				else{
+					$arr=array();
+					$arr+=array('error'=>1);
+					$arr+=array('terror'=>"");
+					return json_encode($arr);
+				}
+			}
+			catch(PDOException $e){
+				$arr=array();
+				$arr+=array('error'=>1);
+				$arr+=array('terror'=>$e->getMessage());
+				return json_encode($arr);
+			}
+
 		}
 		public function salir(){
 			$_SESSION['autoriza_web']=0;
@@ -247,10 +353,10 @@
 			}
 		}
 
-		public function carro(){
+		public function carro_list(){
 			try{
 				self::set_names();
-				$sql="select * from cliente_carro
+				$sql="select cliente_carro.id, productos.img, productos.nombre, productos.preciof from cliente_carro
 				left outer join productos on productos.id=cliente_carro.idproducto
 				where cliente_carro.idcliente=:id";
 				$sth = $this->dbh->prepare($sql);
@@ -295,6 +401,19 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
+		public function borra_carrito(){
+			try{
+				self::set_names();
+				$id=$_REQUEST['id'];
+				$sql="delete from cliente_carro where id=:id";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(":id",$id);
+				$a=$sth->execute();
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
 		public function wish(){
 			try{
 				self::set_names();
@@ -315,10 +434,23 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
+		public function borra_wish(){
+			try{
+				self::set_names();
+				$id=$_REQUEST['id'];
+				$sql="delete from cliente_wish where id=:id";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(":id",$id);
+				$a=$sth->execute();
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
 		public function wish_list(){
 			try{
 				self::set_names();
-				$sql="select * from cliente_wish
+				$sql="select productos.id, productos.img, productos.nombre, productos.preciof, cliente_wish.id as cliid from cliente_wish
 				left outer join productos on productos.id=cliente_wish.idproducto
 				where cliente_wish.idcliente=:id";
 				$sth = $this->dbh->prepare($sql);

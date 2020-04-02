@@ -26,7 +26,7 @@
               <div class="user_icon"><img src="images/user.svg" alt=""></div>
               <?php
                 if(isset($_SESSION['autoriza_web']) and $_SESSION['autoriza_web']==1 and strlen($_SESSION['idcliente'])>0 and $_SESSION['interno']==1){
-                  echo "<div><a href='cart.php'>".$_SESSION['correo']."</a></div>";
+                  echo "<div><a href='datos.php'>".$_SESSION['correo']."</a></div>";
                   echo "<div><a href='#' onclick='salir()'>Salir</a></div>";
                 }
     						else{

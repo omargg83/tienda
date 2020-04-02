@@ -49,7 +49,7 @@
 						</div>
 						<div class="col-4 offset-4 text-center"><br>
 							<button class='btn btn-outline-primary btn-block btn-sm' type='submit'><i class='fa fa-check'></i>Aceptar</button>
-							<a class='btn btn-outline-primary btn-block btn-sm' type='button' href='registro.php'><i class='fa fa-check'></i>Registrar</a>
+							<a class='btn btn-outline-primary btn-block btn-sm' type='button' href='registro.php'><i class='fas fa-clipboard-check'></i>Registrar</a>
 						</div>
 					</div>
 				</div>

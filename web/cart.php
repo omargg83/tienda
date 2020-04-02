@@ -1,7 +1,7 @@
 <?php
 	require_once("control_db.php");
 	$db = new Tienda();
-	$carro=$db->carro();
+	$carro=$db->carro_list();
 ?>
 
 <!DOCTYPE html>
@@ -31,66 +31,71 @@
 	</header>
 
 	<!-- Cart -->
-	<div class="cart_section">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-10 offset-lg-1">
-					<div class="cart_container">
-						<div class="cart_title">Carrito de compras</div>
-						<div class="cart_items">
-							<ul class="cart_list">
-								<?php
-									$total=0;
-									foreach($carro as $key){
-										echo "<li class='cart_item clearfix'>
-											<div class='cart_item_image'><img src='".$db->doc.$key->img."' alt=''></div>
-											<div class='cart_item_info d-flex flex-md-row flex-column justify-content-between'>
-												<div class='cart_item_name cart_info_col'>
-													<div class='cart_item_title'>Nombre</div>
-													<div class='cart_item_text'>".$key->nombre."</div>
-												</div>
-												<div class='cart_item_color cart_info_col'>
-													<div class='cart_item_title'>Color</div>
-													<div class='cart_item_text'><span style='background-color:#999999;'></span>Silver</div>
-												</div>
-												<div class='cart_item_quantity cart_info_col'>
-													<div class='cart_item_title'>Cantidad</div>
-													<div class='cart_item_text'>1</div>
-												</div>
-												<div class='cart_item_price cart_info_col'>
-													<div class='cart_item_title'>Precio</div>
-													<div class='cart_item_text'>".moneda($key->preciof)."</div>
-												</div>
-												<div class='cart_item_total cart_info_col'>
-													<div class='cart_item_title'>Total</div>
-													<div class='cart_item_text'>".moneda($key->preciof)."</div>
-												</div>
-											</div>
-										</li>";
-										$total+=$key->preciof;
-									}
-								?>
+	<div class='container'>
+		<h3 class='text-center'>Carrito de compras</h3>
 
-							</ul>
-						</div>
+		<div class='row'>
+			<div class='col-8'>
+				<?php
+				$total=0;
+				foreach($carro as $key){
+					echo "<div class='row' style='border-bottom:.5px solid silver'>";
+						echo "<div class='col-3'><img src='".$db->doc.$key->img."' alt='' width='100px'>";
+						echo "</div>";
+							echo "<div class='col-3'>";
+								echo "<div class='cart_item_title'>Nombre</div>";
+									echo "<div class='cart_item_text'>";
+									echo $key->nombre."</div>";
+									echo "<button class='btn btn-warning' onclick='borra_carrito(".$key->id.")'><i class='far fa-trash-alt'></i></button>";
+								echo "</div>
+								<div class='col-2'>
+									<div class='cart_item_title'>Cantidad</div>
+									<div class='cart_item_text text-center'>1</div>
+								</div>
+								<div class='col-2'>
+									<div class='cart_item_title'>Precio</div>
+									<div class='cart_item_text text-right'>".moneda($key->preciof)."</div>
+								</div>
+								<div class='col-2'>
+									<div class='cart_item_title'>Total</div>
+									<div class='cart_item_text text-right'>".moneda($key->preciof)."</div>
+								</div>
+							";
+						echo "</div>";
+					$total+=$key->preciof;
+				}
+				?>
+			</div>
+			<div class='col-4'>
+				<div class="jumbotron">
+					<?php
+						echo "<h4>TOTAL DEL CARRITO</h4>";
+						echo "<div class='row'>";
+							echo "<div class='col-6'>";
+								echo "Subtotal";
+							echo "</div>";
+							echo "<div class='col-6'>";
+								echo moneda($total);
+							echo "</div>";
+						echo "</div>";
 
-						<!-- Order Total -->
-						<div class="order_total">
-							<div class="order_total_content text-md-right">
-								<div class="order_total_title">Order Total:</div>
-								<div class="order_total_amount"><?php echo moneda($total); ?></div>
-							</div>
-						</div>
+						echo "<div class='row'>";
+							echo "<div class='col-6'>";
+								echo "Envío";
+							echo "</div>";
+							echo "<div class='col-6'>";
+								echo moneda($total);
+							echo "</div>";
+						echo "</div>";
 
-						<div class="cart_buttons">
-							<button type="button" class="button cart_button_clear">Add to Cart</button>
-							<button type="button" class="button cart_button_checkout">Add to Cart</button>
-						</div>
-					</div>
+						echo "<a class='btn btn-warning btn-block' href='finalizar.php'><i class='fas fa-cart-plus'></i>Finalizar</a>";
+					?>
 				</div>
 			</div>
 		</div>
+
 	</div>
+
 
 	<!-- Footer -->
 	<footer class="footer">

@@ -38,32 +38,33 @@
 			<?php
 				$total=0;
 				foreach($carro as $key){
-					echo "<div class='row' style='border-bottom:1px solid silver'>";
-						echo "<div class='col-3'><img src='".$db->doc.$key->img."' alt='' width='100px'></div>";
-							echo "
-								<div class='col-3'>
-									<div class='cart_item_title'>Nombre</div>
-									<div class='cart_item_text'>".$key->nombre."</div>
-								</div>
+					echo "<div class='row' style='border-bottom:.5px solid silver'>";
+						echo "<div class='col-3'><img src='".$db->doc.$key->img."' alt='' width='100px'>";
+						echo "</div>";
+							echo "<div class='col-3'>";
+								echo "<div class='cart_item_title'>Nombre</div>";
+									echo "<div class='cart_item_text'>";
+									echo $key->nombre."</div>";
+									echo "<button class='btn btn-warning' onclick='carrito(".$key->id.")'><i class='fas fa-cart-plus'></i></button>";
+									echo "<button class='btn btn-warning' onclick='borra_wish(".$key->cliid.")'><i class='far fa-trash-alt'></i></button>";
+								echo "</div>
 								<div class='col-2'>
 									<div class='cart_item_title'>Cantidad</div>
-									<div class='cart_item_text'>1</div>
+									<div class='cart_item_text text-center'>1</div>
 								</div>
 								<div class='col-2'>
 									<div class='cart_item_title'>Precio</div>
-									<div class='cart_item_text'>".moneda($key->preciof)."</div>
+									<div class='cart_item_text text-right'>".moneda($key->preciof)."</div>
 								</div>
 								<div class='col-2'>
 									<div class='cart_item_title'>Total</div>
-									<div class='cart_item_text'>".moneda($key->preciof)."</div>
+									<div class='cart_item_text text-right'>".moneda($key->preciof)."</div>
 								</div>
 							";
 						echo "</div>";
 					$total+=$key->preciof;
 				}
 			?>
-
-
 	</div>
 
 

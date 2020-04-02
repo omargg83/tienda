@@ -1,7 +1,12 @@
 <?php
 	require_once("control_db.php");
 	$db = new Tienda();
-
+	
+	if(isset($_SESSION['autoriza_web']) and $_SESSION['autoriza_web']==1 and strlen($_SESSION['idcliente'])>0 and $_SESSION['interno']==1){
+		header('Location: datos.php');
+	}
+	else{
+	}
 	$nombre="";
 	$apellido="";
 	$correo="";
@@ -49,30 +54,39 @@
 				<div class="row">
 					<div class="col-4 offset-4">
 			      <label class='text-center'>Apellidos</label>
-			      <input type="text" class="form-control" id="apellido" name='apellido' placeholder="Apellidos" value="<?php echo $apellido; ?>" required>
+			      <input type="text" class="form-control" id="apellido" name='apellido' placeholder="Apellidos" value="<?php echo $apellido; ?>" required autocomplete="off">
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-4 offset-4">
 			      <label class='text-center'>Correo</label>
-			      <input type="text" class="form-control" id="correo" name='correo' placeholder="Correo" value="<?php echo $correo; ?>" required>
+			      <input type="email" class="form-control" id="correo" name='correo' placeholder="Correo" value="<?php echo $correo; ?>" required autocomplete="off">
 			    </div>
-			   </div>
-
+				</div>
 				<div class="row">
-					<div class="col-4">
+					<div class="col-4 offset-4">
 			      <label class='text-center'>Contraseña</label>
-			      <input type="password" class="form-control" id="pass" name='pass' placeholder="Contraseña" value="<?php echo $pass; ?>" required>
-			    </div>
-					<div class="col-4">
+			      <input type="password" class="form-control" id="pass" name='pass' placeholder="Contraseña" value="<?php echo $pass; ?>" required autocomplete="off">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-4 offset-4">
 			      <label class='text-center'>Repetir contraseña</label>
-			      <input type="password" class="form-control" id="pass2" name='pass2' placeholder="Contraseña" value="<?php echo $pass; ?>" required>
+			      <input type="password" class="form-control" id="pass2" name='pass2' placeholder="Contraseña" value="<?php echo $pass; ?>" required autocomplete="off">
 			    </div>
 				</div>
 
 				<div class="row">
-					<div class="col-4">
-						<button type="submit" class="btn btn-primary">Registrar</button>
+					<div class="col-4 offset-4">
+						<button type="submit" class="btn btn-primary btn-block">Registrar</button>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-4 offset-4">
+						<small id="emailHelp" class="form-text text-muted">
+						Al crear una cuenta, aceptas las Condiciones de Uso y el Aviso de Privacidad de TIC-SHOP.
+						¿Ya tienes una cuenta? <a href='acceso.php'>Iniciar sesión</a>
+						</small>
 					</div>
 				</div>
 			</div>
@@ -106,6 +120,11 @@
 <script src="plugins/greensock/ScrollToPlugin.min.js"></script>
 <script src="plugins/easing/easing.js"></script>
 <script src="js/cart_custom.js"></script>
+
+<!--   Alertas   -->
+<script src="librerias15/swal/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="librerias15/swal/dist/sweetalert2.min.css">
+
 
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 <script src="sagyc.js"></script>
