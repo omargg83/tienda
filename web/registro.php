@@ -50,8 +50,10 @@
 					<div class="col-4 offset-4">
 			      <label class='text-center'>Apellidos</label>
 			      <input type="text" class="form-control" id="apellido" name='apellido' placeholder="Apellidos" value="<?php echo $apellido; ?>" required>
-			    </div>
-			    <div class="col-4">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-4 offset-4">
 			      <label class='text-center'>Correo</label>
 			      <input type="text" class="form-control" id="correo" name='correo' placeholder="Correo" value="<?php echo $correo; ?>" required>
 			    </div>
