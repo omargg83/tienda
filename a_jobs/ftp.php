@@ -149,11 +149,11 @@
           return "Database access FAILED! ".$e->getMessage();
         }
         $i++;
-        /*
+
         if ($i==2){
           break;
         }
-        */
+        
     }
 
     /////////////////////////////////////// BUSCAMOS PRODUCTOS QUE NO SE ACTUALIZARON PARA ELIMINAR EXISTENCIAS
