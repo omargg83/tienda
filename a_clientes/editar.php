@@ -137,9 +137,7 @@
 										if($key['envio']==1){
 											echo "<button class='btn btn-outline-secondary btn-sm' type='button' title='Dirección de envio'><i class='fas fa-map-marked-alt'></i></button>";
 										}
-										if($key['factura']==1){
-											echo "<button class='btn btn-outline-secondary btn-sm' type='button'  title='Dirección de facturación'><i class='far fa-id-badge'></i></button>";
-										}
+									
 
 									echo "</div>";
 								echo "</td>";

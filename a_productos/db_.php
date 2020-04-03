@@ -3,10 +3,8 @@ require_once("../control_db.php");
 if (isset($_REQUEST['function'])){$function=$_REQUEST['function'];}	else{ $function="";}
 
 class Productos extends Tienda{
-
 	public function __construct(){
 		parent::__construct();
-
 		$this->doc1="a_imagen/";
 		$this->doc="a_imagenextra/";
 	}
@@ -18,7 +16,7 @@ class Productos extends Tienda{
 				$sql="SELECT * from productos where clave like '%$texto%' or nombre like '%$texto%' or modelo like '%$texto%' or marca like '%$texto%' or idProducto like '%$texto%' limit 100";
 			}
 			else{
-				$sql="SELECT * from productos limit 100";
+				$sql="SELECT * from productos order by id desc limit 100";
 			}
 			$sth = $this->dbh->prepare($sql);
 			$sth->execute();

@@ -73,7 +73,7 @@
           $sql="select idProducto from productos where idProducto='".$product['idProducto']."' limit 1";
           $stmt= $db->dbh->query($sql);
           if($stmt->rowCount()==0){
-            $sql="insert into productos (idProducto, clave, numParte, nombre, modelo, idMarca, marca, idCategoria, categoria, idSubCategoria, subcategoria, descripcion_corta, precio, moneda, tipoCambio, preciof, imagen, upc, activo, modificado, interno) values (:idProducto, :clave, :numParte, :nombre, :modelo, :idMarca, :marca, :idCategoria, :categoria, :idSubCategoria, :subcategoria, :descripcion_corta, :precio, :moneda, :tipoCambio, :preciof,:imagen, :upc, :activo, :modificado, :interno)";
+            $sql="insert into productos (idProducto, clave, numParte, nombre, modelo, idMarca, marca, idCategoria, categoria, idSubCategoria, subcategoria, descripcion_corta, precio, moneda, tipoCambio, preciof, imagen, upc, activo, modificado, interno, alta) values (:idProducto, :clave, :numParte, :nombre, :modelo, :idMarca, :marca, :idCategoria, :categoria, :idSubCategoria, :subcategoria, :descripcion_corta, :precio, :moneda, :tipoCambio, :preciof,:imagen, :upc, :activo, :modificado, :interno, :alta)";
             $sth = $db->dbh->prepare($sql);
             $sth->bindValue(':idProducto', $product['idProducto']);
             $sth->bindValue(':clave', $product['clave']);
@@ -89,12 +89,12 @@
             $sth->bindValue(':descripcion_corta', $product['descripcion_corta']);
             $sth->bindValue(':imagen', $product['imagen']);
             $sth->bindValue(':upc', $product['upc']);
+            $sth->bindValue(':alta', $fmodif);
           }
           else{
             $sql="update productos set precio=:precio, moneda=:moneda, tipoCambio=:tipoCambio, preciof=:preciof, imagen=:imagen, activo=:activo, modificado=:modificado, interno=:interno where idProducto='".$product['idProducto']."'";
             $sth = $db->dbh->prepare($sql);
           }
-
           //////////////////////////// SOLO SE ACTUALIZAN UNOS CAMPOS
           $sth->bindValue(':precio', $product['precio']);
           $sth->bindValue(':moneda', $product['moneda']);

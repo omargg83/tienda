@@ -2,12 +2,6 @@
   require_once("db_.php");
 ?>
 <nav class='navbar navbar-expand-sm navbar-dark fixed-top bg-dark' style='opacity:1;'>
-  <button class='btn btn-outline-secondary' type='button' id='sidebarCollapse'>
-    <span class='navbar-toggler-icon'></span>
-  </button>
-
-
-
 
   <a class='navbar-brand' href='#escritorio/dashboard'>Tic Shop</a>
 

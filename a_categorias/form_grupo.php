@@ -11,19 +11,21 @@
 	<?php
 		echo "<input  type='hidden' id='id' NAME='id' value='$id'>";
 	?>
-		<p class='input_title'>Categorias:</p>
+		<p class='input_title'>Categorias (CT):</p>
 		<div class='form-group input-group'>
 			<div class='input-group-prepend'>
 				<span class='input-group-text'> <i class='fas fa-user-circle'></i>
 			</div>
 			<?php
-				echo "<select class='form-control' name='categoria' id='categoria' >";
+				echo "<select class='form-control' name='categoria' id='categoria' onchange='subcat()'>";
 				foreach($cat as $key){
 					echo  "<option value='".$key['id']."'";
 					echo  ">".$key['categoria']."</option>";
 				}
 				echo  "</select>";
 			?>
+		</div>
+		<div id='resp'>
 
 		</div>
 

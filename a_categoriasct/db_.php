@@ -12,10 +12,10 @@ class Categorias extends Tienda{
 			parent::set_names();
 			if (isset($_REQUEST['buscar']) and strlen(trim($_REQUEST['buscar']))>0){
 				$texto=trim(htmlspecialchars($_REQUEST['buscar']));
-				$sql="SELECT * from categorias where descripcion like '%$texto%' limit 100";
+				$sql="SELECT * from categoria_ct where categoria like '%$texto%'";
 			}
 			else{
-				$sql="SELECT * from categorias order by orden asc";
+				$sql="SELECT * from categoria_ct";
 			}
 			$sth = $this->dbh->prepare($sql);
 			$sth->execute();
@@ -28,7 +28,7 @@ class Categorias extends Tienda{
 	public function categoria_editar($id){
 		try{
 			parent::set_names();
-			$sql="select * from categorias where idcategoria=:id";
+			$sql="select * from categoria_ct where id=:id";
 			$sth = $this->dbh->prepare($sql);
 			$sth->bindValue(':id', "$id");
 			$sth->execute();
@@ -38,37 +38,71 @@ class Categorias extends Tienda{
 			return "Database access FAILED!".$e->getMessage();
 		}
 	}
-	public function agrupa_cat(){
+	public function guardar_categoriact(){
 		try{
 			parent::set_names();
-			$sql="SELECT * from categoria_ct";
-			$sth = $this->dbh->prepare($sql);
-			$sth->execute();
-			return $sth->fetchAll();
+			$id=$_REQUEST['id'];
+			$arreglo =array();
+
+			if (isset($_REQUEST['categoria'])){
+				$arreglo = array('categoria'=>$_REQUEST['categoria']);
+			}
+			if (isset($_REQUEST['heredado'])){
+				$arreglo = array('heredado'=>$_REQUEST['heredado']);
+			}
+
+			$x="";
+			if($id==0){
+				$arreglo = array('interno'=>1);
+				$x=$this->insert('categoria_ct', $arreglo);
+			}
+			else{
+				$x=$this->update('categoria_ct',array('id'=>$id), $arreglo);
+			}
+			return $x;
 		}
 		catch(PDOException $e){
 			return "Database access FAILED!".$e->getMessage();
 		}
 	}
-	public function agrega_categoria(){
+
+
+	public function edita_subcat($id){
+		try{
+			parent::set_names();
+			$sql="SELECT * from categoriasub_ct where id='$id'";
+			$sth = $this->dbh->prepare($sql);
+			$sth->execute();
+			return $sth->fetch(PDO::FETCH_OBJ);
+		}
+		catch(PDOException $e){
+			return "Database access FAILED!".$e->getMessage();
+		}
+	}
+	public function agrega_subcategoria(){
 		try{
 			parent::set_names();
 			$id=$_REQUEST['id'];
-			$categoria=$_REQUEST['categoria'];
+			$idcategoria=$_REQUEST['idcategoria'];
 			$arreglo =array();
-			$arreglo+= array('idcategoria'=>$id);
-			$arreglo+= array('idcategoria_ct'=>$categoria);
-			$x=$this->insert('producto_cat', $arreglo);
 
-			$tmp=json_decode($x);
-			$arreglo=array();
-			$arreglo+=array('id'=>$id);
-			$arreglo+=array('error'=>$tmp->error);
-			$arreglo+=array('terror'=>$tmp->terror);
-			$arreglo+=array('param1'=>$tmp->id);
-			$arreglo+=array('param2'=>"");
-			$arreglo+=array('param3'=>"");
-			return json_encode($arreglo);
+			if (isset($_REQUEST['subcategoria'])){
+				$arreglo = array('subcategoria'=>$_REQUEST['subcategoria']);
+			}
+			if (isset($_REQUEST['heredado'])){
+				$arreglo = array('heredado'=>$_REQUEST['heredado']);
+			}
+
+			$x="";
+			if($id==0){
+				$arreglo = array('interno'=>1);
+				$arreglo = array('idcategoria'=>$idcategoria);
+				$x=$this->insert('categoriasub_ct', $arreglo);
+			}
+			else{
+				$x=$this->update('categoriasub_ct',array('id'=>$id), $arreglo);
+			}
+			return $x;
 		}
 		catch(PDOException $e){
 			return "Database access FAILED!".$e->getMessage();
@@ -77,9 +111,7 @@ class Categorias extends Tienda{
 	public function producto_cat($idcategoria){
 		try{
 			parent::set_names();
-			$sql="SELECT * from producto_cat
-			left outer join categoria_ct on categoria_ct.id=producto_cat.idcategoria_ct
-			where idcategoria=:id";
+			$sql="SELECT * from categoriasub_ct where idcategoria=:id";
 			$sth = $this->dbh->prepare($sql);
 			$sth->bindValue(':id', $idcategoria);
 			$sth->execute();
@@ -89,39 +121,10 @@ class Categorias extends Tienda{
 			return "Database access FAILED!".$e->getMessage();
 		}
 	}
-	public function guardar_categoria(){
-		try{
-			parent::set_names();
-			$id=$_REQUEST['id'];
-			$arreglo =array();
-
-			if (isset($_REQUEST['orden'])){
-				$arreglo = array('orden'=>$_REQUEST['orden']);
-			}
-
-			if (isset($_REQUEST['descripcion'])){
-				$arreglo = array('descripcion'=>$_REQUEST['descripcion']);
-			}
-
-
-			$x="";
-			if($id==0){
-				$x=$this->insert('categorias', $arreglo);
-			}
-			else{
-				$x=$this->update('categorias',array('idcategoria'=>$id), $arreglo);
-			}
-			return $x;
-		}
-		catch(PDOException $e){
-			return "Database access FAILED!".$e->getMessage();
-		}
-	}
 	public function quitar_categoria(){
 		if (isset($_POST['id'])){$id=$_REQUEST['id'];}
 		return $this->borrar('producto_cat',"idcatprod",$id);
 	}
-
 	public function busca_sub(){
 		try{
 			$cat=$_REQUEST['categoria'];

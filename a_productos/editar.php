@@ -60,8 +60,8 @@
 		$preciof=$per->preciof;
 		$existencia=$per->existencia;
 		$precio_tic=$per->precio_tic;
-		$interno=$per->interno;
 		$costo_envio=$per->costo_envio;
+		$interno=$per->interno;
 	}
 	$bloqueo="";
 	if ($interno==0){
@@ -104,11 +104,14 @@
 							 <label for="sku">Clave</label>
 							 <input type="text" class="form-control form-control-sm" id="clave" name='clave' placeholder="CLAVE" value="<?php echo $clave; ?>" <?php  echo $bloqueo;  ?> >
 						 </div>
-
-						 <div class="col-4">
-							 <label for="sku">Idproducto (CT)</label>
-							 <input type="text" class="form-control form-control-sm" id="idProducto" name='idProducto' placeholder="CLAVE" value="<?php echo $idProducto; ?>"  <?php  echo $bloqueo;  ?>>
-						 </div>
+						 <?php
+							 if($interno!=1){
+								 echo "<div class='col-4'>";
+								 echo "<label for='sku'>Idproducto (CT)</label>";
+								 echo "<input type='text' class='form-control form-control-sm' id='idProducto' name='idProducto' placeholder='CLAVE' value='$idProducto' $bloqueo>";
+								 echo "</div>";
+							 }
+						 ?>
 
 					    <div class="col-4">
 					      <label for="nombre">Numero de parte (CT)</label>

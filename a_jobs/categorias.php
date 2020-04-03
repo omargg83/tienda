@@ -37,48 +37,20 @@
         }
         else{
           echo "<br>NO existe subcat";
-          $sql="insert into categoriasub_ct (idcategoria, subcategoria) values('".$cat['id']."','".$key2['subcategoria']."')";
+          $sql="insert into categoriasub_ct (idcategoria, subcategoria, interno) values('".$cat['id']."','".$key2['subcategoria']."', 0)";
           echo $sql;
           echo "<br>";
 
           $cat_inserta = $db->dbh->prepare($sql);
           $cat_inserta->execute();
-
         }
-
-
       }
-
     }
     else{
       ///////////////inserta en categorias si no existe
-      $sql="insert into categoria_ct (categoria) as values(".$key['categoria'].")";
+      $sql="insert into categoria_ct (categoria, heredado, interno) as values('".$key['categoria']."','".$key['categoria']."', 0)";
       $cat_inserta = $db->dbh->prepare($sql);
       $cat_inserta->execute();
     }
-
-    //if (is_array($product['existencia'])){
-    /*
-
-    $stmt2= $db->dbh->query($sql);
-    if($stmt2->rowCount()==0){
-
-      echo "<br>-----------NO EXISTE";
-      //$sql="insert into categoria_ct (categoria) as values(".$key['categoria'].")";
-      //$sth = $db->dbh->prepare($sql);
-
-
-
-    }
-    else{
-      echo "<br>--------------Existe";
-      echo $stmt2
-
-
-
-    }
-    */
   }
-
-
- ?>
+?>

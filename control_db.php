@@ -86,7 +86,7 @@
 					$x.="<img src='img/escudo.png' width='40' height='30' alt=''>";
 					$x.="<img src='img/SSH.png' width='40' height='30' alt=''>";
 					*/
-					$x.="<a class='navbar-brand' href='#escritorio/dashboard' style='font-size:10px'>Tic Shop</a>";
+					$x.="<a class='navbar-brand' href='#escritorio/dashboard' style='font-size:10px'>Tic Shop ASASD</a>";
 
 					$x.="<button class='navbar-toggler navbar-toggler-right' type='button' data-toggle='collapse' data-target='#principal' aria-controls='principal' aria-expanded='false' aria-label='Toggle navigation'>";
 						$x.="<i class='fab fa-rocketchat'></i>";

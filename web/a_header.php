@@ -6,7 +6,6 @@
     $res=$db->carrito_sum();
     $contar=$res->contar;
     $sumar=$res->sumar;
-
     $res2=$db->wish_sum();
     $contar_wish=$res2->contar;
   }
@@ -134,10 +133,10 @@
                       <ul>";
                       foreach($db->cat_ct($key->idcategoria) as $key2){
                         echo "<li class='hassubs'>
-                            <a href='shop.php?cat1=".$key2->id."&ncat=".$key2->categoria."'>".$key2->categoria."<i class='fas fa-chevron-right'></i></a>
+                            <a href='shop.php?cat1=".$key2->id."&ncat=".$key2->categoria."'>".$key2->heredado."<i class='fas fa-chevron-right'></i></a>
                             <ul>";
                             foreach($db->sub_cat($key2->id) as $key3){
-                              echo " <li><a href='shop.php?sub=".$key3->id."&ncat=".$key3->subcategoria."'>".$key3->subcategoria."<i class='fas fa-chevron-right'></i></a></li>";
+                              echo " <li><a href='shop.php?sub=".$key3->id."&ncat=".$key3->subcategoria."'>".$key3->heredado."<i class='fas fa-chevron-right'></i></a></li>";
                             }
                             echo "</ul>";
                           echo "</li>";

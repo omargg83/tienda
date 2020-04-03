@@ -17,7 +17,10 @@
           </div>
 				</div>
  				<li class='nav-item active'><a class='nav-link barranav' title='Mostrar todo' id='new_poliza' data-lugar='a_clientes/editar'><i class="fas fa-folder-plus"></i><span>Nuevo</span></a></li>
- 				<li class='nav-item active'><a class='nav-link barranav' title='Mostrar todo' id='lista_prod' data-lugar='a_clientes/lista'><i class="fas fa-list"></i><span>Lista</span></a></li>
+
+ 				<li class='nav-item active'><a class='nav-link barranav' title='Mostrar todo' id='lista_prod' data-lugar='a_clientes/lista'><i class="fas fa-list"></i><span>Registrados</span></a></li>
+
+        <li class='nav-item active'><a class='nav-link barranav' title='Mostrar todo' id='lista_sin' data-lugar='a_clientes/lista_sin'><i class="fas fa-list"></i><span>Sin registro</span></a></li>
       </li>
  			</ul>
  		</div>

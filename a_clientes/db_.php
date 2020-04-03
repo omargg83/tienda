@@ -12,11 +12,23 @@ class Clientes extends Tienda{
 			parent::set_names();
 			if (isset($_REQUEST['buscar']) and strlen(trim($_REQUEST['buscar']))>0){
 				$texto=trim(htmlspecialchars($_REQUEST['buscar']));
-				$sql="SELECT * from clientes where nombre like '%$texto%' or apellido like '%$texto%' or correo like '%$texto%' limit 100";
+				$sql="SELECT * from clientes where correo is not null and (nombre like '%$texto%' or apellido like '%$texto%' or correo like '%$texto%') limit 100";
 			}
 			else{
-				$sql="SELECT * from clientes";
+				$sql="SELECT * from clientes where correo is not null";
 			}
+			$sth = $this->dbh->prepare($sql);
+			$sth->execute();
+			return $sth->fetchAll();
+		}
+		catch(PDOException $e){
+			return "Database access FAILED! ".$e->getMessage();
+		}
+	}
+	public function clientes_listasin(){
+		try{
+			parent::set_names();
+			$sql="SELECT * from clientes where correo is null";
 			$sth = $this->dbh->prepare($sql);
 			$sth->execute();
 			return $sth->fetchAll();

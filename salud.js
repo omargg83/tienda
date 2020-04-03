@@ -41,7 +41,7 @@
 					else{
 						$("body").css("background-image","url('fondo/ssh.jpg')");
 					}
-					setTimeout(fondos, 2000);
+					setTimeout(fondos, 15000);
 					loadContent(location.hash.slice(1));
 				}
 				$("#cargando").removeClass("is-active");

@@ -105,7 +105,7 @@
 			<?php
 				if($id>0){
 					echo "<button class='btn btn-outline-secondary btn-sm' type='button' id='acceso' title='Dirección de envío' onclick='dir_envio($id,$id2)'><i class='fas fa-map-marked-alt'></i>Envío</button>";
-					echo "<button class='btn btn-outline-secondary btn-sm' type='button' id='acceso' title='Dirección de facturación' onclick='dir_factura($id,$id2)'><i class='far fa-id-badge'></i>Facturación</button>";
+				
 				}
 			?>
 			<button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal" title='Cancelar'><i class="fas fa-sign-out-alt"></i>Cancelar</button>

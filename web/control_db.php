@@ -216,7 +216,7 @@
 		public function categorias(){
 			try{
 				self::set_names();
-				$sql="select * from categorias";
+				$sql="select * from categorias order by orden asc";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
 				return $sth->fetchAll(PDO::FETCH_OBJ);
@@ -228,7 +228,7 @@
 		public function cat_ct($id){
 			try{
 				self::set_names();
-				$sql="SELECT categoria_ct.id, categoria_ct.categoria from producto_cat left outer join categoria_ct on categoria_ct.id=producto_cat.idcategoria_ct where producto_cat.idcategoria=:id";
+				$sql="SELECT categoria_ct.id, categoria_ct.categoria, categoria_ct.heredado from producto_cat left outer join categoria_ct on categoria_ct.id=producto_cat.idcategoria_ct where producto_cat.idcategoria=:id";
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(':id', "$id");
 				$sth->execute();

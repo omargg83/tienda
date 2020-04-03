@@ -20,6 +20,30 @@ class Reporte extends Tienda{
 			return "Database access FAILED!".$e->getMessage();
 		}
 	}
+	public function productos_top(){
+		try{
+			parent::set_names();
+			$sql="select * from productos where existencia>0 and activo=1 order by id desc limit 10";
+			$sth = $this->dbh->prepare($sql);
+			$sth->execute();
+			return $sth->fetchAll(PDO::FETCH_OBJ);
+		}
+		catch(PDOException $e){
+			return "Database access FAILED!".$e->getMessage();
+		}
+	}
+	public function pedidos_top(){
+		try{
+			parent::set_names();
+			$sql="select * from pedidos order by id desc limit 10";
+			$sth = $this->dbh->prepare($sql);
+			$sth->execute();
+			return $sth->fetchAll(PDO::FETCH_OBJ);
+		}
+		catch(PDOException $e){
+			return "Database access FAILED!".$e->getMessage();
+		}
+	}
 
 
 }
