@@ -153,9 +153,9 @@
         if ($i==2){
           break;
         }
-        
-    }
 
+    }
+/*
     /////////////////////////////////////// BUSCAMOS PRODUCTOS QUE NO SE ACTUALIZARON PARA ELIMINAR EXISTENCIAS
     $sql="select * from productos where modificado!='$fmodif' and interno=0";
     $stmt= $db->dbh->query($sql);
@@ -175,7 +175,7 @@
       $sth4->bindValue(':idproducto', $key['idProducto']);
       $sth4->execute();
     }
-
+*/
     $date=date("YmdHis");
     $file="file_".$date.".json";
     rename($destino, "../historial/$file");
