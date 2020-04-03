@@ -16,6 +16,8 @@
   //$compara=mktime(date("H"),date("i"),date("s"),date("m"),date("d"),date("Y"))-900;
   //$sql="select * from productos where timeexis<$compara order by timeexis asc limit 75";
 
+  echo $tok;
+/*
   $fecha=mktime(date("H"),date("i"),date("s"),date("m"),date("d"),date("Y"));
   $sql="select * from productos where interno=0 order by timeexis asc limit 10";
   $fmodif = date("Y-m-d H:i:s");
@@ -43,5 +45,5 @@
 
   }
 
-
+*/
 ?>
