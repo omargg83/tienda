@@ -105,42 +105,42 @@
           $sth->bindValue(':activo', $product['activo']);
           $sth->bindValue(':modificado', $fmodif);
           $sth->bindValue(':interno', 0);
-          $sth->execute();
-
-          //////////////////////////// SE BORRAN LAS EXISTENCIAS DEL PRODUCTO PARA ACTUALIZARLAS
-          $sql="delete from producto_exist where idProducto='".$product['idProducto']."'";
-          $sth3 = $db->dbh->prepare($sql);
-          $sth3->execute();
-
-          ///////////////////////////  SE ACTUALIZAN LAS EXISTENCIAS CADA HORA
-          if (is_array($product['existencia'])){
-            while (current($product['existencia'])) {
-              $name=key($product['existencia']);
-              $valor=$product['existencia'][$name];
-
-              $sql="insert into producto_exist (idProducto, almacen, existencia) values (:idProducto, :almacen, :existencia)";
-              $sth2 = $db->dbh->prepare($sql);
-              $sth2->bindValue(':idProducto', $product['idProducto']);
-              $sth2->bindValue(':almacen', $name);
-              $sth2->bindValue(':existencia', $valor);
-              $sth2->execute();
-              next($product['existencia']);
-            }
-          }
-
-          ////////////////////////////  SE ACTUALIZAN LAS ESPECIFICACIONES A LAS 8 DE LA MAÑANA Y LAS 8 DE LA NOCHE
-          if ($update_hora==8 OR $update_hora=20){
-            $sql="delete from producto_espe where idProducto='".$product['idProducto']."'";
+          if($sth->execute()){
+            //////////////////////////// SE BORRAN LAS EXISTENCIAS DEL PRODUCTO PARA ACTUALIZARLAS
+            $sql="delete from producto_exist where idProducto='".$product['idProducto']."'";
             $sth3 = $db->dbh->prepare($sql);
             $sth3->execute();
-            if (is_array($product['especificaciones'])){
-              foreach($product['especificaciones'] as $key){
-                $sql="insert into producto_espe (idProducto, tipo, valor) values (:idProducto, :tipo, :valor)";
+
+            ///////////////////////////  SE ACTUALIZAN LAS EXISTENCIAS CADA HORA
+            if (is_array($product['existencia'])){
+              while (current($product['existencia'])) {
+                $name=key($product['existencia']);
+                $valor=$product['existencia'][$name];
+
+                $sql="insert into producto_exist (idProducto, almacen, existencia) values (:idProducto, :almacen, :existencia)";
                 $sth2 = $db->dbh->prepare($sql);
                 $sth2->bindValue(':idProducto', $product['idProducto']);
-                $sth2->bindValue(':tipo', $key['tipo']);
-                $sth2->bindValue(':valor', $key['valor']);
+                $sth2->bindValue(':almacen', $name);
+                $sth2->bindValue(':existencia', $valor);
                 $sth2->execute();
+                next($product['existencia']);
+              }
+            }
+
+            ////////////////////////////  SE ACTUALIZAN LAS ESPECIFICACIONES A LAS 8 DE LA MAÑANA Y LAS 8 DE LA NOCHE
+            if ($update_hora==8 OR $update_hora=20){
+              $sql="delete from producto_espe where idProducto='".$product['idProducto']."'";
+              $sth3 = $db->dbh->prepare($sql);
+              $sth3->execute();
+              if (is_array($product['especificaciones'])){
+                foreach($product['especificaciones'] as $key){
+                  $sql="insert into producto_espe (idProducto, tipo, valor) values (:idProducto, :tipo, :valor)";
+                  $sth2 = $db->dbh->prepare($sql);
+                  $sth2->bindValue(':idProducto', $product['idProducto']);
+                  $sth2->bindValue(':tipo', $key['tipo']);
+                  $sth2->bindValue(':valor', $key['valor']);
+                  $sth2->execute();
+                }
               }
             }
           }
@@ -150,11 +150,13 @@
         }
         $i++;
 
-        if ($i==2){
+        if ($i==100){
+          echo "cancela";
           break;
         }
 
     }
+
 /*
     /////////////////////////////////////// BUSCAMOS PRODUCTOS QUE NO SE ACTUALIZARON PARA ELIMINAR EXISTENCIAS
     $sql="select * from productos where modificado!='$fmodif' and interno=0";
@@ -175,10 +177,11 @@
       $sth4->bindValue(':idproducto', $key['idProducto']);
       $sth4->execute();
     }
-*/
+
     $date=date("YmdHis");
     $file="file_".$date.".json";
     rename($destino, "../historial/$file");
+    */
   }
 
 
