@@ -26,6 +26,8 @@
 
     $servicio = "existencia/$clave/TOTAL";
     $metodo="GET";
+    echo "<br>".$tok;
+    echo "<br>".$servicio;
     $resp =servicioApi($metodo,$servicio,NULL,$tok);
     $existencia=$resp->existencia_total;
 
