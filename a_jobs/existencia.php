@@ -9,7 +9,7 @@
   	}
   }
   $db = new Existencia();
-  
+
   $resp = crearNuevoToken();
   $tok=$resp->token;
 
@@ -17,7 +17,7 @@
   //$sql="select * from productos where timeexis<$compara order by timeexis asc limit 75";
 
   $fecha=mktime(date("H"),date("i"),date("s"),date("m"),date("d"),date("Y"));
-  $sql="select * from productos where interno=0 order by timeexis asc limit 75";
+  $sql="select * from productos where interno=0 order by timeexis asc limit 10";
   $fmodif = date("Y-m-d H:i:s");
 
   $stmt= $db->dbh->query($sql);
