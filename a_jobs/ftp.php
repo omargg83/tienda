@@ -49,6 +49,7 @@
   if (file_exists ($destino)){
     unlink($destino);          //////////////////SE BORRA EL ANTERIOR JSON EN CASO DE EXISTIR
   }
+
   $ftp->descargar("catalogo_xml/productos.json",$destino,FTP_BINARY);
   $ftp->desconectar();
 
@@ -64,7 +65,7 @@
     $data = file_get_contents($destino);
     $products = json_decode($data, true);
     $x="";
-
+    $nuevo=0;
     $i=0;
     ////////////////////////////////////     SE RECORRE CADA PRODUCTO DEL JSON
     foreach ($products as $product) {
@@ -72,7 +73,9 @@
           ////////////////////////BUSCAMOS EL PRODUCTO DEL JSON SI EXISTE SOLO SE ACTUALIZA, SI NO EXISE SE INGRESA
           $sql="select idProducto from productos where idProducto='".$product['idProducto']."' limit 1";
           $stmt= $db->dbh->query($sql);
+          //echo "<br>".$product['idProducto'];
           if($stmt->rowCount()==0){
+            $nuevo=1;
             $sql="insert into productos (idProducto, clave, numParte, nombre, modelo, idMarca, marca, idCategoria, categoria, idSubCategoria, subcategoria, descripcion_corta, precio, moneda, tipoCambio, preciof, imagen, upc, activo, modificado, interno, alta) values (:idProducto, :clave, :numParte, :nombre, :modelo, :idMarca, :marca, :idCategoria, :categoria, :idSubCategoria, :subcategoria, :descripcion_corta, :precio, :moneda, :tipoCambio, :preciof,:imagen, :upc, :activo, :modificado, :interno, :alta)";
             $sth = $db->dbh->prepare($sql);
             $sth->bindValue(':idProducto', $product['idProducto']);
@@ -92,9 +95,11 @@
             $sth->bindValue(':alta', $fmodif);
           }
           else{
+            $nuevo=0;
             $sql="update productos set precio=:precio, moneda=:moneda, tipoCambio=:tipoCambio, preciof=:preciof, imagen=:imagen, activo=:activo, modificado=:modificado, interno=:interno where idProducto='".$product['idProducto']."'";
             $sth = $db->dbh->prepare($sql);
           }
+
           //////////////////////////// SOLO SE ACTUALIZAN UNOS CAMPOS
           $sth->bindValue(':precio', $product['precio']);
           $sth->bindValue(':moneda', $product['moneda']);
@@ -105,6 +110,7 @@
           $sth->bindValue(':activo', $product['activo']);
           $sth->bindValue(':modificado', $fmodif);
           $sth->bindValue(':interno', 0);
+
           if($sth->execute()){
             //////////////////////////// SE BORRAN LAS EXISTENCIAS DEL PRODUCTO PARA ACTUALIZARLAS
             $sql="delete from producto_exist where idProducto='".$product['idProducto']."'";
@@ -128,7 +134,7 @@
             }
 
             ////////////////////////////  SE ACTUALIZAN LAS ESPECIFICACIONES A LAS 8 DE LA MAÑANA Y LAS 8 DE LA NOCHE
-            if ($update_hora==8 OR $update_hora=20){
+            if ($nuevo==1){
               $sql="delete from producto_espe where idProducto='".$product['idProducto']."'";
               $sth3 = $db->dbh->prepare($sql);
               $sth3->execute();
@@ -143,6 +149,7 @@
                 }
               }
             }
+
           }
         }
         catch(PDOException $e){
@@ -150,39 +157,42 @@
         }
         $i++;
 
-        if ($i==100){
-          echo "cancela";
-          break;
-        }
-
+        //if ($i==2){
+          //echo "cancela";
+          //break;
+        //}
     }
+
+    $sql="update productos set activo=0 where modificado!='$fmodif'";
+    $sth4 = $db->dbh->prepare($sql);
+    $sth4->execute();
 
 /*
     /////////////////////////////////////// BUSCAMOS PRODUCTOS QUE NO SE ACTUALIZARON PARA ELIMINAR EXISTENCIAS
-    $sql="select * from productos where modificado!='$fmodif' and interno=0";
+    echo "buscar productos modificados";
+
+    $sql="select * from productos where modificado!='$fmodif' and interno=0 limit 10";
     $stmt= $db->dbh->query($sql);
 
-    ///////////// se borran existencias
-    $sql="delete from producto_exist where idProducto=:idproducto";
-    $sth3 = $db->dbh->prepare($sql);
-
-    ///////////// se desactivan los productos
-    $sql="update productos set activo=0 where idProducto=:idproducto";
-    $sth4 = $db->dbh->prepare($sql);
-
     foreach($stmt as $key){
+      $sql="delete from producto_exist where idProducto=:idproducto";
+      $sth3 = $db->dbh->prepare($sql);
+
       $sth3->bindValue(':idproducto', $key['idProducto']);
       $sth3->execute();
 
+      $sql="update productos set activo=0 where idProducto=:idproducto";
+      $sth4 = $db->dbh->prepare($sql);
+
       $sth4->bindValue(':idproducto', $key['idProducto']);
       $sth4->execute();
-    }
+    }*/
 
     $date=date("YmdHis");
     $file="file_".$date.".json";
     rename($destino, "../historial/$file");
-    */
-  }
 
+  }
+  echo "finalizo";
 
 ?>
