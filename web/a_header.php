@@ -1,4 +1,5 @@
 <?php
+  echo "Idcliente:".$_SESSION['idcliente'];
   $contar=0;
   $sumar=0;
   $contar_wish=0;
