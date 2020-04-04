@@ -583,11 +583,12 @@
 
 		public function datos(){
 			try{
+				self::set_names();
 				$sql="SELECT * FROM clientes where id=:id";
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(":id",$_SESSION['idcliente']);
 				$sth->execute();
-				echo $_SESSION['idcliente'];
+				echo "cliente:".$_SESSION['idcliente'];
 				return $sth->fetch(PDO::FETCH_OBJ);
 			}
 			catch(PDOException $e){
