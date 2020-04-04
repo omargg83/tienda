@@ -254,6 +254,7 @@
 				return json_encode($arreglo);
 			}
 		}
+
 		public function borrar($DbTableName, $key, $id){
 			$arreglo=array();
 			try{

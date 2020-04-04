@@ -151,6 +151,9 @@ class Productos extends Tienda{
 			if (isset($_REQUEST['precio_tipo'])){
 				$arreglo+= array('precio_tipo'=>$_REQUEST['precio_tipo']);
 			}
+			if (isset($_REQUEST['envio_tipo'])){
+				$arreglo+= array('envio_tipo'=>$_REQUEST['envio_tipo']);
+			}
 
 			$x="";
 			if($id==0){

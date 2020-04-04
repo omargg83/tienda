@@ -204,7 +204,6 @@ class Clientes extends Tienda{
 		catch(PDOException $e){
 			return "Database access FAILED! ".$e->getMessage();
 		}
-
 	}
 	public function dir_envio(){
 		try{

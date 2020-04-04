@@ -222,13 +222,23 @@
 					</div>
 			  </div>
 				<div class="row">
-					<div class="col-3">
-			      <label for="descripcion">Precio a utilizar</label>
+					<div class="col-4">
+			      <label for="precio_tipo">Precio a utilizar</label>
 						<?php
-
 							echo "<select id='precio_tipo' name='precio_tipo' class='form-control form-control-sm'>";
 								echo "<option value='0'"; if($precio_tipo=='0'){ echo " selected"; } echo ">Precio CT</option>";
-								echo "<option value='1'"; if($precio_tipo=='1'){ echo " selected"; } echo ">Precio TIC</option>";
+								echo "<option value='1'"; if($precio_tipo=='1'){ echo " selected"; } echo ">Precio CT + % general de ganancia</option>";
+								echo "<option value='2'"; if($precio_tipo=='2'){ echo " selected"; } echo ">Precio TIC</option>";
+								echo "<option value='3'"; if($precio_tipo=='3'){ echo " selected"; } echo ">Precio TIC + % general de ganancia</option>";
+							echo "</select>";
+						?>
+			    </div>
+					<div class="col-4">
+			      <label for="envio_tipo">Envio a utilizar</label>
+						<?php
+							echo "<select id='envio_tipo' name='envio_tipo' class='form-control form-control-sm'>";
+								echo "<option value='0'"; if($envio_tipo=='0'){ echo " selected"; } echo ">Envio general</option>";
+								echo "<option value='1'"; if($envio_tipo=='1'){ echo " selected"; } echo ">Envio del producto</option>";
 							echo "</select>";
 						?>
 			    </div>

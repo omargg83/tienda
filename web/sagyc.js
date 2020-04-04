@@ -24,7 +24,7 @@ else{
       "function":"galleta"
     },
     success: function( response ) {
-
+      Cookies.set('ticshop_x', response);
     }
   });
 }
@@ -171,8 +171,10 @@ $(document).on('submit','#acceso',function(e){
       "passAcceso":passAcceso
     },
     success: function( response ) {
+      console.log(response);
       var datos = JSON.parse(response);
       if (datos.acceso==1){
+        Cookies.set('ticshop_x', datos.galleta);
         window.location.href="cart.php";
       }
       else{
@@ -252,6 +254,35 @@ $(document).on('submit','#datos',function(e){
       "estado":estado,
       "telefono":telefono
     },
+    success: function( response ) {
+      var datos = JSON.parse(response);
+      if (datos.error==0){
+        Swal.fire({
+            type: 'success',
+            title: 'Se actualizó correctamente',
+            showConfirmButton: false,
+            timer: 1000
+        });
+      }
+      else{
+        Swal.fire({
+            type: 'error',
+            title: 'error'+datos.terror,
+            showConfirmButton: false,
+            timer: 1000
+        });
+      }
+    }
+  });
+});
+$(document).on('submit','#direccion',function(e){
+  e.preventDefault();
+  var dataString = $(this).serialize()+"&function=guardar_direccion&ctrl=control";
+
+  $.ajax({
+    url: "control_db.php",
+    type: "POST",
+    data:  dataString,
     success: function( response ) {
       var datos = JSON.parse(response);
       if (datos.error==0){

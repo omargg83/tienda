@@ -25,6 +25,84 @@
 			return $this->dbh->query("SET NAMES 'utf8'");
 		}
 
+		public function insert($DbTableName, $values = array()){
+			$arreglo=array();
+			try{
+				self::set_names();
+				$this->dbh->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+
+				foreach ($values as $field => $v)
+				$ins[] = ':' . $field;
+
+				$ins = implode(',', $ins);
+				$fields = implode(',', array_keys($values));
+				$sql="INSERT INTO $DbTableName ($fields) VALUES ($ins)";
+				$sth = $this->dbh->prepare($sql);
+				foreach ($values as $f => $v){
+					$sth->bindValue(':' . $f, $v);
+				}
+				if ($sth->execute()){
+					$arreglo+=array('id'=>$this->lastId = $this->dbh->lastInsertId());
+					$arreglo+=array('error'=>0);
+					$arreglo+=array('terror'=>'');
+					$arreglo+=array('param1'=>'');
+					$arreglo+=array('param2'=>'');
+					$arreglo+=array('param3'=>'');
+					return json_encode($arreglo);
+				}
+			}
+			catch(PDOException $e){
+				$arreglo+=array('id'=>0);
+				$arreglo+=array('error'=>1);
+				$arreglo+=array('terror'=>$e->getMessage());
+				return json_encode($arreglo);
+			}
+		}
+		public function update($DbTableName, $id = array(), $values = array()){
+			$arreglo=array();
+			try{
+				self::set_names();
+				$this->dbh->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+				$x="";
+				$idx="";
+				foreach ($id as $field => $v){
+					$condicion[] = $field.'= :' . $field."_c";
+				}
+				$condicion = implode(' and ', $condicion);
+				foreach ($values as $field => $v){
+					$ins[] = $field.'= :' . $field;
+				}
+				$ins = implode(',', $ins);
+
+				$sql2="update $DbTableName set $ins where $condicion";
+				$sth = $this->dbh->prepare($sql2);
+				foreach ($values as $f => $v){
+					$sth->bindValue(':' . $f, $v);
+				}
+				foreach ($id as $f => $v){
+					if(strlen($idx)==0){
+						$idx=$v;
+					}
+					$sth->bindValue(':' . $f."_c", $v);
+				}
+				if($sth->execute()){
+					$arreglo+=array('id'=>$idx);
+					$arreglo+=array('error'=>0);
+					$arreglo+=array('terror'=>'');
+					$arreglo+=array('param1'=>'');
+					$arreglo+=array('param2'=>'');
+					$arreglo+=array('param3'=>'');
+					return json_encode($arreglo);
+				}
+			}
+			catch(PDOException $e){
+				$arreglo+=array('id'=>0);
+				$arreglo+=array('error'=>1);
+				$arreglo+=array('terror'=>$e->getMessage());
+				return json_encode($arreglo);
+			}
+		}
+
 		public function galleta(){
 			try{
 				$galleta=$_REQUEST['galleta'];
@@ -125,8 +203,19 @@
 						$_SESSION['correo']=$CLAVE['correo'];
 						$_SESSION['idcliente']=$CLAVE['id'];
 						$_SESSION['interno']=1;
+
+						$galleta=$this->genera_random();
+						$sql="update clientes set galleta=:galleta, fechacreado=:fechacreado where id=:id";
+						$sth = $this->dbh->prepare($sql);
+						$sth->bindValue(":galleta",$galleta);
+						$sth->bindValue(":fechacreado",date("Y-m-d H:i:s"));
+						$sth->bindValue(":id",$CLAVE['id']);
+						$sth->execute();
+
+
 						$arr=array();
-						$arr=array('acceso'=>1);
+						$arr+=array('acceso'=>1);
+						$arr+=array('galleta'=>$galleta);
 						return json_encode($arr);
 					}
 					else {
@@ -553,9 +642,88 @@
 			}
 
 		}
+		public function direcciones(){
+			try{
+				self::set_names();
+				$sql="SELECT * from clientes_direccion where idcliente=:id";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(':id',$_SESSION['idcliente']);
+				$sth->execute();
+				return $sth->fetchAll();
+			}
+			catch(PDOException $e){
+				return "Database access FAILED! ".$e->getMessage();
+			}
+		}
+		public function direccion_editar($id){
+			try{
+				self::set_names();
+				$sql="select * from clientes_direccion where iddireccion=:id and idcliente=:idcliente";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(':id', "$id");
+				$sth->bindValue(':idcliente', $_SESSION['idcliente']);
+				$sth->execute();
+				return $sth->fetch(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
 
+		}
+		public function guardar_direccion(){
+			try{
+				self::set_names();
+				$id=$_REQUEST['id'];
+				$arreglo =array();
+				$arreglo = array('idcliente'=>$_SESSION['idcliente']);
 
+				if (isset($_REQUEST['nombre'])){
+					$arreglo+= array('nombre'=>$_REQUEST['nombre']);
+				}
+				if (isset($_REQUEST['apellidos'])){
+					$arreglo+= array('apellidos'=>$_REQUEST['apellidos']);
+				}
+				if (isset($_REQUEST['empresa'])){
+					$arreglo+= array('empresa'=>$_REQUEST['empresa']);
+				}
+				if (isset($_REQUEST['direccion1'])){
+					$arreglo+= array('direccion1'=>$_REQUEST['direccion1']);
+				}
+				if (isset($_REQUEST['direccion2'])){
+					$arreglo+= array('direccion2'=>$_REQUEST['direccion2']);
+				}
+				if (isset($_REQUEST['ciudad'])){
+					$arreglo+= array('ciudad'=>$_REQUEST['ciudad']);
+				}
+				if (isset($_REQUEST['cp'])){
+					$arreglo+= array('cp'=>$_REQUEST['cp']);
+				}
+				if (isset($_REQUEST['pais'])){
+					$arreglo+= array('pais'=>$_REQUEST['pais']);
+				}
+				if (isset($_REQUEST['estado'])){
+					$arreglo+= array('estado'=>$_REQUEST['estado']);
+				}
+				if (isset($_REQUEST['mail'])){
+					$arreglo+= array('mail'=>$_REQUEST['mail']);
+				}
+				if (isset($_REQUEST['telefono'])){
+					$arreglo+= array('telefono'=>$_REQUEST['telefono']);
+				}
 
+				$x="";
+				if($id==0){
+					$x=$this->insert('clientes_direccion', $arreglo);
+				}
+				else{
+					$x=$this->update('clientes_direccion',array('iddireccion'=>$id), $arreglo);
+				}
+				return $x;
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
 }
 
 	if(strlen($ctrl)>0){
