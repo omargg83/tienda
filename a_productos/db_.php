@@ -93,11 +93,7 @@ class Productos extends Tienda{
 			$id=$_REQUEST['id'];
 			$arreglo =array();
 
-
 			$interno=$_REQUEST['interno'];
-
-
-
 			if($interno==1){
 				if (isset($_REQUEST['clave'])){
 					$arreglo+= array('clave'=>$_REQUEST['clave']);
@@ -149,8 +145,11 @@ class Productos extends Tienda{
 			if (isset($_REQUEST['precio_tic'])){
 				$arreglo+= array('precio_tic'=>$_REQUEST['precio_tic']);
 			}
-			if (isset($_REQUEST['costo_envio'])){
-				$arreglo+= array('costo_envio'=>$_REQUEST['costo_envio']);
+			if (isset($_REQUEST['envio_costo'])){
+				$arreglo+= array('envio_costo'=>$_REQUEST['envio_costo']);
+			}
+			if (isset($_REQUEST['precio_tipo'])){
+				$arreglo+= array('precio_tipo'=>$_REQUEST['precio_tipo']);
 			}
 
 			$x="";

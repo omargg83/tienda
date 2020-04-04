@@ -27,7 +27,9 @@
 	$existencia="";
 	$precio_tic="";
 	$interno="";
-	$costo_envio="";
+	$envio_costo="";
+	$precio_tipo="";
+	$envio_tipo="";
 
 	if($id>0){
 		$per = $db->producto_editar($id);
@@ -60,8 +62,10 @@
 		$preciof=$per->preciof;
 		$existencia=$per->existencia;
 		$precio_tic=$per->precio_tic;
-		$costo_envio=$per->costo_envio;
+		$envio_costo=$per->envio_costo;
 		$interno=$per->interno;
+		$precio_tipo=$per->precio_tipo;
+		$envio_tipo=$per->envio_tipo;
 	}
 	else{
 		$interno=1;
@@ -173,7 +177,7 @@
 			  </div>
 
 				<div class="row">
-			    <div class="col-3">
+			    <div class="col-2">
 			      <label for="descripcion">Precio base (CT)</label>
 			      <input type="text" class="form-control form-control-sm" id="precio" name='precio' placeholder="Precio" value="<?php echo $precio; ?>" <?php  echo $bloqueo;  ?>>
 			    </div>
@@ -202,13 +206,13 @@
 					</div>
 
 					<div class="col-2">
-			      <label for="preciof">Precio final</label>
+			      <label for="preciof">Precio TIC</label>
 			      <input type="text" class="form-control form-control-sm text-right" id="precio_tic" name='precio_tic' placeholder="Precio TIC" value="<?php echo $precio_tic; ?>" >
 			    </div>
 
 					<div class="col-2">
 			      <label for="preciof">Costo de envío</label>
-			      <input type="text" class="form-control form-control-sm text-right" id="costo_envio" name='costo_envio' placeholder="Costo de envío" value="<?php echo $costo_envio; ?>"
+			      <input type="text" class="form-control form-control-sm text-right" id="envio_costo" name='envio_costo' placeholder="Costo de envío" value="<?php echo $envio_costo; ?>"
 						data-toggle="tooltip" data-placement="top" title="Tooltip on top">
 			    </div>
 
@@ -217,6 +221,18 @@
 						<input type="text" class="form-control form-control-sm" id="existencia" name='existencia' placeholder="Existencia" value="<?php echo $existencia; ?>" <?php  echo $bloqueo;  ?>>
 					</div>
 			  </div>
+				<div class="row">
+					<div class="col-3">
+			      <label for="descripcion">Precio a utilizar</label>
+						<?php
+
+							echo "<select id='precio_tipo' name='precio_tipo' class='form-control form-control-sm'>";
+								echo "<option value='0'"; if($precio_tipo=='0'){ echo " selected"; } echo ">Precio CT</option>";
+								echo "<option value='1'"; if($precio_tipo=='1'){ echo " selected"; } echo ">Precio TIC</option>";
+							echo "</select>";
+						?>
+			    </div>
+				</div>
 			</div>
 
 			<div class='card-footer'>

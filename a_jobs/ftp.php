@@ -76,7 +76,7 @@
           //echo "<br>".$product['idProducto'];
           if($stmt->rowCount()==0){
             $nuevo=1;
-            $sql="insert into productos (idProducto, clave, numParte, nombre, modelo, idMarca, marca, idCategoria, categoria, idSubCategoria, subcategoria, descripcion_corta, precio, moneda, tipoCambio, preciof, imagen, upc, activo, modificado, interno, alta) values (:idProducto, :clave, :numParte, :nombre, :modelo, :idMarca, :marca, :idCategoria, :categoria, :idSubCategoria, :subcategoria, :descripcion_corta, :precio, :moneda, :tipoCambio, :preciof,:imagen, :upc, :activo, :modificado, :interno, :alta)";
+            $sql="insert into productos (idProducto, clave, numParte, nombre, modelo, idMarca, marca, idCategoria, categoria, idSubCategoria, subcategoria, descripcion_corta, precio, moneda, tipoCambio, preciof, imagen, upc, activo, modificado, interno, alta, precio_tipo, envio_tipo) values (:idProducto, :clave, :numParte, :nombre, :modelo, :idMarca, :marca, :idCategoria, :categoria, :idSubCategoria, :subcategoria, :descripcion_corta, :precio, :moneda, :tipoCambio, :preciof,:imagen, :upc, :activo, :modificado, :interno, :alta, :precio_tipo, :envio_tipo)";
             $sth = $db->dbh->prepare($sql);
             $sth->bindValue(':idProducto', $product['idProducto']);
             $sth->bindValue(':clave', $product['clave']);
@@ -93,6 +93,8 @@
             $sth->bindValue(':imagen', $product['imagen']);
             $sth->bindValue(':upc', $product['upc']);
             $sth->bindValue(':alta', $fmodif);
+            $sth->bindValue(':precio_tipo', 0);
+            $sth->bindValue(':envio_tipo', 0);
           }
           else{
             $nuevo=0;
