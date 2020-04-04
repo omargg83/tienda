@@ -63,6 +63,10 @@
 		$costo_envio=$per->costo_envio;
 		$interno=$per->interno;
 	}
+	else{
+		$interno=1;
+	}
+
 	$bloqueo="";
 	if ($interno==0){
 		$bloqueo="readonly";
@@ -87,6 +91,7 @@
 			</div>
 			<div class='card-body'>
 				<input type="hidden" class="form-control form-control-sm" id="id" name='id' value="<?php echo $id; ?>" readonly>
+				<input type="hidden" class="form-control form-control-sm" id="interno" name='interno' value="<?php echo $interno; ?>" readonly>
 				<div class='row'>
 					<div class='col-3'>
 						<?php
@@ -188,20 +193,20 @@
 			      <input type="text" class="form-control form-control-sm" id="tipoCambio" name='tipoCambio' placeholder="Tipo de cambio" value="<?php echo $tipoCambio; ?>" <?php  echo $bloqueo;  ?>>
 			    </div>
 
-					<div class="col-3">
-			      <label for="preciof">Precio CT</label>
-			      <input type="text" class="form-control form-control-sm text-right" id="preciof" name='preciof' placeholder="Costo" value="<?php echo $preciof; ?>" <?php  echo $bloqueo;  ?>>
-			    </div>
+
 				</div>
 				<div class="row">
-					<div class="col-3">
+					<div class="col-2">
+						<label for="preciof">Precio CT</label>
+						<input type="text" class="form-control form-control-sm text-right" id="preciof" name='preciof' placeholder="Costo" value="<?php echo $preciof; ?>" <?php  echo $bloqueo;  ?>>
+					</div>
+
+					<div class="col-2">
 			      <label for="preciof">Precio final</label>
 			      <input type="text" class="form-control form-control-sm text-right" id="precio_tic" name='precio_tic' placeholder="Precio TIC" value="<?php echo $precio_tic; ?>" >
 			    </div>
 
-
-
-					<div class="col-3">
+					<div class="col-2">
 			      <label for="preciof">Costo de envío</label>
 			      <input type="text" class="form-control form-control-sm text-right" id="costo_envio" name='costo_envio' placeholder="Costo de envío" value="<?php echo $costo_envio; ?>"
 						data-toggle="tooltip" data-placement="top" title="Tooltip on top">
@@ -217,6 +222,7 @@
 			<div class='card-footer'>
 				<div class='btn-group'>
 		  		<button type="submit" class="btn btn-outline-secondary btn-sm"><i class='far fa-save'></i>Guardar</button>
+					<button type="button" class="btn btn-outline-secondary btn-sm" onclick='existencia()'><i class='far fa-save'></i>Verificar Existencia</button>
 					<button class='btn btn-outline-secondary btn-sm' id='lista_cat' data-lugar='a_productos/lista' title='regresar'><i class='fas fa-undo-alt'></i>Regresar</button>
 				</div>
 			</div>
