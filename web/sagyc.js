@@ -153,8 +153,7 @@ function borra_carrito(id){
 }
 
 function buscar_prod(){
-  var buscar_text=$("#bucar_text").val();
-  window.location.href="busca.php?texto="+buscar_text;
+  window.location.href="busca.php?texto="+$("#bucar_text").val();
 }
 
 $(document).on('submit','#acceso',function(e){
