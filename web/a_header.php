@@ -60,8 +60,8 @@
             <div class="header_search_content">
               <div class="header_search_form_container">
                 <form class="header_search_form clearfix">
-                  <input type="search" required="required" class="header_search_input" id='bucar_text' name='bucar_text' placeholder="Buscar productos..." onkeyup='Javascript: if (event.keyCode==13) buscar()'>
-                  <button type="button" class="header_search_button trans_300" value="Submit" onclick="buscar()"><img src="images/search.png" alt=""></button>
+                  <input type="search" required="required" class="header_search_input" id='bucar_text' name='bucar_text' placeholder="Buscar productos..." onkeyup='Javascript: if (event.keyCode==13) buscar_prod()'>
+                  <button type="button" class="header_search_button trans_300" value="Submit" onclick="buscar_prod()"><img src="images/search.png" alt=""></button>
 
                   <div class="custom_dropdown">
                     <div class="custom_dropdown_list">

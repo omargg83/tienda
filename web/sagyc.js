@@ -152,7 +152,7 @@ function borra_carrito(id){
   });
 }
 
-function buscar(){
+function buscar_prod(){
   var buscar_text=$("#bucar_text").val();
   window.location.href="busca.php?texto="+buscar_text;
 }
