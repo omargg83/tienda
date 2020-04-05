@@ -20,10 +20,13 @@
   $payment->payment_method_id = $payment_method_id;
   $payment->issuer_id = $issuer_id;
   $payment->payer = array(
-  "email" => "omar@hotmail.com"
+  "email" => "omargg83@gmail.com"
   );
 
   $payment->save();
+
+  echo var_dump($payment);
+
   echo $payment->status;
 
   ?>
