@@ -226,7 +226,7 @@
 						echo "</div>";
 						echo "<a class='btn btn-warning btn-block' href='finalizar.php'><i class='fas fa-cart-plus'></i>Finalizar</a>";
 					?>
-					<form action="http://tic-shop.com.mx/tienda/web/procesar-pago" method="POST">
+					<form action="http://tic-shop.com.mx/tienda/web/procesar-pago.php" method="POST">
 					  <script
 					    src="https://www.mercadopago.com.mx/integrations/v1/web-tokenize-checkout.js"
 					    data-public-key="TEST-11c65f29-2cd0-4ef6-9ebc-f57992a08c1c"
