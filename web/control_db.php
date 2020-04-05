@@ -735,7 +735,22 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
+
+		public function ajustes_editar(){
+			try{
+				self::set_names();
+				$sql="select * from ajustes where id=1";
+				$sth = $this->dbh->prepare($sql);
+				$sth->execute();
+				return $sth->fetch(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
 }
+
+
 
 	if(strlen($ctrl)>0){
 		$db = new Tienda();

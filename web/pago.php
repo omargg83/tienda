@@ -226,9 +226,14 @@
 								echo moneda($gtotal);
 							echo "</div>";
 						echo "</div>";
-						echo "<a class='btn btn-warning btn-block' href='pago.php'><i class='fas fa-cart-plus'></i>Proceder al pago</a>";
 					?>
-					
+					<form action="http://tic-shop.com.mx/tienda/web/procesar-pago.php" method="POST">
+					  <script
+					    src="https://www.mercadopago.com.mx/integrations/v1/web-tokenize-checkout.js"
+					    data-public-key="<?php echo $merca; ?>"
+					    data-transaction-amount="<?php echo $gtotal; ?>">
+					  </script>
+					</form>
 				</div>
 			</div>
 

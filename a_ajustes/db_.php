@@ -31,6 +31,12 @@ class Clientes extends Tienda{
 			if (isset($_REQUEST['p_general'])){
 				$arreglo+= array('p_general'=>$_REQUEST['p_general']);
 			}
+			if (isset($_REQUEST['mercado_public'])){
+				$arreglo+= array('mercado_public'=>$_REQUEST['mercado_public']);
+			}
+			if (isset($_REQUEST['mercado_token'])){
+				$arreglo+= array('mercado_token'=>$_REQUEST['mercado_token']);
+			}
 			$x=$this->update('ajustes',array('id'=>1), $arreglo);
 			return $x;
 		}

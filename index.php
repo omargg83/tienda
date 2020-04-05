@@ -98,15 +98,8 @@
 	<script src="librerias15/popper.js"></script>
 	<script src="librerias15/tooltip.js"></script>
 
-	<!--   Chat   -->
-	<!--<script src="chat/chat.js" type="text/javascript"></script>
-	<link rel="stylesheet" type="text/css" href="chat/chat.css"/>
--->
 	<!--   Propios   -->
-
-
-
-	<script src="salud.js"></script>
+	<script src="sagyc_admin.js"></script>
 	<link rel="stylesheet" type="text/css" href="librerias15/modulos.css"/>
 
 	<script src="librerias15/chartjs/Chart.js"></script>

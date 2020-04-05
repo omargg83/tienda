@@ -178,12 +178,28 @@
 
 									<?php
 										foreach ($destacados as $key) {
+											if($key->precio_tipo==0){
+												$preciof=$key->preciof;
+											}
+											if($key->precio_tipo==1){
+												$p_total=$key->preciof+(($key->preciof*$db->cgeneral)/100);
+												$preciof=$p_total;
+											}
+											if($key->precio_tipo==2){
+												$preciof=$key->precio_tic;
+											}
+											if($key->precio_tipo==3){
+												$p_total=$key->precio_tic+(($key->precio_tic*$db->cgeneral)/100);
+												$preciof=$p_total;
+											}
+
+
 											echo "<div class='featured_slider_item'>
 												<div class='border_active'></div>
 												<div class='product_item discount d-flex flex-column align-items-center justify-content-center text-center'>
 													<div class='product_image d-flex flex-column align-items-center justify-content-center'><img src='".$db->doc.$key->img."' alt=''></div>
 													<div class='product_content'>
-														<div class='product_price discount'>".moneda($key->preciof)."<span>".moneda($key->preciof)."</span></div>
+														<div class='product_price discount'>".moneda($preciof)."<span>".moneda($preciof)."</span></div>
 														<div class='product_name'><div><a href='product.php?id=".$key->id."'>".$key->nombre."</a></div></div>
 														<div class='product_extras'>
 															<button class='product_cart_button' onclick='carrito(".$key->id.")'>Agregar al carrito</button>

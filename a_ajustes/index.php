@@ -4,7 +4,8 @@
 	$per = $db->ajustes_editar();
 	$c_envio=$per->c_envio;
 	$p_general=$per->p_general;
-
+	$mercado_public=$per->mercado_public;
+	$mercado_token=$per->mercado_token;
 ?>
 <div class="alert alert-primary" role="alert">
 	<h4 class='text-center'>Estos son parametros globales pero pueden modificarse individualmente en cada producto</h4>
@@ -31,6 +32,19 @@
           <label for="inputPassword" class="col-sm-4 col-form-label">Porcentaje general de ganancia por producto</label>
           <div class="col-sm-8">
             <input type="text" class="form-control" id="p_general" name='p_general' value="<?php echo $p_general; ?>" placeholder='Porcentaje general de ganancia por producto'>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="inputPassword" class="col-sm-4 col-form-label">Mercado pago Public key</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" id="mercado_public" name='mercado_public' value="<?php echo $mercado_public; ?>" placeholder='Mercado pago Public key'>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputPassword" class="col-sm-4 col-form-label">Mercado pago Token</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" id="mercado_token" name='mercado_token' value="<?php echo $mercado_token; ?>" placeholder='Mercado pago Token'>
           </div>
         </div>
 
