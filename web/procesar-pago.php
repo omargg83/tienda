@@ -4,6 +4,10 @@
   $installments = $_REQUEST["installments"];
   $issuer_id = $_REQUEST["issuer_id"];
 
+  echo "<br>token:".$token;
+  echo "<br>payment_method_idken:".$payment_method_id;
+  echo "<br>installments:".$installments;
+  echo "<br>issuer_id:".$issuer_id;
 
   require_once 'vendor/autoload.php';
   MercadoPago\SDK::setAccessToken("TEST-3678107396790432-040504-850b450567bc9af742a685edda25faad-538795708");
