@@ -72,34 +72,35 @@
 
 									<!-- Product Quantity -->
 									<div class="product_quantity clearfix">
-										<span>Quantity: </span>
+										<span>Cantidad: </span>
 										<input id="quantity_input" type="text" pattern="[0-9]*" value="1">
 										<div class="quantity_buttons">
 											<div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fas fa-chevron-up"></i></div>
 											<div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fas fa-chevron-down"></i></div>
 										</div>
 									</div>
-
-									<!-- Product Color -->
-									<ul class="product_color">
-										<li>
-											<span>Color: </span>
-											<div class="color_mark_container"><div id="selected_color" class="color_mark"></div></div>
-											<div class="color_dropdown_button"><i class="fas fa-chevron-down"></i></div>
-
-											<ul class="color_list">
-												<li><div class="color_mark" style="background: #999999;"></div></li>
-												<li><div class="color_mark" style="background: #b19c83;"></div></li>
-												<li><div class="color_mark" style="background: #000000;"></div></li>
-											</ul>
-										</li>
-									</ul>
-
 								</div>
 
-								<div class="product_price"><?php   echo moneda($prod->preciof);  ?></div>
+								<div class="product_price"><?php
+									if($prod->precio_tipo==0){
+										echo moneda($prod->preciof);
+									}
+									if($prod->precio_tipo==1){
+										$total=$prod->preciof+(($prod->preciof*$db->cgeneral)/100);
+										echo moneda($total);
+									}
+									if($prod->precio_tipo==2){
+										echo moneda($prod->precio_tic);
+									}
+									if($prod->precio_tipo==3){
+										$total=$prod->precio_tic+(($prod->precio_tic*$db->cgeneral)/100);
+										echo moneda($total);
+									}
+							  ?></div>
 								<div class="button_container">
-									<button type="button" class="button cart_button">Add to Cart</button>
+									<?php
+										echo "<button type='button' class='button cart_button'  onclick='carrito(".$prod->id.")'>Agregar al carrito</button>";
+									?>
 									<div class="product_fav"><i class="fas fa-heart"></i></div>
 								</div>
 

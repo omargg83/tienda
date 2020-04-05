@@ -20,6 +20,13 @@
 
 			$this->doc="../a_imagen/";
 			$this->extra="../a_imagenextra/";
+
+			$sql="select * from ajustes";
+			$sth = $this->dbh->prepare($sql);
+			$sth->execute();
+			$tmp=$sth->fetch(PDO::FETCH_OBJ);
+			$this->cgeneral=$tmp->p_general;
+			$this->egeneral=$tmp->c_envio;
 		}
 		public function set_names(){
 			return $this->dbh->query("SET NAMES 'utf8'");
@@ -383,7 +390,7 @@
 		public function carro_list(){
 			try{
 				self::set_names();
-				$sql="select cliente_carro.id, productos.img, productos.nombre, productos.preciof from cliente_carro
+				$sql="select cliente_carro.id, productos.img, productos.nombre, productos.preciof, productos.precio_tipo, productos.precio_tic, productos.envio_costo, productos.envio_tipo from cliente_carro
 				left outer join productos on productos.id=cliente_carro.idproducto
 				where cliente_carro.idcliente=:id";
 				$sth = $this->dbh->prepare($sql);

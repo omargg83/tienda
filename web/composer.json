@@ -1,0 +1,6 @@
+{
+   "name": "sagyc/probando-composer",
+   "require": {
+      "mercadopago/dx-php": "dev-master"
+   }
+}

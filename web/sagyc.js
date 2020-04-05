@@ -131,25 +131,38 @@ function borra_wish(id){
   });
 }
 function borra_carrito(id){
-  $.ajax({
-    data:  {
-      "ctrl":"control",
-      "id":id,
-      "function":"borra_carrito"
-    },
-    url:   'control_db.php',
-    type:  'post',
-    timeout:3000,
-    beforeSend: function () {
+  $.confirm({
+      title: 'Carrito de compras!',
+      content: '¿Desea quitar del carrito de compras el producto seleccionado?',
+      buttons: {
+          Quitar: function () {
+            $.ajax({
+              data:  {
+                "ctrl":"control",
+                "id":id,
+                "function":"borra_carrito"
+              },
+              url:   'control_db.php',
+              type:  'post',
+              timeout:3000,
+              beforeSend: function () {
 
-    },
-    success:  function (response) {
-      window.location.href="cart.php";
-    },
-    error: function(jqXHR, textStatus, errorThrown) {
+              },
+              success:  function (response) {
+                window.location.href="cart.php";
+              },
+              error: function(jqXHR, textStatus, errorThrown) {
 
-    }
+              }
+            });
+          },
+          cancel: function () {
+
+          }
+      }
   });
+
+
 }
 
 function buscar_prod(){

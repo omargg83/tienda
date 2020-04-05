@@ -1,7 +1,9 @@
 <?php
 	require_once("control_db.php");
 	$db = new Tienda();
+
 	$carro=$db->carro_list();
+
 
 	$resp=$db->datos();
 
@@ -27,6 +29,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+
 <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
 <link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="styles/cart_styles.css">
@@ -110,18 +117,90 @@
 						<input type="text" class="form-control" id="telefono" name='telefono' placeholder="Teléfono" value="<?php echo $telefono; ?>" >
 					</div>
 				</div>
-				
+
 
 			</div>
 			<div class='col-4'>
 				<div class="jumbotron">
 					<?php
+					///////////////////////////////////
+					$total=0;
+					$envio=0;
+					foreach($carro as $key){
+						$preciof=0;
+						$enviof=0;
+						if($key->precio_tipo==0){
+							$preciof=$key->preciof;
+						}
+						if($key->precio_tipo==1){
+							$p_total=$key->preciof+(($key->preciof*$db->cgeneral)/100);
+							$preciof=$p_total;
+						}
+						if($key->precio_tipo==2){
+							$preciof=$key->precio_tic;
+						}
+						if($key->precio_tipo==3){
+							$p_total=$key->precio_tic+(($key->precio_tic*$db->cgeneral)/100);
+							$preciof=$p_total;
+						}
+
+						echo "<div class='row'>";
+							echo "<div class='col-12'>";
+									echo $key->nombre;
+							echo "</div>";
+
+							echo "<div class='col-12'>";
+								echo "<label>Costo envio: ";
+								if($key->envio_tipo==0){
+									echo moneda($db->egeneral);
+									$envio+=$db->egeneral;
+								}
+								if($key->envio_tipo==1){
+									echo moneda($key->envio_costo);
+									$envio+=$key->envio_costo;
+								}
+								echo "</label>";
+							echo "</div>";
+						echo "</div>";
+
+
+						echo "<div class='row'>";
+							echo "<div class='col-4 text-center'>";
+								echo "<b>Cantidad</b>";
+							echo "</div>";
+							echo "<div class='col-4 text-center'>";
+								echo "<b>Precio unitario</b>";
+							echo "</div>";
+							echo "<div class='col-4 text-center'>";
+								echo "<b>Total</b>";
+							echo "</div>";
+						echo "</div>";
+
+						echo "<div class='row'>";
+							echo "<div class='col-4 text-center'>";
+								echo "1";
+							echo "</div>";
+							echo "<div class='col-4 text-right'>";
+								echo moneda($preciof);
+							echo "</div>";
+							echo "<div class='col-4 text-right'>";
+								echo moneda($preciof);
+							echo "</div>";
+						echo "</div>";
+						echo "<hr>";
+
+						$total+=$preciof;
+					}
+
+					///////////////////////////////////
+
+
 						echo "<h4>TOTAL DEL CARRITO</h4>";
 						echo "<div class='row'>";
 							echo "<div class='col-6'>";
 								echo "Subtotal";
 							echo "</div>";
-							echo "<div class='col-6'>";
+							echo "<div class='col-6 text-right'>";
 								echo moneda($total);
 							echo "</div>";
 						echo "</div>";
@@ -130,18 +209,39 @@
 							echo "<div class='col-6'>";
 								echo "Envío";
 							echo "</div>";
-							echo "<div class='col-6'>";
-								echo moneda($total);
+							echo "<div class='col-6 text-right'>";
+								echo moneda($envio);
 							echo "</div>";
 						echo "</div>";
 
+						$gtotal=$total+$envio;
+						echo "<hr>";
+						echo "<div class='row'>";
+							echo "<div class='col-6'>";
+								echo "Total";
+							echo "</div>";
+							echo "<div class='col-6 text-right'>";
+								echo moneda($gtotal);
+							echo "</div>";
+						echo "</div>";
+
+
 						echo "<a class='btn btn-warning btn-block' href='finalizar.php'><i class='fas fa-cart-plus'></i>Finalizar</a>";
 					?>
+					<form action="https://www.mi-sitio.com/procesar-pago" method="POST">
+					  <script
+					    src="https://www.mercadopago.com.mx/integrations/v1/web-tokenize-checkout.js"
+					    data-public-key="TEST-11c65f29-2cd0-4ef6-9ebc-f57992a08c1c"
+					    data-transaction-amount="<?php echo $gtotal; ?>">
+					  </script>
+					</form>
 				</div>
 			</div>
+
 		</div>
 
 	</div>
+
 
 
 	<!-- Footer -->

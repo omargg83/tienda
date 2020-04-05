@@ -37,7 +37,6 @@
 
  ?>
 <script type="text/javascript">
-
   function buscarx(){
     var buscar = $("#buscar").val();
     $.ajax({
@@ -51,8 +50,7 @@
       }
     });
   }
-
- function cat_borra(idseguro,idafiliado){
+  function cat_borra(idseguro,idafiliado){
    $.confirm({
      title: 'Cancelar',
      content: '¿Desea eliminar la categoria seleccionada?',

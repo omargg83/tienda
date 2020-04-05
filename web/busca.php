@@ -62,10 +62,25 @@
 												foreach($resp as $key){
 													echo "<div class='arrivals_slider_item'>
 														<div class='border_active'></div>
-														<div class='product_item is_new d-flex flex-column align-items-center justify-content-center text-center'>
+														<div class='product_item is_new d-flex flex-column align-items-center justify-content-center text-center' >
 															<div class='product_image d-flex flex-column align-items-center justify-content-center'><img src='".$db->doc.$key->img."' alt='' width='100px'></div>
-															<div class='product_content'>
-																<div class='product_price'>".moneda($key->preciof)."</div>
+															<div class='product_content' >
+																<div class='product_price'>";
+																if($key->precio_tipo==0){
+																	echo moneda($key->preciof);
+																}
+																if($key->precio_tipo==1){
+																	$total=$key->preciof+(($key->preciof*$db->cgeneral)/100);
+																	echo moneda($total);
+																}
+																if($key->precio_tipo==2){
+																	echo moneda($key->precio_tic);
+																}
+																if($key->precio_tipo==3){
+																	$total=$key->precio_tic+(($key->precio_tic*$db->cgeneral)/100);
+																	echo moneda($total);
+																}
+																echo "</div>
 																<div class='product_name'><div><a href='product.php?id=".$key->id."'>".$key->nombre."</a></div></div>
 																<div class='product_extras'>
 

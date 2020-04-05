@@ -1,5 +1,4 @@
 <?php
-  echo "Idcliente:".$_SESSION['idcliente'];
   $contar=0;
   $sumar=0;
   $contar_wish=0;
@@ -59,21 +58,17 @@
           <div class="header_search">
             <div class="header_search_content">
               <div class="header_search_form_container">
-                <form class="header_search_form clearfix">
-                  <input type="search" required="required" class="header_search_input" id='bucar_text' name='bucar_text' placeholder="Buscar productos...">
-                  <button type="button" class="header_search_button trans_300" value="Submit" onclick="buscar_prod()"><img src="images/search.png" alt=""></button>
+
+                  <input type="search" required="required" class="header_search_input" id='bucar_text' name='bucar_text' onkeyup='Javascript: if (event.keyCode==13) buscar_prod()' placeholder="Buscar productos...">
+                  <button type="button" class="header_search_button trans_300" onclick="buscar_prod()"><img src="images/search.png" alt=""></button>
 
                   <div class="custom_dropdown">
                     <div class="custom_dropdown_list">
-                      <span class="custom_dropdown_placeholder clc"></span>
-                      <i class="fas fa-chevron-down"></i>
-                      <ul class="custom_list clc">
-
+                      <span class="custom_dropdown_placeholder"></span>
+                      <ul class="custom_list">
                       </ul>
                     </div>
                   </div>
-
-                </form>
               </div>
             </div>
           </div>
@@ -107,6 +102,7 @@
         </div>
       </div>
     </div>
+
   </div>
 
   <!-- Main Navigation -->
