@@ -748,6 +748,57 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
+
+		public function pedido_generar(){
+			try{
+				$nombre = trim(htmlspecialchars($_REQUEST["nombre"]));
+				$apellido = trim(htmlspecialchars($_REQUEST["apellido"]));
+				$rfc = trim(htmlspecialchars($_REQUEST["rfc"]));
+				$cfdi = trim(htmlspecialchars($_REQUEST["cfdi"]));
+				$direccion1 = trim(htmlspecialchars($_REQUEST["direccion1"]));
+				$direccion2 = trim(htmlspecialchars($_REQUEST["direccion2"]));
+				$ciudad = trim(htmlspecialchars($_REQUEST["ciudad"]));
+				$cp = trim(htmlspecialchars($_REQUEST["cp"]));
+				$pais = trim(htmlspecialchars($_REQUEST["pais"]));
+				$pais = trim(htmlspecialchars($_REQUEST["pais"]));
+				$estado = trim(htmlspecialchars($_REQUEST["estado"]));
+				$telefono = trim(htmlspecialchars($_REQUEST["telefono"]));
+
+				$sql="update clientes set nombre=:nombre, apellido=:apellido, rfc=:rfc, cfdi=:cfdi, direccion1=:direccion1, direccion2=:direccion2, ciudad=:ciudad, cp=:cp, pais=:pais, estado=:estado, telefono=:telefono  where id=:id";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(":nombre",$nombre);
+				$sth->bindValue(":apellido",$apellido);
+				$sth->bindValue(":rfc",$rfc);
+				$sth->bindValue(":cfdi",$cfdi);
+				$sth->bindValue(":direccion1",$direccion1);
+				$sth->bindValue(":direccion2",$direccion2);
+				$sth->bindValue(":ciudad",$ciudad);
+				$sth->bindValue(":cp",$cp);
+				$sth->bindValue(":pais",$pais);
+				$sth->bindValue(":estado",$estado);
+				$sth->bindValue(":telefono",$telefono);
+				$sth->bindValue(":id",$_SESSION['idcliente']);
+
+				if($sth->execute()){
+					$arr=array();
+					$arr+=array('error'=>0);
+					$arr+=array('terror'=>"");
+					return json_encode($arr);
+				}
+				else{
+					$arr=array();
+					$arr+=array('error'=>1);
+					$arr+=array('terror'=>"");
+					return json_encode($arr);
+				}
+			}
+			catch(PDOException $e){
+				$arr=array();
+				$arr+=array('error'=>1);
+				$arr+=array('terror'=>$e->getMessage());
+				return json_encode($arr);
+			}
+		}
 }
 
 

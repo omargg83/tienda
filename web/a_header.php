@@ -3,13 +3,48 @@
   $sumar=0;
   $contar_wish=0;
   if(isset($_SESSION['idcliente'])){
-    $res=$db->carrito_sum();
-    $contar=$res->contar;
-    $sumar=$res->sumar;
     $res2=$db->wish_sum();
     $contar_wish=$res2->contar;
+
+    $carro=$db->carro_list();
+    $contar=0;
+    $envio=0;
+    $total=0;
+    foreach($carro as $key){
+      $preciof=0;
+      $enviof=0;
+      $contar++;
+      ///////////////preico
+      if($key->precio_tipo==0){
+        $preciof=$key->preciof;
+      }
+      if($key->precio_tipo==1){
+        $p_total=$key->preciof+(($key->preciof*$db->cgeneral)/100);
+        $preciof=$p_total;
+      }
+      if($key->precio_tipo==2){
+        $preciof=$key->precio_tic;
+      }
+      if($key->precio_tipo==3){
+        $p_total=$key->precio_tic+(($key->precio_tic*$db->cgeneral)/100);
+        $preciof=$p_total;
+      }
+      ////////////envio
+      if($key->envio_tipo==0){
+        $envio+=$db->egeneral;
+      }
+      if($key->envio_tipo==1){
+        $envio+=$key->envio_costo;
+      }
+      $total+=$preciof;
+    }
+    $sumar=$total+$envio;
+
   }
   $cat=$db->categorias();
+
+
+
 ?>
   <!-- Top Bar -->
 

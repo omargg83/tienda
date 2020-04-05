@@ -56,8 +56,8 @@
 
 	<!-- Cart -->
 	<div class='container'>
-		<h3 class='text-center'>Carrito de compras</h3>
-
+		<h3 class='text-center'>Pedido</h3>
+		<form id='pedido' action=''>
 		<div class='row'>
 			<div class='col-8'>
 
@@ -74,7 +74,7 @@
 
 					<div class="col-4">
 						<label class='text-center'>Correo</label>
-						<input type="email" class="form-control" id="correo" name='correo' placeholder="Correo" value="<?php echo $correo; ?>" readonly>
+						<input type="email" class="form-control" id="correo" name='correo' placeholder="Correo" value="<?php echo $correo; ?>">
 					</div>
 				</div>
 				<div class='row'>
@@ -226,14 +226,13 @@
 								echo moneda($gtotal);
 							echo "</div>";
 						echo "</div>";
-						echo "<a class='btn btn-warning btn-block' href='pago.php'><i class='fas fa-cart-plus'></i>Proceder al pago</a>";
+						echo "<button type='submit' class='btn btn-warning btn-block'><i class='fas fa-cart-plus'></i>Finalizar pedido</button>";
 					?>
-					
 				</div>
 			</div>
 
 		</div>
-
+		</form>
 	</div>
 
 

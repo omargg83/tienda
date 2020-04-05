@@ -316,3 +316,34 @@ $(document).on('submit','#direccion',function(e){
     }
   });
 });
+$(document).on('submit','#pedido',function(e){
+  e.preventDefault();
+  var dataString = $(this).serialize()+"&function=pedido_generar&ctrl=control";
+
+  $.ajax({
+    url: "control_db.php",
+    type: "POST",
+    data:  dataString,
+    success: function( response ) {
+      console.log(response);
+      var datos = JSON.parse(response);
+      if (datos.error==0){
+        window.location.href="pago.php";
+        Swal.fire({
+            type: 'success',
+            title: 'Se actualizó correctamente',
+            showConfirmButton: false,
+            timer: 1000
+        });
+      }
+      else{
+        Swal.fire({
+            type: 'error',
+            title: 'error'+datos.terror,
+            showConfirmButton: false,
+            timer: 1000
+        });
+      }
+    }
+  });
+});

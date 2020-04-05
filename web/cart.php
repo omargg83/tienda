@@ -163,7 +163,6 @@
 							echo "</div>";
 						echo "</div>";
 
-
 						echo "<a class='btn btn-warning btn-block' href='finalizar.php'><i class='fas fa-cart-plus'></i>Finalizar</a>";
 					?>
 				</div>
