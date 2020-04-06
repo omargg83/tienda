@@ -1,4 +1,3 @@
-
 if (Cookies.get('ticshop_x')==undefined){
   $.ajax({
     url: "control_db.php",
@@ -319,7 +318,6 @@ $(document).on('submit','#direccion',function(e){
 $(document).on('submit','#pedido',function(e){
   e.preventDefault();
   var dataString = $(this).serialize()+"&function=pedido_generar&ctrl=control";
-  alert("entra");
   $.ajax({
     url: "control_db.php",
     type: "POST",
@@ -328,7 +326,7 @@ $(document).on('submit','#pedido',function(e){
       console.log(response);
       var datos = JSON.parse(response);
       if (datos.error==0){
-        //window.location.href="pago.php";
+        window.location.href="pago.php?idpedido="+datos.id;
         Swal.fire({
             type: 'success',
             title: 'Se actualizó correctamente',

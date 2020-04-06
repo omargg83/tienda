@@ -1,25 +1,26 @@
 <?php
 	require_once("control_db.php");
 	$db = new Tienda();
+	$idpedido=$_REQUEST['idpedido'];
 
-	$carro=$db->carro_list();
-	$resp=$db->datos();
 	$mercado=$db->ajustes_editar();
 	$merca=$mercado->mercado_public;
 
-	$nombre=$resp->nombre;
-	$apellido=$resp->apellido;
-	$correo=$resp->correo;
-	$rfc=$resp->rfc;
-	$cfdi=$resp->cfdi;
-	$direccion1=$resp->direccion1;
-	$direccion2=$resp->direccion2;
-	$ciudad=$resp->ciudad;
-	$cp=$resp->cp;
-	$pais=$resp->pais;
-	$estado=$resp->estado;
-	$telefono=$resp->telefono;
+	$ped=$db->pedido_ver($idpedido);
+	$datos=$db->datos_pedido($idpedido);
 
+	$nombre=$ped->nombre;
+	$apellido=$ped->apellido;
+	$correo=$ped->correo;
+	$rfc=$ped->rfc;
+	$cfdi=$ped->cfdi;
+	$direccion1=$ped->direccion1;
+	$direccion2=$ped->direccion2;
+	$ciudad=$ped->ciudad;
+	$cp=$ped->cp;
+	$pais=$ped->pais;
+	$estado=$ped->estado;
+	$telefono=$ped->telefono;
 
 ?>
 
@@ -34,8 +35,6 @@
 
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-
-
 <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
 <link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="styles/cart_styles.css">

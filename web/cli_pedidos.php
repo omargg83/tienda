@@ -1,7 +1,9 @@
 <?php
 	require_once("control_db.php");
 	$db = new Tienda();
-  $row=$db->direcciones();
+
+	$ped=$db->pedidos_lista();
+
 ?>
 
 <!DOCTYPE html>
@@ -43,48 +45,35 @@
 			</div>
 			<div class='col-9'>
 				<?php
+					echo "<table class='table table-sm'>";
+					echo "<tr><th>-</th><th>Pedido</th><th>Fecha</th></tr>";
+					foreach ($ped as $key) {
+						echo "<tr>";
 
-					$row=$db->direcciones();
-					echo "<div class='card-header'>";
-						echo "Direcciones adicionales";
+							echo "<td>";
+								echo "<div class='btn-group'>";
+									echo "<a class='btn btn-outline-secondary btn-sm' href='pago.php?idpedido=".$key->id."' title='Editar' ><i class='fas fa-pencil-alt'></i></a>";
+								echo "</div>";
+							echo "</td>";
 
-					echo "</div>";
-					echo "<div class='card-body'>";
-						echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_pass' data-id='0' data-lugar='a_clientes/form_direccion' title='Cambiar contraseña' ><i class='fas fa-street-view'></i>Agregar Direccion</button>";
+							echo "<td>#";
+								echo $key->id;
+							echo "</td>";
 
-						echo "<table class='table table-sm'>";
-						echo "<tr><th>-</th><th>Nombre</th><th>Apellidos</th><th>Empresa</th><th>Ciudad</th><th>Estado</th></tr>";
-						foreach($row as $key){
-							echo "<tr>";
-								echo "<td>";
-									echo "<div class='btn-group'>";
-										echo "<a class='btn btn-outline-secondary btn-sm' href='cli_diredit.php?dir=".$key['iddireccion']."' title='Editar' ><i class='fas fa-pencil-alt'></i></a>";
-									echo "</div>";
-								echo "</td>";
-								echo "<td>";
-									echo $key['nombre'];
-								echo "</td>";
-								echo "<td>";
-									echo $key['apellidos'];
-								echo "</td>";
-								echo "<td>";
-									echo $key['empresa'];
-								echo "</td>";
-								echo "<td>";
-									echo $key['ciudad'];
-								echo "</td>";
-								echo "<td>";
-									echo $key['estado'];
-								echo "</td>";
-							echo "</tr>";
-						}
-						echo "</table>";
-					echo "</div>";
+							echo "<td>";
+								echo fecha($key->fecha);
+							echo "</td>";
+						echo "</tr>";
+					}
+					echo "</table>";
 
-				?>
+
+				 ?>
+
 			</div>
 		</div>
 	</div>
+
 
 
 	<!-- Footer -->

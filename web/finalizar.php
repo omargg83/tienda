@@ -3,10 +3,11 @@
 	$db = new Tienda();
 
 	$carro=$db->carro_list();
-	$resp=$db->datos();
 	$mercado=$db->ajustes_editar();
 	$merca=$mercado->mercado_public;
 
+
+	$resp=$db->datos();
 	$nombre=$resp->nombre;
 	$apellido=$resp->apellido;
 	$correo=$resp->correo;
