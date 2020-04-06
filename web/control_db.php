@@ -825,6 +825,31 @@
 				return json_encode($arr);
 			}
 		}
+
+		public function contacto(){
+			try{
+				self::set_names();
+				$arreglo =array();
+				if (isset($_REQUEST['nombre'])){
+					$arreglo+= array('nombre'=>$_REQUEST['nombre']);
+				}
+				if (isset($_REQUEST['correo'])){
+					$arreglo+= array('correo'=>$_REQUEST['correo']);
+				}
+				if (isset($_REQUEST['telefono'])){
+					$arreglo+= array('telefono'=>$_REQUEST['telefono']);
+				}
+				if (isset($_REQUEST['mensaje'])){
+					$arreglo+= array('mensaje'=>$_REQUEST['mensaje']);
+				}
+				$arreglo+= array('fecha'=>date("Y-m-d H:i:s"));
+				return $this->insert('contacto', $arreglo);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
+
 }
 
 

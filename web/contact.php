@@ -40,7 +40,7 @@
 						<div class="contact_info_item d-flex flex-row align-items-center justify-content-start">
 							<div class="contact_info_image"><img src="images/contact_1.png" alt=""></div>
 							<div class="contact_info_content">
-								<div class="contact_info_title">Phone</div>
+								<div class="contact_info_title">Telefono</div>
 								<div class="contact_info_text">+38 068 005 3570</div>
 							</div>
 						</div>
@@ -49,7 +49,7 @@
 						<div class="contact_info_item d-flex flex-row align-items-center justify-content-start">
 							<div class="contact_info_image"><img src="images/contact_2.png" alt=""></div>
 							<div class="contact_info_content">
-								<div class="contact_info_title">Email</div>
+								<div class="contact_info_title">Correo</div>
 								<div class="contact_info_text">fastsales@gmail.com</div>
 							</div>
 						</div>
@@ -58,7 +58,7 @@
 						<div class="contact_info_item d-flex flex-row align-items-center justify-content-start">
 							<div class="contact_info_image"><img src="images/contact_3.png" alt=""></div>
 							<div class="contact_info_content">
-								<div class="contact_info_title">Address</div>
+								<div class="contact_info_title">Dirección</div>
 								<div class="contact_info_text">10 Suffolk at Soho, London, UK</div>
 							</div>
 						</div>
@@ -75,19 +75,19 @@
 			<div class="row">
 				<div class="col-lg-10 offset-lg-1">
 					<div class="contact_form_container">
-						<div class="contact_form_title">Get in Touch</div>
+						<div class="contact_form_title">Contactar</div>
 
-						<form action="#" id="contact_form">
+						<form action="" id="contact_form">
 							<div class="contact_form_inputs d-flex flex-md-row flex-column justify-content-between align-items-between">
-								<input type="text" id="contact_form_name" class="contact_form_name input_field" placeholder="Your name" required="required" data-error="Name is required.">
-								<input type="text" id="contact_form_email" class="contact_form_email input_field" placeholder="Your email" required="required" data-error="Email is required.">
-								<input type="text" id="contact_form_phone" class="contact_form_phone input_field" placeholder="Your phone number">
+								<input type="text" id="nombre" name="nombre" class="contact_form_name input_field" placeholder="Nombre" required="required" data-error="Nombre" required>
+								<input type="text" id="correo" name="correo" class="contact_form_email input_field" placeholder="Correo" required="required" data-error="Email is required." required>
+								<input type="text" id="telefono" name="telefono" class="contact_form_phone input_field" placeholder="Telefono">
 							</div>
 							<div class="contact_form_text">
-								<textarea id="contact_form_message" class="text_field contact_form_message" name="message" rows="4" placeholder="Message" required="required" data-error="Please, write us a message."></textarea>
+								<textarea id="mensaje" name="mensaje" class="text_field contact_form_message" name="message" rows="4" placeholder="Mensage" required="required" data-error="Mensaje"></textarea>
 							</div>
 							<div class="contact_form_button">
-								<button type="submit" class="button contact_submit_button">Send Message</button>
+								<button type="submit" class="button contact_submit_button">Enviar mensaje</button>
 							</div>
 						</form>
 
@@ -139,8 +139,17 @@
 <script src="plugins/greensock/animation.gsap.min.js"></script>
 <script src="plugins/greensock/ScrollToPlugin.min.js"></script>
 <script src="plugins/easing/easing.js"></script>
+
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
 <script src="js/contact_custom.js"></script>
+
+<!--   Alertas   -->
+<script src="librerias15/swal/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="librerias15/swal/dist/sweetalert2.min.css">
+
+
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<script src="sagyc.js"></script>
 </body>
 
 </html>
