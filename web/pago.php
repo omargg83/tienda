@@ -35,6 +35,11 @@
 
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Ensures optimal rendering on mobile devices. -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge" /> <!-- Optimal Internet Explorer compatibility -->
+
+
 <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
 <link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="styles/cart_styles.css">
@@ -236,6 +241,28 @@
 
 					<script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
 					<script>paypal.Buttons().render('body');</script>
+
+
+					<script
+						src="https://www.paypal.com/sdk/js?client-id=sb-zugkk1390830@business.example.com&currency=MXN"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.
+					</script>
+
+					<div id="paypal-button-container"></div>
+
+					<script>
+					  paypal.Buttons({
+					    createOrder: function(data, actions) {
+					      // This function sets up the details of the transaction, including the amount and line item details.
+					      return actions.order.create({
+					        purchase_units: [{
+					          amount: {
+					            value: '<?php echo $gtotal; ?>'
+					          }
+					        }]
+					      });
+					    }
+					  }).render('#paypal-button-container');
+					</script>
 				</div>
 			</div>
 
