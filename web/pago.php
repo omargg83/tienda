@@ -233,6 +233,9 @@
 					    data-transaction-amount="<?php echo $gtotal; ?>">
 					  </script>
 					</form>
+
+					<script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
+					<script>paypal.Buttons().render('body');</script>
 				</div>
 			</div>
 
