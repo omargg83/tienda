@@ -239,12 +239,12 @@
 					  </script>
 					</form>
 
-					<script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
+					<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=MXN"></script>
 					<script>paypal.Buttons().render('body');</script>
 
 
 					<script
-						src="https://www.paypal.com/sdk/js?client-id=sb-zugkk1390830@business.example.com&currency=MXN"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.
+						src="https://www.paypal.com/sdk/js?client-id=sb-zugkk1390830@business.example.com"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.
 					</script>
 
 					<div id="paypal-button-container"></div>
@@ -260,9 +260,34 @@
 					          }
 					        }]
 					      });
+					    },
+					    onApprove: function(data, actions) {
+								// Authorize the transaction
+								actions.order.authorize().then(function(authorization) {
+
+									// Get the authorization id
+									var authorizationID = authorization.purchase_units[0]
+										.payments.authorizations[0].id
+
+									// Call your server to validate and capture the transaction
+									return fetch('/paypal-transaction-complete.php', {
+										method: 'post',
+										headers: {
+											'content-type': 'application/json'
+										},
+										body: JSON.stringify({
+											orderID: data.orderID,
+											authorizationID: authorizationID
+										})
+									});
+								});
 					    }
 					  }).render('#paypal-button-container');
+					  //This function displays Smart Payment Buttons on your web page.
+
 					</script>
+
+
 				</div>
 			</div>
 
