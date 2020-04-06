@@ -1,15 +1,22 @@
 <?php
   class Tienda{
+    public $nivel_personal;
+    public $nivel_captura;
+    public $derecho=array();
+    public $lema;
+    public $personas;
+    public $arreglo;
+    public $limite=300;
+
     public function __construct(){
       $this->Salud = array();
       date_default_timezone_set("America/Mexico_City");
       $_SESSION['mysqluser']="ticshopc_admin";
       $_SESSION['mysqlpass']="admin123$%";
-      $_SESSION['servidor'] ="localhost";
+      $_SESSION['servidor'] ="tic-shop.com.mx";
       $_SESSION['bdd']="ticshopc_tienda";
       $this->dbh = new PDO("mysql:host=".$_SESSION['servidor'].";dbname=".$_SESSION['bdd']."", $_SESSION['mysqluser'], $_SESSION['mysqlpass']);
       self::set_names();
-
     }
     public function set_names(){
       return $this->dbh->query("SET NAMES 'utf8'");
@@ -72,7 +79,6 @@
 
   if (file_exists ($destino)){
     ///////////////////////////////////////    PROCESO  /////////////////////////////////////////////////////////////
-    $db = new Productos();
 
     //////////////////////////////////////   JSON SE CONVIERTE EN ARREGLO
     $data = file_get_contents($destino);
