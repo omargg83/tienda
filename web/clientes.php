@@ -2,6 +2,8 @@
 	require_once("control_db.php");
 	$db = new Tienda();
 
+	$ped=$db->pedidos_lista();
+
 ?>
 
 <!DOCTYPE html>
@@ -35,17 +37,53 @@
 		<div class='row'>
 			<div class='col-3'>
 				<div class="btn-group-vertical">
-					<a href='cli_pedidos.php' class="btn btn-primary btn-lg btn-block">Pedidos</a>
+					<a href='clientes.php' class="btn btn-primary btn-lg btn-block">Pedidos</a>
 					<a href='cli_direcciones.php' class="btn btn-primary btn-lg btn-block">Direcciones</a>
  				 	<a href='cli_datos.php' class="btn btn-primary btn-lg btn-block">Mis datos</a>
  				 	<a href='#' class="btn btn-primary btn-lg btn-block" onclick='salir()'>Salir</a>
 				</div>
 			</div>
 			<div class='col-9'>
-				texto
+				<?php
+					echo "<h4>Pedidos</h4>";
+					echo "<table class='table table-sm'>";
+					echo "<tr><th>-</th><th>Pedido</th><th>Fecha</th><th>Estatus</th><th>Total</th><th>Envio</th></tr>";
+					foreach ($ped as $key) {
+						echo "<tr>";
+
+							echo "<td>";
+								echo "<div class='btn-group'>";
+									echo "<a class='btn btn-outline-secondary btn-sm' href='pago.php?idpedido=".$key->id."' title='Editar' ><i class='fas fa-pencil-alt'></i></a>";
+								echo "</div>";
+							echo "</td>";
+
+							echo "<td>#";
+								echo $key->id;
+							echo "</td>";
+
+							echo "<td>";
+								echo fecha($key->fecha);
+							echo "</td>";
+							echo "<td>";
+								echo $key->estatus;
+							echo "</td>";
+							echo "<td class='text-right'>";
+								echo moneda($key->monto);
+							echo "</td>";
+							echo "<td class='text-right'>";
+								echo moneda($key->envio);
+							echo "</td>";
+						echo "</tr>";
+					}
+					echo "</table>";
+
+
+				 ?>
+
 			</div>
 		</div>
 	</div>
+
 
 
 	<!-- Footer -->

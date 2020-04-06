@@ -35,10 +35,10 @@
 		<div class='row'>
 			<div class='col-3'>
 				<div class="btn-group-vertical">
-					<a href='cli_pedidos.php' class="btn btn-primary btn-lg btn-block">Pedidos</a>
+					<a href='clientes.php' class="btn btn-primary btn-lg btn-block">Pedidos</a>
 					<a href='cli_direcciones.php' class="btn btn-primary btn-lg btn-block">Direcciones</a>
- 				 	<a href='cli_datos.php' class="btn btn-primary btn-lg btn-block">Mis datos</a>
- 				 	<a href='#' class="btn btn-primary btn-lg btn-block" onclick='salir()'>Salir</a>
+					<a href='cli_datos.php' class="btn btn-primary btn-lg btn-block">Mis datos</a>
+					<a href='#' class="btn btn-primary btn-lg btn-block" onclick='salir()'>Salir</a>
 				</div>
 			</div>
 			<div class='col-9'>
@@ -50,7 +50,7 @@
 
 					echo "</div>";
 					echo "<div class='card-body'>";
-						echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_pass' data-id='0' data-lugar='a_clientes/form_direccion' title='Cambiar contraseña' ><i class='fas fa-street-view'></i>Agregar Direccion</button>";
+						echo "<a class='btn btn-outline-secondary btn-sm' href='cli_diredit.php' title='Agregar dirección' ><i class='fas fa-street-view'></i>Agregar Direccion</a>";
 
 						echo "<table class='table table-sm'>";
 						echo "<tr><th>-</th><th>Nombre</th><th>Apellidos</th><th>Empresa</th><th>Ciudad</th><th>Estado</th></tr>";
@@ -62,16 +62,16 @@
 									echo "</div>";
 								echo "</td>";
 								echo "<td>";
-									echo $key['nombre'];
-								echo "</td>";
-								echo "<td>";
-									echo $key['apellidos'];
-								echo "</td>";
-								echo "<td>";
-									echo $key['empresa'];
+									echo $key['direccion1'];
 								echo "</td>";
 								echo "<td>";
 									echo $key['ciudad'];
+								echo "</td>";
+								echo "<td>";
+									echo $key['estado'];
+								echo "</td>";
+								echo "<td>";
+									echo $key['cp'];
 								echo "</td>";
 								echo "<td>";
 									echo $key['estado'];

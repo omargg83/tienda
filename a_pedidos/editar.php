@@ -2,7 +2,7 @@
 	require_once("db_.php");
   $id=$_REQUEST['id'];
   $fecha=date("d-m-Y");
-  $estado=date("d-m-Y");
+  $estatus="";
   $idcliente=0;
   $nombre_cli="";
   $correo_cli="";
@@ -12,7 +12,7 @@
   if($id>0){
     $row=$db->editar_pedido($id);
     $fecha=fecha($row['fecha']);
-    $estado=$row['estado'];
+    $estatus=$row['estatus'];
     $idcliente=$row['idcliente'];
     $idenvio=$row['idenvio'];
     $idfactura=$row['idfactura'];
