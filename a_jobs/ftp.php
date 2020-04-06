@@ -1,4 +1,5 @@
 <?php
+  session_start();
   class Tienda{
     public $nivel_personal;
     public $nivel_captura;
