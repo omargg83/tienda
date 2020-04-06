@@ -152,11 +152,25 @@
 							<!-- Product Item -->
 							<?php
 								foreach($resp as $key){
+									if($key->precio_tipo==0){
+										$preciof=$key->preciof;
+									}
+									if($key->precio_tipo==1){
+										$p_total=$key->preciof+(($key->preciof*$db->cgeneral)/100);
+										$preciof=$p_total;
+									}
+									if($key->precio_tipo==2){
+										$preciof=$key->precio_tic;
+									}
+									if($key->precio_tipo==3){
+										$p_total=$key->precio_tic+(($key->precio_tic*$db->cgeneral)/100);
+										$preciof=$p_total;
+									}
 									echo "<a href='product.php?id=".$key->id."'><div class='product_item'>
 										<div class='product_border'></div>
 										<div class='product_image d-flex flex-column align-items-center justify-content-center'><img src='".$db->doc.$key->img."' alt='' width='100px'></div>
 										<div class='product_content'>
-											<div class='product_price'>".moneda($key->preciof)."</div>
+											<div class='product_price'>".moneda($preciof)."</div>
 											<div class='product_name'><div><a href='#' tabindex='0'>".$key->nombre."</a></div></div>
 										</div>
 										<div class='product_fav' onclick='wish(".$key->id.")'><i class='fas fa-heart'></i></div>

@@ -1,10 +1,23 @@
 <?php
-  require_once("../control_db.php");
-  class Productos extends Tienda{
-  	public function __construct(){
-  		parent::__construct();
-  	}
+  class Tienda{
+    public function __construct(){
+      $this->Salud = array();
+      date_default_timezone_set("America/Mexico_City");
+      $_SESSION['mysqluser']="ticshopc_admin";
+      $_SESSION['mysqlpass']="admin123$%";
+      $_SESSION['servidor'] ="localhost";
+      $_SESSION['bdd']="ticshopc_tienda";
+      $this->dbh = new PDO("mysql:host=".$_SESSION['servidor'].";dbname=".$_SESSION['bdd']."", $_SESSION['mysqluser'], $_SESSION['mysqlpass']);
+      self::set_names();
+
+    }
+    public function set_names(){
+      return $this->dbh->query("SET NAMES 'utf8'");
+    }
   }
+  $db = new Tienda();
+
+
   $destino="file.json";     //////////////////////ARCHIVO JSON
 
   ///////////////////////////////////////CLASE PARA EL FTP
