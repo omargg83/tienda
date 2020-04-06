@@ -751,6 +751,7 @@
 
 		public function pedido_generar(){
 			try{
+				//////////////////////////////////actualiza datos
 				$nombre = trim(htmlspecialchars($_REQUEST["nombre"]));
 				$apellido = trim(htmlspecialchars($_REQUEST["apellido"]));
 				$rfc = trim(htmlspecialchars($_REQUEST["rfc"]));
@@ -763,8 +764,9 @@
 				$pais = trim(htmlspecialchars($_REQUEST["pais"]));
 				$estado = trim(htmlspecialchars($_REQUEST["estado"]));
 				$telefono = trim(htmlspecialchars($_REQUEST["telefono"]));
+				$correo = trim(htmlspecialchars($_REQUEST["correo"]));
 
-				$sql="update clientes set nombre=:nombre, apellido=:apellido, rfc=:rfc, cfdi=:cfdi, direccion1=:direccion1, direccion2=:direccion2, ciudad=:ciudad, cp=:cp, pais=:pais, estado=:estado, telefono=:telefono  where id=:id";
+				$sql="update clientes set nombre=:nombre, apellido=:apellido, rfc=:rfc, cfdi=:cfdi, direccion1=:direccion1, direccion2=:direccion2, ciudad=:ciudad, cp=:cp, pais=:pais, estado=:estado, telefono=:telefono, correo=:correo  where id=:id";
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(":nombre",$nombre);
 				$sth->bindValue(":apellido",$apellido);
@@ -777,19 +779,43 @@
 				$sth->bindValue(":pais",$pais);
 				$sth->bindValue(":estado",$estado);
 				$sth->bindValue(":telefono",$telefono);
+				$sth->bindValue(":correo",$correo);
 				$sth->bindValue(":id",$_SESSION['idcliente']);
 
-				if($sth->execute()){
-					$arr=array();
-					$arr+=array('error'=>0);
-					$arr+=array('terror'=>"");
-					return json_encode($arr);
+
+				///////////////////////////se genera el pedido
+				try{
+					self::set_names();
+					//$id=$_REQUEST['id'];
+					$id=0;
+					$arreglo =array();
+					$arreglo+=array('fecha'=>date("Y-m-d H:i:s"));
+					$arreglo+= array('estatus'=>"pendiente");
+					$arreglo+= array('nombre'=>$nombre);
+					$arreglo+= array('apellido'=>$apellido);
+					$arreglo+= array('rfc'=>$rfc);
+					$arreglo+= array('cfdi'=>$cfdi);
+					$arreglo+= array('direccion1'=>$direccion1);
+					$arreglo+= array('direccion2'=>$direccion2);
+					$arreglo+= array('ciudad'=>$ciudad);
+					$arreglo+= array('cp'=>$cp);
+					$arreglo+= array('pais'=>$pais);
+					$arreglo+= array('telefono'=>$telefono);
+					$arreglo+= array('estado'=>$estado);
+					$arreglo+= array('correo'=>$correo);
+					$arreglo+= array('idcliente'=>$_SESSION['idcliente']);
+
+					$x="";
+					if($id==0){
+						$x=$this->insert('pedidos', $arreglo);
+					}
+					else{
+						$x=$this->update('pedidos',array('id'=>$id), $arreglo);
+					}
+					return $x;
 				}
-				else{
-					$arr=array();
-					$arr+=array('error'=>1);
-					$arr+=array('terror'=>"");
-					return json_encode($arr);
+				catch(PDOException $e){
+					return "Database access FAILED!".$e->getMessage();
 				}
 			}
 			catch(PDOException $e){

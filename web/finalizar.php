@@ -19,6 +19,7 @@
 	$pais=$resp->pais;
 	$estado=$resp->estado;
 	$telefono=$resp->telefono;
+	$correo=$resp->correo;
 
 
 ?>
@@ -74,7 +75,7 @@
 
 					<div class="col-4">
 						<label class='text-center'>Correo</label>
-						<input type="email" class="form-control" id="correo" name='correo' placeholder="Correo" value="<?php echo $correo; ?>">
+						<input type="email" class="form-control" id="correo" name='correo' placeholder="Correo" value="<?php echo $correo; ?>" required>
 					</div>
 				</div>
 				<div class='row'>
@@ -92,7 +93,7 @@
 				<div class='row'>
 					<div class="col-12">
 						<label>Dirección (linea 1)</label>
-						<input type="text" class="form-control" id="direccion1" name='direccion1' placeholder="Dirección (linea 1)" value="<?php echo $direccion1; ?>" >
+						<input type="text" class="form-control" id="direccion1" name='direccion1' placeholder="Dirección (linea 1)" value="<?php echo $direccion1; ?>" required>
 					</div>
 					<div class="col-12">
 						<label>Dirección (linea 2)</label>
@@ -100,23 +101,23 @@
 					</div>
 					<div class="col-4">
 						<label>Ciudad</label>
-						<input type="text" class="form-control" id="ciudad" name='ciudad' placeholder="Ciudad" value="<?php echo $ciudad; ?>" >
+						<input type="text" class="form-control" id="ciudad" name='ciudad' placeholder="Ciudad" value="<?php echo $ciudad; ?>" required>
 					</div>
 					<div class="col-4">
 						<label>Código postal</label>
-						<input type="text" class="form-control" id="cp" name='cp' placeholder="Código postal" value="<?php echo $cp; ?>" >
+						<input type="text" class="form-control" id="cp" name='cp' placeholder="Código postal" value="<?php echo $cp; ?>" required>
 					</div>
 					<div class="col-4">
 						<label>Pais</label>
-						<input type="text" class="form-control" id="pais" name='pais' placeholder="Pais" value="<?php echo $pais; ?>" >
+						<input type="text" class="form-control" id="pais" name='pais' placeholder="Pais" value="<?php echo $pais; ?>" required>
 					</div>
 					<div class="col-4">
 						<label>Estado</label>
-						<input type="text" class="form-control" id="estado" name='estado' placeholder="Estado" value="<?php echo $estado; ?>" >
+						<input type="text" class="form-control" id="estado" name='estado' placeholder="Estado" value="<?php echo $estado; ?>" required>
 					</div>
 					<div class="col-4">
 						<label>Teléfono</label>
-						<input type="text" class="form-control" id="telefono" name='telefono' placeholder="Teléfono" value="<?php echo $telefono; ?>" >
+						<input type="text" class="form-control" id="telefono" name='telefono' placeholder="Teléfono" value="<?php echo $telefono; ?>" required>
 					</div>
 				</div>
 
