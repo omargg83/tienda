@@ -270,7 +270,7 @@
 										.payments.authorizations[0].id
 
 									// Call your server to validate and capture the transaction
-									return fetch('/paypal-transaction-complete.php', {
+									return fetch('paypal-transaction-complete.php', {
 										method: 'post',
 										headers: {
 											'content-type': 'application/json'
