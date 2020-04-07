@@ -47,6 +47,14 @@
 
 ?>
   <!-- Top Bar -->
+  <div class="alerta" style="background-color:#b4f22f; ">
+  	<div class="container">
+
+     <div class="row">
+     	<a style="text-align: center;width: 100%;cursor: pointer;height: 50px;color: black;padding-top: 15px;font-weight: 600;" href="#"> ¡Aprovecha solo este mes ofertas en toda la tienda por apertura! </a>
+     </div>
+    </div>
+  </div>
 
   <div class="top_bar">
     <div class="container">
