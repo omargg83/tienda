@@ -19,8 +19,11 @@
           </div>
 				</div>
 
- 				<li class='nav-item active'><a class='nav-link barranav' title='Mostrar todo' id='new_poliza' data-lugar='a_productos/editar'><i class="fas fa-folder-plus"></i><span>Nuevo</span></a></li>
- 				<li class='nav-item active'><a class='nav-link barranav' title='Mostrar todo' id='lista_prod' data-lugar='a_productos/lista'><i class="fas fa-list"></i><span>Lista</span></a></li>
+ 				<li class='nav-item active'><a class='nav-link barranav' title='Editar producto' id='new_poliza' data-lugar='a_productos/editar'><i class="fas fa-folder-plus"></i><span>Nuevo</span></a></li>
+ 				<li class='nav-item active'><a class='nav-link barranav' title='Lista de prouctos' id='lista_prod' data-lugar='a_productos/lista'><i class="fas fa-list"></i><span>Lista</span></a></li>
+ 				<li class='nav-item active'><a class='nav-link barranav' title='Productos destacados' id='lista_desta' data-lugar='a_productos/destacados'><i class="fas fa-list"></i><span>Destacados</span></a></li>
+ 				<li class='nav-item active'><a class='nav-link barranav' title='Productos de la semana' id='lista_semana' data-lugar='a_productos/semana'><i class="fas fa-list"></i><span>P. Semana</span></a></li>
+ 				<li class='nav-item active'><a class='nav-link barranav' title='Oferta de la semana' id='lista_oferta' data-lugar='a_productos/oferta'><i class="fas fa-list"></i><span>O. Semana</span></a></li>
 
       </li>
 
@@ -100,6 +103,32 @@
        }
      }
    });
- }
+  }
+  function existencia_api(){
+    var clave=$("#clave").val();
+    var id=$("#id").val();
+    $.confirm({
+      title: 'Existencias',
+      content: '¿Desea verificar existencias?',
+      buttons: {
+        Aceptar: function () {
+          $.ajax({
+            data:  {
+              "function":"existencia_api",
+              "clave":clave,
+              "id":id
+            },
+            url:   'a_productos/db_.php',
+            type:  'post',
+            success:  function (response) {
+              alert(response);
+            }
+          });
+        },
+        Cancelar: function () {
 
+        }
+      }
+    });
+  }
 </script>

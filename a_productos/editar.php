@@ -31,6 +31,11 @@
 	$precio_tipo="";
 	$envio_tipo="";
 
+	$cb_ofertasemana=0;
+	$cb_prodsemana=0;
+	$cb_destacados=0;
+	$precio_oferta=0;
+
 	if($id>0){
 		$per = $db->producto_editar($id);
 		$idProducto=$per->idProducto;
@@ -66,6 +71,10 @@
 		$interno=$per->interno;
 		$precio_tipo=$per->precio_tipo;
 		$envio_tipo=$per->envio_tipo;
+		$cb_ofertasemana=$per->cb_ofertasemana;
+		$cb_prodsemana=$per->cb_prodsemana;
+		$cb_destacados=$per->cb_destacados;
+		$precio_oferta=$per->precio_oferta;
 	}
 	else{
 		$interno=1;
@@ -176,6 +185,8 @@
 			    </div>
 			  </div>
 
+
+
 				<div class="row">
 			    <div class="col-2">
 			      <label for="descripcion">Precio base (CT)</label>
@@ -196,9 +207,11 @@
 			      <label for="descripcion">Tipo de cambio (CT)</label>
 			      <input type="text" class="form-control form-control-sm" id="tipoCambio" name='tipoCambio' placeholder="Tipo de cambio" value="<?php echo $tipoCambio; ?>" <?php  echo $bloqueo;  ?>>
 			    </div>
-
-
 				</div>
+
+
+				<hr>
+
 				<div class="row">
 					<div class="col-2">
 						<label for="preciof">Precio CT</label>
@@ -211,6 +224,11 @@
 			    </div>
 
 					<div class="col-2">
+						<label for="preciof">Precio Oferta</label>
+						<input type="text" class="form-control form-control-sm text-right" id="precio_oferta" name='precio_oferta' placeholder="Precio Oferta" value="<?php echo $precio_oferta; ?>" >
+					</div>
+
+					<div class="col-2">
 			      <label for="preciof">Costo de envío</label>
 			      <input type="text" class="form-control form-control-sm text-right" id="envio_costo" name='envio_costo' placeholder="Costo de envío" value="<?php echo $envio_costo; ?>"
 						data-toggle="tooltip" data-placement="top" title="Tooltip on top">
@@ -221,6 +239,7 @@
 						<input type="text" class="form-control form-control-sm" id="existencia" name='existencia' placeholder="Existencia" value="<?php echo $existencia; ?>" <?php  echo $bloqueo;  ?>>
 					</div>
 			  </div>
+
 				<div class="row">
 					<div class="col-4">
 			      <label for="precio_tipo">Precio a utilizar</label>
@@ -243,14 +262,51 @@
 						?>
 			    </div>
 				</div>
+
+				<hr>
+				<div class='row'>
+					<?php
+					echo "<div class='col-sm-3'>";
+						echo "<label>Oferta de la semana: </label><br>";
+						echo "<input type='checkbox' name='cb_ofertasemana' id='cb_ofertasemana' value=1";
+						if($cb_ofertasemana==1){ echo " checked";}
+						echo ">";
+					echo "</div>";
+
+					echo "<div class='col-sm-3'>";
+						echo "<label>Producto de la semana: </label><br>";
+						echo "<input type='checkbox' name='cb_prodsemana' id='cb_prodsemana' value=1";
+						if($cb_prodsemana==1){ echo " checked";}
+						echo ">";
+					echo "</div>";
+
+					echo "<div class='col-sm-3'>";
+						echo "<label>Producto destacado: </label><br>";
+						echo "<input type='checkbox' name='cb_destacados' id='cb_destacados' value=1";
+						if($cb_destacados==1){ echo " checked";}
+						echo ">";
+					echo "</div>";
+					?>
+				</div>
+
+
 			</div>
 
 			<div class='card-footer'>
 				<div class='btn-group'>
 		  		<button type="submit" class="btn btn-outline-secondary btn-sm"><i class='far fa-save'></i>Guardar</button>
-					<button type="button" class="btn btn-outline-secondary btn-sm" onclick='existencia()'><i class='far fa-save'></i>Verificar Existencia</button>
+					<?php
+						if ($interno==0 or $id==0){
+							echo "<button type='button' class='btn btn-outline-secondary btn-sm' onclick='existencia_api()'><i class='fas fa-sync'></i>Verificar Existencia</button>";
+						}
+						if($id>0){
+							echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_pass' data-id='0' data-id2='$id' data-lugar='a_productos/form_especificacion' title='Agregar especificacion' ><i class='fas fa-plus'></i>Especificacion</button>";
+						}
+					?>
 					<button class='btn btn-outline-secondary btn-sm' id='lista_cat' data-lugar='a_productos/lista' title='regresar'><i class='fas fa-undo-alt'></i>Regresar</button>
 				</div>
+
+
 			</div>
 
 		<?php
@@ -262,6 +318,11 @@
 					echo "<table class='table table-sm' style='font-size:10px'>";
 					foreach($espe as $key){
 						echo "<tr>";
+							echo "<div class='btn-group'>";
+							if ($interno==1 or $id==0){
+								echo "<button class='btn btn-outline-secondary btn-sm' id='eliminar_cat' data-lugar='a_categorias/db_' data-destino='a_categorias/editar' data-id='".$key['idcatprod']."' data-iddest='$id' data-funcion='quitar_categoria' data-div='trabajo'><i class='far fa-trash-alt'></i></i></button>";
+							}
+							echo "</div>";
 
 							echo "<td>";
 							echo $key->tipo;

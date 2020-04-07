@@ -347,6 +347,7 @@
 			}
 		}
 
+
 		public function ofertas(){
 			try{
 				self::set_names();
