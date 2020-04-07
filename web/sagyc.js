@@ -111,25 +111,36 @@ function wish(id){
 
 }
 function borra_wish(id){
-  $.ajax({
-    data:  {
-      "ctrl":"control",
-      "id":id,
-      "function":"borra_wish"
-    },
-    url:   'control_db.php',
-    type:  'post',
-    timeout:3000,
-    beforeSend: function () {
+  $.confirm({
+      title: 'Lista de deseos!',
+      content: '¿Desea quitar de la lista de deseos?',
+      buttons: {
+          Quitar: function () {
+          $.ajax({
+            data:  {
+              "ctrl":"control",
+              "id":id,
+              "function":"borra_wish"
+            },
+            url:   'control_db.php',
+            type:  'post',
+            timeout:3000,
+            beforeSend: function () {
 
-    },
-    success:  function (response) {
-      window.location.href="wish.php";
-    },
-    error: function(jqXHR, textStatus, errorThrown) {
+            },
+            success:  function (response) {
+              window.location.href="wish.php";
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
 
-    }
-  });
+            }
+          });
+        },
+        cancel: function () {
+
+        }
+      }
+    });
 }
 function borra_carrito(id){
   $.confirm({

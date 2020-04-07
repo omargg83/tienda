@@ -483,7 +483,7 @@
 		public function wish_list(){
 			try{
 				self::set_names();
-				$sql="select productos.id, productos.img, productos.nombre, productos.preciof, cliente_wish.id as cliid, productos.precio_tipo from cliente_wish
+				$sql="select productos.id, productos.img, productos.nombre, productos.preciof, cliente_wish.id as cliid, productos.precio_tipo, productos.envio_tipo from cliente_wish
 				left outer join productos on productos.id=cliente_wish.idproducto
 				where cliente_wish.idcliente=:id";
 				$sth = $this->dbh->prepare($sql);
