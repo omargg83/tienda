@@ -239,53 +239,37 @@
 					  </script>
 					</form>
 
-					<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=MXN"></script>
-					<script>paypal.Buttons().render('body');</script>
+				<script
+					 src="https://www.paypal.com/sdk/js?client-id=AVPbaFevyucb8zM_dqhd58gpDVRq5Hi1l0K8i2RHgDV-lj7Q7DSbAFmzQ3QC8YCFIfeUQcqqC5J_Zh65&currency=MXN" data-order-id="omar-2VW94544JM6797511"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.
+				 </script>
 
+				 <div id="paypal-button-container"></div>
 
-					<script
-						src="https://www.paypal.com/sdk/js?client-id=sb-zugkk1390830@business.example.com"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.
-					</script>
+				 <script>
+						paypal.Buttons({
+				    createOrder: function(data, actions) {
+				      // This function sets up the details of the transaction, including the amount and line item details.
+				      return actions.order.create({
+				        purchase_units: [{
+				          amount: {
+				            value: '<?php echo $gtotal; ?>'
+				          }
+				        }]
+				      });
+				    },
+				    onApprove: function(data, actions) {
+				      return actions.order.capture().then(function(details) {
+				        // This function shows a transaction success message to your buyer.
+								console.log(details);
 
-					<div id="paypal-button-container"></div>
+				        alert('Transaction completed by ' + details.payer.name.given_name);
+				      });
+				    }
+				  }).render('#paypal-button-container');
+				  //This function displays Smart Payment Buttons on your web page.
 
-					<script>
-					  paypal.Buttons({
-					    createOrder: function(data, actions) {
-					      // This function sets up the details of the transaction, including the amount and line item details.
-					      return actions.order.create({
-					        purchase_units: [{
-					          amount: {
-					            value: '<?php echo $gtotal; ?>'
-					          }
-					        }]
-					      });
-					    },
-					    onApprove: function(data, actions) {
-								// Authorize the transaction
-								actions.order.authorize().then(function(authorization) {
+				 </script>
 
-									// Get the authorization id
-									var authorizationID = authorization.purchase_units[0]
-										.payments.authorizations[0].id
-
-									// Call your server to validate and capture the transaction
-									return fetch('paypal-transaction-complete.php', {
-										method: 'post',
-										headers: {
-											'content-type': 'application/json'
-										},
-										body: JSON.stringify({
-											orderID: data.orderID,
-											authorizationID: authorizationID
-										})
-									});
-								});
-					    }
-					  }).render('#paypal-button-container');
-					  //This function displays Smart Payment Buttons on your web page.
-
-					</script>
 
 
 				</div>
