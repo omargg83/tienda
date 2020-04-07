@@ -26,6 +26,42 @@ class Productos extends Tienda{
 			return "Database access FAILED! ".$e->getMessage();
 		}
 	}
+	public function productos_destacados(){
+		try{
+			parent::set_names();
+			$sql="SELECT * from productos where cb_destacados=1";
+			$sth = $this->dbh->prepare($sql);
+			$sth->execute();
+			return $sth->fetchAll();
+		}
+		catch(PDOException $e){
+			return "Database access FAILED! ".$e->getMessage();
+		}
+	}
+	public function productos_semana(){
+		try{
+			parent::set_names();
+			$sql="SELECT * from productos where cb_prodsemana=1";
+			$sth = $this->dbh->prepare($sql);
+			$sth->execute();
+			return $sth->fetchAll();
+		}
+		catch(PDOException $e){
+			return "Database access FAILED! ".$e->getMessage();
+		}
+	}
+	public function productos_oferta(){
+		try{
+			parent::set_names();
+			$sql="SELECT * from productos where cb_ofertasemana=1";
+			$sth = $this->dbh->prepare($sql);
+			$sth->execute();
+			return $sth->fetchAll();
+		}
+		catch(PDOException $e){
+			return "Database access FAILED! ".$e->getMessage();
+		}
+	}
 	public function producto_editar($id){
 		try{
 			parent::set_names();
@@ -145,6 +181,11 @@ class Productos extends Tienda{
 			if (isset($_REQUEST['precio_tic'])){
 				$arreglo+= array('precio_tic'=>$_REQUEST['precio_tic']);
 			}
+			if (isset($_REQUEST['precio_oferta'])){
+				$arreglo+= array('precio_oferta'=>$_REQUEST['precio_oferta']);
+			}
+
+
 			if (isset($_REQUEST['envio_costo'])){
 				$arreglo+= array('envio_costo'=>$_REQUEST['envio_costo']);
 			}
@@ -153,6 +194,15 @@ class Productos extends Tienda{
 			}
 			if (isset($_REQUEST['envio_tipo'])){
 				$arreglo+= array('envio_tipo'=>$_REQUEST['envio_tipo']);
+			}
+			if (isset($_REQUEST['cb_ofertasemana'])){
+				$arreglo+= array('cb_ofertasemana'=>$_REQUEST['cb_ofertasemana']);
+			}
+			if (isset($_REQUEST['cb_prodsemana'])){
+				$arreglo+= array('cb_prodsemana'=>$_REQUEST['cb_prodsemana']);
+			}
+			if (isset($_REQUEST['cb_destacados'])){
+				$arreglo+= array('cb_destacados'=>$_REQUEST['cb_destacados']);
 			}
 
 			$x="";
@@ -254,6 +304,11 @@ class Productos extends Tienda{
 		}
 	}
 
+	public function existencia_api(){
+		$clave=$_REQUEST['clave'];
+		$id=$_REQUEST['id'];
+		return $clave;
+	}
 
 }
 $db = new Productos();
