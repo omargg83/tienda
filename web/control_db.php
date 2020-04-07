@@ -312,6 +312,40 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
+		public function producto_exist($id,$tipo=0){
+			try{
+				self::set_names();
+				if($tipo==0){
+					$sql="select * from producto_exist where idProducto=$id";
+				}
+				if($tipo==1){
+					$sql="select existencia, almacen from producto_exist where idProducto=$id and almacen='PAC' UNION
+						select existencia, almacen from producto_exist where idProducto=$id and almacen!='PAC' group by idProducto";
+				}
+				if($tipo==2){
+					$sql="select sum(existencia) as existencia, almacen from producto_exist where idProducto=$id";
+				}
+				$sth = $this->dbh->prepare($sql);
+				$sth->execute();
+				return $sth->fetchAll(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
+		public function producto_espe($id){
+			try{
+				self::set_names();
+				$sql="select * from producto_espe where idProducto=:id";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(':id', "$id");
+				$sth->execute();
+				return $sth->fetchAll(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
 
 		public function ofertas(){
 			try{
