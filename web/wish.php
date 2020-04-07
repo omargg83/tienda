@@ -1,13 +1,13 @@
 <?php
 	require_once("control_db.php");
 	$db = new Tienda();
-	$carro=$db->wish_list();
+	$wish=$db->wish_list();
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Cart</title>
+<title>TIC-Shop</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
@@ -37,7 +37,24 @@
 		</div>
 			<?php
 				$total=0;
-				foreach($carro as $key){
+				foreach($wish as $key){
+					$preciof=0;
+					$enviof=0;
+					if($key->precio_tipo==0){
+						$preciof=$key->preciof;
+					}
+					if($key->precio_tipo==1){
+						$p_total=$key->preciof+(($key->preciof*$db->cgeneral)/100);
+						$preciof=$p_total;
+					}
+					if($key->precio_tipo==2){
+						$preciof=$key->precio_tic;
+					}
+					if($key->precio_tipo==3){
+						$p_total=$key->precio_tic+(($key->precio_tic*$db->cgeneral)/100);
+						$preciof=$p_total;
+					}
+
 					echo "<div class='row' style='border-bottom:.5px solid silver'>";
 						echo "<div class='col-3'><img src='".$db->doc.$key->img."' alt='' width='100px'>";
 						echo "</div>";
@@ -54,18 +71,18 @@
 								</div>
 								<div class='col-2'>
 									<div class='cart_item_title'>Precio</div>
-									<div class='cart_item_text text-right'>".moneda($key->preciof)."</div>
+									<div class='cart_item_text text-right'>".moneda($preciof)."</div>
 								</div>
 								<div class='col-2'>
 									<div class='cart_item_title'>Total</div>
-									<div class='cart_item_text text-right'>".moneda($key->preciof)."</div>
+									<div class='cart_item_text text-right'>".moneda($preciof)."</div>
 								</div>
 							";
 						echo "</div>";
-					$total+=$key->preciof;
 				}
 			?>
 	</div>
+	<br><br>
 
 
 	<!-- Footer -->

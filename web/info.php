@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Contact</title>
+<title>Tic-Shop</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
@@ -29,89 +29,86 @@
 		?>
 	</header>
 
-	<!-- Contact Info -->
-	<div class="contact_info">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-10 offset-lg-1">
-					<div class="contact_info_container d-flex flex-lg-row flex-column justify-content-between align-items-between">
 
-						<!-- Contact Item -->
-						<div class="contact_info_item d-flex flex-row align-items-center justify-content-start">
-							<div class="contact_info_image"><img src="images/contact_1.png" alt=""></div>
-							<div class="contact_info_content">
-								<div class="contact_info_title">Phone</div>
-								<div class="contact_info_text">+38 068 005 3570</div>
-							</div>
-						</div>
-
-						<!-- Contact Item -->
-						<div class="contact_info_item d-flex flex-row align-items-center justify-content-start">
-							<div class="contact_info_image"><img src="images/contact_2.png" alt=""></div>
-							<div class="contact_info_content">
-								<div class="contact_info_title">Email</div>
-								<div class="contact_info_text">fastsales@gmail.com</div>
-							</div>
-						</div>
-
-						<!-- Contact Item -->
-						<div class="contact_info_item d-flex flex-row align-items-center justify-content-start">
-							<div class="contact_info_image"><img src="images/contact_3.png" alt=""></div>
-							<div class="contact_info_content">
-								<div class="contact_info_title">Address</div>
-								<div class="contact_info_text">10 Suffolk at Soho, London, UK</div>
-							</div>
-						</div>
-
+	<div class="banner">
+		<div class="banner_background" style="background-image:url(img/banner_home.jpg)"></div>
+		<div class="container fill_height">
+			<div class="row fill_height">
+				<div class="col-lg-12 fill_height text-center">
+					<div class="banner_content">
+						<h1 class="banner_text">Más de 6,000 productos de tecnología</h1>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<!-- Contact Form -->
-	<div class="contact_form">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-10 offset-lg-1">
-					<div class="contact_form_container">
-						<div class="contact_form_title">Get in Touch</div>
-
-						<form action="#" id="contact_form">
-							<div class="contact_form_inputs d-flex flex-md-row flex-column justify-content-between align-items-between">
-								<input type="text" id="contact_form_name" class="contact_form_name input_field" placeholder="Your name" required="required" data-error="Name is required.">
-								<input type="text" id="contact_form_email" class="contact_form_email input_field" placeholder="Your email" required="required" data-error="Email is required.">
-								<input type="text" id="contact_form_phone" class="contact_form_phone input_field" placeholder="Your phone number">
-							</div>
-							<div class="contact_form_text">
-								<textarea id="contact_form_message" class="text_field contact_form_message" name="message" rows="4" placeholder="Message" required="required" data-error="Please, write us a message."></textarea>
-							</div>
-							<div class="contact_form_button">
-								<button type="submit" class="button contact_submit_button">Send Message</button>
-							</div>
-						</form>
-
+	<div class="banner">
+		<div class="container fill_height">
+			<div class="row fill_height">
+				<div class="col-lg-12 fill_height text-center">
+					<div class="banner_content">
+						<h1 class="banner_text">¿Quienes somos?</h1><br>
+						<p class='text-center' style='color:black;font-size:16px;'>Tic-Shop, es una empresa de Soluciones Tecnológicas e Informática, creada para hacer tus compras electrónicas más rápidas, con
+						los mejores tiempos de entrega. Contando con una gama extensa de productos de marcas líderes en el mercado.</p>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="panel"></div>
 	</div>
 
-	<!-- Map -->
-	<div class="contact_map">
-		<div id="google_map" class="google_map">
-			<div class="map_container">
-				<div id="map"></div>
+
+	<!-- Characteristics -->
+	<div class="characteristics">
+		<div class="container">
+			<h1 class="banner_text text-center">¿Qué nos hace diferentes?</h1><br>
+			<div class="row">
+
+				<!-- Char. Item -->
+				<div class="col-lg-3 col-md-6 char_col">
+					<div class="char_item d-flex flex-row align-items-center justify-content-start">
+						<div class="char_icon"><img src="img/comprasegura.png" alt="" width="50px"></div>
+						<div class="char_content">
+							<div class="char_title">Compras seguras</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Char. Item -->
+				<div class="col-lg-3 col-md-6 char_col">
+
+					<div class="char_item d-flex flex-row align-items-center justify-content-start">
+						<div class="char_icon"><img src="img/enviosseguros.png" alt="" width="50px"></div>
+						<div class="char_content">
+							<div class="char_title">Envíos seguros</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Char. Item -->
+				<div class="col-lg-3 col-md-6 char_col">
+
+					<div class="char_item d-flex flex-row align-items-center justify-content-start">
+						<div class="char_icon"><img src="img/devolucion.png" alt="" width="50px"></div>
+						<div class="char_content">
+							<div class="char_title">Devoluciones fáciles</div>
+
+						</div>
+					</div>
+				</div>
+
+				<!-- Char. Item -->
+				<div class="col-lg-3 col-md-6 char_col">
+
+					<div class="char_item d-flex flex-row align-items-center justify-content-start">
+						<div class="char_icon"><img src="img/tarjetas.png" alt="" width="50px"></div>
+						<div class="char_content">
+							<div class="char_title">Aceptamos diferentes métodos de pago</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-
-	<!-- Newsletter -->
-	<div class="newsletter">
-		<?php
-			include "a_newsletter.php";
-		?>
 	</div>
 
 	<!-- Footer -->

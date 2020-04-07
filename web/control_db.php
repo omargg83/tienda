@@ -459,7 +459,6 @@
 					$sth->bindValue(":idproducto",$id);
 					$sth->bindValue(":fecha",date("Y-m-d H:i:s"));
 					$resp=$sth->execute();
-
 					$res2=$this->wish_sum();
 					return $res2->contar;
 				}
@@ -484,7 +483,7 @@
 		public function wish_list(){
 			try{
 				self::set_names();
-				$sql="select productos.id, productos.img, productos.nombre, productos.preciof, cliente_wish.id as cliid from cliente_wish
+				$sql="select productos.id, productos.img, productos.nombre, productos.preciof, cliente_wish.id as cliid, productos.precio_tipo from cliente_wish
 				left outer join productos on productos.id=cliente_wish.idproducto
 				where cliente_wish.idcliente=:id";
 				$sth = $this->dbh->prepare($sql);
@@ -707,7 +706,7 @@
 				if (isset($_REQUEST['estado'])){
 					$arreglo+= array('estado'=>$_REQUEST['estado']);
 				}
-		
+
 				$x="";
 				if($id==0){
 					$x=$this->insert('clientes_direccion', $arreglo);

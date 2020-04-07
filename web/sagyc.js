@@ -93,6 +93,7 @@ function borra_carrito(id){
 }
 
 function wish(id){
+  console.log(id);
   $.ajax({
     data:  {
       "ctrl":"control",
@@ -103,6 +104,7 @@ function wish(id){
     type:  'post',
     timeout:3000,
     success:  function (response) {
+      console.log(response);
       $("#wish_count").html(response);
     }
   });

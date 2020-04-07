@@ -45,7 +45,7 @@
 		<div class="banner_background" style="background-image:url(img/banner_home.jpg)"></div>
 		<div class="container fill_height">
 			<div class="row fill_height">
-				<div class="banner_product_image"><img src="images/banner_product.png" alt=""></div>
+
 				<div class="col-lg-5 offset-lg-4 fill_height">
 					<div class="banner_content">
 						<h1 class="banner_text">new era of smartphones</h1>
@@ -455,12 +455,7 @@
 			include "a_footer.php";
 		?>
 	</footer>
-	<!-- Copyright -->
-	<div class="copyright">
-		<?php
-			include "a_copyright.php";
-		?>
-	</div>
+
 </div>
 
 <script src="js/jquery-3.3.1.min.js"></script>

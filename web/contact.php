@@ -41,7 +41,7 @@
 							<div class="contact_info_image"><img src="images/contact_1.png" alt=""></div>
 							<div class="contact_info_content">
 								<div class="contact_info_title">Telefono</div>
-								<div class="contact_info_text">+38 068 005 3570</div>
+								<div class="contact_info_text">+34534554545</div>
 							</div>
 						</div>
 
@@ -49,8 +49,8 @@
 						<div class="contact_info_item d-flex flex-row align-items-center justify-content-start">
 							<div class="contact_info_image"><img src="images/contact_2.png" alt=""></div>
 							<div class="contact_info_content">
-								<div class="contact_info_title">Correo</div>
-								<div class="contact_info_text">fastsales@gmail.com</div>
+								<div class="contact_info_title">Email Ventas</div>
+								<div class="contact_info_text">ventas@tic-shop.com.mx</div>
 							</div>
 						</div>
 
@@ -58,8 +58,8 @@
 						<div class="contact_info_item d-flex flex-row align-items-center justify-content-start">
 							<div class="contact_info_image"><img src="images/contact_3.png" alt=""></div>
 							<div class="contact_info_content">
-								<div class="contact_info_title">Dirección</div>
-								<div class="contact_info_text">10 Suffolk at Soho, London, UK</div>
+								<div class="contact_info_title">Email General</div>
+								<div class="contact_info_text">info@tic-shop.com.mx</div>
 							</div>
 						</div>
 
@@ -80,11 +80,11 @@
 						<form action="" id="contact_form">
 							<div class="contact_form_inputs d-flex flex-md-row flex-column justify-content-between align-items-between">
 								<input type="text" id="nombre" name="nombre" class="contact_form_name input_field" placeholder="Nombre" required="required" data-error="Nombre" required>
-								<input type="text" id="correo" name="correo" class="contact_form_email input_field" placeholder="Correo" required="required" data-error="Email is required." required>
+								<input type="text" id="correo" name="correo" class="contact_form_email input_field" placeholder="Correo" required="required" data-error="Correo es requerido." required>
 								<input type="text" id="telefono" name="telefono" class="contact_form_phone input_field" placeholder="Telefono">
 							</div>
 							<div class="contact_form_text">
-								<textarea id="mensaje" name="mensaje" class="text_field contact_form_message" name="message" rows="4" placeholder="Mensage" required="required" data-error="Mensaje"></textarea>
+								<textarea id="mensaje" name="mensaje" class="text_field contact_form_message" name="message" rows="4" placeholder="Mensaje" required="required" data-error="Mensaje"></textarea>
 							</div>
 							<div class="contact_form_button">
 								<button type="submit" class="button contact_submit_button">Enviar mensaje</button>
