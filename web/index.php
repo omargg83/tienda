@@ -25,8 +25,9 @@
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
 <link rel="stylesheet" type="text/css" href="plugins/slick-1.8.0/slick.css">
 
-<link rel="stylesheet" type="text/css" href="styles/responsive.css">
+
 <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
+<link rel="stylesheet" type="text/css" href="styles/responsive.css">
 
 
 </head>
@@ -373,7 +374,7 @@
 			<div class="banner_fijo">
 
 				<!-- Banner 2 Slider Item -->
-				<div style="background-image:url(img/fondogammer.jpg) background-size: cover;">
+				<div style="background-image:url(img/fondogammer.jpg); background-size: cover;">
 					<div class="banner_2_item">
 						<div class="container fill_height">
 							<div class="row fill_height">
