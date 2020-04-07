@@ -14,10 +14,10 @@ class Pedidos extends Tienda{
 				$texto=trim(htmlspecialchars($_REQUEST['buscar']));
 				$sql="SELECT * from pedidos
 				left outer join clientes on clientes.id=pedidos.idcliente
-				where pedidos.id like '%$texto%' or pedidos.estado like '%$texto%' or clientes.nombre like '%$texto' limit 100";
+				where pedidos.id like '%$texto%' or pedidos.estatus like '%$texto%' or clientes.nombre like '%$texto' limit 100";
 			}
 			else{
-				$sql="SELECT * from pedidos where estado='pendiente'";
+				$sql="SELECT * from pedidos where estatus='pendiente'";
 			}
 			$sth = $this->dbh->prepare($sql);
 			$sth->execute();
@@ -50,8 +50,8 @@ class Pedidos extends Tienda{
 				$fx=explode("-",$_REQUEST['fecha']);
 				$arreglo+=array('fecha'=>$fx['2']."-".$fx['1']."-".$fx['0']);
 			}
-			if (isset($_REQUEST['estado'])){
-				$arreglo+= array('estado'=>$_REQUEST['estado']);
+			if (isset($_REQUEST['estatus'])){
+				$arreglo+= array('estatus'=>$_REQUEST['estatus']);
 			}
 			if (isset($_REQUEST['idfactura'])){
 				$arreglo+= array('idfactura'=>$_REQUEST['idfactura']);
@@ -122,7 +122,7 @@ class Pedidos extends Tienda{
 			$arreglo+= array('idcliente'=>$_REQUEST['idcliente']);
 			if($id==0){
 				$arreglo+= array('fecha'=>date("Y-m-d H:i:s"));
-				$arreglo+= array('estado'=>"pendiente");
+				$arreglo+= array('estatus'=>"pendiente");
 				$x=$this->insert('pedidos', $arreglo);
 			}
 			else{
@@ -208,7 +208,7 @@ class Pedidos extends Tienda{
 			$id=$_REQUEST['idpedido'];
 			$arreglo =array();
 			if($id==0){
-				$arreglo+= array('estado'=>"pendiente");
+				$arreglo+= array('estatus'=>"pendiente");
 				$x=$this->insert('pedidos', $arreglo);
 				$ped=json_decode($x);
 				$id=$ped->id;

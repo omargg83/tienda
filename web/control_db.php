@@ -390,7 +390,7 @@
 		public function carro_list(){
 			try{
 				self::set_names();
-				$sql="select cliente_carro.id, productos.img, productos.nombre, productos.preciof, productos.precio_tipo, productos.precio_tic, productos.envio_costo, productos.envio_tipo from cliente_carro
+				$sql="select cliente_carro.id, productos.img, productos.nombre, productos.preciof, productos.precio_tipo, productos.precio_tic, productos.envio_costo, productos.envio_tipo, productos.idProducto, productos.clave, productos.numParte, productos.modelo, productos.marca, productos.categoria, productos.descripcion_corta from cliente_carro
 				left outer join productos on productos.id=cliente_carro.idproducto
 				where cliente_carro.idcliente=:id";
 				$sth = $this->dbh->prepare($sql);
@@ -459,7 +459,6 @@
 					$sth->bindValue(":idproducto",$id);
 					$sth->bindValue(":fecha",date("Y-m-d H:i:s"));
 					$resp=$sth->execute();
-
 					$res2=$this->wish_sum();
 					return $res2->contar;
 				}
@@ -484,7 +483,7 @@
 		public function wish_list(){
 			try{
 				self::set_names();
-				$sql="select productos.id, productos.img, productos.nombre, productos.preciof, cliente_wish.id as cliid from cliente_wish
+				$sql="select productos.id, productos.img, productos.nombre, productos.preciof, cliente_wish.id as cliid, productos.precio_tipo, productos.envio_tipo from cliente_wish
 				left outer join productos on productos.id=cliente_wish.idproducto
 				where cliente_wish.idcliente=:id";
 				$sth = $this->dbh->prepare($sql);
@@ -688,15 +687,7 @@
 				$arreglo =array();
 				$arreglo = array('idcliente'=>$_SESSION['idcliente']);
 
-				if (isset($_REQUEST['nombre'])){
-					$arreglo+= array('nombre'=>$_REQUEST['nombre']);
-				}
-				if (isset($_REQUEST['apellidos'])){
-					$arreglo+= array('apellidos'=>$_REQUEST['apellidos']);
-				}
-				if (isset($_REQUEST['empresa'])){
-					$arreglo+= array('empresa'=>$_REQUEST['empresa']);
-				}
+
 				if (isset($_REQUEST['direccion1'])){
 					$arreglo+= array('direccion1'=>$_REQUEST['direccion1']);
 				}
@@ -714,12 +705,6 @@
 				}
 				if (isset($_REQUEST['estado'])){
 					$arreglo+= array('estado'=>$_REQUEST['estado']);
-				}
-				if (isset($_REQUEST['mail'])){
-					$arreglo+= array('mail'=>$_REQUEST['mail']);
-				}
-				if (isset($_REQUEST['telefono'])){
-					$arreglo+= array('telefono'=>$_REQUEST['telefono']);
 				}
 
 				$x="";
@@ -781,7 +766,7 @@
 				$sth->bindValue(":telefono",$telefono);
 				$sth->bindValue(":correo",$correo);
 				$sth->bindValue(":id",$_SESSION['idcliente']);
-
+				$sth->execute();
 
 				///////////////////////////se genera el pedido
 				try{
@@ -808,11 +793,78 @@
 					$x="";
 					if($id==0){
 						$x=$this->insert('pedidos', $arreglo);
+						$pedido=json_decode($x);
+
+						$carro=$this->carro_list();
+						$totalEnvio=0;
+						$total=0;
+						//////////////////////////////////////////////////////////////////////////
+						foreach($carro as $key){
+							////////////precio
+							$preciof=0;
+							$enviof=0;
+							if($key->precio_tipo==0){
+								$preciof=$key->preciof;
+							}
+							if($key->precio_tipo==1){
+								$p_total=$key->preciof+(($key->preciof*$db->cgeneral)/100);
+								$preciof=$p_total;
+							}
+							if($key->precio_tipo==2){
+								$preciof=$key->precio_tic;
+							}
+							if($key->precio_tipo==3){
+								$p_total=$key->precio_tic+(($key->precio_tic*$db->cgeneral)/100);
+								$preciof=$p_total;
+							}
+							//////////////////envio
+
+							if($key->envio_tipo==0){
+								$envio=$this->egeneral;
+							}
+							if($key->envio_tipo==1){
+								$envio=$key->envio_costo;
+							}
+
+							$arreglo =array();
+							$arreglo+= array('idprod'=>$key->idProducto);
+							$arreglo+= array('idpedido'=>$pedido->id);
+							$arreglo+= array('precio'=>$preciof);
+							$arreglo+= array('envio'=>$envio);
+							$arreglo+= array('cantidad'=>1);
+							$arreglo+= array('total'=>$preciof);
+							$arreglo+= array('idProducto'=>$key->idProducto);
+							$arreglo+= array('clave'=>$key->clave);
+							$arreglo+= array('numParte'=>$key->numParte);
+							$arreglo+= array('nombre'=>$key->nombre);
+							$arreglo+= array('modelo'=>$key->modelo);
+							$arreglo+= array('marca'=>$key->marca);
+							$arreglo+= array('categoria'=>$key->categoria);
+							$arreglo+= array('descripcion_corta'=>$key->descripcion_corta);
+							$this->insert('pedidos_prod', $arreglo);
+
+							$total+=$preciof;
+							$totalEnvio+=$envio;
+						}
+						$arreglo =array();
+
+						$arreglo+= array('monto'=>$total);
+						$arreglo+= array('envio'=>$envio);
+						$this->update('pedidos',array('id'=>$pedido->id), $arreglo);
+						//////////////////////////////////////////////////////////////////////////
 					}
 					else{
 						$x=$this->update('pedidos',array('id'=>$id), $arreglo);
 					}
-					return $x;
+
+					$arreglo=array();
+					$arreglo+=array('id'=>$pedido->id);
+					$arreglo+=array('error'=>0);
+					$arreglo+=array('terror'=>0);
+					$arreglo+=array('param1'=>0);
+					$arreglo+=array('param2'=>"");
+					$arreglo+=array('param3'=>"");
+					return json_encode($arreglo);
 				}
 				catch(PDOException $e){
 					return "Database access FAILED!".$e->getMessage();
@@ -849,10 +901,46 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
-
-}
-
-
+		public function pedidos_lista(){
+			try{
+				self::set_names();
+				$sql="select * from pedidos where idcliente=:id";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(":id",$_SESSION['idcliente']);
+				$sth->execute();
+				return $sth->fetchAll(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
+		public function pedido_ver($id){
+			try{
+				self::set_names();
+				$sql="select * from pedidos where id=:id";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(":id",$id);
+				$sth->execute();
+				return $sth->fetch(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
+		public function datos_pedido($id){
+			try{
+				self::set_names();
+				$sql="select * from pedidos_prod where idpedido=:id";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(":id",$id);
+				$sth->execute();
+				return $sth->fetch(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
+	}
 
 	if(strlen($ctrl)>0){
 		$db = new Tienda();
@@ -863,6 +951,33 @@
 	function moneda($valor){
 		return "$ ".number_format( $valor, 2, "." , "," );
 	}
+	function fecha($fecha,$key=""){
+		$fecha = new DateTime($fecha);
+		if($key==1){
+			$mes=$fecha->format('m');
+			if ($mes==1){ $mes="Enero";}
+			if ($mes==2){ $mes="Febrero";}
+			if ($mes==3){ $mes="Marzo";}
+			if ($mes==4){ $mes="Abril";}
+			if ($mes==5){ $mes="Mayo";}
+			if ($mes==6){ $mes="Junio";}
+			if ($mes==7){ $mes="Julio";}
+			if ($mes==8){ $mes="Agosto";}
+			if ($mes==9){ $mes="Septiembre";}
+			if ($mes==10){ $mes="Octubre";}
+			if ($mes==11){ $mes="Noviembre";}
+			if ($mes==12){ $mes="Diciembre";}
+
+			return $fecha->format('d')." de $mes de ".$fecha->format('Y');
+		}
+		if($key==2){
+			return $fecha->format('d-m-Y H:i:s');
+		}
+		else{
+			return $fecha->format('d-m-Y');
+		}
+	}
+
 	/////////////////////////////////////////////token
 	function servicioApi($metodo, $servicio, $json = null, $token = null) {
 	    $ch = curl_init('http://187.210.141.12:3001/' . $servicio);

@@ -1,4 +1,3 @@
-
 if (Cookies.get('ticshop_x')==undefined){
   $.ajax({
     url: "control_db.php",
@@ -94,6 +93,7 @@ function borra_carrito(id){
 }
 
 function wish(id){
+  console.log(id);
   $.ajax({
     data:  {
       "ctrl":"control",
@@ -104,31 +104,43 @@ function wish(id){
     type:  'post',
     timeout:3000,
     success:  function (response) {
+      console.log(response);
       $("#wish_count").html(response);
     }
   });
 
 }
 function borra_wish(id){
-  $.ajax({
-    data:  {
-      "ctrl":"control",
-      "id":id,
-      "function":"borra_wish"
-    },
-    url:   'control_db.php',
-    type:  'post',
-    timeout:3000,
-    beforeSend: function () {
+  $.confirm({
+      title: 'Lista de deseos!',
+      content: '¿Desea quitar de la lista de deseos?',
+      buttons: {
+          Quitar: function () {
+          $.ajax({
+            data:  {
+              "ctrl":"control",
+              "id":id,
+              "function":"borra_wish"
+            },
+            url:   'control_db.php',
+            type:  'post',
+            timeout:3000,
+            beforeSend: function () {
 
-    },
-    success:  function (response) {
-      window.location.href="wish.php";
-    },
-    error: function(jqXHR, textStatus, errorThrown) {
+            },
+            success:  function (response) {
+              window.location.href="wish.php";
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
 
-    }
-  });
+            }
+          });
+        },
+        cancel: function () {
+
+        }
+      }
+    });
 }
 function borra_carrito(id){
   $.confirm({
@@ -319,7 +331,6 @@ $(document).on('submit','#direccion',function(e){
 $(document).on('submit','#pedido',function(e){
   e.preventDefault();
   var dataString = $(this).serialize()+"&function=pedido_generar&ctrl=control";
-  alert("entra");
   $.ajax({
     url: "control_db.php",
     type: "POST",
@@ -328,7 +339,7 @@ $(document).on('submit','#pedido',function(e){
       console.log(response);
       var datos = JSON.parse(response);
       if (datos.error==0){
-        //window.location.href="pago.php";
+        window.location.href="pago.php?idpedido="+datos.id;
         Swal.fire({
             type: 'success',
             title: 'Se actualizó correctamente',

@@ -1,25 +1,26 @@
 <?php
 	require_once("control_db.php");
 	$db = new Tienda();
+	$idpedido=$_REQUEST['idpedido'];
 
-	$carro=$db->carro_list();
-	$resp=$db->datos();
 	$mercado=$db->ajustes_editar();
 	$merca=$mercado->mercado_public;
 
-	$nombre=$resp->nombre;
-	$apellido=$resp->apellido;
-	$correo=$resp->correo;
-	$rfc=$resp->rfc;
-	$cfdi=$resp->cfdi;
-	$direccion1=$resp->direccion1;
-	$direccion2=$resp->direccion2;
-	$ciudad=$resp->ciudad;
-	$cp=$resp->cp;
-	$pais=$resp->pais;
-	$estado=$resp->estado;
-	$telefono=$resp->telefono;
+	$ped=$db->pedido_ver($idpedido);
+	$datos=$db->datos_pedido($idpedido);
 
+	$nombre=$ped->nombre;
+	$apellido=$ped->apellido;
+	$correo=$ped->correo;
+	$rfc=$ped->rfc;
+	$cfdi=$ped->cfdi;
+	$direccion1=$ped->direccion1;
+	$direccion2=$ped->direccion2;
+	$ciudad=$ped->ciudad;
+	$cp=$ped->cp;
+	$pais=$ped->pais;
+	$estado=$ped->estado;
+	$telefono=$ped->telefono;
 
 ?>
 
@@ -34,6 +35,9 @@
 
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Ensures optimal rendering on mobile devices. -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge" /> <!-- Optimal Internet Explorer compatibility -->
 
 
 <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
@@ -234,6 +238,40 @@
 					    data-transaction-amount="<?php echo $gtotal; ?>">
 					  </script>
 					</form>
+
+				<script
+					 src="https://www.paypal.com/sdk/js?client-id=AVPbaFevyucb8zM_dqhd58gpDVRq5Hi1l0K8i2RHgDV-lj7Q7DSbAFmzQ3QC8YCFIfeUQcqqC5J_Zh65&currency=MXN" data-order-id="omar-2VW94544JM6797511"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.
+				 </script>
+
+				 <div id="paypal-button-container"></div>
+
+				 <script>
+						paypal.Buttons({
+				    createOrder: function(data, actions) {
+				      // This function sets up the details of the transaction, including the amount and line item details.
+				      return actions.order.create({
+				        purchase_units: [{
+				          amount: {
+				            value: '<?php echo $gtotal; ?>'
+				          }
+				        }]
+				      });
+				    },
+				    onApprove: function(data, actions) {
+				      return actions.order.capture().then(function(details) {
+				        // This function shows a transaction success message to your buyer.
+								console.log(details);
+
+				        alert('Transaction completed by ' + details.payer.name.given_name);
+				      });
+				    }
+				  }).render('#paypal-button-container');
+				  //This function displays Smart Payment Buttons on your web page.
+
+				 </script>
+
+
+
 				</div>
 			</div>
 

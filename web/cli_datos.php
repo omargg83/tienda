@@ -49,7 +49,7 @@
 		<div class='row'>
 			<div class='col-3'>
 				<div class="btn-group-vertical">
-					<a href='' class="btn btn-primary btn-lg btn-block">Pedidos</a>
+					<a href='clientes.php' class="btn btn-primary btn-lg btn-block">Pedidos</a>
 					<a href='cli_direcciones.php' class="btn btn-primary btn-lg btn-block">Direcciones</a>
  				 	<a href='cli_datos.php' class="btn btn-primary btn-lg btn-block">Mis datos</a>
  				 	<a href='#' class="btn btn-primary btn-lg btn-block" onclick='salir()'>Salir</a>
