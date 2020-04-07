@@ -577,10 +577,18 @@ $(document).ready(function()
 			banner2Slider.owlCarousel(
 			{
 				items:1,
-				loop:true,
-				nav:false,
-				dots:true,
-				dotsContainer: '.banner_2_dots',
+				
+				nav:true,
+				navigation : true,
+				
+			    loop:true,
+			    autoplay:true,
+			    autoplayTimeout:8000,
+			    autoplayHoverPause:true,
+			    
+				
+				dots:false,
+				
 				smartSpeed:1200
 			});
 		}

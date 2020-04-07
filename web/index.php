@@ -24,9 +24,11 @@
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
 <link rel="stylesheet" type="text/css" href="plugins/slick-1.8.0/slick.css">
-<link rel="stylesheet" type="text/css" href="styles/main_styles.css">
+
 <link rel="stylesheet" type="text/css" href="styles/responsive.css">
 <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
+
+
 </head>
 
 <body>
@@ -39,24 +41,90 @@
 			include "a_header.php";
 		?>
 	</header>
-	<!-- Banner -->
 
-	<div class="banner">
-		<div class="banner_background" style="background-image:url(img/banner_home.jpg)"></div>
-		<div class="container fill_height">
-			<div class="row fill_height">
+	<!-- Slider -->
+<div class="owl-carousel owl-theme banner_2_slider">
+	
+	<div class="owl-item">
+		<div class="banner">
+			<div class="banner_background" style="background-image:url(img/banner_home.jpg)"></div>
+			<div class="container fill_height">
+				<div class="row fill_height">
 
-				<div class="col-lg-5 offset-lg-4 fill_height">
-					<div class="banner_content">
-						<h1 class="banner_text">new era of smartphones</h1>
-						<div class="banner_price"><span>$530</span>$460</div>
-						<div class="banner_product_name">Apple Iphone 6s</div>
-						<div class="button banner_button"><a href="#">Shop Now</a></div>
+					<div class="col-lg-5 offset-lg-4 fill_height">
+						<div class="banner_content">
+							<h1 class="banner_text">new era of smartphones</h1>
+							<div class="banner_price"><span>$530</span>$460</div>
+							<div class="banner_product_name">Apple Iphone 6s</div>
+							<div class="button banner_button"><a href="#">Shop Now</a></div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+	<div class="owl-item">
+		<div class="banner">
+			<div class="banner_background" style="background-image:url(img/banner_home.jpg)"></div>
+			<div class="container fill_height">
+				<div class="row fill_height">
+
+					<div class="col-lg-5 offset-lg-4 fill_height">
+						<div class="banner_content">
+							<h1 class="banner_text">new era of smartphones</h1>
+							<div class="banner_price"><span>$530</span>$460</div>
+							<div class="banner_product_name">Apple Iphone 6s</div>
+							<div class="button banner_button"><a href="#">Shop Now</a></div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
+	<div class="owl-item">
+		<div class="banner">
+			<div class="banner_background" style="background-image:url(img/banner_home.jpg)"></div>
+			<div class="container fill_height">
+				<div class="row fill_height">
+
+					<div class="col-lg-5 offset-lg-4 fill_height">
+						<div class="banner_content">
+							<h1 class="banner_text">new era of smartphones</h1>
+							<div class="banner_price"><span>$530</span>$460</div>
+							<div class="banner_product_name">Apple Iphone 6s</div>
+							<div class="button banner_button"><a href="#">Shop Now</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="owl-item">
+		<div class="banner">
+			<div class="banner_background" style="background-image:url(img/banner_home.jpg)"></div>
+			<div class="container fill_height">
+				<div class="row fill_height">
+
+					<div class="col-lg-5 offset-lg-4 fill_height">
+						<div class="banner_content">
+							<h1 class="banner_text">new era of smartphones</h1>
+							<div class="banner_price"><span>$530</span>$460</div>
+							<div class="banner_product_name">Apple Iphone 6s</div>
+							<div class="button banner_button"><a href="#">Shop Now</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
 
 	<!-- Characteristics -->
 	<div class="characteristics">
@@ -298,16 +366,14 @@
 
 	<!-- Banner -->
 
-	<div class="banner_2">
-		<div class="banner_2_background" style="background-image:url(img/fondogammer.jpg)"></div>
-		<div class="banner_2_container">
-			<div class="banner_2_dots"></div>
+	
+			
 			<!-- Banner 2 Slider -->
 
-			<div class="owl-carousel owl-theme banner_2_slider">
+			<div class="banner_fijo">
 
 				<!-- Banner 2 Slider Item -->
-				<div class="owl-item">
+				<div style="background-image:url(img/fondogammer.jpg) background-size: cover;">
 					<div class="banner_2_item">
 						<div class="container fill_height">
 							<div class="row fill_height">
@@ -326,9 +392,7 @@
 				</div>
 
 
-			</div>
-		</div>
-	</div>
+	
 
 	<!-- Hot New Arrivals -->
 	<div class="new_arrivals">

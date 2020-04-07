@@ -69,3 +69,35 @@
       background: #A19799;
 }
 
+.owl-nav{
+  position: absolute;
+  top: 50%;
+  width:100%;
+}
+
+.owl-nav div{
+  position: absolute;
+  top: 50%;
+  background: #21759b;
+  color: #FFFFFF;
+  display: inline-block;
+  margin-top: -0.75rem;
+  opacity: 0.8;
+  padding: 0.1875rem 0.625rem;
+  zoom: 1;
+}
+
+.owl-next {
+  right: 0;
+}
+.owl-next:after {
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/476573/keyboard_arrow_right.svg") center center no-repeat;
+}
+
+.owl-prev {
+  left: 0;
+}
+.owl-prev:after {
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/476573/keyboard_arrow_right.svg") center center no-repeat;
+}
+
