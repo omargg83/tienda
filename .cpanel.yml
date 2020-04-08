@@ -1,4 +1,0 @@
-deployment:
-  tasks:
-    - export DEPLOYPATH=/home/ticshopcom/public_html/admin/
-    - /bin/cp * $DEPLOYPATH
