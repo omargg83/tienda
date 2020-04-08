@@ -11,7 +11,9 @@
  		  <div class='collapse navbar-collapse' id='navbarSupportedContent'>
  			<ul class='navbar-nav mr-auto'>
 
-				<li class='nav-item active'><a class='nav-link barranav' title='Mostrar todo' id='new_poliza' data-lugar='a_pagina/baner1'><i class="fas fa-folder-plus"></i><span>Banner 1</span></a></li>
+        <li class='nav-item active'><a class='nav-link barranav' title='Mostrar todo' id='lista_sin' data-lugar='a_pagina/lista'><i class="fas fa-list"></i><span>Lista</span></a></li>
+
+				<li class='nav-item active'><a class='nav-link barranav' title='Mostrar todo' id='new_poliza' data-lugar='a_pagina/baner1'><i class="fas fa-folder-plus"></i><span>Agregar banner</span></a></li>
 
 
       </li>

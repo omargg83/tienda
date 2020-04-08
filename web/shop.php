@@ -10,7 +10,6 @@
 		$nombre=$ncat;
 		$resp=$db->cat_categoriatic($id_re);
 		$contar=count($resp);
-		echo "contar".$contar;
 	}
 	if(isset($_REQUEST['cat1'])){
 		$tipo=2;
@@ -19,7 +18,6 @@
 		$nombre=$ncat;
 		$resp=$db->cat_categoria($ncat);
 		$contar=count($resp);
-		echo "contar".$contar;
 	}
 	if(isset($_REQUEST['sub'])){
 		$tipo=3;
@@ -28,16 +26,12 @@
 		$nombre=$ncat;
 		$resp=$db->sub_categoria($ncat);
 		$contar=count($resp);
-		echo "contar".$contar;
 	}
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Shop</title>
+<title>TIC-Shop</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
@@ -132,12 +126,12 @@
 
 					<div class="shop_content">
 						<div class="shop_bar clearfix">
-							<div class="shop_product_count"><span><?php echo $contar; ?></span> Productos encontrados</div>
+							<div class="shop_product_count">Productos encontrados</div>
 							<div class="shop_sorting">
 								<span>Ordernar por:</span>
 								<ul>
 									<li>
-										<span class="sorting_text">highest rated<i class="fas fa-chevron-down"></span></i>
+										<span class="sorting_text">-<i class="fas fa-chevron-down"></span></i>
 										<ul>
 											<li class="shop_sorting_button" data-isotope-option='{ "sortBy": "name" }'>Nombre</li>
 											<li class="shop_sorting_button"data-isotope-option='{ "sortBy": "price" }'>Precio</li>
@@ -184,19 +178,7 @@
 							 ?>
 						</div>
 
-						<!-- Shop Page Navigation -->
 
-						<div class="shop_page_nav d-flex flex-row">
-							<div class="page_prev d-flex flex-column align-items-center justify-content-center"><i class="fas fa-chevron-left"></i></div>
-							<ul class="page_nav d-flex flex-row">
-								<li><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">...</a></li>
-								<li><a href="#">21</a></li>
-							</ul>
-							<div class="page_next d-flex flex-column align-items-center justify-content-center"><i class="fas fa-chevron-right"></i></div>
-						</div>
 
 					</div>
 
@@ -218,13 +200,6 @@
 			include "a_footer.php";
 		?>
 	</footer>
-
-	<!-- Copyright -->
-	<div class="copyright">
-		<?php
-			include "a_copyright.php";
-		?>
-	</div>
 
 </div>
 

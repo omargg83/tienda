@@ -81,14 +81,14 @@ class Productos extends Tienda{
 		try{
 			parent::set_names();
 			if($tipo==0){
-				$sql="select * from producto_exist where idProducto=$id";
+				$sql="select * from producto_exist where id=$id";
 			}
 			if($tipo==1){
-				$sql="select existencia, almacen from producto_exist where idProducto=$id and almacen='PAC' UNION
-					select existencia, almacen from producto_exist where idProducto=$id and almacen!='PAC' group by idProducto";
+				$sql="select existencia, almacen from producto_exist where id=$id and almacen='PAC' UNION
+					select existencia, almacen from producto_exist where id=$id and almacen!='PAC' group by idProducto";
 			}
 			if($tipo==2){
-				$sql="select sum(existencia) as existencia, almacen from producto_exist where idProducto=$id";
+				$sql="select sum(existencia) as existencia, almacen from producto_exist where id=$id";
 			}
 			$sth = $this->dbh->prepare($sql);
 			$sth->execute();
@@ -101,7 +101,7 @@ class Productos extends Tienda{
 	public function producto_espe($id){
 		try{
 			parent::set_names();
-			$sql="select * from producto_espe where idProducto=:id";
+			$sql="select * from producto_espe where id=:id";
 			$sth = $this->dbh->prepare($sql);
 			$sth->bindValue(':id', "$id");
 			$sth->execute();
@@ -291,6 +291,42 @@ class Productos extends Tienda{
 		catch(PDOException $e){
 			return "Database access FAILED!".$e->getMessage();
 		}
+	}
+
+	public function agrega_espe(){
+		try{
+			parent::set_names();
+			$id=$_REQUEST['id'];
+			$id2=$_REQUEST['idproducto'];
+			$arreglo =array();
+
+			if (isset($_REQUEST['tipo'])){
+				$arreglo+= array('tipo'=>$_REQUEST['tipo']);
+			}
+			if (isset($_REQUEST['valor'])){
+				$arreglo+= array('valor'=>$_REQUEST['valor']);
+			}
+
+			$x="";
+			if($id==0){
+				$arreglo+= array('id'=>$id2);
+				$x=$this->insert('producto_espe', $arreglo);
+			}
+			else{
+				$x=$this->update('producto_espe',array('id'=>$id), $arreglo);
+			}
+			$arreglo =array();
+			$arreglo+=array('id'=>$id2);
+			$arreglo+=array('error'=>0);
+			return json_encode($arreglo);
+		}
+		catch(PDOException $e){
+			return "Database access FAILED!".$e->getMessage();
+		}
+	}
+	public function quitar_espe(){
+		if (isset($_POST['id'])){$id=$_POST['id'];}
+		return $this->borrar('producto_espe',"idespecificacion",$id);
 	}
 
 	public function imagen($id){

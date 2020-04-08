@@ -20,6 +20,7 @@
 
 			$this->doc="../a_imagen/";
 			$this->extra="../a_imagenextra/";
+			$this->banner="../a_pagina/";
 
 			$sql="select * from ajustes";
 			$sth = $this->dbh->prepare($sql);
@@ -316,14 +317,14 @@
 			try{
 				self::set_names();
 				if($tipo==0){
-					$sql="select * from producto_exist where idProducto=$id";
+					$sql="select * from producto_exist where id=$id";
 				}
 				if($tipo==1){
-					$sql="select existencia, almacen from producto_exist where idProducto=$id and almacen='PAC' UNION
-						select existencia, almacen from producto_exist where idProducto=$id and almacen!='PAC' group by idProducto";
+					$sql="select existencia as total, 'Pachuca' as alma from producto_exist where id=$id and almacen='PAC' UNION
+						select sum(existencia) as total, 'Otros' as alma from producto_exist where id=$id and almacen!='PAC' group by idProducto";
 				}
 				if($tipo==2){
-					$sql="select sum(existencia) as existencia, almacen from producto_exist where idProducto=$id";
+					$sql="select sum(existencia) as existencia, almacen from producto_exist where id=$id";
 				}
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
@@ -346,7 +347,19 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
-
+		public function almacen_busca($clave){
+			try{
+				self::set_names();
+				$sql="select * from almacen where homoclave=:id";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(':id', "$clave");
+				$sth->execute();
+				return $sth->fetch(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
 		///////////////////////Productos destacados
 		public function productos_destacados(){
 			try{
@@ -387,7 +400,18 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
-
+		public function relacionados($subcategoria){
+			try{
+				self::set_names();
+				$sql="SELECT * from productos where subcategoria='$subcategoria' limit 20";
+				$sth = $this->dbh->prepare($sql);
+				$sth->execute();
+				return $sth->fetchAll(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
 
 		public function carro_list(){
 			try{
@@ -942,6 +966,20 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
+
+		public function baner_lista(){
+			try{
+				self::set_names();
+				$sql="select * from baner";
+				$sth = $this->dbh->prepare($sql);
+				$sth->execute();
+				return $sth->fetchAll(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
+
 	}
 
 	if(strlen($ctrl)>0){

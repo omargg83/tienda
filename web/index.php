@@ -48,84 +48,32 @@
 
 	<!-- Slider -->
 <div class="owl-carousel owl-theme banner_2_slider">
+	<?php
+		foreach($db->baner_lista() as $key){
+			echo "<div class='owl-item'>";
+				echo "<div class='banner'>";
+					echo "<div class='banner_background' style='background-image:url(".$db->banner.$key->img.")'></div>";
+					echo "<div class='container fill_height'>";
+						echo "<div class='row fill_height'>";
 
-	<div class="owl-item">
-		<div class="banner">
-			<div class="banner_background" style="background-image:url(img/banner_home.jpg)"></div>
-			<div class="container fill_height">
-				<div class="row fill_height">
+							echo "<div class='col-lg-12 fill_height text-center'>";
+								echo "<div class='banner_content'>";
+									echo "<h1 class='banner_text'>".$key->titulo."</h1>";
+									echo "<div class='banner_price'><span>".$key->texto."</span></div>";
+									if(strlen($key->enlace)>0){
+										echo "<div class='button banner_button'><a href='".$key->enlace."'>IR</a></div>";
+									}
+								echo "</div>";
+							echo "</div>";
+						echo "</div>";
 
-					<div class="col-lg-5 offset-lg-4 fill_height">
-						<div class="banner_content">
-							<h1 class="banner_text">new era of smartphones</h1>
-							<div class="banner_price"><span>$530</span>$460</div>
-							<div class="banner_product_name">Apple Iphone 6s</div>
-							<div class="button banner_button"><a href="#">Shop Now</a></div>
-						</div>
-					</div>
-				</div>
+					echo "</div>";
+				echo "</div>";
+			echo "</div>";
+		}
 
-			</div>
-		</div>
-	</div>
+	 ?>
 
-
-	<div class="owl-item">
-		<div class="banner">
-			<div class="banner_background" style="background-image:url(img/banner_home.jpg)"></div>
-			<div class="container fill_height">
-				<div class="row fill_height">
-
-					<div class="col-lg-5 offset-lg-4 fill_height">
-						<div class="banner_content">
-							<h1 class="banner_text">new era of smartphones</h1>
-							<div class="banner_price"><span>$530</span>$460</div>
-							<div class="banner_product_name">Apple Iphone 6s</div>
-							<div class="button banner_button"><a href="#">Shop Now</a></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="owl-item">
-		<div class="banner">
-			<div class="banner_background" style="background-image:url(img/banner_home.jpg)"></div>
-			<div class="container fill_height">
-				<div class="row fill_height">
-
-					<div class="col-lg-5 offset-lg-4 fill_height">
-						<div class="banner_content">
-							<h1 class="banner_text">new era of smartphones</h1>
-							<div class="banner_price"><span>$530</span>$460</div>
-							<div class="banner_product_name">Apple Iphone 6s</div>
-							<div class="button banner_button"><a href="#">Shop Now</a></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="owl-item">
-		<div class="banner">
-			<div class="banner_background" style="background-image:url(img/banner_home.jpg)"></div>
-			<div class="container fill_height">
-				<div class="row fill_height">
-
-					<div class="col-lg-5 offset-lg-4 fill_height">
-						<div class="banner_content">
-							<h1 class="banner_text">new era of smartphones</h1>
-							<div class="banner_price"><span>$530</span>$460</div>
-							<div class="banner_product_name">Apple Iphone 6s</div>
-							<div class="button banner_button"><a href="#">Shop Now</a></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 
 </div>
 

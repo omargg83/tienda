@@ -60,6 +60,7 @@
 
 											<!-- Slider Item -->
 											<?php
+
 												foreach($resp as $key){
 													echo "<div class='arrivals_slider_item'>
 														<div class='border_active'></div>
@@ -100,6 +101,8 @@
 										</div>
 										<div class="arrivals_slider_dots_cover"></div>
 									</div>
+
+
 								</div>
 							</div>
 						</div>
@@ -116,13 +119,6 @@
 			include "a_footer.php";
 		?>
 	</footer>
-
-	<!-- Copyright -->
-	<div class="copyright">
-		<?php
-			include "a_copyright.php";
-		?>
-	</div>
 
 </div>
 

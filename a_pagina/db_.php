@@ -8,11 +8,25 @@ class Clientes extends Tienda{
 		parent::__construct();
 		$this->doc1="a_pagina/";
 	}
-	public function baner1(){
+	public function baner_lista(){
 		try{
 			parent::set_names();
-			$sql="select * from baner where id=1";
+			$sql="select * from baner";
 			$sth = $this->dbh->prepare($sql);
+			$sth->execute();
+			return $sth->fetchAll();
+		}
+		catch(PDOException $e){
+			return "Database access FAILED!".$e->getMessage();
+		}
+	}
+
+	public function baner1($id){
+		try{
+			parent::set_names();
+			$sql="select * from baner where id=:id";
+			$sth = $this->dbh->prepare($sql);
+			$sth->bindValue(':id', "$id");
 			$sth->execute();
 			return $sth->fetch(PDO::FETCH_OBJ);
 		}
@@ -38,14 +52,23 @@ class Clientes extends Tienda{
 		try{
 			parent::set_names();
 			$arreglo=array();
+			$id=$_REQUEST['id'];
 			if (isset($_REQUEST['titulo'])){
 				$arreglo+= array('titulo'=>$_REQUEST['titulo']);
 			}
 			if (isset($_REQUEST['texto'])){
 				$arreglo+= array('texto'=>$_REQUEST['texto']);
 			}
-
-			$x=$this->update('baner',array('id'=>1), $arreglo);
+			if (isset($_REQUEST['enlace'])){
+				$arreglo+= array('enlace'=>$_REQUEST['enlace']);
+			}
+			$x="";
+			if($id==0){
+				$x=$this->insert('baner', $arreglo);
+			}
+			else{
+				$x=$this->update('baner',array('id'=>$id), $arreglo);
+			}
 			return $x;
 		}
 		catch(PDOException $e){

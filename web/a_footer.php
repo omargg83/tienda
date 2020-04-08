@@ -5,12 +5,12 @@
       <div class="col-lg-3 footer_col">
         <div class="footer_column footer_contact">
           <div class="logo_container">
-            <div class="logo"><a href="#"><img src='img/logo-ticshop.png' width='100px'></a></div>
+            <div class="logo"><a href="#"><img src='img/LOGO.png' width='100px'></a></div>
           </div>
           <div class="footer_title">¿Tiene alguna duda?</div>
           <div class="footer_phone">+469448498458654</div>
           <div class="footer_contact_text">
-          
+
           </div>
           <div class="footer_social">
             <ul>

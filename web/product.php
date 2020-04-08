@@ -5,9 +5,10 @@
 	$prod = $db->producto_ver($id);
 	$imextra=$db->producto_imagen($id);
 	$espe = $db->producto_espe($id);
+	$alma = $db->producto_exist($id,1);
 
-	echo var_dump($espe);
-	$alma = $db->producto_exist($id);
+
+	$rel=$db->relacionados($prod->subcategoria);
 ?>
 
 <!DOCTYPE html>
@@ -66,7 +67,7 @@
 				<!-- Description -->
 				<div class="col-lg-5 order-3">
 					<div class="product_description">
-						<div class="product_category">Laptops</div>
+						<div class="product_category"><?php   echo $prod->clave;  ?></div>
 						<div class="product_name"><?php   echo $prod->nombre;  ?></div>
 						<div class="rating_r rating_r_4 product_rating"><i></i><i></i><i></i><i></i><i></i></div>
 						<div class="product_text"><p><?php   echo $prod->descripcion_corta;  ?></p></div>
@@ -82,10 +83,12 @@
 											<div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fas fa-chevron-up"></i></div>
 											<div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fas fa-chevron-down"></i></div>
 										</div>
+
 									</div>
+
 								</div>
 
-								<div class="product_price"><?php
+								<div class="product_price">Precio: <?php
 									if($prod->precio_tipo==0){
 										echo moneda($prod->preciof);
 									}
@@ -101,6 +104,38 @@
 										echo moneda($total);
 									}
 							  ?></div>
+								<?php
+								echo "<br>+ Envio:";
+								if($prod->envio_tipo==0){
+									echo moneda($db->egeneral);
+									$envio+=$db->egeneral;
+								}
+								if($prod->envio_tipo==1){
+									echo moneda($prod->envio_costo);
+									$envio+=$prod->envio_costo;
+								}
+								?>
+								<hr>
+								<?php
+									echo "<h5>Existencia</h5>";
+									echo "<table class='table table-sm'>";
+									foreach($alma as $key){
+
+										echo "<tr>";
+											echo "<td>";
+											echo $key->alma;
+											echo "</td>";
+
+											echo "<td>";
+											echo $key->total;
+											echo "</td>";
+										echo "</tr>";
+									}
+									echo "</table>";
+
+								?>
+
+
 								<div class="button_container">
 									<?php
 										echo "<button type='button' class='button cart_button'  onclick='carrito(".$prod->id.")'>Agregar al carrito</button>";
@@ -111,32 +146,38 @@
 							</form>
 						</div>
 					</div>
-				</div>
-
 			</div>
+		</div>
+
+			<hr>
+
 			<div class="row">
 				<div class='col-6'>
+					<h3>Especificaciones</h3>
 					<?php
-						echo "<table class='table table-sm' style='font-size:10px'>";
+
 						foreach($espe as $key){
-							echo "<tr>";
+							echo "<div class='row'>";
 
-
-								echo "<td>";
+								echo "<div class='col-6'>";
 								echo $key->tipo;
-								echo "</td>";
+								echo "</div>";
 
-								echo "<td>";
+								echo "<div class='col-6'>";
 								echo $key->valor;
-								echo "</td>";
+								echo "</div>";
 
-							echo "</tr>";
+							echo "</div>";
 						}
-						echo "</table>";
+
 					?>
 				</div>
 				<div class='col-6'>
-			 		por aca
+					<h3>Más información</h3>
+					<?php
+						echo $prod->descripcion_larga;
+					 ?>
+
 				</div>
 			</div>
 		</div>

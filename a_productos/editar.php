@@ -39,8 +39,8 @@
 	if($id>0){
 		$per = $db->producto_editar($id);
 		$idProducto=$per->idProducto;
-		$alma = $db->producto_exist($idProducto);
-		$espe = $db->producto_espe($idProducto);
+		$alma = $db->producto_exist($id);
+		$espe = $db->producto_espe($id);
 		$nombre=$per->nombre;
 		$clave=$per->clave;
 		$numParte=$per->numParte;
@@ -305,8 +305,6 @@
 					?>
 					<button class='btn btn-outline-secondary btn-sm' id='lista_cat' data-lugar='a_productos/lista' title='regresar'><i class='fas fa-undo-alt'></i>Regresar</button>
 				</div>
-
-
 			</div>
 
 		<?php
@@ -315,14 +313,17 @@
 					echo "Especificaciones";
 				echo "</div>";
 				echo "<div class='card-body'>";
-					echo "<table class='table table-sm' style='font-size:10px'>";
+					echo "<table class='table table-sm' style='font-size:12px'>";
 					foreach($espe as $key){
 						echo "<tr>";
-							echo "<div class='btn-group'>";
-							if ($interno==1 or $id==0){
-								echo "<button class='btn btn-outline-secondary btn-sm' id='eliminar_cat' data-lugar='a_categorias/db_' data-destino='a_categorias/editar' data-id='".$key['idcatprod']."' data-iddest='$id' data-funcion='quitar_categoria' data-div='trabajo'><i class='far fa-trash-alt'></i></i></button>";
-							}
-							echo "</div>";
+
+							echo "<td>";
+								echo "<div class='btn-group'>";
+								if ($interno==1 or $id==0){
+									echo "<button class='btn btn-outline-secondary btn-sm' id='eliminar_cat' data-lugar='a_productos/db_' data-destino='a_productos/editar' data-id='".$key->idespecificacion."' data-id2='$id' data-iddest='$id' data-funcion='quitar_espe' data-div='trabajo'><i class='far fa-trash-alt'></i></i></button>";
+								}
+								echo "</div>";
+							echo "</td>";
 
 							echo "<td>";
 							echo $key->tipo;
@@ -341,7 +342,7 @@
 					echo "Existencias";
 				echo "</div>";
 				echo "<div class='card-body'>";
-					echo "<table class='table table-sm'>";
+					echo "<table class='table table-sm' style='font-size:12px'>";
 						foreach($alma as $key){
 							 $almacen=$db->almacen_busca($key->almacen);
 							echo "<tr>";
