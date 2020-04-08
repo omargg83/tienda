@@ -62,10 +62,11 @@
 											<?php
 
 												foreach($resp as $key){
-													echo "<div class='arrivals_slider_item'>
-														<div class='border_active'></div>
-														<div class='product_item is_new d-flex flex-column align-items-center justify-content-center text-center' >
-															<div class='product_image d-flex flex-column align-items-center justify-content-center'><img src='".$db->doc.$key->img."' alt='' width='100px'></div>
+													echo "<div class='arrivals_slider_item'>";
+														echo "<div class='border_active'></div>";
+														echo "<div class='product_item is_new d-flex flex-column align-items-center justify-content-center text-center' >";
+														echo "<a href='product.php?id=".$key->id."'>";
+															echo "<div class='product_image d-flex flex-column align-items-center justify-content-center'><img src='".$db->doc.$key->img."' alt='' width='100px'></div>
 															<div class='product_content' >
 																<div class='product_price'>";
 																if($key->precio_tipo==0){
@@ -92,9 +93,10 @@
 															<div class='product_fav' onclick='wish(".$key->id.")'><i class='fas fa-heart'></i></div>
 															<ul class='product_marks'>
 
-															</ul>
-														</div>
-													</div>";
+															</ul>";
+															echo "</a>";
+														echo "</div>";
+													echo "</div>";
 												}
 											?>
 

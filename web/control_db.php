@@ -403,7 +403,7 @@
 		public function relacionados($subcategoria){
 			try{
 				self::set_names();
-				$sql="SELECT * from productos where subcategoria='$subcategoria' limit 20";
+				$sql="SELECT * from productos where subcategoria='$subcategoria' and activo=1 limit 20";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
 				return $sth->fetchAll(PDO::FETCH_OBJ);

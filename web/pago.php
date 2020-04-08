@@ -21,7 +21,6 @@
 	$pais=$ped->pais;
 	$estado=$ped->estado;
 	$telefono=$ped->telefono;
-
 ?>
 
 <!DOCTYPE html>
@@ -235,7 +234,9 @@
 					  <script
 					    src="https://www.mercadopago.com.mx/integrations/v1/web-tokenize-checkout.js"
 					    data-public-key="<?php echo $merca; ?>"
-					    data-transaction-amount="<?php echo $gtotal; ?>">
+					    data-transaction-amount="<?php echo $gtotal; ?>"
+							data-external_reference="<? echo "OMAR GARCIADEMO"; ?>" 
+							>
 					  </script>
 					</form>
 

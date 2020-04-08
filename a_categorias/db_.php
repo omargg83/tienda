@@ -96,11 +96,11 @@ class Categorias extends Tienda{
 			$arreglo =array();
 
 			if (isset($_REQUEST['orden'])){
-				$arreglo = array('orden'=>$_REQUEST['orden']);
+				$arreglo+= array('orden'=>$_REQUEST['orden']);
 			}
 
 			if (isset($_REQUEST['descripcion'])){
-				$arreglo = array('descripcion'=>$_REQUEST['descripcion']);
+				$arreglo+= array('descripcion'=>$_REQUEST['descripcion']);
 			}
 
 

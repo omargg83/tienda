@@ -222,11 +222,8 @@
 			      <label for="preciof">Precio TIC</label>
 			      <input type="text" class="form-control form-control-sm text-right" id="precio_tic" name='precio_tic' placeholder="Precio TIC" value="<?php echo $precio_tic; ?>" >
 			    </div>
+					
 
-					<div class="col-2">
-						<label for="preciof">Precio Oferta</label>
-						<input type="text" class="form-control form-control-sm text-right" id="precio_oferta" name='precio_oferta' placeholder="Precio Oferta" value="<?php echo $precio_oferta; ?>" >
-					</div>
 
 					<div class="col-2">
 			      <label for="preciof">Costo de envío</label>
