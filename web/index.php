@@ -2,12 +2,15 @@
 	require_once("control_db.php");
 	$db = new Tienda();
 
+
+	////////////productos ofertas
 	$oferta=$db->ofertas();
-	$destacados=$db->destacados();
-	$venta=$db->venta();
-	$rated=$db->rated();
-	$nuevos=$db->nuevos();
-	$nuevos2=$db->nuevos_2();
+	//////////productos destacados
+	$destacados=$db->productos_destacados();
+	//////////////semana
+	$semana=$db->productos_semana();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +48,7 @@
 
 	<!-- Slider -->
 <div class="owl-carousel owl-theme banner_2_slider">
-	
+
 	<div class="owl-item">
 		<div class="banner">
 			<div class="banner_background" style="background-image:url(img/banner_home.jpg)"></div>
@@ -199,16 +202,32 @@
 								<!-- Deals Item -->
 								<?php
 									foreach($oferta as $key){
-										echo "<div class='owl-item deals_item'>
-											<div class='deals_image'><img src='".$db->doc.$key->img."' alt=''></div>
+										if($key->precio_tipo==0){
+											$preciof=$key->preciof;
+										}
+										if($key->precio_tipo==1){
+											$p_total=$key->preciof+(($key->preciof*$db->cgeneral)/100);
+											$preciof=$p_total;
+										}
+										if($key->precio_tipo==2){
+											$preciof=$key->precio_tic;
+										}
+										if($key->precio_tipo==3){
+											$p_total=$key->precio_tic+(($key->precio_tic*$db->cgeneral)/100);
+											$preciof=$p_total;
+										}
+
+										echo "<div class='owl-item deals_item'>";
+										echo "<a href='product.php?id=".$key->id."'>";
+										echo "<div class='deals_image'><img src='".$db->doc.$key->img."' alt=''></div>
 											<div class='deals_content'>
 												<div class='deals_info_line d-flex flex-row justify-content-start'>
 													<div class='deals_item_category'><a href='#'>".$key->categoria."</a></div>
-													<div class='deals_item_price_a ml-auto'>".moneda($key->preciof)."</div>
+													<div class='deals_item_price_a ml-auto'>".moneda($preciof)."</div>
 												</div>
 												<div class='deals_info_line d-flex flex-row justify-content-start'>
 													<div class='deals_item_name'>".$key->categoria."</div>
-													<div class='deals_item_price ml-auto'>".moneda($key->preciof)."</div>
+													<div class='deals_item_price ml-auto'>".moneda($preciof)."</div>
 												</div>
 												<div class='available'>
 													<div class='available_line d-flex flex-row justify-content-start'>
@@ -216,8 +235,9 @@
 													</div>
 												</div>
 
-											</div>
-										</div>";
+											</div>";
+											echo "</a>";
+										echo "</div>";
 									}
 								?>
 
@@ -263,10 +283,11 @@
 											}
 
 
-											echo "<div class='featured_slider_item'>
-												<div class='border_active'></div>
+											echo "<div class='featured_slider_item'>";
+											echo "<a href='product.php?id=".$key->id."'>";
+												echo "<div class='border_active'></div>
 												<div class='product_item discount d-flex flex-column align-items-center justify-content-center text-center'>
-													<div class='product_image d-flex flex-column align-items-center justify-content-center'><img src='".$db->doc.$key->img."' alt=''></div>
+													<div class='product_image d-flex flex-column align-items-center justify-content-center'><img src='".$db->doc.$key->img."' alt='' width='90%'></div>
 													<div class='product_content'>
 														<div class='product_price discount'>".moneda($preciof)."<span>".moneda($preciof)."</span></div>
 														<div class='product_name'><div><a href='product.php?id=".$key->id."'>".$key->nombre."</a></div></div>
@@ -274,13 +295,15 @@
 															<button class='product_cart_button' onclick='carrito(".$key->id.")'>Agregar al carrito</button>
 														</div>
 													</div>
-													<div class='product_fav' onclick='wish(".$key->id.")'><i class='fas fa-heart'></i></div>
+													<div class='product_fav' onclick='wish(".$key->id.")'><i class='fas fa-heart'></i></div>";
+													/*
 													<ul class='product_marks'>
 														<li class='product_mark product_discount'>-25%</li>
 														<li class='product_mark product_new'>new</li>
-													</ul>
-												</div>
-											</div>";
+													</ul>*/
+												echo "</div>";
+												echo "</a>";
+											echo "</div>";
 										}
 									?>
 
@@ -367,8 +390,8 @@
 
 	<!-- Banner -->
 
-	
-			
+
+
 			<!-- Banner 2 Slider -->
 
 			<div class="banner_fijo">
@@ -393,7 +416,7 @@
 				</div>
 
 
-	
+
 
 	<!-- Hot New Arrivals -->
 	<div class="new_arrivals">
@@ -416,10 +439,11 @@
 
 										<!-- Slider Item -->
 										<?php
-											foreach($nuevos as $key){
-												echo "<div class='arrivals_slider_item'>
-													<div class='border_active'></div>
-													<div class='product_item is_new d-flex flex-column align-items-center justify-content-center text-center'>
+											foreach($semana as $key){
+												echo "<div class='arrivals_slider_item' >";
+												echo "<a href='product.php?id=".$key->id."'>";
+													echo "<div class='border_active'></div>
+													<div class='product_item is_new d-flex flex-column align-items-center justify-content-center text-center' >
 														<div class='product_image d-flex flex-column align-items-center justify-content-center'><img src='".$db->doc.$key->img."' alt='' width='100px'></div>
 														<div class='product_content'>
 															<div class='product_price'>".moneda($key->preciof)."</div>
@@ -431,10 +455,11 @@
 														<div class='product_fav' onclick='wish(".$key->id.")'><i class='fas fa-heart'></i></div>
 														<ul class='product_marks'>
 															<li class='product_mark product_discount'>-25%</li>
-															<li class='product_mark product_new'>new</li>
+															<li class='product_mark product_new'>Nuevo</li>
 														</ul>
-													</div>
-												</div>";
+													</div>";
+													echo "</a>";
+												echo "</div>";
 											}
 										?>
 

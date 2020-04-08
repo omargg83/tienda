@@ -26,6 +26,7 @@ class Productos extends Tienda{
 			return "Database access FAILED! ".$e->getMessage();
 		}
 	}
+
 	public function productos_destacados(){
 		try{
 			parent::set_names();
@@ -62,6 +63,7 @@ class Productos extends Tienda{
 			return "Database access FAILED! ".$e->getMessage();
 		}
 	}
+
 	public function producto_editar($id){
 		try{
 			parent::set_names();

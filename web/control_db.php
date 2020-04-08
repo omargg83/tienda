@@ -336,7 +336,7 @@
 		public function producto_espe($id){
 			try{
 				self::set_names();
-				$sql="select * from producto_espe where idProducto=:id";
+				$sql="select * from producto_espe where id=:id";
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(':id', "$id");
 				$sth->execute();
@@ -347,47 +347,38 @@
 			}
 		}
 
+		///////////////////////Productos destacados
+		public function productos_destacados(){
+			try{
+				self::set_names();
+				$sql="SELECT * from productos where cb_destacados=1";
+				$sth = $this->dbh->prepare($sql);
+				$sth->execute();
+				return $sth->fetchAll(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
+		/////////////////////ofertas de la semana
+		public function productos_semana(){
+			try{
+				self::set_names();
+				$sql="SELECT * from productos where cb_prodsemana=1";
+				$sth = $this->dbh->prepare($sql);
+				$sth->execute();
+				return $sth->fetchAll(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
 
+		////////////////////productos ofertas
 		public function ofertas(){
 			try{
 				self::set_names();
-				$sql="select * from productos limit 3";
-				$sth = $this->dbh->prepare($sql);
-				$sth->execute();
-				return $sth->fetchAll(PDO::FETCH_OBJ);
-			}
-			catch(PDOException $e){
-				return "Database access FAILED!".$e->getMessage();
-			}
-		}
-		public function destacados(){
-			try{
-				self::set_names();
-				$sql="select * from productos limit 16 OFFSET 16";
-				$sth = $this->dbh->prepare($sql);
-				$sth->execute();
-				return $sth->fetchAll(PDO::FETCH_OBJ);
-			}
-			catch(PDOException $e){
-				return "Database access FAILED!".$e->getMessage();
-			}
-		}
-		public function venta(){
-			try{
-				self::set_names();
-				$sql="select * from productos limit 16 OFFSET 32";
-				$sth = $this->dbh->prepare($sql);
-				$sth->execute();
-				return $sth->fetchAll(PDO::FETCH_OBJ);
-			}
-			catch(PDOException $e){
-				return "Database access FAILED!".$e->getMessage();
-			}
-		}
-		public function rated(){
-			try{
-				self::set_names();
-				$sql="select * from productos limit 16 OFFSET 64";
+				$sql="SELECT * from productos where cb_ofertasemana=1";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
 				return $sth->fetchAll(PDO::FETCH_OBJ);
@@ -397,30 +388,6 @@
 			}
 		}
 
-		public function nuevos(){
-			try{
-				self::set_names();
-				$sql="select * from productos limit 64";
-				$sth = $this->dbh->prepare($sql);
-				$sth->execute();
-				return $sth->fetchAll(PDO::FETCH_OBJ);
-			}
-			catch(PDOException $e){
-				return "Database access FAILED!".$e->getMessage();
-			}
-		}
-		public function nuevos_2(){
-			try{
-				self::set_names();
-				$sql="select * from productos limit 16 offset 128";
-				$sth = $this->dbh->prepare($sql);
-				$sth->execute();
-				return $sth->fetchAll(PDO::FETCH_OBJ);
-			}
-			catch(PDOException $e){
-				return "Database access FAILED!".$e->getMessage();
-			}
-		}
 
 		public function carro_list(){
 			try{

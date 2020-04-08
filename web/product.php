@@ -4,9 +4,10 @@
 	$id=$_REQUEST['id'];
 	$prod = $db->producto_ver($id);
 	$imextra=$db->producto_imagen($id);
-
-	$alma = $db->producto_exist($id);
 	$espe = $db->producto_espe($id);
+
+	echo var_dump($espe);
+	$alma = $db->producto_exist($id);
 ?>
 
 <!DOCTYPE html>
@@ -114,7 +115,29 @@
 
 			</div>
 			<div class="row">
-			 por aca
+				<div class='col-6'>
+					<?php
+						echo "<table class='table table-sm' style='font-size:10px'>";
+						foreach($espe as $key){
+							echo "<tr>";
+
+
+								echo "<td>";
+								echo $key->tipo;
+								echo "</td>";
+
+								echo "<td>";
+								echo $key->valor;
+								echo "</td>";
+
+							echo "</tr>";
+						}
+						echo "</table>";
+					?>
+				</div>
+				<div class='col-6'>
+			 		por aca
+				</div>
 			</div>
 		</div>
 	</div>

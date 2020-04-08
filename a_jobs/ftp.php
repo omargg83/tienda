@@ -134,8 +134,15 @@
           $sth->bindValue(':interno', 0);
 
           if($sth->execute()){
+
+            $sql="select id, idProducto from productos where idProducto='".$product['idProducto']."'";
+            $prod= $db->dbh->query($sql);
+            $prod->execute();
+            $resp=$prod->fetch();
+            $id=$resp['id'];
+
             //////////////////////////// SE BORRAN LAS EXISTENCIAS DEL PRODUCTO PARA ACTUALIZARLAS
-            $sql="delete from producto_exist where idProducto='".$product['idProducto']."'";
+            $sql="delete from producto_exist where id='".$product['idProducto']."'";
             $sth3 = $db->dbh->prepare($sql);
             $sth3->execute();
 
@@ -145,8 +152,9 @@
                 $name=key($product['existencia']);
                 $valor=$product['existencia'][$name];
 
-                $sql="insert into producto_exist (idProducto, almacen, existencia) values (:idProducto, :almacen, :existencia)";
+                $sql="insert into producto_exist (id, idProducto, almacen, existencia) values (:id, :idProducto, :almacen, :existencia)";
                 $sth2 = $db->dbh->prepare($sql);
+                $sth2->bindValue(':id', $id);
                 $sth2->bindValue(':idProducto', $product['idProducto']);
                 $sth2->bindValue(':almacen', $name);
                 $sth2->bindValue(':existencia', $valor);
@@ -156,21 +164,22 @@
             }
 
             ////////////////////////////  SE ACTUALIZAN LAS ESPECIFICACIONES A LAS 8 DE LA MAÑANA Y LAS 8 DE LA NOCHE
-            if ($nuevo==1){
-              $sql="delete from producto_espe where idProducto='".$product['idProducto']."'";
+            //if ($nuevo==1){
+              $sql="delete from producto_espe where id='".$id."'";
               $sth3 = $db->dbh->prepare($sql);
               $sth3->execute();
               if (is_array($product['especificaciones'])){
                 foreach($product['especificaciones'] as $key){
-                  $sql="insert into producto_espe (idProducto, tipo, valor) values (:idProducto, :tipo, :valor)";
+                  $sql="insert into producto_espe (id, idProducto, tipo, valor) values (:id, :idProducto, :tipo, :valor)";
                   $sth2 = $db->dbh->prepare($sql);
+                  $sth2->bindValue(':id', $id);
                   $sth2->bindValue(':idProducto', $product['idProducto']);
                   $sth2->bindValue(':tipo', $key['tipo']);
                   $sth2->bindValue(':valor', $key['valor']);
                   $sth2->execute();
                 }
               }
-            }
+            //}
 
           }
         }
@@ -178,11 +187,12 @@
           return "Database access FAILED! ".$e->getMessage();
         }
         $i++;
-
-        //if ($i==2){
-          //echo "cancela";
-          //break;
-        //}
+/*
+        if ($i==10){
+          echo "cancela";
+          break;
+        }
+        */
     }
 
     $sql="update productos set activo=0 where modificado!='$fmodif'";

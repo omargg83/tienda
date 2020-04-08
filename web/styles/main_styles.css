@@ -244,6 +244,7 @@ section
 	-ms-transition: all 200ms ease;
 	-o-transition: all 200ms ease;
 	transition: all 200ms ease;
+	color:black;
 }
 .button a
 {
@@ -1922,9 +1923,10 @@ select option
 .product_new
 {
 	display: none;
-	background: #0e8ce4;
+	background: #b4f22f;
 	visibility: hidden;
 	opacity: 0;
+	color:black;
 }
 .product_discount
 {
