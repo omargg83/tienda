@@ -75,7 +75,10 @@ class Clientes extends Tienda{
 			return "Database access FAILED!".$e->getMessage();
 		}
 	}
-
+	public function quitar_baner(){
+		if (isset($_POST['id'])){$id=$_POST['id'];}
+		return $this->borrar('baner',"id",$id);
+	}
 }
 $db = new Clientes();
 if(strlen($function)>0){

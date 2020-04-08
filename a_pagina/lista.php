@@ -14,18 +14,22 @@
 			</thead>
 			<tbody>
 			<?php
-				if (count($pd)>0){
-					foreach($pd as $key){
-						echo "<tr id='".$key['id']."' class='edit-t'>";
-						echo "<td>";
-							echo "<div class='btn-group'>";
-								echo "<button class='btn btn-outline-secondary btn-sm' id='edit_comision' title='Editar' data-lugar='a_pagina/baner1'><i class='fas fa-pencil-alt'></i></i></button>";
-							echo "</div>";
-						echo "</td>";
-						echo "<td>".$key["titulo"]."</td>";
-						echo "</tr>";
-					}
+
+				foreach($pd as $key){
+					echo "<tr id='".$key['id']."' class='edit-t'>";
+					echo "<td>";
+						echo "<div class='btn-group'>";
+
+							echo "<button class='btn btn-outline-secondary btn-sm' id='edit_comision' title='Editar' data-lugar='a_pagina/baner1'><i class='fas fa-pencil-alt'></i></button>";
+
+							echo "<button class='btn btn-outline-secondary btn-sm' id='eliminar_baner' data-lugar='a_pagina/db_' data-destino='a_pagina/lista' data-id='".$key['id']."' data-funcion='quitar_baner' data-div='trabajo'><i class='far fa-trash-alt'></i></button>";
+
+						echo "</div>";
+					echo "</td>";
+					echo "<td>".$key["titulo"]."</td>";
+					echo "</tr>";
 				}
+
 			?>
 			</tbody>
 			</table>
