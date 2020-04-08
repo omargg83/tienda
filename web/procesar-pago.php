@@ -1,4 +1,8 @@
 <?php
+	require_once("control_db.php");
+	$db = new Tienda();
+
+
   $token = $_REQUEST["token"];
   $payment_method_id = $_REQUEST["payment_method_id"];
   $installments = $_REQUEST["installments"];
@@ -24,8 +28,6 @@
   );
 
   $payment->save();
-
-  echo var_dump($payment);
 
   echo $payment->status;
 

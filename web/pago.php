@@ -230,12 +230,11 @@
 							echo "</div>";
 						echo "</div>";
 					?>
-					<form action="http://tic-shop.com.mx/tienda/web/procesar-pago.php" method="POST">
+					<form action="http://tic-shop.com.mx/tienda/web/procesar-pago.php?idx=<?php echo $idpedido; ?>" method="POST">
 					  <script
 					    src="https://www.mercadopago.com.mx/integrations/v1/web-tokenize-checkout.js"
 					    data-public-key="<?php echo $merca; ?>"
 					    data-transaction-amount="<?php echo $gtotal; ?>"
-							data-external_reference="<? echo "OMAR GARCIADEMO"; ?>" 
 							>
 					  </script>
 					</form>
