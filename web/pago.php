@@ -35,6 +35,13 @@
 
 	// Crea un objeto de preferencia
 	$preference = new MercadoPago\Preference();
+		$preference->back_urls = array(
+	    "success" => "https://www.tu-sitio/success",
+	    "failure" => "http://www.tu-sitio/failure",
+	    "pending" => "http://www.tu-sitio/pending"
+	);
+	$preference->auto_return = "approved";
+
 
 	// Crea un ítem en la preferencia
 	$item = new MercadoPago\Item();
