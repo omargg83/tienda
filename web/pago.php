@@ -26,17 +26,19 @@
 	$mercado=$db->ajustes_editar();
 	$merca=$mercado->mercado_token;
 	// SDK de Mercado Pago
+	// SDK de Mercado Pago
+
 	require __DIR__ .  '/vendor/autoload.php';
 
 	// Agrega credenciales
-	MercadoPago\SDK::setAccessToken($merca);
+	MercadoPago\SDK::setAccessToken('TEST-11c65f29-2cd0-4ef6-9ebc-f57992a08c1c');
 
 	// Crea un objeto de preferencia
 	$preference = new MercadoPago\Preference();
 
 	// Crea un ítem en la preferencia
 	$item = new MercadoPago\Item();
-	$item->title = 'TIC-Shop';
+	$item->title = 'Mi producto';
 	$item->quantity = 1;
 	$item->unit_price = 75.56;
 	$preference->items = array($item);
