@@ -56,8 +56,8 @@
 	/////////////////////////url
 	$preference->back_urls = array(
     "success" => "https://tic-shop.com.mx",
-    "failure" => "https://tic-shop.com.mx/tienda/web/pago.php?idpedido="+$idpedido,
-    "pending" => "https://tic-shop.com.mx/tienda/web/pago.php?idpedido="+$idpedido
+    "failure" => "https://tic-shop.com.mx/tienda/web/pago.php?idpedido=$idpedido",
+    "pending" => "https://tic-shop.com.mx/tienda/web/pago.php?idpedido=$idpedido"
 	);
 	$preference->auto_return = "approved";
 
