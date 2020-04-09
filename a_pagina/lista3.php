@@ -1,7 +1,7 @@
 <?php
   require_once("db_.php");
 
-  $id=1;
+  $id=2;
   $baner=$db->baner2($id);
   $titulo=$baner->titulo;
   $texto=$baner->texto;
@@ -16,7 +16,7 @@
   <div class='container'>
     <div class='card'>
       <div class='card-header'>
-        Banner 2
+        Banner 3
       </div>
       <div class='card-body'>
         <div class="row">

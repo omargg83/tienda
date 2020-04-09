@@ -980,7 +980,19 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
-
+		public function baner2($id){
+			try{
+				self::set_names();
+				$sql="select * from baner2 where id=:id";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(':id', "$id");
+				$sth->execute();
+				return $sth->fetch(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
 	}
 
 	if(strlen($ctrl)>0){

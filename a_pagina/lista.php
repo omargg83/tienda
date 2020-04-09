@@ -4,6 +4,8 @@
 	echo "<div class='container-fluid' style='background-color:".$_SESSION['cfondo']."; '>";
 	echo "<br><h5>Banner</h5>";
 	echo "<hr>";
+	echo "<button class='btn btn-outline-secondary btn-sm' title='Agregar imagen' id='new_poliza' data-lugar='a_pagina/baner1'><i class='fas fa-folder-plus'></i><span>Agregar imagen</span></button>";
+	echo "<hr>";
 ?>
 		<div class="content table-responsive table-full-width" >
 			<table id='x_lista' class='dataTable compact hover row-border' style='font-size:10pt;'>

@@ -58,7 +58,7 @@
 
 							echo "<div class='col-lg-5 offset-lg-4 fill_height'>";
 								echo "<div class='banner_content'>";
-							
+
 									echo "<h1 class='banner_text'>".$key->titulo."</h1>";
 									echo "<div class='banner_price'><span>".$key->texto."</span></div>";
 									if(strlen($key->enlace)>0){
@@ -341,28 +341,32 @@
 
 
 
-			<!-- Banner 2 Slider -->
-
-			<div class="banner_fijo">
-
-				<!-- Banner 2 Slider Item -->
-				<div style="background-image:url(img/fondogammer.jpg); background-size: cover;">
-					<div class="banner_2_item">
-						<div class="container fill_height">
-							<div class="row fill_height">
-								<div class="col-lg-4 col-md-6 fill_height">
-									<div class="banner_2_content">
-										<div class="banner_2_title">Grandes ofertas para que disfrutes al máxico el tiempo en casa</div>
-										<div class="banner_2_text">10% DE DESCUENTO EN ACCESORIOS</div>
-										<div class="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
-										<div class="button banner_2_button"><a href="#">Ver productos</a></div>
-									</div>
-								</div>
-
-							</div>
-						</div>
-					</div>
-				</div>
+	<div class="banner_fijo">
+		<!-- Banner 2 Slider -->
+		<!-- Banner 2 Slider Item -->
+		<?php
+			$key=$db->baner2(1);
+			echo "<div style='background-image:url(".$db->banner.$key->img."); background-size: cover;'>";
+				echo "<div class='banner_2_item'>";
+					echo "<div class='container fill_height'>";
+						echo "<div class='row fill_height'>";
+							echo "<div class='col-lg-4 col-md-6 fill_height'>";
+								echo "<div class='banner_2_content'>";
+									echo "<div class='banner_2_title'>".$key->texto."</div>";
+									/*echo "<div class='banner_2_text'>10% DE DESCUENTO EN ACCESORIOS</div>";
+									echo "<div class='rating_r rating_r_4 banner_2_rating'><i></i><i></i><i></i><i></i><i></i></div>";
+									*/
+									if(strlen($key->enlace)>0){
+										echo "<div class='button banner_2_button'><a href='".$key->enlace."'>Ver productos</a></div>";
+									}
+								echo "</div>";
+							echo "</div>";
+						echo "</div>";
+					echo "</div>";
+				echo "</div>";
+			echo "</div>";
+			?>
+		</div>
 
 
 
