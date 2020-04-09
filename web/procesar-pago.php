@@ -16,7 +16,7 @@
   echo "<br>payment_method_idken:".$payment_method_id;
   echo "<br>installments:".$installments;
   echo "<br>issuer_id:".$issuer_id;
-
+/*
   require_once 'vendor/autoload.php';
 	MercadoPago\SDK::setAccessToken($merca);
 
@@ -40,6 +40,6 @@
 	}
 
   echo $payment->status;
-
+*/
 
   ?>
