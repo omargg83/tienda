@@ -21,6 +21,27 @@
 	$pais=$ped->pais;
 	$estado=$ped->estado;
 	$telefono=$ped->telefono;
+
+	//////////////////////////////////////
+	$mercado=$db->ajustes_editar();
+	$merca=$mercado->mercado_token;
+	// SDK de Mercado Pago
+	require __DIR__ .  '/vendor/autoload.php';
+
+	// Agrega credenciales
+	MercadoPago\SDK::setAccessToken($merca);
+
+	// Crea un objeto de preferencia
+	$preference = new MercadoPago\Preference();
+
+	// Crea un ítem en la preferencia
+	$item = new MercadoPago\Item();
+	$item->title = 'TIC-Shop';
+	$item->quantity = 1;
+	$item->unit_price = 75.56;
+	$preference->items = array($item);
+	$preference->save();
+
 ?>
 
 <!DOCTYPE html>
@@ -230,14 +251,14 @@
 							echo "</div>";
 						echo "</div>";
 					?>
+
 					<form action="http://tic-shop.com.mx/tienda/web/procesar-pago.php?idx=<?php echo $idpedido; ?>" method="POST">
-					  <script
-					    src="https://www.mercadopago.com.mx/integrations/v1/web-tokenize-checkout.js"
-					    data-public-key="<?php echo $merca; ?>"
-					    data-transaction-amount="<?php echo $gtotal; ?>"
-							>
+					<script
+					   src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js"
+					   data-preference-id="<?php echo $preference->id; ?>">
 					  </script>
 					</form>
+
 
 				<script
 					 src="https://www.paypal.com/sdk/js?client-id=AVPbaFevyucb8zM_dqhd58gpDVRq5Hi1l0K8i2RHgDV-lj7Q7DSbAFmzQ3QC8YCFIfeUQcqqC5J_Zh65&currency=MXN" data-order-id="omar-2VW94544JM6797511"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.
