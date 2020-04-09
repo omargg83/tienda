@@ -4,7 +4,7 @@
 	$mercado=$db->ajustes_editar();
 	$merca=$mercado->mercado_token;
 
-
+  require_once 'vendor/autoload.php';
 	MercadoPago\SDK::setAccessToken($merca);
 
 	$merchant_order = null;
