@@ -2,8 +2,11 @@
 	require_once("control_db.php");
 	$db = new Tienda();
 
+<<<<<<< HEAD
 	$mercado=$db->ajustes_editar();
 	$merca=$mercado->mercado_token;
+=======
+>>>>>>> 4827f19782e0b2a5ee8fb00a98beaf01ce832ca0
 
   $token = $_REQUEST["token"];
   $payment_method_id = $_REQUEST["payment_method_id"];
@@ -32,9 +35,13 @@
 
   $payment->save();
 
+<<<<<<< HEAD
   if($payment->status=="approved"){
 
 
 	}
+=======
+  echo $payment->status;
+>>>>>>> 4827f19782e0b2a5ee8fb00a98beaf01ce832ca0
 
   ?>
