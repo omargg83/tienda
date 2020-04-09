@@ -27,7 +27,6 @@
 	$mercado=$db->ajustes_editar();
 	$merca=$mercado->mercado_token;
 	// SDK de Mercado Pago
-	// SDK de Mercado Pago
 
 	require __DIR__ .  '/vendor/autoload.php';
 
@@ -37,10 +36,12 @@
 	// Crea un objeto de preferencia
 	$preference = new MercadoPago\Preference();
 	////////////////////////////Pagador
+
+
 	$payer = new MercadoPago\Payer();
-	$payer->name = "Charles";
-	$payer->surname = "Luevano";
-	$payer->email = "charles@hotmail.com";
+	$payer->name = $nombre;
+	$payer->surname = $apellido;
+	$payer->email = $correo;
 	$payer->date_created = "2018-06-02T12:58:41.425-04:00";
 	$payer->phone = array(
 	 "area_code" => "",
@@ -53,13 +54,6 @@
 	 "zip_code" => "11020"
 	);
 
-	/////////////////////////url
-	$preference->back_urls = array(
-    "success" => "https://tic-shop.com.mx",
-    "failure" => "https://tic-shop.com.mx/tienda/web/pago.php?idpedido=$idpedido",
-    "pending" => "https://tic-shop.com.mx/tienda/web/pago.php?idpedido=$idpedido"
-	);
-	$preference->auto_return = "approved";
 
 	// Crea un ítem en la preferencia
 	$item = new MercadoPago\Item();
