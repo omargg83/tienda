@@ -120,8 +120,6 @@
 								echo "</div>";
 
 							echo "</div>";
-
-
 							echo "<button class='btn btn-warning btn-sm' onclick='borra_carrito(".$key->id.")'><i class='far fa-trash-alt'></i></button>";
 						echo "</div>";
 					echo "</div>";

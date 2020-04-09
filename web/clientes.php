@@ -47,7 +47,7 @@
 				<?php
 					echo "<h4>Pedidos</h4>";
 					echo "<table class='table table-sm'>";
-					echo "<tr><th>-</th><th>Pedido</th><th>Fecha</th><th>Estatus</th><th>Total</th><th>Envio</th></tr>";
+					echo "<tr><th>-</th><th>Pedido</th><th>Fecha</th><th>Estatus</th><th>Total</th><th>Envio</th><th>Total</th></tr>";
 					foreach ($ped as $key) {
 						echo "<tr>";
 
@@ -72,6 +72,9 @@
 							echo "</td>";
 							echo "<td class='text-right'>";
 								echo moneda($key->envio);
+							echo "</td>";
+							echo "<td class='text-right'>";
+								echo moneda($key->total);
 							echo "</td>";
 						echo "</tr>";
 					}

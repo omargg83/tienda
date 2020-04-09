@@ -873,9 +873,10 @@
 							$totalEnvio+=$envio;
 						}
 						$arreglo =array();
-
 						$arreglo+= array('monto'=>$total);
 						$arreglo+= array('envio'=>$envio);
+						$gtotal=$total+$envio;
+						$arreglo+= array('total'=>$gtotal);
 						$this->update('pedidos',array('id'=>$pedido->id), $arreglo);
 						//////////////////////////////////////////////////////////////////////////
 					}

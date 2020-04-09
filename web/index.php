@@ -56,8 +56,9 @@
 					echo "<div class='container fill_height'>";
 						echo "<div class='row fill_height'>";
 
-							echo "<div class='col-lg-12 fill_height text-center'>";
+							echo "<div class='col-lg-5 offset-lg-4 fill_height'>";
 								echo "<div class='banner_content'>";
+							
 									echo "<h1 class='banner_text'>".$key->titulo."</h1>";
 									echo "<div class='banner_price'><span>".$key->texto."</span></div>";
 									if(strlen($key->enlace)>0){

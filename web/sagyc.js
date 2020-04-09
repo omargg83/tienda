@@ -336,7 +336,6 @@ $(document).on('submit','#pedido',function(e){
     type: "POST",
     data:  dataString,
     success: function( response ) {
-      console.log(response);
       var datos = JSON.parse(response);
       if (datos.error==0){
         window.location.href="pago.php?idpedido="+datos.id;
