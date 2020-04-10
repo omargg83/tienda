@@ -1662,12 +1662,15 @@ select option
 	font-size: 14px;
 	font-weight: 400;
 	color: #000000;
-	white-space: nowrap;
+	white-space: normal;
 	-webkit-transition: all 200ms ease;
 	-moz-transition: all 200ms ease;
 	-ms-transition: all 200ms ease;
 	-o-transition: all 200ms ease;
 	transition: all 200ms ease;
+	display: block;
+    width: 80%;
+    margin: 0 auto;
 }
 .product_name div a:hover
 {
