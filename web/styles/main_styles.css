@@ -1256,6 +1256,7 @@ select option
 	font-size: 14px;
 	font-weight: 500;
 	color: #000000;
+	padding-right: 30px;
 }
 .char_subtitle
 {
@@ -2010,8 +2011,9 @@ select option
 .popular_category
 {
 	height: 216px;
-	padding-left: 40px;
-	padding-right: 40px;
+	padding-left: 10px;
+	padding-right: 10px;
+	background: white;
 }
 .popular_categories_slider .owl-item:nth-child(even)
 {
@@ -2471,8 +2473,9 @@ select option
 
 .best_sellers
 {
-	padding-top: 56px;
-	background: #eff6fa;
+	padding-top: 100px;
+	padding-bottom: : 100px;
+	background: #b4f22f;
 	padding-bottom: 50px;
 	margin-top: -77px;
 }

@@ -432,7 +432,10 @@
 	<!-- Best Sellers -->
 
 	<div class="best_sellers text-center">
-		<h2>Extenso surtido en productos de tecnología</h2>
+		<h1>Extenso surtido en productos de tecnología</h1>
+<div class="button banner_2_button" style="
+    background: white;
+"><a href="#">Ver productos</a></div>
 	</div>
 
 	<!-- Adverts -->
