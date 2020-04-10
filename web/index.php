@@ -440,20 +440,20 @@
 
 	<!-- Adverts -->
 
-	<div class="adverts">
+	<div class="averts">
 		<div class="container">
 			<div class="row">
 
-				<div class="col-lg-4 advert_col">
+				<div class="col-lg-4 avert_col">
 
 					<!-- Advert Item -->
 
-					<div class="advert d-flex flex-row align-items-center justify-content-start">
-						<div class="advert_content">
-							<div class="advert_title"><a href="#">Trends 2018</a></div>
-							<div class="advert_text">Lorem ipsum dolor sit amet, consectetur adipiscing Donec et.</div>
+					<div class="avert d-flex flex-row align-items-center justify-content-start">
+						<div class="avert_content">
+							<div class="avert_title"><a href="#">TENDENCIA 2020</a></div>
+							<div class="avert_text">Lorem ipsum dolor sit amet, consectetur adipiscing Donec et.</div>
 						</div>
-						<div class="ml-auto"><div class="advert_image"><img src="images/adv_1.png" alt=""></div></div>
+						<div class="ml-auto"><div class="avert_image"><img src="images/av_1.png" alt=""></div></div>
 					</div>
 				</div>
 
@@ -461,26 +461,26 @@
 
 					<!-- Advert Item -->
 
-					<div class="advert d-flex flex-row align-items-center justify-content-start">
-						<div class="advert_content">
-							<div class="advert_subtitle">Trends 2018</div>
-							<div class="advert_title_2"><a href="#">Sale -45%</a></div>
-							<div class="advert_text">Lorem ipsum dolor sit amet, consectetur.</div>
+					<div class="avert d-flex flex-row align-items-center justify-content-start">
+						<div class="avert_content">
+							<div class="avert_subtitle">GRAN PROMOCIÓN</div>
+							<div class="avert_title_2"><a href="#">DESCUENTO DE 45%</a></div>
+							<div class="avert_text">Lorem ipsum dolor sit amet, consectetur.</div>
 						</div>
-						<div class="ml-auto"><div class="advert_image"><img src="images/adv_2.png" alt=""></div></div>
+						<div class="ml-auto"><div class="avert_image"><img src="images/av_2.png" alt=""></div></div>
 					</div>
 				</div>
 
-				<div class="col-lg-4 advert_col">
+				<div class="col-lg-4 avert_col">
 
 					<!-- Advert Item -->
 
-					<div class="advert d-flex flex-row align-items-center justify-content-start">
-						<div class="advert_content">
-							<div class="advert_title"><a href="#">Trends 2018</a></div>
-							<div class="advert_text">Lorem ipsum dolor sit amet, consectetur.</div>
+					<div class="avert d-flex flex-row align-items-center justify-content-start">
+						<div class="avert_content">
+							<div class="avert_title"><a href="#">TENDENCIA 2020</a></div>
+							<div class="avert_text">Lorem ipsum dolor sit amet, consectetur.</div>
 						</div>
-						<div class="ml-auto"><div class="advert_image"><img src="images/adv_3.png" alt=""></div></div>
+						<div class="ml-auto"><div class="avert_image"><img src="images/av_3.png" alt=""></div></div>
 					</div>
 				</div>
 
