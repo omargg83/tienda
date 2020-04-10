@@ -33,7 +33,7 @@
 
 		echo "<div class='banner'>";
 			echo "<div class='banner_background' style='background-image:url(".$db->banner.$key->img.")'></div>";
-			echo "<div class='container fill_height'>";
+			echo "<div class='container fill_height' style='padding: 10% 0 10% 0;'>";
 				echo "<div class='row fill_height'>";
 					echo "<div class='col-lg-12 fill_height text-center'>";
 						echo "<div class='banner_content'>";
@@ -53,7 +53,7 @@
 			<div class="row fill_height">
 				<div class="col-lg-12 fill_height text-center">
 					<div class="banner_content">
-						<h1 class="banner_text">¿Quienes somos?</h1><br>
+						<h1 class="banner_text" style="color: black;">¿Quiénes somos?</h1><br>
 						<p class='text-center' style='color:black;font-size:16px;'>Tic-Shop, es una empresa de Soluciones Tecnológicas e Informática, creada para hacer tus compras electrónicas más rápidas, con
 						los mejores tiempos de entrega. Contando con una gama extensa de productos de marcas líderes en el mercado.</p>
 					</div>
@@ -66,7 +66,7 @@
 	<!-- Characteristics -->
 	<div class="characteristics">
 		<div class="container">
-			<h1 class="banner_text text-center">¿Qué nos hace diferentes?</h1><br>
+			<h1 class="banner_text text-center" style="color: black;" >¿Qué nos hace diferentes?</h1><br>
 			<div class="row">
 
 				<!-- Char. Item -->

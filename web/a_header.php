@@ -194,7 +194,7 @@
             <div class="main_nav_menu ml-auto">
               <ul class="standard_dropdown main_nav_dropdown">
                 <li><a href="index.php">Inicio<i class="fas fa-chevron-down"></i></a></li>
-                <li><a href="info.php">Nosotros<i class="fas fa-chevron-down"></i></a></li>
+                <li><a href="nosotros.php">Nosotros<i class="fas fa-chevron-down"></i></a></li>
                 <li><a href="vendido.php">Tienda<i class="fas fa-chevron-down"></i></a></li>
                 <li><a href="contact.php">Contacto<i class="fas fa-chevron-down"></i></a></li>
               </ul>
