@@ -28,20 +28,25 @@
 			include "a_header.php";
 		?>
 	</header>
+	<?php
+		$key=$db->baner2(2);
 
-
-	<div class="banner">
-		<div class="banner_background" style="background-image:url(img/banner_home.jpg)"></div>
-		<div class="container fill_height">
-			<div class="row fill_height">
-				<div class="col-lg-12 fill_height text-center">
-					<div class="banner_content">
-						<h1 class="banner_text">Más de 6,000 productos de tecnología</h1>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+		echo "<div class='banner'>";
+			echo "<div class='banner_background' style='background-image:url(".$db->banner.$key->img.")'></div>";
+			echo "<div class='container fill_height'>";
+				echo "<div class='row fill_height'>";
+					echo "<div class='col-lg-12 fill_height text-center'>";
+						echo "<div class='banner_content'>";
+							echo "<h1 class='banner_text'>".$key->texto."</h1>";
+							if(strlen($key->enlace)>0){
+								echo "<div class='button banner_button'><a href='".$key->enlace."'>IR</a></div>";
+							}
+						echo "</div>";
+					echo "</div>";
+				echo "</div>";
+			echo "</div>";
+		echo "</div>";
+	?>
 
 	<div class="banner">
 		<div class="container fill_height">
@@ -138,6 +143,13 @@
 <script src="plugins/easing/easing.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
 <script src="js/contact_custom.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<script src="sagyc.js"></script>
+
 </body>
 
 </html>
