@@ -10,10 +10,13 @@
   $issuer_id = $_REQUEST["issuer_id"];
   $idx = $_REQUEST["idx"];
 
+	$ped=$db->pedido_ver($idx);
+
   echo "<br>token:".$token;
   echo "<br>payment_method_idken:".$payment_method_id;
   echo "<br>installments:".$installments;
   echo "<br>issuer_id:".$issuer_id;
+
   require_once 'vendor/autoload.php';
 	MercadoPago\SDK::setAccessToken($merca);
 
@@ -32,11 +35,17 @@
 
 
   if($payment->status=="approved"){
-
+		echo "<br>".$payment->id;
 
 	}
+	echo "<br>";
+	echo '<pre>';
+		echo var_dump($payment);
+	echo '</pre>';
 
-  echo $payment->status;
+
+
+
 
 
   ?>
