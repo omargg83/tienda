@@ -351,6 +351,7 @@
 			try{
 				self::set_names();
 				$sql="select * from almacen where homoclave=:id";
+				echo $sql;
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(':id', "$clave");
 				$sth->execute();

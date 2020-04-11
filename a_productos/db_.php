@@ -187,7 +187,6 @@ class Productos extends Tienda{
 				$arreglo+= array('precio_oferta'=>$_REQUEST['precio_oferta']);
 			}
 
-
 			if (isset($_REQUEST['envio_costo'])){
 				$arreglo+= array('envio_costo'=>$_REQUEST['envio_costo']);
 			}
@@ -205,6 +204,9 @@ class Productos extends Tienda{
 			}
 			if (isset($_REQUEST['cb_destacados'])){
 				$arreglo+= array('cb_destacados'=>$_REQUEST['cb_destacados']);
+			}
+			if (isset($_REQUEST['activo'])){
+				$arreglo+= array('activo'=>$_REQUEST['activo']);
 			}
 
 			$x="";

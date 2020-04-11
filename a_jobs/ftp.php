@@ -142,7 +142,7 @@
             $id=$resp['id'];
 
             //////////////////////////// SE BORRAN LAS EXISTENCIAS DEL PRODUCTO PARA ACTUALIZARLAS
-            $sql="delete from producto_exist where id='".$product['idProducto']."'";
+            $sql="delete from producto_exist where id='$id'";
             $sth3 = $db->dbh->prepare($sql);
             $sth3->execute();
 

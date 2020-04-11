@@ -6,7 +6,8 @@
 		$per = $db->producto_editar($id);
 		$idProducto=$per->idProducto;
     $espe = $db->producto_espe($idProducto);
-		$alma = $db->producto_exist($idProducto,2);
+		$alma = $db->producto_exist($id,2);
+
 		$nombre=$per->nombre;
 		$clave=$per->clave;
 		$numParte=$per->numParte;

@@ -17,7 +17,7 @@ class Pedidos extends Tienda{
 				where pedidos.id like '%$texto%' or pedidos.estatus like '%$texto%' or clientes.nombre like '%$texto' limit 100";
 			}
 			else{
-				$sql="SELECT * from pedidos where estatus='pendiente'";
+				$sql="SELECT * from pedidos";
 			}
 			$sth = $this->dbh->prepare($sql);
 			$sth->execute();
@@ -163,7 +163,7 @@ class Pedidos extends Tienda{
 			$idproducto=$_REQUEST['idproducto'];
 			$idpedido=$_REQUEST['idpedido'];
 
-			$sql="SELECT * from productos where clave like '%$texto%' or numParte like '%$texto%' or nombre like '%$texto%' or modelo like '%$texto%' or marca like '%$texto%' limit 100";
+			$sql="SELECT * from productos where activo=1 and existencia>0 and (clave like '%$texto%' or numParte like '%$texto%' or nombre like '%$texto%' or modelo like '%$texto%' or marca like '%$texto%') limit 100";
 			$sth = $this->dbh->prepare($sql);
 			$sth->execute();
 			echo "<div class='row'>";
@@ -173,25 +173,50 @@ class Pedidos extends Tienda{
 				echo "<div class='col-2 text-center'><b>Existencia</b></div>";
 				echo "<div class='col-2'><b>Precio</b></div>";
 			echo "</div>";
-			foreach($sth->fetchAll() as $key){
+			$envio=0;
+			foreach($sth->fetchAll(PDO::FETCH_OBJ) as $key){
 				echo "<div class='row' style='border-bottom: 1px solid silver;font-size:12px'>";
 					echo "<div class='col-1' >";
 						echo "<div class='btn-group'>";
-						echo "<button type='button' onclick='prod_add(".$key['id'].",$idpedido)' class='btn btn-outline-secondary btn-sm' title='Seleccionar cliente'><i class='fas fa-plus'></i></button>";
+						echo "<button type='button' onclick='prod_add(".$key->id.",$idpedido)' class='btn btn-outline-secondary btn-sm' title='Seleccionar cliente'><i class='fas fa-plus'></i></button>";
 						echo "</div>";
 					echo "</div>";
 					echo "<div class='col-2' >";
-							echo $key['clave'];
+							echo $key->clave;
 					echo "</div>";
 					echo "<div class='col-5' >";
-							echo $key['nombre']."<br>";
-							echo "<b>Parte: </b>".$key['numParte'];
+							echo $key->nombre."<br>";
+							echo "<b>Parte: </b>".$key->numParte;
+							echo "<br>+ Envio: ";
+							if($key->envio_tipo==0){
+								echo moneda($this->egeneral);
+								$envio+=$this->egeneral;
+							}
+							if($key->envio_tipo==1){
+								echo moneda($key->envio_costo);
+								$envio+=$key->envio_costo;
+							}
 					echo "</div>";
 					echo "<div class='col-2 text-center' >";
-							echo $key['existencia'];
+							echo $key->existencia;
 					echo "</div>";
 					echo "<div class='col-2 text-right'>";
-							echo moneda($key['preciof']);
+
+							if($key->precio_tipo==0){
+								echo moneda($key->preciof);
+							}
+							if($key->precio_tipo==1){
+								$total=$key->preciof+(($key->preciof*$this->cgeneral)/100);
+								echo moneda($total);
+							}
+							if($key->precio_tipo==2){
+								echo moneda($key->precio_tic);
+							}
+							if($key->precio_tipo==3){
+								$total=$key->precio_tic+(($key->precio_tic*$this->cgeneral)/100);
+								echo moneda($total);
+							}
+
 					echo "</div>";
 				echo "</div>";
 			}
@@ -325,7 +350,43 @@ class Pedidos extends Tienda{
 			return "Database access FAILED! ".$e->getMessage();
 		}
 	}
+	public function almacen_busca($clave){
+		try{
+			self::set_names();
+			$sql="select * from almacen where homoclave=:id";
+			$sth = $this->dbh->prepare($sql);
+			$sth->bindValue(':id', "$clave");
+			$sth->execute();
+			return $sth->fetch(PDO::FETCH_OBJ);
+		}
+		catch(PDOException $e){
+			return "Database access FAILED!".$e->getMessage();
+		}
+	}
+	public function producto_exist($id,$tipo=0){
+		try{
+			self::set_names();
+			
+			if($tipo==0){
+				$sql="select * from producto_exist where id=$id";
+			}
+			if($tipo==1){
+				$sql="select existencia as total, 'Pachuca' as alma from producto_exist where id=$id and almacen='PAC' UNION
+					select sum(existencia) as total, 'Otros' as alma from producto_exist where id=$id and almacen!='PAC' group by idProducto";
+			}
+			if($tipo==2){
+				$sql="select sum(existencia) as existencia, almacen from producto_exist where id=$id";
+			}
+			echo $sql;
 
+			$sth = $this->dbh->prepare($sql);
+			$sth->execute();
+			return $sth->fetchAll(PDO::FETCH_OBJ);
+		}
+		catch(PDOException $e){
+			return "Database access FAILED!".$e->getMessage();
+		}
+	}
 }
 $db = new Pedidos();
 if(strlen($function)>0){

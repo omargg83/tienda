@@ -25,6 +25,13 @@
 			$_SESSION['bdd']="ticshopc_tienda";
 			$this->dbh = new PDO("mysql:host=".$_SESSION['servidor'].";dbname=".$_SESSION['bdd']."", $_SESSION['mysqluser'], $_SESSION['mysqlpass']);
 			self::set_names();
+
+			$sql="select * from ajustes";
+			$sth = $this->dbh->prepare($sql);
+			$sth->execute();
+			$tmp=$sth->fetch(PDO::FETCH_OBJ);
+			$this->cgeneral=$tmp->p_general;
+			$this->egeneral=$tmp->c_envio;
 		}
 		public function set_names(){
 			return $this->dbh->query("SET NAMES 'utf8'");

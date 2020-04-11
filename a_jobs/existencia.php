@@ -21,7 +21,6 @@
   }
   $db = new Tienda();
 
-
   function servicioApi($metodo, $servicio, $json = null, $token = null) {
       $ch = curl_init('http://187.210.141.12:3001/' . $servicio);
       curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $metodo);

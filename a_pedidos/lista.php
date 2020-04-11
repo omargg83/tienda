@@ -30,7 +30,6 @@
 						echo "<td>".$cli["nombre"]."</td>";
 						echo "<td>".$key["estatus"]."</td>";
 						echo "<td>".fecha($key["fecha"])."</td>";
-
 						echo "</tr>";
 					}
 				}

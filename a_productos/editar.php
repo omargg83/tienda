@@ -35,6 +35,7 @@
 	$cb_prodsemana=0;
 	$cb_destacados=0;
 	$precio_oferta=0;
+	$activo=0;
 
 	if($id>0){
 		$per = $db->producto_editar($id);
@@ -75,6 +76,7 @@
 		$cb_prodsemana=$per->cb_prodsemana;
 		$cb_destacados=$per->cb_destacados;
 		$precio_oferta=$per->precio_oferta;
+		$activo=$per->activo;
 	}
 	else{
 		$interno=1;
@@ -138,10 +140,20 @@
 					  </div>
 
 						<div class="row">
-					    <div class="col-12">
+					    <div class="col-9">
 					      <label for="descripcion">Nombre</label>
 					      <input type="text" class="form-control form-control-sm" id="nombre" name='nombre' placeholder="Nombre" value="<?php echo $nombre; ?>" <?php  echo $bloqueo;  ?>>
 					    </div>
+
+							<?php
+								echo "<div class='col-3'>";
+									echo "<label>Activo</label>";
+									echo "<select id='activo' name='activo' class='form-control form-control-sm' $bloqueo>";
+										echo "<option value='0'"; if($activo=='0'){ echo " selected"; } echo ">Inactivo</option>";
+										echo "<option value='1'"; if($activo=='1'){ echo " selected"; } echo ">Activo</option>";
+									echo "</select>";
+								echo "</div>";
+							?>
 
 							<div class="col-12">
 								<label for="descripcion">Descripción corta</label>
@@ -185,8 +197,6 @@
 			    </div>
 			  </div>
 
-
-
 				<div class="row">
 			    <div class="col-2">
 			      <label for="descripcion">Precio base (CT)</label>
@@ -222,7 +232,7 @@
 			      <label for="preciof">Precio TIC</label>
 			      <input type="text" class="form-control form-control-sm text-right" id="precio_tic" name='precio_tic' placeholder="Precio TIC" value="<?php echo $precio_tic; ?>" >
 			    </div>
-					
+
 
 
 					<div class="col-2">
