@@ -11,24 +11,22 @@
   $idx = $_REQUEST["idx"];
 
 	$ped=$db->pedido_ver($idx);
-
-  echo "<br>token:".$token;
-  echo "<br>payment_method_idken:".$payment_method_id;
-  echo "<br>installments:".$installments;
-  echo "<br>issuer_id:".$issuer_id;
+	$nombre=$ped->nombre;
+	$correo=$ped->correo;
+	$total=$ped->total;
 
   require_once 'vendor/autoload.php';
 	MercadoPago\SDK::setAccessToken($merca);
 
   $payment = new MercadoPago\Payment();
   $payment->transaction_amount = 133;
+	$payment->description = "TIC-SHOP";
   $payment->token = $token;
-  $payment->description = "Durable Wooden Pants";
   $payment->installments = $installments;
   $payment->payment_method_id = $payment_method_id;
   $payment->issuer_id = $issuer_id;
   $payment->payer = array(
-  "email" => "omargg83@gmail.com"
+  "email" => $correo
   );
 
   $payment->save();
@@ -36,12 +34,17 @@
 
   if($payment->status=="approved"){
 		echo "<br>".$payment->id;
+		echo "<br>".$payment->date_approved;
+		echo "<br>".$payment->payer->email;
 
+		$arreglo =array();
+		$arreglo+= array('pago'=>"Mercado Pago");
+		$arreglo+= array('idpago'=>$payment->id);
+		$arreglo+= array('pagador'=>$payment->payer->email);
+		$arreglo+= array('estado_pago'=>$payment->status);
+		echo "udate:".$db->update('pedidos',array('id'=>$idx), $arreglo);
 	}
-	echo "<br>";
-	echo '<pre>';
-		echo var_dump($payment);
-	echo '</pre>';
+
 
 
 
