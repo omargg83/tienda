@@ -222,7 +222,7 @@
 
     $date=date("YmdHis");
     $file="file_".$date.".json";
-    rename($destino, "../historial/$file");
+    //rename($destino, "../historial/$file");
 
   }
   echo "finalizo";
