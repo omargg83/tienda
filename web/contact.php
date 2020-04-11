@@ -95,25 +95,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="panel"></div>
+		
 	</div>
-
-	<!-- Map -->
-	<div class="contact_map">
-		<div id="google_map" class="google_map">
-			<div class="map_container">
-				<div id="map"></div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Newsletter -->
-	<div class="newsletter">
-		<?php
-			include "a_newsletter.php";
-		?>
-	</div>
-
 	<!-- Footer -->
 	<footer class="footer">
 		<?php

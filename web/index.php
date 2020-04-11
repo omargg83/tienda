@@ -503,6 +503,11 @@
 			include "a_footer.php";
 		?>
 	</footer>
+	<div class="copyright">
+		<?php
+			include "a_copyright.php";
+		?>
+	</div>
 
 </div>
 
