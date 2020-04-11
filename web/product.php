@@ -24,9 +24,10 @@
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/product_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/product_responsive.css">
-<link rel="stylesheet" type="text/css" href="styles/main_styles.css">
+
 </head>
 
 <body>
@@ -140,7 +141,8 @@
 									<?php
 										echo "<button type='button' class='button cart_button'  onclick='carrito(".$prod->id.")'>Agregar al carrito</button>";
 									?>
-									<div class="product_fav"><i class="fas fa-heart"></i></div>
+									<div class="product_fav"><i class="fas fa-heart"></i></div> 
+									<button type="button" class="button cart_button" href="#" style="margin-top: 10px;">Cotizar por mayoreo</button>
 								</div>
 
 							</form>
