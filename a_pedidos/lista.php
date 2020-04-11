@@ -13,6 +13,9 @@
 			<th>Cliente</th>
 			<th>Estado</th>
 			<th>Fecha</th>
+			<th>Envio</th>
+			<th>Monto</th>
+			<th>Total</th>
 			</tr>
 			</thead>
 			<tbody>
@@ -30,6 +33,10 @@
 						echo "<td>".$cli["nombre"]."</td>";
 						echo "<td>".$key["estatus"]."</td>";
 						echo "<td>".fecha($key["fecha"])."</td>";
+						echo "<td class='text-right'>".moneda($key["envio"])."</td>";
+						echo "<td class='text-right'>".moneda($key["monto"])."</td>";
+						$gtotal=$key["monto"]+$key["envio"];
+						echo "<td class='text-right'>".moneda($gtotal)."</td>";
 						echo "</tr>";
 					}
 				}

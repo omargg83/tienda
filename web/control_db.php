@@ -869,7 +869,6 @@
 							$arreglo+= array('categoria'=>$key->categoria);
 							$arreglo+= array('descripcion_corta'=>$key->descripcion_corta);
 							$this->insert('pedidos_prod', $arreglo);
-
 							$total+=$preciof;
 							$totalEnvio+=$envio;
 						}
@@ -945,9 +944,10 @@
 		public function pedido_ver($id){
 			try{
 				self::set_names();
-				$sql="select * from pedidos where id=:id";
+				$sql="select * from pedidos where id=:id and idcliente=:cli";
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(":id",$id);
+				$sth->bindValue(":cli",$_SESSION['idcliente']);
 				$sth->execute();
 				return $sth->fetch(PDO::FETCH_OBJ);
 			}
@@ -962,7 +962,7 @@
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(":id",$id);
 				$sth->execute();
-				return $sth->fetch(PDO::FETCH_OBJ);
+				return $sth->fetchAll(PDO::FETCH_OBJ);
 			}
 			catch(PDOException $e){
 				return "Database access FAILED!".$e->getMessage();
@@ -994,6 +994,8 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
+
+
 	}
 
 	if(strlen($ctrl)>0){

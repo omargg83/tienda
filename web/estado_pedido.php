@@ -22,12 +22,12 @@
 	$pais=$ped->pais;
 	$estado=$ped->estado;
 	$telefono=$ped->telefono;
-	$total=$ped->total;
+	$gmonto=$ped->monto;
+	$genvio=$ped->envio;
+	$gtotal=$ped->total;
+	$estatus=$ped->estatus;
+	$pago=$ped->pago;
 
-	//////////////////////////////////////
-	$mercado=$db->ajustes_editar();
-	$merca=$mercado->mercado_token;
-	
 ?>
 
 <!DOCTYPE html>
@@ -66,233 +66,176 @@
 
 	<!-- Cart -->
 	<div class='container'>
-		<h3 class='text-center'>Carrito de compras</h3>
-
 		<div class='row'>
-			<div class='col-8'>
+			<div class='col-3'>
+				<div class="btn-group-vertical">
+					<a href='clientes.php' class="btn btn-primary btn-lg btn-block">Pedidos</a>
+					<a href='cli_direcciones.php' class="btn btn-primary btn-lg btn-block">Direcciones</a>
+					<a href='cli_datos.php' class="btn btn-primary btn-lg btn-block">Mis datos</a>
+					<a href='#' class="btn btn-primary btn-lg btn-block" onclick='salir()'>Salir</a>
+				</div>
+			</div>
+			<div class='col-9'>
+				<h3 class='text-center'>Pedido</h3>
+				<div class="row">
+					<div class="col-2">
+						<label class='text-center'>Pedido</label>
+						<input type="text" class="form-control form-control-sm" id="pedido" name='pedido' placeholder="Pedido" value="<?php echo $idpedido; ?>" readonly>
+					</div>
+					<div class="col-3">
+						<label class='text-center'>Estatus</label>
+						<input type="text" class="form-control form-control-sm" id="estatus" name='estatus' placeholder="Estatus" value="<?php echo $estatus; ?>" readonly>
+					</div>
+					<div class="col-3">
+						<label class='text-center'>Pago</label>
+						<input type="text" class="form-control form-control-sm" id="pago" name='pago' placeholder="Pago" value="<?php echo $pago; ?>" readonly>
+					</div>
+				</div>
 
 				<div class="row">
 					<div class="col-4">
 						<label class='text-center'>Nombre</label>
-						<input type="text" class="form-control" id="nombre" name='nombre' placeholder="Nombre" value="<?php echo $nombre; ?>" required>
+						<input type="text" class="form-control form-control-sm" id="nombre" name='nombre' placeholder="Nombre" value="<?php echo $nombre; ?>" readonly>
 					</div>
 
 					<div class="col-4">
 						<label class='text-center'>Apellidos</label>
-						<input type="text" class="form-control" id="apellido" name='apellido' placeholder="Apellidos" value="<?php echo $apellido; ?>" required autocomplete="off">
+						<input type="text" class="form-control form-control-sm" id="apellido" name='apellido' placeholder="Apellidos" value="<?php echo $apellido; ?>" readonly autocomplete="off">
 					</div>
 
 					<div class="col-4">
 						<label class='text-center'>Correo</label>
-						<input type="email" class="form-control" id="correo" name='correo' placeholder="Correo" value="<?php echo $correo; ?>" readonly>
+						<input type="email" class="form-control form-control-sm" id="correo" name='correo' placeholder="Correo" value="<?php echo $correo; ?>" readonly>
 					</div>
+
 				</div>
 				<div class='row'>
 					<div class="col-3">
 						<label>RFC</label>
-						<input type="text" class="form-control" id="rfc" name='rfc' placeholder="RFC" value="<?php echo $rfc; ?>">
+						<input type="text" class="form-control form-control-sm" id="rfc" name='rfc' placeholder="RFC" value="<?php echo $rfc; ?>" readonly>
 					</div>
 
 					<div class="col-6">
 						<label>Uso cfdi</label>
-						<input type="text" class="form-control" id="cfdi" name='cfdi' placeholder="Uso cfdi" value="<?php echo $cfdi; ?>" >
+						<input type="text" class="form-control form-control-sm" id="cfdi" name='cfdi' placeholder="Uso cfdi" value="<?php echo $cfdi; ?>" readonly>
 					</div>
 				</div>
 
 				<div class='row'>
 					<div class="col-12">
 						<label>Dirección (linea 1)</label>
-						<input type="text" class="form-control" id="direccion1" name='direccion1' placeholder="Dirección (linea 1)" value="<?php echo $direccion1; ?>" >
+						<input type="text" class="form-control form-control-sm" id="direccion1" name='direccion1' placeholder="Dirección (linea 1)" value="<?php echo $direccion1; ?>" readonly>
 					</div>
 					<div class="col-12">
 						<label>Dirección (linea 2)</label>
-						<input type="text" class="form-control" id="direccion2" name='direccion2' placeholder="Dirección (linea 2)" value="<?php echo $direccion2; ?>" >
+						<input type="text" class="form-control form-control-sm" id="direccion2" name='direccion2' placeholder="Dirección (linea 2)" value="<?php echo $direccion2; ?>" readonly>
 					</div>
 					<div class="col-4">
 						<label>Ciudad</label>
-						<input type="text" class="form-control" id="ciudad" name='ciudad' placeholder="Ciudad" value="<?php echo $ciudad; ?>" >
+						<input type="text" class="form-control form-control-sm" id="ciudad" name='ciudad' placeholder="Ciudad" value="<?php echo $ciudad; ?>" readonly>
 					</div>
 					<div class="col-4">
 						<label>Código postal</label>
-						<input type="text" class="form-control" id="cp" name='cp' placeholder="Código postal" value="<?php echo $cp; ?>" >
+						<input type="text" class="form-control form-control-sm" id="cp" name='cp' placeholder="Código postal" value="<?php echo $cp; ?>" readonly>
 					</div>
 					<div class="col-4">
 						<label>Pais</label>
-						<input type="text" class="form-control" id="pais" name='pais' placeholder="Pais" value="<?php echo $pais; ?>" >
+						<input type="text" class="form-control form-control-sm" id="pais" name='pais' placeholder="Pais" value="<?php echo $pais; ?>" readonly>
 					</div>
 					<div class="col-4">
 						<label>Estado</label>
-						<input type="text" class="form-control" id="estado" name='estado' placeholder="Estado" value="<?php echo $estado; ?>" >
+						<input type="text" class="form-control form-control-sm" id="estado" name='estado' placeholder="Estado" value="<?php echo $estado; ?>" readonly>
 					</div>
 					<div class="col-4">
 						<label>Teléfono</label>
-						<input type="text" class="form-control" id="telefono" name='telefono' placeholder="Teléfono" value="<?php echo $telefono; ?>" >
+						<input type="text" class="form-control form-control-sm" id="telefono" name='telefono' placeholder="Teléfono" value="<?php echo $telefono; ?>" readonly>
 					</div>
 				</div>
-
-
-			</div>
-			<div class='col-4'>
+				<hr>
 				<div class="jumbotron">
+					<div class='row'>
+						<div class='col-6'>
+							<b>Descripción</b>
+						</div>
+						<div class='col-2'>
+							<b>Cantidad</b>
+						</div>
+						<div class='col-2'>
+							<b>Precio unitario</b>
+						</div>
+						<div class='col-2'>
+							<b>Total</b>
+						</div>
+					</div>
+
+
 					<?php
+
 					///////////////////////////////////
 					$total=0;
 					$envio=0;
-					foreach($carro as $key){
-						$preciof=0;
-						$enviof=0;
-						if($key->precio_tipo==0){
-							$preciof=$key->preciof;
-						}
-						if($key->precio_tipo==1){
-							$p_total=$key->preciof+(($key->preciof*$db->cgeneral)/100);
-							$preciof=$p_total;
-						}
-						if($key->precio_tipo==2){
-							$preciof=$key->precio_tic;
-						}
-						if($key->precio_tipo==3){
-							$p_total=$key->precio_tic+(($key->precio_tic*$db->cgeneral)/100);
-							$preciof=$p_total;
-						}
+					foreach($datos as $key){
 
 						echo "<div class='row'>";
-							echo "<div class='col-12'>";
-									echo $key->nombre;
+							echo "<div class='col-6'>";
+									echo $key->clave;
+									echo "<br>".$key->nombre;
+									echo "<br>".$key->modelo;
+									echo "<br>".$key->marca;
+									echo "<br>".$key->categoria;
+									echo "<br>+ Costo envio:";
+									echo "<b>".moneda($key->envio)."</b>";
 							echo "</div>";
 
-							echo "<div class='col-12'>";
-								echo "<label>Costo envio: ";
-								if($key->envio_tipo==0){
-									echo moneda($db->egeneral);
-									$envio+=$db->egeneral;
-								}
-								if($key->envio_tipo==1){
-									echo moneda($key->envio_costo);
-									$envio+=$key->envio_costo;
-								}
-								echo "</label>";
+							echo "<div class='col-2 text-center'>";
+								echo $key->cantidad;
 							echo "</div>";
-						echo "</div>";
 
+							echo "<div class='col-2 text-center'>";
+								echo moneda($key->precio);
+							echo "</div>";
 
-						echo "<div class='row'>";
-							echo "<div class='col-4 text-center'>";
-								echo "<b>Cantidad</b>";
+							echo "<div class='col-2 text-center'>";
+								echo moneda($key->total);
 							echo "</div>";
-							echo "<div class='col-4 text-center'>";
-								echo "<b>Precio unitario</b>";
-							echo "</div>";
-							echo "<div class='col-4 text-center'>";
-								echo "<b>Total</b>";
-							echo "</div>";
-						echo "</div>";
 
-						echo "<div class='row'>";
-							echo "<div class='col-4 text-center'>";
-								echo "1";
-							echo "</div>";
-							echo "<div class='col-4 text-right'>";
-								echo moneda($preciof);
-							echo "</div>";
-							echo "<div class='col-4 text-right'>";
-								echo moneda($preciof);
-							echo "</div>";
 						echo "</div>";
 						echo "<hr>";
 
-						$total+=$preciof;
 					}
 
 					///////////////////////////////////
 
-
 						echo "<h4>TOTAL DEL CARRITO</h4>";
 						echo "<div class='row'>";
-							echo "<div class='col-6'>";
-								echo "Subtotal";
+							echo "<div class='col-2 offset-8 text-right'>";
+								echo "<b>Subtotal</b>";
 							echo "</div>";
-							echo "<div class='col-6 text-right'>";
-								echo moneda($total);
+							echo "<div class='col-2 text-right'>";
+								echo moneda($gmonto);
 							echo "</div>";
 						echo "</div>";
 
 						echo "<div class='row'>";
-							echo "<div class='col-6'>";
-								echo "Envío";
+							echo "<div class='col-2 offset-8 text-right'>";
+								echo "<b>Envío</b>";
 							echo "</div>";
-							echo "<div class='col-6 text-right'>";
-								echo moneda($envio);
+							echo "<div class='col-2 text-right'>";
+								echo moneda($genvio);
 							echo "</div>";
 						echo "</div>";
 
-						$gtotal=$total+$envio;
 						echo "<hr>";
 						echo "<div class='row'>";
-							echo "<div class='col-6'>";
-								echo "Total";
+							echo "<div class='col-2 offset-8 text-right'>";
+								echo "<b>Total</b>";
 							echo "</div>";
-							echo "<div class='col-6 text-right'>";
+							echo "<div class='col-2 text-right'>";
 								echo moneda($gtotal);
 							echo "</div>";
 						echo "</div>";
 					?>
 
-					<form action="http://tic-shop.com.mx/tienda/web/procesar-pago.php?idx=<?php echo $idpedido; ?>" method="POST">
-					  <script
-					    src="https://www.mercadopago.com.mx/integrations/v1/web-tokenize-checkout.js"
-					    data-public-key="TEST-11c65f29-2cd0-4ef6-9ebc-f57992a08c1c"
-					    data-transaction-amount="<?php echo $gtotal; ?>"
-
-							>
-					  </script>
-					</form>
-
-				<script
-					 src="https://www.paypal.com/sdk/js?client-id=<?php echo $paypal_client; ?>&currency=MXN" data-order-id="omar-2VW94544JM6797511">
-				 </script>
-
-				 <div id="paypal-button-container"></div>
-
-				 <script>
-						paypal.Buttons({
-				    createOrder: function(data, actions) {
-				      // This function sets up the details of the transaction, including the amount and line item details.
-				      return actions.order.create({
-				        purchase_units: [{
-				          amount: {
-				            value: '<?php echo $gtotal; ?>'
-				          }
-				        }]
-				      });
-				    },
-				    onApprove: function(data, actions) {
-							Swal.fire({
-									type: 'success',
-									title: 'no cierre la ventana, finalizando pago',
-									showConfirmButton: false
-							});
-				      return actions.order.capture().then(function(details) {
-								$.ajax({
-								  url: "paypal-transaction-complete.php",
-								  type: "POST",
-								  data: {
-								    "id":details.id,
-								    "mail":details.payer.email_address,
-										"estatus":details.status,
-										"idx":<?php echo $idpedido; ?>
-								  },
-								  success: function( response ) {
-
-								  }
-								});
-				        alert('Transaction completed by ' + details.payer.name.given_name);
-				      });
-				    }
-				  }).render('#paypal-button-container');
-				  //This function displays Smart Payment Buttons on your web page.
-
-				 </script>
 				</div>
 			</div>
 		</div>

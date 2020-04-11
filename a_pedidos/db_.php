@@ -116,10 +116,30 @@ class Pedidos extends Tienda{
 		try{
 			parent::set_names();
 			$x="";
-			$idcliente=$_REQUEST['idcliente'];
 			$id=$_REQUEST['idpedido'];
+			$idcliente=$_REQUEST['idcliente'];
+
+			$sql="select * from clientes where id";
+			$sth = $this->dbh->prepare($sql);
+			$sth->bindValue(":id",$idcliente);
+			$sth->execute();
+			$cli_x=$sth->fetch(PDO::FETCH_OBJ);
+
 			$arreglo =array();
-			$arreglo+= array('idcliente'=>$_REQUEST['idcliente']);
+			$arreglo+= array('idcliente'=>$cli_x->id);
+			$arreglo+= array('rfc'=>$cli_x->rfc);
+			$arreglo+= array('cfdi'=>$cli_x->cfdi);
+			$arreglo+= array('nombre'=>$cli_x->nombre);
+			$arreglo+= array('apellido'=>$cli_x->apellido);
+			$arreglo+= array('correo'=>$cli_x->correo);
+			$arreglo+= array('direccion1'=>$cli_x->direccion1);
+			$arreglo+= array('direccion2'=>$cli_x->direccion2);
+			$arreglo+= array('cp'=>$cli_x->cp);
+			$arreglo+= array('pais'=>$cli_x->pais);
+			$arreglo+= array('estado'=>$cli_x->estado);
+			$arreglo+= array('telefono'=>$cli_x->telefono);
+
+
 			if($id==0){
 				$arreglo+= array('fecha'=>date("Y-m-d H:i:s"));
 				$arreglo+= array('estatus'=>"pendiente");
@@ -242,9 +262,14 @@ class Pedidos extends Tienda{
 			$arreglo+= array('idprod'=>$idproducto);
 			$arreglo+= array('idpedido'=>$id);
 			$precio=$_REQUEST['preciof'];
+			$envio=$_REQUEST['envio'];
+
+
+			$arreglo+= array('envio'=>$envio);
 			$arreglo+= array('precio'=>$precio);
 			$arreglo+= array('cantidad'=>1);
 			$arreglo+= array('total'=>$precio);
+
 
 			if (isset($_REQUEST['idProducto'])){
 				$arreglo+= array('idProducto'=>$_REQUEST['idProducto']);
@@ -273,6 +298,20 @@ class Pedidos extends Tienda{
 			$x=$this->insert('pedidos_prod', $arreglo);
 			$ped=json_decode($x);
 			if($ped->error==0){
+				////////////////////////// update total
+					$sql="select sum(total) as totalx, sum(envio) as enviox from pedidos_prod where idpedido=$id";
+					$sth = $this->dbh->prepare($sql);
+					$sth->execute();
+					$total_ped=$sth->fetch(PDO::FETCH_OBJ);
+
+					$arreglo =array();
+					$arreglo+= array('monto'=>round($total_ped->totalx,2));
+					$arreglo+= array('envio'=>round($total_ped->enviox));
+					$gtotal=round($total_ped->totalx+$total_ped->enviox,2);
+					$arreglo+= array('total'=>$gtotal);
+					$this->update('pedidos',array('id'=>$id), $arreglo);
+
+				//////////////////////////
 				$arreglo =array();
 				$arreglo+=array('id'=>$id);
 				$arreglo+=array('error'=>0);
@@ -304,8 +343,31 @@ class Pedidos extends Tienda{
 	}
 
 	public function borrar_prodped(){
-		if (isset($_POST['id'])){$id=$_REQUEST['id'];}
-		return $this->borrar('pedidos_prod',"id",$id);
+		$id=$_REQUEST['id'];
+
+		/////////////////////////////////busca el pedido
+		$sql="select * from pedidos_prod where id=$id";
+		$sth = $this->dbh->prepare($sql);
+		$sth->execute();
+		$pedx=$sth->fetch(PDO::FETCH_OBJ);
+		$idpedido=$pedx->idpedido;
+		//////////////////////////elimina el producto
+		$x=$this->borrar('pedidos_prod',"id",$id);
+
+		///////////////////////////actualiza el total
+		$sql="select sum(total) as totalx, sum(envio) as enviox from pedidos_prod where idpedido=$idpedido";
+		$sth = $this->dbh->prepare($sql);
+		$sth->execute();
+		$total_ped=$sth->fetch(PDO::FETCH_OBJ);
+
+		$arreglo =array();
+		$arreglo+= array('monto'=>round($total_ped->totalx,2));
+		$arreglo+= array('envio'=>round($total_ped->enviox));
+		$gtotal=round($total_ped->totalx+$total_ped->enviox,2);
+		$arreglo+= array('total'=>$gtotal);
+		$this->update('pedidos',array('id'=>$idpedido), $arreglo);
+
+		return $x;
 	}
 	public function busca_cupon(){
 		try{
@@ -366,7 +428,7 @@ class Pedidos extends Tienda{
 	public function producto_exist($id,$tipo=0){
 		try{
 			self::set_names();
-			
+
 			if($tipo==0){
 				$sql="select * from producto_exist where id=$id";
 			}

@@ -30,8 +30,29 @@
 		$activo=$per->activo;
 		$moneda=$per->moneda;
 		$tipoCambio=$per->tipoCambio;
-		$preciof=$per->preciof;
+
 		$existencia=$per->existencia;
+
+		if($per->precio_tipo==0){
+			$preciof=$per->preciof;
+		}
+		if($per->precio_tipo==1){
+			$preciof=$per->preciof+(($per->preciof*$db->cgeneral)/100);
+		}
+		if($per->precio_tipo==2){
+			$preciof=$per->precio_tic;
+		}
+		if($per->precio_tipo==3){
+			$preciof=$per->precio_tic+(($per->precio_tic*$db->cgeneral)/100);
+		}
+
+		if($per->envio_tipo==0){
+			$envio=$db->egeneral;
+		}
+		if($per->envio_tipo==1){
+			$envio=$per->envio_costo;
+		}
+
 		/*
 				echo "remoto:".$_SESSION['remoto'];
 				if($_SESSION['remoto']==1){
@@ -142,6 +163,10 @@
           <div class="form-group col-md-3">
             <label for="preciof">Costo </label>
             <input type="text" class="form-control form-control-sm" id="preciof" name='preciof' placeholder="Costo" value="<?php echo $preciof; ?>" readonly>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="preciof">Envio </label>
+            <input type="text" class="form-control form-control-sm" id="envio" name='envio' placeholder="Envio" value="<?php echo $envio; ?>" readonly>
           </div>
 
 					<div class="form-group col-md-3">

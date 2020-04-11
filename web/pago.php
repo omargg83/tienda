@@ -27,7 +27,7 @@
 	//////////////////////////////////////
 	$mercado=$db->ajustes_editar();
 	$merca=$mercado->mercado_token;
-	
+
 ?>
 
 <!DOCTYPE html>
@@ -243,7 +243,6 @@
 					    src="https://www.mercadopago.com.mx/integrations/v1/web-tokenize-checkout.js"
 					    data-public-key="TEST-11c65f29-2cd0-4ef6-9ebc-f57992a08c1c"
 					    data-transaction-amount="<?php echo $gtotal; ?>"
-
 							>
 					  </script>
 					</form>

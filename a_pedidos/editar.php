@@ -129,8 +129,6 @@
             echo "</div>";
 
           echo "</div>";
-
-
         echo "</div>";
         echo "<div class='card-footer'>";
           echo "<div class='btn-group'>";
@@ -145,7 +143,6 @@
             echo "<button class='btn btn-outline-secondary btn-sm' id='lista_cat' data-lugar='a_pedidos/lista' title='regresar'><i class='fas fa-undo-alt'></i>Regresar</button>";
           echo "</div>";
         echo "</div>";
-
 
 					if($id>0){
 						$row=$db->productos_pedido($id);
@@ -172,6 +169,7 @@
 										echo $key['modelo'];
 									echo "<b> Marca: </b>";
 										echo $key['marca'];
+										echo "<br>+ Envio:".$key['envio'];
 									echo "</td>";
 									echo "<td class='text-right'>";
 										echo moneda($key['precio']);
@@ -180,8 +178,8 @@
 										echo $key['cantidad'];
 									echo "</td>";
 									echo "<td class='text-right'>";
-										echo moneda($key['total']);
-										$total+=$key['total'];
+										echo moneda($key['total']+$key['envio']);
+										$total+=$key['total']+$key['envio'];
 									echo "</td>";
 								echo "</tr>";
 							}
@@ -196,6 +194,8 @@
 							echo "</table>";
 						echo "</div>";
 					}
+
+					
       echo "</div>";
     echo "</form>";
   echo "</div>";

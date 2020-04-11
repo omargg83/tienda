@@ -6,7 +6,6 @@
 	$mercado=$db->ajustes_editar();
 	$merca=$mercado->mercado_public;
 
-
 	$resp=$db->datos();
 	$nombre=$resp->nombre;
 	$apellido=$resp->apellido;
@@ -21,7 +20,6 @@
 	$estado=$resp->estado;
 	$telefono=$resp->telefono;
 	$correo=$resp->correo;
-
 
 ?>
 
