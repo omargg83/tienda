@@ -30,25 +30,19 @@
   );
 
   $payment->save();
-
-
   if($payment->status=="approved"){
-		echo "<br>".$payment->id;
-		echo "<br>".$payment->date_approved;
-		echo "<br>".$payment->payer->email;
-
 		$arreglo =array();
+		$arreglo+= array('estatus'=>"procesando");
 		$arreglo+= array('pago'=>"Mercado Pago");
 		$arreglo+= array('idpago'=>$payment->id);
 		$arreglo+= array('pagador'=>$payment->payer->email);
 		$arreglo+= array('estado_pago'=>$payment->status);
-		echo "udate:".$db->update('pedidos',array('id'=>$idx), $arreglo);
+		$x=$db->update('pedidos',array('id'=>$idx), $arreglo);
+
+		$ped=json_decode($x);
+		$id=$ped->id;
+		if($ped->error==0){
+
+		}
 	}
-
-
-
-
-
-
-
   ?>
