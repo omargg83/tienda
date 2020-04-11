@@ -104,7 +104,13 @@
 
                   <input type="search" required="required" class="header_search_input" id='bucar_text' name='bucar_text' onkeyup='Javascript: if (event.keyCode==13) buscar_prod()' placeholder="Buscar productos...">
                   <button type="button" class="header_search_button trans_300" onclick="buscar_prod()"><img src="images/search.png" alt=""></button>
-
+  <div class="custom_dropdown" style="display: none;">
+                    <div class="custom_dropdown_list">
+                      <span class="custom_dropdown_placeholder"></span>
+                      <ul class="custom_list">
+                      </ul>
+                    </div>
+                  </div>
                   
               </div>
             </div>

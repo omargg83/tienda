@@ -43,7 +43,7 @@
         <div class="footer_column">
           <div class="footer_title">POLITICAS DE LA EMPRESA</div>
           <ul class="footer_list footer_list_2">
-
+             
             <li><a href="#">Preguntas frecuentes</a></li>
             <li><a href="#">Politicas de dovoluciones</a></li>
             <li><a href="#">Ayuda</a></li>
@@ -53,3 +53,4 @@
     </div>
   </div>
 </div>
+<script src="//code.tidio.co/ylbayjzufl3r0a8aku5sjorrnm7ztqco.js" async></script>

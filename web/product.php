@@ -141,7 +141,7 @@
 									<?php
 										echo "<button type='button' class='button cart_button'  onclick='carrito(".$prod->id.")'>Agregar al carrito</button>";
 									?>
-									<div class="product_fav"><i class="fas fa-heart"></i></div> 
+									<div class="product_fav"><i class="fas fa-heart" style="display: none;"></i></div> 
 									<button type="button" class="button cart_button" href="#" style="margin-top: 10px;">Cotizar por mayoreo</button>
 								</div>
 
