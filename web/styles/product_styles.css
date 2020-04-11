@@ -388,7 +388,7 @@
 .product_fav
 {
 	visibility: visible;
-    display: inline-block;
+    display: none;
     width: 36px;
     height: 36px;
     background: #FFFFFF;
