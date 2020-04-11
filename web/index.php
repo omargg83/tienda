@@ -31,6 +31,7 @@
 
 <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/responsive.css">
+<style type="text/css"> .cat_menu_container ul {visibility: visible!important; opacity: 100;}</style>
 
 
 </head>

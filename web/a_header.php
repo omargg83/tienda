@@ -60,8 +60,8 @@
     <div class="container">
       <div class="row">
         <div class="col d-flex flex-row">
-          <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="images/phone.png" alt=""></div>777 324 77324</div>
-          <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="images/mail.png" alt=""></div><a href="mailto:fastsales@gmail.com">correo@gmail.com</a></div>
+          <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="img/telefono blanco.png" alt=""style="width: 30px;"></div>777 324 77324</div>
+          <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="img/email.png" alt="" style="width: 30px;"></div><a href="mailto:correo@gmail.com">correo@gmail.com</a></div>
           <div class="top_bar_content ml-auto">
 
             <div class="top_bar_user">

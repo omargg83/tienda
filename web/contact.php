@@ -38,7 +38,7 @@
 
 						<!-- Contact Item -->
 						<div class="contact_info_item d-flex flex-row align-items-center justify-content-start">
-							<div class="contact_info_image"><img src="images/contact_1.png" alt=""></div>
+							<div class="contact_info_image"><img src="img/telefono negro.png" alt=""></div>
 							<div class="contact_info_content">
 								<div class="contact_info_title">Telefono</div>
 								<div class="contact_info_text">+34534554545</div>
@@ -47,7 +47,7 @@
 
 						<!-- Contact Item -->
 						<div class="contact_info_item d-flex flex-row align-items-center justify-content-start">
-							<div class="contact_info_image"><img src="images/contact_2.png" alt=""></div>
+							<div class="contact_info_image"><img src="img/correo negro.png" alt=""></div>
 							<div class="contact_info_content">
 								<div class="contact_info_title">Email Ventas</div>
 								<div class="contact_info_text">ventas@tic-shop.com.mx</div>
@@ -56,7 +56,7 @@
 
 						<!-- Contact Item -->
 						<div class="contact_info_item d-flex flex-row align-items-center justify-content-start">
-							<div class="contact_info_image"><img src="images/contact_3.png" alt=""></div>
+							<div class="contact_info_image"><img src="img/correo negro.png" alt=""></div>
 							<div class="contact_info_content">
 								<div class="contact_info_title">Email General</div>
 								<div class="contact_info_text">info@tic-shop.com.mx</div>
