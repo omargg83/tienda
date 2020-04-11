@@ -6,6 +6,7 @@
 	$p_general=$per->p_general;
 	$mercado_public=$per->mercado_public;
 	$mercado_token=$per->mercado_token;
+	$paypal_client=$per->paypal_client;
 ?>
 <div class="alert alert-primary" role="alert">
 	<h4 class='text-center'>Estos son parametros globales pero pueden modificarse individualmente en cada producto</h4>
@@ -45,6 +46,12 @@
           <label for="inputPassword" class="col-sm-4 col-form-label">Mercado pago Token</label>
           <div class="col-sm-8">
             <input type="text" class="form-control" id="mercado_token" name='mercado_token' value="<?php echo $mercado_token; ?>" placeholder='Mercado pago Token'>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputPassword" class="col-sm-4 col-form-label">PayPal Client ID</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" id="paypal_client" name='paypal_client' value="<?php echo $paypal_client; ?>" placeholder='PayPal Client ID'>
           </div>
         </div>
 

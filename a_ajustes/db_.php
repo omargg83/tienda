@@ -37,6 +37,9 @@ class Clientes extends Tienda{
 			if (isset($_REQUEST['mercado_token'])){
 				$arreglo+= array('mercado_token'=>$_REQUEST['mercado_token']);
 			}
+			if (isset($_REQUEST['paypal_client'])){
+				$arreglo+= array('paypal_client'=>$_REQUEST['paypal_client']);
+			}
 			$x=$this->update('ajustes',array('id'=>1), $arreglo);
 			return $x;
 		}

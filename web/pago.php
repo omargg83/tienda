@@ -5,6 +5,7 @@
 
 	$mercado=$db->ajustes_editar();
 	$merca=$mercado->mercado_public;
+	$paypal_client=$mercado->paypal_client;
 
 	$ped=$db->pedido_ver($idpedido);
 	$datos=$db->datos_pedido($idpedido);
@@ -242,13 +243,13 @@
 					    src="https://www.mercadopago.com.mx/integrations/v1/web-tokenize-checkout.js"
 					    data-public-key="TEST-11c65f29-2cd0-4ef6-9ebc-f57992a08c1c"
 					    data-transaction-amount="<?php echo $gtotal; ?>"
-							
+
 							>
 					  </script>
 					</form>
 
 				<script
-					 src="https://www.paypal.com/sdk/js?client-id=AVPbaFevyucb8zM_dqhd58gpDVRq5Hi1l0K8i2RHgDV-lj7Q7DSbAFmzQ3QC8YCFIfeUQcqqC5J_Zh65&currency=MXN" data-order-id="omar-2VW94544JM6797511"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.
+					 src="https://www.paypal.com/sdk/js?client-id=<?php echo $paypal_client; ?>&currency=MXN" data-order-id="omar-2VW94544JM6797511">
 				 </script>
 
 				 <div id="paypal-button-container"></div>
@@ -266,10 +267,28 @@
 				      });
 				    },
 				    onApprove: function(data, actions) {
+							Swal.fire({
+									type: 'success',
+									title: 'no cierre la ventana, finalizando pago',
+									showConfirmButton: false
+							});
 				      return actions.order.capture().then(function(details) {
 				        // This function shows a transaction success message to your buyer.
 								console.log(details);
 
+								$.ajax({
+								  url: "paypal-transaction-complete.php",
+								  type: "POST",
+								  data: {
+								    "id":details.id,
+								    "mail":details.payer.email_address,
+										"estatus":details.status,
+										"idx":<?php echo $idpedido; ?>
+								  },
+								  success: function( response ) {
+								    console.log(response);
+								  }
+								});
 				        alert('Transaction completed by ' + details.payer.name.given_name);
 				      });
 				    }
@@ -315,6 +334,10 @@
 <script src="plugins/greensock/ScrollToPlugin.min.js"></script>
 <script src="plugins/easing/easing.js"></script>
 <script src="js/cart_custom.js"></script>
+
+<!--   Alertas   -->
+<script src="librerias15/swal/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="librerias15/swal/dist/sweetalert2.min.css">
 
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 <script src="sagyc.js"></script>
