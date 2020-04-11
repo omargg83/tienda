@@ -11,6 +11,12 @@
   $idx = $_REQUEST["idx"];
 
 	$ped=$db->pedido_ver($idx);
+	$nombre=$ped->nombre;
+	$correo=$ped->correo;
+	$total=$ped->total;
+
+	echo "<br>Total:".$total;
+
 
   echo "<br>token:".$token;
   echo "<br>payment_method_idken:".$payment_method_id;
@@ -22,13 +28,13 @@
 
   $payment = new MercadoPago\Payment();
   $payment->transaction_amount = 133;
+	$payment->description = "TIC-SHOP";
   $payment->token = $token;
-  $payment->description = "Durable Wooden Pants";
   $payment->installments = $installments;
   $payment->payment_method_id = $payment_method_id;
   $payment->issuer_id = $issuer_id;
   $payment->payer = array(
-  "email" => "omargg83@gmail.com"
+  "email" => $correo
   );
 
   $payment->save();
@@ -36,8 +42,10 @@
 
   if($payment->status=="approved"){
 		echo "<br>".$payment->id;
-
 	}
+
+
+
 	echo "<br>";
 	echo '<pre>';
 		echo var_dump($payment);
