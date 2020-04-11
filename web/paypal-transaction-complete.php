@@ -7,11 +7,6 @@
   $estatus=$_REQUEST['estatus'];
   $idx=$_REQUEST['idx'];
 
-  echo "<br>idpago:".$idpago;
-  echo "<br>mail:".$mail;
-  echo "<br>estatus:".$estatus;
-  echo "<br>pedido:".$idx;
-
   if($estatus=="COMPLETED"){
     $arreglo =array();
     $arreglo+= array('estatus'=>"procesando");

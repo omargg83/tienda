@@ -199,7 +199,7 @@ $(document).on('submit','#acceso',function(e){
       var datos = JSON.parse(response);
       if (datos.acceso==1){
         Cookies.set('ticshop_x', datos.galleta);
-        window.location.href="cart.php";
+        window.location.href="index.php";
       }
       else{
         Swal.fire({

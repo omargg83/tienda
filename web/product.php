@@ -6,7 +6,7 @@
 	$imextra=$db->producto_imagen($id);
 	$espe = $db->producto_espe($id);
 	$alma = $db->producto_exist($id,1);
-
+	$envio=0;
 
 	$rel=$db->relacionados($prod->subcategoria);
 ?>
@@ -141,7 +141,7 @@
 									<?php
 										echo "<button type='button' class='button cart_button'  onclick='carrito(".$prod->id.")'>Agregar al carrito</button>";
 									?>
-									<div class="product_fav"><i class="fas fa-heart"></i></div> 
+									<div class="product_fav"><i class="fas fa-heart"></i></div>
 									<button type="button" class="button cart_button" href="#" style="margin-top: 10px;">Cotizar por mayoreo</button>
 								</div>
 

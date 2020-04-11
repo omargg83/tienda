@@ -53,7 +53,13 @@
 
 							echo "<td>";
 								echo "<div class='btn-group'>";
-									echo "<a class='btn btn-outline-secondary btn-sm' href='pago.php?idpedido=".$key->id."' title='Editar' ><i class='fas fa-pencil-alt'></i></a>";
+									if($key->estatus=="pendiente"){
+										echo "<a class='btn btn-outline-secondary btn-sm' href='pago.php?idpedido=".$key->id."' title='Editar' ><i class='fas fa-pencil-alt'></i></a>";
+									}
+									if($key->estatus=="procesando"){
+										echo "<a class='btn btn-outline-secondary btn-sm' href='estado_pedido.php?idpedido=".$key->id."' title='Editar' ><i class='fas fa-pencil-alt'></i></a>";
+									}
+
 								echo "</div>";
 							echo "</td>";
 
