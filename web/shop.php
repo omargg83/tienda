@@ -63,7 +63,7 @@
 	<div class="home" style="position: relative;max-height: 70px;background: ghostwhite;top: -14px;">
 		
 		<div class="home_content d-flex flex-column align-items-center justify-content-center">
-			<h2 class="home_title"><?php echo $nombre; ?></h2>
+			<h2 class="home_title" style="text-transform: uppercase;font-size: 30px;"><?php echo $nombre; ?></h2>
 		</div>
 	</div>
 
