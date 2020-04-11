@@ -44,9 +44,9 @@
           <div class="footer_title">POLITICAS DE LA EMPRESA</div>
           <ul class="footer_list footer_list_2">
              
-            <li><a href="#">Preguntas frecuentes</a></li>
-            <li><a href="#">Politicas de dovoluciones</a></li>
-            <li><a href="#">Ayuda</a></li>
+            <li><a href="terminos-condiciones.php">Terminos y condiciones</a></li>
+            <li><a href="aviso.php">Avíso de privacidad</a></li>
+            <li><a href="preguntas.php">Preguntas frecuentes</a></li>
           </ul>
         </div>
       </div>

@@ -49,12 +49,12 @@
 	?>
 
 	<div class="banner">
-		<div class="container fill_height">
-			<div class="row fill_height">
-				<div class="col-lg-12 fill_height text-center">
+		<div class="container ">
+			<div class="row ">
+				<div class="col-lg-12  text-center">
 					<div class="banner_content">
-						<h1 class="banner_text" style="color: black;">¿Quiénes somos?</h1><br>
-						<p class='text-center' style='color:black;font-size:16px;'>Tic-Shop, es una empresa de Soluciones Tecnológicas e Informática, creada para hacer tus compras electrónicas más rápidas, con
+						<h1 class="banner_text" style="color: black; font-size: 30px;">¿Quiénes somos?</h1><br>
+						<p class='text-center' style='color:black;font-size:14px;'>Tic-Shop, es una empresa de Soluciones Tecnológicas e Informática, creada para hacer tus compras electrónicas más rápidas, con
 						los mejores tiempos de entrega. Contando con una gama extensa de productos de marcas líderes en el mercado.</p>
 					</div>
 				</div>
@@ -66,7 +66,7 @@
 	<!-- Characteristics -->
 	<div class="characteristics">
 		<div class="container">
-			<h1 class="banner_text text-center" style="color: black;" >¿Qué nos hace diferentes?</h1><br>
+			<h1 class="banner_text text-center" style="color: black; font-size: 30px;" >¿Qué nos hace diferentes?</h1><br>
 			<div class="row">
 
 				<!-- Char. Item -->
