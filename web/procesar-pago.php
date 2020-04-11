@@ -15,14 +15,6 @@
 	$correo=$ped->correo;
 	$total=$ped->total;
 
-	echo "<br>Total:".$total;
-
-
-  echo "<br>token:".$token;
-  echo "<br>payment_method_idken:".$payment_method_id;
-  echo "<br>installments:".$installments;
-  echo "<br>issuer_id:".$issuer_id;
-
   require_once 'vendor/autoload.php';
 	MercadoPago\SDK::setAccessToken($merca);
 
@@ -42,14 +34,17 @@
 
   if($payment->status=="approved"){
 		echo "<br>".$payment->id;
+		echo "<br>".$payment->date_approved;
+		echo "<br>".$payment->payer->email;
+
+		$arreglo =array();
+		$arreglo+= array('pago'=>"Mercado Pago");
+		$arreglo+= array('idpago'=>$payment->id);
+		$arreglo+= array('pagador'=>$payment->payer->email);
+		$arreglo+= array('estado_pago'=>$payment->status);
+		echo "udate:".$db->update('pedidos',array('id'=>$idx), $arreglo);
 	}
 
-
-
-	echo "<br>";
-	echo '<pre>';
-		echo var_dump($payment);
-	echo '</pre>';
 
 
 

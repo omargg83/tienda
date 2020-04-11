@@ -47,14 +47,14 @@
 
 						echo "<div class='col-3'>";
 							echo "<label>Estado</label>";
-							echo "<select id='estado' name='estado' class='form-control form-control-sm'>";
-								echo "<option value='pendiente'"; if($estado=='pendiente'){ echo " selected"; } echo ">Pendiente de pago</option>";
-								echo "<option value='procesando'"; if($estado=='procesando'){ echo " selected"; } echo ">Procesando</option>";
-								echo "<option value='espera'"; if($estado=='espera'){ echo " selected"; } echo ">En espera</option>";
-								echo "<option value='completado'"; if($estado=='completado'){ echo " selected"; } echo ">Completado</option>";
-								echo "<option value='cancelado'"; if($estado=='cancelado'){ echo " selected"; } echo ">Cancelado</option>";
-								echo "<option value='reembolsado'"; if($estado=='reembolsado'){ echo " selected"; } echo ">Reembolsado</option>";
-								echo "<option value='fallido'"; if($estado=='fallido'){ echo " selected"; } echo ">Fallido</option>";
+							echo "<select id='estatus' name='estatus' class='form-control form-control-sm'>";
+								echo "<option value='pendiente'"; if($estatus=='pendiente'){ echo " selected"; } echo ">Pendiente de pago</option>";
+								echo "<option value='procesando'"; if($estatus=='procesando'){ echo " selected"; } echo ">Procesando</option>";
+								echo "<option value='espera'"; if($estatus=='espera'){ echo " selected"; } echo ">En espera</option>";
+								echo "<option value='completado'"; if($estatus=='completado'){ echo " selected"; } echo ">Completado</option>";
+								echo "<option value='cancelado'"; if($estatus=='cancelado'){ echo " selected"; } echo ">Cancelado</option>";
+								echo "<option value='reembolsado'"; if($estatus=='reembolsado'){ echo " selected"; } echo ">Reembolsado</option>";
+								echo "<option value='fallido'"; if($estatus=='fallido'){ echo " selected"; } echo ">Fallido</option>";
 							echo "</select>";
 						echo "</div>";
 
