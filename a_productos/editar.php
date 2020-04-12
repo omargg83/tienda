@@ -233,14 +233,14 @@
 					</div>
 
 					<div class="col-2">
-			      <label for="preciof">Precio TIC</label>
-			      <input type="text" class="form-control form-control-sm text-right" id="precio_tic" name='precio_tic' placeholder="Precio TIC" value="<?php echo $precio_tic; ?>" >
+			      <label for="preciof">Precio manual</label>
+			      <input type="text" class="form-control form-control-sm text-right" id="precio_tic" name='precio_tic' placeholder="Precio personalizado" value="<?php echo $precio_tic; ?>" >
 			    </div>
 
 
 
 					<div class="col-2">
-			      <label for="preciof">Costo de envío</label>
+			      <label for="preciof">Envio manual</label>
 			      <input type="text" class="form-control form-control-sm text-right" id="envio_costo" name='envio_costo' placeholder="Costo de envío" value="<?php echo $envio_costo; ?>"
 						data-toggle="tooltip" data-placement="top" title="Tooltip on top">
 			    </div>
@@ -255,11 +255,11 @@
 					<div class="col-4">
 			      <label for="precio_tipo">Precio a utilizar</label>
 						<?php
-							echo "<select id='precio_tipo' name='precio_tipo' class='form-control form-control-sm'>";
-								echo "<option value='0'"; if($precio_tipo=='0'){ echo " selected"; } echo ">Precio CT</option>";
-								echo "<option value='1'"; if($precio_tipo=='1'){ echo " selected"; } echo ">Precio CT + % general de ganancia</option>";
-								echo "<option value='2'"; if($precio_tipo=='2'){ echo " selected"; } echo ">Precio TIC</option>";
-								echo "<option value='3'"; if($precio_tipo=='3'){ echo " selected"; } echo ">Precio TIC + % general de ganancia</option>";
+							echo "<select id='precio_tipo' name='precio_tipo' class='form-control form-control-sm'>";				
+								echo "<option value='0'"; if($precio_tipo=='0'){ echo " selected"; } echo ">Precio CT + % general de ganancia</option>";
+								echo "<option value='1'"; if($precio_tipo=='1'){ echo " selected"; } echo ">Precio manual</option>";
+								echo "<option value='2'"; if($precio_tipo=='2'){ echo " selected"; } echo ">Precio CT</option>";
+								/*echo "<option value='0'"; if($precio_tipo=='3'){ echo " selected"; } echo ">Precio TIC + % general de ganancia</option>";*/
 							echo "</select>";
 						?>
 			    </div>
@@ -272,6 +272,12 @@
 							echo "</select>";
 						?>
 			    </div>
+
+			    <div class="col-4">
+			      <label for="precio_publico">Precio al público + Envío</label>
+						<input type="text" class="form-control form-control-sm" id="precio_publico" name='precio_publico' placeholder="Precio publico" value="<?php echo $existencia; ?>" <?php  echo $bloqueo;  ?>>
+			    </div>
+
 				</div>
 
 				<hr>
