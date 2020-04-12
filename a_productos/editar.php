@@ -249,7 +249,13 @@
 						<label for="existencia">Existencia </label>
 						<input type="text" class="form-control form-control-sm" id="existencia" name='existencia' placeholder="Existencia" value="<?php echo $existencia; ?>" <?php  echo $bloqueo;  ?>>
 					</div>
+					<div class="col-4" style="border-left: solid;border-top: solid;">
+			      <label for="precio_publico">Precio al público</label>
+						<input type="text" class="form-control form-control-sm" id="precio_publico" name='precio_publico' placeholder="Precio publico" value="<?php echo $existencia; ?>" <?php  echo $bloqueo;  ?>>
+			    </div>
 			  </div>
+
+			   
 
 				<div class="row">
 					<div class="col-4">
@@ -273,9 +279,9 @@
 						?>
 			    </div>
 
-			    <div class="col-4">
-			      <label for="precio_publico">Precio al público + Envío</label>
-						<input type="text" class="form-control form-control-sm" id="precio_publico" name='precio_publico' placeholder="Precio publico" value="<?php echo $existencia; ?>" <?php  echo $bloqueo;  ?>>
+			    <div class="col-4" style="border-left: solid;padding-bottom: 15px;border-bottom: solid;">
+			      <label for="precio_publico+envio">Precio al público + Envío</label>
+						<input type="text" class="form-control form-control-sm" id="precio_publico" name='precio_publico+envio' placeholder="Precio publico mas envio" value="<?php echo $existencia; ?>" <?php  echo $bloqueo;  ?>>
 			    </div>
 
 				</div>
