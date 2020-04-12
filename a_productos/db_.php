@@ -355,10 +355,31 @@ class Productos extends Tienda{
 		$servicio = "existencia/$clave/TOTAL";
 		$metodo="GET";
 
-		$resp =servicioApi($metodo,$servicio,NULL,$tok);
-		$existencia=$resp->existencia_total;
+		$resp_a=array();
 
-		return var_dump($resp);
+		$resp =servicioApi($metodo,$servicio,NULL,$tok);
+		if (is_object($resp)){
+			$existencia=$resp->existencia_total;
+			$fmodif = date("Y-m-d H:i:s");
+			$fecha=mktime(date("H"),date("i"),date("s"),date("m"),date("d"),date("Y"));
+
+			$sql="update productos set existencia='$existencia', timeexis='$fecha', horaexist='$fmodif' where id='$id'";
+			$sth = $this->dbh->prepare($sql);
+			if($sth->execute()){
+				$resp_a+=array('id'=>$existencia);
+				$resp_a+=array('error'=>0);
+				$arreglo+=array('param1'=>"Existencias actualizadas:".$existencia);
+				return json_encode($resp_a);
+			}
+			else{
+				$resp_a+=array('error'=>1);
+				return json_encode($resp_a);
+			}
+		}
+		else{
+			return "error";
+		}
+
 	}
 
 }
