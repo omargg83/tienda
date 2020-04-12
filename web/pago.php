@@ -238,10 +238,10 @@
 						echo "</div>";
 					?>
 
-					<form action="http://tic-shop.com.mx/tienda/web/procesar-pago.php?idx=<?php echo $idpedido; ?>" method="POST">
+					<form action="https://tic-shop.com.mx/tienda/web/procesar-pago.php?idx=<?php echo $idpedido; ?>" method="POST">
 					  <script
 					    src="https://www.mercadopago.com.mx/integrations/v1/web-tokenize-checkout.js"
-					    data-public-key="TEST-11c65f29-2cd0-4ef6-9ebc-f57992a08c1c"
+					    data-public-key="<?php echo $merca; ?>"
 					    data-transaction-amount="<?php echo $gtotal; ?>"
 							>
 					  </script>
