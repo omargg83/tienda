@@ -196,7 +196,9 @@
 			      <input type="text" class="form-control form-control-sm" id="subcategoria" name='subcategoria' placeholder="Subcategoria" value="<?php echo $subcategoria; ?>" <?php  echo $bloqueo;  ?>>
 			    </div>
 			  </div>
-
+				<hr>
+				<?php
+				/*
 				<div class="row">
 			    <div class="col-2">
 			      <label for="descripcion">Precio base (CT)</label>
@@ -221,6 +223,8 @@
 
 
 				<hr>
+				*/
+				?>
 
 				<div class="row">
 					<div class="col-2">
@@ -307,9 +311,12 @@
 							echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_pass' data-id='0' data-id2='$id' data-lugar='a_productos/form_especificacion' title='Agregar especificacion' ><i class='fas fa-plus'></i>Especificacion</button>";
 						}
 
-						if ($interno==0 or $id==0){
+						if ($interno==0 or $id>0){
 							echo "<button type='button' class='btn btn-outline-secondary btn-sm' onclick='existencia_api()'><i class='fas fa-sync'></i>Existencia</button>";
+
+							/*
 							echo "<button type='button' class='btn btn-outline-secondary btn-sm' onclick='almacen_api()'><i class='fas fa-sync'></i>Almacen</button>";
+							*/
 						}
 
 					?>

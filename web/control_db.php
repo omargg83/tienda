@@ -611,7 +611,30 @@
 
 
 		}
-
+		public function productos_general(){
+			try{
+				self::set_names();
+				$sql="select * from productos where activo=1 limit 100";
+				$sth = $this->dbh->prepare($sql);
+				$sth->execute();
+				return $sth->fetchAll(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
+		public function productos_marcas($tipo){
+			try{
+				self::set_names();
+				$sql="SELECT * FROM productos group by marca limit 20";
+				$sth = $this->dbh->prepare($sql);
+				$sth->execute();
+				return $sth->fetchAll(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
 		public function busca() {
 			try{
 				self::set_names();

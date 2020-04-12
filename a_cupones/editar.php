@@ -82,6 +82,8 @@
 			      <input type='text' class='form-control fechaclass' id='caducidad' name='caducidad' placeholder='Caducidad' value='<?php echo $caducidad; ?>' >
 			    </div>
 
+					<?php
+					/*
 					<div class='col-4'>
 			      <label>Gasto Mínimo</label>
 			      <input type='text' class='form-control' id='gasto_minimo' name='gasto_minimo' placeholder='Gasto Mínimo' value='<?php echo $gasto_minimo; ?>' >
@@ -124,7 +126,8 @@
 						<label>Límite de uso por usuario</label>
 						<input type='text' class='form-control' id='limite_user' name='limite_user' placeholder='Límite de uso por cupón' value='<?php echo $limite_user; ?>' >
 					</div>
-
+*/
+?>
 			  </div>
 
 			</div>
@@ -132,6 +135,7 @@
 				<div class='btn-group'>
 		  		<button type="submit" class="btn btn-outline-secondary btn-sm"><i class='far fa-save'></i>Guardar</button>
 					<?php
+					/*
 						if($id>0){
 							echo "<div class='btn-group' role='group'>";
 						    echo "<button id='btnGroupDrop1' type='button' class='btn btn-outline-secondary btn-sm dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i class='fab fa-product-hunt'></i>";
@@ -157,11 +161,13 @@
 
 							echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_correos' data-id='$id' data-id2='2' data-lugar='a_cupones/form_correos' title='Permitir correos' ><i class='far fa-envelope'></i>Correos</button>";
 						}
+							*/
 					?>
 					<button class='btn btn-outline-secondary btn-sm' id='lista_cat' data-lugar='a_cupones/lista' title='regresar'><i class='fas fa-undo-alt'></i>Regresar</button>
 				</div>
 			</div>
 			<?php
+				/*
 				if($id>0){
 					$row=$db->productos_incluir($id,1);
 					echo "<div class='card-header'>";
@@ -298,6 +304,7 @@
 						echo "</table>";
 					echo "</div>";
 				}
+				*/
 			?>
 		</div>
 	</form>

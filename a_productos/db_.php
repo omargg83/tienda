@@ -394,6 +394,7 @@ class Productos extends Tienda{
 		$resp =servicioApi($metodo,$servicio,NULL,$tok);
 		if (is_object($resp)){
 
+
 			$sql="delete from producto_exist where id='$id'";
 			$sth3 = $this->dbh->prepare($sql);
 			$sth3->execute();

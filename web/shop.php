@@ -11,7 +11,7 @@
 		$resp=$db->cat_categoriatic($id_re);
 		$contar=count($resp);
 	}
-	if(isset($_REQUEST['cat1'])){
+	else if(isset($_REQUEST['cat1'])){
 		$tipo=2;
 		$cat1=$_REQUEST['cat1'];
 		$ncat=$_REQUEST['ncat'];
@@ -19,7 +19,7 @@
 		$resp=$db->cat_categoria($ncat);
 		$contar=count($resp);
 	}
-	if(isset($_REQUEST['sub'])){
+	else if(isset($_REQUEST['sub'])){
 		$tipo=3;
 		$sub=$_REQUEST['sub'];
 		$ncat=$_REQUEST['ncat'];
@@ -27,6 +27,13 @@
 		$resp=$db->sub_categoria($ncat);
 		$contar=count($resp);
 	}
+	else{
+		$tipo=4;
+		$resp=$db->productos_general();
+	}
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,7 +68,7 @@
 
 	<!-- Home -->
 	<div class="home" style="position: relative;max-height: 70px;background: ghostwhite;top: -14px;">
-		
+
 		<div class="home_content d-flex flex-column align-items-center justify-content-center">
 			<h2 class="home_title" style="text-transform: uppercase;font-size: 30px;"><?php echo $nombre; ?></h2>
 		</div>
@@ -80,7 +87,7 @@
 							if($tipo==1 or $tipo==2){
 								if($tipo==1){
 									echo "<div class='sidebar_section'>
-										<div class='sidebar_title'>Categories</div>
+										<div class='sidebar_title'>Categoria</div>
 										<ul class='sidebar_categories'>";
 										foreach($db->cat_ct($id_re) as $key2){
 											echo "<li><a href='shop.php?cat1=".$key2->id."&ncat=".$key2->categoria."'>".$key2->categoria."</a></li>";
@@ -90,7 +97,7 @@
 								}
 								if($tipo==2){
 									echo "<div class='sidebar_section'>
-										<div class='sidebar_title'>Categories</div>
+										<div class='sidebar_title'>Categoria</div>
 										<ul class='sidebar_categories'>";
 										 foreach($db->sub_cat($cat1) as $key3){
 											echo "<li><a href='shop.php?sub=".$key3->id."&ncat=".$key3->subcategoria."'>".$key3->subcategoria."</a></li>";
@@ -98,21 +105,27 @@
 										echo "</ul>
 										</div>";
 								}
-
+							}
+							if($tipo==4){
+									echo "<div class='sidebar_section'>
+									<div class='sidebar_title'>Categorias</div>
+									<ul class='sidebar_categories'>";
+									 foreach($db->categorias() as $key){
+										echo "<li><a href='shop.php?cat=".$key->idcategoria."&ncat=".$key->descripcion."'>".$key->descripcion."</a></li>";
+									}
+									echo "</ul>
+									</div>";
 							}
 						?>
 
 						<div class="sidebar_section">
 							<div class="sidebar_subtitle brands_subtitle">Marcas</div>
 							<ul class="brands_list">
-								<li class="brand"><a href="#">Apple</a></li>
-								<li class="brand"><a href="#">Beoplay</a></li>
-								<li class="brand"><a href="#">Google</a></li>
-								<li class="brand"><a href="#">Meizu</a></li>
-								<li class="brand"><a href="#">OnePlus</a></li>
-								<li class="brand"><a href="#">Samsung</a></li>
-								<li class="brand"><a href="#">Sony</a></li>
-								<li class="brand"><a href="#">Xiaomi</a></li>
+								<?php
+									foreach($db->productos_marcas($tipo) as $marca){
+										echo "<li class='brand'><a href='shop.php'>".$marca->marca."</a></li>";
+									}
+								 ?>
 							</ul>
 						</div>
 					</div>
