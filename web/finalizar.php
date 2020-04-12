@@ -73,11 +73,33 @@
 					</div>
 
 					<div class="col-4">
+						<label>Requiere factura</label><br>
+						<input type="checkbox" id="factura" name='factura' value=1 onclick='factura_act()'>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-6">
 						<label class='text-center'>Correo</label>
 						<input type="email" class="form-control" id="correo" name='correo' placeholder="Correo" value="<?php echo $correo; ?>" required>
 					</div>
+
+					<?php
+						if (strlen($_SESSION['correo'])==0){
+							echo "<div class='col-3'>";
+								echo "<label class='text-center'>Contraseña</label>";
+								echo "<input type='password' class='form-control' id='pass' name='pass' placeholder='Contraseña' value='' required>";
+							echo "</div>";
+
+							echo "<div class='col-3'>";
+								echo "<label class='text-center'>Repetir</label>";
+								echo "<input type='password' class='form-control' id='pass2' name='pass2' placeholder='Contraseña' value='' required>";
+							echo "</div>";
+						}
+					?>
 				</div>
-				<div class='row'>
+
+				<div class='row' id='factura_div' style='display:none'>
 					<div class="col-3">
 						<label>RFC</label>
 						<input type="text" class="form-control" id="rfc" name='rfc' placeholder="RFC" value="<?php echo $rfc; ?>">
@@ -117,6 +139,10 @@
 					<div class="col-4">
 						<label>Teléfono</label>
 						<input type="text" class="form-control" id="telefono" name='telefono' placeholder="Teléfono" value="<?php echo $telefono; ?>" required>
+					</div>
+					<div class="col-12">
+						<label>Notas</label>
+						<input type="text" class="form-control" id="notas" name='notas' placeholder="Notas" value="" >
 					</div>
 				</div>
 
@@ -263,6 +289,11 @@
 <script src="plugins/greensock/ScrollToPlugin.min.js"></script>
 <script src="plugins/easing/easing.js"></script>
 <script src="js/cart_custom.js"></script>
+
+<!--   Alertas   -->
+<script src="librerias15/swal/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="librerias15/swal/dist/sweetalert2.min.css">
+
 
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 <script src="sagyc.js"></script>

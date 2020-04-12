@@ -7,7 +7,7 @@ class Cupones extends Tienda{
 		parent::__construct();
 	}
 
-	function generateRandomString($length = 10) {
+	function generacupon($length = 8) {
     return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
 	}
 
@@ -285,6 +285,9 @@ class Cupones extends Tienda{
 		return $this->borrar('cupon_correo',"id",$id);
 	}
 
+	public function generar_cupon(){
+		return $this->generacupon();
+	}
 }
 
 $db = new Cupones();

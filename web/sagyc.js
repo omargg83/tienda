@@ -1,19 +1,13 @@
 if (Cookies.get('ticshop_x')==undefined){
-  $.ajax({
-    url: "control_db.php",
-    type: "POST",
-    data: {
-      "ctrl":"control",
-      "galleta":"",
-      "function":"galleta"
-    },
-    success: function( response ) {
-      Cookies.set('ticshop_x', response);
-    }
-  });
+  var galleta="";
+  galletax(galleta);
 }
 else{
   var galleta=Cookies.get('ticshop_x');
+  galletax(galleta);
+}
+
+function galletax(galleta){
   $.ajax({
     url: "control_db.php",
     type: "POST",
@@ -38,6 +32,8 @@ function salir(){
     },
     success: function( response ) {
       Cookies.remove('ticshop_x');
+      var galleta="";
+      galletax(galleta);
       window.location.href="index.php";
     }
   });
@@ -223,7 +219,48 @@ function estrella(idproducto){
     });
 
 }
+function factura_act(){
+  if($("#factura").is(':checked')){
+    $( "#factura_div" ).show();
+  }
+  else{
+    $( "#factura_div" ).hide();
+  }
 
+}
+function cupon_agrega(pedido){
+  var cupon=$("#cupon").val();
+  $.ajax({
+    url: "control_db.php",
+    type: "POST",
+    data: {
+      "cupon":cupon,
+      "idpedido":pedido,
+      "ctrl":"control",
+      "function":"cupon_busca"
+    },
+    success: function( response ) {
+      var datos = JSON.parse(response);
+      if (datos.error==0){
+        Swal.fire({
+            type: 'success',
+            title: "Se agregó correctamente",
+            showConfirmButton: false,
+            timer: 1000
+        });
+        window.location.href="pago.php?idpedido="+pedido;
+      }
+      else{
+        Swal.fire({
+            type: 'error',
+            title: datos.terror,
+            showConfirmButton: false,
+            timer: 1000
+        });
+      }
+    }
+  });
+}
 $(document).on('submit','#acceso',function(e){
   e.preventDefault();
   var userAcceso=document.getElementById("userAcceso").value;
@@ -238,7 +275,6 @@ $(document).on('submit','#acceso',function(e){
       "passAcceso":passAcceso
     },
     success: function( response ) {
-      console.log(response);
       var datos = JSON.parse(response);
       if (datos.acceso==1){
         Cookies.set('ticshop_x', datos.galleta);
@@ -379,12 +415,13 @@ $(document).on('submit','#pedido',function(e){
     type: "POST",
     data:  dataString,
     success: function( response ) {
+      console.log(response);
       var datos = JSON.parse(response);
       if (datos.error==0){
         window.location.href="pago.php?idpedido="+datos.id;
         Swal.fire({
             type: 'success',
-            title: 'Se actualizó correctamente',
+            title: 'Se generó el pedido correctamente',
             showConfirmButton: false,
             timer: 1000
         });
@@ -392,7 +429,7 @@ $(document).on('submit','#pedido',function(e){
       else{
         Swal.fire({
             type: 'error',
-            title: 'error'+datos.terror,
+            title: 'Error:'+datos.terror,
             showConfirmButton: false,
             timer: 1000
         });

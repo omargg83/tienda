@@ -33,6 +33,19 @@
  ?>
 
  <script type="text/javascript">
+  function generar_codigo(){
+    $.ajax({
+      data:  {
+        "function":"generar_cupon"
+      },
+      url:   'a_cupones/db_.php',
+      type:  'post',
+      success:  function (response) {
+        $("#codigo").val(response);
+      }
+    });
+  }
+
   function buscar_cupon(){
     var buscar = $("#buscar").val();
     $.ajax({

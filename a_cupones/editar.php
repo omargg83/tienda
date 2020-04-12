@@ -134,6 +134,7 @@
 			<div class='card-footer'>
 				<div class='btn-group'>
 		  		<button type="submit" class="btn btn-outline-secondary btn-sm"><i class='far fa-save'></i>Guardar</button>
+		  		<button type="button" class="btn btn-outline-secondary btn-sm" onclick='generar_codigo()'><i class="fas fa-sync"></i>Generar código</button>
 					<?php
 					/*
 						if($id>0){

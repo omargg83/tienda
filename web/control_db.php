@@ -114,30 +114,41 @@
 		public function galleta(){
 			try{
 				$galleta=$_REQUEST['galleta'];
-				if(strlen($galleta)==0){
+				$contar=0;
+				if(strlen($galleta)>0){
+					$sql="SELECT * FROM clientes where galleta=:galleta";
+					$sth_i = $this->dbh->prepare($sql);
+					$sth_i->bindValue(":galleta",$galleta);
+					$sth_i->execute();
+					$contar=$sth_i->rowCount();
+				}
+
+				if($contar==0){
 					$galleta=$this->genera_random();
 					$sql="insert into clientes (galleta, fechacreado) values (:galleta, :fechacreado)";
 					$sth = $this->dbh->prepare($sql);
 					$sth->bindValue(":galleta",$galleta);
 					$sth->bindValue(":fechacreado",date("Y-m-d H:i:s"));
-					$sth->execute();
+					if($sth->execute()){
+						$sql="SELECT * FROM clientes where galleta=:galleta";
+						$sth_i = $this->dbh->prepare($sql);
+						$sth_i->bindValue(":galleta",$galleta);
+						$sth_i->execute();
+						$contar=$sth_i->rowCount();
+					}
 				}
-				$sql="SELECT * FROM clientes where galleta=:galleta";
-				$sth = $this->dbh->prepare($sql);
-				$sth->bindValue(":galleta",$galleta);
-				$sth->execute();
-				$CLAVE=$sth->fetch();
-				if(strlen($CLAVE['correo'])>0){
+				$CLAVE=$sth_i->fetch(PDO::FETCH_OBJ);
+				if(strlen($CLAVE->correo)>0){
 					$_SESSION['autoriza_web']=1;
 					$_SESSION['interno']=1;
-					$_SESSION['correo']=$CLAVE['correo'];
+					$_SESSION['correo']=$CLAVE->correo;
 				}
 				else{
 					$_SESSION['autoriza_web']=1;
 					$_SESSION['interno']=0;
 					$_SESSION['correo']="";
 				}
-				$_SESSION['idcliente']=$CLAVE['id'];
+				$_SESSION['idcliente']=$CLAVE->id;
 				return $galleta;
 			}
 			catch(PDOException $e){
@@ -245,6 +256,7 @@
 		}
 
 		public function salir(){
+			$_SESSION['interno']=0;
 			$_SESSION['autoriza_web']=0;
 			$_SESSION['correo']="";
 		}
@@ -801,6 +813,22 @@
 
 		public function pedido_generar(){
 			try{
+				if(isset($_REQUEST["factura"])){
+					$factura=1;
+				}
+				else{
+					$factura=0;
+				}
+				if (isset($_REQUEST["pass"]) and strlen($_REQUEST["pass"])){
+					if(trim($_REQUEST["pass"])!=trim($_REQUEST["pass2"])){
+						$arreglo=array();
+						$arreglo+=array('id'=>0);
+						$arreglo+=array('error'=>1);
+						$arreglo+=array('terror'=>"La contraseña no coincide");
+						return json_encode($arreglo);
+					}
+				}
+
 				//////////////////////////////////actualiza datos
 				$nombre = trim(htmlspecialchars($_REQUEST["nombre"]));
 				$apellido = trim(htmlspecialchars($_REQUEST["apellido"]));
@@ -815,28 +843,49 @@
 				$estado = trim(htmlspecialchars($_REQUEST["estado"]));
 				$telefono = trim(htmlspecialchars($_REQUEST["telefono"]));
 				$correo = trim(htmlspecialchars($_REQUEST["correo"]));
+				$notas = trim(htmlspecialchars($_REQUEST["notas"]));
+				if(isset($_REQUEST["pass"])){
+					$pass = trim($_REQUEST["pass"]);
+				}
 
-				$sql="update clientes set nombre=:nombre, apellido=:apellido, rfc=:rfc, cfdi=:cfdi, direccion1=:direccion1, direccion2=:direccion2, ciudad=:ciudad, cp=:cp, pais=:pais, estado=:estado, telefono=:telefono, correo=:correo  where id=:id";
-				$sth = $this->dbh->prepare($sql);
-				$sth->bindValue(":nombre",$nombre);
-				$sth->bindValue(":apellido",$apellido);
-				$sth->bindValue(":rfc",$rfc);
-				$sth->bindValue(":cfdi",$cfdi);
-				$sth->bindValue(":direccion1",$direccion1);
-				$sth->bindValue(":direccion2",$direccion2);
-				$sth->bindValue(":ciudad",$ciudad);
-				$sth->bindValue(":cp",$cp);
-				$sth->bindValue(":pais",$pais);
-				$sth->bindValue(":estado",$estado);
-				$sth->bindValue(":telefono",$telefono);
-				$sth->bindValue(":correo",$correo);
-				$sth->bindValue(":id",$_SESSION['idcliente']);
-				$sth->execute();
+				if(strlen($_SESSION['correo'])==0){
+					$sql="select * from clientes where correo='$correo'";
+					$sth_i = $this->dbh->prepare($sql);
+					$sth_i->execute();
+					if($sth_i->rowCount()>0){
+						$arreglo=array();
+						$arreglo+=array('id'=>0);
+						$arreglo+=array('error'=>1);
+						$arreglo+=array('terror'=>"Ya existe usuario registrado con el correo seleccionado");
+						return json_encode($arreglo);
+					}
+
+					$sql="update clientes set nombre=:nombre, apellido=:apellido, rfc=:rfc, cfdi=:cfdi, direccion1=:direccion1, direccion2=:direccion2, ciudad=:ciudad, cp=:cp, pais=:pais, estado=:estado, telefono=:telefono, correo=:correo, pass=:pass where id=:id";
+					$sth = $this->dbh->prepare($sql);
+					$sth->bindValue(":nombre",$nombre);
+					$sth->bindValue(":apellido",$apellido);
+					$sth->bindValue(":rfc",$rfc);
+					$sth->bindValue(":cfdi",$cfdi);
+					$sth->bindValue(":direccion1",$direccion1);
+					$sth->bindValue(":direccion2",$direccion2);
+					$sth->bindValue(":ciudad",$ciudad);
+					$sth->bindValue(":cp",$cp);
+					$sth->bindValue(":pais",$pais);
+					$sth->bindValue(":estado",$estado);
+					$sth->bindValue(":telefono",$telefono);
+					$sth->bindValue(":correo",$correo);
+					$sth->bindValue(":id",$_SESSION['idcliente']);
+					$sth->bindValue(":pass",md5($pass));
+					if($sth->execute()){
+						$_SESSION['autoriza_web']=1;
+						$_SESSION['interno']=1;
+						$_SESSION['correo']=$correo;
+					}
+				}
 
 				///////////////////////////se genera el pedido
 				try{
 					self::set_names();
-					//$id=$_REQUEST['id'];
 					$id=0;
 					$arreglo =array();
 					$arreglo+=array('fecha'=>date("Y-m-d H:i:s"));
@@ -906,6 +955,8 @@
 							$arreglo+= array('marca'=>$key->marca);
 							$arreglo+= array('categoria'=>$key->categoria);
 							$arreglo+= array('descripcion_corta'=>$key->descripcion_corta);
+							$arreglo+= array('factura'=>$factura);
+							$arreglo+= array('notas'=>$notas);
 							$this->insert('pedidos_prod', $arreglo);
 							$total+=$preciof;
 							$totalEnvio+=$envio;
@@ -1053,7 +1104,69 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
-	}
+		public function cupon_busca(){
+			try{
+				self::set_names();
+				$idpedido=$_REQUEST['idpedido'];
+				$cupon=trim(htmlspecialchars($_REQUEST['cupon']));
+				$sql="SELECT * FROM cupon where codigo=:codigo";
+				$sth_i = $this->dbh->prepare($sql);
+				$sth_i->bindValue(":codigo",$cupon);
+				$sth_i->execute();
+				$contar=$sth_i->rowCount();
+				if($contar>0){
+					$ped=$sth_i->fetch(PDO::FETCH_OBJ);
+
+					$sql="insert into pedidos_cupon (idpedido, idcupon, descuento) values (:idpedido, :idcupon, :descuento)";
+					$sth = $this->dbh->prepare($sql);
+					$sth->bindValue(":idpedido",$idpedido);
+					$sth->bindValue(":idcupon",$ped->id);
+					$sth->bindValue(":descuento",$ped->importe);
+					if($sth->execute()){
+						$arreglo=array();
+						$arreglo+=array('id'=>$idpedido);
+						$arreglo+=array('error'=>0);
+						$arreglo+=array('terror'=>"");
+						return json_encode($arreglo);
+					}
+					else{
+						$arreglo=array();
+						$arreglo+=array('id'=>$idpedido);
+						$arreglo+=array('error'=>1);
+						$arreglo+=array('terror'=>$sth->errorInfo());
+						return json_encode($arreglo);
+					}
+				}
+				else{
+					$arreglo=array();
+					$arreglo+=array('id'=>$idpedido);
+					$arreglo+=array('error'=>1);
+					$arreglo+=array('terror'=>"Cupón no valido");
+					return json_encode($arreglo);
+				}
+			}
+			catch(PDOException $e){
+				$arreglo=array();
+				$arreglo+=array('id'=>$idpedido);
+				$arreglo+=array('error'=>1);
+				$arreglo+=array('terror'=>$e->getMessage());
+				return json_encode($arreglo);
+			}
+		}
+		public function pedido_cupones($id){
+			try{
+				self::set_names();
+				$sql="select * from pedidos_cupon where idpedido=:id";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(":id",$id);
+				$sth->execute();
+				return $sth->fetchAll(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
+}
 
 	if(strlen($ctrl)>0){
 		$db = new Tienda();

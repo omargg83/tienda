@@ -9,9 +9,9 @@
 			<table id='x_lista' class='dataTable compact hover row-border' style='font-size:10pt;'>
 			<thead>
 			<th>#</th>
-			<th>Nombre</th>
-			<th>Apellido</th>
-			<th>Correo</th>
+			<th>Código</th>
+			<th>Descripción</th>
+			<th>Tipo</th>
 			</tr>
 			</thead>
 			<tbody>

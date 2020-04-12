@@ -9,7 +9,7 @@
 
 	$ped=$db->pedido_ver($idpedido);
 	$datos=$db->datos_pedido($idpedido);
-
+	$cupones=$db->pedido_cupones($idpedido);
 	$nombre=$ped->nombre;
 	$apellido=$ped->apellido;
 	$correo=$ped->correo;
@@ -23,7 +23,6 @@
 	$estado=$ped->estado;
 	$telefono=$ped->telefono;
 	$total=$ped->total;
-
 ?>
 
 <!DOCTYPE html>
@@ -62,7 +61,7 @@
 
 	<!-- Cart -->
 	<div class='container'>
-		<h3 class='text-center'>Carrito de compras</h3>
+		<h3 class='text-center'>Finalizar pedido</h3>
 
 		<div class='row'>
 			<div class='col-8'>
@@ -70,12 +69,12 @@
 				<div class="row">
 					<div class="col-4">
 						<label class='text-center'>Nombre</label>
-						<input type="text" class="form-control" id="nombre" name='nombre' placeholder="Nombre" value="<?php echo $nombre; ?>" required>
+						<input type="text" class="form-control" id="nombre" name='nombre' placeholder="Nombre" value="<?php echo $nombre; ?>" readonly>
 					</div>
 
 					<div class="col-4">
 						<label class='text-center'>Apellidos</label>
-						<input type="text" class="form-control" id="apellido" name='apellido' placeholder="Apellidos" value="<?php echo $apellido; ?>" required autocomplete="off">
+						<input type="text" class="form-control" id="apellido" name='apellido' placeholder="Apellidos" value="<?php echo $apellido; ?>" readonly autocomplete="off">
 					</div>
 
 					<div class="col-4">
@@ -86,43 +85,57 @@
 				<div class='row'>
 					<div class="col-3">
 						<label>RFC</label>
-						<input type="text" class="form-control" id="rfc" name='rfc' placeholder="RFC" value="<?php echo $rfc; ?>">
+						<input type="text" class="form-control" id="rfc" name='rfc' placeholder="RFC" value="<?php echo $rfc; ?>" readonly>
 					</div>
 
 					<div class="col-6">
 						<label>Uso cfdi</label>
-						<input type="text" class="form-control" id="cfdi" name='cfdi' placeholder="Uso cfdi" value="<?php echo $cfdi; ?>" >
+						<input type="text" class="form-control" id="cfdi" name='cfdi' placeholder="Uso cfdi" value="<?php echo $cfdi; ?>" readonly>
 					</div>
 				</div>
 
 				<div class='row'>
 					<div class="col-12">
 						<label>Dirección (linea 1)</label>
-						<input type="text" class="form-control" id="direccion1" name='direccion1' placeholder="Dirección (linea 1)" value="<?php echo $direccion1; ?>" >
+						<input type="text" class="form-control" id="direccion1" name='direccion1' placeholder="Dirección (linea 1)" value="<?php echo $direccion1; ?>" readonly>
 					</div>
 					<div class="col-12">
 						<label>Dirección (linea 2)</label>
-						<input type="text" class="form-control" id="direccion2" name='direccion2' placeholder="Dirección (linea 2)" value="<?php echo $direccion2; ?>" >
+						<input type="text" class="form-control" id="direccion2" name='direccion2' placeholder="Dirección (linea 2)" value="<?php echo $direccion2; ?>" readonly>
 					</div>
 					<div class="col-4">
 						<label>Ciudad</label>
-						<input type="text" class="form-control" id="ciudad" name='ciudad' placeholder="Ciudad" value="<?php echo $ciudad; ?>" >
+						<input type="text" class="form-control" id="ciudad" name='ciudad' placeholder="Ciudad" value="<?php echo $ciudad; ?>" readonly>
 					</div>
 					<div class="col-4">
 						<label>Código postal</label>
-						<input type="text" class="form-control" id="cp" name='cp' placeholder="Código postal" value="<?php echo $cp; ?>" >
+						<input type="text" class="form-control" id="cp" name='cp' placeholder="Código postal" value="<?php echo $cp; ?>" readonly>
 					</div>
 					<div class="col-4">
 						<label>Pais</label>
-						<input type="text" class="form-control" id="pais" name='pais' placeholder="Pais" value="<?php echo $pais; ?>" >
+						<input type="text" class="form-control" id="pais" name='pais' placeholder="Pais" value="<?php echo $pais; ?>" readonly>
 					</div>
 					<div class="col-4">
 						<label>Estado</label>
-						<input type="text" class="form-control" id="estado" name='estado' placeholder="Estado" value="<?php echo $estado; ?>" >
+						<input type="text" class="form-control" id="estado" name='estado' placeholder="Estado" value="<?php echo $estado; ?>" readonly>
 					</div>
 					<div class="col-4">
 						<label>Teléfono</label>
-						<input type="text" class="form-control" id="telefono" name='telefono' placeholder="Teléfono" value="<?php echo $telefono; ?>" >
+						<input type="text" class="form-control" id="telefono" name='telefono' placeholder="Teléfono" value="<?php echo $telefono; ?>" readonly>
+					</div>
+				</div>
+				<hr>
+				<div class='row'>
+					<div class="col-12">
+						<h4 class='text-center'>Cupones</h4>
+					</div>
+					<div class="col-6">
+						<div class="input-group mb-3">
+						  <input type="text" class="form-control" id='cupon' name='cupon' placeholder="Agregar cupon" aria-label="Recipient's username" aria-describedby="basic-addon2">
+						  <div class="input-group-append">
+						    <button class="btn btn-outline-secondary" type="button" onclick='cupon_agrega(<?php echo $idpedido; ?>)'>Agregar</button>
+						  </div>
+						</div>
 					</div>
 				</div>
 
@@ -201,7 +214,11 @@
 					}
 
 					///////////////////////////////////
-
+						echo "<h4>Cupones</h4>";
+						foreach($cupones as $keyc){
+							echo $keyc->descuento;
+							echo $keyc->descuento;
+						}
 
 						echo "<h4>TOTAL DEL CARRITO</h4>";
 						echo "<div class='row'>";
