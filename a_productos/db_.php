@@ -349,12 +349,16 @@ class Productos extends Tienda{
 		$resp = crearNuevoToken();
 	  $tok=$resp->token;
 
-	  return $tok;
-
-
 		$clave=$_REQUEST['clave'];
 		$id=$_REQUEST['id'];
-		return $clave;
+
+		$servicio = "existencia/$clave/TOTAL";
+		$metodo="GET";
+
+		$resp =servicioApi($metodo,$servicio,NULL,$tok);
+		$existencia=$resp->existencia_total;
+
+		return $existencia;
 	}
 
 }
