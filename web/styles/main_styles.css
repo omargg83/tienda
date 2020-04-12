@@ -1325,6 +1325,10 @@ select option
 	font-weight: 400;
 	color: rgba(0,0,0,0.5);
 }
+
+
+.deals_item_price_a{display: none;}
+
 .deals_item_price_a
 {
 	font-size: 14px;
@@ -1333,13 +1337,14 @@ select option
 }
 .deals_item_name
 {
-	font-size: 24px;
+	font-size: 14px;
 	font-weight: 400;
 	color: #000000;
+	max-width: 200px;
 }
 .deals_item_price
 {
-	font-size: 24px;
+	font-size: 20px;
 	font-weight: 500;
 	color: #df3b3b;
 }
@@ -1492,7 +1497,8 @@ select option
 	margin-right: 4px;
 }
 
-.available_line button{}
+.available_line button{color: black;font-weight:normal;border-color: black; }
+.available_line button:hover{background-color:#b4f22f;border:none;color: black;}
 /*********************************
 6.2 Featured
 *********************************/
@@ -1558,7 +1564,7 @@ select option
 	left: 0;
 	width: 80px;
 	height: 2px;
-	background: #0e8ce4;
+	background: #b4f22f;
 	-webkit-transition: all 200ms ease;
 	-moz-transition: all 200ms ease;
 	-ms-transition: all 200ms ease;
@@ -1676,7 +1682,7 @@ select option
 }
 .product_name div a:hover
 {
-	color: #0e8ce4;
+	color: #b4f22f;
 }
 .product_color
 {
@@ -1808,11 +1814,11 @@ select option
 }
 .featured_slider .slick-dots li:hover
 {
-	background: #0e8ce4;
+	background: #b4f22f;
 }
 .featured_slider .slick-dots li.slick-active
 {
-	background: #0e8ce4;
+	background: #b4f22f;
 }
 .featured_slider .slick-dots li:last-child
 {

@@ -122,6 +122,12 @@
 		?>
 	</footer>
 
+	<div class="copyright">
+		<?php
+			include "a_copyright.php";
+		?>
+	</div>
+
 </div>
 
 <script src="js/jquery-3.3.1.min.js"></script>
