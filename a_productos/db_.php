@@ -358,7 +358,7 @@ class Productos extends Tienda{
 		$resp =servicioApi($metodo,$servicio,NULL,$tok);
 		$existencia=$resp->existencia_total;
 
-		return $existencia;
+		return var_dump($resp);
 	}
 
 }
