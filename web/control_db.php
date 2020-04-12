@@ -959,10 +959,9 @@
 		public function pedido_ver($id){
 			try{
 				self::set_names();
-				$sql="select * from pedidos where id=:id and idcliente=:cli";
+				$sql="select * from pedidos where id=:id";
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(":id",$id);
-				$sth->bindValue(":cli",$_SESSION['idcliente']);
 				$sth->execute();
 				return $sth->fetch(PDO::FETCH_OBJ);
 			}
