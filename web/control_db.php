@@ -300,6 +300,21 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
+		public function estrellas($id){
+			try{
+				self::set_names();
+				$sql="select producto_estrella.*, clientes.nombre from producto_estrella
+				left outer join clientes on clientes.id=producto_estrella.idcliente
+				where idproducto=:id and producto_estrella.publico=1";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(':id', "$id");
+				$sth->execute();
+				return $sth->fetchAll(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
 		public function producto_imagen($id){
 			try{
 				self::set_names();

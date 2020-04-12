@@ -208,7 +208,7 @@ function estrella(idproducto){
 
             },
             success:  function (response) {
-              alert(response);
+              window.location.href="product.php?id="+idproducto;
             },
             error: function(jqXHR, textStatus, errorThrown) {
 

@@ -3,10 +3,13 @@
 	$db = new Tienda();
 	$id=$_REQUEST['id'];
 	$prod = $db->producto_ver($id);
+
 	$imextra=$db->producto_imagen($id);
 	$espe = $db->producto_espe($id);
 	$alma = $db->producto_exist($id,1);
 	$rel=$db->relacionados($prod->subcategoria);
+
+	$star=$db->estrellas($id);
 ?>
 
 <!DOCTYPE html>
@@ -255,8 +258,26 @@
 			</div>
 <?php
 		}
-		else{
 
+
+		foreach($star as $key){
+			echo "<hr>";
+			echo "<div class='row'>";
+				echo "<div class='col-12'>";
+					echo "Reseña de:".$key->nombre;
+				echo "</div>";
+				echo "<div class='col-2'>";
+					for($i=0; $i<=$key->estrella; $i++){
+						echo "<i class='far fa-star'></i>";
+					}
+				echo "</div>";
+				echo "<div class='col-4'>";
+					echo fecha($key->fecha);
+				echo "</div>";
+				echo "<div class='col-12'>";
+				echo $key->texto;
+				echo "</div>";
+			echo "</div>";
 		}
 
 
