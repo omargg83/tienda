@@ -1,13 +1,24 @@
 <?php
 	require_once("control_db.php");
-	$db = new Tienda();
-	$mercado=$db->ajustes_editar();
-	$merca=$mercado->mercado_token;
+
 
   $token = $_REQUEST["token"];
   $payment_method_id = $_REQUEST["payment_method_id"];
   $installments = $_REQUEST["installments"];
   $issuer_id = $_REQUEST["issuer_id"];
+
+
+	echo "<br>t".$token;
+	echo "<br>p".$payment_method_id;
+	echo "<br>i".$installments;
+	echo "<br>i".$issuer_id;
+
+/*
+
+	$db = new Tienda();
+	$mercado=$db->ajustes_editar();
+	$merca=$mercado->mercado_token;
+
   $idx = $_REQUEST["idx"];
 
 	$ped=$db->pedido_ver($idx);
@@ -45,4 +56,6 @@
 
 		}
 	}
+
+	*/
   ?>
