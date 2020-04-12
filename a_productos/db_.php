@@ -408,6 +408,44 @@ class Productos extends Tienda{
 			return "error";
 		}
 	}
+	public function generar_codigo($length = 8) {
+		return "TIC_".substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
+	}
+	public function categoria_ct(){
+		try{
+			parent::set_names();
+			$sql="SELECT * from categoria_ct";
+			$sth = $this->dbh->prepare($sql);
+			$sth->execute();
+			return $sth->fetchAll(PDO::FETCH_OBJ);
+		}
+		catch(PDOException $e){
+			return "Database access FAILED! ".$e->getMessage();
+		}
+	}
+	public function subcategoria_ct($categoria=""){
+		try{
+			parent::set_names();
+			$sql="SELECT * FROM categoriasub_ct left outer join categoria_ct on categoria_ct.id=categoriasub_ct.idcategoria where categoria_ct.categoria='$categoria'";
+			$sth = $this->dbh->prepare($sql);
+			$sth->execute();
+			return $sth->fetchAll(PDO::FETCH_OBJ);
+		}
+		catch(PDOException $e){
+			return "Database access FAILED! ".$e->getMessage();
+		}
+	}
+	public function sub_cambio(){
+		$cat=$_REQUEST['cat'];
+		echo "<label for='subcategoria'>Subcategoria</label>";
+		echo "<select id='subcategoria' name='subcategoria' class='form-control form-control-sm' required>";
+			echo "<option value='' disabled selected>Seleccione una opción</option>";
+			foreach($this->subcategoria_ct($cat) as $key){
+				echo "<option value='".$key->subcategoria."'>".$key->subcategoria."</option>";
+			}
+		echo "</select>";
+	}
+
 }
 $db = new Productos();
 if(strlen($function)>0){

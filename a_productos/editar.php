@@ -20,15 +20,15 @@
 	$tipoCambio="";
 	$imagen="";
 	$upc="";
-	$activo="";
 	$moneda="";
 	$tipoCambio="";
 	$preciof="";
 	$existencia="";
 	$precio_tic="";
-	$interno="";
+	$activo=1;
+	$interno=1;
 	$envio_costo="";
-	$precio_tipo="";
+	$precio_tipo="3";
 	$envio_tipo="";
 
 	$cb_ofertasemana=0;
@@ -80,6 +80,7 @@
 	}
 	else{
 		$interno=1;
+		$activo=1;
 	}
 
 	$bloqueo="";
@@ -127,16 +128,16 @@
 						 <?php
 							 if($interno!=1){
 								 echo "<div class='col-4'>";
-								 echo "<label for='sku'>Idproducto (CT)</label>";
-								 echo "<input type='text' class='form-control form-control-sm' id='idProducto' name='idProducto' placeholder='CLAVE' value='$idProducto' $bloqueo>";
+								 	echo "<label for='sku'>Idproducto (CT)</label>";
+								 	echo "<input type='text' class='form-control form-control-sm' id='idProducto' name='idProducto' placeholder='CLAVE' value='$idProducto' $bloqueo>";
 								 echo "</div>";
-							 }
-						 ?>
 
-					    <div class="col-4">
-					      <label for="nombre">Numero de parte </label>
-					      <input type="text" class="form-control form-control-sm" id="numParte" name='numParte' placeholder="Numero de parte" value="<?php echo $numParte; ?>" <?php  echo $bloqueo;  ?> >
-					    </div>
+						    echo "<div class='col-4'>";
+						      echo "<label for='nombre'>Numero de parte </label>";
+						      echo "<input type='text' class='form-control form-control-sm' id='numParte' name='numParte' placeholder='Numero de parte' value='$numParte' $bloqueo>";
+						    echo "</div>";
+							}
+							?>
 					  </div>
 
 						<div class="row">
@@ -185,17 +186,30 @@
 			    </div>
 			  </div>
 
-				<div class="row">
-			    <div class="col-6">
-			      <label for="descripcion">Categoria</label>
-			      <input type="text" class="form-control form-control-sm" id="categoria" name='categoria' placeholder="Categoria" value="<?php echo $categoria; ?>" <?php  echo $bloqueo;  ?>>
-			    </div>
+				<?php
+					echo "<div class='row'>";
+				    echo "<div class='col-6'>";
+				      echo "<label for='categoria'>Categoria</label>";
+							echo "<select id='categoria' name='categoria' class='form-control form-control-sm' $bloqueo required onchange='subcat_cmb()'>";
+								echo "<option value='' disabled selected>Seleccione una opción</option>";
+								foreach($db->categoria_ct() as $key){
+									echo "<option value='".$key->categoria."'";  if($key->categoria==$categoria){ echo " selected"; } echo ">".$key->categoria."</option>";
+								}
+							echo "</select>";
+				    echo "</div>";
 
-			    <div class="col-6">
-			      <label for="descripcion">Subcategoria</label>
-			      <input type="text" class="form-control form-control-sm" id="subcategoria" name='subcategoria' placeholder="Subcategoria" value="<?php echo $subcategoria; ?>" <?php  echo $bloqueo;  ?>>
-			    </div>
-			  </div>
+				    echo "<div class='col-6' id='subcatdiv'>";
+				      echo "<label for='subcategoria'>Subcategoria</label>";
+							echo "<select id='subcategoria' name='subcategoria' class='form-control form-control-sm' $bloqueo required>";
+								echo "<option value='' disabled selected>Seleccione una opción</option>";
+								foreach($db->subcategoria_ct($categoria) as $key){
+									echo "<option value='".$key->subcategoria."'";  if($key->subcategoria==$subcategoria){ echo " selected"; } echo ">".$key->subcategoria."</option>";
+								}
+							echo "</select>";
+				    echo "</div>";
+				  echo "</div>";
+				?>
+
 				<hr>
 				<?php
 				/*
@@ -220,70 +234,67 @@
 			      <input type="text" class="form-control form-control-sm" id="tipoCambio" name='tipoCambio' placeholder="Tipo de cambio" value="<?php echo $tipoCambio; ?>" <?php  echo $bloqueo;  ?>>
 			    </div>
 				</div>
-
-
 				<hr>
 				*/
 				?>
 
 				<div class="row">
-					<div class="col-2">
-						<label for="preciof">Precio CT</label>
-						<input type="text" class="form-control form-control-sm text-right" id="preciof" name='preciof' placeholder="Costo" value="<?php echo $preciof; ?>" <?php  echo $bloqueo;  ?>>
-					</div>
+					<?php
+					if($interno==0){
+						echo "<div class='col-3'>";
+							echo "<label for='preciof'>Precio original CT</label>";
+							echo "<input type='text' class='form-control form-control-sm text-right' id='preciof' name='preciof' placeholder='Costo' value='$preciof' $bloqueo>";
+						echo "</div>";
+					}
 
-					<div class="col-2">
+					?>
+
+					<div class="col-3">
 			      <label for="preciof">Precio manual</label>
-			      <input type="text" class="form-control form-control-sm text-right" id="precio_tic" name='precio_tic' placeholder="Precio personalizado" value="<?php echo $precio_tic; ?>" >
+			      <input type="text" class="form-control form-control-sm text-right" id="precio_tic" name='precio_tic' placeholder="Precio personalizado" value="<?php echo $precio_tic; ?>">
 			    </div>
 
 
 
-					<div class="col-2">
+					<div class="col-3">
 			      <label for="preciof">Envio manual</label>
 			      <input type="text" class="form-control form-control-sm text-right" id="envio_costo" name='envio_costo' placeholder="Costo de envío" value="<?php echo $envio_costo; ?>"
 						data-toggle="tooltip" data-placement="top" title="Tooltip on top">
 			    </div>
 
-					<div class="col-2">
+					<div class="col-3">
 						<label for="existencia">Existencia </label>
 						<input type="text" class="form-control form-control-sm" id="existencia" name='existencia' placeholder="Existencia" value="<?php echo $existencia; ?>" <?php  echo $bloqueo;  ?>>
 					</div>
-					<div class="col-4" style="border-left: solid;border-top: solid;">
-			      <label for="precio_publico">Precio al público</label>
-						<input type="text" class="form-control form-control-sm" id="precio_publico" name='precio_publico' placeholder="Precio publico" value="<?php echo $existencia; ?>" <?php  echo $bloqueo;  ?>>
-			    </div>
 			  </div>
 
-			   
-
 				<div class="row">
-					<div class="col-4">
-			      <label for="precio_tipo">Precio a utilizar</label>
+					<div class="col-6">
+			      <label for="precio_tipo">Precio final</label>
 						<?php
-							echo "<select id='precio_tipo' name='precio_tipo' class='form-control form-control-sm'>";				
-								echo "<option value='0'"; if($precio_tipo=='0'){ echo " selected"; } echo ">Precio CT + % general de ganancia</option>";
-								echo "<option value='1'"; if($precio_tipo=='1'){ echo " selected"; } echo ">Precio manual</option>";
-								echo "<option value='2'"; if($precio_tipo=='2'){ echo " selected"; } echo ">Precio CT</option>";
-								/*echo "<option value='0'"; if($precio_tipo=='3'){ echo " selected"; } echo ">Precio TIC + % general de ganancia</option>";*/
+							echo "<select id='precio_tipo' name='precio_tipo' class='form-control form-control-sm' >";
+								if($interno==0){
+									echo "<option value='0'"; if($precio_tipo=='0'){ echo " selected"; } echo ">".moneda($preciof)." Precio original CT</option>";
+									echo "<option value='1'"; if($precio_tipo=='1'){ echo " selected"; } echo ">".moneda($preciof)." Precio original CT + ".$db->cgeneral."% general de ganancia</option>";
+									echo "<option value='2'"; if($precio_tipo=='2'){ echo " selected"; } echo ">Precio manual </option>";
+									echo "<option value='3'"; if($precio_tipo=='3'){ echo " selected"; } echo ">Precio manual  + ".$db->cgeneral."% general de ganancia</option>";
+								}
+								else{
+									echo "<option value='2'"; if($precio_tipo=='2'){ echo " selected"; } echo ">Precio manual </option>";
+									echo "<option value='3'"; if($precio_tipo=='3'){ echo " selected"; } echo ">Precio manual  + ".$db->cgeneral."% general de ganancia</option>";
+								}
 							echo "</select>";
 						?>
 			    </div>
-					<div class="col-4">
-			      <label for="envio_tipo">Envio a utilizar</label>
+					<div class="col-6">
+			      <label for="envio_tipo">Envio final</label>
 						<?php
 							echo "<select id='envio_tipo' name='envio_tipo' class='form-control form-control-sm'>";
-								echo "<option value='0'"; if($envio_tipo=='0'){ echo " selected"; } echo ">Envio general</option>";
-								echo "<option value='1'"; if($envio_tipo=='1'){ echo " selected"; } echo ">Envio del producto</option>";
+								echo "<option value='0'"; if($envio_tipo=='0'){ echo " selected"; } echo ">".moneda($db->egeneral)." Envio general</option>";
+								echo "<option value='1'"; if($envio_tipo=='1'){ echo " selected"; } echo ">Envio manual</option>";
 							echo "</select>";
 						?>
 			    </div>
-
-			    <div class="col-4" style="border-left: solid;padding-bottom: 15px;border-bottom: solid;">
-			      <label for="precio_publico+envio">Precio al público + Envío</label>
-						<input type="text" class="form-control form-control-sm" id="precio_publico" name='precio_publico+envio' placeholder="Precio publico mas envio" value="<?php echo $existencia; ?>" <?php  echo $bloqueo;  ?>>
-			    </div>
-
 				</div>
 
 				<hr>
@@ -311,16 +322,17 @@
 					echo "</div>";
 					?>
 				</div>
-
-
 			</div>
 
 			<div class='card-footer'>
 				<div class='btn-group'>
 		  		<button type="submit" class="btn btn-outline-secondary btn-sm"><i class='far fa-save'></i>Guardar</button>
 					<?php
-						if($id>0){
-							echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_pass' data-id='0' data-id2='$id' data-lugar='a_productos/form_especificacion' title='Agregar especificacion' ><i class='fas fa-plus'></i>Especificacion</button>";
+						if($interno==1){
+							echo "<button type='button' class='btn btn-outline-secondary btn-sm' onclick='generar_codigoprod()'><i class='fas fa-sync'></i>Generar código</button>";
+							if($id>0){
+								echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_pass' data-id='0' data-id2='$id' data-lugar='a_productos/form_especificacion' title='Agregar especificacion' ><i class='fas fa-plus'></i>Especificacion</button>";
+							}
 						}
 
 						if ($interno==0 or $id>0){

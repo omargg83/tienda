@@ -193,7 +193,35 @@
       }
     });
   }
-
+  function generar_codigoprod(){
+    $.ajax({
+      data:  {
+        "function":"generar_codigo"
+      },
+      url:   'a_productos/db_.php',
+      type:  'post',
+      success:  function (response) {
+        $("#clave").val(response);
+      }
+    });
+  }
+  function subcat_cmb(){
+    var cat=$("#categoria").val();
+    $.ajax({
+      data:  {
+        "cat":cat,
+        "function":"sub_cambio"
+      },
+      url:   'a_productos/db_.php',
+      type:  'post',
+      success:  function (response) {
+        $("#subcatdiv").html(response);
+      }
+    });
+  }
+  function precio_final(){
+    alert("entra");
+  }
 
 
 </script>
