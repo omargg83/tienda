@@ -395,13 +395,13 @@ class Productos extends Tienda{
 		if (is_object($resp)){
 
 			$sql="delete from producto_exist where id='$id'";
-			$sth3 = $db->dbh->prepare($sql);
+			$sth3 = $this->dbh->prepare($sql);
 			$sth3->execute();
 
 			foreach($resp as $key){
 				echo $key;
 			}
-			
+
 		}
 		else{
 			return "error";
