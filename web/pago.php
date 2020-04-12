@@ -24,10 +24,6 @@
 	$telefono=$ped->telefono;
 	$total=$ped->total;
 
-	//////////////////////////////////////
-	$mercado=$db->ajustes_editar();
-	$merca=$mercado->mercado_token;
-
 ?>
 
 <!DOCTYPE html>
