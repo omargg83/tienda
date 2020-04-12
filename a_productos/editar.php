@@ -304,7 +304,7 @@
 		  		<button type="submit" class="btn btn-outline-secondary btn-sm"><i class='far fa-save'></i>Guardar</button>
 					<?php
 						if ($interno==0 or $id==0){
-							echo "<button type='button' class='btn btn-outline-secondary btn-sm' onclick='existencia_api()'><i class='fas fa-sync'></i>Verificar Existencia</button>";
+							echo "<button type='button' class='btn btn-outline-secondary btn-sm' onclick='existencia_api()'><i class='fas fa-sync'></i>Existencia</button>";
 						}
 						if($id>0){
 							echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_pass' data-id='0' data-id2='$id' data-lugar='a_productos/form_especificacion' title='Agregar especificacion' ><i class='fas fa-plus'></i>Especificacion</button>";
