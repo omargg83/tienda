@@ -234,7 +234,7 @@
 
 					<div class="col-2">
 			      <label for="preciof">Precio manual</label>
-			      <input type="text" class="form-control form-control-sm text-right" id="precio_tic" name='precio_tic' placeholder="Precio TIC" value="<?php echo $precio_tic; ?>" >
+			      <input type="text" class="form-control form-control-sm text-right" id="precio_tic" name='precio_tic' placeholder="Precio personalizado" value="<?php echo $precio_tic; ?>" >
 			    </div>
 
 
@@ -274,7 +274,7 @@
 			    </div>
 
 			    <div class="col-4">
-			      <label for="precio_publico">Precio al publico + Envío</label>
+			      <label for="precio_publico">Precio al público + Envío</label>
 						<input type="text" class="form-control form-control-sm" id="precio_publico" name='precio_publico' placeholder="Precio publico" value="<?php echo $existencia; ?>" <?php  echo $bloqueo;  ?>>
 			    </div>
 
