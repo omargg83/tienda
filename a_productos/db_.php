@@ -366,9 +366,9 @@ class Productos extends Tienda{
 			$sql="update productos set existencia='$existencia', timeexis='$fecha', horaexist='$fmodif' where id='$id'";
 			$sth = $this->dbh->prepare($sql);
 			if($sth->execute()){
-				$resp_a+=array('id'=>$existencia);
+				$resp_a+=array('id'=>$id);
 				$resp_a+=array('error'=>0);
-				$arreglo+=array('param1'=>"Existencias actualizadas:".$existencia);
+				$resp_a+=array('param1'=>"Existencias actualizadas:".$existencia);
 				return json_encode($resp_a);
 			}
 			else{

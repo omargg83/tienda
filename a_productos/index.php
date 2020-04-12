@@ -121,22 +121,13 @@
             url:   'a_productos/db_.php',
             type:  'post',
             success:  function (response) {
+              console.log(response);
               var datos = JSON.parse(response);
               if (datos.error==0){
-                Swal.fire({
-                    type: 'success',
-                    title: 'Se canceló correctamente',
-                    showConfirmButton: false,
-                    timer: 1000
-                });
+
               }
               else{
-                Swal.fire({
-                    type: 'error',
-                    title: 'CT no disponible intente mas adelante',
-                    showConfirmButton: false,
-                    timer: 1000
-                });
+
               }
             }
           });
