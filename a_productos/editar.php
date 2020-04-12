@@ -134,7 +134,7 @@
 						 ?>
 
 					    <div class="col-4">
-					      <label for="nombre">Numero de parte (CT)</label>
+					      <label for="nombre">Numero de parte </label>
 					      <input type="text" class="form-control form-control-sm" id="numParte" name='numParte' placeholder="Numero de parte" value="<?php echo $numParte; ?>" <?php  echo $bloqueo;  ?> >
 					    </div>
 					  </div>
