@@ -86,7 +86,17 @@ p
 .btn-warning{
 	background-color:#b4f22f;
 	border: none;
+	cursor: pointer;
+
 }
+
+.btn-warning:hover{
+	background-color:#b4f22f;
+	border: none;
+	cursor: pointer;
+	
+}
+p
 p a
 {
 	display: inline;
@@ -3500,7 +3510,7 @@ select option
 
 .footer
 {
-	padding-top: 0px;
+	padding-top: 50px;
 	padding-bottom: 0px;
 }
 .footer .logo_container
