@@ -177,7 +177,7 @@
 													<div class='deals_item_price_a ml-auto'>".moneda($preciof)."</div>
 												</div>
 												<div class='deals_info_line d-flex flex-row justify-content-start'>
-													<div class='deals_item_name'>".$key->categoria."</div>
+													<div class='deals_item_name'>".$key->nombre."</div>
 													<div class='deals_item_price ml-auto'>".moneda($preciof)."</div>
 												</div>
 												<div class='available'>
