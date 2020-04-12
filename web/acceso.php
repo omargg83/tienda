@@ -49,8 +49,14 @@
 							<input type="password" class="form-control" id="passAcceso" name='passAcceso' placeholder="Contraseña" value="<?php echo $pass; ?>" required>
 						</div>
 						<div class="col-4 offset-4 text-center"><br>
-							<button class='btn btn-outline-primary btn-block btn-sm' type='submit'><i class='fa fa-check'></i>Aceptar</button>
-							<a class='btn btn-outline-primary btn-block btn-sm' type='button' href='registro.php'><i class='fas fa-clipboard-check'></i>Registrar</a>
+							
+							<button class="btn btn-outline-primary btn-block btn-sm" type="submit" style="
+							    background-color: #b4f22f;
+							    border: none;
+							    color: black;
+							    cursor: pointer;
+							"><i class="fa fa-check"></i>Aceptar</button>
+							<p>Para registrarte realiza tu primera compra</p>
 						</div>
 					</div>
 				</div>

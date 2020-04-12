@@ -72,7 +72,7 @@
                   echo "<div><a href='#' onclick='salir()'>Salir</a></div>";
                 }
     						else{
-                  echo "<div><a href='registro.php'>Registro</a></div>";
+                  /*echo "<div><a href='registro.php'>Registro</a></div>";*/
                   echo "<div><a href='acceso.php'>Ingresar</a></div>";
                 }
               ?>
