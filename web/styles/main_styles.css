@@ -912,7 +912,7 @@ select option
 }
 .cat_menu li a:hover
 {
-	color: #0e8ce4;
+	color: #b4f22f;
 }
 .cat_menu li a i
 {
@@ -960,6 +960,15 @@ select option
 	color: #a19a9a;
 	line-height: 60px;
 }
+
+.main_nav_dropdown li a:hover
+{
+	font-size: 18px;
+	font-weight: 400;
+	color: #b4f22f;
+	line-height: 60px;
+}
+
 .main_nav_dropdown li li
 {
 	padding-left: 15px;
@@ -2006,6 +2015,7 @@ select option
 }
 .popular_categories_link
 {
+	display: none;
 	margin-top: 40px;
 }
 .popular_categories_link a
