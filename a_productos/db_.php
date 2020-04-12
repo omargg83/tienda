@@ -345,10 +345,8 @@ class Productos extends Tienda{
 	}
 
 	public function existencia_api(){
-
 		$resp = crearNuevoToken();
 	  $tok=$resp->token;
-
 		$clave=$_REQUEST['clave'];
 		$id=$_REQUEST['id'];
 
@@ -358,6 +356,7 @@ class Productos extends Tienda{
 		$resp_a=array();
 
 		$resp =servicioApi($metodo,$servicio,NULL,$tok);
+
 		if (is_object($resp)){
 			$existencia=$resp->existencia_total;
 			$fmodif = date("Y-m-d H:i:s");
@@ -381,7 +380,9 @@ class Productos extends Tienda{
 		}
 
 	}
-
+	public function almacenes(){
+		
+	}
 }
 $db = new Productos();
 if(strlen($function)>0){
