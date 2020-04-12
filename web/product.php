@@ -6,8 +6,6 @@
 	$imextra=$db->producto_imagen($id);
 	$espe = $db->producto_espe($id);
 	$alma = $db->producto_exist($id,1);
-
-
 	$rel=$db->relacionados($prod->subcategoria);
 ?>
 
@@ -27,7 +25,37 @@
 <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/product_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/product_responsive.css">
+<style>
 
+		/* Rating Star Widgets Style */
+		.rating-stars ul {
+		  list-style-type:none;
+		  padding:0;
+
+		  -moz-user-select:none;
+		  -webkit-user-select:none;
+		}
+		.rating-stars ul > li.star {
+		  display:inline-block;
+
+		}
+
+		/* Idle State of the stars */
+		.rating-stars ul > li.star > i.fa {
+		  font-size:2.5em; /* Change the size of the stars */
+		  color:#ccc; /* Color on idle state */
+		}
+
+		/* Hover state of the stars */
+		.rating-stars ul > li.star.hover > i.fa {
+		  color:#FFCC36;
+		}
+
+		/* Selected state of the stars */
+		.rating-stars ul > li.star.selected > i.fa {
+		  color:#FF912C;
+		}
+</style>
 </head>
 
 <body>
@@ -106,6 +134,7 @@
 									}
 							  ?></div>
 								<?php
+								$envio=0;
 								echo "<br>+ Envio:";
 								if($prod->envio_tipo==0){
 									echo moneda($db->egeneral);
@@ -141,7 +170,7 @@
 									<?php
 										echo "<button type='button' class='button cart_button'  onclick='carrito(".$prod->id.")'>Agregar al carrito</button>";
 									?>
-									<div class="product_fav"><i class="fas fa-heart" style="display: none;"></i></div> 
+									<div class="product_fav"><i class="fas fa-heart" style="display: none;"></i></div>
 									<button type="button" class="button cart_button" href="#" style="margin-top: 10px;">Cotizar por mayoreo</button>
 								</div>
 
@@ -179,11 +208,64 @@
 					<?php
 						echo $prod->descripcion_larga;
 					 ?>
-
 				</div>
 			</div>
 		</div>
 	</div>
+
+	<div class='container'>
+	<?php
+		$sql="select * from producto_estrella where idcliente=".$_SESSION['idcliente']." and idproducto=$id";
+		$sth = $db->dbh->prepare($sql);
+		$sth->execute();
+		$tmp=$sth->fetchAll();
+		$comento=count($tmp);
+
+		if(isset($_SESSION['autoriza_web']) and $_SESSION['autoriza_web']==1 and strlen($_SESSION['idcliente'])>0 and $_SESSION['interno']==1 and $comento==0){
+?>
+			<div class='rating-stars text-center'>
+		    <ul id='stars'>
+		      <li class='star' title='Poor' data-value='1'>
+		        <i class='fa fa-star fa-fw'></i>
+		      </li>
+		      <li class='star' title='Fair' data-value='2'>
+		        <i class='fa fa-star fa-fw'></i>
+		      </li>
+		      <li class='star' title='Good' data-value='3'>
+		        <i class='fa fa-star fa-fw'></i>
+		      </li>
+		      <li class='star' title='Excellent' data-value='4'>
+		        <i class='fa fa-star fa-fw'></i>
+		      </li>
+		      <li class='star' title='WOW!!!' data-value='5'>
+		        <i class='fa fa-star fa-fw'></i>
+		      </li>
+		    </ul>
+		  </div>
+
+
+			<div class='row'>
+				<div class='col-12'>
+					<label>Tu reseña</label>
+					<textarea placeholder='Comparte tu opinión' id='texto' name='texto' class='form-control' rows='5'></textarea>
+				</div>
+				<div class='col-12'>
+					<button type="button" class="btn btn-primary" onclick='estrella(<?php echo $id; ?>)'>Enviar reseña</button>
+				</div>
+			</div>
+<?php
+		}
+		else{
+
+		}
+
+
+
+
+
+	?>
+</div>
+
 
 	<!-- Recently Viewed -->
 	<div class="viewed">
@@ -227,8 +309,74 @@
 <script src="plugins/easing/easing.js"></script>
 <script src="js/product_custom.js"></script>
 
+<!--   Alertas   -->
+<script src="librerias15/swal/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="librerias15/swal/dist/sweetalert2.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 <script src="sagyc.js"></script>
+
+<script>
+$(document).ready(function(){
+
+  /* 1. Visualizing things on Hover - See next part for action on click */
+  $('#stars li').on('mouseover', function(){
+    var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
+
+    // Now highlight all the stars that's not after the current hovered star
+    $(this).parent().children('li.star').each(function(e){
+      if (e < onStar) {
+        $(this).addClass('hover');
+      }
+      else {
+        $(this).removeClass('hover');
+      }
+    });
+
+  }).on('mouseout', function(){
+    $(this).parent().children('li.star').each(function(e){
+      $(this).removeClass('hover');
+    });
+  });
+
+
+  /* 2. Action to perform on click */
+  $('#stars li').on('click', function(){
+    var onStar = parseInt($(this).data('value'), 10); // The star currently selected
+    var stars = $(this).parent().children('li.star');
+
+    for (i = 0; i < stars.length; i++) {
+      $(stars[i]).removeClass('selected');
+    }
+
+    for (i = 0; i < onStar; i++) {
+      $(stars[i]).addClass('selected');
+    }
+
+    // JUST RESPONSE (Not needed)
+    var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
+    var msg = "";
+    if (ratingValue > 1) {
+        msg = "Thanks! You rated this " + ratingValue + " stars.";
+    }
+    else {
+        msg = "We will improve ourselves. You rated this " + ratingValue + " stars.";
+    }
+    responseMessage(msg);
+  });
+
+
+});
+function responseMessage(msg) {
+  $('.success-box').fadeIn(200);
+  $('.success-box div.text-message').html("<span>" + msg + "</span>");
+}
+
+</script>
+
 </body>
 
 </html>

@@ -176,9 +176,52 @@ function borra_carrito(id){
 
 
 }
-
 function buscar_prod(){
   window.location.href="busca.php?texto="+$("#bucar_text").val();
+}
+function estrella(idproducto){
+  $.confirm({
+      title: 'Calificación',
+      content: '¿Desea enviar sus comentarios?',
+      buttons: {
+        Enviar: function () {
+          var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
+          if (ratingValue){
+            estrella=ratingValue;
+          }
+          else{
+            estrella=0;
+          }
+          var texto=$("#texto").val();
+          $.ajax({
+            data:  {
+              "ctrl":"control",
+              "estrella":estrella,
+              "texto":texto,
+              "idproducto":idproducto,
+              "function":"estrella"
+            },
+            url:   'control_db.php',
+            type:  'post',
+            timeout:3000,
+            beforeSend: function () {
+
+            },
+            success:  function (response) {
+              alert(response);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+
+            }
+          });
+
+        },
+        Cancelar: function () {
+
+        }
+      }
+    });
+
 }
 
 $(document).on('submit','#acceso',function(e){

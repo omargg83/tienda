@@ -995,7 +995,27 @@
 			}
 		}
 
+		public function estrella(){
+			try{
+				self::set_names();
 
+				$estrella=$_REQUEST['estrella'];
+				$idproducto=$_REQUEST['idproducto'];
+				$texto=trim(htmlspecialchars($_REQUEST['texto']));
+
+				$sql="insert into producto_estrella (idcliente, idproducto, estrella, texto, fecha) values (:idcliente, :idproducto, :estrella, :texto, :fecha)";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(":idcliente",$_SESSION['idcliente']);
+				$sth->bindValue(":idproducto",$idproducto);
+				$sth->bindValue(":estrella",$estrella);
+				$sth->bindValue(":texto",$texto);
+				$sth->bindValue(":fecha",date("Y-m-d H:i:s"));
+				return $sth->execute();
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
 	}
 
 	if(strlen($ctrl)>0){
