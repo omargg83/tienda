@@ -45,6 +45,9 @@
 
 		}
 	}
+	else{
+		
+	}
+	echo $payment->status;
 
-	
   ?>

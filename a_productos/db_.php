@@ -345,6 +345,13 @@ class Productos extends Tienda{
 	}
 
 	public function existencia_api(){
+
+		$resp = crearNuevoToken();
+	  $tok=$resp->token;
+
+	  return $tok;
+
+
 		$clave=$_REQUEST['clave'];
 		$id=$_REQUEST['id'];
 		return $clave;
