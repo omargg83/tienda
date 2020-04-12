@@ -380,7 +380,7 @@ class Productos extends Tienda{
 		}
 
 	}
-	public function almacenes(){
+	public function almacen_api(){
 		$resp = crearNuevoToken();
 	  $tok=$resp->token;
 		$clave=$_REQUEST['clave'];
