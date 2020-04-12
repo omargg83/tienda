@@ -82,6 +82,11 @@ p
 	-webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
 	text-shadow: rgba(0,0,0,.01) 0 0 1px;
 }
+
+.btn-warning{
+	background-color:#b4f22f;
+	border: none;
+}
 p a
 {
 	display: inline;
@@ -1652,6 +1657,7 @@ select option
 	font-size: 16px;
 	font-weight: 500;
 	margin-top: 25px;
+	color:#b4f22f ;
 }
 .product_price.discount
 {

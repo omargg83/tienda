@@ -380,9 +380,9 @@
 				<div class="col">
 					<div class="tabbed_container">
 						<div class="tabs clearfix tabs-right">
-							<div class="new_arrivals_title">PRODUCTOS DE LA SEMANA</div>
+							<div class="new_arrivals_title" style="font-size: 18px;border-bottom: solid;border-color: #b4f22f;">Productos de la semana</div>
 							<ul class="clearfix">
-								<li class="active">Productos</li>
+								<li class="active"></li>
 							</ul>
 							<div class="tabs_line"><span></span></div>
 						</div>
@@ -440,55 +440,7 @@
 "><a href="#">Ver productos</a></div>
 	</div>
 
-	<!-- Adverts -->
-
-	<div class="averts">
-		<div class="container">
-			<div class="row">
-
-				<div class="col-lg-4 avert_col">
-
-					<!-- Advert Item -->
-
-					<div class="avert d-flex flex-row align-items-center justify-content-start">
-						<div class="avert_content">
-							<div class="avert_title"><a href="#">TENDENCIA 2020</a></div>
-							<div class="avert_text">Lorem ipsum dolor sit amet, consectetur adipiscing Donec et.</div>
-						</div>
-						<div class="ml-auto"><div class="avert_image"><img src="images/av_1.png" alt=""></div></div>
-					</div>
-				</div>
-
-				<div class="col-lg-4 advert_col">
-
-					<!-- Advert Item -->
-
-					<div class="avert d-flex flex-row align-items-center justify-content-start">
-						<div class="avert_content">
-							<div class="avert_subtitle">GRAN PROMOCIÓN</div>
-							<div class="avert_title_2"><a href="#">DESCUENTO DE 45%</a></div>
-							<div class="avert_text">Lorem ipsum dolor sit amet, consectetur.</div>
-						</div>
-						<div class="ml-auto"><div class="avert_image"><img src="images/av_2.png" alt=""></div></div>
-					</div>
-				</div>
-
-				<div class="col-lg-4 avert_col">
-
-					<!-- Advert Item -->
-
-					<div class="avert d-flex flex-row align-items-center justify-content-start">
-						<div class="avert_content">
-							<div class="avert_title"><a href="#">TENDENCIA 2020</a></div>
-							<div class="avert_text">Lorem ipsum dolor sit amet, consectetur.</div>
-						</div>
-						<div class="ml-auto"><div class="avert_image"><img src="images/av_3.png" alt=""></div></div>
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</div>
+	
 
 	<!-- Brands -->
 	<div class="brands">
