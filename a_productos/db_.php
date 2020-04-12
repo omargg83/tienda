@@ -392,9 +392,16 @@ class Productos extends Tienda{
 		$resp_a=array();
 
 		$resp =servicioApi($metodo,$servicio,NULL,$tok);
-
 		if (is_object($resp)){
-			return var_dump($resp);
+
+			$sql="delete from producto_exist where id='$id'";
+			$sth3 = $db->dbh->prepare($sql);
+			$sth3->execute();
+
+			foreach($resp as $key){
+				echo $key;
+			}
+			
 		}
 		else{
 			return "error";
