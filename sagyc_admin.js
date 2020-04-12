@@ -22,7 +22,6 @@
 				$("#cargando").addClass("is-active");
 			},
 			success:  function (response) {
-				console.log(response);
 				var datos = JSON.parse(response);
 				if (datos.sess=="cerrada"){
 					$("#header").html("");

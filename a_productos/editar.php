@@ -264,7 +264,7 @@
 
 					<div class="col-3">
 						<label for="existencia">Existencia </label>
-						<input type="text" class="form-control form-control-sm" id="existencia" name='existencia' placeholder="Existencia" value="<?php echo $existencia; ?>" <?php  echo $bloqueo;  ?>>
+						<input type="text" class="form-control form-control-sm" id="existencia" name='existencia' placeholder="Existencia" value="<?php echo $existencia; ?>" <?php  echo $bloqueo;  ?> readonly>
 					</div>
 			  </div>
 
@@ -281,7 +281,6 @@
 								}
 								else{
 									echo "<option value='2'"; if($precio_tipo=='2'){ echo " selected"; } echo ">Precio manual </option>";
-									echo "<option value='3'"; if($precio_tipo=='3'){ echo " selected"; } echo ">Precio manual  + ".$db->cgeneral."% general de ganancia</option>";
 								}
 							echo "</select>";
 						?>
@@ -331,11 +330,13 @@
 						if($interno==1){
 							echo "<button type='button' class='btn btn-outline-secondary btn-sm' onclick='generar_codigoprod()'><i class='fas fa-sync'></i>Generar código</button>";
 							if($id>0){
-								echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_pass' data-id='0' data-id2='$id' data-lugar='a_productos/form_especificacion' title='Agregar especificacion' ><i class='fas fa-plus'></i>Especificacion</button>";
+								echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_espe' data-id='0' data-id2='$id' data-lugar='a_productos/form_especificacion' title='Agregar especificacion' ><i class='fas fa-plus'></i>Especificacion</button>";
+
+									echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_exist' data-id='0' data-id2='$id' data-lugar='a_productos/form_especificacion' title='Agregar existencias' ><i class='fas fa-plus'></i>Existencia</button>";
 							}
 						}
 
-						if ($interno==0 or $id>0){
+						if ($interno==0 and $id>0){
 							echo "<button type='button' class='btn btn-outline-secondary btn-sm' onclick='existencia_api()'><i class='fas fa-sync'></i>Existencia</button>";
 
 							/*

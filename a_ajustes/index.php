@@ -7,6 +7,7 @@
 	$mercado_public=$per->mercado_public;
 	$mercado_token=$per->mercado_token;
 	$paypal_client=$per->paypal_client;
+	$correo=$per->correo;
 ?>
 <div class="alert alert-primary" role="alert">
 	<h4 class='text-center'>Estos son parametros globales pero pueden modificarse individualmente en cada producto</h4>
@@ -21,6 +22,12 @@
 			<div class='card-body'>
 				<input type="hidden" class="form-control" id="id" name='id' value="<?php echo $id; ?>">
 
+				<div class="form-group row">
+					<label for="staticEmail" class="col-sm-4 col-form-label">Correo</label>
+					<div class="col-sm-8">
+						<input type="text"  class="form-control" id="correo" name='correo' value="<?php echo $correo; ?>" placeholder='Correo'>
+					</div>
+				</div>
 
         <div class="form-group row">
           <label for="staticEmail" class="col-sm-4 col-form-label">Costo general de envío nacional</label>

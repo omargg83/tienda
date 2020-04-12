@@ -25,6 +25,9 @@ class Clientes extends Tienda{
 		try{
 			parent::set_names();
 			$arreglo=array();
+			if (isset($_REQUEST['correo'])){
+				$arreglo+= array('correo'=>$_REQUEST['correo']);
+			}
 			if (isset($_REQUEST['c_envio'])){
 				$arreglo+= array('c_envio'=>$_REQUEST['c_envio']);
 			}
