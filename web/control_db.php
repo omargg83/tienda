@@ -1109,6 +1109,19 @@
 				self::set_names();
 				$idpedido=$_REQUEST['idpedido'];
 				$cupon=trim(htmlspecialchars($_REQUEST['cupon']));
+
+				$sql="select * from pedidos_cupon where codigo='$cupon'";
+				$sth_i = $this->dbh->prepare($sql);
+				$sth_i->execute();
+				if($sth_i->rowCount()>0){
+					$arreglo=array();
+					$arreglo+=array('id'=>$idpedido);
+					$arreglo+=array('error'=>1);
+					$arreglo+=array('terror'=>"El cupón ya fue utilizado");
+					return json_encode($arreglo);
+				}
+
+
 				$sql="SELECT * FROM cupon where codigo=:codigo";
 				$sth_i = $this->dbh->prepare($sql);
 				$sth_i->bindValue(":codigo",$cupon);
@@ -1117,11 +1130,13 @@
 				if($contar>0){
 					$ped=$sth_i->fetch(PDO::FETCH_OBJ);
 
-					$sql="insert into pedidos_cupon (idpedido, idcupon, descuento) values (:idpedido, :idcupon, :descuento)";
+					$sql="insert into pedidos_cupon (idpedido, idcupon, descuento, codigo, descripcion) values (:idpedido, :idcupon, :descuento, :codigo, :descripcion)";
 					$sth = $this->dbh->prepare($sql);
 					$sth->bindValue(":idpedido",$idpedido);
 					$sth->bindValue(":idcupon",$ped->id);
 					$sth->bindValue(":descuento",$ped->importe);
+					$sth->bindValue(":codigo",$ped->codigo);
+					$sth->bindValue(":descripcion",$ped->descripcion);
 					if($sth->execute()){
 						$arreglo=array();
 						$arreglo+=array('id'=>$idpedido);
@@ -1151,6 +1166,19 @@
 				$arreglo+=array('error'=>1);
 				$arreglo+=array('terror'=>$e->getMessage());
 				return json_encode($arreglo);
+			}
+		}
+		public function elimina_cupon(){
+			try{
+				self::set_names();
+				$id=$_REQUEST['id'];
+				$sql="delete from pedidos_cupon where id=:id";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(":id",$id);
+				$a=$sth->execute();
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
 			}
 		}
 		public function pedido_cupones($id){

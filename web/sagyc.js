@@ -261,6 +261,40 @@ function cupon_agrega(pedido){
     }
   });
 }
+function elimina_cupon(id,idpedido){
+  $.confirm({
+      title: 'Cupon',
+      content: '¿Desea eliminar el cupón?',
+      buttons: {
+        Eliminar: function () {
+          $.ajax({
+            data:  {
+              "ctrl":"control",
+              "id":id,
+              "idpedido":idpedido,
+              "function":"elimina_cupon"
+            },
+            url:   'control_db.php',
+            type:  'post',
+            timeout:3000,
+            beforeSend: function () {
+
+            },
+            success:  function (response) {
+              window.location.href="pago.php?id="+idpedido;
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+
+            }
+          });
+
+        },
+        Cancelar: function () {
+
+        }
+      }
+    });
+}
 $(document).on('submit','#acceso',function(e){
   e.preventDefault();
   var userAcceso=document.getElementById("userAcceso").value;
