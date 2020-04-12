@@ -168,13 +168,12 @@
 
 								?>
 
-
 								<div class="button_container">
 									<?php
 										echo "<button type='button' class='button cart_button'  onclick='carrito(".$prod->id.")'>Agregar al carrito</button>";
 									?>
 									<div class="product_fav"><i class="fas fa-heart" style="display: none;"></i></div>
-									<button type="button" class="button cart_button" href="#" style="margin-top: 10px;">Cotizar por mayoreo</button>
+									<button type="button" class="button cart_button"  class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" style="margin-top: 10px;">Cotizar por mayoreo</button>
 								</div>
 
 							</form>
@@ -217,15 +216,15 @@
 	</div>
 
 	<div class='container'>
-	<?php
-		$sql="select * from producto_estrella where idcliente=".$_SESSION['idcliente']." and idproducto=$id";
-		$sth = $db->dbh->prepare($sql);
-		$sth->execute();
-		$tmp=$sth->fetchAll();
-		$comento=count($tmp);
+		<?php
+			$sql="select * from producto_estrella where idcliente=".$_SESSION['idcliente']." and idproducto=$id";
+			$sth = $db->dbh->prepare($sql);
+			$sth->execute();
+			$tmp=$sth->fetchAll();
+			$comento=count($tmp);
 
-		if(isset($_SESSION['autoriza_web']) and $_SESSION['autoriza_web']==1 and strlen($_SESSION['idcliente'])>0 and $_SESSION['interno']==1 and $comento==0){
-?>
+			if(isset($_SESSION['autoriza_web']) and $_SESSION['autoriza_web']==1 and strlen($_SESSION['idcliente'])>0 and $_SESSION['interno']==1 and $comento==0){
+				?>
 			<div class='rating-stars text-center'>
 		    <ul id='stars'>
 		      <li class='star' title='Poor' data-value='1'>
@@ -256,7 +255,7 @@
 					<button type="button" class="btn btn-primary" onclick='estrella(<?php echo $id; ?>)'>Enviar reseña</button>
 				</div>
 			</div>
-<?php
+		<?php
 		}
 
 
@@ -287,6 +286,59 @@
 	?>
 </div>
 
+<div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<form action="" id="cotizacion_form">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Cotizar por mayoreo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         	<div class='row'>
+						<div class='col-4'>
+							<label>Clave:</label>
+							<input value='<?php   echo $prod->clave;  ?>' class='form-control' id='clave' name='clave' readonly>
+						</div>
+						<div class='col-8'>
+							<label>Producto:</label>
+							<input value='<?php   echo $prod->nombre;  ?>' class='form-control' id='producto' name='producto' readonly>
+						</div>
+						<div class='col-12'>
+							<label>Descripción:</label>
+							<input value='<?php   echo $prod->descripcion_corta;  ?>' class='form-control' id='descripcion_corta' name='descripcion_corta' readonly>
+						</div>
+
+						<div class='col-12'>
+							<label>Correo:</label>
+							<input value='<?php   echo $_SESSION['correo'];  ?>' class='form-control' id='correo' name='correo' >
+						</div>
+						<div class='col-12'>
+							<label>Nombre:</label>
+							<input value='<?php   echo $_SESSION['nombre'];  ?>' class='form-control' id='nombre' name='nombre' >
+						</div>
+						<div class='col-12'>
+							<label>Piezas a cotizar:</label>
+							<input value='1' class='form-control' id='cantidad' name='cantidad' >
+						</div>
+						<div class='col-12'>
+							<label>Comentario:</label>
+							<input value='' class='form-control' id='comentario' name='comentario' >
+						</div>
+
+					</div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Solicitar cotización</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+	</form>
+</div>
 
 	<!-- Recently Viewed -->
 	<div class="viewed">

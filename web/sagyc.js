@@ -499,3 +499,32 @@ $(document).on('submit','#contact_form',function(e){
     }
   });
 });
+$(document).on('submit','#cotizacion_form',function(e){
+  e.preventDefault();
+  var dataString = $(this).serialize()+"&function=mayoreo&ctrl=control";
+  $.ajax({
+    url: "control_db.php",
+    type: "POST",
+    data:  dataString,
+    success: function( response ) {
+      console.log(response);
+      var datos = JSON.parse(response);
+      if (datos.error==0){
+        Swal.fire({
+            type: 'success',
+            title: 'Se envío correctamente el mensaje',
+            showConfirmButton: false,
+            timer: 1000
+        });
+      }
+      else{
+        Swal.fire({
+            type: 'error',
+            title: 'error'+datos.terror,
+            showConfirmButton: false,
+            timer: 1000
+        });
+      }
+    }
+  });
+});

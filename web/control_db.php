@@ -28,6 +28,7 @@
 			$tmp=$sth->fetch(PDO::FETCH_OBJ);
 			$this->cgeneral=$tmp->p_general;
 			$this->egeneral=$tmp->c_envio;
+			$this->ecorreo=$tmp->correo;
 		}
 		public function set_names(){
 			return $this->dbh->query("SET NAMES 'utf8'");
@@ -142,11 +143,13 @@
 					$_SESSION['autoriza_web']=1;
 					$_SESSION['interno']=1;
 					$_SESSION['correo']=$CLAVE->correo;
+					$_SESSION['nombre']=$CLAVE->nombre." ".$CLAVE->apellido;
 				}
 				else{
 					$_SESSION['autoriza_web']=1;
 					$_SESSION['interno']=0;
 					$_SESSION['correo']="";
+					$_SESSION['nombre']="";
 				}
 				$_SESSION['idcliente']=$CLAVE->id;
 				return $galleta;
@@ -185,6 +188,7 @@
 					if($sth->execute()){
 						$_SESSION['autoriza_web']=1;
 						$_SESSION['correo']=$correo;
+						$_SESSION['nombre']=$nombre." ".$apellido;
 						$_SESSION['idcliente']=$_SESSION['idcliente'];
 						$_SESSION['interno']=1;
 					}
@@ -221,6 +225,7 @@
 						$_SESSION['autoriza_web']=1;
 						$_SESSION['correo']=$CLAVE['correo'];
 						$_SESSION['idcliente']=$CLAVE['id'];
+						$_SESSION['nombre']=$CLAVE->nombre." ".$CLAVE->apellido;
 						$_SESSION['interno']=1;
 
 						$galleta=$this->genera_random();
@@ -259,6 +264,7 @@
 			$_SESSION['interno']=0;
 			$_SESSION['autoriza_web']=0;
 			$_SESSION['correo']="";
+			$_SESSION['nombre']="";
 		}
 		public function categorias(){
 			try{
@@ -880,6 +886,7 @@
 						$_SESSION['autoriza_web']=1;
 						$_SESSION['interno']=1;
 						$_SESSION['correo']=$correo;
+						$_SESSION['nombre']=$nombre." ".$apellido;
 					}
 				}
 
@@ -1193,6 +1200,62 @@
 			catch(PDOException $e){
 				return "Database access FAILED!".$e->getMessage();
 			}
+		}
+		public function mayoreo(){
+			$clave=$_REQUEST['clave'];
+			$producto=$_REQUEST['producto'];
+			$descripcion_corta=$_REQUEST['descripcion_corta'];
+			$correo=$_REQUEST['correo'];
+			$nombre=$_REQUEST['nombre'];
+			$cantidad=$_REQUEST['cantidad'];
+			$comentario=$_REQUEST['comentario'];
+
+			return "algo";
+			////////////////////////////////////////////////
+			// Varios destinatarios
+				$para  = 'aidan@example.com' . ', '; // atención a la coma
+				$para .= 'wez@example.com';
+
+				// título
+				$título = 'Recordatorio de cumpleaños para Agosto';
+
+				// mensaje
+				$mensaje = '
+				<html>
+				<head>
+				  <title>Recordatorio de cumpleaños para Agosto</title>
+				</head>
+				<body>
+				  <p>¡Estos son los cumpleaños para Agosto!</p>
+				  <table>
+				    <tr>
+				      <th>Quien</th><th>Día</th><th>Mes</th><th>Año</th>
+				    </tr>
+				    <tr>
+				      <td>Joe</td><td>3</td><td>Agosto</td><td>1970</td>
+				    </tr>
+				    <tr>
+				      <td>Sally</td><td>17</td><td>Agosto</td><td>1973</td>
+				    </tr>
+				  </table>
+				</body>
+				</html>
+				';
+
+				// Para enviar un correo HTML, debe establecerse la cabecera Content-type
+				$cabeceras  = 'MIME-Version: 1.0' . "\r\n";
+				$cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+				// Cabeceras adicionales
+				$cabeceras .= 'To: Mary <mary@example.com>, Kelly <kelly@example.com>' . "\r\n";
+				$cabeceras .= 'From: Recordatorio <cumples@example.com>' . "\r\n";
+				$cabeceras .= 'Cc: birthdayarchive@example.com' . "\r\n";
+				$cabeceras .= 'Bcc: birthdaycheck@example.com' . "\r\n";
+
+				// Enviarlo
+				mail($para, $título, $mensaje, $cabeceras);
+			////////////////////////////////////////////////
+			return "algo";
 		}
 }
 
