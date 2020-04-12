@@ -214,12 +214,6 @@
 					}
 
 					///////////////////////////////////
-						echo "<h4>Cupones</h4>";
-						foreach($cupones as $keyc){
-							echo $keyc->descuento;
-							echo $keyc->descuento;
-						}
-
 						echo "<h4>TOTAL DEL CARRITO</h4>";
 						echo "<div class='row'>";
 							echo "<div class='col-6'>";
@@ -238,6 +232,21 @@
 								echo moneda($envio);
 							echo "</div>";
 						echo "</div>";
+
+						echo "<h4>Cupones</h4>";
+						foreach($cupones as $keyc){
+							echo "<div class='row'>";
+								echo "<div class='col-2'>";
+									echo "<a href='#' onclick='elimina_cupon(".$keyc->id.", $idpedido)'><i class='far fa-times-circle'></i></a>";
+								echo "</div>";
+								echo "<div class='col-5'>";
+									echo $keyc->codigo;
+								echo "</div>";
+								echo "<div class='col-5'>";
+									echo $keyc->descuento;
+								echo "</div>";
+							echo "</div>";
+						}
 
 						$gtotal=$total+$envio;
 						echo "<hr>";
@@ -340,6 +349,9 @@
 <!--   Alertas   -->
 <script src="librerias15/swal/dist/sweetalert2.min.js"></script>
 <link rel="stylesheet" href="librerias15/swal/dist/sweetalert2.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 <script src="sagyc.js"></script>
