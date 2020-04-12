@@ -148,4 +148,52 @@
       }
     });
   }
+  function almacen_api(){
+    var clave=$("#clave").val();
+    var id=$("#id").val();
+    $.confirm({
+      title: 'Almacen',
+      content: '¿Desea verificar almacenes?',
+      buttons: {
+        Aceptar: function () {
+          $.ajax({
+            data:  {
+              "function":"almacen_api",
+              "clave":clave,
+              "id":id
+            },
+            url:   'a_productos/db_.php',
+            type:  'post',
+            success:  function (response) {
+              console.log(response);
+              var datos = JSON.parse(response);
+              if (datos.error==0){
+                Swal.fire({
+                    type: 'success',
+                    title: datos.param1,
+                    showConfirmButton: false,
+                    timer: 1000
+                });
+                $("#trabajo").load("a_productos/editar.php?id="+id);
+              }
+              else{
+                Swal.fire({
+                    type: 'error',
+                    title: 'Error, favor de verificar',
+                    showConfirmButton: false,
+                    timer: 1000
+                });
+              }
+            }
+          });
+        },
+        Cancelar: function () {
+
+        }
+      }
+    });
+  }
+
+
+
 </script>

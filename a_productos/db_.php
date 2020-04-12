@@ -381,7 +381,24 @@ class Productos extends Tienda{
 
 	}
 	public function almacenes(){
-		
+		$resp = crearNuevoToken();
+	  $tok=$resp->token;
+		$clave=$_REQUEST['clave'];
+		$id=$_REQUEST['id'];
+
+		$servicio = "existencia/$clave";
+		$metodo="GET";
+
+		$resp_a=array();
+
+		$resp =servicioApi($metodo,$servicio,NULL,$tok);
+
+		if (is_object($resp)){
+			return var_dump($resp);
+		}
+		else{
+			return "error";
+		}
 	}
 }
 $db = new Productos();
