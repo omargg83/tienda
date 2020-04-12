@@ -124,10 +124,20 @@
               console.log(response);
               var datos = JSON.parse(response);
               if (datos.error==0){
-
+                Swal.fire({
+                    type: 'sucess',
+                    title: 'Existencias actualizadas',
+                    showConfirmButton: false,
+                    timer: 1000
+                });
               }
               else{
-
+                Swal.fire({
+                    type: 'error',
+                    title: 'Error, favor de verificar',
+                    showConfirmButton: false,
+                    timer: 1000
+                });
               }
             }
           });
