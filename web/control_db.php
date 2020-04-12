@@ -28,7 +28,15 @@
 			$tmp=$sth->fetch(PDO::FETCH_OBJ);
 			$this->cgeneral=$tmp->p_general;
 			$this->egeneral=$tmp->c_envio;
+
+
 			$this->ecorreo=$tmp->correo;
+			$this->host=$tmp->host;
+			$this->SMTPAuth=$tmp->SMTPAuth;
+			$this->Password=$tmp->Password;
+			$this->SMTPSecure=$tmp->SMTPSecure;
+			$this->Port=$tmp->Port;
+
 		}
 		public function set_names(){
 			return $this->dbh->query("SET NAMES 'utf8'");
@@ -543,7 +551,7 @@
 		public function wish_list(){
 			try{
 				self::set_names();
-				$sql="select productos.id, productos.img, productos.nombre, productos.preciof, cliente_wish.id as cliid, productos.precio_tipo, productos.envio_tipo from cliente_wish
+				$sql="select productos.id, productos.img, productos.nombre, productos.preciof, cliente_wish.id as cliid, productos.precio_tipo, productos.envio_tipo, productos.precio_tic from cliente_wish
 				left outer join productos on productos.id=cliente_wish.idproducto
 				where cliente_wish.idcliente=:id";
 				$sth = $this->dbh->prepare($sql);
@@ -1209,53 +1217,63 @@
 			$nombre=$_REQUEST['nombre'];
 			$cantidad=$_REQUEST['cantidad'];
 			$comentario=$_REQUEST['comentario'];
+			$x="";
 
-			return "algo";
-			////////////////////////////////////////////////
-			// Varios destinatarios
-				$para  = 'aidan@example.com' . ', '; // atención a la coma
-				$para .= 'wez@example.com';
+			require 'librerias15/PHPMailer-5.2-stable/PHPMailerAutoload.php';
+			$mail = new PHPMailer;
+			$mail->isSMTP();
+			                                    // Set mailer to use SMTP
+			$mail->Host = $this->host;						  // Specify main and backup SMTP servers
+			$mail->SMTPAuth = $this->SMTPAuth;                               // Enable SMTP authentication
+			$mail->Username = $this->ecorreo;       // SMTP username
+			$mail->Password = $this->Password;                       // SMTP password
+			$mail->SMTPSecure = $this->SMTPSecure;                            // Enable TLS encryption, `ssl` also accepted
+			$mail->Port = $this->Port;                                    // TCP port to connect to
 
-				// título
-				$título = 'Recordatorio de cumpleaños para Agosto';
+			$mail->CharSet = 'UTF-8';
 
-				// mensaje
-				$mensaje = '
-				<html>
-				<head>
-				  <title>Recordatorio de cumpleaños para Agosto</title>
-				</head>
-				<body>
-				  <p>¡Estos son los cumpleaños para Agosto!</p>
-				  <table>
-				    <tr>
-				      <th>Quien</th><th>Día</th><th>Mes</th><th>Año</th>
-				    </tr>
-				    <tr>
-				      <td>Joe</td><td>3</td><td>Agosto</td><td>1970</td>
-				    </tr>
-				    <tr>
-				      <td>Sally</td><td>17</td><td>Agosto</td><td>1973</td>
-				    </tr>
-				  </table>
-				</body>
-				</html>
-				';
+			$mail->From = $this->ecorreo;
+			$mail->FromName = "TIC-SHOP";
+			$mail->Subject = "Cotización de productos";
+			$mail->AltBody = "Cotización de productos";
+			$mail->addAddress($this->ecorreo);     // Add a recipient
+			$mail->addCC($correo);
 
-				// Para enviar un correo HTML, debe establecerse la cabecera Content-type
-				$cabeceras  = 'MIME-Version: 1.0' . "\r\n";
-				$cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+			$mail->isHTML(true);                                  // Set email format to HTML
 
-				// Cabeceras adicionales
-				$cabeceras .= 'To: Mary <mary@example.com>, Kelly <kelly@example.com>' . "\r\n";
-				$cabeceras .= 'From: Recordatorio <cumples@example.com>' . "\r\n";
-				$cabeceras .= 'Cc: birthdayarchive@example.com' . "\r\n";
-				$cabeceras .= 'Bcc: birthdaycheck@example.com' . "\r\n";
+			$texto="<h4><b>Cotización de productos al mayoreo</b></h4>";
+			$texto.="<br>Producto:";
+			$texto.="<br><b>$clave</b> - $producto<br>";
+			$texto.="$descripcion_corta";
+			$texto.="<br><br>";
+			$texto.="<br>Correo: $correo";
+			$texto.="<br>Nombre: $nombre -";
+			$texto.="<br>Cantidad: $cantidad";
+			$texto.="<br>Observaciones: $comentario";
 
-				// Enviarlo
-				mail($para, $título, $mensaje, $cabeceras);
-			////////////////////////////////////////////////
-			return "algo";
+			$mail->Body    = $texto;
+			$mail->AltBody = "Cotización de productos";
+			$arreglo=array();
+			if(!$mail->send()) {
+				$arreglo+=array('id'=>0);
+				$arreglo+=array('error'=>1);
+				$arreglo+=array('terror'=>'Error favor de verificar');
+				$arreglo+=array('param1'=>'');
+				$arreglo+=array('param2'=>'');
+				$arreglo+=array('param3'=>'');
+				return json_encode($arreglo);
+			}
+			else {
+				$arreglo+=array('id'=>0);
+				$arreglo+=array('error'=>0);
+				$arreglo+=array('terror'=>'');
+				$arreglo+=array('param1'=>'');
+				$arreglo+=array('param2'=>'');
+				$arreglo+=array('param3'=>'');
+				return json_encode($arreglo);
+			}
+			///////////////////////////////////////
+
 		}
 }
 

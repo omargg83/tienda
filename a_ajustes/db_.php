@@ -28,6 +28,24 @@ class Clientes extends Tienda{
 			if (isset($_REQUEST['correo'])){
 				$arreglo+= array('correo'=>$_REQUEST['correo']);
 			}
+			if (isset($_REQUEST['host'])){
+				$arreglo+= array('host'=>$_REQUEST['host']);
+			}
+			if (isset($_REQUEST['SMTPAuth'])){
+				$arreglo+= array('SMTPAuth'=>$_REQUEST['SMTPAuth']);
+			}
+			if (isset($_REQUEST['Password'])){
+				$arreglo+= array('Password'=>$_REQUEST['Password']);
+			}
+			if (isset($_REQUEST['SMTPSecure'])){
+				$arreglo+= array('SMTPSecure'=>$_REQUEST['SMTPSecure']);
+			}
+			if (isset($_REQUEST['Port'])){
+				$arreglo+= array('Port'=>$_REQUEST['Port']);
+			}
+
+
+
 			if (isset($_REQUEST['c_envio'])){
 				$arreglo+= array('c_envio'=>$_REQUEST['c_envio']);
 			}

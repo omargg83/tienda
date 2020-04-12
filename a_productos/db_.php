@@ -13,7 +13,7 @@ class Productos extends Tienda{
 			parent::set_names();
 			if (isset($_REQUEST['buscar']) and strlen(trim($_REQUEST['buscar']))>0){
 				$texto=trim(htmlspecialchars($_REQUEST['buscar']));
-				$sql="SELECT * from productos where clave like '%$texto%' or nombre like '%$texto%' or modelo like '%$texto%' or marca like '%$texto%' or idProducto like '%$texto%' limit 100";
+				$sql="SELECT * from productos where clave like '%$texto%' or nombre like '%$texto%' or modelo like '%$texto%' or marca like '%$texto%' or idProducto like '%$texto%' or id like '%$texto%' limit 100";
 			}
 			else{
 				$sql="SELECT * from productos order by id desc limit 100";

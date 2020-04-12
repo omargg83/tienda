@@ -525,6 +525,7 @@ $(document).on('submit','#cotizacion_form',function(e){
             timer: 1000
         });
       }
+      $('#exampleModalCenter').modal('hide');
     }
   });
 });

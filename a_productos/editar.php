@@ -28,7 +28,7 @@
 	$activo=1;
 	$interno=1;
 	$envio_costo="";
-	$precio_tipo="3";
+	$precio_tipo="1";
 	$envio_tipo="";
 
 	$cb_ofertasemana=0;
@@ -274,10 +274,10 @@
 						<?php
 							echo "<select id='precio_tipo' name='precio_tipo' class='form-control form-control-sm' >";
 								if($interno==0){
-									echo "<option value='1'"; if($precio_tipo=='1'){ echo "selected"; } echo " >".moneda($preciof)." Precio original CT + ".$db->cgeneral."% general de ganancia</option>";
-									echo "<option value='0'"; if($precio_tipo=='0'){ echo " "; } echo ">".moneda($preciof)." Precio original CT</option>";
-									echo "<option value='2'"; if($precio_tipo=='2'){ echo " "; } echo ">Precio manual </option>";
-									echo "<option value='3'"; if($precio_tipo=='3'){ echo " "; } echo ">Precio manual  + ".$db->cgeneral."% general de ganancia</option>";
+									echo "<option value='1'"; if($precio_tipo=='1'){ echo  "selected"; } echo " >".moneda($preciof)." Precio original CT + ".$db->cgeneral."% general de ganancia</option>";
+									echo "<option value='0'"; if($precio_tipo=='0'){ echo " selected"; } echo ">".moneda($preciof)." Precio original CT</option>";
+									echo "<option value='2'"; if($precio_tipo=='2'){ echo " selected"; } echo ">Precio manual </option>";
+									echo "<option value='3'"; if($precio_tipo=='3'){ echo " selected"; } echo ">Precio manual  + ".$db->cgeneral."% general de ganancia</option>";
 								}
 								else{
 									echo "<option value='2'"; if($precio_tipo=='2'){ echo " selected"; } echo ">Precio manual </option>";

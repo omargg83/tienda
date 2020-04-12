@@ -266,7 +266,7 @@
 					echo "Reseña de:".$key->nombre;
 				echo "</div>";
 				echo "<div class='col-2'>";
-					for($i=0; $i<=$key->estrella; $i++){
+					for($i=0; $i<$key->estrella; $i++){
 						echo "<i class='far fa-star'></i>";
 					}
 				echo "</div>";
@@ -278,11 +278,6 @@
 				echo "</div>";
 			echo "</div>";
 		}
-
-
-
-
-
 	?>
 </div>
 

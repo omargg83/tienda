@@ -113,7 +113,7 @@
             $sth->bindValue(':imagen', $product['imagen']);
             $sth->bindValue(':upc', $product['upc']);
             $sth->bindValue(':alta', $fmodif);
-            $sth->bindValue(':precio_tipo', 0);
+            $sth->bindValue(':precio_tipo', 1);
             $sth->bindValue(':envio_tipo', 0);
           }
           else{
