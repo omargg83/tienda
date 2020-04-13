@@ -1,7 +1,5 @@
 <?php
   session_start();
-	$resp=var_dump($_REQUEST);
-	echo $resp;
   class Tienda{
     public $nivel_personal;
     public $nivel_captura;
@@ -28,14 +26,16 @@
 	$db = new Tienda();
 
 
+	$topic=$_REQUEST['topic'];
 	$id=$_REQUEST['id'];
-	echo "pago:".$id;
+	echo "<br>topic:".$topic;
+	echo "<br>IP:".$topic;
 
-	$texto="pago:".$id;
+	$texto="pago:".$id."  Topic: $topic";
 
 	$sql="insert into new_table (log) values (:log)";
 	$sth = $db->dbh->prepare($sql);
-	$sth->bindValue(':log',$resp);
+	$sth->bindValue(':log',$texto);
 	echo $sth->execute();
 
 	if (isset($_GET["id"], $_GET["topic"])) {
