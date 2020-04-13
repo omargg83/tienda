@@ -56,7 +56,7 @@
 									if($key->estatus=="EN ESPERA"){
 										echo "<a class='btn btn-outline-secondary btn-sm' href='pago.php?idpedido=".$key->id."' title='Editar' ><i class='fas fa-pencil-alt'></i></a>";
 									}
-									if($key->estatus=="PROCESANDO" OR $key->estatus=="PROCESANDO PAGO" ){
+									if($key->estatus=="PROCESANDO" OR $key->estatus=="PROCESANDO PAGO" OR $key->estatus=="PROCESANDO PAGO PENDIENTE"){
 										echo "<a class='btn btn-outline-secondary btn-sm' href='estado_pedido.php?idpedido=".$key->id."' title='Editar' ><i class='fas fa-pencil-alt'></i></a>";
 									}
 
