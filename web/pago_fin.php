@@ -8,11 +8,6 @@
 
 		$ped=$db->pedido_ver($idpedido);
 
-		/////////////////////////////////////////////Correo
-
-
-
-		////////////////////////////////////////////////////
 
 
 	  if($payment_status=="approved"){
@@ -34,7 +29,6 @@
 
 		$ped=$db->pedido_ver($idpedido);
 		$datos=$db->datos_pedido($idpedido);
-
 		$nombre=$ped->nombre;
 		$apellido=$ped->apellido;
 		$correo=$ped->correo;
@@ -52,6 +46,14 @@
 		$gtotal=$ped->total;
 		$estatus=$ped->estatus;
 		$pago=$ped->pago;
+
+		/////////////////////////////////////////////Correo
+		$texto="mensaje de compra";
+		$asunto="asunto";
+		$db->correo($correo, $texto, $asunto);
+		////////////////////////////////////////////////////
+
+
 
 	?>
 

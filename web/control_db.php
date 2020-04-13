@@ -1239,66 +1239,8 @@
 			$texto.="<br>Nombre: $nombre -";
 			$texto.="<br>Cantidad: $cantidad";
 			$texto.="<br>Observaciones: $comentario";
-
 			$asunto="Cotización de Mayoreo";
-
-
 			return $this->correo($correo, $texto, $asunto);
-
-/*
-			require 'vendor/autoload.php';
-
-			$mail = new PHPMailer;
-
-			$mail->isSMTP();
-			$mail->Host = 'localhost';
-			$mail->SMTPAuth = false;
-			$mail->SMTPAutoTLS = false;
-			$mail->Port = 25;
-
-			$mail->Username = $this->ecorreo;
-			$mail->Password = $this->Password;
-			$mail->setFrom("admin@tic-shop.com.mx", 'TIC-SHOP');
-			$mail->addAddress($correo);
-			$mail->addCC("admin@tic-shop.com.mx");
-
-			$mail->CharSet = 'UTF-8';
-			//Set the subject line
-			$mail->Subject = 'Cotización de Mayoreo';
-
-			$texto="<h4><b>Cotización de productos al mayoreo</b></h4>";
-			$texto.="<br>Producto:";
-			$texto.="<br><b>$clave</b> - $producto<br>";
-			$texto.="$descripcion_corta";
-			$texto.="<br><br>";
-			$texto.="<br>Correo: $correo";
-			$texto.="<br>Nombre: $nombre -";
-			$texto.="<br>Cantidad: $cantidad";
-			$texto.="<br>Observaciones: $comentario";
-
-			$mail->msgHTML($texto);
-
-			$mail->AltBody = 'Cotización de productos';
-			$arreglo=array();
-			//send the message, check for errors
-			if (!$mail->send()) {
-				$arreglo+=array('id'=>0);
-				$arreglo+=array('error'=>1);
-				$arreglo+=array('terror'=>$mail->ErrorInfo);
-				$arreglo+=array('param1'=>'');
-				$arreglo+=array('param2'=>'');
-				$arreglo+=array('param3'=>'');
-				return json_encode($arreglo);
-			} else {
-				$arreglo+=array('id'=>0);
-				$arreglo+=array('error'=>0);
-				$arreglo+=array('terror'=>'');
-				$arreglo+=array('param1'=>'');
-				$arreglo+=array('param2'=>'');
-				$arreglo+=array('param3'=>'');
-				return json_encode($arreglo);
-			}
-*/
 		}
 
 		public function correo($correo, $texto,$asunto){
