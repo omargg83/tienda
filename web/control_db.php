@@ -1226,58 +1226,63 @@
 			// Load Composer's autoloader
 			require 'vendor/autoload.php';
 			$mail = new PHPMailer(true);
+			try {
+				//$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
+	    	$mail->isSMTP();
 
-			$mail = new PHPMailer;
-			$mail->isSMTP();
-			                                    // Set mailer to use SMTP
-			$mail->Host = $this->host;						  // Specify main and backup SMTP servers
-			$mail->SMTPAuth = $this->SMTPAuth;                               // Enable SMTP authentication
-			$mail->Username = $this->ecorreo;       // SMTP username
-			$mail->Password = $this->Password;                       // SMTP password
-			$mail->SMTPSecure = $this->SMTPSecure;                            // Enable TLS encryption, `ssl` also accepted
-			$mail->Port = $this->Port;                                    // TCP port to connect to
+				                                    // Set mailer to use SMTP
+				$mail->Host = $this->host;						  // Specify main and backup SMTP servers
+				$mail->SMTPAuth = $this->SMTPAuth;                               // Enable SMTP authentication
+				$mail->Username = $this->ecorreo;       // SMTP username
+				$mail->Password = $this->Password;                       // SMTP password
+				$mail->SMTPSecure = $this->SMTPSecure;                            // Enable TLS encryption, `ssl` also accepted
+				$mail->Port = $this->Port;                                    // TCP port to connect to
 
-			$mail->CharSet = 'UTF-8';
+				$mail->CharSet = 'UTF-8';
 
-			$mail->From = $this->ecorreo;
-			$mail->FromName = "TIC-SHOP";
-			$mail->Subject = "Cotización de productos";
-			$mail->AltBody = "Cotización de productos";
-			$mail->addAddress($this->ecorreo);     // Add a recipient
-			$mail->addCC($correo);
+				$mail->From = $this->ecorreo;
+				$mail->FromName = "TIC-SHOP";
+				$mail->Subject = "Cotización de productos";
+				$mail->AltBody = "Cotización de productos";
+				$mail->addAddress($this->ecorreo);     // Add a recipient
+				$mail->addCC($correo);
 
-			$mail->isHTML(true);                                  // Set email format to HTML
+				$mail->isHTML(true);                                  // Set email format to HTML
 
-			$texto="<h4><b>Cotización de productos al mayoreo</b></h4>";
-			$texto.="<br>Producto:";
-			$texto.="<br><b>$clave</b> - $producto<br>";
-			$texto.="$descripcion_corta";
-			$texto.="<br><br>";
-			$texto.="<br>Correo: $correo";
-			$texto.="<br>Nombre: $nombre -";
-			$texto.="<br>Cantidad: $cantidad";
-			$texto.="<br>Observaciones: $comentario";
+				$texto="<h4><b>Cotización de productos al mayoreo</b></h4>";
+				$texto.="<br>Producto:";
+				$texto.="<br><b>$clave</b> - $producto<br>";
+				$texto.="$descripcion_corta";
+				$texto.="<br><br>";
+				$texto.="<br>Correo: $correo";
+				$texto.="<br>Nombre: $nombre -";
+				$texto.="<br>Cantidad: $cantidad";
+				$texto.="<br>Observaciones: $comentario";
 
-			$mail->Body    = $texto;
-			$mail->AltBody = "Cotización de productos";
-			$arreglo=array();
-			if(!$mail->send()) {
-				$arreglo+=array('id'=>0);
-				$arreglo+=array('error'=>1);
-				$arreglo+=array('terror'=>$mail->ErrorInfo);
-				$arreglo+=array('param1'=>'');
-				$arreglo+=array('param2'=>'');
-				$arreglo+=array('param3'=>'');
-				return json_encode($arreglo);
-			}
-			else {
-				$arreglo+=array('id'=>0);
-				$arreglo+=array('error'=>0);
-				$arreglo+=array('terror'=>'');
-				$arreglo+=array('param1'=>'');
-				$arreglo+=array('param2'=>'');
-				$arreglo+=array('param3'=>'');
-				return json_encode($arreglo);
+				$mail->Body    = $texto;
+				$mail->AltBody = "Cotización de productos";
+				$arreglo=array();
+				if(!$mail->send()) {
+					$arreglo+=array('id'=>0);
+					$arreglo+=array('error'=>1);
+					$arreglo+=array('terror'=>$mail->ErrorInfo);
+					$arreglo+=array('param1'=>'');
+					$arreglo+=array('param2'=>'');
+					$arreglo+=array('param3'=>'');
+					return json_encode($arreglo);
+				}
+				else {
+					$arreglo+=array('id'=>0);
+					$arreglo+=array('error'=>0);
+					$arreglo+=array('terror'=>'');
+					$arreglo+=array('param1'=>'');
+					$arreglo+=array('param2'=>'');
+					$arreglo+=array('param3'=>'');
+					return json_encode($arreglo);
+				}
+				echo 'Message has been sent';
+			} catch (Exception $e) {
+				echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 			}
 			///////////////////////////////////////
 
