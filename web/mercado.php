@@ -3,9 +3,11 @@
 	$input = @file_get_contents("php://input");
 	// Parsear el contenido como JSON.
 	$texto=$input;
-	/*$eventJson = json_decode($input);
-	return $eventJson['id'];
-*/
+
+	
+	$eventJson = json_decode($input);
+	$id1=$eventJson['id'];
+
 
 
   class Tienda{
@@ -39,7 +41,7 @@
 	echo "<br>topic:".$topic;
 	echo "<br>IP:".$id;
 
-	$texto="$texto pago:".$id."  Topic: $topic";
+	$texto="$id1 -  $texto pago:".$id."  Topic: $topic";
 
 	$sql="insert into new_table (log) values (:log)";
 	$sth = $db->dbh->prepare($sql);
