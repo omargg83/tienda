@@ -134,7 +134,7 @@
             </div>
 
             <!-- Cart -->
-            <div class="cart">
+            <div class="cart" ><a href="cart.php">
               <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                 <div class="cart_icon">
                   <img src="images/cart.png" alt="">
@@ -145,6 +145,7 @@
                   <div class="cart_price"><?php echo moneda($sumar); ?></div>
                 </div>
               </div>
+            </a>
             </div>
           </div>
         </div>
@@ -242,19 +243,19 @@
               </li>
 
               <li class="page_menu_item">
-                <a href="index.php">Nosotros<i class="fa fa-angle-down"></i></a>
+                <a href="nosotros.php">Nosotros<i class="fa fa-angle-down"></i></a>
               </li>
               <li class="page_menu_item">
-                <a href="index.php">Lo más vendid<i class="fa fa-angle-down"></i></a>
+                <a href="shop.php">tienda<i class="fa fa-angle-down"></i></a>
               </li>
               <li class="page_menu_item">
-                <a href="index.php">Contacto<i class="fa fa-angle-down"></i></a>
+                <a href="contact.php">Contacto<i class="fa fa-angle-down"></i></a>
               </li>
             </ul>
 
             <div class="menu_contact">
               <div class="menu_contact_item"><div class="menu_contact_icon"><img src="images/phone_white.png" alt=""></div>+38 068 005 3570</div>
-              <div class="menu_contact_item"><div class="menu_contact_icon"><img src="images/mail_white.png" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
+              <div class="menu_contact_item"><div class="menu_contact_icon"><img src="images/mail_white.png" alt=""></div><a href="mailto:ventas@tic-shop.com.mx">ventas@tic-shop.com.mx</a></div>
             </div>
           </div>
         </div>
