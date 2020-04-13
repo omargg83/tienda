@@ -8,8 +8,6 @@
 	$mercado_token=$mercado->mercado_token;
 	$paypal_client=$mercado->paypal_client;
 
-	echo "<br>".$mercado_token."<br>";
-
 	$ped=$db->pedido_ver($idpedido);
 	$datos=$db->datos_pedido($idpedido);
 	$cupones=$db->pedido_cupones($idpedido);
@@ -44,8 +42,7 @@
 	$preference->items = array($item);
 	$preference->save();
 
-	echo "<br>".$preference->id;
-	echo "nuevo mercado pago";
+
 ?>
 
 <!DOCTYPE html>
@@ -283,7 +280,7 @@
 						echo "</div>";
 					?>
 
-					<form action="https://www.tic-shop.com.mx/tienda/web/pago_fin.php" method="POST">
+					<form action="https://www.tic-shop.com.mx/tienda/web/pago_fin.php?idpedido=<?php echo $idpedido; ?>" method="POST">
 					  <script
 					   src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js"
 					   data-preference-id="<?php echo $preference->id; ?>">

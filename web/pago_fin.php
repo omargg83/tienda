@@ -1,4 +1,3 @@
 <?php
-	echo "algo";
-	echo var_dump($_REQUEST);
+	$pago_id=$_REQUEST['payment_id'];
  ?>
