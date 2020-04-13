@@ -7,6 +7,11 @@
 	ini_set('display_errors', '1');
 	date_default_timezone_set("America/Mexico_City");
 
+	use PHPMailer\PHPMailer\PHPMailer;
+	use PHPMailer\PHPMailer\SMTP;
+	use PHPMailer\PHPMailer\Exception;
+
+
 	class Tienda{
 		public function __construct(){
 			$this->Salud = array();
@@ -1218,8 +1223,10 @@
 			$cantidad=$_REQUEST['cantidad'];
 			$comentario=$_REQUEST['comentario'];
 			$x="";
+			// Load Composer's autoloader
+			require 'vendor/autoload.php';
+			$mail = new PHPMailer(true);
 
-			require 'librerias15/PHPMailer-5.2-stable/PHPMailerAutoload.php';
 			$mail = new PHPMailer;
 			$mail->isSMTP();
 			                                    // Set mailer to use SMTP

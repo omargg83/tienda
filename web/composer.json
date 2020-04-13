@@ -1,6 +1,7 @@
 {
    "name": "sagyc/probando-composer",
    "require": {
-      "mercadopago/dx-php": "dev-master"
+      "mercadopago/dx-php": "dev-master",
+      "phpmailer/phpmailer": "^6.1"
    }
 }
