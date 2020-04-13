@@ -233,7 +233,7 @@
 						$_SESSION['autoriza_web']=1;
 						$_SESSION['correo']=$CLAVE['correo'];
 						$_SESSION['idcliente']=$CLAVE['id'];
-						$_SESSION['nombre']=$CLAVE->nombre." ".$CLAVE->apellido;
+						$_SESSION['nombre']=$CLAVE['nombre']." ".$CLAVE['apellido'];
 						$_SESSION['interno']=1;
 
 						$galleta=$this->genera_random();
