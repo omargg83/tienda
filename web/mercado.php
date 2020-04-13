@@ -1,14 +1,11 @@
 <?php
-  session_start();
+
 
 	// Recibir el cuerpo de la petición.
 	$input = @file_get_contents("php://input");
 	// Parsear el contenido como JSON.
 	$eventJson = json_decode($input);
-
-	$id_json=$eventJson['id'];
-
-
+	return $eventJson['id'];
 
 
 
