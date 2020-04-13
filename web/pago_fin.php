@@ -18,6 +18,10 @@
 			$estatus="PROCESANDO PAGO";
 			$rechazado=0;
 		}
+	  if($payment_status=="pending"){
+			$estatus="PROCESANDO PAGO PENDIENTE";
+			$rechazado=0;
+		}
 	  if($payment_status=="rejected"){
 			$estatus="EN ESPERA";
 			$rechazado=1;
