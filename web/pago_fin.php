@@ -48,106 +48,83 @@
 		$pago=$ped->pago;
 
 		/////////////////////////////////////////////Correo
-		$texto="<div class='col-9'>
+		$texto="<h3>TIC-SHOP</h3>
 			<h3 class='text-center'>Pedido</h3>
 			<div class='row'>
 				<div class='col-2'>
-					<label class='text-center'>Pedido</label>
-					<input type='text' class='form-control form-control-sm' id='pedido' name='pedido' placeholder='Pedido' value='$idpedido' readonly>
+					<label>Pedido #: $idpedido</label>
 				</div>
 				<div class='col-3'>
-					<label class='text-center'>Estatus</label>
-					<input type='text' class='form-control form-control-sm' id='estatus' name='estatus' placeholder='Estatus' value='$estatus' readonly>
+					<label>Estatus: $estatus</label>
 				</div>
 				<div class='col-3'>
-					<label class='text-center'>Pago</label>
-					<input type='text' class='form-control form-control-sm' id='pago' name='pago' placeholder='Pago' value='$pago' readonly>
-				</div>
-			</div>
-
-			<div class='row'>
-				<div class='col-4'>
-					<label class='text-center'>Nombre</label>
-					<input type='text' class='form-control form-control-sm' id='nombre' name='nombre' placeholder='Nombre' value='$nombre' readonly>
-				</div>
-
-				<div class='col-4'>
-					<label class='text-center'>Apellidos</label>
-					<input type='text' class='form-control form-control-sm' id='apellido' name='apellido' placeholder='Apellidos' value='$apellido' readonly autocomplete='off'>
-				</div>
-
-				<div class='col-4'>
-					<label class='text-center'>Correo</label>
-					<input type='email' class='form-control form-control-sm' id='correo' name='correo' placeholder='Correo' value='$correo' readonly>
-				</div>
-
-			</div>
-			<div class='row'>
-				<div class='col-3'>
-					<label>RFC</label>
-					<input type='text' class='form-control form-control-sm' id='rfc' name='rfc' placeholder='RFC' value='$rfc' readonly>
-				</div>
-
-				<div class='col-6'>
-					<label>Uso cfdi</label>
-					<input type='text' class='form-control form-control-sm' id='cfdi' name='cfdi' placeholder='Uso cfdi' value='$cfdi' readonly>
-				</div>
-			</div>
-
-			<div class='row'>
-				<div class='col-12'>
-					<label>Dirección (linea 1)</label>
-					<input type='text' class='form-control form-control-sm' id='direccion1' name='direccion1' placeholder='Dirección (linea 1)' value='$direccion1' readonly>
-				</div>
-				<div class='col-12'>
-					<label>Dirección (linea 2)</label>
-					<input type='text' class='form-control form-control-sm' id='direccion2' name='direccion2' placeholder='Dirección (linea 2)' value='$direccion2' readonly>
+					<label>Pago: $pago</label>
 				</div>
 				<div class='col-4'>
-					<label>Ciudad</label>
-					<input type='text' class='form-control form-control-sm' id='ciudad' name='ciudad' placeholder='Ciudad' value='$ciudad' readonly>
+					<label>Nombre: $nombre</label>
 				</div>
 				<div class='col-4'>
-					<label>Código postal</label>
-					<input type='text' class='form-control form-control-sm' id='cp' name='cp' placeholder='Código postal' value='$cp' readonly>
+					<label>Nombre: $nombre $apellido</label>
 				</div>
 				<div class='col-4'>
-					<label>Pais</label>
-					<input type='text' class='form-control form-control-sm' id='pais' name='pais' placeholder='Pais' value='$pais' readonly>
-				</div>
-				<div class='col-4'>
-					<label>Estado</label>
-					<input type='text' class='form-control form-control-sm' id='estado' name='estado' placeholder='Estado' value='$estado' readonly>
-				</div>
-				<div class='col-4'>
-					<label>Teléfono</label>
-					<input type='text' class='form-control form-control-sm' id='telefono' name='telefono' placeholder='Teléfono' value='$telefono' readonly>
+					<label>Correo: $correo</label>
 				</div>
 			</div>
 			<hr>
-			<div class='jumbotron'>
-				<div class='row'>
-					<div class='col-6'>
-						<b>Descripción</b>
-					</div>
-					<div class='col-2'>
-						<b>Cantidad</b>
-					</div>
-					<div class='col-2'>
-						<b>Precio unitario</b>
-					</div>
-					<div class='col-2'>
-						<b>Total</b>
-					</div>
+			<div class='row'>
+				<div class='col-3'>
+					<label>RFC: $rfc</label>
 				</div>
+				<div class='col-3'>
+					<label>Uso CFDI: $cfdi</label>
+				</div>
+
+				<div class='col-12'>
+					<label>Dirección: $direccion1</label>
+				</div>
+				<div class='col-12'>
+					<label>Dirección: $direccion2</label>
+				</div>
+				<div class='col-12'>
+					<label>Ciudad: $ciudad</label>
+				</div>
+				<div class='col-12'>
+					<label>Código postal: $cp</label>
+				</div>
+				<div class='col-12'>
+					<label>Pais: $pais</label>
+				</div>
+				<div class='col-12'>
+					<label>Estado: $estado</label>
+				</div>
+				<div class='col-12'>
+					<label>Teléfono: $telefono</label>
+				</div>
+			</div>
+			<hr>
+			<table>
+				<tr>
+					<td>
+						<b>Descripción</b>
+					</td>
+					<td>
+						<b>Cantidad</b>
+					</td>
+					<td>
+						<b>Precio unitario</b>
+					</td>
+					<td>
+						<b>Total</b>
+					</td>
+				</tr>
 			";
 
 				///////////////////////////////////
 				$total=0;
 				$envio=0;
 				foreach($datos as $key){
-					$texto.="<div class='row'>";
-						$texto.= "<div class='col-6'>";
+					$texto.="<tr>";
+						$texto.= "<td>";
 								$texto.= $key->clave;
 								$texto.= "<br>".$key->nombre;
 								$texto.= "<br>".$key->modelo;
@@ -155,28 +132,26 @@
 								$texto.= "<br>".$key->categoria;
 								$texto.= "<br>+ Costo envio:";
 								$texto.= "<b>".moneda($key->envio)."</b>";
-						$texto.= "</div>";
+						$texto.= "</td>";
 
-						$texto.= "<div class='col-2 text-center'>";
+						$texto.= "<td>";
 							$texto.= $key->cantidad;
-						$texto.= "</div>";
+						$texto.= "</td>";
 
-						$texto.= "<div class='col-2 text-center'>";
+						$texto.= "<td>";
 							$texto.= moneda($key->precio);
-						$texto.= "</div>";
+						$texto.= "</td>";
 
-						$texto.= "<div class='col-2 text-center'>";
+						$texto.= "<td'>";
 							$texto.= moneda($key->total);
-						$texto.= "</div>";
+						$texto.= "</td>";
 
-					$texto.= "</div>";
-					$texto.= "<hr>";
-
+					$texto.= "</tr>";
 				}
 
 				///////////////////////////////////
 
-					$texto.= "<h4>TOTAL DEL CARRITO</h4>";
+					$texto.= "<h4>TOTAL DE LA COMPRA</h4>";
 					$texto.= "<div class='row'>";
 						$texto.= "<div class='col-2 offset-8 text-right'>";
 							$texto.= "<b>Subtotal</b>";
@@ -204,8 +179,6 @@
 							$texto.= moneda($gtotal);
 						$texto.= "</div>";
 					$texto.= "</div>";
-
-
 			$texto.="</div>";
 		$texto.="</div>";
 
