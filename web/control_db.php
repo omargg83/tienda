@@ -1257,7 +1257,7 @@
 			if(!$mail->send()) {
 				$arreglo+=array('id'=>0);
 				$arreglo+=array('error'=>1);
-				$arreglo+=array('terror'=>'Error favor de verificar');
+				$arreglo+=array('terror'=>$mail->ErrorInfo);
 				$arreglo+=array('param1'=>'');
 				$arreglo+=array('param2'=>'');
 				$arreglo+=array('param3'=>'');
