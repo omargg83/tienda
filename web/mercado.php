@@ -1,12 +1,11 @@
 <?php
-
-
 	// Recibir el cuerpo de la petición.
 	$input = @file_get_contents("php://input");
 	// Parsear el contenido como JSON.
-	$eventJson = json_decode($input);
+	$texto=$input;
+	/*$eventJson = json_decode($input);
 	return $eventJson['id'];
-
+*/
 
 
   class Tienda{
@@ -40,7 +39,7 @@
 	echo "<br>topic:".$topic;
 	echo "<br>IP:".$id;
 
-	$texto="$id_json pago:".$id."  Topic: $topic";
+	$texto="$texto pago:".$id."  Topic: $topic";
 
 	$sql="insert into new_table (log) values (:log)";
 	$sth = $db->dbh->prepare($sql);
