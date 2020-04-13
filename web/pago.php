@@ -4,7 +4,8 @@
 	$idpedido=$_REQUEST['idpedido'];
 
 	$mercado=$db->ajustes_editar();
-	$merca=$mercado->mercado_public;
+	$merca_public=$mercado->mercado_public;
+	$mercado_token=$mercado->mercado_token;
 	$paypal_client=$mercado->paypal_client;
 
 	$ped=$db->pedido_ver($idpedido);
@@ -28,7 +29,7 @@
 	require __DIR__ .  '/vendor/autoload.php';
 
 	// Agrega credenciales
-	MercadoPago\SDK::setAccessToken('PROD_ACCESS_TOKEN');
+	MercadoPago\SDK::setAccessToken($mercado_token);
 
 	// Crea un objeto de preferencia
 	$preference = new MercadoPago\Preference();
@@ -40,6 +41,8 @@
 	$item->unit_price = 75.56;
 	$preference->items = array($item);
 	$preference->save();
+
+	echo "nuevo mercado pago";
 ?>
 
 <!DOCTYPE html>
@@ -277,12 +280,10 @@
 						echo "</div>";
 					?>
 
-					<form action="https://tic-shop.com.mx/tienda/web/procesar-pago.php?idx=<?php echo $idpedido; ?>" method="POST">
+					<form action="/procesar-pago" method="POST">
 					  <script
-					    src="https://www.mercadopago.com.mx/integrations/v1/web-tokenize-checkout.js"
-					    data-public-key="<?php echo $merca; ?>"
-					    data-transaction-amount="<?php echo $gtotal; ?>"
-							>
+					   src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js"
+					   data-preference-id="<?php echo $preference->id; ?>">
 					  </script>
 					</form>
 
