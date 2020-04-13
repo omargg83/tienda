@@ -9,7 +9,6 @@
 
 	use PHPMailer\PHPMailer\PHPMailer;
 	use PHPMailer\PHPMailer\SMTP;
-	use PHPMailer\PHPMailer\Exception;
 
 
 	class Tienda{
@@ -1223,31 +1222,73 @@
 			$cantidad=$_REQUEST['cantidad'];
 			$comentario=$_REQUEST['comentario'];
 			$x="";
-			// Load Composer's autoloader
-			require 'vendor/autoload.php';
-			$mail = new PHPMailer(true);
-			try {
-				//$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
-	    	$mail->isSMTP();
-				$mail->Host = 'smtp.gmail.com';
-				// use
-				// $mail->Host = gethostbyname('smtp.gmail.com');
-				// if your network does not support SMTP over IPv6
 
-				//Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
-				$mail->Port = 587;
 
-				//Set the encryption mechanism to use - STARTTLS or SMTPS
-				$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+				require 'vendor/autoload.php';
 
-				//Whether to use SMTP authentication
-				$mail->SMTPAuth = true;
+					//Create a new PHPMailer instance
+					$mail = new PHPMailer;
 
-				//Username to use for SMTP authentication - use full email address for gmail
-				$mail->Username = $this->ecorreo;
+					//Tell PHPMailer to use SMTP
+					$mail->isSMTP();
 
-				//Password to use for SMTP authentication
-				$mail->Password = $this->Password;
+					//Enable SMTP debugging
+					// SMTP::DEBUG_OFF = off (for production use)
+					// SMTP::DEBUG_CLIENT = client messages
+					// SMTP::DEBUG_SERVER = client and server messages
+					$mail->SMTPDebug = SMTP::DEBUG_SERVER;
+
+					//Set the hostname of the mail server
+					$mail->Host = 'smtp.gmail.com';
+					// use
+					// $mail->Host = gethostbyname('smtp.gmail.com');
+					// if your network does not support SMTP over IPv6
+
+					//Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
+					$mail->Port = 587;
+
+					//Set the encryption mechanism to use - STARTTLS or SMTPS
+					$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+
+					//Whether to use SMTP authentication
+					$mail->SMTPAuth = true;
+
+					//Username to use for SMTP authentication - use full email address for gmail
+					$mail->Username = $this->ecorreo;
+
+					//Password to use for SMTP authentication
+					$mail->Password = $this->Password;
+
+					//Set who the message is to be sent from
+
+					$mail->setFrom($this->ecorreo, 'First Last');
+					$mail->addAddress($correo, 'John Doe');
+					//Set the subject line
+					$mail->Subject = 'PHPMailer GMail SMTP test';
+
+					//Read an HTML message body from an external file, convert referenced images to embedded,
+					//convert HTML into a basic plain-text alternative body
+					$mail->msgHTML("hola mundo");
+
+					//Replace the plain text body with one created manually
+					$mail->AltBody = 'This is a plain-text message body';
+
+
+
+
+					//send the message, check for errors
+					if (!$mail->send()) {
+					    echo 'Mailer Error: '. $mail->ErrorInfo;
+					} else {
+					    echo 'Message sent!';
+					    //Section 2: IMAP
+					    //Uncomment these to save your message in the 'Sent Mail' folder.
+					    #if (save_mail($mail)) {
+					    #    echo "Message saved!";
+					    #}
+					}
+
+
 				/*
 				                                    // Set mailer to use SMTP
 				$mail->Host = $this->host;						  // Specify main and backup SMTP servers
@@ -1255,10 +1296,10 @@
 				$mail->Username = $this->ecorreo;       // SMTP username
 				$mail->Password = $this->Password;                       // SMTP password
 
-				/*
+
 				$mail->SMTPSecure = $this->SMTPSecure;                            // Enable TLS encryption, `ssl` also accepted
 				$mail->Port = $this->Port;                                    // TCP port to connect to
-				*/
+
 				$mail->CharSet = 'UTF-8';
 
 				$mail->From = $this->ecorreo;
@@ -1306,7 +1347,7 @@
 				echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 			}
 			///////////////////////////////////////
-
+*/
 		}
 }
 
