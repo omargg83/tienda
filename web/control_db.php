@@ -908,7 +908,7 @@
 					$id=0;
 					$arreglo =array();
 					$arreglo+=array('fecha'=>date("Y-m-d H:i:s"));
-					$arreglo+= array('estatus'=>"pendiente");
+					$arreglo+= array('estatus'=>"EN ESPERA");
 					$arreglo+= array('nombre'=>$nombre);
 					$arreglo+= array('apellido'=>$apellido);
 					$arreglo+= array('rfc'=>$rfc);
@@ -989,8 +989,8 @@
 						}
 						$arreglo =array();
 						$arreglo+= array('monto'=>$total);
-						$arreglo+= array('envio'=>$envio);
-						$gtotal=$total+$envio;
+						$arreglo+= array('envio'=>$totalEnvio);
+						$gtotal=$total+$totalEnvio;
 						$arreglo+= array('total'=>$gtotal);
 						$this->update('pedidos',array('id'=>$pedido->id), $arreglo);
 						//////////////////////////////////////////////////////////////////////////

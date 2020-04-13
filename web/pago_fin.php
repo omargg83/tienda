@@ -8,24 +8,38 @@
 
 		$ped=$db->pedido_ver($idpedido);
 
-
-
+		$estatus="";
+		$rechazado=0;
 	  if($payment_status=="approved"){
-			$arreglo =array();
-			$arreglo+= array('estatus'=>"procesando");
-			$arreglo+= array('pago'=>"Mercado Pago");
-			$arreglo+= array('idpago'=>$payment_id);
-			$arreglo+= array('estado_pago'=>$payment_status);
-			$x=$db->update('pedidos',array('id'=>$idpedido), $arreglo);
-			$ped=json_decode($x);
-			$id=$ped->id;
-			if($ped->error==0){
-
-			}
+			$estatus="PROCESANDO";
+			$rechazado=0;
 		}
-		else{
+	  if($payment_status=="in_process"){
+			$estatus="PROCESANDO PAGO";
+			$rechazado=0;
+		}
+	  if($payment_status=="pending"){
+			$estatus="PROCESANDO PAGO PENDIENTE";
+			$rechazado=0;
+		}
+	  if($payment_status=="rejected"){
+			$estatus="EN ESPERA";
+			$rechazado=1;
+		}
+
+
+		$arreglo =array();
+		$arreglo+= array('estatus'=>$estatus);
+		$arreglo+= array('pago'=>"Mercado Pago");
+		$arreglo+= array('idpago'=>$payment_id);
+		$arreglo+= array('estado_pago'=>$payment_status);
+		$x=$db->update('pedidos',array('id'=>$idpedido), $arreglo);
+		$ped=json_decode($x);
+		$id=$ped->id;
+		if($ped->error==0){
 
 		}
+
 
 		$ped=$db->pedido_ver($idpedido);
 		$datos=$db->datos_pedido($idpedido);
@@ -48,8 +62,170 @@
 		$pago=$ped->pago;
 
 		/////////////////////////////////////////////Correo
-		$texto="mensaje de compra";
-		$asunto="asunto";
+		if($rechazado==0){
+				$texto="<h3>TIC-SHOP</h3>
+				<h3 class='text-center'>Pedido</h3>
+				<div class='row'>
+					<div class='col-2'>
+						<label>Pedido #: $idpedido</label>
+					</div>
+					<div class='col-3'>
+						<label>Estatus: $estatus</label>
+					</div>
+					<div class='col-3'>
+						<label>Pago: $pago</label>
+					</div>
+					<div class='col-4'>
+						<label>Nombre: $nombre</label>
+					</div>
+					<div class='col-4'>
+						<label>Nombre: $nombre $apellido</label>
+					</div>
+					<div class='col-4'>
+						<label>Correo: $correo</label>
+					</div>
+				</div>
+				<hr>
+				<div class='row'>
+					<div class='col-3'>
+						<label>RFC: $rfc</label>
+					</div>
+					<div class='col-3'>
+						<label>Uso CFDI: $cfdi</label>
+					</div>
+
+					<div class='col-12'>
+						<label>Dirección: $direccion1</label>
+					</div>
+					<div class='col-12'>
+						<label>Dirección: $direccion2</label>
+					</div>
+					<div class='col-12'>
+						<label>Ciudad: $ciudad</label>
+					</div>
+					<div class='col-12'>
+						<label>Código postal: $cp</label>
+					</div>
+					<div class='col-12'>
+						<label>Pais: $pais</label>
+					</div>
+					<div class='col-12'>
+						<label>Estado: $estado</label>
+					</div>
+					<div class='col-12'>
+						<label>Teléfono: $telefono</label>
+					</div>
+				</div>
+				<hr>
+				<table>
+					<tr>
+						<td>
+							<b>Descripción</b>
+						</td>
+						<td>
+							<b>Cantidad</b>
+						</td>
+						<td>
+							<b>Precio unitario</b>
+						</td>
+						<td>
+							<b>Total</b>
+						</td>
+					</tr>
+				";
+
+					///////////////////////////////////
+					$total=0;
+					$envio=0;
+					foreach($datos as $key){
+						$texto.="<tr>";
+							$texto.= "<td>";
+									$texto.= $key->clave;
+									$texto.= "<br>".$key->nombre;
+									$texto.= "<br>".$key->modelo;
+									$texto.= "<br>".$key->marca;
+									$texto.= "<br>".$key->categoria;
+									$texto.= "<br>+ Costo envio:";
+									$texto.= "<b>".moneda($key->envio)."</b>";
+							$texto.= "</td>";
+
+							$texto.= "<td>";
+								$texto.= $key->cantidad;
+							$texto.= "</td>";
+
+							$texto.= "<td>";
+								$texto.= moneda($key->precio);
+							$texto.= "</td>";
+
+							$texto.= "<td'>";
+								$texto.= moneda($key->total);
+							$texto.= "</td>";
+
+						$texto.= "</tr>";
+					}
+					$texto.="</table>";
+					///////////////////////////////////
+
+						$texto.= "<h4>TOTAL DE LA COMPRA</h4>";
+						$texto.= "<div class='row'>";
+							$texto.= "<div class='col-2 offset-8 text-right'>";
+								$texto.= "<b>Subtotal</b>";
+							$texto.= "</div>";
+							$texto.= "<div class='col-2 text-right'>";
+								$texto.= moneda($gmonto);
+							$texto.= "</div>";
+						$texto.= "</div>";
+
+						$texto.= "<div class='row'>";
+							$texto.= "<div class='col-2 offset-8 text-right'>";
+								$texto.= "<b>Envío</b>";
+							$texto.= "</div>";
+							$texto.= "<div class='col-2 text-right'>";
+								$texto.= moneda($genvio);
+							$texto.= "</div>";
+						$texto.= "</div>";
+
+						$texto.= "<div class='row'>";
+							$texto.= "<div class='col-2 offset-8 text-right'>";
+								$texto.= "<b>Total</b>";
+							$texto.= "</div>";
+							$texto.= "<div class='col-2 text-right'>";
+								$texto.= moneda($gtotal);
+							$texto.= "</div>";
+						$texto.= "</div>";
+				$texto.="</div>";
+			$texto.="</div>";
+
+			$asunto="Compra Exitosa";
+		}
+		if($rechazado==1){
+			$texto="<h3>TIC-SHOP</h3>
+			<h3 class='text-center'>Pedido</h3>
+			<div class='row'>
+				<div class='col-2'>
+					<label>Pedido #: $idpedido</label>
+				</div>
+				<div class='col-3'>
+					<label>Estatus: $estatus</label>
+				</div>
+				<div class='col-3'>
+					<label>Pago: $pago</label>
+				</div>
+				<div class='col-4'>
+					<label>Nombre: $nombre</label>
+				</div>
+				<div class='col-4'>
+					<label>Nombre: $nombre $apellido</label>
+				</div>
+				<div class='col-4'>
+					<label>Correo: $correo</label>
+				</div>
+			</div>
+			<hr>";
+			$texto.="<br><br>PAGO RECHAZADO";
+			$asunto="Se rechazo el pago";
+		}
+
 		$db->correo($correo, $texto, $asunto);
 		////////////////////////////////////////////////////
 
