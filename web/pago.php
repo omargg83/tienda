@@ -25,22 +25,7 @@
 	$telefono=$ped->telefono;
 	$total=$ped->total;
 
-	////////////////////////
-	require __DIR__ .  '/vendor/autoload.php';
 
-	// Agrega credenciales
-	MercadoPago\SDK::setAccessToken($mercado_token);
-
-	// Crea un objeto de preferencia
-	$preference = new MercadoPago\Preference();
-
-	// Crea un ítem en la preferencia
-	$item = new MercadoPago\Item();
-	$item->title = 'TIC-SHOP';
-	$item->quantity = 1;
-	$item->unit_price = $total;
-	$preference->items = array($item);
-	$preference->save();
 
 
 ?>
@@ -279,6 +264,24 @@
 							echo "</div>";
 						echo "</div>";
 					?>
+					<?php
+						////////////////////////
+						require __DIR__ .  '/vendor/autoload.php';
+
+						// Agrega credenciales
+						MercadoPago\SDK::setAccessToken($mercado_token);
+
+						// Crea un objeto de preferencia
+						$preference = new MercadoPago\Preference();
+
+						// Crea un ítem en la preferencia
+						$item = new MercadoPago\Item();
+						$item->title = 'TIC-SHOP';
+						$item->quantity = 1;
+						$item->unit_price = $gtotal;
+						$preference->items = array($item);
+						$preference->save();
+					?>
 
 					<form action="https://www.tic-shop.com.mx/tienda/web/pago_fin.php?idpedido=<?php echo $idpedido; ?>" method="POST">
 					  <script
@@ -287,51 +290,7 @@
 					  </script>
 					</form>
 
-				<script
-					 src="https://www.paypal.com/sdk/js?client-id=<?php echo $paypal_client; ?>&currency=MXN" data-order-id="omar-2VW94544JM6797511">
-				 </script>
 
-				 <div id="paypal-button-container"></div>
-
-				 <script>
-						paypal.Buttons({
-				    createOrder: function(data, actions) {
-				      // This function sets up the details of the transaction, including the amount and line item details.
-				      return actions.order.create({
-				        purchase_units: [{
-				          amount: {
-				            value: '<?php echo $gtotal; ?>'
-				          }
-				        }]
-				      });
-				    },
-				    onApprove: function(data, actions) {
-							Swal.fire({
-									type: 'success',
-									title: 'no cierre la ventana, finalizando pago',
-									showConfirmButton: false
-							});
-				      return actions.order.capture().then(function(details) {
-								$.ajax({
-								  url: "paypal-transaction-complete.php",
-								  type: "POST",
-								  data: {
-								    "id":details.id,
-								    "mail":details.payer.email_address,
-										"estatus":details.status,
-										"idx":<?php echo $idpedido; ?>
-								  },
-								  success: function( response ) {
-
-								  }
-								});
-				        alert('Transaction completed by ' + details.payer.name.given_name);
-				      });
-				    }
-				  }).render('#paypal-button-container');
-				  //This function displays Smart Payment Buttons on your web page.
-
-				 </script>
 				</div>
 			</div>
 		</div>
