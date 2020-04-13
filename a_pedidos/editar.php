@@ -59,7 +59,7 @@
 							echo "<select id='estatus' name='estatus' class='form-control form-control-sm'>";
 								echo "<option value='EN ESPERA'"; if($estatus=='EN ESPERA'){ echo " selected"; } echo ">EN ESPERA</option>";
 								echo "<option value='PROCESANDO'"; if($estatus=='PROCESANDO'){ echo " selected"; } echo ">PROCESANDO</option>";
-
+								echo "<option value='PROCESANDO PAGO'"; if($estatus=='PROCESANDO PAGO'){ echo " selected"; } echo ">PROCESANDO PAGO</option>";
 							echo "</select>";
 						echo "</div>";
 					echo "</div>";
