@@ -2,7 +2,6 @@
 	require_once("control_db.php");
 	$db = new Tienda();
 
-		echo var_dump($_REQUEST);
 
 		$idpedido=$_REQUEST['idpedido'];
 		$payment_id=$_REQUEST['payment_id'];
@@ -24,7 +23,7 @@
 			$ped=json_decode($x);
 			$id=$ped->id;
 			if($ped->error==0){
-				header('Location: https://www.tic-shop.com.mx/tienda/web/estado_pedido.php?idpedido=$idpedido');
+
 			}
 		}
 		else{

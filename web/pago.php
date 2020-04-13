@@ -24,7 +24,7 @@
 	$estado=$ped->estado;
 	$telefono=$ped->telefono;
 	$total=$ped->total;
-	
+
 	echo $total;
 	////////////////////////
 	require __DIR__ .  '/vendor/autoload.php';
@@ -41,6 +41,13 @@
 	$item->quantity = 1;
 	$item->unit_price = $total;
 	$preference->items = array($item);
+
+	$preference->back_urls = array(
+    "success" => "https://www.tu-sitio/success",
+    "failure" => "http://www.tu-sitio/failure",
+    "pending" => "http://www.tu-sitio/pending"
+	);
+
 	$preference->save();
 
 
