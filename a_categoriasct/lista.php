@@ -23,6 +23,10 @@
 						echo "<td>";
 							echo "<div class='btn-group'>";
 								echo "<button class='btn btn-outline-secondary btn-sm' id='edit_comision' title='Editar' data-lugar='a_categoriasct/editar'><i class='fas fa-pencil-alt'></i></i></button>";
+								if ($key["interno"]==1){
+									echo "<button class='btn btn-outline-secondary btn-sm' id='eliminar_cat' data-lugar='a_categoriasct/db_' data-destino='a_categoriasct/lista' data-id='".$key['id']."' data-funcion='quitar_cat' data-div='trabajo'><i class='far fa-trash-alt'></i></i></button>";
+								}
+
 							echo "</div>";
 						echo "</td>";
 						echo "<td>".$key["categoria"]."</td>";

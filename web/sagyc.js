@@ -331,24 +331,17 @@ $(document).on('submit','#acceso',function(e){
 });
 $(document).on('submit','#registro',function(e){
   e.preventDefault();
-  var nombre=document.getElementById("nombre").value;
-  var apellido=document.getElementById("apellido").value;
-  var correo=document.getElementById("correo").value;
+
   var pass=document.getElementById("pass").value;
   var pass2=document.getElementById("pass2").value;
+
+  var passAcceso=$.md5(pass);
+  var dataString = $(this).serialize()+"&function=registro&ctrl=control&passf="+passAcceso;
   if(pass==pass2){
     $.ajax({
       url: "control_db.php",
       type: "POST",
-      data: {
-        "ctrl":"control",
-        "function":"registro",
-        "nombre":nombre,
-        "apellido":apellido,
-        "correo":correo,
-        "pass":pass,
-        "pass2":pass2
-      },
+      data:  dataString,
       success: function( response ) {
         window.location.href="index.php";
       }
