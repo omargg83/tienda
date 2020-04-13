@@ -1,17 +1,14 @@
 <?php
   session_start();
 
-	$method=$_SERVER['REQUEST_METHOD'];
-	echo $method;
-	$url=$_SERVER['REQUEST_URI'];
-	echo "uri:".$url;
-	$method=$_SERVER['REQUEST_METHOD'];
+	// Recibir el cuerpo de la petición.
+	$input = @file_get_contents("php://input");
+	// Parsear el contenido como JSON.
+	$eventJson = json_decode($input);
 
-	$url_components = parse_url($url);
-	parse_str($url_components['query'], $params);
+	$id_json=$eventJson['id'];
 
-	// Display result
-	echo ' Hi '.$params['query'];
+
 
 
 
@@ -46,7 +43,7 @@
 	echo "<br>topic:".$topic;
 	echo "<br>IP:".$id;
 
-	$texto="pago:".$id."  Topic: $topic";
+	$texto="$id_json pago:".$id."  Topic: $topic";
 
 	$sql="insert into new_table (log) values (:log)";
 	$sth = $db->dbh->prepare($sql);
