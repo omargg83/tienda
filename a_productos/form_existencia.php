@@ -2,18 +2,19 @@
 	require_once("db_.php");
 	$id=$_REQUEST['id'];
 	$id2=$_REQUEST['id2'];
-	$tipo="";
-	$valor="";
-	if($id>0){
-		$resp=$db->producto_espe_editar($id);
-		$tipo=$resp->tipo;
-		$valor=$resp->valor;
-	}
 
+	$homoclave="";
+	$valor="";
+
+	if($id>0){
+		$resp=$db->producto_exist_editar($id);
+		$valor=$resp->existencia;
+		$homoclave=$resp->almacen;
+	}
 ?>
-<form id='form_personal' data-lugar='a_productos/db_' data-funcion='agrega_espe' data-destino='a_productos/editar'>
+<form id='form_exist' data-lugar='a_productos/db_' data-funcion='agrega_existencia' data-destino='a_productos/editar'>
 <div class='modal-header'>
-	<h5 class='modal-title'>Agregar especificacion</h5>
+	<h5 class='modal-title'>Agregar existencia</h5>
 </div>
   <div class='modal-body' >
 	<?php
@@ -22,11 +23,17 @@
 	?>
 		<div class='row'>
 			<div class='col-6'>
-				<label>Tipo</label>
-				<input type="text" class="form-control form-control-sm" id="tipo" name='tipo' placeholder="Tipo" value="<?php echo $tipo; ?>" >
+				<label>Almacén</label>
+				<?php
+					echo "<select id='almacen' name='almacen' class='form-control form-control-sm'>";
+						foreach($db->almacen_lista() as $key){
+							echo "<option value='".$key->homoclave."'"; if ($homoclave==$key->homoclave){ echo " selected";} echo ">".$key->numero."-".$key->sucursal."</option>";
+						}
+					echo "</select>";
+				?>
 			</div>
 			<div class='col-6'>
-				<label>Valor</label>
+				<label>Existencia</label>
 				<input type="text" class="form-control form-control-sm" id="valor" name='valor' placeholder="Valor" value="<?php echo $valor; ?>" >
 			</div>
 		</div>

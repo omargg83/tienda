@@ -111,6 +111,33 @@ class Productos extends Tienda{
 			return "Database access FAILED!".$e->getMessage();
 		}
 	}
+	public function producto_espe_editar($id){
+		try{
+			parent::set_names();
+			$sql="select * from producto_espe where idespecificacion=:id";
+			$sth = $this->dbh->prepare($sql);
+			$sth->bindValue(':id', "$id");
+			$sth->execute();
+			return $sth->fetch(PDO::FETCH_OBJ);
+		}
+		catch(PDOException $e){
+			return "Database access FAILED!".$e->getMessage();
+		}
+	}
+
+	public function producto_exist_editar($id){
+		try{
+			parent::set_names();
+			$sql="select * from producto_exist where idexist=:id";
+			$sth = $this->dbh->prepare($sql);
+			$sth->bindValue(':id',$id);
+			$sth->execute();
+			return $sth->fetch(PDO::FETCH_OBJ);
+		}
+		catch(PDOException $e){
+			return "Database access FAILED!".$e->getMessage();
+		}
+	}
 
 	public function producto_categoria($id){
 		try{
@@ -294,6 +321,73 @@ class Productos extends Tienda{
 			return "Database access FAILED!".$e->getMessage();
 		}
 	}
+	public function almacen_lista(){
+		try{
+			parent::set_names();
+			$sql="select * from almacen";
+			$sth = $this->dbh->prepare($sql);
+			$sth->execute();
+			return $sth->fetchAll(PDO::FETCH_OBJ);
+		}
+		catch(PDOException $e){
+			return "Database access FAILED!".$e->getMessage();
+		}
+	}
+	public function agrega_existencia(){
+		try{
+			parent::set_names();
+			$id=$_REQUEST['id'];
+			$idproducto=$_REQUEST['idproducto'];
+			$alam=$_REQUEST['almacen'];
+			$valor=$_REQUEST['valor'];
+
+			$arreglo =array();
+			if (isset($_REQUEST['almacen'])){
+				$arreglo+= array('almacen'=>$alam);
+			}
+			if (isset($_REQUEST['valor'])){
+				$arreglo+= array('existencia'=>$valor);
+			}
+
+			$x="";
+			if($id==0){
+				$sql="select * from producto_exist where almacen='$alam' and id='$idproducto'";
+				$sth = $this->dbh->prepare($sql);
+				$sth->execute();
+				if ($sth->rowCount()>0){
+					$arreg=array();
+					$arreg+=array('id'=>$idproducto);
+					$arreg+=array('error'=>1);
+					$arreg+=array('terror'=>"Ya existe");
+					return json_encode($arreg);
+				}
+				$arreglo+= array('id'=>$idproducto);
+				$x=$this->insert('producto_exist', $arreglo);
+			}
+			else{
+				$x=$this->update('producto_exist',array('idexist'=>$id), $arreglo);
+			}
+
+			$sql="select sum(existencia) as total from producto_exist where id='$idproducto'";
+			$sth = $this->dbh->prepare($sql);
+			$sth->execute();
+			$resp=$sth->fetch(PDO::FETCH_OBJ);
+
+			$fecha=mktime(date("H"),date("i"),date("s"),date("m"),date("d"),date("Y"));
+			$fmodif = date("Y-m-d H:i:s");
+
+			$sql="update productos set existencia='".$resp->total."', timeexis='$fecha', horaexist='$fmodif' where id='$idproducto'";
+	    $stmt2= $this->dbh->query($sql);
+
+			$arreglo =array();
+			$arreglo+=array('id'=>$idproducto);
+			$arreglo+=array('error'=>0);
+			return json_encode($arreglo);
+		}
+		catch(PDOException $e){
+			return "Database access FAILED!".$e->getMessage();
+		}
+	}
 
 	public function agrega_espe(){
 		try{
@@ -315,7 +409,7 @@ class Productos extends Tienda{
 				$x=$this->insert('producto_espe', $arreglo);
 			}
 			else{
-				$x=$this->update('producto_espe',array('id'=>$id), $arreglo);
+				$x=$this->update('producto_espe',array('idespecificacion'=>$id), $arreglo);
 			}
 			$arreglo =array();
 			$arreglo+=array('id'=>$id2);
@@ -329,6 +423,10 @@ class Productos extends Tienda{
 	public function quitar_espe(){
 		if (isset($_POST['id'])){$id=$_POST['id'];}
 		return $this->borrar('producto_espe',"idespecificacion",$id);
+	}
+	public function quitar_existencia(){
+		if (isset($_POST['id'])){$id=$_POST['id'];}
+		return $this->borrar('producto_exist',"idexist",$id);
 	}
 
 	public function imagen($id){
@@ -393,8 +491,6 @@ class Productos extends Tienda{
 
 		$resp =servicioApi($metodo,$servicio,NULL,$tok);
 		if (is_object($resp)){
-
-
 			$sql="delete from producto_exist where id='$id'";
 			$sth3 = $this->dbh->prepare($sql);
 			$sth3->execute();

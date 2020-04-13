@@ -51,10 +51,6 @@
   $resp = crearNuevoToken();
   $tok=$resp->token;
 
-  echo $tok;
-  //$compara=mktime(date("H"),date("i"),date("s"),date("m"),date("d"),date("Y"))-900;
-  //$sql="select * from productos where timeexis<$compara order by timeexis asc limit 75";
-
   $fecha=mktime(date("H"),date("i"),date("s"),date("m"),date("d"),date("Y"));
   $sql="select * from productos where interno=0 order by timeexis asc limit 50";
   $fmodif = date("Y-m-d H:i:s");
@@ -67,21 +63,11 @@
     $metodo="GET";
 
     $resp =servicioApi($metodo,$servicio,NULL,$tok);
-    $existencia=$resp->existencia_total;
-
-    echo "<br>clave:".$clave;
-
-//    echo "<br>Clave:".$clave;
-//    echo "<br>TIEMPO:".$key['timevar'];
-    //$dif=$compara-$key['timevar'];
-
-//    echo "<br>Diferencia:".$dif;
-    echo "<br>Existencia:".$existencia;
-
-    $sql="update productos set existencia='$existencia', timeexis='$fecha', horaexist='$fmodif' where idProducto='".$key['idProducto']."'";
-    echo "<br>".$sql;
-    $stmt2= $db->dbh->query($sql);
-
+    if (is_object($resp)){
+      $existencia=$resp->existencia_total;
+      $sql="update productos set existencia='$existencia', timeexis='$fecha', horaexist='$fmodif' where id='".$key['id']."'";
+      $stmt2= $db->dbh->query($sql);
+    }
   }
 
 

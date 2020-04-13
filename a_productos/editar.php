@@ -332,7 +332,7 @@
 							if($id>0){
 								echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_espe' data-id='0' data-id2='$id' data-lugar='a_productos/form_especificacion' title='Agregar especificacion' ><i class='fas fa-plus'></i>Especificacion</button>";
 
-									echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_exist' data-id='0' data-id2='$id' data-lugar='a_productos/form_especificacion' title='Agregar existencias' ><i class='fas fa-plus'></i>Existencia</button>";
+								echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_exist' data-id='0' data-id2='$id' data-lugar='a_productos/form_existencia' title='Agregar existencias' ><i class='fas fa-plus'></i>Existencia</button>";
 							}
 						}
 
@@ -356,13 +356,16 @@
 				echo "</div>";
 				echo "<div class='card-body'>";
 					echo "<table class='table table-sm' style='font-size:12px'>";
+					echo "<tr><th>-</th><th>Tipo</th><th>Valor</th></tr>";
 					foreach($espe as $key){
 						echo "<tr>";
 
 							echo "<td>";
 								echo "<div class='btn-group'>";
-								if ($interno==1 or $id==0){
-									echo "<button class='btn btn-outline-secondary btn-sm' id='eliminar_cat' data-lugar='a_productos/db_' data-destino='a_productos/editar' data-id='".$key->idespecificacion."' data-id2='$id' data-iddest='$id' data-funcion='quitar_espe' data-div='trabajo'><i class='far fa-trash-alt'></i></i></button>";
+								if ($interno==1 and $id>0){
+									echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_espex' data-id='".$key->idespecificacion."' data-id2='$id' data-lugar='a_productos/form_especificacion' title='Editar especificacion' ><i class='fas fa-pencil-alt'></i></button>";
+
+									echo "<button class='btn btn-outline-secondary btn-sm' id='eliminar_cat' data-lugar='a_productos/db_' data-destino='a_productos/editar' data-id='".$key->idespecificacion."' data-id2='$id' data-iddest='$id' data-funcion='quitar_espe' data-div='trabajo'><i class='far fa-trash-alt'></i></button>";
 								}
 								echo "</div>";
 							echo "</td>";
@@ -388,6 +391,16 @@
 						foreach($alma as $key){
 							 $almacen=$db->almacen_busca($key->almacen);
 							echo "<tr>";
+								echo "<td>";
+								echo "<div class='btn-group'>";
+
+								if ($interno==1 and $id>0){
+									echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_existx' data-id='".$key->idexist."' data-id2='$id' data-lugar='a_productos/form_existencia' title='Editar existencias' ><i class='fas fa-pencil-alt'></i></button>";
+
+									echo "<button class='btn btn-outline-secondary btn-sm' id='eliminar_esp' data-lugar='a_productos/db_' data-destino='a_productos/editar' data-id='".$key->idexist."' data-id2='$id' data-iddest='$id' data-funcion='quitar_existencia' data-div='trabajo'><i class='far fa-trash-alt'></i></i></button>";
+								}
+								echo "</div>";
+								echo "</td>";
 								echo "<td>";
 								echo "(".$key->almacen.")";
 								echo $almacen->sucursal;
