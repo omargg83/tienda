@@ -1227,6 +1227,16 @@
 			$mail = new PHPMailer;
 			$mail->isSMTP();
 
+/*
+			$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+			$mail->Host = 'mail.tic-shop.com.mx';
+			$mail->Port = 465;
+			$mail->SMTPAuth = true;
+
+			$mail->Username = "admin@tic-shop.com.mx";
+			$mail->Password = "UZT]jx,ebp1*";
+			$mail->setFrom("admin@tic-shop.com.mx", 'TIC-SHOP');
+*/
 			$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 			$mail->Host = 'smtp.gmail.com';
 			$mail->Port = 587;
@@ -1236,6 +1246,8 @@
 			$mail->Password = $this->Password;
 			$mail->setFrom($this->ecorreo, 'TIC-SHOP');
 			$mail->addAddress($correo, $nombre);
+
+
 			$mail->CharSet = 'UTF-8';
 			//Set the subject line
 			$mail->Subject = 'Cotización de Mayoreo';
