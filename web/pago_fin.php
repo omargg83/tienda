@@ -14,14 +14,13 @@
 
 		$ped=$db->pedido_ver($idpedido);
 
-	  if($payment_status=="approved"){
+	  if($payment_status=="accredited"){
 			$arreglo =array();
 			$arreglo+= array('estatus'=>"procesando");
 			$arreglo+= array('pago'=>"Mercado Pago");
-			$arreglo+= array('idpago'=>$payment->id);
-			$arreglo+= array('pagador'=>$payment->payer->email);
-			$arreglo+= array('estado_pago'=>$payment->status);
-			$x=$db->update('pedidos',array('id'=>$idx), $arreglo);
+			$arreglo+= array('idpago'=>$payment_id);
+			$arreglo+= array('estado_pago'=>$payment_status);
+			$x=$db->update('pedidos',array('id'=>$idpedido), $arreglo);
 			echo $x;
 			$ped=json_decode($x);
 			$id=$ped->id;
