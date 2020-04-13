@@ -232,9 +232,16 @@ class Productos extends Tienda{
 			if (isset($_REQUEST['cb_prodsemana']) and strlen($_REQUEST['cb_prodsemana'])>0){
 				$arreglo+= array('cb_prodsemana'=>$_REQUEST['cb_prodsemana']);
 			}
+			else{
+				$arreglo+= array('cb_prodsemana'=>NULL);
+			}
 			if (isset($_REQUEST['cb_destacados']) and strlen($_REQUEST['cb_destacados'])>0){
 				$arreglo+= array('cb_destacados'=>$_REQUEST['cb_destacados']);
 			}
+			else{
+				$arreglo+= array('cb_destacados'=>NULL);
+			}
+
 			if (isset($_REQUEST['activo'])){
 				$arreglo+= array('activo'=>$_REQUEST['activo']);
 			}
