@@ -8,6 +8,8 @@
 	$mercado_token=$mercado->mercado_token;
 	$paypal_client=$mercado->paypal_client;
 
+	echo "<br>".$mercado_token."<br>";
+
 	$ped=$db->pedido_ver($idpedido);
 	$datos=$db->datos_pedido($idpedido);
 	$cupones=$db->pedido_cupones($idpedido);
