@@ -1,7 +1,37 @@
 <?php
-	echo var_dump($_REQUEST);
+	require_once("control_db.php");
+	$db = new Tienda();
 
-	$payment_id=$_REQUEST['payment_id'];
+		echo var_dump($_REQUEST);
 
-	echo "<br>payment_id:".$payment_id;
+		$idpedido=$_REQUEST['idpedido'];
+		$payment_id=$_REQUEST['payment_id'];
+		$payment_status=$_REQUEST['payment_status'];
+
+		echo "<br>idpedido:".$idpedido;
+		echo "<br>payment_id:".$payment_id;
+		echo "<br>payment_status':".$payment_status;
+
+		$ped=$db->pedido_ver($idpedido);
+
+	  if($payment_status=="approved"){
+			$arreglo =array();
+			$arreglo+= array('estatus'=>"procesando");
+			$arreglo+= array('pago'=>"Mercado Pago");
+			$arreglo+= array('idpago'=>$payment->id);
+			$arreglo+= array('pagador'=>$payment->payer->email);
+			$arreglo+= array('estado_pago'=>$payment->status);
+			$x=$db->update('pedidos',array('id'=>$idx), $arreglo);
+			echo $x;
+			$ped=json_decode($x);
+			$id=$ped->id;
+			if($ped->error==0){
+
+			}
+		}
+		else{
+
+		}
+
+
  ?>
