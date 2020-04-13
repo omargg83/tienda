@@ -3659,3 +3659,31 @@ select option
 {
 	margin-right: 0px;
 }
+
+
+
+
+@media (max-width: 990px) {
+  .alerta {
+    display: none;
+  }
+
+  .header_main{
+  	padding: 20px;
+  }
+
+ .main_nav_content{background-color: #b4f22f!important;}
+ .menu_trigger_text{color: black!important;}
+ .page_menu_content {background-color: #b4f22f!important;}
+ .page_menu_item > a {color: black;}
+ .menu_contact_icon{display: none;}
+ .menu_contact_icon{display: none;}
+ .menu_contact_item{color: black!important;}
+ .menu_contact_item a {color: black!important;}
+
+
+
+
+
+
+}
