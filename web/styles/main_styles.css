@@ -3680,7 +3680,15 @@ select option
  .menu_contact_icon{display: none;}
  .menu_contact_item{color: black!important;}
  .menu_contact_item a {color: black!important;}
-
+ .banner_price span{display: unset;}
+ .product_image{height:250px;}
+ .popular_categories{display: none;}
+ .new_arrivals .tabs-right{padding-top: 10px;}
+ .catf{display: none;}
+ .polf{display: none;}
+ .shop_sidebar{display: none;}
+ .shop{padding-top: 10px!important;}
+ .shop_content{margin-top: 10px!important;}
 
 
 
