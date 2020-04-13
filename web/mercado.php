@@ -23,17 +23,18 @@
       return $this->dbh->query("SET NAMES 'utf8'");
     }
   }
-
+	$db = new Tienda();
 
 
 	$id=$_REQUEST['id'];
 	echo "pago:".$id;
+
 	$texto="pago:".$id;
 
 	$sql="insert into new_table (log) values (:log)";
 	$sth = $db->dbh->prepare($sql);
 	$sth->bindValue(':log',$texto);
-	$sth->execute();
+	echo $sth->execute();
 
 
 
