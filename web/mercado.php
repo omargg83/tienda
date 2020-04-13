@@ -4,8 +4,8 @@
 	// Parsear el contenido como JSON.
 	$texto=$input;
 
-	
-	$eventJson = json_decode($input);
+
+	$eventJson = json_encode($input);
 	$id1=$eventJson['id'];
 
 
