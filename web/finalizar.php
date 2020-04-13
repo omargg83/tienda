@@ -21,7 +21,7 @@
 	$telefono=$resp->telefono;
 	$correo=$resp->correo;
 
-	
+
 ?>
 
 <!DOCTYPE html>
@@ -36,18 +36,15 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 
-
 <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
 <link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/cart_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/cart_responsive.css">
 </head>
-
 <body>
 
 <div class="super_container">
-
 	<!-- Header -->
 	<header class="header">
 		<?php

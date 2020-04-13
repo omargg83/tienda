@@ -462,7 +462,7 @@
 		public function carro_list(){
 			try{
 				self::set_names();
-				$sql="select cliente_carro.id, productos.img, productos.nombre, productos.preciof, productos.precio_tipo, productos.precio_tic, productos.envio_costo, productos.envio_tipo, productos.idProducto, productos.clave, productos.numParte, productos.modelo, productos.marca, productos.categoria, productos.descripcion_corta from cliente_carro
+				$sql="select cliente_carro.id, productos.img, productos.nombre, productos.preciof, productos.precio_tipo, productos.precio_tic, productos.envio_costo, productos.envio_tipo, productos.idProducto, productos.clave, productos.numParte, productos.modelo, productos.marca, productos.categoria, productos.descripcion_corta, productos.interno from cliente_carro
 				left outer join productos on productos.id=cliente_carro.idproducto
 				where cliente_carro.idcliente=:id";
 				$sth = $this->dbh->prepare($sql);
@@ -922,7 +922,8 @@
 					$arreglo+= array('estado'=>$estado);
 					$arreglo+= array('correo'=>$correo);
 					$arreglo+= array('idcliente'=>$_SESSION['idcliente']);
-
+					$arreglo+= array('factura'=>$factura);
+					$arreglo+= array('notas'=>$notas);
 					$x="";
 					if($id==0){
 						$x=$this->insert('pedidos', $arreglo);
@@ -974,9 +975,15 @@
 							$arreglo+= array('marca'=>$key->marca);
 							$arreglo+= array('categoria'=>$key->categoria);
 							$arreglo+= array('descripcion_corta'=>$key->descripcion_corta);
-							$arreglo+= array('factura'=>$factura);
-							$arreglo+= array('notas'=>$notas);
+
+							if($key->interno==1){
+								$arreglo+= array('tipo'=>"TIC");
+							}
+							else{
+								$arreglo+= array('tipo'=>"CT");
+							}
 							$this->insert('pedidos_prod', $arreglo);
+
 							$total+=$preciof;
 							$totalEnvio+=$envio;
 						}

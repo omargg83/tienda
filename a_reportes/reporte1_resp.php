@@ -36,7 +36,11 @@
           echo "<td class='text-right'>".moneda($key->envio)."</td>";
           echo "<td class='text-right'>".moneda($key->total)."</td>";
           echo "<td>".$key->estatus."</td>";
-          echo "<td>".$key->factura."</td>";
+          echo "<td>";
+            if($key->factura){
+              echo "Facturar";
+            }
+          echo "</td>";
           echo "<td>".$key->pago."</td>";
           echo "<td>".$key->estado_pago."</td>";
           echo "<td>".$key->nombre." ".$key->apellido."</td>";
