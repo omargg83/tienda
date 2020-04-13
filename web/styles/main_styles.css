@@ -3689,9 +3689,14 @@ select option
  .shop_sidebar{display: none;}
  .shop{padding-top: 10px!important;}
  .shop_content{margin-top: 10px!important;}
-
-
-
-
+ .descripcioprod{width: 100%;flex: 0 0 100%; max-width: 100%;}
+ .whislist{display: none!important;}
+ 
+ .cartlist{width: 100%;flex: 0 0 100%; max-width: 100%; margin-bottom: 20px;}
+ .cartgris{width: 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-top: 20px;}
+#pedido div{width: 100%;flex: 0 0 100%; max-width: 100%; margin-bottom: 5px;}
 
 }

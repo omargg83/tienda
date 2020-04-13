@@ -36,7 +36,7 @@
 		<h3 class='text-center'>Carrito de compras</h3>
 
 		<div class='row'>
-			<div class='col-8'>
+			<div class='col-8 cartlist'>
 				<div class='row'>
 					<div class='col-3 text-center'>
 						<b>Opciones</b>
@@ -129,7 +129,7 @@
 
 				?>
 			</div>
-			<div class='col-4'>
+			<div class='col-4 cartgris'>
 				<div class="jumbotron">
 					<?php
 						echo "<h4>TOTAL DEL CARRITO</h4>";

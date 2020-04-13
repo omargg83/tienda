@@ -185,7 +185,7 @@
 			<hr>
 
 			<div class="row">
-				<div class='col-6'>
+				<div class='col-6 descripcioprod'>
 					<h3>Especificaciones</h3>
 					<?php
 
@@ -205,7 +205,7 @@
 
 					?>
 				</div>
-				<div class='col-6'>
+				<div class='col-6 descripcioprod'>
 					<h3>Más información</h3>
 					<?php
 						echo $prod->descripcion_larga;
