@@ -14,7 +14,7 @@
 
 		$ped=$db->pedido_ver($idpedido);
 
-	  if($payment_status=="accredited"){
+	  if($payment_status=="approved"){
 			$arreglo =array();
 			$arreglo+= array('estatus'=>"procesando");
 			$arreglo+= array('pago'=>"Mercado Pago");
