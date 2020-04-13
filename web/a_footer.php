@@ -63,7 +63,7 @@
         </div>
       </div>
 
-      <div class="col-lg-2 offset-lg-2">
+      <div class="col-lg-2 offset-lg-2 catf">
         <div class="footer_column">
           <div class="footer_title">Categorias</div>
           <ul class="footer_list">
@@ -78,7 +78,7 @@
           </ul>
         </div>
       </div>
-      <div class="col-lg-2 offset-lg-2">
+      <div class="col-lg-2 offset-lg-2 polf">
         <div class="footer_column">
           <div class="footer_title">POLITICAS DE LA EMPRESA</div>
           <ul class="footer_list footer_list_2">
