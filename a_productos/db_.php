@@ -223,13 +223,16 @@ class Productos extends Tienda{
 			if (isset($_REQUEST['envio_tipo'])){
 				$arreglo+= array('envio_tipo'=>$_REQUEST['envio_tipo']);
 			}
-			if (isset($_REQUEST['cb_ofertasemana'])){
+			if (isset($_REQUEST['cb_ofertasemana']) and strlen($_REQUEST['cb_ofertasemana'])>0){
 				$arreglo+= array('cb_ofertasemana'=>$_REQUEST['cb_ofertasemana']);
 			}
-			if (isset($_REQUEST['cb_prodsemana'])){
+			else{
+				$arreglo+= array('cb_ofertasemana'=>NULL);
+			}
+			if (isset($_REQUEST['cb_prodsemana']) and strlen($_REQUEST['cb_prodsemana'])>0){
 				$arreglo+= array('cb_prodsemana'=>$_REQUEST['cb_prodsemana']);
 			}
-			if (isset($_REQUEST['cb_destacados'])){
+			if (isset($_REQUEST['cb_destacados']) and strlen($_REQUEST['cb_destacados'])>0){
 				$arreglo+= array('cb_destacados'=>$_REQUEST['cb_destacados']);
 			}
 			if (isset($_REQUEST['activo'])){

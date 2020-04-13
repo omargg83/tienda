@@ -410,7 +410,7 @@
 		public function productos_destacados(){
 			try{
 				self::set_names();
-				$sql="SELECT * from productos where cb_destacados=1";
+				$sql="SELECT * from productos where cb_destacados=1 and activo=1 and existencia>0";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
 				return $sth->fetchAll(PDO::FETCH_OBJ);
@@ -423,7 +423,7 @@
 		public function productos_semana(){
 			try{
 				self::set_names();
-				$sql="SELECT * from productos where cb_prodsemana=1";
+				$sql="SELECT * from productos where cb_prodsemana=1 and activo=1 and existencia>0";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
 				return $sth->fetchAll(PDO::FETCH_OBJ);
@@ -437,7 +437,7 @@
 		public function ofertas(){
 			try{
 				self::set_names();
-				$sql="SELECT * from productos where cb_ofertasemana=1";
+				$sql="SELECT * from productos where cb_ofertasemana=1 and activo=1 and existencia>0";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
 				return $sth->fetchAll(PDO::FETCH_OBJ);
@@ -449,7 +449,7 @@
 		public function relacionados($subcategoria){
 			try{
 				self::set_names();
-				$sql="SELECT * from productos where subcategoria='$subcategoria' and activo=1 limit 20";
+				$sql="SELECT * from productos where subcategoria='$subcategoria' and activo=1 and existencia>0 limit 20";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
 				return $sth->fetchAll(PDO::FETCH_OBJ);
@@ -669,7 +669,7 @@
 			try{
 				self::set_names();
 				$texto=trim(htmlspecialchars($_REQUEST['texto']));
-				$sql="SELECT * from productos where activo=1 and
+				$sql="SELECT * from productos where activo=1 and existencia>0 and
 				(clave like :texto or nombre like :texto or modelo like :texto or marca like :texto or idProducto like :texto) limit 100";
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(":texto","%".$texto."%");
