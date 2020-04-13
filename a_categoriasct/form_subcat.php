@@ -22,8 +22,8 @@
 		echo "<input  type='hidden' id='idcategoria' NAME='idcategoria' value='$id2'>";
 	?>
 		<div class="form-row">
-		 <div class="form-group col-md-3">
-			 <label for="descripcion">Subcategoria (CT)</label>
+		 <div class="form-group col-md-6">
+			 <label for="descripcion">Subcategoria</label>
 			 <input type="text" class="form-control" id="subcategoria" name='subcategoria' placeholder="Subcategoria (CT)" value="<?php echo $subcategoria; ?>"
 			 <?php
 				 if($interno==1){

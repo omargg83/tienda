@@ -9,6 +9,9 @@
   $installments = $_REQUEST["installments"];
   $issuer_id = $_REQUEST["issuer_id"];
 	$idx = $_REQUEST["idx"];
+
+	
+
 	$ped=$db->pedido_ver($idx);
 
 	$nombre=$ped->nombre;
@@ -46,7 +49,7 @@
 		}
 	}
 	else{
-		
+
 	}
 	echo $payment->status;
 

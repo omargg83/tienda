@@ -59,6 +59,7 @@ class Clientes extends Tienda{
 			if (isset($_REQUEST['enlace'])){
 				$arreglo+= array('enlace'=>$_REQUEST['enlace']);
 			}
+
 			$x="";
 			if($id==0){
 				$x=$this->insert('baner', $arreglo);
@@ -103,6 +104,9 @@ class Clientes extends Tienda{
 			}
 			if (isset($_REQUEST['enlace'])){
 				$arreglo+= array('enlace'=>$_REQUEST['enlace']);
+			}
+			if (isset($_REQUEST['activo'])){
+				$arreglo+= array('activo'=>$_REQUEST['activo']);
 			}
 			$x="";
 			if($id==0){

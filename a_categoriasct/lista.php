@@ -12,6 +12,7 @@
 			<th>Categoria CT</th>
 			<th>Nombre para mostrar</th>
 			<th>Subcategoria CT</th>
+			<th>Origen</th>
 			</tr>
 			</thead>
 			<tbody>
@@ -28,12 +29,19 @@
 						echo "<td>".$key["heredado"]."</td>";
 						echo "<td>";
 						$row=$db->producto_cat($key['id']);
-						foreach($row as $key){
-							echo $key['subcategoria'].", ";
+						foreach($row as $key2){
+							echo $key2['subcategoria'].", ";
 						}
 
 						echo "</td>";
-
+						echo "<td>";
+							if ($key["interno"]==0){
+								echo "CT";
+							}
+							else{
+								echo "TIC";
+							}
+						echo "</td>";
 						echo "</tr>";
 					}
 				}

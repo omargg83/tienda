@@ -58,14 +58,12 @@
 					echo "<div class='card-body'>";
 						echo "<table class='table table-sm' id='x_listacat' class='display compact hover'>";
 						$row=$db->producto_cat($id);
-						echo "<thead><tr><th>-</th><th>Subcategoria CT</th><th>Nompre para mostrar</th></tr></thead>";
+						echo "<thead><tr><th>-</th><th>Subcategoria CT</th><th>Nompre para mostrar</th><th>CT/TIC</th></tr></thead>";
 						foreach($row as $key){
 							echo "<tr id='".$key['id']."' class='edit-t'>";
 							echo "<td>";
 								echo "<div class='btn-group'>";
-								if($key['interno']==1){
-									echo "<button class='btn btn-outline-secondary btn-sm' id='eliminar_cat' data-lugar='a_categoriasct/db_' data-destino='a_categoriasct/editar' data-id='".$key['idcatprod']."' data-iddest='$id' data-funcion='quitar_categoria' data-div='trabajo'><i class='far fa-trash-alt'></i></i></button>";
-								}
+								
 									echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_pass' data-id='".$key['id']."' data-id2='$id' data-lugar='a_categoriasct/form_subcat' title='Subcategorias'><i class='fas fa-pencil-alt'></i></button>";
 								echo "</div>";
 							echo "</td>";
@@ -74,6 +72,15 @@
 							echo "</td>";
 							echo "<td>";
 							echo $key['heredado'];
+							echo "</td>";
+							echo "<td>";
+								echo $key["interno"];
+								if ($key["interno"]==0){
+									echo "CT";
+								}
+								else{
+									echo "TIC";
+								}
 							echo "</td>";
 							echo "<tr>";
 						}
