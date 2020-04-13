@@ -1,5 +1,20 @@
 <?php
   session_start();
+
+	$method=$_SERVER['REQUEST_METHOD'];
+	echo $method;
+	$url=$_SERVER['REQUEST_URI'];
+	echo "uri:".$url;
+	$method=$_SERVER['REQUEST_METHOD'];
+
+	$url_components = parse_url($url);
+	parse_str($url_components['query'], $params);
+
+	// Display result
+	echo ' Hi '.$params['query'];
+
+
+
   class Tienda{
     public $nivel_personal;
     public $nivel_captura;
@@ -29,7 +44,7 @@
 	$topic=$_REQUEST['topic'];
 	$id=$_REQUEST['id'];
 	echo "<br>topic:".$topic;
-	echo "<br>IP:".$topic;
+	echo "<br>IP:".$id;
 
 	$texto="pago:".$id."  Topic: $topic";
 

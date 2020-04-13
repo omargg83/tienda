@@ -25,7 +25,6 @@
 	$telefono=$ped->telefono;
 	$total=$ped->total;
 
-	echo $total;
 	////////////////////////
 	require __DIR__ .  '/vendor/autoload.php';
 
