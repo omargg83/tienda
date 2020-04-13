@@ -13,7 +13,7 @@
 	}
 ?>
 <div class='container'>
-	<form id='form_comision' action='' data-lugar='a_categoriasct/db_' data-destino='a_categoriasct/editar' data-funcion='guardar_categoriact'>
+	<form id='form_cat' action='' data-lugar='a_categoriasct/db_' data-destino='a_categoriasct/editar' data-funcion='guardar_categoriact'>
 		<div class='card'>
 			<div class='card-header'>
 				<?php echo $categoria; ?>
@@ -23,7 +23,7 @@
 
 				<div class="form-row">
 				 <div class="form-group col-md-3">
-					 <label for="descripcion">Categoria (CT)</label>
+					 <label for="descripcion">Categoria</label>
 					 <input type="text" class="form-control" id="categoria" name='categoria' placeholder="Categoria" value="<?php echo $categoria; ?>"
 					 <?php
 					 	if($interno==1){
@@ -63,8 +63,12 @@
 							echo "<tr id='".$key['id']."' class='edit-t'>";
 							echo "<td>";
 								echo "<div class='btn-group'>";
-								
-									echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_pass' data-id='".$key['id']."' data-id2='$id' data-lugar='a_categoriasct/form_subcat' title='Subcategorias'><i class='fas fa-pencil-alt'></i></button>";
+									echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_pass".$key['id']."' data-id='".$key['id']."' data-id2='$id' data-lugar='a_categoriasct/form_subcat' title='Subcategorias'><i class='fas fa-pencil-alt'></i></button>";
+
+									if ($key["interno"]==1){
+										echo "<button class='btn btn-outline-secondary btn-sm' id='eliminar_sub".$key['id']."' data-lugar='a_categoriasct/db_' data-destino='a_categoriasct/editar' data-id='".$key['id']."' data-funcion='quitar_subcat' data-iddest='$id' data-div='trabajo'><i class='far fa-trash-alt'></i></i></button>";
+									}
+
 								echo "</div>";
 							echo "</td>";
 							echo "<td>";
@@ -74,7 +78,6 @@
 							echo $key['heredado'];
 							echo "</td>";
 							echo "<td>";
-								echo $key["interno"];
 								if ($key["interno"]==0){
 									echo "CT";
 								}

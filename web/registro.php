@@ -1,7 +1,7 @@
 <?php
 	require_once("control_db.php");
 	$db = new Tienda();
-	
+
 	if(isset($_SESSION['autoriza_web']) and $_SESSION['autoriza_web']==1 and strlen($_SESSION['idcliente'])>0 and $_SESSION['interno']==1){
 		header('Location: datos.php');
 	}
@@ -46,19 +46,16 @@
 			<div class="container">
 				<h3 class='text-center'>Registro</h3>
 				<div class="row">
-					<div class="col-4 offset-4">
+					<div class="col-4">
 			      <label class='text-center'>Nombre</label>
 			      <input type="text" class="form-control" id="nombre" name='nombre' placeholder="Nombre" value="<?php echo $nombre; ?>" required>
 			    </div>
-		    </div>
-				<div class="row">
-					<div class="col-4 offset-4">
+		    
+					<div class="col-4">
 			      <label class='text-center'>Apellidos</label>
 			      <input type="text" class="form-control" id="apellido" name='apellido' placeholder="Apellidos" value="<?php echo $apellido; ?>" required autocomplete="off">
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-4 offset-4">
+					<div class="col-4">
 			      <label class='text-center'>Correo</label>
 			      <input type="email" class="form-control" id="correo" name='correo' placeholder="Correo" value="<?php echo $correo; ?>" required autocomplete="off">
 			    </div>
@@ -66,7 +63,7 @@
 				<div class="row">
 					<div class="col-4 offset-4">
 			      <label class='text-center'>Contraseña</label>
-			      <input type="password" class="form-control" id="pass" name='pass' placeholder="Contraseña" value="<?php echo $pass; ?>" required autocomplete="off">
+			      <input type="TEXT" class="form-control" id="pass" name='pass' placeholder="Contraseña" value="<?php echo $pass; ?>" required autocomplete="off">
 					</div>
 				</div>
 				<div class="row">
@@ -75,6 +72,65 @@
 			      <input type="password" class="form-control" id="pass2" name='pass2' placeholder="Contraseña" value="<?php echo $pass; ?>" required autocomplete="off">
 			    </div>
 				</div>
+				<div class='row' id='factura_div' style='display:none'>
+					<div class="col-3">
+						<label>RFC</label>
+						<input type="text" class="form-control" id="rfc" name='rfc' placeholder="RFC" value="<?php echo $rfc; ?>">
+					</div>
+
+					<div class="col-6">
+						<label>Uso cfdi</label>
+						<input type="text" class="form-control" id="cfdi" name='cfdi' placeholder="Uso cfdi" value="<?php echo $cfdi; ?>" >
+					</div>
+				</div>
+
+				<div class='row'>
+					<div class="col-12">
+						<label>Dirección (linea 1)</label>
+						<input type="text" class="form-control" id="direccion1" name='direccion1' placeholder="Dirección (linea 1)" value="<?php echo $direccion1; ?>" required>
+					</div>
+					<div class="col-12">
+						<label>Dirección (linea 2)</label>
+						<input type="text" class="form-control" id="direccion2" name='direccion2' placeholder="Dirección (linea 2)" value="<?php echo $direccion2; ?>" >
+					</div>
+					<div class="col-4">
+						<label>Ciudad</label>
+						<input type="text" class="form-control" id="ciudad" name='ciudad' placeholder="Ciudad" value="<?php echo $ciudad; ?>" required>
+					</div>
+					<div class="col-4">
+						<label>Código postal</label>
+						<input type="text" class="form-control" id="cp" name='cp' placeholder="Código postal" value="<?php echo $cp; ?>" required>
+					</div>
+					<div class="col-4">
+						<label>Pais</label>
+						<input type="text" class="form-control" id="pais" name='pais' placeholder="Pais" value="<?php echo $pais; ?>" required>
+					</div>
+					<div class="col-4">
+						<label>Estado</label>
+						<input type="text" class="form-control" id="estado" name='estado' placeholder="Estado" value="<?php echo $estado; ?>" required>
+					</div>
+					<div class="col-4">
+						<label>Teléfono</label>
+						<input type="text" class="form-control" id="telefono" name='telefono' placeholder="Teléfono" value="<?php echo $telefono; ?>" required>
+					</div>
+				</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 				<div class="row">
 					<div class="col-4 offset-4">

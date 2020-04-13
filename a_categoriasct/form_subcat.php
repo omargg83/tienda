@@ -24,7 +24,7 @@
 		<div class="form-row">
 		 <div class="form-group col-md-6">
 			 <label for="descripcion">Subcategoria</label>
-			 <input type="text" class="form-control" id="subcategoria" name='subcategoria' placeholder="Subcategoria (CT)" value="<?php echo $subcategoria; ?>"
+			 <input type="text" class="form-control" id="subcategoria" name='subcategoria' placeholder="Subcategoria" value="<?php echo $subcategoria; ?>"
 			 <?php
 				 if($interno==1){
 

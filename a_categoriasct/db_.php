@@ -45,15 +45,15 @@ class Categorias extends Tienda{
 			$arreglo =array();
 
 			if (isset($_REQUEST['categoria'])){
-				$arreglo = array('categoria'=>$_REQUEST['categoria']);
+				$arreglo+= array('categoria'=>$_REQUEST['categoria']);
 			}
 			if (isset($_REQUEST['heredado'])){
-				$arreglo = array('heredado'=>$_REQUEST['heredado']);
+				$arreglo+= array('heredado'=>$_REQUEST['heredado']);
 			}
 
 			$x="";
 			if($id==0){
-				$arreglo = array('interno'=>1);
+				$arreglo+= array('interno'=>1);
 				$x=$this->insert('categoria_ct', $arreglo);
 			}
 			else{
@@ -65,7 +65,10 @@ class Categorias extends Tienda{
 			return "Database access FAILED!".$e->getMessage();
 		}
 	}
-
+	public function quitar_cat(){
+		if (isset($_POST['id'])){$id=$_REQUEST['id'];}
+		return $this->borrar('categoria_ct',"id",$id);
+	}
 
 	public function edita_subcat($id){
 		try{
@@ -87,22 +90,29 @@ class Categorias extends Tienda{
 			$arreglo =array();
 
 			if (isset($_REQUEST['subcategoria'])){
-				$arreglo = array('subcategoria'=>$_REQUEST['subcategoria']);
+				$arreglo+= array('subcategoria'=>$_REQUEST['subcategoria']);
 			}
 			if (isset($_REQUEST['heredado'])){
-				$arreglo = array('heredado'=>$_REQUEST['heredado']);
+				$arreglo+= array('heredado'=>$_REQUEST['heredado']);
 			}
 
 			$x="";
 			if($id==0){
-				$arreglo = array('interno'=>1);
-				$arreglo = array('idcategoria'=>$idcategoria);
+				$arreglo+= array('interno'=>1);
+				$arreglo+= array('idcategoria'=>$idcategoria);
 				$x=$this->insert('categoriasub_ct', $arreglo);
 			}
 			else{
 				$x=$this->update('categoriasub_ct',array('id'=>$id), $arreglo);
 			}
-			return $x;
+			$arreglo =array();
+			$arreglo+=array('id'=>$idcategoria);
+			$arreglo+=array('error'=>0);
+			$arreglo+=array('terror'=>0);
+			$arreglo+=array('param1'=>"");
+			$arreglo+=array('param2'=>"");
+			$arreglo+=array('param3'=>"");
+			return json_encode($arreglo);
 		}
 		catch(PDOException $e){
 			return "Database access FAILED!".$e->getMessage();
@@ -147,6 +157,11 @@ class Categorias extends Tienda{
 			return "Database access FAILED!".$e->getMessage();
 		}
 	}
+	public function quitar_subcat(){
+		if (isset($_POST['id'])){$id=$_REQUEST['id'];}
+		return $this->borrar('categoriasub_ct',"id",$id);
+	}
+
 }
 $db = new Categorias();
 if(strlen($function)>0){
