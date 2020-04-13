@@ -20,6 +20,7 @@
     <th>Factura</th>
     <th>Pago</th>
     <th>Estado del pago</th>
+    <th># Pago</th>
     <th>Cliente</th>
     <th>RFC</th>
     <th>Correo</th>
@@ -43,6 +44,7 @@
           echo "</td>";
           echo "<td>".$key->pago."</td>";
           echo "<td>".$key->estado_pago."</td>";
+          echo "<td>".$key->idpago."</td>";
           echo "<td>".$key->nombre." ".$key->apellido."</td>";
           echo "<td>".$key->rfc."</td>";
           echo "<td>".$key->correo."</td>";
