@@ -21,7 +21,7 @@
 			$arreglo+= array('idpago'=>$payment_id);
 			$arreglo+= array('estado_pago'=>$payment_status);
 			$x=$db->update('pedidos',array('id'=>$idpedido), $arreglo);
-			echo $x;
+			echo "respuesta:".$x;
 			$ped=json_decode($x);
 			$id=$ped->id;
 			if($ped->error==0){
