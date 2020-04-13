@@ -35,38 +35,14 @@
 					</div>
 				</div>
 
-				<div class="form-group row">
-					<label for="staticEmail" class="col-sm-4 col-form-label">HOST</label>
-					<div class="col-sm-8">
-						<input type="text"  class="form-control" id="host" name='host' value="<?php echo $host; ?>" placeholder='smtp.gmail.com'>
-					</div>
-				</div>
-
-				<div class="form-group row">
-					<label for="staticEmail" class="col-sm-4 col-form-label">SMTPAuth</label>
-					<div class="col-sm-8">
-						<input type="text"  class="form-control" id="SMTPAuth" name='SMTPAuth' value="<?php echo $SMTPAuth; ?>" placeholder='true'>
-					</div>
-				</div>
 
 				<div class="form-group row">
 					<label for="staticEmail" class="col-sm-4 col-form-label">Password</label>
 					<div class="col-sm-8">
-						<input type="password"  class="form-control" id="Password" name='Password' value="<?php echo $Password; ?>" placeholder='Password'>
+						<input type="text"  class="form-control" id="Password" name='Password' value="<?php echo $Password; ?>" placeholder='Password'>
 					</div>
 				</div>
-				<div class="form-group row">
-					<label for="staticEmail" class="col-sm-4 col-form-label">SMTPSecure</label>
-					<div class="col-sm-8">
-						<input type="text"  class="form-control" id="SMTPSecure" name='SMTPSecure' value="<?php echo $SMTPSecure; ?>" placeholder='ssl'>
-					</div>
-				</div>
-				<div class="form-group row">
-					<label for="staticEmail" class="col-sm-4 col-form-label">Port</label>
-					<div class="col-sm-8">
-						<input type="text"  class="form-control" id="Port" name='Port' value="<?php echo $Port; ?>" placeholder='465'>
-					</div>
-				</div>
+
 
 				<hr>
 

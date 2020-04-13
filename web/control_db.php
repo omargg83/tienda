@@ -1232,10 +1232,11 @@
 			$mail->SMTPAutoTLS = false;
 			$mail->Port = 25;
 
-			$mail->Username = "admin@tic-shop.com.mx";
-			$mail->Password = "UZT]jx,ebp1*";
+			$mail->Username = $this->ecorreo;
+			$mail->Password = $this->Password;
 			$mail->setFrom("admin@tic-shop.com.mx", 'TIC-SHOP');
 			$mail->addAddress($correo, $nombre);
+			$mail->addCC("admin@tic-shop.com.mx");
 
 			/*
 			GMAIL SIRVE
