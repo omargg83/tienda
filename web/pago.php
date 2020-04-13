@@ -38,12 +38,12 @@
 
 	// Crea un ítem en la preferencia
 	$item = new MercadoPago\Item();
-	$item->title = 'Mi producto';
+	$item->title = 'TIC-SHOP';
 	$item->quantity = 1;
-	$item->unit_price = 75.56;
+	$item->unit_price = $total;
 	$preference->items = array($item);
 	$preference->save();
-	
+
 	echo "<br>".$preference->id;
 	echo "nuevo mercado pago";
 ?>
@@ -283,7 +283,7 @@
 						echo "</div>";
 					?>
 
-					<form action="/procesar-pago" method="POST">
+					<form action="https://www.tic-shop.com.mx/tienda/web/pago_fin.php" method="POST">
 					  <script
 					   src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js"
 					   data-preference-id="<?php echo $preference->id; ?>">
