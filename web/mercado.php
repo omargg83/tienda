@@ -4,9 +4,10 @@
 	// Parsear el contenido como JSON.
 	$texto=$input;
 
+	$event_json = json_decode($input);
 
-	$eventJson = json_encode($input);
-	$id1=$eventJson['id'];
+	// for extra security, retrieve from the Stripe API
+	$id1 = $event_json->id;
 
 
 
