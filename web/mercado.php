@@ -1,5 +1,6 @@
 <?php
   session_start();
+	$resp=var_dump($_REQUEST);
   class Tienda{
     public $nivel_personal;
     public $nivel_captura;
@@ -33,7 +34,7 @@
 
 	$sql="insert into new_table (log) values (:log)";
 	$sth = $db->dbh->prepare($sql);
-	$sth->bindValue(':log',$texto);
+	$sth->bindValue(':log',$resp);
 	echo $sth->execute();
 
 
