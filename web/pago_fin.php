@@ -159,7 +159,7 @@
 
 						$texto.= "</tr>";
 					}
-
+					$texto.="</table>";
 					///////////////////////////////////
 
 						$texto.= "<h4>TOTAL DE LA COMPRA</h4>";
@@ -181,7 +181,6 @@
 							$texto.= "</div>";
 						$texto.= "</div>";
 
-						$texto.= "<hr>";
 						$texto.= "<div class='row'>";
 							$texto.= "<div class='col-2 offset-8 text-right'>";
 								$texto.= "<b>Total</b>";
