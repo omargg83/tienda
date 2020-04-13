@@ -7,7 +7,7 @@
 	$event_json = json_decode($input);
 
 	// for extra security, retrieve from the Stripe API
-	$id1 = $event_json->id;
+	$id1 = $event_json->data->id;
 
 
 
