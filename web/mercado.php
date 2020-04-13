@@ -1,6 +1,7 @@
 <?php
   session_start();
 	$resp=var_dump($_REQUEST);
+	echo $resp;
   class Tienda{
     public $nivel_personal;
     public $nivel_captura;
@@ -36,8 +37,6 @@
 	$sth = $db->dbh->prepare($sql);
 	$sth->bindValue(':log',$resp);
 	echo $sth->execute();
-
-
 
 	if (isset($_GET["id"], $_GET["topic"])) {
 	    http_response_code(200);

@@ -6,10 +6,6 @@
 		$payment_id=$_REQUEST['payment_id'];
 		$payment_status=$_REQUEST['payment_status'];
 
-		echo "<br>idpedido:".$idpedido;
-		echo "<br>payment_id:".$payment_id;
-		echo "<br>payment_status':".$payment_status;
-
 		$ped=$db->pedido_ver($idpedido);
 
 	  if($payment_status=="approved"){
@@ -28,7 +24,7 @@
 		else{
 
 		}
-		
+
 		$ped=$db->pedido_ver($idpedido);
 		$datos=$db->datos_pedido($idpedido);
 
