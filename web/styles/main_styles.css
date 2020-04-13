@@ -1194,12 +1194,18 @@ select option
 {
 	z-index: 1;
 }
+
+.banner_content p
+{
+	color:white;
+}
+
 .banner_text
 {
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 500;
 	line-height: 1.166;
-	color: #7599b2;
+	color: white;
 	text-transform: uppercase;
 	letter-spacing: 0.038em;
 }
