@@ -1229,15 +1229,36 @@
 			try {
 				//$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
 	    	$mail->isSMTP();
+				$mail->Host = 'smtp.gmail.com';
+				// use
+				// $mail->Host = gethostbyname('smtp.gmail.com');
+				// if your network does not support SMTP over IPv6
 
+				//Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
+				$mail->Port = 587;
+
+				//Set the encryption mechanism to use - STARTTLS or SMTPS
+				$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+
+				//Whether to use SMTP authentication
+				$mail->SMTPAuth = true;
+
+				//Username to use for SMTP authentication - use full email address for gmail
+				$mail->Username = $this->ecorreo;
+
+				//Password to use for SMTP authentication
+				$mail->Password = $this->Password;
+				/*
 				                                    // Set mailer to use SMTP
 				$mail->Host = $this->host;						  // Specify main and backup SMTP servers
 				$mail->SMTPAuth = $this->SMTPAuth;                               // Enable SMTP authentication
 				$mail->Username = $this->ecorreo;       // SMTP username
 				$mail->Password = $this->Password;                       // SMTP password
+
+				/*
 				$mail->SMTPSecure = $this->SMTPSecure;                            // Enable TLS encryption, `ssl` also accepted
 				$mail->Port = $this->Port;                                    // TCP port to connect to
-
+				*/
 				$mail->CharSet = 'UTF-8';
 
 				$mail->From = $this->ecorreo;
