@@ -228,7 +228,7 @@
 
             <div class="page_menu_search">
               <form action="#">
-                <input type="search" required="required" class="page_menu_search_input" placeholder="Search for products..." onkeyup='Javascript: if (event.keyCode==13) buscar()'>
+                <input type="search" required="required" class="page_menu_search_input" name='bucar_textm' id='bucar_textm' placeholder="Buscar productos" onkeyup='Javascript: if (event.keyCode==13) buscar_prod2()'>
               </form>
             </div>
             <ul class="page_menu_nav">

@@ -253,6 +253,7 @@
 							echo "</div>";
 						echo "</div>";
 						echo "<button type='submit' class='btn btn-warning btn-block'><i class='fas fa-cart-plus'></i>Finalizar pedido</button>";
+						echo "<input type='checkbox' id='terminos' name='terminos' value=1 required checked> Acepto<a href='terminos-condiciones.php' target='blanck_'>Términos y condiciones</a>";
 					?>
 				</div>
 			</div>

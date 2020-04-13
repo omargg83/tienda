@@ -175,6 +175,9 @@ function borra_carrito(id){
 function buscar_prod(){
   window.location.href="busca.php?texto="+$("#bucar_text").val();
 }
+function buscar_prod2(){
+  window.location.href="busca.php?texto="+$("#bucar_textm").val();
+}
 function estrella(idproducto){
   $.confirm({
       title: 'Calificación',

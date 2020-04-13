@@ -940,14 +940,14 @@
 								$preciof=$key->preciof;
 							}
 							if($key->precio_tipo==1){
-								$p_total=$key->preciof+(($key->preciof*$db->cgeneral)/100);
+								$p_total=$key->preciof+(($key->preciof*$this->cgeneral)/100);
 								$preciof=$p_total;
 							}
 							if($key->precio_tipo==2){
 								$preciof=$key->precio_tic;
 							}
 							if($key->precio_tipo==3){
-								$p_total=$key->precio_tic+(($key->precio_tic*$db->cgeneral)/100);
+								$p_total=$key->precio_tic+(($key->precio_tic*$this->cgeneral)/100);
 								$preciof=$p_total;
 							}
 							//////////////////envio
@@ -1222,121 +1222,59 @@
 			$cantidad=$_REQUEST['cantidad'];
 			$comentario=$_REQUEST['comentario'];
 			$x="";
+			require 'vendor/autoload.php';
 
+			$mail = new PHPMailer;
+			$mail->isSMTP();
 
-				require 'vendor/autoload.php';
+			$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+			$mail->Host = 'smtp.gmail.com';
+			$mail->Port = 587;
+			$mail->SMTPAuth = true;
 
-					//Create a new PHPMailer instance
-					$mail = new PHPMailer;
+			$mail->Username = $this->ecorreo;
+			$mail->Password = $this->Password;
+			$mail->setFrom($this->ecorreo, 'TIC-SHOP');
+			$mail->addAddress($correo, $nombre);
+			$mail->CharSet = 'UTF-8';
+			//Set the subject line
+			$mail->Subject = 'Cotización de Mayoreo';
 
-					//Tell PHPMailer to use SMTP
-					$mail->isSMTP();
+			//Read an HTML message body from an external file, convert referenced images to embedded,
+			//convert HTML into a basic plain-text alternative body
+			$texto="<h4><b>Cotización de productos al mayoreo</b></h4>";
+			$texto.="<br>Producto:";
+			$texto.="<br><b>$clave</b> - $producto<br>";
+			$texto.="$descripcion_corta";
+			$texto.="<br><br>";
+			$texto.="<br>Correo: $correo";
+			$texto.="<br>Nombre: $nombre -";
+			$texto.="<br>Cantidad: $cantidad";
+			$texto.="<br>Observaciones: $comentario";
 
-					// use
-					// $mail->Host = gethostbyname('smtp.gmail.com');
-					// if your network does not support SMTP over IPv6
-					$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-					$mail->Host = 'smtp.gmail.com';
-					$mail->Port = 587;
+			$mail->msgHTML($texto);
 
-					//Whether to use SMTP authentication
-					$mail->SMTPAuth = true;
-
-					//Username to use for SMTP authentication - use full email address for gmail
-					$mail->Username = $this->ecorreo;
-
-					//Password to use for SMTP authentication
-					$mail->Password = $this->Password;
-
-					//Set who the message is to be sent from
-
-					$mail->setFrom($this->ecorreo, 'First Last');
-					$mail->addAddress($correo, 'John Doe');
-					//Set the subject line
-					$mail->Subject = 'PHPMailer GMail SMTP test';
-
-					//Read an HTML message body from an external file, convert referenced images to embedded,
-					//convert HTML into a basic plain-text alternative body
-					$mail->msgHTML("hola mundo");
-
-					//Replace the plain text body with one created manually
-					$mail->AltBody = 'This is a plain-text message body';
-
-
-
-
-					//send the message, check for errors
-					if (!$mail->send()) {
-					    echo 'Mailer Error: '. $mail->ErrorInfo;
-					} else {
-					    echo 'Message sent!';
-					    //Section 2: IMAP
-					    //Uncomment these to save your message in the 'Sent Mail' folder.
-					    #if (save_mail($mail)) {
-					    #    echo "Message saved!";
-					    #}
-					}
-
-
-				/*
-				                                    // Set mailer to use SMTP
-				$mail->Host = $this->host;						  // Specify main and backup SMTP servers
-				$mail->SMTPAuth = $this->SMTPAuth;                               // Enable SMTP authentication
-				$mail->Username = $this->ecorreo;       // SMTP username
-				$mail->Password = $this->Password;                       // SMTP password
-
-
-				$mail->SMTPSecure = $this->SMTPSecure;                            // Enable TLS encryption, `ssl` also accepted
-				$mail->Port = $this->Port;                                    // TCP port to connect to
-
-				$mail->CharSet = 'UTF-8';
-
-				$mail->From = $this->ecorreo;
-				$mail->FromName = "TIC-SHOP";
-				$mail->Subject = "Cotización de productos";
-				$mail->AltBody = "Cotización de productos";
-				$mail->addAddress($this->ecorreo);     // Add a recipient
-				$mail->addCC($correo);
-
-				$mail->isHTML(true);                                  // Set email format to HTML
-
-				$texto="<h4><b>Cotización de productos al mayoreo</b></h4>";
-				$texto.="<br>Producto:";
-				$texto.="<br><b>$clave</b> - $producto<br>";
-				$texto.="$descripcion_corta";
-				$texto.="<br><br>";
-				$texto.="<br>Correo: $correo";
-				$texto.="<br>Nombre: $nombre -";
-				$texto.="<br>Cantidad: $cantidad";
-				$texto.="<br>Observaciones: $comentario";
-
-				$mail->Body    = $texto;
-				$mail->AltBody = "Cotización de productos";
-				$arreglo=array();
-				if(!$mail->send()) {
-					$arreglo+=array('id'=>0);
-					$arreglo+=array('error'=>1);
-					$arreglo+=array('terror'=>$mail->ErrorInfo);
-					$arreglo+=array('param1'=>'');
-					$arreglo+=array('param2'=>'');
-					$arreglo+=array('param3'=>'');
-					return json_encode($arreglo);
-				}
-				else {
-					$arreglo+=array('id'=>0);
-					$arreglo+=array('error'=>0);
-					$arreglo+=array('terror'=>'');
-					$arreglo+=array('param1'=>'');
-					$arreglo+=array('param2'=>'');
-					$arreglo+=array('param3'=>'');
-					return json_encode($arreglo);
-				}
-				echo 'Message has been sent';
-			} catch (Exception $e) {
-				echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+			//Replace the plain text body with one created manually
+			$mail->AltBody = 'Cotización de productos';
+			$arreglo=array();
+			//send the message, check for errors
+			if (!$mail->send()) {
+				$arreglo+=array('id'=>0);
+				$arreglo+=array('error'=>1);
+				$arreglo+=array('terror'=>$mail->ErrorInfo);
+				$arreglo+=array('param1'=>'');
+				$arreglo+=array('param2'=>'');
+				$arreglo+=array('param3'=>'');
+				return json_encode($arreglo);
+			} else {
+				$arreglo+=array('id'=>0);
+				$arreglo+=array('error'=>0);
+				$arreglo+=array('terror'=>'');
+				$arreglo+=array('param1'=>'');
+				$arreglo+=array('param2'=>'');
+				$arreglo+=array('param3'=>'');
+				return json_encode($arreglo);
 			}
-			///////////////////////////////////////
-*/
 		}
 }
 
