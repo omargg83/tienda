@@ -1225,18 +1225,17 @@
 			require 'vendor/autoload.php';
 
 			$mail = new PHPMailer;
-			$mail->isSMTP();
 
-/*
-			$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-			$mail->Host = 'mail.tic-shop.com.mx';
-			$mail->Port = 465;
-			$mail->SMTPAuth = true;
+			$mail->isSMTP();
+			$mail->Host = 'localhost';
+			$mail->SMTPAuth = false;
+			$mail->SMTPAutoTLS = false;
+			$mail->Port = 25;
 
 			$mail->Username = "admin@tic-shop.com.mx";
 			$mail->Password = "UZT]jx,ebp1*";
 			$mail->setFrom("admin@tic-shop.com.mx", 'TIC-SHOP');
-*/
+			$mail->addAddress($correo, $nombre);
 
 			/*
 			GMAIL SIRVE
@@ -1251,6 +1250,7 @@
 			$mail->addAddress($correo, $nombre);
 			*/
 
+			/* host sirve
 			$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 			$mail->Port = 587;
 			$mail->Host = 'mail.tic-shop.com.mx';
@@ -1260,7 +1260,7 @@
 			$mail->Password = "UZT]jx,ebp1*";
 			$mail->setFrom("admin@tic-shop.com.mx", 'TIC-SHOP');
 			$mail->addAddress($correo, $nombre);
-
+			*/
 
 			$mail->CharSet = 'UTF-8';
 			//Set the subject line
