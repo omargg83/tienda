@@ -8,6 +8,13 @@
 
 		$ped=$db->pedido_ver($idpedido);
 
+		/////////////////////////////////////////////Correo
+
+
+
+		////////////////////////////////////////////////////
+
+
 	  if($payment_status=="approved"){
 			$arreglo =array();
 			$arreglo+= array('estatus'=>"procesando");

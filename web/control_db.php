@@ -1238,37 +1238,10 @@
 			$mail->addAddress($correo, $nombre);
 			$mail->addCC("admin@tic-shop.com.mx");
 
-			/*
-			GMAIL SIRVE
-			$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-			$mail->Port = 587;
-			$mail->Host = 'smtp.gmail.com';
-			$mail->SMTPAuth = true;
-
-			$mail->Username = $this->ecorreo;
-			$mail->Password = $this->Password;
-			$mail->setFrom($this->ecorreo, 'TIC-SHOP');
-			$mail->addAddress($correo, $nombre);
-			*/
-
-			/* host sirve
-			$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-			$mail->Port = 587;
-			$mail->Host = 'mail.tic-shop.com.mx';
-			$mail->SMTPAuth = true;
-
-			$mail->Username = "admin@tic-shop.com.mx";
-			$mail->Password = "UZT]jx,ebp1*";
-			$mail->setFrom("admin@tic-shop.com.mx", 'TIC-SHOP');
-			$mail->addAddress($correo, $nombre);
-			*/
-
 			$mail->CharSet = 'UTF-8';
 			//Set the subject line
 			$mail->Subject = 'Cotización de Mayoreo';
 
-			//Read an HTML message body from an external file, convert referenced images to embedded,
-			//convert HTML into a basic plain-text alternative body
 			$texto="<h4><b>Cotización de productos al mayoreo</b></h4>";
 			$texto.="<br>Producto:";
 			$texto.="<br><b>$clave</b> - $producto<br>";
@@ -1281,7 +1254,6 @@
 
 			$mail->msgHTML($texto);
 
-			//Replace the plain text body with one created manually
 			$mail->AltBody = 'Cotización de productos';
 			$arreglo=array();
 			//send the message, check for errors
