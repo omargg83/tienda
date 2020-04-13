@@ -1237,14 +1237,28 @@
 			$mail->Password = "UZT]jx,ebp1*";
 			$mail->setFrom("admin@tic-shop.com.mx", 'TIC-SHOP');
 */
+
+			/*
+			GMAIL SIRVE
 			$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-			$mail->Host = 'smtp.gmail.com';
 			$mail->Port = 587;
+			$mail->Host = 'smtp.gmail.com';
 			$mail->SMTPAuth = true;
 
 			$mail->Username = $this->ecorreo;
 			$mail->Password = $this->Password;
 			$mail->setFrom($this->ecorreo, 'TIC-SHOP');
+			$mail->addAddress($correo, $nombre);
+			*/
+
+			$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+			$mail->Port = 587;
+			$mail->Host = 'mail.tic-shop.com.mx';
+			$mail->SMTPAuth = true;
+
+			$mail->Username = "admin@tic-shop.com.mx";
+			$mail->Password = "UZT]jx,ebp1*";
+			$mail->setFrom("admin@tic-shop.com.mx", 'TIC-SHOP');
 			$mail->addAddress($correo, $nombre);
 
 
