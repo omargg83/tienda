@@ -6,7 +6,7 @@ class Clientes extends Tienda{
 
 	public function __construct(){
 		parent::__construct();
-		$this->doc1="a_pagina/";
+		$this->doc1="a_imagenpagina/";
 	}
 	public function baner_lista(){
 		try{
