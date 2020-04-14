@@ -3681,7 +3681,7 @@ select option
  .menu_contact_item{color: black!important;}
  .menu_contact_item a {color: black!important;}
  .banner_price span{display: unset;}
- .product_image{height:250px;}
+ .product_image{height:230px;}
  .popular_categories{display: none;}
  .new_arrivals .tabs-right{padding-top: 10px;}
  .catf{display: none;}
@@ -3699,5 +3699,7 @@ select option
     margin-top: 20px;}
 #pedido div{width: 100%;flex: 0 0 100%; max-width: 100%; margin-bottom: 5px;}
 .pagm div{width: 100%;flex: 0 0 100%; max-width: 100%; margin-bottom: 5px;}
+
+.arrivals_slider .slick-track{padding-bottom: 150px!important;}
 
 }
