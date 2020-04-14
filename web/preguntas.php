@@ -16,6 +16,7 @@
 <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/contact_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/contact_responsive.css">
+<style type="text/css"> .banner_content p{color: black!important;}</style>
 </head>
 
 <body>
