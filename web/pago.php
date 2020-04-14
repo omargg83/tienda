@@ -65,7 +65,7 @@
 	</header>
 
 	<!-- Cart -->
-	<div class='container'>
+	<div class='container pagm'>
 		<h3 class='text-center'>Finalizar pedido</h3>
 
 		<div class='row'>
