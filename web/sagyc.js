@@ -334,16 +334,31 @@ $(document).on('submit','#registro',function(e){
 
   var pass=document.getElementById("pass").value;
   var pass2=document.getElementById("pass2").value;
-
-  var passAcceso=$.md5(pass);
-  var dataString = $(this).serialize()+"&function=registro&ctrl=control&passf="+passAcceso;
+  var dataString = $(this).serialize()+"&function=registro&ctrl=control";
   if(pass==pass2){
     $.ajax({
       url: "control_db.php",
       type: "POST",
       data:  dataString,
       success: function( response ) {
-        window.location.href="index.php";
+        var datos = JSON.parse(response);
+        if (datos.error==0){
+          Swal.fire({
+              type: 'success',
+              title: 'Se registro correctamente',
+              showConfirmButton: false,
+              timer: 2000
+          });
+          window.location.href="index.php";
+        }
+        else{
+          Swal.fire({
+              type: 'error',
+              title: datos.terror,
+              showConfirmButton: false,
+              timer: 1000
+          });
+        }
       }
     });
   }

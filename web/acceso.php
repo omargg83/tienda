@@ -49,7 +49,7 @@
 							<input type="password" class="form-control" id="passAcceso" name='passAcceso' placeholder="Contraseña" value="<?php echo $pass; ?>" required>
 						</div>
 						<div class="col-4 offset-4 text-center"><br>
-							
+
 							<button class="btn btn-outline-primary btn-block btn-sm" type="submit" style="
 							    background-color: #b4f22f;
 							    border: none;
@@ -57,6 +57,9 @@
 							    cursor: pointer;
 							"><i class="fa fa-check"></i>Aceptar</button>
 							<p>Para registrarte realiza tu primera compra</p>
+
+							<br>
+							<p><a href=''>¿Olvidaste tu contraseña?</a></p>
 						</div>
 					</div>
 				</div>

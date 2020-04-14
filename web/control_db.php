@@ -177,43 +177,71 @@
 		public function registro(){
 			//Obtenemos los datos del formulario de acceso
 			try{
-				$nombre = trim(htmlspecialchars($_REQUEST["nombre"]));
-				$apellido = trim(htmlspecialchars($_REQUEST["apellido"]));
-				$correo = trim(htmlspecialchars($_REQUEST["correo"]));
-				$pass = trim(htmlspecialchars($_REQUEST["pass"]));
-				$pass2 = trim(htmlspecialchars($_REQUEST["pass2"]));
-
-				$sql="SELECT * FROM clientes where id=:id";
+				$arreglo=array();
+				if (isset($_REQUEST['pass'])){
+					$pass = trim($_REQUEST["pass"]);
+					$arreglo+= array('pass'=>md5(trim($pass)));
+				}
+				if (isset($_REQUEST['nombre'])){
+					$nombre=trim(htmlspecialchars($_REQUEST["nombre"]));
+					$arreglo+= array('nombre'=>$nombre);
+				}
+				if (isset($_REQUEST['apellido'])){
+					$apellido=trim(htmlspecialchars($_REQUEST["apellido"]));
+					$arreglo+= array('apellido'=>$apellido);
+				}
+				if (isset($_REQUEST['correo'])){
+					$correo=trim(htmlspecialchars($_REQUEST["correo"]));
+					$arreglo+= array('correo'=>$correo);
+				}
+				if (isset($_REQUEST['direccion1'])){
+					$arreglo+= array('direccion1'=>trim(htmlspecialchars($_REQUEST["direccion1"])));
+				}
+				if (isset($_REQUEST['direccion2'])){
+					$arreglo+= array('direccion2'=>trim(htmlspecialchars($_REQUEST["direccion2"])));
+				}
+				if (isset($_REQUEST['ciudad'])){
+					$arreglo+= array('ciudad'=>trim(htmlspecialchars($_REQUEST["ciudad"])));
+				}
+				if (isset($_REQUEST['cp'])){
+					$arreglo+= array('cp'=>trim(htmlspecialchars($_REQUEST["cp"])));
+				}
+				if (isset($_REQUEST['pais'])){
+					$arreglo+= array('pais'=>trim(htmlspecialchars($_REQUEST["pais"])));
+				}
+				if (isset($_REQUEST['estado'])){
+					$arreglo+= array('estado'=>trim(htmlspecialchars($_REQUEST["estado"])));
+				}
+				if (isset($_REQUEST['telefono'])){
+					$arreglo+= array('telefono'=>trim(htmlspecialchars($_REQUEST["telefono"])));
+				}
+				$sql="select * from clientes where correo='$correo'";
 				$sth = $this->dbh->prepare($sql);
-				$sth->bindValue(":id",$_SESSION['idcliente']);
 				$sth->execute();
-				$CLAVE=$sth->fetch();
-				if($CLAVE){
-					$passPOST=md5(trim($pass));
-					$sql="update clientes set nombre=:nombre, apellido=:apellido, correo=:correo, pass=:pass where id=:id";
+				if($sth->rowCount()==0){
+					$sql="SELECT * FROM clientes where id=:id";
 					$sth = $this->dbh->prepare($sql);
 					$sth->bindValue(":id",$_SESSION['idcliente']);
-					$sth->bindValue(":nombre",$nombre);
-					$sth->bindValue(":apellido",$apellido);
-					$sth->bindValue(":correo",$correo);
-					$sth->bindValue(":pass",$passPOST);
-					if($sth->execute()){
-						$_SESSION['autoriza_web']=1;
-						$_SESSION['correo']=$correo;
-						$_SESSION['nombre']=$nombre." ".$apellido;
-						$_SESSION['idcliente']=$_SESSION['idcliente'];
-						$_SESSION['interno']=1;
-					}
-				}
-				else {
-					$sql="insert into clientes (nombre, apellido, correo) values (:nombre, :apellido, :correo, :pass)";
-					$sth = $this->dbh->prepare($sql);
-					$sth->bindValue(":nombre",$nombre);
-					$sth->bindValue(":apellido",$apellido);
-					$sth->bindValue(":correo",$correo);
-					$sth->bindValue(":pass",$passPOST);
 					$sth->execute();
-					return "No existe".$_SESSION['idcliente'];
+					$CLAVE=$sth->fetch();
+					if($CLAVE){
+						$x=$this->update('clientes',array('id'=>$_SESSION['idcliente']), $arreglo);
+					}
+					else {
+						$x=$this->insert('clientes', $arreglo);
+					}
+					$_SESSION['autoriza_web']=1;
+					$_SESSION['correo']=$correo;
+					$_SESSION['nombre']=$nombre." ".$apellido;
+					$_SESSION['idcliente']=$_SESSION['idcliente'];
+					$_SESSION['interno']=1;
+					return $x;
+				}
+				else{
+					$arreglo+=array('id'=>0);
+					$arreglo+=array('error'=>1);
+					$arreglo+=array('terror'=>"Correo electrónico ya registrado");
+					return json_encode($arreglo);
 				}
 			}
 			catch(PDOException $e){
