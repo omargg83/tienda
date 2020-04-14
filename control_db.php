@@ -22,9 +22,9 @@
 			$this->dbh = new PDO("mysql:host=".$_SESSION['servidor'].";dbname=".$_SESSION['bdd']."", $_SESSION['mysqluser'], $_SESSION['mysqlpass']);
 			self::set_names();
 
-			$this->doc="../a_imagen/";
-			$this->extra="../a_imagenextra/";
-			$this->banner="../a_pagina/";
+			$this->doc="admin/a_imagen/";
+			$this->extra="admin/a_imagenextra/";
+			$this->banner="admin/a_pagina/";
 
 			$sql="select * from ajustes";
 			$sth = $this->dbh->prepare($sql);
