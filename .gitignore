@@ -3,3 +3,4 @@ a_imagen/
 a_imagenextra/
 .well-know/
 cgi-bin/
+*error_log
