@@ -1,7 +1,14 @@
 <?php
+
+require_once("control_db.php");
+$db = new Tienda();
+
+$mercado=$db->ajustes_editar();
+$mercado_token=$mercado->mercado_token;
+
 //////////////////////////////////////////////////////////////////////////////
 	require __DIR__ .  '/vendor/autoload.php';
-	MercadoPago\SDK::setAccessToken("TEST-3678107396790432-040504-850b450567bc9af742a685edda25faad-538795708");
+	MercadoPago\SDK::setAccessToken($mercado_token);
 
 	$merchant_order = null;
 
@@ -40,30 +47,17 @@
 	}
 ///////////////////////////////////////////////////////////////////////////////
 
-
-
-
 	// Recibir el cuerpo de la petición.
 	$input = @file_get_contents("php://input");
 	// Parsear el contenido como JSON.
 	$texto=$input;
-
 	$event_json = json_decode($input);
-
 	// for extra security, retrieve from the Stripe API
 	$id1 = $event_json->data->id;
 
   class Tienda{
-    public $nivel_personal;
-    public $nivel_captura;
-    public $derecho=array();
-    public $lema;
-    public $personas;
-    public $arreglo;
-    public $limite=300;
 
     public function __construct(){
-      $this->Salud = array();
       date_default_timezone_set("America/Mexico_City");
       $_SESSION['mysqluser']="ticshopc_admin";
       $_SESSION['mysqlpass']="admin123$%";
@@ -78,20 +72,14 @@
   }
 	$db = new Tienda();
 
+//	$sql="select * from pedidos where idpago=24757365";
 
-	$topic=$_REQUEST['topic'];
-	$id=$_REQUEST['id'];
-	echo "<br>topic:".$topic;
-	echo "<br>IP:".$id;
 
-	$texto="$id1 -  $texto pago:".$id."  Topic: $topic  $resp";
-
+	$texto="$id1 $resp  -  $texto  ";
 	$sql="insert into new_table (log) values (:log)";
 	$sth = $db->dbh->prepare($sql);
 	$sth->bindValue(':log',$texto);
 	echo $sth->execute();
-
-
 
 	if (isset($_GET["id"], $_GET["topic"])) {
 	    http_response_code(200);

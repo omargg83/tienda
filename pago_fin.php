@@ -26,8 +26,6 @@
 			$estatus="EN ESPERA";
 			$rechazado=1;
 		}
-
-
 		$arreglo =array();
 		$arreglo+= array('estatus'=>$estatus);
 		$arreglo+= array('pago'=>"Mercado Pago");
@@ -39,7 +37,6 @@
 		if($ped->error==0){
 
 		}
-
 
 		$ped=$db->pedido_ver($idpedido);
 		$datos=$db->datos_pedido($idpedido);
@@ -60,6 +57,7 @@
 		$gtotal=$ped->total;
 		$estatus=$ped->estatus;
 		$pago=$ped->pago;
+		$idpago=$ped->idpago;
 
 		/////////////////////////////////////////////Correo
 		if($rechazado==0){
@@ -74,6 +72,9 @@
 					</div>
 					<div class='col-3'>
 						<label>Pago: $pago</label>
+					</div>
+					<div class='col-3'>
+						<label>Pago #: $idpago</label>
 					</div>
 					<div class='col-4'>
 						<label>Nombre: $nombre</label>
@@ -290,6 +291,10 @@
 						<div class="col-3">
 							<label class='text-center'>Pago</label>
 							<input type="text" class="form-control form-control-sm" id="pago" name='pago' placeholder="Pago" value="<?php echo $pago; ?>" readonly>
+						</div>
+						<div class="col-3">
+							<label class='text-center'>Pago #</label>
+							<input type="text" class="form-control form-control-sm" id="idpago" name='idpago' placeholder="Pago" value="<?php echo $idpago; ?>" readonly>
 						</div>
 					</div>
 

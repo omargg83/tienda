@@ -25,9 +25,6 @@
 	$telefono=$ped->telefono;
 	$total=$ped->total;
 
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -279,6 +276,11 @@
 						$item->title = 'TIC-SHOP';
 						$item->quantity = 1;
 						$item->unit_price = $gtotal;
+
+
+
+
+
 						$preference->items = array($item);
 						$preference->save();
 					?>
