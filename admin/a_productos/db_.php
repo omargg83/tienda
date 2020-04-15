@@ -508,55 +508,66 @@ class Productos extends Tienda{
 
 			$objectToArray = (array)$resp;
 			$limite=0;
-			while (current($objectToArray) and $limite<10) {
+			while (current($objectToArray)) {
 				$name=key($objectToArray);
-				echo "clave:".$name;
-				echo "--------------";
 				$info = (array)$objectToArray[$name];
-				echo var_dump($info);
-				
-				/*
-				$sql="insert into producto_exist (id, idProducto, almacen, existencia) values (:id, :idProducto, :almacen, :existencia)";
-				$sth2 = $db->dbh->prepare($sql);
-				$sth2->bindValue(':id', $id);
-				$sth2->bindValue(':idProducto', $product['idProducto']);
-				$sth2->bindValue(':almacen', $name);
-				$sth2->bindValue(':existencia', $valor);
-				$sth2->execute();
-				*/
-				$limite++;
+				$valor=$info['existencia'];
+				if($valor>0){
+					$sql="select * from almacen where numero='$name'";
+					$sth4 = $this->dbh->prepare($sql);
+					$sth4->execute();
+					if($sth4->rowCount()){
+						$almax=$sth4->fetch(PDO::FETCH_OBJ);
+
+						$sql="insert into producto_exist (id, almacen, existencia) values (:id, :almacen, :existencia)";
+						$sth2 = $this->dbh->prepare($sql);
+						$sth2->bindValue(':id', $id);
+						$sth2->bindValue(':almacen', $almax->homoclave);
+						$sth2->bindValue(':existencia', $valor);
+						$sth2->execute();
+					}
+					else{
+						$sql="delete from producto_exist where id='$id'";
+						$sth3 = $this->dbh->prepare($sql);
+						$sth3->execute();
+
+						$arreglo =array();
+						$arreglo+=array('id'=>$id);
+						$arreglo+=array('error'=>1);
+						$arreglo+=array('terror'=>"El almacen no existe, favor de darlo de alta $name");
+						return json_encode($arreglo);
+					}
+				}
 				next($objectToArray);
 			}
-
-
-/*
-			while (current($resp)) {
-				$name=key($resp);
-				echo "<br>Nombre:".$name;
-
-				//echo var_dump($resp[$name]);
-				//echo "<br>Valor:".$valor;
-				/*
-				$sql="insert into producto_exist (id, idProducto, almacen, existencia) values (:id, :idProducto, :almacen, :existencia)";
-				$sth2 = $db->dbh->prepare($sql);
-				$sth2->bindValue(':id', $id);
-				$sth2->bindValue(':idProducto', $product['idProducto']);
-				$sth2->bindValue(':almacen', $name);
-				$sth2->bindValue(':existencia', $valor);
-				$sth2->execute();
-				next($resp);
-			}
-
-			foreach($resp as $key){
-				echo var_dump($key);
-			}
-*/
-
+			$arreglo =array();
+			$arreglo+=array('id'=>$id);
+			$arreglo+=array('error'=>0);
+			$arreglo+=array('terror'=>"");
+			return json_encode($arreglo);
 		}
 		else{
-			return "error";
+			$arreglo =array();
+			$arreglo+=array('id'=>$id);
+			$arreglo+=array('error'=>1);
+			$arreglo+=array('terror'=>"Error favor de verificar");
+			return json_encode($arreglo);
 		}
 	}
+	public function imagen_api(){
+		try{
+			$id=$_REQUEST['id'];
+			$sql="select * from productos where id='$id'";
+			$sth = $this->dbh->prepare($sql);
+			$sth->execute();
+			$almax=$sth->fetch(PDO::FETCH_OBJ);
+			return "gola mundo".$almax->imagen;
+		}
+		catch(PDOException $e){
+			return "Database access FAILED!".$e->getMessage();
+		}
+	}
+
 	public function generar_codigo($length = 8) {
 		return "TIC_".substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
 	}
@@ -594,7 +605,6 @@ class Productos extends Tienda{
 			}
 		echo "</select>";
 	}
-
 }
 $db = new Productos();
 if(strlen($function)>0){
