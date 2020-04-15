@@ -530,13 +530,32 @@ class Productos extends Tienda{
 						$sth2->bindValue(':existencia', $valor);
 						$sth2->execute();
 					}
+					else{
+						$sql="delete from producto_exist where id='$id'";
+						$sth3 = $this->dbh->prepare($sql);
+						$sth3->execute();
+
+						$arreglo =array();
+						$arreglo+=array('id'=>$id);
+						$arreglo+=array('error'=>1);
+						$arreglo+=array('terror'=>"El almacen no existe, favor de darlo de alta $name");
+						return json_encode($arreglo);
+					}
 				}
 				next($objectToArray);
 			}
-
+			$arreglo =array();
+			$arreglo+=array('id'=>$id);
+			$arreglo+=array('error'=>0);
+			$arreglo+=array('terror'=>"");
+			return json_encode($arreglo);
 		}
 		else{
-			return "error";
+			$arreglo =array();
+			$arreglo+=array('id'=>$id);
+			$arreglo+=array('error'=>1);
+			$arreglo+=array('terror'=>"Error favor de verificar");
+			return json_encode($arreglo);
 		}
 	}
 	public function generar_codigo($length = 8) {
@@ -576,7 +595,6 @@ class Productos extends Tienda{
 			}
 		echo "</select>";
 	}
-
 }
 $db = new Productos();
 if(strlen($function)>0){
