@@ -101,6 +101,7 @@
 <script>
 
 	function correctCaptcha(){
+		alert("ENTRA");
 		$("#submit").prop('disabled', true);
 	 }
 
