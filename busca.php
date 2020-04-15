@@ -66,7 +66,8 @@
 														echo "<div class='border_active'></div>";
 														echo "<div class='product_item is_new d-flex flex-column align-items-center justify-content-center text-center' >";
 														echo "<a href='product.php?id=".$key->id."'>";
-															echo "<div class='product_image d-flex flex-column align-items-center justify-content-center'><img src='".$db->doc.$key->img."' alt='' width='100px'></div>
+															$a="?id=".rand(1,1500);
+															echo "<div class='product_image d-flex flex-column align-items-center justify-content-center'><img src='".$db->doc.$key->img."$a' alt='' width='100px'></div>
 															<div class='product_content' >
 																<div class='product_price'>";
 																if($key->precio_tipo==0){
