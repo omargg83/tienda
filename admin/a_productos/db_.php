@@ -566,6 +566,7 @@ class Productos extends Tienda{
 			unlink("../a_imagen/".$nombre);
 	    //if (!file_exists("../a_imagen/".$nombre)) {
 	      $imagen = file_get_contents($almax->imagen);
+				echo $imagen;
 	      echo file_put_contents("../a_imagen/".$nombre, $imagen);
 	    //}
 
