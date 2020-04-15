@@ -37,9 +37,9 @@
         </div>
       </div>
       <?php
-        if(file_exists("../".$db->doc1."$imagen")){
+        //if(file_exists("../".$db->doc1."$imagen")){
           echo "<img src='".$db->doc1."$imagen' width='100%' height='50%'/><br>";
-        }
+        //}
      ?>
 
       <div class='card-footer'>
