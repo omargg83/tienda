@@ -561,6 +561,14 @@ class Productos extends Tienda{
 			$sth = $this->dbh->prepare($sql);
 			$sth->execute();
 			$almax=$sth->fetch(PDO::FETCH_OBJ);
+
+
+			$nombre=trim(basename(trim($almax->imagen)));
+	    if (!file_exists("../a_imagen/".$nombre)) {
+	      $imagen = file_get_contents($url);
+	      echo file_put_contents("../a_imagen/".$nombre, $imagen);
+	    }
+
 			return "gola mundo".$almax->imagen;
 		}
 		catch(PDOException $e){

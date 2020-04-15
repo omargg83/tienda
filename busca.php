@@ -60,8 +60,8 @@
 
 											<!-- Slider Item -->
 											<?php
-
-												foreach($resp as $key){
+												if(is_array($resp)){
+													foreach($resp as $key){
 													echo "<div class='arrivals_slider_item'>";
 														echo "<div class='border_active'></div>";
 														echo "<div class='product_item is_new d-flex flex-column align-items-center justify-content-center text-center' >";
@@ -98,6 +98,11 @@
 														echo "</div>";
 													echo "</div>";
 												}
+												}
+												else{
+													echo "<h4>No se encontró</h4>";
+												}
+
 											?>
 
 										</div>

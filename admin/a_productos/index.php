@@ -170,7 +170,7 @@
               if (datos.error==0){
                 Swal.fire({
                     type: 'success',
-                    title: datos.param1,
+                    title: "Almacenes actualizados",
                     showConfirmButton: false,
                     timer: 1000
                 });
@@ -213,7 +213,7 @@
               if (datos.error==0){
                 Swal.fire({
                     type: 'success',
-                    title: datos.param1,
+                    title: "Imagen actualizada",
                     showConfirmButton: false,
                     timer: 1000
                 });
