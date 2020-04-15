@@ -283,7 +283,7 @@
 						$preference->save();
 					?>
 
-					<form action="https://www.tic-shop.com.mx/tienda/web/pago_fin.php?idpedido=<?php echo $idpedido; ?>" method="POST">
+					<form action="https://www.tic-shop.com.mx/pago_fin.php?idpedido=<?php echo $idpedido; ?>" method="POST">
 					  <script
 					   src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js"
 					   data-preference-id="<?php echo $preference->id; ?>">
