@@ -19,7 +19,7 @@
 <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/cart_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/cart_responsive.css">
-
+<script src="https://www.google.com/recaptcha/api.js"></script>
 </head>
 
 <body>
@@ -88,7 +88,7 @@
 <script src="plugins/greensock/ScrollToPlugin.min.js"></script>
 <script src="plugins/easing/easing.js"></script>
 <script src="js/cart_custom.js"></script>
-<script src="https://www.google.com/recaptcha/api.js"></script>
+
 
 <script src="librerias15/jQuery-MD5-master/jquery.md5.js"></script>
 
@@ -100,9 +100,9 @@
 <script src="sagyc.js"></script>
 <script>
 
-var onloadCallback = function() {
-	 alert("grecaptcha is ready!");
- };
+	function correctCaptcha(){
+		 alert("grecaptcha is ready!");
+	 }
 
  </script>
 </body>
