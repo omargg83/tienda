@@ -111,7 +111,7 @@
 				<div class='row'>
 					<div class='col-3'>
 						<?php
-							$a=rand(1500);
+							$a=rand(1,1500);
 							if(file_exists("../".$db->doc1."$imagen")){
 								echo "<img src='".$db->doc1."$imagen $a' width='100%' /><br>";
 							}
