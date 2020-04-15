@@ -142,7 +142,7 @@
                 </div>
                 <div class="cart_content">
                   <div class="cart_text"><a href="cart.php">Carrito</a></div>
-                  <div class="cart_price"><?php echo moneda($sumar); ?></div>
+                  <div class="cart_price"><a href="cart.php"><?php echo moneda($sumar); ?></a></div>
                 </div>
               </div>
             </a>
