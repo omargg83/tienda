@@ -521,7 +521,7 @@ class Productos extends Tienda{
 					$sth4 = $this->dbh->prepare($sql);
 					$sth4->execute();
 					if($sth4->rowCount()){
-						$almax=$sth->fetch(PDO::FETCH_OBJ);
+						$almax=$sth4->fetch(PDO::FETCH_OBJ);
 
 						$sql="insert into producto_exist (id, almacen, existencia) values (:id, :almacen, :existencia)";
 						$sth2 = $this->dbh->prepare($sql);
