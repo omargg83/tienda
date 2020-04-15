@@ -507,8 +507,8 @@ class Productos extends Tienda{
 			$sth3->execute();
 
 			while (current($resp)) {
-				$name=key($product['existencia']);
-				$valor=$product['existencia'][$name];
+				$name=key($resp['existencia']);
+				$valor=$resp['existencia'][$name];
 				echo "<br>Nombre:".$name;
 				echo "<br>Valor:".$valor;
 				/*
