@@ -513,8 +513,9 @@ class Productos extends Tienda{
 				echo "clave:".$name;
 				echo "--------------";
 				$info = (array)$objectToArray[$name];
-				echo var_dump($info);
-				
+				$valor=$info['existencia'];
+				echo $valor;
+
 				/*
 				$sql="insert into producto_exist (id, idProducto, almacen, existencia) values (:id, :idProducto, :almacen, :existencia)";
 				$sth2 = $db->dbh->prepare($sql);
