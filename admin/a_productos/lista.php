@@ -50,7 +50,7 @@
 						echo "<td>".$key["existencia"]."</td>";
 						echo "<td>";
 							$a=rand(1,1500);
-							echo "<img src='".$db->doc1.$key['imagen']."?id=$a' width='100px' />";
+							echo "<img src='".$db->doc1.$key['img']."?id=$a' width='100px' />";
 						echo "</td>";
 						echo "</tr>";
 					}
