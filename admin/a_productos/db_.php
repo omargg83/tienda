@@ -508,7 +508,7 @@ class Productos extends Tienda{
 
 			$objectToArray = (array)$resp;
 			$limite=0;
-			while (current($objectToArray) and $limite<10) {
+			while (current($objectToArray)) {
 				$name=key($objectToArray);
 				echo "clave:".$name;
 				echo "--------------";
@@ -516,16 +516,14 @@ class Productos extends Tienda{
 				$valor=$info['existencia'];
 				echo $valor;
 
-				/*
-				$sql="insert into producto_exist (id, idProducto, almacen, existencia) values (:id, :idProducto, :almacen, :existencia)";
-				$sth2 = $db->dbh->prepare($sql);
-				$sth2->bindValue(':id', $id);
-				$sth2->bindValue(':idProducto', $product['idProducto']);
-				$sth2->bindValue(':almacen', $name);
-				$sth2->bindValue(':existencia', $valor);
-				$sth2->execute();
-				*/
-				$limite++;
+				if($valor>0){
+					$sql="insert into producto_exist (id, almacen, existencia) values (:id, :almacen, :existencia)";
+					$sth2 = $this->dbh->prepare($sql);
+					$sth2->bindValue(':id', $id);
+					$sth2->bindValue(':almacen', $name);
+					$sth2->bindValue(':existencia', $valor);
+					$sth2->execute();
+				}
 				next($objectToArray);
 			}
 
