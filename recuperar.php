@@ -52,7 +52,7 @@
 							"><i class="fa fa-check"></i>Aceptar</button>
 							<br>
 
-<div class="g-recaptcha" data-sitekey="6LeFoukUAAAAADmqclzOsYOdayASVoBSwN_r7DLP" data-callback="correctCaptcha"></div>
+							<div class="g-recaptcha" data-sitekey="6LeFoukUAAAAADmqclzOsYOdayASVoBSwN_r7DLP" data-callback="correctCaptcha"></div>
 
 						</div>
 					</div>
@@ -98,6 +98,13 @@
 
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 <script src="sagyc.js"></script>
+<script>
+
+var onloadCallback = function() {
+	 alert("grecaptcha is ready!");
+ };
+
+ </script>
 </body>
 
 </html>
