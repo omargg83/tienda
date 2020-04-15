@@ -338,10 +338,7 @@
 
 						if ($interno==0 and $id>0){
 							echo "<button type='button' class='btn btn-outline-secondary btn-sm' onclick='existencia_api()'><i class='fas fa-sync'></i>Existencia</button>";
-
-							/*
 							echo "<button type='button' class='btn btn-outline-secondary btn-sm' onclick='almacen_api()'><i class='fas fa-sync'></i>Almacen</button>";
-							*/
 						}
 
 					?>
