@@ -307,8 +307,20 @@
 				$sth_i->execute();
 				if($sth_i->rowCount()>0){
 					$resp=$sth_i->fetch(PDO::FETCH_OBJ);
-					$texto="cambio de contraseña";
-					$asunto="Cambio de contraseña";
+					$pass=$this->genera_random(8);
+					$passg=md5(trim($pass));
+
+					$sql="update clientes set pass=:pass where id=:id";
+					$sth = $this->dbh->prepare($sql);
+					$sth->bindValue(":pass",$passg);
+					$sth->bindValue(":id",$resp->id);
+					$sth->execute();
+
+					$texto.="TIC-SHOP";
+					$texto.="<br>Nueva contraseña: $pass";
+					$texto.="<br>Cambio de contraseña ";
+					$asunto=$resp->mail;
+
 					return $this->correo($resp->correo, $texto, $asunto);
 				}
 				else{
