@@ -44,7 +44,7 @@
 							<input type="text" class="form-control" id="userAcceso" name='userAcceso' placeholder="Correo" value="<?php echo $correo; ?>" required>
 						</div>
 						<div class="col-4 offset-4 text-center"><br>
-							<button class="btn btn-outline-primary btn-block btn-sm" type="submit" style="
+							<button id='submit' disabled class="btn btn-outline-primary btn-block btn-sm" type="submit" style="
 							    background-color: #b4f22f;
 							    border: none;
 							    color: black;
@@ -101,7 +101,7 @@
 <script>
 
 	function correctCaptcha(){
-		 alert("grecaptcha is ready!");
+		$("#submit").prop('disabled', true);
 	 }
 
  </script>
