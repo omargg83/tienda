@@ -52,14 +52,7 @@
 							"><i class="fa fa-check"></i>Aceptar</button>
 							<br>
 
-							<script src="https://www.google.com/recaptcha/api.js?render=6LeFoukUAAAAADmqclzOsYOdayASVoBSwN_r7DLP"></script>
-<script>
-grecaptcha.ready(function() {
-    grecaptcha.execute('6LeFoukUAAAAADmqclzOsYOdayASVoBSwN_r7DLP', {action: 'homepage'}).then(function(token) {
-       ...
-    });
-});
-</script>
+<div class="g-recaptcha" data-sitekey="6LeFoukUAAAAADmqclzOsYOdayASVoBSwN_r7DLP" data-callback="correctCaptcha"></div>
 
 						</div>
 					</div>
@@ -95,7 +88,7 @@ grecaptcha.ready(function() {
 <script src="plugins/greensock/ScrollToPlugin.min.js"></script>
 <script src="plugins/easing/easing.js"></script>
 <script src="js/cart_custom.js"></script>
-
+<script src="https://www.google.com/recaptcha/api.js"></script>
 
 <script src="librerias15/jQuery-MD5-master/jquery.md5.js"></script>
 
