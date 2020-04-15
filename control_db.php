@@ -771,7 +771,6 @@
 				$ciudad = trim(htmlspecialchars($_REQUEST["ciudad"]));
 				$cp = trim(htmlspecialchars($_REQUEST["cp"]));
 				$pais = trim(htmlspecialchars($_REQUEST["pais"]));
-				$pais = trim(htmlspecialchars($_REQUEST["pais"]));
 				$estado = trim(htmlspecialchars($_REQUEST["estado"]));
 				$telefono = trim(htmlspecialchars($_REQUEST["telefono"]));
 
@@ -1348,6 +1347,52 @@
 				$arreglo+=array('param1'=>'');
 				$arreglo+=array('param2'=>'');
 				$arreglo+=array('param3'=>'');
+				return json_encode($arreglo);
+			}
+		}
+		public function dir_update(){
+			try{
+				$dir=$_REQUEST['dir_fin'];
+				if($dir==0){
+					$sql="select * from clientes where id=:id";
+					$sth = $this->dbh->prepare($sql);
+				}
+				else{
+					$sql="select * from clientes_direccion where iddireccion=:iddir and idcliente=:id";
+					$sth = $this->dbh->prepare($sql);
+					$sth->bindValue(":iddir",$dir);
+					$sth->bindValue(":id",$_SESSION['idcliente']);
+				}
+				$sth->bindValue(":id",$_SESSION['idcliente']);
+				$sth->execute();
+				$resp=$sth->fetch(PDO::FETCH_OBJ);
+
+				$direccion1 = $resp->direccion1;
+				$direccion2 = $resp->direccion2;
+				$ciudad = $resp->ciudad;
+				$cp = $resp->cp;
+				$pais = $resp->pais;
+				$estado = $resp->estado;
+				$telefono = $resp->telefono;
+
+				$arreglo=array();
+				$arreglo+=array('id'=>0);
+				$arreglo+=array('error'=>0);
+				$arreglo+=array('terror'=>'');
+				$arreglo+=array('direccion1'=>$direccion1);
+				$arreglo+=array('direccion2'=>$direccion2);
+				$arreglo+=array('ciudad'=>$ciudad);
+				$arreglo+=array('cp'=>$cp);
+				$arreglo+=array('pais'=>$pais);
+				$arreglo+=array('estado'=>$estado);
+				$arreglo+=array('telefono'=>$telefono);
+				return json_encode($arreglo);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+				$arreglo+=array('id'=>0);
+				$arreglo+=array('error'=>1);
+				$arreglo+=array('terror'=>'Favor de verificar');
 				return json_encode($arreglo);
 			}
 		}

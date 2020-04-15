@@ -5,11 +5,10 @@
 	$pass="";
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Cart</title>
+<title>TIC SHOP - acceso</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
@@ -55,7 +54,7 @@
 							    color: black;
 							    cursor: pointer;
 							"><i class="fa fa-check"></i>Aceptar</button>
-						
+
 							<br>
 							<p><a href='recuperar.php'>¿Olvidaste tu contraseña?</a></p>
 						</div>

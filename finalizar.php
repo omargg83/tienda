@@ -108,7 +108,21 @@
 						<input type="text" class="form-control" id="cfdi" name='cfdi' placeholder="Uso cfdi" value="<?php echo $cfdi; ?>" >
 					</div>
 				</div>
-
+				<hr>
+				<div class='row'>
+					<div class="col-12">
+						<label>Dirección</label>
+						<?php
+							echo "<select id='dir_fin' name='dir_fin' class='form-control' onchange='select_dir()'>";
+								echo "<option value='0'>utilizar principal</option>";
+							foreach($db->direcciones() as $key){
+								echo "<option value='".$key['iddireccion']."'>".$key['direccion1']."</option>";
+							}
+							echo "</select>";
+						?>
+					</div>
+				</div>
+				<hr>
 				<div class='row'>
 					<div class="col-12">
 						<label>Dirección (linea 1)</label>
