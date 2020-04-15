@@ -165,7 +165,6 @@
             url:   'a_productos/db_.php',
             type:  'post',
             success:  function (response) {
-              console.log(response);
               var datos = JSON.parse(response);
               if (datos.error==0){
                 Swal.fire({
@@ -208,7 +207,6 @@
             url:   'a_productos/db_.php',
             type:  'post',
             success:  function (response) {
-              console.log(response);
               var datos = JSON.parse(response);
               if (datos.error==0){
                 Swal.fire({

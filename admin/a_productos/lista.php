@@ -18,6 +18,7 @@
 					<th>Modelo</th>
 					<th>Marca</th>
 					<th>Existencia</th>
+					<th>Imagen</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -25,6 +26,7 @@
 				if (count($pd)>0){
 					foreach($pd as $key){
 						echo "<tr id='".$key['id']."' class='edit-t'>";
+
 						echo "<td>";
 							echo "<div class='btn-group'>";
 								echo "<button class='btn btn-outline-secondary btn-sm' id='edit_comision' title='Editar' data-lugar='a_productos/editar'><i class='fas fa-pencil-alt'></i></i></button>";
@@ -46,6 +48,10 @@
 						echo "<td>".$key["modelo"]."</td>";
 						echo "<td>".$key["marca"]."</td>";
 						echo "<td>".$key["existencia"]."</td>";
+						echo "<td>";
+							$a=rand(1,1500);
+							echo "<img src='".$db->doc1.$key['imagen']."?id=$a' width='100px' />";
+						echo "</td>";
 						echo "</tr>";
 					}
 				}
