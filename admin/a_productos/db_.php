@@ -517,39 +517,22 @@ class Productos extends Tienda{
 				echo $valor;
 
 				if($valor>0){
-					$sql="insert into producto_exist (id, almacen, existencia) values (:id, :almacen, :existencia)";
-					$sth2 = $this->dbh->prepare($sql);
-					$sth2->bindValue(':id', $id);
-					$sth2->bindValue(':almacen', $name);
-					$sth2->bindValue(':existencia', $valor);
-					$sth2->execute();
+					$sql="select * from almacen where numero='$name'";
+					$sth4 = $this->dbh->prepare($sql);
+					$sth4->execute();
+					if($sth4->rowCount()){
+						$almax=$sth->fetch(PDO::FETCH_OBJ);
+
+						$sql="insert into producto_exist (id, almacen, existencia) values (:id, :almacen, :existencia)";
+						$sth2 = $this->dbh->prepare($sql);
+						$sth2->bindValue(':id', $id);
+						$sth2->bindValue(':almacen', $almax->homoclave);
+						$sth2->bindValue(':existencia', $valor);
+						$sth2->execute();
+					}
 				}
 				next($objectToArray);
 			}
-
-
-/*
-			while (current($resp)) {
-				$name=key($resp);
-				echo "<br>Nombre:".$name;
-
-				//echo var_dump($resp[$name]);
-				//echo "<br>Valor:".$valor;
-				/*
-				$sql="insert into producto_exist (id, idProducto, almacen, existencia) values (:id, :idProducto, :almacen, :existencia)";
-				$sth2 = $db->dbh->prepare($sql);
-				$sth2->bindValue(':id', $id);
-				$sth2->bindValue(':idProducto', $product['idProducto']);
-				$sth2->bindValue(':almacen', $name);
-				$sth2->bindValue(':existencia', $valor);
-				$sth2->execute();
-				next($resp);
-			}
-
-			foreach($resp as $key){
-				echo var_dump($key);
-			}
-*/
 
 		}
 		else{
