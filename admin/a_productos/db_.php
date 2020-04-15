@@ -506,10 +506,16 @@ class Productos extends Tienda{
 			$sth3 = $this->dbh->prepare($sql);
 			$sth3->execute();
 
+			$objectToArray = (array)$resp;
+
+			echo var_dump($objectToArray);
+
+/*
 			while (current($resp)) {
 				$name=key($resp);
-				echo var_dump($resp[$name]);
-				//echo "<br>Nombre:".$name;
+				echo "<br>Nombre:".$name;
+
+				//echo var_dump($resp[$name]);
 				//echo "<br>Valor:".$valor;
 				/*
 				$sql="insert into producto_exist (id, idProducto, almacen, existencia) values (:id, :idProducto, :almacen, :existencia)";
@@ -518,10 +524,10 @@ class Productos extends Tienda{
 				$sth2->bindValue(':idProducto', $product['idProducto']);
 				$sth2->bindValue(':almacen', $name);
 				$sth2->bindValue(':existencia', $valor);
-				$sth2->execute();*/
+				$sth2->execute();
 				next($resp);
 			}
-	/*
+
 			foreach($resp as $key){
 				echo var_dump($key);
 			}
