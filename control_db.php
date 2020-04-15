@@ -316,6 +316,8 @@
 					$sth->bindValue(":id",$resp->id);
 					$sth->execute();
 
+
+					$texto="";
 					$texto.="TIC-SHOP";
 					$texto.="<br>Nueva contraseña: $pass";
 					$texto.="<br>Cambio de contraseña ";
