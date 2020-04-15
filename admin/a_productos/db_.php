@@ -508,7 +508,7 @@ class Productos extends Tienda{
 
 			while (current($resp)) {
 				$name=key($resp);
-				//$valor=$resp['existencia'][$name];
+				$valor=$resp[$name]['existencia'];
 				echo "<br>Nombre:".$name;
 				echo "<br>Valor:".$valor;
 				/*
