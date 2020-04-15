@@ -49,8 +49,8 @@
 						echo "<td>".$key["marca"]."</td>";
 						echo "<td>".$key["existencia"]."</td>";
 						echo "<td>";
-							$a=rand(1,1500);
-							echo "<img src='".$db->doc1.$key['img']."?id=$a' width='100px' />";
+							$a="?id=".rand(1,1500);
+							echo "<img src='".$db->doc1.$key['img']."$a' width='50px' />";
 						echo "</td>";
 						echo "</tr>";
 					}

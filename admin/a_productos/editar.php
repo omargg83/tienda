@@ -111,9 +111,9 @@
 				<div class='row'>
 					<div class='col-3'>
 						<?php
-							$a=rand(1,1500);
+							$a="?id=".rand(1,1500);
 							if(file_exists("../".$db->doc1."$imagen")){
-								echo "<img src='".$db->doc1."$imagen?id=$a' width='100%' /><br>";
+								echo "<img src='".$db->doc1.$imagen"$a' width='100%' /><br>";
 							}
 							if($interno==1){
 								echo "<button type='button' class='btn btn-outline-secondary btn-sm' data-toggle='modal' data-target='#myModal' id='fileup_imagenx' data-ruta='a_imagen/' data-tabla='productos' data-campo='img' data-tipo='1' data-id='$id' data-keyt='id' data-destino='a_productos/editar' data-iddest='$id' data-ext='.jpg,.png' ><i class='fas fa-cloud-upload-alt'></i>Agregar imagen</button>";

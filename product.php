@@ -81,9 +81,10 @@
 				<div class="col-lg-2 order-lg-1 order-2">
 					<ul class="image_list">
 						<?php
-							echo "<li data-image='".$db->doc.$prod->img."'><img src='".$db->doc.$prod->img."' alt=''></li>";
+							$a="?id=".rand(1,1500);
+							echo "<li data-image='".$db->doc.$prod->img."$a'><img src='".$db->doc.$prod->img."$a' alt=''></li>";
 							foreach($imextra as $key){
-								echo "<li data-image='".$db->extra.$key->direccion."'><img src='".$db->extra.$key->direccion."' alt=''></li>";
+								echo "<li data-image='".$db->extra.$key->direccion."$a'><img src='".$db->extra.$key->direccion."$a' alt=''></li>";
 							}
 						?>
 					</ul>
