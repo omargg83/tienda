@@ -321,8 +321,9 @@
 					$texto.="TIC-SHOP";
 					$texto.="<br>Nueva contraseña: $pass";
 					$texto.="<br>Cambio de contraseña ";
-					$asunto=$resp->mail;
+					$texto=$resp->correo;
 
+					$asunto="Cambio de contraseña";
 					return $this->correo($resp->correo, $texto, $asunto);
 				}
 				else{
