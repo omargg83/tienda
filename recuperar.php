@@ -34,7 +34,7 @@
 	</header>
 
 	<!-- Cart -->
-	<form id='acceso' action=''>
+	<form id='recuperar' action=''>
 		<div class="cart_section">
 			<div class="container">
 				<div class="row">
@@ -44,7 +44,7 @@
 							<input type="text" class="form-control" id="userAcceso" name='userAcceso' placeholder="Correo" value="<?php echo $correo; ?>" required>
 						</div>
 						<div class="col-4 offset-4 text-center"><br>
-							<button id='submit' disabled class="btn btn-outline-primary btn-block btn-sm" type="submit" style="
+							<button id='submit_rec' disabled class="btn btn-outline-primary btn-block btn-sm" type="submit" style="
 							    background-color: #b4f22f;
 							    border: none;
 							    color: black;
@@ -52,7 +52,7 @@
 							"><i class="fa fa-check"></i>Aceptar</button>
 							<br>
 
-							<div class="g-recaptcha" data-sitekey="6LeFoukUAAAAADmqclzOsYOdayASVoBSwN_r7DLP" data-callback="correctCaptcha"></div>
+							<div class="g-recaptcha" data-sitekey="6LeFoukUAAAAADmqclzOsYOdayASVoBSwN_r7DLP" data-callback="correctCaptcha" data-expired-callback="captcha_fail"></div>
 
 						</div>
 					</div>
@@ -98,13 +98,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 <script src="sagyc.js"></script>
-<script>
-
-	function correctCaptcha(){
-		$("#submit").prop('disabled', false);
-	 }
-
- </script>
 </body>
 
 </html>

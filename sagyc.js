@@ -298,6 +298,12 @@ function elimina_cupon(id,idpedido){
       }
     });
 }
+function correctCaptcha(){
+  $("#submit_rec").prop('disabled', false);
+ }
+function captcha_fail(){
+  $("#submit_rec").prop('disabled', true);
+}
 $(document).on('submit','#acceso',function(e){
   e.preventDefault();
   var userAcceso=document.getElementById("userAcceso").value;
