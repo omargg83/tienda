@@ -64,7 +64,6 @@ function carrito(id){
 
     }
   });
-
 }
 function borra_carrito(id){
   $.ajax({
