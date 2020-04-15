@@ -563,18 +563,23 @@ class Productos extends Tienda{
 			$almax=$sth->fetch(PDO::FETCH_OBJ);
 
 			$nombre=trim(basename(trim($almax->imagen)));
-			echo "borrar:".unlink("../a_imagen/".$nombre);
-
-	    //if (!file_exists("../a_imagen/".$nombre)) {
-	      //$imagen = file_get_contents($almax->imagen);
-	      //echo file_put_contents("../a_imagen/".$nombre, $imagen);
-	    //}
 
 			$data = file_get_contents($almax->imagen);
 			$img = imagecreatefromstring($data);
-			imagejpeg($img,"../a_imagen/".$almax->img);
-
-			return "gola mundo: ".$almax->imagen;
+			if(imagejpeg($img,"../a_imagen/".$almax->img)){
+				$arreglo =array();
+				$arreglo+=array('id'=>$id);
+				$arreglo+=array('error'=>0);
+				$arreglo+=array('terror'=>"");
+				return json_encode($arreglo);
+			}
+			else{
+				$arreglo =array();
+				$arreglo+=array('id'=>$id);
+				$arreglo+=array('error'=>1);
+				$arreglo+=array('terror'=>"error favor de verificar");
+				return json_encode($arreglo);
+			}
 		}
 		catch(PDOException $e){
 			return "Database access FAILED!".$e->getMessage();
