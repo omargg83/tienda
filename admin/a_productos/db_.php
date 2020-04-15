@@ -510,12 +510,8 @@ class Productos extends Tienda{
 			$limite=0;
 			while (current($objectToArray)) {
 				$name=key($objectToArray);
-				echo "clave:".$name;
-				echo "--------------";
 				$info = (array)$objectToArray[$name];
 				$valor=$info['existencia'];
-				echo $valor;
-
 				if($valor>0){
 					$sql="select * from almacen where numero='$name'";
 					$sth4 = $this->dbh->prepare($sql);
@@ -558,6 +554,20 @@ class Productos extends Tienda{
 			return json_encode($arreglo);
 		}
 	}
+	public function imagen_api(){
+		try{
+			$id=$_REQUEST['id'];
+			$sql="select * from productos where id='$id'";
+			$sth = $this->dbh->prepare($sql);
+			$sth->execute();
+			$almax=$sth->fetch(PDO::FETCH_OBJ);
+			return "gola mundo".$almax->imagen;
+		}
+		catch(PDOException $e){
+			return "Database access FAILED!".$e->getMessage();
+		}
+	}
+
 	public function generar_codigo($length = 8) {
 		return "TIC_".substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
 	}
