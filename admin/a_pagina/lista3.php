@@ -47,7 +47,7 @@
           <button type="submit" class="btn btn-outline-secondary btn-sm"><i class='far fa-save'></i>Guardar</button>
           <?php
 
-            echo "<button type='button' class='btn btn-outline-secondary btn-sm' data-toggle='modal' data-target='#myModal' id='fileup_imagenx' data-ruta='a_pagina/' data-tabla='baner2' data-campo='img' data-tipo='1' data-id='$id' data-keyt='id' data-destino='a_pagina/lista3' data-iddest='$id' data-ext='.jpg,.png' ><i class='fas fa-cloud-upload-alt'></i>Agregar imagen</button>";
+            echo "<button type='button' class='btn btn-outline-secondary btn-sm' data-toggle='modal' data-target='#myModal' id='fileup_imagenx' data-ruta='a_imagenpagina/' data-tabla='baner2' data-campo='img' data-tipo='1' data-id='$id' data-keyt='id' data-destino='a_pagina/lista3' data-iddest='$id' data-ext='.jpg,.png' ><i class='fas fa-cloud-upload-alt'></i>Agregar imagen</button>";
 
             ?>
           <button class='btn btn-outline-secondary btn-sm' id='lista_cat' data-lugar='a_pagina/lista' title='regresar'><i class='fas fa-undo-alt'></i>Regresar</button>

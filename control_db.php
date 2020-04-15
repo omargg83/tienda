@@ -23,7 +23,7 @@
 
 			$this->doc="admin/a_imagen/";
 			$this->extra="admin/a_imagenextra/";
-			$this->banner="admin/a_pagina/";
+			$this->banner="admin/a_imagenpagina/";
 
 			$sql="select * from ajustes";
 			$sth = $this->dbh->prepare($sql);
