@@ -10,7 +10,6 @@
 	use PHPMailer\PHPMailer\PHPMailer;
 	use PHPMailer\PHPMailer\SMTP;
 
-
 	class Tienda{
 		public function __construct(){
 			$this->Salud = array();
@@ -299,7 +298,31 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
-
+		public function recuperar(){
+			try{
+				$mail=trim(htmlspecialchars($_REQUEST['mail']));
+				$sql="select * from clientes where correo=:mail";
+				$sth_i = $this->dbh->prepare($sql);
+				$sth_i->bindValue(":mail",$mail);
+				$sth_i->execute();
+				if($sth_i->rowCount()>0){
+					$resp=$sth_i->fetch(PDO::FETCH_OBJ);
+					$texto="cambio de contraseña";
+					$asunto="Cambio de contraseña";
+					return $this->correo($resp->correo, $texto, $asunto);
+				}
+				else{
+					$arreglo=array();
+					$arreglo+=array('id'=>0);
+					$arreglo+=array('error'=>1);
+					$arreglo+=array('terror'=>"El correo no existe");
+					return json_encode($arreglo);
+				}
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
 		public function salir(){
 			$_SESSION['interno']=0;
 			$_SESSION['autoriza_web']=0;

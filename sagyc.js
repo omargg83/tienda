@@ -377,6 +377,47 @@ $(document).on('submit','#registro',function(e){
     });
   }
 });
+$(document).on('submit','#recuperar',function(e){
+  e.preventDefault();
+  var dataString = $(this).serialize()+"&function=recuperar&ctrl=control";
+  var mail=document.getElementById("mail").value;
+  if(mail.length>0){
+    $.ajax({
+      url: "control_db.php",
+      type: "POST",
+      data:  dataString,
+      success: function( response ) {
+        console.log(response);
+        var datos = JSON.parse(response);
+        if (datos.error==0){
+          Swal.fire({
+              type: 'success',
+              title: 'Se nofiticó correctamente',
+              showConfirmButton: false,
+              timer: 2000
+          });
+          //window.location.href="index.php";
+        }
+        else{
+          Swal.fire({
+              type: 'error',
+              title: datos.terror,
+              showConfirmButton: false,
+              timer: 1000
+          });
+        }
+      }
+    });
+  }
+  else{
+    Swal.fire({
+        type: 'error',
+        title: 'Contraseña no coincide',
+        showConfirmButton: false,
+        timer: 1000
+    });
+  }
+});
 $(document).on('submit','#datos',function(e){
   e.preventDefault();
   var nombre=document.getElementById("nombre").value;

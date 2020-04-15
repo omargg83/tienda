@@ -41,7 +41,7 @@
 					<div class="col-12" >
 						<div class="col-4 offset-4 text-center">
 							<label>Correo</label>
-							<input type="text" class="form-control" id="userAcceso" name='userAcceso' placeholder="Correo" value="<?php echo $correo; ?>" required>
+							<input type="mail" class="form-control" id="mail" name='mail' placeholder="Correo" value="<?php echo $correo; ?>" required>
 						</div>
 						<div class="col-4 offset-4 text-center"><br>
 							<button id='submit_rec' disabled class="btn btn-outline-primary btn-block btn-sm" type="submit" style="
