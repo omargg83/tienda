@@ -508,9 +508,9 @@ class Productos extends Tienda{
 
 			while (current($resp)) {
 				$name=key($resp);
-				$valor=$resp[$name]['existencia'];
+				var_dump($resp[$name]);
 				echo "<br>Nombre:".$name;
-				echo "<br>Valor:".$valor;
+				//echo "<br>Valor:".$valor;
 				/*
 				$sql="insert into producto_exist (id, idProducto, almacen, existencia) values (:id, :idProducto, :almacen, :existencia)";
 				$sth2 = $db->dbh->prepare($sql);
