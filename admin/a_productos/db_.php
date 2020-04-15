@@ -507,13 +507,26 @@ class Productos extends Tienda{
 			$sth3->execute();
 
 			$objectToArray = (array)$resp;
+			$limite=0;
+			while (current($objectToArray) and $limite<10) {
 
-			foreach($objectToArray as $arreglo){
-				echo key($objectToArray);
-				echo "<hr>";
-				$exist = (array)$arreglo;
-				echo var_dump($exist);
+				$name=key($objectToArray);
+				echo $name;
+				/*
+				$valor=$product['existencia'][$name];
+
+				$sql="insert into producto_exist (id, idProducto, almacen, existencia) values (:id, :idProducto, :almacen, :existencia)";
+				$sth2 = $db->dbh->prepare($sql);
+				$sth2->bindValue(':id', $id);
+				$sth2->bindValue(':idProducto', $product['idProducto']);
+				$sth2->bindValue(':almacen', $name);
+				$sth2->bindValue(':existencia', $valor);
+				$sth2->execute();
+				*/
+				$limite++;
+				next($objectToArray);
 			}
+
 
 /*
 			while (current($resp)) {
