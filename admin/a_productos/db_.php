@@ -501,12 +501,32 @@ class Productos extends Tienda{
 
 		$resp =servicioApi($metodo,$servicio,NULL,$tok);
 		if (is_object($resp)){
+
 			$sql="delete from producto_exist where id='$id'";
 			$sth3 = $this->dbh->prepare($sql);
 			$sth3->execute();
+
+			while (current($resp)) {
+				$name=key($product['existencia']);
+				$valor=$product['existencia'][$name];
+				echo "<br>Nombre:".$name;
+				echo "<br>Valor:".$valor;
+				/*
+				$sql="insert into producto_exist (id, idProducto, almacen, existencia) values (:id, :idProducto, :almacen, :existencia)";
+				$sth2 = $db->dbh->prepare($sql);
+				$sth2->bindValue(':id', $id);
+				$sth2->bindValue(':idProducto', $product['idProducto']);
+				$sth2->bindValue(':almacen', $name);
+				$sth2->bindValue(':existencia', $valor);
+				$sth2->execute();*/
+				next($resp);
+			}
+	/*
 			foreach($resp as $key){
 				echo var_dump($key);
 			}
+*/
+
 		}
 		else{
 			return "error";
