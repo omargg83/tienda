@@ -1,3 +1,10 @@
 */2	*	*	*	*	/usr/local/bin/php /home/ticshopcom/public_html/tienda/a_jobs/existencia.php >/dev/null 2>&1
 15	*/2	*	*	*	/usr/local/bin/php /home/ticshopcom/public_html/tienda/a_jobs/ftp.php
 30	*/2	*	*	*	wget http://tic-shop.com.mx/tienda/a_jobs/001_imagen.php
+
+
+clave web
+6LeFoukUAAAAADmqclzOsYOdayASVoBSwN_r7DLP
+
+clave secreta
+6LeFoukUAAAAAPBldQzbcl7VcxSIe8Uvph3-k-xq

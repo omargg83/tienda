@@ -43,21 +43,24 @@
 							<label>Correo</label>
 							<input type="text" class="form-control" id="userAcceso" name='userAcceso' placeholder="Correo" value="<?php echo $correo; ?>" required>
 						</div>
-						<div class="col-4 offset-4 text-center">
-							<label>Contraseña</label>
-							<input type="password" class="form-control" id="passAcceso" name='passAcceso' placeholder="Contraseña" value="<?php echo $pass; ?>" required>
-						</div>
 						<div class="col-4 offset-4 text-center"><br>
-
 							<button class="btn btn-outline-primary btn-block btn-sm" type="submit" style="
 							    background-color: #b4f22f;
 							    border: none;
 							    color: black;
 							    cursor: pointer;
 							"><i class="fa fa-check"></i>Aceptar</button>
-						
 							<br>
-							<p><a href='recuperar.php'>¿Olvidaste tu contraseña?</a></p>
+
+							<script src="https://www.google.com/recaptcha/api.js?render=6LeFoukUAAAAADmqclzOsYOdayASVoBSwN_r7DLP"></script>
+<script>
+grecaptcha.ready(function() {
+    grecaptcha.execute('6LeFoukUAAAAADmqclzOsYOdayASVoBSwN_r7DLP', {action: 'homepage'}).then(function(token) {
+       ...
+    });
+});
+</script>
+
 						</div>
 					</div>
 				</div>
