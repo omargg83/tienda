@@ -508,7 +508,12 @@ class Productos extends Tienda{
 
 			$objectToArray = (array)$resp;
 
-			echo var_dump($objectToArray);
+			foreach($objectToArray as $arreglo){
+				echo key($arreglo);
+
+				$exist = (array)$arreglo;
+				echo var_dump($exist);
+			}
 
 /*
 			while (current($resp)) {
