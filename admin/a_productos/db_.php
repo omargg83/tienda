@@ -564,10 +564,11 @@ class Productos extends Tienda{
 
 
 			$nombre=trim(basename(trim($almax->imagen)));
-	    if (!file_exists("../a_imagen/".$nombre)) {
+			unlink("../a_imagen/".$nombre);
+	    //if (!file_exists("../a_imagen/".$nombre)) {
 	      $imagen = file_get_contents($url);
 	      echo file_put_contents("../a_imagen/".$nombre, $imagen);
-	    }
+	    //}
 
 			return "gola mundo".$almax->imagen;
 		}
