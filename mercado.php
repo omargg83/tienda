@@ -1,5 +1,4 @@
 <?php
-
 require_once("control_db.php");
 $db = new Tienda();
 
@@ -13,7 +12,7 @@ $mercado_token=$mercado->mercado_token;
 	$merchant_order = null;
 	$id=$_GET["id"];
 	$topic=$_GET["topic"];
-	
+
 	echo $id;
 	switch(	$topic) {
 			case "payment":
@@ -58,22 +57,6 @@ $mercado_token=$mercado->mercado_token;
 	// for extra security, retrieve from the Stripe API
 	$id1 = $event_json->data->id;
 
-  class Tienda{
-
-    public function __construct(){
-      date_default_timezone_set("America/Mexico_City");
-      $_SESSION['mysqluser']="ticshopc_admin";
-      $_SESSION['mysqlpass']="admin123$%";
-      $_SESSION['servidor'] ="tic-shop.com.mx";
-      $_SESSION['bdd']="ticshopc_tienda";
-      $this->dbh = new PDO("mysql:host=".$_SESSION['servidor'].";dbname=".$_SESSION['bdd']."", $_SESSION['mysqluser'], $_SESSION['mysqlpass']);
-      self::set_names();
-    }
-    public function set_names(){
-      return $this->dbh->query("SET NAMES 'utf8'");
-    }
-  }
-	$db = new Tienda();
 
 //	$sql="select * from pedidos where idpago=24757365";
 
