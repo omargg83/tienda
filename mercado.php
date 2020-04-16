@@ -11,15 +11,18 @@ $mercado_token=$mercado->mercado_token;
 	MercadoPago\SDK::setAccessToken($mercado_token);
 
 	$merchant_order = null;
-
-	switch($_GET["topic"]) {
+	$id=$_GET["id"];
+	$topic=$_GET["topic"];
+	
+	echo $id;
+	switch(	$topic) {
 			case "payment":
-					$payment = MercadoPago\Payment::find_by_id($_GET["id"]);
+					$payment = MercadoPago\Payment::find_by_id($id);
 					// Get the payment and the corresponding merchant_order reported by the IPN.
 					$merchant_order = MercadoPago\MerchantOrder::find_by_id($payment->order->id);
 					break;
 			case "merchant_order":
-					$merchant_order = MercadoPago\MerchantOrder::find_by_id($_GET["id"]);
+					$merchant_order = MercadoPago\MerchantOrder::find_by_id($id);
 					break;
 	}
 
@@ -34,12 +37,12 @@ $mercado_token=$mercado->mercado_token;
 	if($paid_amount >= $merchant_order->total_amount){
 			if (count($merchant_order->shipments)>0) { // The merchant_order has shipments
 					if($merchant_order->shipments[0]->status == "ready_to_ship") {
-							$resp="Totally paid. Print the label and release your item.";
-							print_r("Totally paid. Print the label and release your item.");
+							$resp="Totally paid. Print the label and release your item. $id";
+							print_r("Totally paid. Print the label and release your item. $id");
 					}
 			} else { // The merchant_order don't has any shipments
-					$resp="Totally paid. Release your item.";
-					print_r("Totally paid. Release your item.");
+					$resp="Totally paid. Release your item. $id";
+					print_r("Totally paid. Release your item. $id");
 			}
 	} else {
 			$resp="Not paid yet. Do not release your item.";
@@ -81,7 +84,7 @@ $mercado_token=$mercado->mercado_token;
 	$sth->bindValue(':log',$texto);
 	echo $sth->execute();
 
-	if (isset($_GET["id"], $_GET["topic"])) {
+	if (isset($id, 	$topic)) {
 	    http_response_code(200);
 	    return;
 	}

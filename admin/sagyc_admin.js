@@ -192,7 +192,6 @@
 				"passAcceso":passAcceso
 		  },
 		  success: function( response ) {
-				console.log(response);
 				var data = JSON.parse(response);
 				if (data.acceso==1){
 					acceso();
@@ -486,7 +485,6 @@
 			type: "post",
 			timeout:30000,
 			success:  function (response) {
-				console.log(response);
 				if (isJSON(response)){
 					var datos = JSON.parse(response);
 					if (datos.error==0){
@@ -579,7 +577,6 @@
 			var funcion = $(this).data('funcion');
 		}
 		else{
-			console.log("error");
 			return;
 		}
 

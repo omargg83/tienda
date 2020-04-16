@@ -276,14 +276,11 @@
 						$item->title = 'TIC-SHOP';
 						$item->quantity = 1;
 						$item->unit_price = $gtotal;
-
-
-
-
-
 						$preference->items = array($item);
+
 						$preference->save();
 					?>
+
 
 					<form action="https://www.tic-shop.com.mx/pago_fin.php?idpedido=<?php echo $idpedido; ?>" method="POST">
 					  <script
