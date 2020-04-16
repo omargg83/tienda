@@ -111,7 +111,7 @@
 									<!-- Product Quantity -->
 									<div class="product_quantity clearfix">
 										<span>Cantidad: </span>
-										<input id="quantity_input" type="text" pattern="[0-9]*" value="1">
+										<input id="quantity_input" type="text" pattern="[0-9]*" value="1" min="1" max="5">
 										<div class="quantity_buttons">
 											<div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fas fa-chevron-up"></i></div>
 											<div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fas fa-chevron-down"></i></div>
@@ -171,7 +171,7 @@
 
 								<div class="button_container">
 									<?php
-										echo "<button type='button' class='button cart_button'  onclick='carrito(".$prod->id.")'>Agregar al carrito</button>";
+										echo "<button type='button' class='button cart_button'  onclick='carrito(".$prod->id.",1)'>Agregar al carrito</button>";
 									?>
 									<div class="product_fav"><i class="fas fa-heart" style="display: none;"></i></div>
 									<button type="button" class="button cart_button"  class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" style="margin-top: 10px;">Cotizar por mayoreo</button>

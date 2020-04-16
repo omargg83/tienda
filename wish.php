@@ -113,7 +113,7 @@
 							echo "</div>";
 
 
-							echo "<button class='btn btn-warning' onclick='carrito(".$key->id.")'><i class='fas fa-cart-plus'></i></button>";
+							echo "<button class='btn btn-warning' onclick='carrito(".$key->id.",1)'><i class='fas fa-cart-plus'></i></button>";
 							echo "<button class='btn btn-warning' onclick='borra_wish(".$key->cliid.")'><i class='far fa-trash-alt'></i></button>";
 						echo "</div>";
 					echo "</div>";

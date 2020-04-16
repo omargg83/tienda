@@ -543,6 +543,7 @@
 			try{
 				self::set_names();
 				$id=$_REQUEST['id'];
+				$cantidad=$_REQUEST['cantidad'];
 				if(isset($_SESSION['autoriza_web']) and $_SESSION['autoriza_web']==1 and strlen($_SESSION['idcliente'])>0){
 					$sql="insert into cliente_carro (idcliente, idproducto, fechaagrega) values (:idcliente, :idproducto, :fecha)";
 					$sth = $this->dbh->prepare($sql);

@@ -38,11 +38,12 @@ function salir(){
     }
   });
 }
-function carrito(id){
+function carrito(id,cantidad){
   $.ajax({
     data:  {
       "ctrl":"control",
       "id":id,
+      "cantidad":cantidad,
       "function":"carrito"
     },
     url:   'control_db.php',

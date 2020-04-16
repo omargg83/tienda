@@ -88,7 +88,7 @@
 																<div class='product_name'><div><a href='product.php?id=".$key->id."'>".$key->nombre."</a></div></div>
 																<div class='product_extras'>
 
-																	<button class='product_cart_button' onclick='carrito(".$key->id.")'>Agregar al carrito</button>
+																	<button class='product_cart_button' onclick='carrito(".$key->id.",1)'>Agregar al carrito</button>
 																</div>
 															</div>
 															<div class='product_fav' onclick='wish(".$key->id.")'><i class='fas fa-heart'></i></div>

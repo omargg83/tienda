@@ -182,7 +182,7 @@
 												</div>
 												<div class='available'>
 													<div class='available_line d-flex flex-row justify-content-start'>
-														<button class='btn btn-outline-primary btn-block' onclick='carrito(".$key->id.")'>Agregar al carrito</button>
+														<button class='btn btn-outline-primary btn-block' onclick='carrito(".$key->id.",1)'>Agregar al carrito</button>
 													</div>
 												</div>
 
@@ -243,7 +243,7 @@
 														<div class='product_price discount'>".moneda($preciof)."<span>".moneda($preciof)."</span></div>
 														<div class='product_name'><div><a href='product.php?id=".$key->id."'>".$key->nombre."</a></div></div>
 														<div class='product_extras'>
-															<button class='product_cart_button' onclick='carrito(".$key->id.")'>Agregar al carrito</button>
+															<button class='product_cart_button' onclick='carrito(".$key->id.",1)'>Agregar al carrito</button>
 														</div>
 													</div>
 													<div class='product_fav' onclick='wish(".$key->id.")'><i class='fas fa-heart'></i></div>";
@@ -404,7 +404,7 @@
 															<div class='product_price'>".moneda($key->preciof)."</div>
 															<div class='product_name'><div><a href='product.php?id=".$key->id."'>".$key->nombre."</a></div></div>
 															<div class='product_extras'>
-																<button class='product_cart_button' onclick='carrito(".$key->id.")'>Agregar al carrito</button>
+																<button class='product_cart_button' onclick='carrito(".$key->id.",1)'>Agregar al carrito</button>
 															</div>
 														</div>
 														<div class='product_fav' onclick='wish(".$key->id.")'><i class='fas fa-heart'></i></div>
@@ -440,7 +440,7 @@
 "><a href="#">Ver productos</a></div>
 	</div>
 
-	
+
 
 	<!-- Brands -->
 	<div class="brands">
