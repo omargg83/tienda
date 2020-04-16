@@ -561,7 +561,6 @@
 					else{
 						$cantidad_carro=0;
 					}
-
 					//////////////verificar existencia
 					$sql="select * from productos where id='$id'";
 					$sth_i = $this->dbh->prepare($sql);
@@ -569,8 +568,8 @@
 					$verifica_exi=$sth_i->fetch(PDO::FETCH_OBJ);
 					if($verifica_exi->existencia<($cantidad_carro+$cantidad)){
 						$arr=array();
-						$arr=array('error'=>1);
-						$arr=array('terror'=>"Verificar existencias");
+						$arr+=array('error'=>1);
+						$arr+=array('terror'=>"Verificar existencias");
 						return json_encode($arr);
 					}
 					/////////////si no esta en el carrito lo ingresamos
@@ -593,13 +592,13 @@
 					$respx=$sth->execute();
 					if($respx){
 						$arr=array();
-						$arr=array('error'=>0);
+						$arr+=array('error'=>0);
 						return json_encode($arr);
 					}
 					else{
 						$arr=array();
-						$arr=array('error'=>1);
-						$arr=array('terror'=>$respx);
+						$arr+=array('error'=>1);
+						$arr+=array('terror'=>$respx);
 						return json_encode($arr);
 					}
 				}
