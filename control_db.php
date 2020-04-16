@@ -546,21 +546,29 @@
 				$cantidad=$_REQUEST['cantidad'];
 
 				if(isset($_SESSION['autoriza_web']) and $_SESSION['autoriza_web']==1 and strlen($_SESSION['idcliente'])>0){
+					$cantidad_carro=0;
 
 					////////////////////////checamos si ya esta en el carrito
 					$sql="select * from cliente_carro where idproducto='$id' and idcliente='".$_SESSION['idcliente']."'";
 					$sth_i = $this->dbh->prepare($sql);
 					$sth_i->execute();
 					$contar=$sth_i->rowCount();
-					$resp=$sth_i->fetch(PDO::FETCH_OBJ);
+					if($contar>0){
+						$resp=$sth_i->fetch(PDO::FETCH_OBJ);
+						$cantidad_carro=$resp->cantidad;
+						$id_carro=$resp->id;
+					}
+					else{
+						$cantidad_carro=0;
+					}
 
 					//////////////verificar existencia
 					$sql="select * from productos where idproducto='$id'";
 					$sth_i = $this->dbh->prepare($sql);
 					$sth_i->execute();
 					$verifica_exi=$sth_i->fetch(PDO::FETCH_OBJ);
-					$cantidad=$cantidad+$resp->cantidad;
-					if($verifica_exi->cantidad<$cantidad){
+
+					if($verifica_exi->cantidad<=($cantidad_carro+$cantidad)){
 						$arr=array();
 						$arr=array('error'=>1);
 						$arr=array('terror'=>"Verificar existencias");
@@ -579,8 +587,8 @@
 					/////////////si ya esta solo se suma
 						$sql="update cliente_carro set cantidad=:cantidad where id=:id";
 						$sth = $this->dbh->prepare($sql);
-						$cantidad=$cantidad+$resp->cantidad;
-						$sth->bindValue(":id",$resp->id);
+						$cantidad=$cantidad+$cantidad_carro;
+						$sth->bindValue(":id",$id_carro);
 						$sth->bindValue(":cantidad",$cantidad);
 					}
 					$respx=$sth->execute();
