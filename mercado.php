@@ -26,12 +26,41 @@
 		}
 	}
 	$db = new Tienda();
+	$mercado=$db->ajustes_editar();
+	$mercado_token=$mercado->mercado_token;
 
+	$id=$_GET["id"];
+
+	echo $id;
+	$metodo='GET';
+
+	$ch = curl_init('https://api.mercadopago.com/v1/payments/' . $id);
+	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $metodo);
+
+	$json = json_encode(array('access_token' => $mercado_token));
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	/*
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Content-Length: ' . strlen($json), 'x-auth: ' . $token));
+	*/
+	curl_setopt($ch, CURLOPT_TIMEOUT, 20);
+	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 20);
+	$result = curl_exec($ch);
+
+	echo curl_error($ch);
+	echo curl_close($ch); // close cURL handler
+	return json_decode($result);
+/*
 	$input = @file_get_contents("php://input");
 	$texto=$input;
 	$event_json = json_decode($input);
 	$id = $event_json->data->id;
-	$externa = $event_json->external_reference;
+
+
+	https://api.mercadopago.com/v1/payments/[ID]?access_token=[ACCESS_TOKEN]
+
+
+	/*
 
 	$sql="select * from pedidos where idpago='$id'";
 	$sth = $db->dbh->prepare($sql);
