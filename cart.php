@@ -65,7 +65,7 @@
 						$p_total=$key->precio_tic+(($key->precio_tic*$db->cgeneral)/100);
 						$preciof=$p_total;
 					}
-
+					$preciof=round($preciof,2);
 					echo "<div class='row' style='border-bottom:.5px solid silver'>";
 						echo "<div class='col-3 text-center'>";
 							echo "<img src='".$db->doc.$key->img."' alt='' width='130px'>";
@@ -115,7 +115,7 @@
 										echo "</div>";
 										echo "<div class='col-4 text-right'>";
 											$p_final=($key->cantidad*$preciof);
-											echo moneda($p_final);
+											echo $p_final;
 										echo "</div>";
 									echo "</div>";
 
