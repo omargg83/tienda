@@ -60,9 +60,9 @@
 		$sql="select * from pedidos where idpago='$id";
 		$sth = $db->dbh->prepare($sql);
 		if($sth->execute()){
-			$pedido=$sth->fetch(PDO::FETCH_OBJ);
+			$pedidos=$sth->fetch(PDO::FETCH_OBJ);
 
-			$texto="$id $texto  Pedido:".$pedido->id;
+			$texto="$id $texto  Pedido:".$pedidos->id;
 			$sql="insert into new_table (log) values (:log)";
 			$sth = $db->dbh->prepare($sql);
 			$sth->bindValue(':log',$texto);
