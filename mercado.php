@@ -40,7 +40,8 @@
 	require __DIR__ .  '/vendor/autoload.php';
 	MercadoPago\SDK::setAccessToken($mercado_token);
   $payment = MercadoPago\Payment::find_by_id($id);
-  echo "pago:".$payment;
+
+  echo var_dump($payment);
 
 
 /*
