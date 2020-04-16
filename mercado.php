@@ -29,18 +29,25 @@
 	$mercado=$db->ajustes_editar();
 	$mercado_token=$mercado->mercado_token;
 
-	$id=$_GET["id"];
-
+	$id=$_POST["id"];
 	echo $id;
-	$metodo='GET';
-
 	require __DIR__ .  '/vendor/autoload.php';
+	MercadoPago\SDK::setAccessToken($mercado_token);
+
+
+  $payment = MercadoPago\Payment.find_by_id($_POST["id"]);
+  echo "pago:".$payment;
+
+
+/*
+
+
 	MercadoPago\SDK::setAccessToken($mercado_token);
 
 	$payment = MercadoPago\Payment::find_by_id($id);
 
-	echo $payment;
-/*
+	echo "pago:".$payment;
+
 	$ch = curl_init('https://api.mercadopago.com/v1/payments/' . $id);
 	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $metodo);
 
