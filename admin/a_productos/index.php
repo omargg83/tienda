@@ -244,6 +244,61 @@
       }
     });
   }
+  function espe_api(){
+    var id=$("#id").val();
+    $.confirm({
+      title: 'Especificación',
+      content: '¿Desea actualizar especificaciones?',
+      buttons: {
+        Aceptar: function () {
+          $.ajax({
+            data:  {
+              "function":"imagen_api",
+              "id":id
+            },
+            url:   'a_productos/db_.php',
+            type:  'post',
+            success:  function (response) {
+              if(isJSON(response)){
+                var datos = JSON.parse(response);
+                if (datos.error==0){
+                  Swal.fire({
+                      type: 'success',
+                      title: "Imagen actualizada",
+                      showConfirmButton: false,
+                      timer: 1000
+                  });
+                  $("#trabajo").load("a_productos/editar.php?id="+id);
+                }
+                else{
+                  Swal.fire({
+                      type: 'error',
+                      title: 'Error, favor de verificar',
+                      showConfirmButton: false,
+                      timer: 1000
+                  });
+                }
+              }
+              else{
+                Swal.fire({
+                    type: 'error',
+                    title: 'Error, la imagen no se puede procesar',
+                    showConfirmButton: false,
+                    timer: 1000
+                });
+              }
+            }
+          });
+        },
+        Cancelar: function () {
+
+        }
+      }
+    });
+  }
+
+
+
   function isJSON (something) {
     if (typeof something != 'string')
         something = JSON.stringify(something);
