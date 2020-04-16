@@ -1,4 +1,9 @@
 <?php
+	error_reporting(E_ALL);
+	ini_set('display_errors', '1');
+	date_default_timezone_set("America/Mexico_City");
+
+
 	class Tienda{
 		public function __construct(){
 			date_default_timezone_set("America/Mexico_City");
@@ -29,8 +34,9 @@
 	$mercado=$db->ajustes_editar();
 	$mercado_token=$mercado->mercado_token;
 
-	$id=$_POST["id"];
+	$id=$_REQUEST["id"];
 	echo $id;
+
 	require __DIR__ .  '/vendor/autoload.php';
 	MercadoPago\SDK::setAccessToken($mercado_token);
 
