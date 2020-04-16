@@ -280,7 +280,11 @@
 
 						$preference->save();
 					?>
+					<?php
 
+						echo "preferencia: ".$preference->id;
+
+					?>
 
 					<form action="https://www.tic-shop.com.mx/pago_fin.php?idpedido=<?php echo $idpedido; ?>" method="POST">
 					  <script
