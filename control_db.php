@@ -544,12 +544,29 @@
 				self::set_names();
 				$id=$_REQUEST['id'];
 				$cantidad=$_REQUEST['cantidad'];
+
 				if(isset($_SESSION['autoriza_web']) and $_SESSION['autoriza_web']==1 and strlen($_SESSION['idcliente'])>0){
-					$sql="insert into cliente_carro (idcliente, idproducto, fechaagrega) values (:idcliente, :idproducto, :fecha)";
-					$sth = $this->dbh->prepare($sql);
-					$sth->bindValue(":idcliente",$_SESSION['idcliente']);
-					$sth->bindValue(":idproducto",$id);
-					$sth->bindValue(":fecha",date("Y-m-d H:i:s"));
+					$sql="select * from cliente_carro where idproducto='$id' and idcliente='".$_SESSION['idcliente']."'";
+					$sth_i = $this->dbh->prepare($sql);
+					$sth_i->execute();
+
+					if($sth_i->rowCount()==0){
+						$sql="insert into cliente_carro (idcliente, idproducto, fechaagrega, cantidad) values (:idcliente, :idproducto, :fecha, :cantidad)";
+						$sth = $this->dbh->prepare($sql);
+						$sth->bindValue(":idcliente",$_SESSION['idcliente']);
+						$sth->bindValue(":idproducto",$id);
+						$sth->bindValue(":cantidad",$cantidad);
+						$sth->bindValue(":fecha",date("Y-m-d H:i:s"));
+					}
+					else{
+						$resp=$sth_i->fetch(PDO::FETCH_OBJ);
+
+						$sql="update cliente_carro set cantidad=:cantidad where id=:id";
+						$sth = $this->dbh->prepare($sql);
+						$cantidad=$cantidad+$resp->cantidad;
+						$sth->bindValue(":id",$resp->id);
+						$sth->bindValue(":cantidad",$cantidad);
+					}
 					$resp=$sth->execute();
 					if($resp){
 						$arr=array();

@@ -207,6 +207,7 @@
             url:   'a_productos/db_.php',
             type:  'post',
             success:  function (response) {
+              console.log(response);
               var datos = JSON.parse(response);
               if (datos.error==0){
                 Swal.fire({
@@ -234,7 +235,17 @@
       }
     });
   }
+  function isJSON (something) {
+    if (typeof something != 'string')
+        something = JSON.stringify(something);
 
+    try {
+        JSON.parse(something);
+        return true;
+    } catch (e) {
+        return false;
+    }
+  }
 
   function generar_codigoprod(){
     $.ajax({
