@@ -77,6 +77,7 @@
 		$cb_destacados=$per->cb_destacados;
 		$precio_oferta=$per->precio_oferta;
 		$activo=$per->activo;
+		$modificado=$per->modificado;
 	}
 	else{
 		$interno=1;

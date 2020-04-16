@@ -207,21 +207,30 @@
             url:   'a_productos/db_.php',
             type:  'post',
             success:  function (response) {
-              console.log(response);
-              var datos = JSON.parse(response);
-              if (datos.error==0){
-                Swal.fire({
-                    type: 'success',
-                    title: "Imagen actualizada",
-                    showConfirmButton: false,
-                    timer: 1000
-                });
-                $("#trabajo").load("a_productos/editar.php?id="+id);
+              if(isJSON(response)){
+                var datos = JSON.parse(response);
+                if (datos.error==0){
+                  Swal.fire({
+                      type: 'success',
+                      title: "Imagen actualizada",
+                      showConfirmButton: false,
+                      timer: 1000
+                  });
+                  $("#trabajo").load("a_productos/editar.php?id="+id);
+                }
+                else{
+                  Swal.fire({
+                      type: 'error',
+                      title: 'Error, favor de verificar',
+                      showConfirmButton: false,
+                      timer: 1000
+                  });
+                }
               }
               else{
                 Swal.fire({
                     type: 'error',
-                    title: 'Error, favor de verificar',
+                    title: 'Error, la imagen no se puede procesar',
                     showConfirmButton: false,
                     timer: 1000
                 });
