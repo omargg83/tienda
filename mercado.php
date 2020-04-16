@@ -32,7 +32,7 @@
 	$event_json = json_decode($input);
 	$id = $event_json->data->id;
 
-	$sql="select * from pedidos where idpago='$id";
+	$sql="select * from pedidos where idpago='$id'";
 	$sth = $db->dbh->prepare($sql);
 	$sth->execute();
 	$pedidos=$sth->fetch(PDO::FETCH_OBJ);
