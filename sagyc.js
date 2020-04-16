@@ -612,5 +612,10 @@ $(document).on('submit','#cotizacion_form',function(e){
 });
 $(document).on('submit','#carrito_form',function(e){
   e.preventDefault();
-  alert("entra");
+  
+  var cantidad=$("#quantity_input").val();
+  var id=$("#id").val();
+
+  alert(cantidad);
+  alert(id);
 });

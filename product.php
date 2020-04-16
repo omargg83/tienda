@@ -108,7 +108,6 @@
 						<div class="order_info d-flex flex-row">
 							<form id='carrito_form' action=''>
 								<div class="clearfix" style="z-index: 1000;">
-
 									<!-- Product Quantity -->
 									<div class="product_quantity clearfix">
 										<span>Cantidad: </span>
@@ -117,9 +116,7 @@
 											<div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fas fa-chevron-up"></i></div>
 											<div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fas fa-chevron-down"></i></div>
 										</div>
-
 									</div>
-
 								</div>
 
 								<div class="product_price">Precio: <?php
