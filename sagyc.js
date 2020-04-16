@@ -612,33 +612,5 @@ $(document).on('submit','#cotizacion_form',function(e){
 });
 $(document).on('submit','#carrito_form',function(e){
   e.preventDefault();
-  var cantitad=$("#quantity_input").val();
-  var id=$("#id").val();
-
-  $.ajax({
-    data:  {
-      "ctrl":"control",
-      "id":id,
-      "cantidad":cantidad,
-      "function":"carrito"
-    },
-    url:   'control_db.php',
-    type:  'post',
-    timeout:30000,
-    beforeSend: function () {
-
-    },
-    success:  function (response) {
-      var datos = JSON.parse(response);
-      if (datos.error==0){
-        window.location.href="cart.php";
-      }
-      if(datos.error==2){
-        window.location.href="acceso.php";
-      }
-    },
-    error: function(jqXHR, textStatus, errorThrown) {
-
-    }
-  });
+  alert("entra");
 });
