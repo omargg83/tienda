@@ -108,7 +108,7 @@
 						<div class="order_info d-flex flex-row">
 							<form id='carrito_form' action=''>
 								<div class="clearfix" style="z-index: 1000;">
-									<input type="number" id="id" name="id" type="text" value="<?php echo $id; ?>" >
+									
 									<!-- Product Quantity -->
 									<div class="product_quantity clearfix">
 										<span>Cantidad: </span>
