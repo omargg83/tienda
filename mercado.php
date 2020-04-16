@@ -37,7 +37,7 @@
 	$sth->execute();
 	$pedidos=$sth->fetch(PDO::FETCH_OBJ);
 
-	$texto="$id $texto  Pedido:".$pedidos->id;
+	$texto="$id $sql $texto  Pedido:".$pedidos->id;
 	$sql="insert into new_table (log) values (:log)";
 	$sth = $db->dbh->prepare($sql);
 	$sth->bindValue(':log',$texto);
