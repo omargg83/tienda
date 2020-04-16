@@ -34,13 +34,26 @@
 	$mercado_token=$mercado->mercado_token;
 
 	$id=$_REQUEST["id"];
-	echo $id;
+	echo "<br>Id:".$id;
 
 	require __DIR__ .  '/vendor/autoload.php';
 	MercadoPago\SDK::setAccessToken($mercado_token);
   $payment = MercadoPago\Payment::find_by_id($id);
-  echo $payment->external_reference;
 
+	$externa=$payment->external_reference;
+	$monto=$payment->transaction_amount;
+	$estado=$payment->status;
+
+  echo "<br>external:".$externa;
+  echo "<br>Monto:".$monto;
+  echo "<br>estado:".$estado;
+
+	$sql="select * from pedidos where idpago='$externa'";
+	$sth = $db->dbh->prepare($sql);
+	$sth->execute();
+	$rex=$sth->fetch(PDO::FETCH_OBJ);
+
+	$resp=var_dump($rex);
 
 /*
 
