@@ -48,7 +48,7 @@
   echo "<br>Monto:".$monto;
   echo "<br>estado:".$estado;
 
-	$sql="select * from pedidos where idpago='$externa'";
+	$sql="select * from pedidos where id='$externa'";
 	$sth = $db->dbh->prepare($sql);
 	$sth->execute();
 	$rex=$sth->fetch(PDO::FETCH_OBJ);
