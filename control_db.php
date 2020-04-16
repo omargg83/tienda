@@ -563,11 +563,10 @@
 					}
 
 					//////////////verificar existencia
-					$sql="select * from productos where idproducto='$id'";
+					$sql="select * from productos where id='$id'";
 					$sth_i = $this->dbh->prepare($sql);
 					$sth_i->execute();
 					$verifica_exi=$sth_i->fetch(PDO::FETCH_OBJ);
-					return $sql;
 					if($verifica_exi->existencia<=($cantidad_carro+$cantidad)){
 						$arr=array();
 						$arr=array('error'=>1);
