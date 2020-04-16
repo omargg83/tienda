@@ -108,7 +108,7 @@
 						<div class="order_info d-flex flex-row">
 							<form id='carrito_form' action=''>
 								<div class="clearfix" style="z-index: 1000;">
-									
+
 									<!-- Product Quantity -->
 									<div class="product_quantity clearfix">
 										<span>Cantidad: </span>
@@ -169,7 +169,7 @@
 									echo "</table>";
 
 								?>
-
+								<input type="hidden" id="id" name="id" type="text" value="<?php echo $id; ?>" >
 								<div class="button_container">
 									<?php
 										echo "<button type='submit' class='button cart_button'>Agregar al carrito</button>";
