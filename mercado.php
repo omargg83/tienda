@@ -37,6 +37,8 @@
 	$resp=$sth->execute();
 	$resp_ped=$sth->fetch(PDO::FETCH_OBJ);
 
+	$resp=var_dump($resp_ped);
+
 	$texto="$id $sql ($resp) $texto  Pedido: (".$resp_ped->id.")";
 	$sql="insert into new_table (log) values (:log)";
 	$sth = $db->dbh->prepare($sql);
