@@ -1055,7 +1055,7 @@
 						$arreglo+= array('monto'=>$total);
 						$arreglo+= array('envio'=>$totalEnvio);
 						$gtotal=$total+$totalEnvio;
-						$arreglo+= array('total'=>$gtotal);
+						$arreglo+= array('total'=>round($gtotal,2));
 						$this->update('pedidos',array('id'=>$pedido->id), $arreglo);
 						//////////////////////////////////////////////////////////////////////////
 					}

@@ -33,8 +33,11 @@
 	$mercado=$db->ajustes_editar();
 	$mercado_token=$mercado->mercado_token;
 
-	$id=$_REQUEST["id"];
-	echo "<br>Id:".$id;
+	$input = @file_get_contents("php://input");
+	$texto=$input;
+	$event_json = json_decode($input);
+	$id = $event_json->data->id;
+
 
 	require __DIR__ .  '/vendor/autoload.php';
 	MercadoPago\SDK::setAccessToken($mercado_token);
@@ -59,62 +62,18 @@
 		echo "<br>Bien pagado";
 	}
 
-/*
 
-
-	$input = @file_get_contents("php://input");
-	$texto=$input;
-	$event_json = json_decode($input);
-	$id = $event_json->data->id;
-
-	$sql="select * from pedidos where idpago='$id'";
-	$sth = $db->dbh->prepare($sql);
-	$sth->execute();
-	$rex=$sth->fetch(PDO::FETCH_OBJ);
-
-	$resp=var_dump($rex);
-
-	$texto="$id ($externa) $texto  Pedido: (".$rex->id.")";
+	$texto="$id $texto  Pedido:".$rex->id;
 	$sql="insert into new_table (log) values (:log)";
 	$sth = $db->dbh->prepare($sql);
 	$sth->bindValue(':log',$texto);
 	echo $sth->execute();
 
-
-	if (isset($id, 	$topic)) {
+	if (isset($id)) {
 			http_response_code(200);
 			return;
 	}
 
 
-/*
-
-	///////////////////////////////////////////////////////////////////////////////
-
-
-
-		$input = @file_get_contents("php://input");
-		$texto=$input;
-		$event_json = json_decode($input);
-		$id = $event_json->data->id;
-
-		$sql="select * from pedidos where idpago='$id";
-		$sth = $db->dbh->prepare($sql);
-		if($sth->execute()){
-			$pedidos=$sth->fetch(PDO::FETCH_OBJ);
-
-			$texto="$id $texto  Pedido:".$pedidos->id;
-			$sql="insert into new_table (log) values (:log)";
-			$sth = $db->dbh->prepare($sql);
-			$sth->bindValue(':log',$texto);
-			echo $sth->execute();
-		}
-
-		if (isset($id, 	$topic)) {
-		    http_response_code(200);
-		    return;
-		}
-	}
-*/
 
 ?>
