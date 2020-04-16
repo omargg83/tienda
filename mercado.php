@@ -34,23 +34,31 @@
 	echo $id;
 	$metodo='GET';
 
+	require __DIR__ .  '/vendor/autoload.php';
+	MercadoPago\SDK::setAccessToken($mercado_token);
+
+	$payment = MercadoPago\Payment::find_by_id($id);
+
+	echo $payment;
+/*
 	$ch = curl_init('https://api.mercadopago.com/v1/payments/' . $id);
 	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $metodo);
 
 	$json = json_encode(array('access_token' => $mercado_token));
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	/*
 	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Content-Length: ' . strlen($json), 'x-auth: ' . $token));
-	*/
+
 	curl_setopt($ch, CURLOPT_TIMEOUT, 20);
 	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 20);
 	$result = curl_exec($ch);
 
-	echo curl_error($ch);
+	echo $result;
+	echo "error".curl_error($ch);
 	echo curl_close($ch); // close cURL handler
+
 	return json_decode($result);
-/*
+
 	$input = @file_get_contents("php://input");
 	$texto=$input;
 	$event_json = json_decode($input);
