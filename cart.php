@@ -108,13 +108,14 @@
 
 									echo "<div class='row'>";
 										echo "<div class='col-4 text-center'>";
-											echo "1";
+											echo $key->cantidad;
 										echo "</div>";
 										echo "<div class='col-4 text-right'>";
 											echo moneda($preciof);
 										echo "</div>";
 										echo "<div class='col-4 text-right'>";
-											echo moneda($preciof);
+											$p_final=($key->cantidad*$preciof)
+											echo moneda($p_final);
 										echo "</div>";
 									echo "</div>";
 
@@ -124,7 +125,7 @@
 							echo "<button class='btn btn-warning btn-sm' onclick='borra_carrito(".$key->id.")'><i class='far fa-trash-alt'></i></button>";
 						echo "</div>";
 					echo "</div>";
-					$total+=$preciof;
+					$total+=$p_final;
 				}
 
 				?>
