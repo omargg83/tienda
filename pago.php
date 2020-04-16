@@ -270,7 +270,8 @@
 
 						// Crea un objeto de preferencia
 						$preference = new MercadoPago\Preference();
-
+						$preference=external_reference="$idpedido";
+						
 						// Crea un ítem en la preferencia
 						$item = new MercadoPago\Item();
 						$item->title = 'TIC-SHOP';

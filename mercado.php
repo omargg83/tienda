@@ -31,6 +31,7 @@
 	$texto=$input;
 	$event_json = json_decode($input);
 	$id = $event_json->data->id;
+	$externa = $event_json->external_reference;
 
 	$sql="select * from pedidos where idpago='$id'";
 	$sth = $db->dbh->prepare($sql);
@@ -39,7 +40,7 @@
 
 	$resp=var_dump($rex);
 
-	$texto="$id $sql ($resp) $texto  Pedido: (".$rex->id.")";
+	$texto="$id ($externa) $texto  Pedido: (".$rex->id.")";
 	$sql="insert into new_table (log) values (:log)";
 	$sth = $db->dbh->prepare($sql);
 	$sth->bindValue(':log',$texto);
