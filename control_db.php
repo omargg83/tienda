@@ -547,20 +547,27 @@
 
 				if(isset($_SESSION['autoriza_web']) and $_SESSION['autoriza_web']==1 and strlen($_SESSION['idcliente'])>0){
 
+					////////////////////////checamos si ya esta en el carrito
 					$sql="select * from cliente_carro where idproducto='$id' and idcliente='".$_SESSION['idcliente']."'";
 					$sth_i = $this->dbh->prepare($sql);
 					$sth_i->execute();
+					$contar=$sth_i->rowCount();
 					$resp=$sth_i->fetch(PDO::FETCH_OBJ);
 
-
+					//////////////verificar existencia
 					$sql="select * from productos where idproducto='$id'";
 					$sth_i = $this->dbh->prepare($sql);
 					$sth_i->execute();
-					if($sth_i->rowCount()>0){
-						
+					$verifica_exi=$sth_i->fetch(PDO::FETCH_OBJ);
+					$cantidad=$cantidad+$resp->cantidad;
+					if($verifica_exi->cantidad<$cantidad){
+						$arr=array();
+						$arr=array('error'=>1);
+						$arr=array('terror'=>"Verificar existencias");
+						return json_encode($arr);
 					}
-
-					if($sth_i->rowCount()==0){
+					/////////////si no esta en el carrito lo ingresamos
+					if($contar==0){
 						$sql="insert into cliente_carro (idcliente, idproducto, fechaagrega, cantidad) values (:idcliente, :idproducto, :fecha, :cantidad)";
 						$sth = $this->dbh->prepare($sql);
 						$sth->bindValue(":idcliente",$_SESSION['idcliente']);
@@ -569,16 +576,15 @@
 						$sth->bindValue(":fecha",date("Y-m-d H:i:s"));
 					}
 					else{
-
-
+					/////////////si ya esta solo se suma
 						$sql="update cliente_carro set cantidad=:cantidad where id=:id";
 						$sth = $this->dbh->prepare($sql);
 						$cantidad=$cantidad+$resp->cantidad;
 						$sth->bindValue(":id",$resp->id);
 						$sth->bindValue(":cantidad",$cantidad);
 					}
-					$resp=$sth->execute();
-					if($resp){
+					$respx=$sth->execute();
+					if($respx){
 						$arr=array();
 						$arr=array('error'=>0);
 						return json_encode($arr);
@@ -586,7 +592,7 @@
 					else{
 						$arr=array();
 						$arr=array('error'=>1);
-						$arr=array('terror'=>$resp);
+						$arr=array('terror'=>$respx);
 						return json_encode($arr);
 					}
 				}
