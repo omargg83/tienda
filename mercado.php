@@ -55,11 +55,15 @@
 	echo "<br>$sql";
 	$sth = $db->dbh->prepare($sql);
 	$sth->execute();
-	$rex=$sth->fetch(PDO::FETCH_OBJ);
+	$pedido=$sth->fetch(PDO::FETCH_OBJ);
 	echo "<br>Monto:".$monto;
-	echo "<br>Total:".$rex->total;
-	if($monto==$rex->total){
+	echo "<br>Total:".$pedido->total;
+	if($monto>=$pedido->total){
 		echo "<br>Bien pagado";
+
+		$sql="update pedidos set confirmacion='$estado' where id='".$pedido->id."'";
+		$sth = $db->dbh->prepare($sql);
+		$sth->execute();
 	}
 
 

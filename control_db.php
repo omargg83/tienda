@@ -935,12 +935,19 @@
 
 		public function pedido_generar(){
 			try{
+
+				$carro=$this->carro_list();
+				foreach($carro as $key){
+
+				}
+
 				if(isset($_REQUEST["factura"])){
 					$factura=1;
 				}
 				else{
 					$factura=0;
 				}
+
 				if (isset($_REQUEST["pass"]) and strlen($_REQUEST["pass"])){
 					if(trim($_REQUEST["pass"])!=trim($_REQUEST["pass2"])){
 						$arreglo=array();
