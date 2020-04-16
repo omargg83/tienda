@@ -34,10 +34,10 @@
 
 	$sql="select * from pedidos where idpago='$id'";
 	$sth = $db->dbh->prepare($sql);
-	$sth->execute();
+	$resp=$sth->execute();
 	$pedidos=$sth->fetch(PDO::FETCH_OBJ);
 
-	$texto="$id $sql $texto  Pedido:".$pedidos->id;
+	$texto="$id $sql ($resp) $texto  Pedido:".$pedidos->id;
 	$sql="insert into new_table (log) values (:log)";
 	$sth = $db->dbh->prepare($sql);
 	$sth->bindValue(':log',$texto);
