@@ -2,6 +2,30 @@
 	require_once("control_db.php");
 	$db = new Tienda();
 
+	$input = @file_get_contents("php://input");
+	$texto=$input;
+	$event_json = json_decode($input);
+	$id = $event_json->data->id;
+
+	$sql="select * from pedidos where idpago='$id";
+	$sth = $db->dbh->prepare($sql);
+	$sth->execute();
+	$pedidos=$sth->fetch(PDO::FETCH_OBJ);
+
+	$texto="$id $texto  Pedido:".$pedidos->id;
+	$sql="insert into new_table (log) values (:log)";
+	$sth = $db->dbh->prepare($sql);
+	$sth->bindValue(':log',$texto);
+	echo $sth->execute();
+
+
+	if (isset($id, 	$topic)) {
+			http_response_code(200);
+			return;
+	}
+
+
+/*
 	if(isset($_GET["id"]) and strlen($_GET["id"])>0){
 
 		$id=$_GET["id"];
@@ -50,12 +74,13 @@
 				print_r("Not paid yet. Do not release your item. $id");
 		}
 	///////////////////////////////////////////////////////////////////////////////
-		/*
-			$event_json = json_decode($input);
-			$id1 = $event_json->data->id;
-		*/
+
+
+
 		$input = @file_get_contents("php://input");
 		$texto=$input;
+		$event_json = json_decode($input);
+		$id = $event_json->data->id;
 
 		$sql="select * from pedidos where idpago='$id";
 		$sth = $db->dbh->prepare($sql);
@@ -74,6 +99,6 @@
 		    return;
 		}
 	}
-
+*/
 
 ?>
