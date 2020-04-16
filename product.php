@@ -98,8 +98,7 @@
 				</div>
 
 				<!-- Description -->
-				<form id='carrito_form' action=''>
-				<input type="number" id="id" name="id" type="text" value="<?php echo $id; ?>" >
+
 				<div class="col-lg-5 order-3">
 					<div class="product_description">
 						<div class="product_category"><?php   echo $prod->clave;  ?></div>
@@ -107,9 +106,9 @@
 						<div class="rating_r rating_r_4 product_rating"><i></i><i></i><i></i><i></i><i></i></div>
 						<div class="product_text"><p><?php   echo $prod->descripcion_corta;  ?></p></div>
 						<div class="order_info d-flex flex-row">
-							<form action="#">
+							<form id='carrito_form' action=''>
 								<div class="clearfix" style="z-index: 1000;">
-
+									<input type="number" id="id" name="id" type="text" value="<?php echo $id; ?>" >
 									<!-- Product Quantity -->
 									<div class="product_quantity clearfix">
 										<span>Cantidad: </span>
@@ -182,7 +181,6 @@
 							</form>
 						</div>
 					</div>
-				</form>
 
 
 			</div>
