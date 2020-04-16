@@ -49,10 +49,12 @@
   echo "<br>estado:".$estado;
 
 	$sql="select * from pedidos where id='$externa'";
+	echo "<br>$sql";
 	$sth = $db->dbh->prepare($sql);
 	$sth->execute();
 	$rex=$sth->fetch(PDO::FETCH_OBJ);
-
+	echo "<br>Monto:".$monto;
+	echo "<br>Total:".$rex->total;
 	if($monto==$rex->total){
 		echo "<br>Bien pagado";
 	}
