@@ -566,12 +566,21 @@ class Productos extends Tienda{
 
 			$data = file_get_contents($almax->imagen);
 			$img = imagecreatefromstring($data);
-			if(imagejpeg($img,"../a_imagen/".$almax->img)){
-				$arreglo =array();
-				$arreglo+=array('id'=>$id);
-				$arreglo+=array('error'=>0);
-				$arreglo+=array('terror'=>"");
-				return json_encode($arreglo);
+			if($img){
+				if(imagejpeg($img,"../a_imagen/".$almax->img) ){
+					$arreglo =array();
+					$arreglo+=array('id'=>$id);
+					$arreglo+=array('error'=>0);
+					$arreglo+=array('terror'=>"");
+					return json_encode($arreglo);
+				}
+				else{
+					$arreglo =array();
+					$arreglo+=array('id'=>$id);
+					$arreglo+=array('error'=>1);
+					$arreglo+=array('terror'=>"error favor de verificar");
+					return json_encode($arreglo);
+				}
 			}
 			else{
 				$arreglo =array();
@@ -580,6 +589,8 @@ class Productos extends Tienda{
 				$arreglo+=array('terror'=>"error favor de verificar");
 				return json_encode($arreglo);
 			}
+
+
 		}
 		catch(PDOException $e){
 			return "Database access FAILED!".$e->getMessage();
