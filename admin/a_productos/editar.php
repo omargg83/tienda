@@ -342,7 +342,7 @@
 							echo "<button type='button' class='btn btn-outline-secondary btn-sm' onclick='existencia_api()'><i class='fas fa-sync'></i>Existencia</button>";
 							echo "<button type='button' class='btn btn-outline-secondary btn-sm' onclick='almacen_api()'><i class='fas fa-sync'></i>Almacen</button>";
 							echo "<button type='button' class='btn btn-outline-secondary btn-sm' onclick='imagen_api()'><i class='fas fa-sync'></i>Imagen</button>";
-							echo "<button type='button' class='btn btn-outline-secondary btn-sm' onclick='espe_api()'><i class='fas fa-sync'></i>Especificaciones</button>";
+							//echo "<button type='button' class='btn btn-outline-secondary btn-sm' onclick='espe_api()'><i class='fas fa-sync'></i>Especificaciones</button>";
 						}
 
 					?>

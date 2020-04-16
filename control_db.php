@@ -1067,10 +1067,12 @@
 							$arreglo =array();
 							$arreglo+= array('idprod'=>$key->idProducto);
 							$arreglo+= array('idpedido'=>$pedido->id);
-							$arreglo+= array('precio'=>$preciof);
+							$arreglo+= array('precio'=>round($preciof,2));
 							$arreglo+= array('envio'=>$envio);
-							$arreglo+= array('cantidad'=>1);
-							$arreglo+= array('total'=>$preciof);
+							$arreglo+= array('cantidad'=>$key->cantidad);
+							$subtotal=round($preciof*$key->cantidad);
+
+							$arreglo+= array('total'=>$subtotal);
 							$arreglo+= array('idProducto'=>$key->idProducto);
 							$arreglo+= array('clave'=>$key->clave);
 							$arreglo+= array('numParte'=>$key->numParte);
@@ -1088,7 +1090,7 @@
 							}
 							$this->insert('pedidos_prod', $arreglo);
 
-							$total+=$preciof;
+							$total+=$subtotal;
 							$totalEnvio+=$envio;
 						}
 						$arreglo =array();
