@@ -41,7 +41,7 @@
 	MercadoPago\SDK::setAccessToken($mercado_token);
 
 
-  $payment = MercadoPago\Payment.find_by_id($_POST["id"]);
+  $payment = MercadoPago\Payment.find_by_id($id);
   echo "pago:".$payment;
 
 
