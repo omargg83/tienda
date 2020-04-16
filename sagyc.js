@@ -629,10 +629,17 @@ $(document).on('submit','#carrito_form',function(e){
 
     },
     success:  function (response) {
-      console.log(response);
       var datos = JSON.parse(response);
       if (datos.error==0){
         window.location.href="cart.php";
+      }
+      if (datos.error==1){
+        Swal.fire({
+            type: 'error',
+            title: datos.terror,
+            showConfirmButton: false,
+            timer: 1000
+        });
       }
       if(datos.error==2){
         window.location.href="acceso.php";
