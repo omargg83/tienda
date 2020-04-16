@@ -567,7 +567,7 @@
 					$sth_i = $this->dbh->prepare($sql);
 					$sth_i->execute();
 					$verifica_exi=$sth_i->fetch(PDO::FETCH_OBJ);
-					if($verifica_exi->existencia<=($cantidad_carro+$cantidad)){
+					if($verifica_exi->existencia<($cantidad_carro+$cantidad)){
 						$arr=array();
 						$arr=array('error'=>1);
 						$arr=array('terror'=>"Verificar existencias");
