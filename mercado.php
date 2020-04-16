@@ -53,7 +53,9 @@
 	$sth->execute();
 	$rex=$sth->fetch(PDO::FETCH_OBJ);
 
-	$resp=var_dump($rex);
+	if($monto==$rex->total){
+		echo "<br>Bien pagado";
+	}
 
 /*
 
