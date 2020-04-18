@@ -165,8 +165,14 @@
 			$_SESSION['idpersona']="";
 		}
 		public function ses(){
-			return "algo";
+			if(isset($_SESSION['autoriza']) and isset($_SESSION['idpersona']) and ($_SESSION['autoriza']==1 and strlen($_SESSION['idpersona'])>0)){
+				return "abierta";
+			}
+			else{
+				return "cerrada";
+			}
 		}
+
 		public function insert($DbTableName, $values = array()){
 			$arreglo=array();
 			try{
