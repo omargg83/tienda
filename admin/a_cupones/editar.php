@@ -53,20 +53,22 @@
 			      <label>Descripción</label>
 			      <input type='text' class='form-control' id='descripcion' name='descripcion' placeholder='Descripción' value='<?php echo $descripcion; ?>' >
 			    </div>
+			  </div>
+
+				<div class="row">
+				  <div class='col-4'>
+			      <label>Tipo</label>
+						<select class='form-control' id='tipo' name='tipo'>
+							<option value='porcentaje' <?php if ($tipo=="porcentaje"){ echo " selected"; } ?> >Descuento en porcentaje</option>
+							<option value='carrito' <?php if ($tipo=="carrito"){ echo " selected"; } ?> >Descuento fijo en el carrito</option>
+							<option value='producto' <?php if ($tipo=="producto"){ echo " selected"; } ?> >Descuento fijo de productos</option>
+						</select>
+		    	</div>
 
 					<div class='col-3'>
 					 <label>Importe de cupón</label>
 					 <input type='text' class='form-control' id='importe' name='importe' placeholder='Importe' value='<?php echo $importe; ?>' >
 				 </div>
-
-				  <div class='col-4'>
-			      <label>Tipo</label>
-						<select class='form-control' id='tipo' name='tipo'>
-							<option value='porcentaje' <?php if ($tipo=="porcentaje"){ echo " selected"; } ?> >Descuento el porcentaje</option>
-							<option value='carrito' <?php if ($tipo=="carrito"){ echo " selected"; } ?> >Descuento fijo en el carrito</option>
-							<option value='producto' <?php if ($tipo=="producto"){ echo " selected"; } ?> >Descuento fijo de producto</option>
-						</select>
-		    	</div>
 
 	 				<div class='col-4'>
 			      <label>Permitir el envío gratuito</label>

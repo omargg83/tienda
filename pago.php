@@ -155,27 +155,30 @@
 						$enviof=0;
 
 						///////////////////////////////////actualiza costo y existencia
-						echo $key->idprod;
+						/*
 						$update=$db->producto_ver($key->idprod);
+						if($update->precio_tipo==0){
+							$preciof=$update->preciof;
+						}
+						if($update->precio_tipo==1){
+							$p_total=$update->preciof+(($update->preciof*$db->cgeneral)/100);
+							$preciof=$p_total;
+						}
+						if($update->precio_tipo==2){
+							$preciof=$update->precio_tic;
+						}
+						if($update->precio_tipo==3){
+							$p_total=$update->precio_tic+(($update->precio_tic*$db->cgeneral)/100);
+							$preciof=$p_total;
+						}
+						$update->existencia;
+						*/
 
-						echo "-----------------------";
-						echo "<br>";
-						echo var_dump($update);
 						////////////////////////////////////////////////////////////////
 
 						echo "<div class='row'>";
 							echo "<div class='col-12'>";
 									echo $key->nombre;
-
-									echo "<br>";
-									echo "-----------------------";
-									echo "<br>";
-									echo $update->existencia;
-
-
-
-
-
 							echo "</div>";
 
 							echo "<div class='col-12'>";

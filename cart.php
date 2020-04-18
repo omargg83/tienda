@@ -73,6 +73,8 @@
 						echo "<div class='col-9'>";
 							echo "<div class='row'>";
 								echo "<div class='col-12'>";
+										echo $key->clave;
+										echo "<br>";
 										echo $key->nombre;
 								echo "</div>";
 							echo "</div>";

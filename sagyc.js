@@ -283,7 +283,7 @@ function elimina_cupon(id,idpedido){
 
             },
             success:  function (response) {
-              window.location.href="pago.php?id="+idpedido;
+              window.location.href="pago.php?idpedido="+idpedido;
             },
             error: function(jqXHR, textStatus, errorThrown) {
 
@@ -327,6 +327,7 @@ function select_dir(){
     }
   });
 }
+
 $(document).on('submit','#acceso',function(e){
   e.preventDefault();
   var userAcceso=document.getElementById("userAcceso").value;
