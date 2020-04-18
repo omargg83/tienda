@@ -309,19 +309,19 @@
 
 						<div class='col-12'>
 							<label>Correo:</label>
-							<input value='<?php   echo $_SESSION['correo'];  ?>' class='form-control' id='correo' name='correo' >
+							<input value='<?php   echo $_SESSION['correo'];  ?>' class='form-control' id='correo' name='correo' required>
 						</div>
 						<div class='col-12'>
 							<label>Nombre:</label>
-							<input value='<?php   echo $_SESSION['nombre'];  ?>' class='form-control' id='nombre' name='nombre' >
+							<input value='<?php   echo $_SESSION['nombre'];  ?>' class='form-control' id='nombre' name='nombre' required>
 						</div>
 						<div class='col-12'>
 							<label>Piezas a cotizar:</label>
-							<input value='1' class='form-control' id='cantidad' name='cantidad' >
+							<input value='1' class='form-control' id='cantidad' name='cantidad' required>
 						</div>
 						<div class='col-12'>
 							<label>Comentario:</label>
-							<input value='' class='form-control' id='comentario' name='comentario' >
+							<input value='' class='form-control' id='comentario' name='comentario' required >
 						</div>
 
 					</div>
