@@ -276,16 +276,21 @@
 											$gtotal=$gtotal-$monto;
 										}
 
+										if($keyc->tipo=='carrito'){
+											echo "<br>- ".moneda($keyc->descuento);
+											$gtotal=$gtotal-$keyc->descuento;
+										}
+
 									echo "</div>";
 								echo "</div>";
 
 								echo "<div class='row'>";
 									echo "<div class='col-6'>";
-										echo "<b>Total</b>:";
+										echo "<h4><b>Total</b></h4>:";
 									echo "</div>";
 
 									echo "<div class='col-6 text-right'>";
-										echo moneda($gtotal);
+										echo "<h4><b>".moneda($gtotal)."</b></h4>";
 									echo "</div>";
 								echo "</div>";
 							}
