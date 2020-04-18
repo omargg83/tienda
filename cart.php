@@ -115,7 +115,7 @@
 										echo "</div>";
 										echo "<div class='col-4 text-right'>";
 											$p_final=($key->cantidad*$preciof);
-											echo $p_final;
+											echo moneda($p_final);
 										echo "</div>";
 									echo "</div>";
 
