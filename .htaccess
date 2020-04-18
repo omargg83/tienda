@@ -1,6 +1,4 @@
-RewriteEngine On
-RewriteCond %{HTTPS} !=on
-RewriteRule ^(.*)$ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
+
 
 # php -- BEGIN cPanel-generated handler, do not edit
 # Configure el paquete “ea-php73” como el lenguaje de programación predeterminado “PHP”.
@@ -13,3 +11,8 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteRule ^(.*)$ $1.php
+
+
+RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteRule ^(.*)$ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
