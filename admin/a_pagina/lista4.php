@@ -25,6 +25,11 @@
           </div>
 
           <div class="col-12">
+            <label for="descripcion">Enlace</label>
+            <input type="text" class="form-control form-control-sm" id="enlace" name='enlace' placeholder="Enlace" value="<?php echo $enlace; ?>" >
+          </div>
+
+          <div class="col-12">
             <label for="descripcion">Descripción larga</label>
             <textarea rows='10' id='texto' NAME='texto' class='form-control'><?php echo $texto; ?></textarea>
           </div>
