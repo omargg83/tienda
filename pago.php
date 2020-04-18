@@ -155,20 +155,6 @@
 					foreach($datos as $key){
 						$preciof=0;
 						$enviof=0;
-						if($key->precio_tipo==0){
-							$preciof=$key->preciof;
-						}
-						if($key->precio_tipo==1){
-							$p_total=$key->preciof+(($key->preciof*$db->cgeneral)/100);
-							$preciof=$p_total;
-						}
-						if($key->precio_tipo==2){
-							$preciof=$key->precio_tic;
-						}
-						if($key->precio_tipo==3){
-							$p_total=$key->precio_tic+(($key->precio_tic*$db->cgeneral)/100);
-							$preciof=$p_total;
-						}
 
 						echo "<div class='row'>";
 							echo "<div class='col-12'>";
@@ -177,14 +163,8 @@
 
 							echo "<div class='col-12'>";
 								echo "<label>Costo envio: ";
-								if($key->envio_tipo==0){
-									echo moneda($db->egeneral);
-									$envio+=$db->egeneral;
-								}
-								if($key->envio_tipo==1){
-									echo moneda($key->envio_costo);
-									$envio+=$key->envio_costo;
-								}
+								echo moneda($key->envio);
+								$envio+=$key->envio;
 								echo "</label>";
 							echo "</div>";
 						echo "</div>";
@@ -204,18 +184,18 @@
 
 						echo "<div class='row'>";
 							echo "<div class='col-4 text-center'>";
-								echo "1";
+								echo $key->cantidad;
 							echo "</div>";
 							echo "<div class='col-4 text-right'>";
-								echo moneda($preciof);
+								echo moneda($key->precio);
 							echo "</div>";
 							echo "<div class='col-4 text-right'>";
-								echo moneda($preciof);
+								echo moneda($key->total);
 							echo "</div>";
 						echo "</div>";
 						echo "<hr>";
 
-						$total+=$preciof;
+						$total+=$key->total+$key->envio;
 					}
 
 					///////////////////////////////////
