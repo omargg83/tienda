@@ -261,7 +261,7 @@
 										echo "<br>";
 										echo $keyc->descripcion;
 									echo "</div>";
-									echo "<div class='col-4'>";
+									echo "<div class='col-4 text-right'>";
 
 										/*
 										<option value='porcentaje' <?php if ($tipo=="porcentaje"){ echo " selected"; } ?> >Descuento en porcentaje</option>
@@ -279,13 +279,13 @@
 									echo "</div>";
 								echo "</div>";
 
-								echo "<div class='div'>";
+								echo "<div class='row'>";
 									echo "<div class='col-6'>";
-									echo "<b>Total</b>:";
+										echo "<b>Total</b>:";
 									echo "</div>";
 
-									echo "<div class='col-6'>";
-									echo moneda($gtotal);
+									echo "<div class='col-6 text-right'>";
+										echo moneda($gtotal);
 									echo "</div>";
 								echo "</div>";
 							}
