@@ -1367,7 +1367,7 @@
 			$mail->SMTPAutoTLS = false;
 			$mail->Port = 25;
 			*/
-		/*
+			/*
 			$email->isSMTP();
 			$email->SMTPDebug = 1;
 			$email->SMTPAuth = true;

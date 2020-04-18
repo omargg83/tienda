@@ -155,9 +155,12 @@
 						$enviof=0;
 
 						///////////////////////////////////actualiza costo y existencia
+						echo $key->idprod;
 						$update=$db->producto_ver($key->idprod);
 
-
+						echo "-----------------------";
+						echo "<br>";
+						echo var_dump($update);
 						////////////////////////////////////////////////////////////////
 
 						echo "<div class='row'>";
@@ -169,7 +172,7 @@
 									echo "<br>";
 									echo $update->existencia;
 
-									
+
 
 
 
