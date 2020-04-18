@@ -29,7 +29,7 @@
 						$("#header").html("");
 						$("#bodyx").html("");
 						$("#modal_dispo").removeClass("modal-lg");
-						$("#modal_form").html(datos.carga);
+						$("#modal_form").load("dash/login.php");
 						$('#myModal').modal({backdrop: 'static', keyboard: false})
 						$('#myModal').modal('show');
 					}
