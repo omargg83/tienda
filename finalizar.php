@@ -233,7 +233,7 @@
 						echo "</div>";
 						echo "<hr>";
 
-						$total+=$preciof;
+						$total+=$p_final;
 					}
 
 					///////////////////////////////////
