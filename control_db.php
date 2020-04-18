@@ -527,7 +527,7 @@
 		public function carro_list(){
 			try{
 				self::set_names();
-				$sql="select cliente_carro.id, cliente_carro.cantidad, productos.img, productos.nombre, productos.preciof, productos.precio_tipo, productos.precio_tic, productos.envio_costo, productos.envio_tipo, productos.idProducto, productos.clave, productos.numParte, productos.modelo, productos.marca, productos.categoria, productos.descripcion_corta, productos.interno from cliente_carro
+				$sql="select cliente_carro.id, cliente_carro.cantidad, productos.id, productos.img, productos.nombre, productos.preciof, productos.precio_tipo, productos.precio_tic, productos.envio_costo, productos.envio_tipo, productos.idProducto, productos.clave, productos.numParte, productos.modelo, productos.marca, productos.categoria, productos.descripcion_corta, productos.interno from cliente_carro
 				left outer join productos on productos.id=cliente_carro.idproducto
 				where cliente_carro.idcliente=:id";
 				$sth = $this->dbh->prepare($sql);
@@ -1072,7 +1072,7 @@
 							}
 
 							$arreglo =array();
-							$arreglo+= array('idprod'=>$key->idProducto);
+							$arreglo+= array('idprod'=>$key->id);
 							$arreglo+= array('idpedido'=>$pedido->id);
 							$arreglo+= array('precio'=>round($preciof,2));
 							$arreglo+= array('envio'=>$envio);
