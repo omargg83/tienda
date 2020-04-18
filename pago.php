@@ -195,7 +195,7 @@
 						echo "</div>";
 						echo "<hr>";
 
-						$total+=$key->total+$key->envio;
+						$total+=$key->total;
 					}
 
 					///////////////////////////////////
