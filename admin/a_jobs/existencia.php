@@ -52,7 +52,7 @@
   $tok=$resp->token;
 
   $fecha=mktime(date("H"),date("i"),date("s"),date("m"),date("d"),date("Y"));
-  $sql="select * from productos where interno=0 order by timeexis asc limit 25";
+  $sql="select * from productos where interno=0 order by timeexis asc limit 50";
   $fmodif = date("Y-m-d H:i:s");
 
   $stmt= $db->dbh->query($sql);
