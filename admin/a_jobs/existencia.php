@@ -3,8 +3,6 @@
   error_reporting(E_ALL);
   ini_set('display_errors', '1');
 
-  echo "inicio:".date("Y-m-d H:i:s");
-
   class Tienda{
     public function __construct(){
       $this->Salud = array();
@@ -22,6 +20,8 @@
     }
   }
   $db = new Tienda();
+
+  echo "inicio:".date("Y-m-d H:i:s");
 
   function servicioApi($metodo, $servicio, $json = null, $token = null) {
       $ch = curl_init('http://187.210.141.12:3001/' . $servicio);
