@@ -3,6 +3,7 @@
   $productos=$db->productos_numero();
   $resp=$db->productos_top();
   $ped=$db->pedidos_top();
+  echo $_SESSION['idpersona'];
  ?>
   <div class='container-fluid'>
     <div class="card-group ">
