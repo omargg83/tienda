@@ -167,12 +167,12 @@
 		public function ses(){
 			if(isset($_SESSION['autoriza']) and isset($_SESSION['idpersona']) and ($_SESSION['autoriza']==1 and strlen($_SESSION['idpersona'])>0)){
 				$arr=array();
-				$arr=array('acceso'=>1,'idpersona'=>$_SESSION['idpersona']);
+				$arr=array('sess'=>"abierta");
 				return json_encode($arr);
 			}
 			else{
 				$arr=array();
-				$arr=array('acceso'=>0,'idpersona'=>0);
+				$arr=array('sess'=>"cerrada");
 				return json_encode($arr);
 			}
 		}
