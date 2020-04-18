@@ -1269,13 +1269,14 @@
 				if($contar>0){
 					$ped=$sth_i->fetch(PDO::FETCH_OBJ);
 
-					$sql="insert into pedidos_cupon (idpedido, idcupon, descuento, codigo, descripcion) values (:idpedido, :idcupon, :descuento, :codigo, :descripcion)";
+					$sql="insert into pedidos_cupon (idpedido, idcupon, descuento, codigo, descripcion, tipo) values (:idpedido, :idcupon, :descuento, :codigo, :descripcion, :tipo)";
 					$sth = $this->dbh->prepare($sql);
 					$sth->bindValue(":idpedido",$idpedido);
 					$sth->bindValue(":idcupon",$ped->id);
 					$sth->bindValue(":descuento",$ped->importe);
 					$sth->bindValue(":codigo",$ped->codigo);
 					$sth->bindValue(":descripcion",$ped->descripcion);
+					$sth->bindValue(":tipo",$ped->tipo);
 					if($sth->execute()){
 						$arreglo=array();
 						$arreglo+=array('id'=>$idpedido);
