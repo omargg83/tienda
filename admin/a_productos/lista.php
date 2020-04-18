@@ -14,7 +14,7 @@
 					<th>Producto</th>
 					<th>Nombre</th>
 					<th>Precio</th>
-					<th>Moneda</th>
+					<th>Envio</th>
 					<th>Modelo</th>
 					<th>Marca</th>
 					<th>Existencia</th>
@@ -60,8 +60,15 @@
 							echo moneda($total);
 						}
 						echo "</td>";
-						
-						echo "<td>".$key["moneda"]."</td>";
+
+						echo "<td>";
+						if($key["envio_tipo"]==0){
+							echo moneda($db->egeneral);
+						}
+						if($key["envio_tipo"]==1){
+							echo moneda($key["envio_costo"]);
+						}
+						echo "</td>";
 						echo "<td>".$key["modelo"]."</td>";
 						echo "<td>".$key["marca"]."</td>";
 						echo "<td>".$key["existencia"]."</td>";
