@@ -22,27 +22,37 @@
 				$("#cargando").addClass("is-active");
 			},
 			success:  function (response) {
-				var datos = JSON.parse(response);
-				if (datos.sess=="cerrada"){
+				if (isJSON(response)){
+					var datos = JSON.parse(response);
+					if (datos.sess=="cerrada"){
+						$("#header").html("");
+						$("#bodyx").html("");
+						$("#modal_dispo").removeClass("modal-lg");
+						$("#modal_form").html(datos.carga);
+						$('#myModal').modal({backdrop: 'static', keyboard: false})
+						$('#myModal').modal('show');
+					}
+					if (datos.sess=="abierta"){
+						$("#header").load("dash/header.php");
+						$("#bodyx").load("dash/menu.php");
+						$("#modal_dispo").addClass("modal-lg");
+						if(datos.fondo.length>0){
+							$("body").css("background-image","url('"+datos.fondo+"')");
+						}
+						else{
+							$("body").css("background-image","url('fondo/ssh.jpg')");
+						}
+						setTimeout(fondos, 15000);
+						loadContent(location.hash.slice(1));
+					}
+				}
+				else{
 					$("#header").html("");
 					$("#bodyx").html("");
 					$("#modal_dispo").removeClass("modal-lg");
 					$("#modal_form").html(datos.carga);
 					$('#myModal').modal({backdrop: 'static', keyboard: false})
 					$('#myModal').modal('show');
-				}
-				if (datos.sess=="abierta"){
-					$("#header").load("dash/header.php");
-					$("#bodyx").load("dash/menu.php");
-					$("#modal_dispo").addClass("modal-lg");
-					if(datos.fondo.length>0){
-						$("body").css("background-image","url('"+datos.fondo+"')");
-					}
-					else{
-						$("body").css("background-image","url('fondo/ssh.jpg')");
-					}
-					setTimeout(fondos, 15000);
-					loadContent(location.hash.slice(1));
 				}
 				$("#cargando").removeClass("is-active");
 			},
