@@ -51,18 +51,18 @@
   $resp = crearNuevoToken();
   $tok=$resp->token;
 
-  $sql="select * from productos where interno=0 order by timeexis asc limit 50";
   $fecha=mktime(date("H"),date("i"),date("s"),date("m"),date("d"),date("Y"));
 
+  $sql="select * from productos where interno=0 order by timeexis asc limit 100";
   $stmt= $db->dbh->query($sql);
   foreach($stmt as $key){
     $fmodif = date("Y-m-d H:i:s");
-
 
     $clave=$key['clave'];
     $id=$key['id'];
     $servicio = "existencia/$clave/TOTAL";
     $metodo="GET";
+    $existencia=0;
 
     $resp =servicioApi($metodo,$servicio,NULL,$tok);
     if (is_object($resp)){
@@ -72,42 +72,42 @@
     }
 
     ///////////////////////////////////////////////////////////almacen
+    $sql="delete from producto_exist where id='$id'";
+    $sth3 = $db->dbh->prepare($sql);
+    $sth3->execute();
 
-    $servicio = "existencia/$clave";
-    $metodo="GET";
+    if($existencia>0){
+      $servicio = "existencia/$clave";
+      $metodo="GET";
 
-    $resp_a=array();
-    $resp =servicioApi($metodo,$servicio,NULL,$tok);
-    if (is_object($resp)){
-
-      $sql="delete from producto_exist where id='$id'";
-      $sth3 = $db->dbh->prepare($sql);
-      $sth3->execute();
-
-      $objectToArray = (array)$resp;
-      while (current($objectToArray)) {
-        $name=key($objectToArray);
-        $info = (array)$objectToArray[$name];
-        $valor=$info['existencia'];
-        if($valor>0){
-          $sql="select * from almacen where numero='$name'";
-          $sth4 = $db->dbh->prepare($sql);
-          $sth4->execute();
-          if($sth4->rowCount()){
-            $almax=$sth4->fetch(PDO::FETCH_OBJ);
-
-            $sql="insert into producto_exist (id, almacen, existencia) values (:id, :almacen, :existencia)";
-            $sth2 = $db->dbh->prepare($sql);
-            $sth2->bindValue(':id', $id);
-            $sth2->bindValue(':almacen', $almax->homoclave);
-            $sth2->bindValue(':existencia', $valor);
-            $sth2->execute();
+      $resp_a=array();
+      $resp =servicioApi($metodo,$servicio,NULL,$tok);
+      if (is_object($resp)){
+        $objectToArray = (array)$resp;
+        while (current($objectToArray)) {
+          $name=key($objectToArray);
+          $info = (array)$objectToArray[$name];
+          $valor=$info['existencia'];
+          if($valor>0){
+            $sql="select * from almacen where numero='$name'";
+            $sth4 = $db->dbh->prepare($sql);
+            $sth4->execute();
+            if($sth4->rowCount()){
+              $almax=$sth4->fetch(PDO::FETCH_OBJ);
+              $sql="insert into producto_exist (id, almacen, existencia) values (:id, :almacen, :existencia)";
+              $sth2 = $db->dbh->prepare($sql);
+              $sth2->bindValue(':id', $id);
+              $sth2->bindValue(':almacen', $almax->homoclave);
+              $sth2->bindValue(':existencia', $valor);
+              $sth2->execute();
+            }
           }
+          next($objectToArray);
         }
-        next($objectToArray);
       }
     }
   }
+
   echo "finalizo";
 
 ?>

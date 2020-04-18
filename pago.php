@@ -12,8 +12,6 @@
 	$datos=$db->datos_pedido($idpedido);
 	$cupones=$db->pedido_cupones($idpedido);
 
-
-
 	$nombre=$ped->nombre;
 	$apellido=$ped->apellido;
 	$correo=$ped->correo;
@@ -155,6 +153,10 @@
 					foreach($datos as $key){
 						$preciof=0;
 						$enviof=0;
+
+						///////////////////////////////////actualiza costo y existencia
+
+						////////////////////////////////////////////////////////////////
 
 						echo "<div class='row'>";
 							echo "<div class='col-12'>";
