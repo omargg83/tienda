@@ -70,6 +70,10 @@
 					 <input type='text' class='form-control' id='importe' name='importe' placeholder='Importe' value='<?php echo $importe; ?>' >
 				 </div>
 
+			 	</div>
+
+				<div class="row">
+
 	 				<div class='col-4'>
 			      <label>Permitir el envío gratuito</label>
 						<select class='form-control' id='envio' name='envio'>

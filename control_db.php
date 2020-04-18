@@ -1256,7 +1256,7 @@
 					$arreglo=array();
 					$arreglo+=array('id'=>$idpedido);
 					$arreglo+=array('error'=>1);
-					$arreglo+=array('terror'=>"El cupón ya fue utilizado");
+					$arreglo+=array('terror'=>"El cupón ya esta agregado");
 					return json_encode($arreglo);
 				}
 
@@ -1290,6 +1290,8 @@
 						$arreglo+=array('terror'=>$sth->errorInfo());
 						return json_encode($arreglo);
 					}
+
+
 				}
 				else{
 					$arreglo=array();
