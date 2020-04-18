@@ -51,12 +51,14 @@
   $resp = crearNuevoToken();
   $tok=$resp->token;
 
-  $fecha=mktime(date("H"),date("i"),date("s"),date("m"),date("d"),date("Y"));
   $sql="select * from productos where interno=0 order by timeexis asc limit 50";
-  $fmodif = date("Y-m-d H:i:s");
+  $fecha=mktime(date("H"),date("i"),date("s"),date("m"),date("d"),date("Y"));
 
   $stmt= $db->dbh->query($sql);
   foreach($stmt as $key){
+    $fmodif = date("Y-m-d H:i:s");
+
+
     $clave=$key['clave'];
     $id=$key['id'];
     $servicio = "existencia/$clave/TOTAL";
@@ -106,6 +108,6 @@
       }
     }
   }
-
+  echo "finalizo";
 
 ?>
