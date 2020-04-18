@@ -3,6 +3,8 @@
   error_reporting(E_ALL);
   ini_set('display_errors', '1');
 
+  echo "inicio:".date("Y-m-d H:i:s");
+
   class Tienda{
     public function __construct(){
       $this->Salud = array();
@@ -47,12 +49,10 @@
       //AQUI SE CONSUME UN SERVICIO POR == METODO POST == y SE RETORNA COMO RESPUESTA
       return servicioApi('POST', $servicio, $json, null);
   }
-
   $resp = crearNuevoToken();
   $tok=$resp->token;
 
   $fecha=mktime(date("H"),date("i"),date("s"),date("m"),date("d"),date("Y"));
-
   $sql="select * from productos where interno=0 order by timeexis asc limit 100";
   $stmt= $db->dbh->query($sql);
   foreach($stmt as $key){
@@ -107,7 +107,7 @@
       }
     }
   }
-
-  echo "finalizo";
+  echo "<br>fin:".$fmodif;
+  echo "<br>finalizo";
 
 ?>

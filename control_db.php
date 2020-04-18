@@ -1360,14 +1360,14 @@
 			/////////////////////////////////////////////Correo
 			require 'vendor/autoload.php';
 			$mail = new PHPMailer;
-/*
+			/*
 			$mail->isSMTP();
 			$mail->Host = 'localhost';
 			$mail->SMTPAuth = false;
 			$mail->SMTPAutoTLS = false;
 			$mail->Port = 25;
-*/
-/*
+			*/
+		/*
 			$email->isSMTP();
 			$email->SMTPDebug = 1;
 			$email->SMTPAuth = true;
@@ -1377,7 +1377,7 @@
 			*/
 
 			$mail->IsSMTP(); // enable SMTP
-	//	  $mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
+			//	  $mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
 		  $mail->SMTPAuth = true; // authentication enabled
 		  $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
 		  $mail->Host = "mail.tic-shop.com.mx";

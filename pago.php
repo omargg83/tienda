@@ -155,12 +155,24 @@
 						$enviof=0;
 
 						///////////////////////////////////actualiza costo y existencia
+						$update=$db->producto_ver($key->idprod);
+
 
 						////////////////////////////////////////////////////////////////
 
 						echo "<div class='row'>";
 							echo "<div class='col-12'>";
 									echo $key->nombre;
+
+									echo "<br>";
+									echo "-----------------------";
+									echo "<br>";
+									echo $update->existencia;
+
+									
+
+
+
 							echo "</div>";
 
 							echo "<div class='col-12'>";
