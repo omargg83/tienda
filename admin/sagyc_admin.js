@@ -1,6 +1,4 @@
 	var intval="";
-	var intvalx="";
-	var chatx="";
 	var cuenta="";
 	var notif="";
 	var monit="";
@@ -8,6 +6,9 @@
 	$(function(){
 		$("#cargando").removeClass("is-active");
 		acceso();
+		if(intval==""){
+			intval=window.setInterval("sesion_ver()",3000);
+		}
 	});
 	function acceso(){
 		$.ajax({
@@ -103,6 +104,19 @@
 		$("#cargando").removeClass("is-active");
 	}
 
+	function sesion_ver(){
+		$.ajax({
+			data:  {
+				"ctrl":"control",
+				"function":"ses"
+			},
+			url: "control_db.php",
+			type: "post",
+			success:  function (response) {
+				console.log(response);
+			}
+		});
+	}
 	function fondos(){
 		var parametros={
 			"ctrl":"control",

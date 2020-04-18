@@ -164,7 +164,9 @@
 			$_SESSION['autoriza'] = 0;
 			$_SESSION['idpersona']="";
 		}
-
+		public function ses(){
+			return "algo";
+		}
 		public function insert($DbTableName, $values = array()){
 			$arreglo=array();
 			try{
