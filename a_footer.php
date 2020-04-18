@@ -8,7 +8,7 @@
 <div id="mc_embed_signup" style="background-image: url('img/fondon.jpg');">
 <form action="https://tic-shop.us19.list-manage.com/subscribe/post?u=26b3aa6c43e721f09e78709ac&amp;id=441467c84e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
     <div id="mc_embed_signup_scroll" style="
-    padding: 10% 0 10% 0;
+    padding: 5% 0 5% 0;
     /* background-color: azure; */
 ">
   <label for="mce-EMAIL" style="
