@@ -81,6 +81,9 @@
 		}
 		public function login(){
 			$arreglo=array();
+			if(isset($_SESSION['idfondo'])){
+				$_SESSION['idfondo']="";
+			}
 			if(isset($_SESSION['idpersona']) and $_SESSION['autoriza'] == 1) {
 				///////////////////////////sesion abierta
 				$valor=$_SESSION['idfondo'];
