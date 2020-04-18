@@ -256,12 +256,12 @@
 									echo "<div class='col-2'>";
 										echo "<a href='#' onclick='elimina_cupon(".$keyc->id.", $idpedido)'><i class='far fa-times-circle'></i></a>";
 									echo "</div>";
-									echo "<div class='col-7'>";
+									echo "<div class='col-6'>";
 										echo $keyc->codigo;
 										echo "<br>";
 										echo $keyc->descripcion;
 									echo "</div>";
-									echo "<div class='col-3'>";
+									echo "<div class='col-4'>";
 
 										/*
 										<option value='porcentaje' <?php if ($tipo=="porcentaje"){ echo " selected"; } ?> >Descuento en porcentaje</option>
@@ -275,16 +275,16 @@
 											echo "<br>- ".moneda($monto);
 											$gtotal=$gtotal-$monto;
 										}
-										
+
 									echo "</div>";
 								echo "</div>";
 
 								echo "<div class='div'>";
-									echo "<div class='col-9'>";
-									echo "Total";
+									echo "<div class='col-6'>";
+									echo "<b>Total</b>:";
 									echo "</div>";
 
-									echo "<div class='col-9'>";
+									echo "<div class='col-6'>";
 									echo moneda($gtotal);
 									echo "</div>";
 								echo "</div>";
