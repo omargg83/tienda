@@ -29,6 +29,7 @@
         $p_total=$key->precio_tic+(($key->precio_tic*$db->cgeneral)/100);
         $preciof=$p_total;
       }
+
       ////////////envio
       if($key->envio_tipo==0){
         $envio+=$db->egeneral;
@@ -36,8 +37,12 @@
       if($key->envio_tipo==1){
         $envio+=$key->envio_costo;
       }
-      $total+=$preciof;
+
+      $p_final=($key->cantidad*$preciof);
+      $total+=$p_final;
     }
+
+
     $sumar=$total+$envio;
 
   }
