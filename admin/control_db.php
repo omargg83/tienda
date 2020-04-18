@@ -166,10 +166,14 @@
 		}
 		public function ses(){
 			if(isset($_SESSION['autoriza']) and isset($_SESSION['idpersona']) and ($_SESSION['autoriza']==1 and strlen($_SESSION['idpersona'])>0)){
-				return "abierta";
+				$arr=array();
+				$arr=array('acceso'=>1,'idpersona'=>$_SESSION['idpersona']);
+				return json_encode($arr);
 			}
 			else{
-				return "cerrada";
+				$arr=array();
+				$arr=array('acceso'=>0,'idpersona'=>0);
+				return json_encode($arr);
 			}
 		}
 
