@@ -11,6 +11,9 @@
 	$ped=$db->pedido_ver($idpedido);
 	$datos=$db->datos_pedido($idpedido);
 	$cupones=$db->pedido_cupones($idpedido);
+
+
+
 	$nombre=$ped->nombre;
 	$apellido=$ped->apellido;
 	$correo=$ped->correo;
@@ -149,7 +152,7 @@
 					///////////////////////////////////
 					$total=0;
 					$envio=0;
-					foreach($carro as $key){
+					foreach($datos as $key){
 						$preciof=0;
 						$enviof=0;
 						if($key->precio_tipo==0){
