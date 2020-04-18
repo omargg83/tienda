@@ -281,12 +281,16 @@
 											$gtotal=$gtotal-$keyc->descuento;
 										}
 
+										if($keyc->envio=='si'){
+											echo "<br>Envio: ".$keyc->envio;
+										}
+
 									echo "</div>";
 								echo "</div>";
 
 								echo "<div class='row'>";
 									echo "<div class='col-6'>";
-										echo "<h4><b>Total</b></h4>:";
+										echo "<h4><b>Total:</b></h4>";
 									echo "</div>";
 
 									echo "<div class='col-6 text-right'>";
