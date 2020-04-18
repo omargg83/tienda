@@ -43,7 +43,24 @@
 						}
 						echo "</td>";
 						echo "<td>".$key["nombre"]."</td>";
-						echo "<td>".$key["precio"]."</td>";
+
+						echo "<td>";
+						if($key["precio_tipo"]==0){
+							echo moneda($key["preciof"]);
+						}
+						if($key["precio_tipo"]==1){
+							$total=$key["preciof"]+(($key["preciof"]*$db->cgeneral)/100);
+							echo moneda($total);
+						}
+						if($key["precio_tipo"]==2){
+							echo moneda($key["precio_tic"]);
+						}
+						if($key["precio_tipo"]==3){
+							$total=$key["precio_tic"]+(($key["precio_tic"]*$db->cgeneral)/100);
+							echo moneda($total);
+						}
+						echo "</td>";
+						
 						echo "<td>".$key["moneda"]."</td>";
 						echo "<td>".$key["modelo"]."</td>";
 						echo "<td>".$key["marca"]."</td>";
