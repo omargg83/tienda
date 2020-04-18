@@ -22,6 +22,7 @@
 				$("#cargando").addClass("is-active");
 			},
 			success:  function (response) {
+				console.log(response);
 				if (isJSON(response)){
 					var datos = JSON.parse(response);
 					if (datos.sess=="cerrada"){
@@ -40,7 +41,7 @@
 							$("body").css("background-image","url('"+datos.fondo+"')");
 						}
 						else{
-							$("body").css("background-image","url('fondo/ssh.jpg')");
+							$("body").css("background-image","url('fondo/27A.jpg')");
 						}
 						setTimeout(fondos, 15000);
 						loadContent(location.hash.slice(1));
