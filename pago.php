@@ -157,6 +157,11 @@
 			<div class='col-4'>
 				<div class="jumbotron">
 					<?php
+					echo "<div class='row'>";
+						echo "<div class='col-12 text-center'>";
+							echo "<h3>Pedido NO: ".$id."</h3>";
+						echo "</div>";
+					echo "</div>";
 					///////////////////////////////////
 					$total=0;
 					$envio=0;

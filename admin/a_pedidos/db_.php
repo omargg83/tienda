@@ -14,10 +14,10 @@ class Pedidos extends Tienda{
 				$texto=trim(htmlspecialchars($_REQUEST['buscar']));
 				$sql="SELECT * from pedidos
 				left outer join clientes on clientes.id=pedidos.idcliente
-				where pedidos.id like '%$texto%' or pedidos.estatus like '%$texto%' or clientes.nombre like '%$texto' limit 100";
+				where pedidos.id like '%$texto%' or pedidos.estatus like '%$texto%' or clientes.nombre like '%$texto' order by fecha desc limit 100";
 			}
 			else{
-				$sql="SELECT * from pedidos";
+				$sql="SELECT * from pedidos order by fecha desc";
 			}
 			$sth = $this->dbh->prepare($sql);
 			$sth->execute();
@@ -443,6 +443,19 @@ class Pedidos extends Tienda{
 			echo $sql;
 
 			$sth = $this->dbh->prepare($sql);
+			$sth->execute();
+			return $sth->fetchAll(PDO::FETCH_OBJ);
+		}
+		catch(PDOException $e){
+			return "Database access FAILED!".$e->getMessage();
+		}
+	}
+	public function pedido_cupones($id){
+		try{
+			self::set_names();
+			$sql="select * from pedidos_cupon where idpedido=:id";
+			$sth = $this->dbh->prepare($sql);
+			$sth->bindValue(":id",$id);
 			$sth->execute();
 			return $sth->fetchAll(PDO::FETCH_OBJ);
 		}

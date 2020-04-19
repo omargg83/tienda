@@ -88,8 +88,6 @@
 			'almacen' => $cliente,
 			'tipoPago' => "03",
 			'envio' => "03",
-
-
 		);
 
 
@@ -142,8 +140,14 @@
 					<div class='col-12'>
 						<label>Dirección: $direccion1</label>
 					</div>
-					<div class='col-12'>
-						<label>Dirección: $direccion2</label>
+					<div class='col-4'>
+						<label>Entre calles: $entrecalles</label>
+					</div>
+					<div class='col-4'>
+						<label>Num. Exterior: $numero</label>
+					</div>
+					<div class='col-4'>
+						<label>Colonia: $colonia</label>
 					</div>
 					<div class='col-12'>
 						<label>Ciudad: $ciudad</label>
