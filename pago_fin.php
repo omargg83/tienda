@@ -513,12 +513,12 @@
 								echo "<h4>Cupones</h4>";
 								foreach($cupones as $keyc){
 									echo "<div class='row'>";
-										echo "<div class='col-6'>";
+										echo "<div class='col-10'>";
 											echo $keyc->codigo;
 											echo "<br>";
 											echo $keyc->descripcion;
 										echo "</div>";
-										echo "<div class='col-4 text-right'>";
+										echo "<div class='col-2 text-right'>";
 
 											/*
 											<option value='porcentaje' <?php if ($tipo=="porcentaje"){ echo " selected"; } ?> >Descuento en porcentaje</option>
