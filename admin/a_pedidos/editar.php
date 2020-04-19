@@ -233,16 +233,17 @@
 							echo "</tr>";
 
 						foreach($cupones as $keyc){
-							echo "<div class='row'>";
-								echo "<div class='col-2'>";
+							echo "<tr>";
+								echo "<td colspan=2 class='text-right'>";
 									echo "<a href='#' onclick='elimina_cupon(".$keyc->id.", $id)'><i class='far fa-times-circle'></i></a>";
-								echo "</div>";
-								echo "<div class='col-6'>";
+								echo "</td>";
+
+								echo "<td colspan=4>";
 									echo $keyc->codigo;
 									echo "<br>";
 									echo $keyc->descripcion;
-								echo "</div>";
-								echo "<div class='col-1 text-right'>";
+								echo "</td>";
+								echo "<td>";
 									/*
 									<option value='porcentaje' <?php if ($tipo=="porcentaje"){ echo " selected"; } ?> >Descuento en porcentaje</option>
 									<option value='carrito' <?php if ($tipo=="carrito"){ echo " selected"; } ?> >Descuento fijo en el carrito</option>
@@ -266,18 +267,18 @@
 										echo "<br>Envio: -".$envio;
 									}
 
-								echo "</div>";
-							echo "</div>";
+								echo "</td>";
+							echo "</tr>";
 
-							echo "<div class='row'>";
-								echo "<div class='col-6'>";
+							echo "<tr>";
+								echo "<td class='col-6'>";
 									echo "<h4><b>Total:</b></h4>";
-								echo "</div>";
+								echo "</td>";
 
-								echo "<div class='col-1 text-right'>";
+								echo "<td class='text-right'>";
 									echo "<h4><b>".moneda($gtotal)."</b></h4>";
-								echo "</div>";
-							echo "</div>";
+								echo "</td>";
+							echo "</tr>";
 						}
 					}
 					echo "</table>";

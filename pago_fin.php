@@ -513,9 +513,6 @@
 								echo "<h4>Cupones</h4>";
 								foreach($cupones as $keyc){
 									echo "<div class='row'>";
-										echo "<div class='col-2'>";
-											echo "<a href='#' onclick='elimina_cupon(".$keyc->id.", $id)'><i class='far fa-times-circle'></i></a>";
-										echo "</div>";
 										echo "<div class='col-6'>";
 											echo $keyc->codigo;
 											echo "<br>";
