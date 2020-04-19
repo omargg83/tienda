@@ -288,6 +288,7 @@
     echo "</form>";
   echo "</div>";
  ?>
+
  <script>
    $(function() {
      fechas();
