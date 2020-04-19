@@ -186,15 +186,13 @@
   		});
   	}
   }
-  function cupon_agrega(cupon,pedido){
+  function cupon_agrega(cupon,idpedido){
     $.ajax({
-      url: "control_db.php",
+      url:  "a_pedidos/db_.php",
       type: "POST",
       data: {
         "cupon":cupon,
-        "idpedido":pedido,
-        "ctrl":"control",
-        "function":"cupon_busca"
+        "idpedido":idpedido
       },
       success: function( response ) {
         console.log(response);
@@ -209,7 +207,7 @@
 
           $.ajax({
             data:  {
-              "id":pedido
+              "id":idpedido
             },
             url:   'a_pedidos/editar.php',
             type:  'post',
