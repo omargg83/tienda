@@ -39,7 +39,6 @@
 		}
 
 
-
 		$ped=$db->pedido_ver($idpedido);
 		$datos=$db->datos_pedido($idpedido);
 		$nombre=$ped->nombre;
@@ -70,6 +69,7 @@
 			$tok=$resp->token;
 			echo $tok;
 		}
+
 		$envio=array(
 			'nombre' => $nombre. " ".$apellido,
 			'direccion' => $direccion1,
@@ -79,18 +79,29 @@
 			'estado' => $estado,
 			'ciudad' => $ciudad,
 			'codigoPostal' => $cp,
-			'telefono' => $telefono,
-	);
+			'telefono' => $telefono
+		);
 
+		$ct_producto=0;
+		foreach($datos as $key){
+			if($key->tipo=="CT"){
+				$ct_producto++;
+				$producto=array(
+					'cantidad' => $key->cantidad,
+					'clave' => $key->clave,
+					'precio' => $key->precio,
+					'moneda' => "MXN"
+				);
+			}
+		}
 
 		$resp=array(
 			'idPedido' => $idpedido,
 			'almacen' => $cliente,
 			'tipoPago' => "03",
-			'envio' => "03",
+			'envio' => $envio,
+			'producto' => $producto,
 		);
-
-
 
 		$json = json_encode($resp);
 
@@ -98,7 +109,7 @@
 			echo var_dump($json);
 		echo "</pre>";
 
-
+		////////$ct_producto;
 
 
 		/////////////////////////////////////////////Correo
