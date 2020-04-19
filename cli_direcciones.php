@@ -54,7 +54,7 @@
 						echo "<a class='btn btn-outline-secondary btn-sm' href='cli_diredit.php' title='Agregar dirección' ><i class='fas fa-street-view'></i>Agregar Direccion</a>";
 
 						echo "<table class='table table-sm'>";
-						echo "<tr><th>-</th><th>Nombre</th><th>Apellidos</th><th>Empresa</th><th>Ciudad</th><th>Estado</th></tr>";
+						echo "<tr><th>-</th><th>Direccion</th><th>Entre calles</th><th>Num. Exterior</th><th>Ciudad</th><th>Estado</th></tr>";
 						foreach($row as $key){
 							echo "<tr>";
 								echo "<td>";
@@ -66,13 +66,13 @@
 									echo $key['direccion1'];
 								echo "</td>";
 								echo "<td>";
+									echo $key['entrecalles'];
+								echo "</td>";
+								echo "<td>";
+									echo $key['numero'];
+								echo "</td>";
+								echo "<td>";
 									echo $key['ciudad'];
-								echo "</td>";
-								echo "<td>";
-									echo $key['estado'];
-								echo "</td>";
-								echo "<td>";
-									echo $key['cp'];
 								echo "</td>";
 								echo "<td>";
 									echo $key['estado'];

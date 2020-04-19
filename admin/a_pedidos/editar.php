@@ -36,7 +36,9 @@
 		$apellido_cli=$cli['apellido'];
     $correo_cli=$cli['correo'];
     $direccion1_cli=$cli['direccion1'];
-    $direccion2_cli=$cli['direccion2'];
+    $entrecalles_cli=$cli['entrecalles'];
+    $numero_cli=$cli['numero'];
+    $colonia_cli=$cli['colonia'];
   }
   echo "<div class='container'>";
     echo "<form id='form_comision' action='' data-lugar='a_pedidos/db_' data-destino='a_pedidos/editar' data-funcion='guardar_pedido'>";
@@ -87,10 +89,21 @@
 							echo "<input type='text' class='form-control form-control-sm' id='direccion1' name='direccion1' value='$direccion1_cli' readonly>";
 						echo "</div>";
 
-						echo "<div class='col-12'>";
-							echo "<label>Dirección 2:</label>";
-							echo "<input type='text' class='form-control form-control-sm' id='direccion2' name='direccion2' value='$direccion2_cli' readonly>";
+						echo "<div class='col-4'>";
+							echo "<label>Entrecalles:</label>";
+							echo "<input type='text' class='form-control form-control-sm' id='entrecalles' name='entrecalles' value='$entrecalles' readonly>";
 						echo "</div>";
+
+						echo "<div class='col-4'>";
+							echo "<label>Num. Exterior:</label>";
+							echo "<input type='text' class='form-control form-control-sm' id='numero' name='numero' value='$numero' readonly>";
+						echo "</div>";
+
+						echo "<div class='col-4'>";
+							echo "<label>Colonia:</label>";
+							echo "<input type='text' class='form-control form-control-sm' id='colonia' name='colonia' value='$colinia' readonly>";
+						echo "</div>";
+
 					echo "</div>";
 
 
