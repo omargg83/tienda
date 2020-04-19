@@ -455,6 +455,7 @@ class Productos extends Tienda{
 	public function existencia_api(){
 		$resp = crearNuevoToken();
 	  $tok=$resp->token;
+		
 		$clave=$_REQUEST['clave'];
 		$id=$_REQUEST['id'];
 

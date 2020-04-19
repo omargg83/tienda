@@ -8,10 +8,6 @@
 
 		$ped=$db->pedido_ver($idpedido);
 
-
-		echo $payment_status;
-
-		
 		$estatus="";
 		$rechazado=0;
 	  if($payment_status=="approved"){
@@ -41,6 +37,15 @@
 		if($ped->error==0){
 
 		}
+
+
+		if($payment_status=="approved"){
+			$resp = crearNuevoToken();
+			$tok=$resp->token;
+
+			echo $$tok;
+		}
+
 
 		$ped=$db->pedido_ver($idpedido);
 		$datos=$db->datos_pedido($idpedido);
