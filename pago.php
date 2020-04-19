@@ -20,7 +20,7 @@
 	$direccion1=$ped->direccion1;
 	$entrecalles=$ped->entrecalles;
 	$numero=$ped->numero;
-	$coloni=$ped->colonia;
+	$colonia=$ped->colonia;
 	$ciudad=$ped->ciudad;
 	$cp=$ped->cp;
 	$pais=$ped->pais;
