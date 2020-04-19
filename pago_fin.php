@@ -132,9 +132,6 @@
 						<label>Pago #: $idpago</label>
 					</div>
 					<div class='col-4'>
-						<label>Nombre: $nombre</label>
-					</div>
-					<div class='col-4'>
 						<label>Nombre: $nombre $apellido</label>
 					</div>
 					<div class='col-4'>
@@ -318,9 +315,6 @@
 					<label>Pago: $pago</label>
 				</div>
 				<div class='col-4'>
-					<label>Nombre: $nombre</label>
-				</div>
-				<div class='col-4'>
 					<label>Nombre: $nombre $apellido</label>
 				</div>
 				<div class='col-4'>
@@ -383,7 +377,7 @@
 					</div>
 				</div>
 				<div class='col-9'>
-					<h3 class='text-center'><?php echo "#".$id; ?>Pedido</h3>
+					<h3 class='text-center'><?php echo "#".$id; ?> Pedido</h3>
 					<div class="row">
 						<div class="col-2">
 							<label class='text-center'>Pedido</label>

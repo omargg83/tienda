@@ -159,7 +159,7 @@
 					<?php
 					echo "<div class='row'>";
 						echo "<div class='col-12 text-center'>";
-							echo "<h3>Pedido NO: ".$id."</h3>";
+							echo "<h3>Pedido NO: ".$idpedido."</h3>";
 						echo "</div>";
 					echo "</div>";
 					///////////////////////////////////

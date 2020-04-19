@@ -1264,7 +1264,7 @@
 				$idpedido=$_REQUEST['idpedido'];
 				$cupon=trim(htmlspecialchars($_REQUEST['cupon']));
 
-				$sql="select * from pedidos_cupon where codigo='$cupon'";
+				$sql="select * from pedidos_cupon where codigo='$cupon' and idpedido='$pedido'";
 				$sth_i = $this->dbh->prepare($sql);
 				$sth_i->execute();
 				if($sth_i->rowCount()>0){
