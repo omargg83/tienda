@@ -2,8 +2,6 @@
 	require_once("db_.php");
 	$id=$_REQUEST['id'];
 	$id2=$_REQUEST['id2'];
-
-	$id=$_REQUEST['id'];
 	$direccion1="";
 	$entrecalles="";
 	$numero="";
@@ -32,8 +30,8 @@
 	</div>
 	  <div class='modal-body' >
 		<?php
-			echo "<input type='hidden' id='id' NAME='id' value='$id'>";
-			echo "<input type='hidden' id='id2' NAME='id2' value='$id2'>";
+			echo "<input type='text' id='id' NAME='id' value='$id'>";
+			echo "<input type='text' id='id2' NAME='id2' value='$id2'>";
 		?>
 			<div class='row'>
 

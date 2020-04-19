@@ -807,21 +807,25 @@
 				$rfc = trim(htmlspecialchars($_REQUEST["rfc"]));
 				$cfdi = trim(htmlspecialchars($_REQUEST["cfdi"]));
 				$direccion1 = trim(htmlspecialchars($_REQUEST["direccion1"]));
-				$direccion2 = trim(htmlspecialchars($_REQUEST["direccion2"]));
+				$entrecalles = trim(htmlspecialchars($_REQUEST["entrecalles"]));
+				$colonia = trim(htmlspecialchars($_REQUEST["colonia"]));
+				$numero = trim(htmlspecialchars($_REQUEST["numero"]));
 				$ciudad = trim(htmlspecialchars($_REQUEST["ciudad"]));
 				$cp = trim(htmlspecialchars($_REQUEST["cp"]));
 				$pais = trim(htmlspecialchars($_REQUEST["pais"]));
 				$estado = trim(htmlspecialchars($_REQUEST["estado"]));
 				$telefono = trim(htmlspecialchars($_REQUEST["telefono"]));
 
-				$sql="update clientes set nombre=:nombre, apellido=:apellido, rfc=:rfc, cfdi=:cfdi, direccion1=:direccion1, direccion2=:direccion2, ciudad=:ciudad, cp=:cp, pais=:pais, estado=:estado, telefono=:telefono  where id=:id";
+				$sql="update clientes set nombre=:nombre, apellido=:apellido, rfc=:rfc, cfdi=:cfdi, direccion1=:direccion1, entrecalles=:entrecalles, colonia=:colonia, numero=:numero, ciudad=:ciudad, cp=:cp, pais=:pais, estado=:estado, telefono=:telefono  where id=:id";
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(":nombre",$nombre);
 				$sth->bindValue(":apellido",$apellido);
 				$sth->bindValue(":rfc",$rfc);
 				$sth->bindValue(":cfdi",$cfdi);
 				$sth->bindValue(":direccion1",$direccion1);
-				$sth->bindValue(":direccion2",$direccion2);
+				$sth->bindValue(":entrecalles",$entrecalles);
+				$sth->bindValue(":colonia",$colonia);
+				$sth->bindValue(":numero",$numero);
 				$sth->bindValue(":ciudad",$ciudad);
 				$sth->bindValue(":cp",$cp);
 				$sth->bindValue(":pais",$pais);

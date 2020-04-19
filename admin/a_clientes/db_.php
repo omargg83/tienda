@@ -178,6 +178,10 @@ class Clientes extends Tienda{
 			else{
 				$x=$this->update('clientes_direccion',array('iddireccion'=>$id), $arreglo);
 			}
+			
+
+
+
 			return $x;
 		}
 		catch(PDOException $e){

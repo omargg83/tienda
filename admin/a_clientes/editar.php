@@ -115,9 +115,7 @@
 		  		<button type="submit" class="btn btn-outline-secondary btn-sm"><i class='far fa-save'></i>Guardar</button>
 					<?php
 						if($id>0){
-							echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_pass' data-id='$id' data-lugar='a_clientes/form_pass' title='Cambiar contraseña' ><i class='fas fa-key'></i>Cambiar Contraseña</button>";
-
-
+							echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_pass3' data-id='$id' data-lugar='a_clientes/form_pass' title='Cambiar contraseña' ><i class='fas fa-key'></i>Cambiar Contraseña</button>";
 						}
 					?>
 					<button class='btn btn-outline-secondary btn-sm' id='lista_cat' data-lugar='a_clientes/lista' title='regresar'><i class='fas fa-undo-alt'></i>Regresar</button>
@@ -136,27 +134,27 @@
 
 					echo "</div>";
 					echo "<div class='card-body'>";
-						echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_pass' data-id='0' data-id2='$id' data-lugar='a_clientes/form_direccion' title='Cambiar contraseña' ><i class='fas fa-street-view'></i>Agregar Direccion</button>";
+						echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_pass1' data-id='0' data-id2='$id' data-lugar='a_clientes/form_direccion' title='Cambiar contraseña' ><i class='fas fa-street-view'></i>Agregar Direccion</button>";
 
 						echo "<table class='table table-sm'>";
-						echo "<tr><th>-</th><th>Nombre</th><th>Apellidos</th><th>Empresa</th><th>Ciudad</th><th>Estado</th></tr>";
+						echo "<tr><th>-</th><th>Direccion</th><th>Entre calles</th><th>Num. Exterior</th><th>Ciudad</th><th>Estado</th></tr>";
 						foreach($row as $key){
 							echo "<tr id='".$key['iddireccion']."' class='edit-t'>";
 								echo "<td>";
 									echo "<div class='btn-group'>";
-										echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_pass' data-id='".$key['iddireccion']."' data-id2='$id' data-lugar='a_clientes/form_direccion' title='Editar' ><i class='fas fa-pencil-alt'></i></button>";
+										echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_pass2' data-id='".$key['iddireccion']."' data-id2='$id' data-lugar='a_clientes/form_direccion' title='Editar' ><i class='fas fa-pencil-alt'></i></button>";
 
 										echo "<button class='btn btn-outline-secondary btn-sm' id='eliminar_cat' data-lugar='a_clientes/db_' data-destino='a_clientes/editar' data-id='".$key['iddireccion']."' data-id2='$id' data-iddest='$id' data-funcion='quitar_dir' data-div='trabajo'><i class='far fa-trash-alt'></i></button>";
 									echo "</div>";
 								echo "</td>";
 								echo "<td>";
-									echo $key['nombre'];
+									echo $key['direccion1'];
 								echo "</td>";
 								echo "<td>";
-									echo $key['apellidos'];
+									echo $key['entrecalles'];
 								echo "</td>";
 								echo "<td>";
-									echo $key['empresa'];
+									echo $key['numero'];
 								echo "</td>";
 								echo "<td>";
 									echo $key['ciudad'];
