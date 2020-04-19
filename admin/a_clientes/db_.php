@@ -178,11 +178,20 @@ class Clientes extends Tienda{
 			else{
 				$x=$this->update('clientes_direccion',array('iddireccion'=>$id), $arreglo);
 			}
-			
-
-
-
-			return $x;
+			$ped=json_decode($x);
+			if($ped->error==0){
+				$arreglo =array();
+				$arreglo+=array('id'=>$id2;
+				$arreglo+=array('error'=>0);
+				$arreglo+=array('terror'=>0);
+				return json_encode($arreglo);
+			}
+			else{
+				$arreglo =array();
+				$arreglo+=array('id'=>$id2;
+				$arreglo+=array('error'=>1);
+				$arreglo+=array('terror'=>$ped->terror);
+			}
 		}
 		catch(PDOException $e){
 			return "Database access FAILED!".$e->getMessage();

@@ -471,7 +471,7 @@ $(document).on('submit','#datos',function(e){
       "direccion1":direccion1,
       "entrecalles":entrecalles,
       "numero":numero,
-      "ciudad":ciudad,
+      "colonia":colonia,
       "ciudad":ciudad,
       "cp":cp,
       "pais":pais,
