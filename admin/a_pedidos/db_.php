@@ -377,7 +377,6 @@ class Pedidos extends Tienda{
 			$idpedido=$_REQUEST['idpedido'];
 
 			$sql="SELECT * from cupon where codigo like '%$texto%' limit 100";
-			echo $sql;
 			$sth = $this->dbh->prepare($sql);
 			$sth->execute();
 			echo "<div class='row'>";

@@ -242,6 +242,7 @@ function cupon_agrega(pedido){
       "function":"cupon_busca"
     },
     success: function( response ) {
+      console.log(response);
       var datos = JSON.parse(response);
       if (datos.error==0){
         Swal.fire({

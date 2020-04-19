@@ -16,7 +16,9 @@
 	$apellido_cli="";
 	$correo_cli="";
 	$direccion1_cli="";
-	$direccion2_cli="";
+	$entrecalles_cli="";
+	$numero_cli="";
+	$colonia_cli="";
 
 	if($id>0){
     $row=$db->editar_pedido($id);
