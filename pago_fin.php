@@ -8,6 +8,10 @@
 
 		$ped=$db->pedido_ver($idpedido);
 
+
+		echo $payment_status;
+
+		
 		$estatus="";
 		$rechazado=0;
 	  if($payment_status=="approved"){

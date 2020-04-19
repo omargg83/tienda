@@ -59,9 +59,11 @@
 				  <div class='col-4'>
 			      <label>Tipo</label>
 						<select class='form-control' id='tipo' name='tipo'>
-							<option value='porcentaje' <?php if ($tipo=="porcentaje"){ echo " selected"; } ?> >Descuento en porcentaje</option>
-							<option value='carrito' <?php if ($tipo=="carrito"){ echo " selected"; } ?> >Descuento fijo en el carrito</option>
-							<option value='producto' <?php if ($tipo=="producto"){ echo " selected"; } ?> >Descuento fijo de productos</option>
+							<?php
+								echo "<option value='porcentaje' "; if ($tipo=="porcentaje"){ echo " selected"; } echo "Descuento en porcentaje</option>";
+								echo "<option value='carrito' "; if ($tipo=="carrito"){ echo " selected"; } echo "Descuento fijo en el carrito</option>";
+								//echo "<option value='producto' "; if ($tipo=="producto"){ echo " selected"; } echo "Descuento fijo de productos</option>";
+							?>
 						</select>
 		    	</div>
 
@@ -80,7 +82,7 @@
 							<option value='si' <?php if ($envio=="si"){ echo " selected"; } ?> >Si</option>
 							<option value='no' <?php if ($envio=="no"){ echo " selected"; } ?> >No</option>
 						</select>
-						<small id="emailHelp" class="form-text text-muted">El cupón ofrece envío gratuito. El método de envío gratuito debe estar activo e</small>
+						<small id="emailHelp" class="form-text text-muted">El cupón ofrece envío gratuito. El método de envío gratuito debe estar activo</small>
 			    </div>
 
 					<div class='col-4'>

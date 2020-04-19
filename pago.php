@@ -240,7 +240,7 @@
 
 						$gtotal=$total+$envio;
 						echo "<hr>";
-						echo "<div class='row'>";
+						echo "<div class='row' style='font-size:14px;'>";
 							echo "<div class='col-6'>";
 								echo "<b>Total</b>";
 							echo "</div>";
