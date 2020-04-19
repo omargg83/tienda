@@ -243,6 +243,7 @@
 									echo "<br>";
 									echo $keyc->descripcion;
 								echo "</td>";
+
 								echo "<td>";
 									/*
 									<option value='porcentaje' <?php if ($tipo=="porcentaje"){ echo " selected"; } ?> >Descuento en porcentaje</option>
@@ -271,7 +272,7 @@
 							echo "</tr>";
 
 							echo "<tr>";
-								echo "<td class='col-6'>";
+								echo "<td colspan=6'>";
 									echo "<h4><b>Total:</b></h4>";
 								echo "</td>";
 
