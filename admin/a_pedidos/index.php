@@ -100,6 +100,8 @@
   	}
   }
   function cliente_add(idcliente,idpedido){
+    alert(idcliente);
+    alert(idpedido);
     $.confirm({
       title: 'Cliente',
       content: '¿Desea agregar el cliente seleccionado?',
