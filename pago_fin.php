@@ -41,6 +41,8 @@
 
 		$ped=$db->pedido_ver($idpedido);
 		$datos=$db->datos_pedido($idpedido);
+		$cupones=$db->pedido_cupones($id);
+
 		$nombre=$ped->nombre;
 		$apellido=$ped->apellido;
 		$correo=$ped->correo;
@@ -102,7 +104,6 @@
 			'envio' => $envio,
 			'producto' => $producto,
 		);
-
 		$json = json_encode($resp);
 
 		echo "<pre>";

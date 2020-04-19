@@ -223,12 +223,15 @@
 									echo moneda($gtotal);
 								echo "</td>";
 							echo "</tr>";
-							echo "</table>";
-						echo "</div>";
-					}
 
-					if(is_array($cupones)){
-						echo "<h4>Cupones</h4>";
+
+						if(is_array($cupones)){
+							echo "<tr>";
+								echo "<td colspan=12 class='text-right'>";
+								echo "<h4>Cupones</h4>";
+								echo "</td>";
+							echo "</tr>";
+
 						foreach($cupones as $keyc){
 							echo "<div class='row'>";
 								echo "<div class='col-2'>";
@@ -239,8 +242,7 @@
 									echo "<br>";
 									echo $keyc->descripcion;
 								echo "</div>";
-								echo "<div class='col-4 text-right'>";
-
+								echo "<div class='col-1 text-right'>";
 									/*
 									<option value='porcentaje' <?php if ($tipo=="porcentaje"){ echo " selected"; } ?> >Descuento en porcentaje</option>
 									<option value='carrito' <?php if ($tipo=="carrito"){ echo " selected"; } ?> >Descuento fijo en el carrito</option>
@@ -272,14 +274,15 @@
 									echo "<h4><b>Total:</b></h4>";
 								echo "</div>";
 
-								echo "<div class='col-6 text-right'>";
+								echo "<div class='col-1 text-right'>";
 									echo "<h4><b>".moneda($gtotal)."</b></h4>";
 								echo "</div>";
 							echo "</div>";
 						}
 					}
-
-
+					echo "</table>";
+				echo "</div>";
+				}
       echo "</div>";
     echo "</form>";
   echo "</div>";
