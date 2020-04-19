@@ -281,8 +281,8 @@
 											$gtotal=$gtotal-$keyc->descuento;
 										}
 
-										if($keyc->envio=='no'){
-
+										if($keyc->envio=='si'){
+											$gtotal=$gtotal-$envio;
 											echo "<br>Envio: -".$envio;
 										}
 
