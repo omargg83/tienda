@@ -383,7 +383,7 @@ class Pedidos extends Tienda{
 				echo "<div class='col-1'>-</div>";
 				echo "<div class='col-2'><b>Código</b></div>";
 				echo "<div class='col-5'><b>Descripción</b></div>";
-				echo "<div class='col-2 text-center'><b>Existencia</b></div>";
+				echo "<div class='col-2 text-center'><b>Tipo</b></div>";
 				echo "<div class='col-2'><b>Precio</b></div>";
 			echo "</div>";
 			foreach($sth->fetchAll() as $key){
@@ -400,10 +400,11 @@ class Pedidos extends Tienda{
 							echo $key['descripcion'];
 					echo "</div>";
 					echo "<div class='col-2 text-center' >";
-							echo $key['existencia'];
+					  if ($key['tipo']=="porcentaje"){ echo "Descuento en porcentaje"; }
+						if ($key['tipo']=="carrito"){ echo "Descuento fijo en el carrito"; }
 					echo "</div>";
 					echo "<div class='col-2 text-right'>";
-							echo moneda($key['preciof']);
+							echo $key['importe'];
 					echo "</div>";
 				echo "</div>";
 			}
