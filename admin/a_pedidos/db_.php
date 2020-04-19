@@ -468,9 +468,9 @@ class Pedidos extends Tienda{
 		try{
 			self::set_names();
 			$idpedido=$_REQUEST['idpedido'];
-			$cupon=trim(htmlspecialchars($_REQUEST['cupon']));
+			$idcupon=$_REQUEST['idcupon'];
 
-			$sql="select * from pedidos_cupon where codigo='$cupon' and idpedido='$idpedido'";
+			$sql="select * from pedidos_cupon where idcupon='$idcupon' and idpedido='$idpedido'";
 			$sth_i = $this->dbh->prepare($sql);
 			$sth_i->execute();
 			if($sth_i->rowCount()>0){
@@ -482,9 +482,9 @@ class Pedidos extends Tienda{
 			}
 
 
-			$sql="SELECT * FROM cupon where codigo=:codigo";
+			$sql="SELECT * FROM cupon where idcupon=:idcupon";
 			$sth_i = $this->dbh->prepare($sql);
-			$sth_i->bindValue(":codigo",$cupon);
+			$sth_i->bindValue(":idcupon",$idcupon);
 			$sth_i->execute();
 			$contar=$sth_i->rowCount();
 			if($contar>0){

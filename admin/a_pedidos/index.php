@@ -186,12 +186,12 @@
   		});
   	}
   }
-  function cupon_agrega(cupon,idpedido){
+  function cupon_agrega(idcupon,idpedido){
     $.ajax({
       url:  "a_pedidos/db_.php",
       type: "POST",
       data: {
-        "cupon":cupon,
+        "idcupon":idcupon,
         "idpedido":idpedido,
         "function":"cupon_busca"
       },
