@@ -479,6 +479,7 @@ $(document).on('submit','#datos',function(e){
       "telefono":telefono
     },
     success: function( response ) {
+      console.log(response);
       var datos = JSON.parse(response);
       if (datos.error==0){
         Swal.fire({
@@ -508,6 +509,7 @@ $(document).on('submit','#direccion',function(e){
     type: "POST",
     data:  dataString,
     success: function( response ) {
+      console.log(response);
       var datos = JSON.parse(response);
       if (datos.error==0){
         Swal.fire({
