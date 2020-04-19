@@ -160,7 +160,8 @@
 						echo "<div class='card-body'>";
 							echo "<table class='table table-sm'>";
 							echo "<tr><th>-</th><th>Clave</th><th>Num. Parte</th><th>Nombre</th><th>Precio</th><th>Cantidad</th><th>Total</th></tr>";
-							$total=0;
+							$gtotal=0;
+							$genvio=0;
 							foreach($row as $key){
 								echo "<tr id='".$key['id']."' class='edit-t'>";
 									echo "<td>";
@@ -189,17 +190,36 @@
 										echo $key['cantidad'];
 									echo "</td>";
 									echo "<td class='text-right'>";
-										echo moneda($key['total']+$key['envio']);
-										$total+=$key['total']+$key['envio'];
+										echo moneda($key['total']);
 									echo "</td>";
 								echo "</tr>";
+								$gtotal+=$key['total'];
+								$genvio+=$key['envio'];
 							}
+							echo "<tr>";
+								echo "<td colspan=6 class='text-right'>";
+									echo "<b>Subtotal:</b>";
+								echo "</td>";
+								echo "<td class='text-right'>";
+									echo moneda($gtotal);
+								echo "</td>";
+							echo "</tr>";
+
+							echo "<tr>";
+								echo "<td colspan=6 class='text-right'>";
+									echo "<b>Envío:</b>";
+								echo "</td>";
+								echo "<td class='text-right'>";
+									echo moneda($genvio);
+								echo "</td>";
+							echo "</tr>";
+
 							echo "<tr>";
 								echo "<td colspan=6 class='text-right'>";
 									echo "<b>Total:</b>";
 								echo "</td>";
 								echo "<td class='text-right'>";
-									echo moneda($total);
+									echo moneda($gtotal+$genvio);
 								echo "</td>";
 							echo "</tr>";
 							echo "</table>";
