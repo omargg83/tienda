@@ -8,7 +8,9 @@
 	$apellidos="";
 	$empresa="";
 	$direccion1="";
-	$direccion2="";
+	$entrecalles="";
+	$numero="";
+	$colonia="";
 	$ciudad="";
 	$cp="";
 	$pais="";
@@ -22,7 +24,9 @@
 		$apellidos=$per->apellidos;
 		$empresa=$per->empresa;
 		$direccion1=$per->direccion1;
-		$direccion2=$per->direccion2;
+		$entrecalles=$per->entrecalles;
+		$numero=$per->numero;
+		$colonia=$per->colonia;
 		$ciudad=$per->ciudad;
 		$cp=$per->cp;
 		$pais=$per->pais;
@@ -60,9 +64,19 @@
 					<input type="text" class="form-control" id="direccion1" name='direccion1' placeholder="Dirección linea 1" value="<?php echo $direccion1; ?>" required>
 				</div>
 
-				<div class="col-12">
-					<label>Dirección linea 2</label>
-					<input type="text" class="form-control" id="direccion2" name='direccion2' placeholder="Dirección linea 2" value="<?php echo $direccion2; ?>" required>
+				<div class="col-4">
+					<label>Entre calles</label>
+					<input type="text" class="form-control" id="entrecalles" name='entrecalles' placeholder="Entre calles" value="<?php echo $entrecalles; ?>" required>
+				</div>
+
+				<div class="col-4">
+					<label>Num. Exterior</label>
+					<input type="text" class="form-control" id="numero" name='numero' placeholder="Num. Exterior" value="<?php echo $numero; ?>" required>
+				</div>
+
+				<div class="col-4">
+					<label>Colonia</label>
+					<input type="text" class="form-control" id="colonia" name='colonia' placeholder="Colonia" value="<?php echo $colonia; ?>" required>
 				</div>
 
 				<div class="col-4">
@@ -102,12 +116,6 @@
 
 			<div class='btn-group'>
 			<button class='btn btn-outline-secondary btn-sm' type='submit' id='acceso' title='Guardar'><i class='far fa-save'></i>Guardar</button>
-			<?php
-				if($id>0){
-					echo "<button class='btn btn-outline-secondary btn-sm' type='button' id='acceso' title='Dirección de envío' onclick='dir_envio($id,$id2)'><i class='fas fa-map-marked-alt'></i>Envío</button>";
-				
-				}
-			?>
 			<button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal" title='Cancelar'><i class="fas fa-sign-out-alt"></i>Cancelar</button>
 			</div>
 	  </div>
