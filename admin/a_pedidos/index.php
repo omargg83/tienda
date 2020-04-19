@@ -192,7 +192,8 @@
       type: "POST",
       data: {
         "cupon":cupon,
-        "idpedido":idpedido
+        "idpedido":idpedido,
+        "function":"cupon_busca"
       },
       success: function( response ) {
         console.log(response);
