@@ -119,7 +119,7 @@ class Pedidos extends Tienda{
 			$id=$_REQUEST['idpedido'];
 			$idcliente=$_REQUEST['idcliente'];
 
-			$sql="select * from clientes where id";
+			$sql="select * from clientes where id=:id";
 			$sth = $this->dbh->prepare($sql);
 			$sth->bindValue(":id",$idcliente);
 			$sth->execute();
