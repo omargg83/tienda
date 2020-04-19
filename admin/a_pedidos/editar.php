@@ -227,7 +227,7 @@
 
 						if(is_array($cupones)){
 							echo "<tr>";
-								echo "<td colspan=12 class='text-right'>";
+								echo "<td colspan=7 class='text-right'>";
 								echo "<h4>Cupones</h4>";
 								echo "</td>";
 							echo "</tr>";

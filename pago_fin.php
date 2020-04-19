@@ -115,8 +115,9 @@
 
 		/////////////////////////////////////////////Correo
 		if($rechazado==0){
-				$texto="<h3>TIC-SHOP</h3>
-				<h3 class='text-center'>Pedido</h3>
+				$texto="<h3>TIC-SHOP</h3><br>
+				<h3><b>Pedido</b></h3>
+
 				<div class='row'>
 					<div class='col-2'>
 						<label>Pedido #: $idpedido</label>
@@ -254,6 +255,50 @@
 								$texto.= moneda($gtotal);
 							$texto.= "</div>";
 						$texto.= "</div>";
+
+						if(is_array($cupones)){
+							$texto.= "<h4>Cupones</h4>";
+							foreach($cupones as $keyc){
+								$texto.= "<div class='row'>";
+									$texto.= "<div class='col-10'>";
+										$texto.= $keyc->codigo;
+										$texto.= "<br>";
+										$texto.= $keyc->descripcion;
+									$texto.= "</div>";
+									$texto.= "<div class='col-2 text-right'>";
+
+										if($keyc->tipo=='porcentaje'){
+											$texto.= $keyc->descuento."%";
+											$monto=($gtotal*$keyc->descuento)/100;
+											$texto.= "<br>- ".moneda($monto);
+											$gtotal=$gtotal-$monto;
+										}
+
+										if($keyc->tipo=='carrito'){
+											$texto.= "<br>- ".moneda($keyc->descuento);
+											$gtotal=$gtotal-$keyc->descuento;
+										}
+
+										if($keyc->envio=='si'){
+											$gtotal=$gtotal-$envio;
+											$texto.= "<br>Envio: -".$envio;
+										}
+
+									$texto.= "</div>";
+								$texto.= "</div>";
+
+								$texto.= "<div class='row'>";
+									$texto.= "<div class='col-6'>";
+										$texto.= "<h4><b>Total:</b></h4>";
+									$texto.= "</div>";
+
+									$texto.= "<div class='col-6 text-right'>";
+										$texto.= "<h4><b>".moneda($gtotal)."</b></h4>";
+									$texto.= "</div>";
+								$texto.= "</div>";
+							}
+						}
+
 				$texto.="</div>";
 			$texto.="</div>";
 
@@ -507,8 +552,6 @@
 									echo moneda($gtotal);
 								echo "</div>";
 							echo "</div>";
-
-
 							if(is_array($cupones)){
 								echo "<h4>Cupones</h4>";
 								foreach($cupones as $keyc){
@@ -557,11 +600,7 @@
 									echo "</div>";
 								}
 							}
-
-
-
 						?>
-
 					</div>
 				</div>
 			</div>
