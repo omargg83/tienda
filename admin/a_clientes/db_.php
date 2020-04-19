@@ -149,15 +149,6 @@ class Clientes extends Tienda{
 			$arreglo =array();
 			$arreglo = array('idcliente'=>$id2);
 
-			if (isset($_REQUEST['nombre'])){
-				$arreglo+= array('nombre'=>$_REQUEST['nombre']);
-			}
-			if (isset($_REQUEST['apellidos'])){
-				$arreglo+= array('apellidos'=>$_REQUEST['apellidos']);
-			}
-			if (isset($_REQUEST['empresa'])){
-				$arreglo+= array('empresa'=>$_REQUEST['empresa']);
-			}
 			if (isset($_REQUEST['direccion1'])){
 				$arreglo+= array('direccion1'=>$_REQUEST['direccion1']);
 			}
@@ -178,15 +169,6 @@ class Clientes extends Tienda{
 			}
 			if (isset($_REQUEST['pais'])){
 				$arreglo+= array('pais'=>$_REQUEST['pais']);
-			}
-			if (isset($_REQUEST['estado'])){
-				$arreglo+= array('estado'=>$_REQUEST['estado']);
-			}
-			if (isset($_REQUEST['mail'])){
-				$arreglo+= array('mail'=>$_REQUEST['mail']);
-			}
-			if (isset($_REQUEST['telefono'])){
-				$arreglo+= array('telefono'=>$_REQUEST['telefono']);
 			}
 
 			$x="";

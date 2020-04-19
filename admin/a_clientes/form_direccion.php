@@ -4,9 +4,6 @@
 	$id2=$_REQUEST['id2'];
 
 	$id=$_REQUEST['id'];
-	$nombre="";
-	$apellidos="";
-	$empresa="";
 	$direccion1="";
 	$entrecalles="";
 	$numero="";
@@ -15,14 +12,10 @@
 	$cp="";
 	$pais="";
 	$estado="";
-	$mail="";
 	$telefono="";
 
 	if($id>0){
 		$per = $db->direccion_editar($id);
-		$nombre=$per->nombre;
-		$apellidos=$per->apellidos;
-		$empresa=$per->empresa;
 		$direccion1=$per->direccion1;
 		$entrecalles=$per->entrecalles;
 		$numero=$per->numero;
@@ -31,7 +24,6 @@
 		$cp=$per->cp;
 		$pais=$per->pais;
 		$estado=$per->estado;
-		$mail=$per->mail;
 		$telefono=$per->telefono;
 	}
 ?>
@@ -44,20 +36,6 @@
 			echo "<input type='hidden' id='id2' NAME='id2' value='$id2'>";
 		?>
 			<div class='row'>
-				<div class="col-4">
-					<label>Nombre</label>
-					<input type="text" class="form-control" id="nombre" name='nombre' placeholder="Nombre" value="<?php echo $nombre; ?>" required>
-				</div>
-
-				<div class="col-8">
-					<label>Apellidos</label>
-					<input type="text" class="form-control" id="apellidos" name='apellidos' placeholder="Apellidos" value="<?php echo $apellidos; ?>" required>
-				</div>
-
-				<div class="col-12">
-					<label>Empresa</label>
-					<input type="text" class="form-control" id="empresa" name='empresa' placeholder="Empresa" value="<?php echo $empresa; ?>" required>
-				</div>
 
 				<div class="col-12">
 					<label>Dirección linea 1</label>
@@ -92,21 +70,6 @@
 				<div class="col-4">
 					<label>Pais</label>
 					<input type="text" class="form-control" id="pais" name='pais' placeholder="Pais" value="<?php echo $pais; ?>" required>
-				</div>
-
-				<div class="col-4">
-					<label>Estado</label>
-					<input type="text" class="form-control" id="estado" name='estado' placeholder="Estado" value="<?php echo $estado; ?>" required>
-				</div>
-
-				<div class="col-4">
-					<label>Correo</label>
-					<input type="text" class="form-control" id="mail" name='mail' placeholder="Correo" value="<?php echo $mail; ?>" required>
-				</div>
-
-				<div class="col-4">
-					<label>Telefono</label>
-					<input type="text" class="form-control" id="telefono" name='telefono' placeholder="Telefono" value="<?php echo $telefono; ?>" required>
 				</div>
 
 			</div>

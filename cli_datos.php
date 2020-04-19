@@ -107,10 +107,6 @@
 	            <label>Colonia</label>
 	            <input type="text" class="form-control" id="colonia" name='colonia' placeholder="Colonia" value="<?php echo $colonia; ?>" >
 	          </div>
-
-
-
-
 	          <div class="col-4">
 	            <label>Ciudad</label>
 	            <input type="text" class="form-control" id="ciudad" name='ciudad' placeholder="Ciudad" value="<?php echo $ciudad; ?>" >
