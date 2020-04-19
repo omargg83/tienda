@@ -482,7 +482,7 @@ class Pedidos extends Tienda{
 			}
 
 
-			$sql="SELECT * FROM cupon where idcupon=:idcupon";
+			$sql="SELECT * FROM cupon where id=:idcupon";
 			$sth_i = $this->dbh->prepare($sql);
 			$sth_i->bindValue(":idcupon",$idcupon);
 			$sth_i->execute();
