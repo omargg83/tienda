@@ -91,17 +91,17 @@
 
 						echo "<div class='col-4'>";
 							echo "<label>Entrecalles:</label>";
-							echo "<input type='text' class='form-control form-control-sm' id='entrecalles' name='entrecalles' value='$entrecalles' readonly>";
+							echo "<input type='text' class='form-control form-control-sm' id='entrecalles' name='entrecalles' value='$entrecalles_cli' readonly>";
 						echo "</div>";
 
 						echo "<div class='col-4'>";
 							echo "<label>Num. Exterior:</label>";
-							echo "<input type='text' class='form-control form-control-sm' id='numero' name='numero' value='$numero' readonly>";
+							echo "<input type='text' class='form-control form-control-sm' id='numero' name='numero' value='$numero_cli' readonly>";
 						echo "</div>";
 
 						echo "<div class='col-4'>";
 							echo "<label>Colonia:</label>";
-							echo "<input type='text' class='form-control form-control-sm' id='colonia' name='colonia' value='$colinia' readonly>";
+							echo "<input type='text' class='form-control form-control-sm' id='colonia' name='colonia' value='$colonia_cli' readonly>";
 						echo "</div>";
 
 					echo "</div>";

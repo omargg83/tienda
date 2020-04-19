@@ -1447,25 +1447,18 @@
 				$sth->execute();
 				$resp=$sth->fetch(PDO::FETCH_OBJ);
 
-				$direccion1 = $resp->direccion1;
-				$direccion2 = $resp->direccion2;
-				$ciudad = $resp->ciudad;
-				$cp = $resp->cp;
-				$pais = $resp->pais;
-				$estado = $resp->estado;
-				$telefono = $resp->telefono;
-
 				$arreglo=array();
 				$arreglo+=array('id'=>0);
 				$arreglo+=array('error'=>0);
 				$arreglo+=array('terror'=>'');
-				$arreglo+=array('direccion1'=>$direccion1);
-				$arreglo+=array('direccion2'=>$direccion2);
-				$arreglo+=array('ciudad'=>$ciudad);
-				$arreglo+=array('cp'=>$cp);
-				$arreglo+=array('pais'=>$pais);
-				$arreglo+=array('estado'=>$estado);
-				$arreglo+=array('telefono'=>$telefono);
+				$arreglo+=array('direccion1'=>$resp->direccion1);
+				$arreglo+=array('entrecalles'=>$resp->entrecalles);
+				$arreglo+=array('numero'=>$resp->numero);
+				$arreglo+=array('colonia'=>$resp->colonia);
+				$arreglo+=array('ciudad'=>$resp->ciudad);
+				$arreglo+=array('cp'=>$resp->cp);
+				$arreglo+=array('pais'=>$resp->pais);
+				$arreglo+=array('estado'=>$resp->estado);
 				return json_encode($arreglo);
 			}
 			catch(PDOException $e){

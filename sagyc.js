@@ -317,12 +317,13 @@ function select_dir(){
       var datos = JSON.parse(response);
       if(datos.error==0){
         $("#direccion1").val(datos.direccion1);
-        $("#direccion2").val(datos.direccion2);
+        $("#entrecalles").val(datos.entrecalles);
+        $("#numero").val(datos.numero);
+        $("#colonia").val(datos.colonia);
         $("#ciudad").val(datos.ciudad);
         $("#cp").val(datos.cp);
         $("#pais").val(datos.pais);
         $("#estado").val(datos.estado);
-        $("#telefono").val(datos.telefono);
       }
     }
   });

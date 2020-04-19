@@ -13,7 +13,9 @@
 	$rfc=$resp->rfc;
 	$cfdi=$resp->cfdi;
 	$direccion1=$resp->direccion1;
-	$direccion2=$resp->direccion2;
+	$entrecalles=$resp->entrecalles;
+	$numero=$resp->numero;
+	$colonia=$resp->colonia;
 	$ciudad=$resp->ciudad;
 	$cp=$resp->cp;
 	$pais=$resp->pais;
@@ -82,6 +84,11 @@
 						<input type="email" class="form-control" id="correo" name='correo' placeholder="Correo" value="<?php echo $correo; ?>" required>
 					</div>
 
+					<div class="col-4">
+						<label>Teléfono</label>
+						<input type="text" class="form-control" id="telefono" name='telefono' placeholder="Teléfono" value="<?php echo $telefono; ?>" required>
+					</div>
+
 					<?php
 						if (strlen($_SESSION['correo'])==0){
 							echo "<div class='col-3'>";
@@ -131,9 +138,17 @@
 						<label>Dirección (linea 1)</label>
 						<input type="text" class="form-control" id="direccion1" name='direccion1' placeholder="Dirección (linea 1)" value="<?php echo $direccion1; ?>" required>
 					</div>
-					<div class="col-12">
-						<label>Dirección (linea 2)</label>
-						<input type="text" class="form-control" id="direccion2" name='direccion2' placeholder="Dirección (linea 2)" value="<?php echo $direccion2; ?>" >
+					<div class="col-4">
+						<label>Entre calles</label>
+						<input type="text" class="form-control" id="entrecalles" name='entrecalles' placeholder="Entre calles" value="<?php echo $entrecalles; ?>" >
+					</div>
+					<div class="col-4">
+						<label>Num. Exterior</label>
+						<input type="text" class="form-control" id="numero" name='numero' placeholder="Num. Exterior" value="<?php echo $numero; ?>" >
+					</div>
+					<div class="col-4">
+						<label>Colonia</label>
+						<input type="text" class="form-control" id="colonia" name='colonia' placeholder="Col" value="<?php echo $colonia; ?>" >
 					</div>
 					<div class="col-4">
 						<label>Ciudad</label>
