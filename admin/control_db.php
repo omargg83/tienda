@@ -472,10 +472,11 @@
   }
   function crearNuevoToken() {
       //Credenciales del cliente para poder consumir el servicio de TOKEN
+
       $cliente = 'PAC0736';
       $email = 'juanluisvitevivanco@hotmail.com';
       $rfc = 'VIVJ820926GR9';
-
+			echo $rfc;
       $servicio = 'cliente/token'; //Ruta del servicio para la creacion de un nuevo token
       $json = json_encode(array('email' => $email, 'cliente' => $cliente, 'rfc' => $rfc));
 
