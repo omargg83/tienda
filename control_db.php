@@ -973,7 +973,9 @@
 				$rfc = trim(htmlspecialchars($_REQUEST["rfc"]));
 				$cfdi = trim(htmlspecialchars($_REQUEST["cfdi"]));
 				$direccion1 = trim(htmlspecialchars($_REQUEST["direccion1"]));
-				$direccion2 = trim(htmlspecialchars($_REQUEST["direccion2"]));
+				$entrecalles = trim(htmlspecialchars($_REQUEST["entrecalles"]));
+				$numero = trim(htmlspecialchars($_REQUEST["numero"]));
+				$colonia = trim(htmlspecialchars($_REQUEST["colonia"]));
 				$ciudad = trim(htmlspecialchars($_REQUEST["ciudad"]));
 				$cp = trim(htmlspecialchars($_REQUEST["cp"]));
 				$pais = trim(htmlspecialchars($_REQUEST["pais"]));
@@ -998,14 +1000,16 @@
 						return json_encode($arreglo);
 					}
 
-					$sql="update clientes set nombre=:nombre, apellido=:apellido, rfc=:rfc, cfdi=:cfdi, direccion1=:direccion1, direccion2=:direccion2, ciudad=:ciudad, cp=:cp, pais=:pais, estado=:estado, telefono=:telefono, correo=:correo, pass=:pass where id=:id";
+					$sql="update clientes set nombre=:nombre, apellido=:apellido, rfc=:rfc, cfdi=:cfdi, direccion1=:direccion1, entrecalles=:entrecalles, numero=:numero, colonia=:colonia, ciudad=:ciudad, cp=:cp, pais=:pais, estado=:estado, telefono=:telefono, correo=:correo, pass=:pass where id=:id";
 					$sth = $this->dbh->prepare($sql);
 					$sth->bindValue(":nombre",$nombre);
 					$sth->bindValue(":apellido",$apellido);
 					$sth->bindValue(":rfc",$rfc);
 					$sth->bindValue(":cfdi",$cfdi);
 					$sth->bindValue(":direccion1",$direccion1);
-					$sth->bindValue(":direccion2",$direccion2);
+					$sth->bindValue(":entrecalles",$entrecalles);
+					$sth->bindValue(":numero",$numero);
+					$sth->bindValue(":colonia",$colonia);
 					$sth->bindValue(":ciudad",$ciudad);
 					$sth->bindValue(":cp",$cp);
 					$sth->bindValue(":pais",$pais);
@@ -1034,8 +1038,10 @@
 					$arreglo+= array('rfc'=>$rfc);
 					$arreglo+= array('cfdi'=>$cfdi);
 					$arreglo+= array('direccion1'=>$direccion1);
-					$arreglo+= array('direccion2'=>$direccion2);
+					$arreglo+= array('entrecalles'=>$entrecalles);
+					$arreglo+= array('numero'=>$numero);
 					$arreglo+= array('ciudad'=>$ciudad);
+					$arreglo+= array('colonia'=>$colonia);
 					$arreglo+= array('cp'=>$cp);
 					$arreglo+= array('pais'=>$pais);
 					$arreglo+= array('telefono'=>$telefono);
