@@ -219,7 +219,8 @@
 									echo "<b>Total:</b>";
 								echo "</td>";
 								echo "<td class='text-right'>";
-									echo moneda($gtotal+$genvio);
+									$gtotal=$gtotal+$genvio;
+									echo moneda($gtotal);
 								echo "</td>";
 							echo "</tr>";
 							echo "</table>";
@@ -231,7 +232,7 @@
 						foreach($cupones as $keyc){
 							echo "<div class='row'>";
 								echo "<div class='col-2'>";
-									echo "<a href='#' onclick='elimina_cupon(".$keyc->id.", $idpedido)'><i class='far fa-times-circle'></i></a>";
+									echo "<a href='#' onclick='elimina_cupon(".$keyc->id.", $id)'><i class='far fa-times-circle'></i></a>";
 								echo "</div>";
 								echo "<div class='col-6'>";
 									echo $keyc->codigo;
