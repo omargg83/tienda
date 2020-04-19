@@ -383,7 +383,7 @@
 					</div>
 				</div>
 				<div class='col-9'>
-					<h3 class='text-center'>Pedido</h3>
+					<h3 class='text-center'><?php echo "#".$id; ?>Pedido</h3>
 					<div class="row">
 						<div class="col-2">
 							<label class='text-center'>Pedido</label>

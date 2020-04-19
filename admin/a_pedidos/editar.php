@@ -227,8 +227,8 @@
 
 						if(is_array($cupones)){
 							echo "<tr>";
-								echo "<td colspan=7 class='text-right'>";
-								echo "<h4>Cupones</h4>";
+								echo "<td colspan=7 class='text-center'>";
+								echo "<h5>Cupones</h5>";
 								echo "</td>";
 							echo "</tr>";
 
@@ -239,12 +239,10 @@
 								echo "</td>";
 
 								echo "<td colspan=4>";
-									echo $keyc->codigo;
-									echo "<br>";
-									echo $keyc->descripcion;
+									echo $keyc->codigo." ".$keyc->descripcion;
 								echo "</td>";
 
-								echo "<td>";
+								echo "<td class='text-right'>";
 									/*
 									<option value='porcentaje' <?php if ($tipo=="porcentaje"){ echo " selected"; } ?> >Descuento en porcentaje</option>
 									<option value='carrito' <?php if ($tipo=="carrito"){ echo " selected"; } ?> >Descuento fijo en el carrito</option>
