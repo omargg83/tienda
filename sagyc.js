@@ -449,7 +449,9 @@ $(document).on('submit','#datos',function(e){
   var rfc=document.getElementById("rfc").value;
   var cfdi=document.getElementById("cfdi").value;
   var direccion1=document.getElementById("direccion1").value;
-  var direccion2=document.getElementById("direccion2").value;
+  var entrecalles=document.getElementById("entrecalles").value;
+  var numero=document.getElementById("numero").value;
+  var colonia=document.getElementById("colonia").value;
   var ciudad=document.getElementById("ciudad").value;
   var cp=document.getElementById("cp").value;
   var pais=document.getElementById("pais").value;
@@ -467,7 +469,9 @@ $(document).on('submit','#datos',function(e){
       "rfc":rfc,
       "cfdi":cfdi,
       "direccion1":direccion1,
-      "direccion2":direccion2,
+      "entrecalles":entrecalles,
+      "numero":numero,
+      "ciudad":ciudad,
       "ciudad":ciudad,
       "cp":cp,
       "pais":pais,

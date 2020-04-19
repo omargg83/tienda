@@ -146,7 +146,7 @@
 									echo "<div class='btn-group'>";
 										echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_pass' data-id='".$key['iddireccion']."' data-id2='$id' data-lugar='a_clientes/form_direccion' title='Editar' ><i class='fas fa-pencil-alt'></i></button>";
 
-										echo "<button class='btn btn-outline-secondary btn-sm' id='eliminar_cat' data-lugar='a_clientes/db_' data-destino='a_clientes/editar' data-id='".$key['iddireccion']."' data-id2='$id' data-iddest='$id' data-funcion='quitar_espe' data-div='trabajo'><i class='far fa-trash-alt'></i></button>";
+										echo "<button class='btn btn-outline-secondary btn-sm' id='eliminar_cat' data-lugar='a_clientes/db_' data-destino='a_clientes/editar' data-id='".$key['iddireccion']."' data-id2='$id' data-iddest='$id' data-funcion='quitar_dir' data-div='trabajo'><i class='far fa-trash-alt'></i></button>";
 									echo "</div>";
 								echo "</td>";
 								echo "<td>";
