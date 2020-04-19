@@ -18,7 +18,9 @@
 	$rfc=$ped->rfc;
 	$cfdi=$ped->cfdi;
 	$direccion1=$ped->direccion1;
-	$direccion2=$ped->direccion2;
+	$entrecalles=$ped->entrecalles;
+	$numero=$ped->numero;
+	$coloni=$ped->colonia;
 	$ciudad=$ped->ciudad;
 	$cp=$ped->cp;
 	$pais=$ped->pais;
@@ -102,9 +104,17 @@
 						<label>Dirección (linea 1)</label>
 						<input type="text" class="form-control" id="direccion1" name='direccion1' placeholder="Dirección (linea 1)" value="<?php echo $direccion1; ?>" readonly>
 					</div>
-					<div class="col-12">
-						<label>Dirección (linea 2)</label>
-						<input type="text" class="form-control" id="direccion2" name='direccion2' placeholder="Dirección (linea 2)" value="<?php echo $direccion2; ?>" readonly>
+					<div class="col-4">
+						<label>Entre calles</label>
+						<input type="text" class="form-control" id="entrecalles" name='entrecalles' placeholder="Entre calles" value="<?php echo $entrecalles; ?>" readonly>
+					</div>
+					<div class="col-4">
+						<label>Num. Exterior</label>
+						<input type="text" class="form-control" id="numero" name='numero' placeholder="Num. Exterior" value="<?php echo $numero; ?>" readonly>
+					</div>
+					<div class="col-4">
+						<label>Colonia</label>
+						<input type="text" class="form-control" id="colonia" name='colonia' placeholder="Colonia" value="<?php echo $colonia; ?>" readonly>
 					</div>
 					<div class="col-4">
 						<label>Ciudad</label>
