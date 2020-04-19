@@ -22,7 +22,10 @@
 		$rfc=$per->rfc;
 		$cfdi=$per->cfdi;
 		$direccion1=$per->direccion1;
-		$direccion2=$per->direccion2;
+		$entrecalles=$per->entrecalles;
+		$numero=$per->numero;
+		$colonia=$per->colonia;
+
 		$ciudad=$per->ciudad;
 		$cp=$per->cp;
 		$pais=$per->pais;
@@ -71,17 +74,26 @@
 			      <label>Dirección (linea 1)</label>
 			      <input type="text" class="form-control form-control-sm" id="direccion1" name='direccion1' placeholder="Dirección (linea 1)" value="<?php echo $direccion1; ?>" >
 			    </div>
-			    <div class="col-12">
-			      <label>Dirección (linea 2)</label>
-			      <input type="text" class="form-control form-control-sm" id="direccion2" name='direccion2' placeholder="Dirección (linea 2)" value="<?php echo $direccion2; ?>" >
+			    <div class="col-4">
+			      <label>Entre calles</label>
+			      <input type="text" class="form-control form-control-sm" id="entrecalles" name='entrecalles' placeholder="Entre calles" value="<?php echo $entrecalles; ?>" >
 			    </div>
+			    <div class="col-4">
+			      <label>No. exterior</label>
+			      <input type="text" class="form-control form-control-sm" id="numero" name='numero' placeholder="No. exteriors" value="<?php echo $numero; ?>" >
+			    </div>
+			    <div class="col-4">
+			      <label>Colonia</label>
+			      <input type="text" class="form-control form-control-sm" id="colonia" name='colonia' placeholder="Colonia" value="<?php echo $colonia; ?>" >
+			    </div>
+					<div class="col-4">
+			      <label>Código postal</label>
+			      <input type="text" class="form-control form-control-sm" id="cp" name='cp' placeholder="Código postal" value="<?php echo $cp; ?>" >
+			    </div>
+
 			    <div class="col-4">
 			      <label>Ciudad</label>
 			      <input type="text" class="form-control form-control-sm" id="ciudad" name='ciudad' placeholder="Ciudad" value="<?php echo $ciudad; ?>" >
-			    </div>
-			    <div class="col-4">
-			      <label>Código postal</label>
-			      <input type="text" class="form-control form-control-sm" id="cp" name='cp' placeholder="Código postal" value="<?php echo $cp; ?>" >
 			    </div>
 			    <div class="col-4">
 			      <label>Pais</label>
@@ -137,7 +149,7 @@
 										if($key['envio']==1){
 											echo "<button class='btn btn-outline-secondary btn-sm' type='button' title='Dirección de envio'><i class='fas fa-map-marked-alt'></i></button>";
 										}
-									
+
 
 									echo "</div>";
 								echo "</td>";

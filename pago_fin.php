@@ -39,13 +39,6 @@
 		}
 
 
-		if($payment_status=="approved"){
-			$resp = crearNuevoToken();
-			$tok=$resp->token;
-
-			echo $$tok;
-		}
-
 
 		$ped=$db->pedido_ver($idpedido);
 		$datos=$db->datos_pedido($idpedido);
@@ -55,7 +48,11 @@
 		$rfc=$ped->rfc;
 		$cfdi=$ped->cfdi;
 		$direccion1=$ped->direccion1;
-		$direccion2=$ped->direccion2;
+
+		$entrecalles=$ped->entrecalles;
+		$numero=$ped->numero;
+		$colonia=$ped->colonia;
+
 		$ciudad=$ped->ciudad;
 		$cp=$ped->cp;
 		$pais=$ped->pais;
@@ -67,6 +64,44 @@
 		$estatus=$ped->estatus;
 		$pago=$ped->pago;
 		$idpago=$ped->idpago;
+
+		if($payment_status=="approved"){
+			$resp = crearNuevoToken();
+			$tok=$resp->token;
+			echo $tok;
+		}
+		$envio=array(
+			'nombre' => $nombre. " ".$apellido,
+			'direccion' => $direccion1,
+			'entreCalles' => $entrecalles,
+			'noExterior' => $numero,
+			'colonia' => $colonia,
+			'estado' => $estado,
+			'ciudad' => $ciudad,
+			'codigoPostal' => $cp,
+			'telefono' => $telefono,
+	);
+
+
+		$resp=array(
+			'idPedido' => $idpedido,
+			'almacen' => $cliente,
+			'tipoPago' => "03",
+			'envio' => "03",
+
+
+		);
+
+
+
+		$json = json_encode($resp);
+
+		echo "<pre>";
+			echo var_dump($json);
+		echo "</pre>";
+
+
+
 
 		/////////////////////////////////////////////Correo
 		if($rechazado==0){

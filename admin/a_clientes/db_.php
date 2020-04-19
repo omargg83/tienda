@@ -74,8 +74,14 @@ class Clientes extends Tienda{
 			if (isset($_REQUEST['direccion1'])){
 				$arreglo+= array('direccion1'=>$_REQUEST['direccion1']);
 			}
-			if (isset($_REQUEST['direccion2'])){
-				$arreglo+= array('direccion2'=>$_REQUEST['direccion2']);
+			if (isset($_REQUEST['entrecalles'])){
+				$arreglo+= array('entrecalles'=>$_REQUEST['entrecalles']);
+			}
+			if (isset($_REQUEST['numero'])){
+				$arreglo+= array('numero'=>$_REQUEST['numero']);
+			}
+			if (isset($_REQUEST['colonia'])){
+				$arreglo+= array('colonia'=>$_REQUEST['colonia']);
 			}
 			if (isset($_REQUEST['ciudad'])){
 				$arreglo+= array('ciudad'=>$_REQUEST['ciudad']);
