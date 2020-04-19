@@ -1339,6 +1339,7 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
+
 		public function pedido_cupones($id){
 			try{
 				self::set_names();

@@ -164,7 +164,6 @@
       }
     });
   }
-
   function buscar_cupon(){
     var texto=$("#prod_venta").val();
   	var idpedido=$("#idpedido").val();
@@ -187,4 +186,83 @@
   		});
   	}
   }
+  function cupon_agrega(cupon,pedido){
+    $.ajax({
+      url: "control_db.php",
+      type: "POST",
+      data: {
+        "cupon":cupon,
+        "idpedido":pedido,
+        "ctrl":"control",
+        "function":"cupon_busca"
+      },
+      success: function( response ) {
+        console.log(response);
+        var datos = JSON.parse(response);
+        if (datos.error==0){
+          Swal.fire({
+              type: 'success',
+              title: "Se agregó correctamente",
+              showConfirmButton: false,
+              timer: 1000
+          });
+
+          $.ajax({
+            data:  {
+              "id":pedido
+            },
+            url:   'a_pedidos/editar.php',
+            type:  'post',
+            success:  function (response) {
+              $("#trabajo").html(response);
+            }
+          });
+
+        }
+        else{
+          Swal.fire({
+              type: 'error',
+              title: datos.terror,
+              showConfirmButton: false,
+              timer: 1000
+          });
+        }
+      }
+    });
+  }
+  function elimina_cupon(id,idpedido){
+    $.confirm({
+        title: 'Cupon',
+        content: '¿Desea eliminar el cupón?',
+        buttons: {
+          Eliminar: function () {
+            $.ajax({
+              data:  {
+                "ctrl":"control",
+                "id":id,
+                "idpedido":idpedido,
+                "function":"elimina_cupon"
+              },
+              url:   'control_db.php',
+              type:  'post',
+              timeout:3000,
+              beforeSend: function () {
+
+              },
+              success:  function (response) {
+                window.location.href="pago.php?idpedido="+idpedido;
+              },
+              error: function(jqXHR, textStatus, errorThrown) {
+
+              }
+            });
+
+          },
+          Cancelar: function () {
+
+          }
+        }
+      });
+  }
+
 </script>

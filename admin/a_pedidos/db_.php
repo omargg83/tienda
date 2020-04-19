@@ -384,13 +384,13 @@ class Pedidos extends Tienda{
 				echo "<div class='col-2'><b>Código</b></div>";
 				echo "<div class='col-5'><b>Descripción</b></div>";
 				echo "<div class='col-2 text-center'><b>Tipo</b></div>";
-				echo "<div class='col-2'><b>Precio</b></div>";
+				echo "<div class='col-2'><b>Cantidad</b></div>";
 			echo "</div>";
 			foreach($sth->fetchAll() as $key){
 				echo "<div class='row' style='border-bottom: 1px solid silver;font-size:12px'>";
 					echo "<div class='col-1' >";
 						echo "<div class='btn-group'>";
-						echo "<button type='button' onclick='prod_add(".$key['id'].",$idpedido)' class='btn btn-outline-secondary btn-sm' title='Seleccionar cliente'><i class='fas fa-plus'></i></button>";
+						echo "<button type='button' onclick='cupon_agrega(".$key['id'].",$idpedido)' class='btn btn-outline-secondary btn-sm' title='Seleccionar cliente'><i class='fas fa-plus'></i></button>";
 						echo "</div>";
 					echo "</div>";
 					echo "<div class='col-2' >";
@@ -463,6 +463,90 @@ class Pedidos extends Tienda{
 			return "Database access FAILED!".$e->getMessage();
 		}
 	}
+
+	public function cupon_busca(){
+		try{
+			self::set_names();
+			$idpedido=$_REQUEST['idpedido'];
+			$cupon=trim(htmlspecialchars($_REQUEST['cupon']));
+
+			$sql="select * from pedidos_cupon where codigo='$cupon' and idpedido='$idpedido'";
+			$sth_i = $this->dbh->prepare($sql);
+			$sth_i->execute();
+			if($sth_i->rowCount()>0){
+				$arreglo=array();
+				$arreglo+=array('id'=>$idpedido);
+				$arreglo+=array('error'=>1);
+				$arreglo+=array('terror'=>"El cupón ya esta agregado");
+				return json_encode($arreglo);
+			}
+
+
+			$sql="SELECT * FROM cupon where codigo=:codigo";
+			$sth_i = $this->dbh->prepare($sql);
+			$sth_i->bindValue(":codigo",$cupon);
+			$sth_i->execute();
+			$contar=$sth_i->rowCount();
+			if($contar>0){
+				$ped=$sth_i->fetch(PDO::FETCH_OBJ);
+
+				$sql="insert into pedidos_cupon (idpedido, idcupon, descuento, codigo, descripcion, tipo, envio) values (:idpedido, :idcupon, :descuento, :codigo, :descripcion, :tipo, :envio)";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(":idpedido",$idpedido);
+				$sth->bindValue(":idcupon",$ped->id);
+				$sth->bindValue(":descuento",$ped->importe);
+				$sth->bindValue(":codigo",$ped->codigo);
+				$sth->bindValue(":descripcion",$ped->descripcion);
+				$sth->bindValue(":tipo",$ped->tipo);
+				$sth->bindValue(":envio",$ped->envio);
+				if($sth->execute()){
+					$arreglo=array();
+					$arreglo+=array('id'=>$idpedido);
+					$arreglo+=array('error'=>0);
+					$arreglo+=array('terror'=>"");
+					return json_encode($arreglo);
+				}
+				else{
+					$arreglo=array();
+					$arreglo+=array('id'=>$idpedido);
+					$arreglo+=array('error'=>1);
+					$arreglo+=array('terror'=>$sth->errorInfo());
+					return json_encode($arreglo);
+				}
+
+
+			}
+			else{
+				$arreglo=array();
+				$arreglo+=array('id'=>$idpedido);
+				$arreglo+=array('error'=>1);
+				$arreglo+=array('terror'=>"Cupón no valido");
+				return json_encode($arreglo);
+			}
+		}
+		catch(PDOException $e){
+			$arreglo=array();
+			$arreglo+=array('id'=>$idpedido);
+			$arreglo+=array('error'=>1);
+			$arreglo+=array('terror'=>$e->getMessage());
+			return json_encode($arreglo);
+		}
+	}
+	public function elimina_cupon(){
+		try{
+			self::set_names();
+			$id=$_REQUEST['id'];
+			$sql="delete from pedidos_cupon where id=:id";
+			$sth = $this->dbh->prepare($sql);
+			$sth->bindValue(":id",$id);
+			$a=$sth->execute();
+		}
+		catch(PDOException $e){
+			return "Database access FAILED!".$e->getMessage();
+		}
+	}
+
+
 }
 $db = new Pedidos();
 if(strlen($function)>0){

@@ -48,7 +48,7 @@
       echo "<input type='hidden' class='form-control' id='id' name='id' value='$id'>";
       echo "<div class='card'>";
         echo "<div class='card-header'>";
-          echo "Pedido";
+          echo "Pedido # $id";
         echo "</div>";
 
         echo "<div class='card-body'>";

@@ -298,6 +298,7 @@ function elimina_cupon(id,idpedido){
       }
     });
 }
+
 function correctCaptcha(){
   $("#submit_rec").prop('disabled', false);
  }
