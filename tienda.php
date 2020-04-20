@@ -13,7 +13,6 @@
 	else{
 		$marca_f="";
 	}
-	echo "<br>marca:".$marca_f;
 
 	if(isset($_REQUEST['tipo']) and $_REQUEST['tipo']==1){
 		$tipo=$_REQUEST['tipo'];
