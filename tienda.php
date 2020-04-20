@@ -4,24 +4,27 @@
 	$nombre="";
 	$contar=0;
 	$tipo=0;
-	$marca=$_REQUEST['marca'];
-	echo $marca;
+
+	$marca_f="";
+
 	if(isset($_REQUEST['marca']) and strlen($_REQUEST['marca'])>0){
-		$marca=$_REQUEST['marca'];
+		$marca_f=$_REQUEST['marca'];
 	}
 	else{
-		$marca="";
+		$marca_f="";
 	}
+	echo $marca_f;
+
 	if(isset($_REQUEST['tipo']) and $_REQUEST['tipo']==1){
 		$tipo=$_REQUEST['tipo'];
 		$id=$_REQUEST['id'];
 		$rx=$db->categorias_name($id);
 		$nombre=$rx->descripcion;
 
-		$resp=$db->cat_categoriatic($id,$marca);
+		$resp=$db->cat_categoriatic($id,$marca_f);
 		$contar=count($resp);
 
-		$marca=$db->n1_productos_marcas($id,$marca);
+		$marca=$db->n1_productos_marcas($id,$marca_f);
 	}
 	else if(isset($_REQUEST['tipo']) and $_REQUEST['tipo']==2){
 		$tipo=$_REQUEST['tipo'];
@@ -29,10 +32,10 @@
 		$rx=$db->cat_categoria_name($id);
 		$nombre=$rx->heredado;
 
-		$resp=$db->cat_categoria($rx->categoria,$marca);
+		$resp=$db->cat_categoria($rx->categoria,$marca_f);
 		$contar=count($resp);
 
-		$marca=$db->n2_productos_marcas($rx->categoria,$marca);
+		$marca=$db->n2_productos_marcas($rx->categoria,$marca_f);
 	}
 	else if(isset($_REQUEST['tipo']) and $_REQUEST['tipo']==3){
 		$tipo=$_REQUEST['tipo'];
@@ -40,15 +43,15 @@
 		$rx=$db->sub_categoria_name($id);
 		$nombre=$rx->heredado;
 
-		$resp=$db->sub_categoria($rx->subcategoria,$marca);
+		$resp=$db->sub_categoria($rx->subcategoria,$marca_f);
 		$contar=count($resp);
 
-		$marca=$db->n3_productos_marcas($rx->subcategoria,$marca);
+		$marca=$db->n3_productos_marcas($rx->subcategoria,$marca_f);
 	}
 	else{
 		$tipo=4;
-		$resp=$db->productos_general($marca);
-		$marca=$db->n4_productos_marcas($marca);
+		$resp=$db->productos_general($marca_f);
+		$marca=$db->n4_productos_marcas($marca_f);
 	}
 
 ?>
