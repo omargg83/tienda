@@ -408,7 +408,6 @@
 			}
 		}
 
-
 		public function cat_categoria_name($cat){									//////////////nivel 2
 			try{
 				self::set_names();
@@ -438,7 +437,7 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
-		public function n2_productos_marcas($cat){
+		public function n2_productos_marcas($cat,$marca){
 			try{
 				self::set_names();
 				$sql="select * from productos where categoria='$cat'";
@@ -483,7 +482,7 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
-		public function n3_productos_marcas($cat){
+		public function n3_productos_marcas($cat,$marca){
 			try{
 				self::set_names();
 				$sql="select * from productos where subcategoria='$cat'";
