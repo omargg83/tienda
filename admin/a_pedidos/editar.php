@@ -282,6 +282,8 @@
 							echo "</tr>";
 						}
 					}
+					
+
 					echo "</table>";
 				echo "</div>";
 				}

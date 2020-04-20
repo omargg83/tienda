@@ -3,6 +3,7 @@
 	$db = new Tienda();
 	$nombre="";
 	$contar=0;
+
 	if(isset($_REQUEST['cat'])){
 		$tipo=1;
 		$id_re=$_REQUEST['cat'];
@@ -31,8 +32,6 @@
 		$tipo=4;
 		$resp=$db->productos_general();
 	}
-
-
 
 ?>
 <!DOCTYPE html>
@@ -73,6 +72,10 @@
 			<h2 class="home_title" style="text-transform: uppercase;font-size: 30px;"><?php echo $nombre; ?></h2>
 		</div>
 	</div>
+
+<input id='tipo' name='tipo' value='<?php ?>'>
+
+
 
 	<!-- Shop -->
 	<div class="shop">
@@ -135,7 +138,6 @@
 				<div class="col-lg-9">
 
 					<!-- Shop Content -->
-
 					<div class="shop_content">
 						<div class="shop_bar clearfix">
 							<div class="shop_product_count">Productos encontrados</div>
@@ -146,7 +148,7 @@
 										<span class="sorting_text">-<i class="fas fa-chevron-down"></span></i>
 										<ul>
 											<li class="shop_sorting_button" data-isotope-option='{ "sortBy": "name" }'>Nombre</li>
-											<li class="shop_sorting_button"data-isotope-option='{ "sortBy": "price" }'>Precio</li>
+											<li class="shop_sorting_button" data-isotope-option='{ "sortBy": "price" }'>Precio</li>
 										</ul>
 									</li>
 								</ul>
@@ -158,6 +160,8 @@
 
 							<!-- Product Item -->
 							<?php
+
+
 								foreach($resp as $key){
 									if($key->precio_tipo==0){
 										$preciof=$key->preciof;
@@ -173,11 +177,11 @@
 										$p_total=$key->precio_tic+(($key->precio_tic*$db->cgeneral)/100);
 										$preciof=$p_total;
 									}
-									echo "<a href='product.php?id=".$key->id."'><div class='product_item'>
+									echo "<div class='product_item'>
 										<div class='product_border'></div>
 										<div class='product_image d-flex flex-column align-items-center justify-content-center'><img src='".$db->doc.$key->img."' alt='' width='100px'></div>
 										<div class='product_content'>
-											<div class='product_price'>".moneda($preciof)."</div>
+											<div class='product_price'>".round($preciof,2)."</div>
 											<div class='product_name'><div><a href='#' tabindex='0'>".$key->nombre."</a></div></div>
 										</div>
 										<div class='product_fav' onclick='wish(".$key->id.")'><i class='fas fa-heart'></i></div>
@@ -189,11 +193,7 @@
 								}
 							 ?>
 						</div>
-
-
-
 					</div>
-
 				</div>
 			</div>
 		</div>
@@ -238,6 +238,10 @@
 
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 <script src="sagyc.js"></script>
+
+
+
+
 </body>
 
 </html>

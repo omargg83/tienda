@@ -143,7 +143,7 @@ class Pedidos extends Tienda{
 
 			if($id==0){
 				$arreglo+= array('fecha'=>date("Y-m-d H:i:s"));
-				$arreglo+= array('estatus'=>"pendiente");
+				$arreglo+= array('estatus'=>"EN ESPERA");
 				$x=$this->insert('pedidos', $arreglo);
 			}
 			else{
@@ -254,7 +254,7 @@ class Pedidos extends Tienda{
 			$id=$_REQUEST['idpedido'];
 			$arreglo =array();
 			if($id==0){
-				$arreglo+= array('estatus'=>"pendiente");
+				$arreglo+= array('estatus'=>"EN ESPERA");
 				$x=$this->insert('pedidos', $arreglo);
 				$ped=json_decode($x);
 				$id=$ped->id;
@@ -513,8 +513,6 @@ class Pedidos extends Tienda{
 					$arreglo+=array('terror'=>$sth->errorInfo());
 					return json_encode($arreglo);
 				}
-
-
 			}
 			else{
 				$arreglo=array();
@@ -545,8 +543,6 @@ class Pedidos extends Tienda{
 			return "Database access FAILED!".$e->getMessage();
 		}
 	}
-
-
 }
 $db = new Pedidos();
 if(strlen($function)>0){
