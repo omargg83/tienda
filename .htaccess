@@ -21,6 +21,4 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^ index.php [QSA,L]
 
 
-RewriteEngine on
-RewriteBase /
-RewriteRule ^producto/(.*)$ /$1 [R=302,NC,L]
+RewriteRule ^producto/(.*)$  /productos.php?id=$1 [L]
