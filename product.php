@@ -93,7 +93,7 @@
 				<!-- Selected Image -->
 				<div class="col-lg-5 order-lg-2 order-1">
 					<?php
-						echo "<div class='image_selected'><img src='".$db->doc.$prod->img."' alt=''></div>";
+						echo "<div class='image_selected'><img src='../".$db->doc.$prod->img."' alt=''></div>";
 					?>
 				</div>
 
