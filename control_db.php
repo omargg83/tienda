@@ -344,7 +344,7 @@
 			$_SESSION['nombre']="";
 		}
 
-		public function categorias(){
+		public function categorias(){															///////////  HEADER
 			try{
 				self::set_names();
 				$sql="select * from categorias order by orden asc";
@@ -362,6 +362,7 @@
 				$sql="select * from categorias where idcategoria='$id'";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
+
 				return $sth->fetch(PDO::FETCH_OBJ);
 			}
 			catch(PDOException $e){
@@ -374,10 +375,10 @@
 				$sql="select productos.* from producto_cat
 							left outer join categoria_ct on categoria_ct.id=producto_cat.idcategoria_ct
 							left outer join productos on productos.categoria=categoria_ct.categoria
-							where producto_cat.idcategoria=:cat and productos.activo=1";
+							where producto_cat.idcategoria=$cat and productos.activo=1";
 				$sth = $this->dbh->prepare($sql);
-				$sth->bindValue(":cat",$cat);
 				$sth->execute();
+				echo $sql;
 				return $sth->fetchAll(PDO::FETCH_OBJ);
 			}
 			catch(PDOException $e){
@@ -386,25 +387,11 @@
 		}
 
 
-		public function cat_categoria($cat){
-			try{
-				self::set_names();
-				$sql="select * from productos where categoria=:categoria and activo=1";
-				$sth = $this->dbh->prepare($sql);
-				$sth->bindValue(":categoria",$cat);
-				$sth->execute();
-				return $sth->fetchAll(PDO::FETCH_OBJ);
-			}
-			catch(PDOException $e){
-				return "Database access FAILED!".$e->getMessage();
-			}
-		}
 		public function cat_categoria_name($cat){									//////////////nivel 2
 			try{
 				self::set_names();
-				$sql="select * from categoria_ct where id=:id";
+				$sql="select * from categoria_ct where id='$cat'";
 				$sth = $this->dbh->prepare($sql);
-				$sth->bindValue(":id",$cat);
 				$sth->execute();
 				return $sth->fetch(PDO::FETCH_OBJ);
 			}
@@ -413,13 +400,11 @@
 			}
 
 		}
-
-		public function sub_categoria($cat){
+		public function cat_categoria($cat){
 			try{
 				self::set_names();
-				$sql="select * from productos where subcategoria=:subcategoria and activo=1";
+				$sql="select * from productos where categoria='$cat' and activo=1";
 				$sth = $this->dbh->prepare($sql);
-				$sth->bindValue(":subcategoria",$cat);
 				$sth->execute();
 				return $sth->fetchAll(PDO::FETCH_OBJ);
 			}
@@ -427,14 +412,26 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
+
 		public function sub_categoria_name($cat){									//////////////nivel 3
 			try{
 				self::set_names();
-				$sql="select * from categoriasub_ct where idcategoria=:id";
+				$sql="select * from categoriasub_ct where id='$cat'";
 				$sth = $this->dbh->prepare($sql);
-				$sth->bindValue(":id",$cat);
 				$sth->execute();
 				return $sth->fetch(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
+		public function sub_categoria($cat){
+			try{
+				self::set_names();
+				$sql="select * from productos where subcategoria='$cat' and activo=1";
+				$sth = $this->dbh->prepare($sql);
+				$sth->execute();
+				return $sth->fetchAll(PDO::FETCH_OBJ);
 			}
 			catch(PDOException $e){
 				return "Database access FAILED!".$e->getMessage();
@@ -444,7 +441,7 @@
 
 
 
-		public function cat_ct($id){
+		public function cat_ct($id){															/////////////  HEADER
 			try{
 				self::set_names();
 				$sql="SELECT categoria_ct.id, categoria_ct.categoria, categoria_ct.heredado from producto_cat left outer join categoria_ct on categoria_ct.id=producto_cat.idcategoria_ct where producto_cat.idcategoria=:id";
@@ -457,7 +454,7 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
-		public function sub_cat($id){
+		public function sub_cat($id){															////////////   HEADER
 			try{
 				self::set_names();
 				$sql="SELECT * from categoriasub_ct where idcategoria=:id";
