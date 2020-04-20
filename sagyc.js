@@ -34,7 +34,7 @@ function salir(){
       Cookies.remove('ticshop_x');
       var galleta="";
       galletax(galleta);
-      window.location.href="index.php";
+      window.location.href="/";
     }
   });
 }
@@ -55,10 +55,10 @@ function carrito(id,cantidad){
     success:  function (response) {
       var datos = JSON.parse(response);
       if (datos.error==0){
-        window.location.href="cart.php";
+        window.location.href="/cart.php";
       }
       if(datos.error==2){
-        window.location.href="acceso.php";
+        window.location.href="/acceso.php";
       }
     },
     error: function(jqXHR, textStatus, errorThrown) {
@@ -80,7 +80,7 @@ function borra_carrito(id){
 
     },
     success:  function (response) {
-      window.location.href="wish.php";
+      window.location.href="/wish.php";
     },
     error: function(jqXHR, textStatus, errorThrown) {
 
@@ -124,7 +124,7 @@ function borra_wish(id){
 
             },
             success:  function (response) {
-              window.location.href="wish.php";
+              window.location.href="/wish.php";
             },
             error: function(jqXHR, textStatus, errorThrown) {
 
@@ -156,7 +156,7 @@ function borra_carrito(id){
 
               },
               success:  function (response) {
-                window.location.href="cart.php";
+                window.location.href="/cart.php";
               },
               error: function(jqXHR, textStatus, errorThrown) {
 
@@ -172,10 +172,10 @@ function borra_carrito(id){
 
 }
 function buscar_prod(){
-  window.location.href="busca.php?texto="+$("#bucar_text").val();
+  window.location.href="/busca.php?texto="+$("#bucar_text").val();
 }
 function buscar_prod2(){
-  window.location.href="busca.php?texto="+$("#bucar_textm").val();
+  window.location.href="/busca.php?texto="+$("#bucar_textm").val();
 }
 function estrella(idproducto){
   $.confirm({
@@ -206,7 +206,7 @@ function estrella(idproducto){
 
             },
             success:  function (response) {
-              window.location.href="product.php?id="+idproducto;
+              window.location.href="/product.php?id="+idproducto;
             },
             error: function(jqXHR, textStatus, errorThrown) {
 
@@ -251,7 +251,7 @@ function cupon_agrega(pedido){
             showConfirmButton: false,
             timer: 1000
         });
-        window.location.href="pago.php?idpedido="+pedido;
+        window.location.href="/pago.php?idpedido="+pedido;
       }
       else{
         Swal.fire({
@@ -284,7 +284,7 @@ function elimina_cupon(id,idpedido){
 
             },
             success:  function (response) {
-              window.location.href="pago.php?idpedido="+idpedido;
+              window.location.href="/pago.php?idpedido="+idpedido;
             },
             error: function(jqXHR, textStatus, errorThrown) {
 
@@ -349,7 +349,7 @@ $(document).on('submit','#acceso',function(e){
       var datos = JSON.parse(response);
       if (datos.acceso==1){
         Cookies.set('ticshop_x', datos.galleta);
-        window.location.href="index.php";
+        window.location.href="/";
       }
       else{
         Swal.fire({
@@ -382,7 +382,7 @@ $(document).on('submit','#registro',function(e){
               showConfirmButton: false,
               timer: 2000
           });
-          window.location.href="index.php";
+          window.location.href="/";
         }
         else{
           Swal.fire({
@@ -544,7 +544,7 @@ $(document).on('submit','#pedido',function(e){
       console.log(response);
       var datos = JSON.parse(response);
       if (datos.error==0){
-        window.location.href="pago.php?idpedido="+datos.id;
+        window.location.href="/pago.php?idpedido="+datos.id;
         Swal.fire({
             type: 'success',
             title: 'Se generó el pedido correctamente',
@@ -642,7 +642,7 @@ $(document).on('submit','#carrito_form',function(e){
     success:  function (response) {
       var datos = JSON.parse(response);
       if (datos.error==0){
-        window.location.href="cart.php";
+        window.location.href="/cart.php";
       }
       if (datos.error==1){
         Swal.fire({
@@ -653,7 +653,7 @@ $(document).on('submit','#carrito_form',function(e){
         });
       }
       if(datos.error==2){
-        window.location.href="acceso.php";
+        window.location.href="/acceso.php";
       }
     },
     error: function(jqXHR, textStatus, errorThrown) {

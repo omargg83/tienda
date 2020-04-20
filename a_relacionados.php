@@ -15,7 +15,7 @@
           <?php
             foreach($rel as $key){
               echo "<div class='owl-item'>";
-                echo "<a href='product.php?id=".$key->id."'>";
+                echo "<a href='/producto/".$key->clave."'>";
                   echo "<div class='viewed_item discount d-flex flex-column align-items-center justify-content-center text-center'>";
                     echo "<div class='viewed_image'><img src='/".$db->doc.$key->img."' alt=''></div>";
                     echo "<div class='viewed_content text-center'>";

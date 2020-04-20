@@ -62,7 +62,7 @@
 									echo "<h1 class='banner_text'>".$key->titulo."</h1>";
 									echo "<div class='banner_price'><span>".$key->texto."</span></div>";
 									if(strlen($key->enlace)>0){
-										echo "<div class='button banner_button'><a href='/".$key->enlace."'>IR</a></div>";
+										echo "<div class='button banner_button'><a href='".$key->enlace."'>IR</a></div>";
 									}
 								echo "</div>";
 							echo "</div>";
@@ -72,7 +72,6 @@
 				echo "</div>";
 			echo "</div>";
 		}
-
 	 ?>
 
 
@@ -88,7 +87,7 @@
 				<div class="col-lg-3 col-md-6 char_col">
 
 					<div class="char_item d-flex flex-row align-items-center justify-content-start">
-						<div class="char_icon"><img src="img/comprasegura.png" alt="" width="50px"></div>
+						<div class="char_icon"><img src="/img/comprasegura.png" alt="" width="50px"></div>
 						<div class="char_content">
 							<div class="char_title">Compras seguras</div>
 						</div>
@@ -99,7 +98,7 @@
 				<div class="col-lg-3 col-md-6 char_col">
 
 					<div class="char_item d-flex flex-row align-items-center justify-content-start">
-						<div class="char_icon"><img src="img/enviosseguros.png" alt="" width="50px"></div>
+						<div class="char_icon"><img src="/img/enviosseguros.png" alt="" width="50px"></div>
 						<div class="char_content">
 							<div class="char_title">Envíos seguros</div>
 						</div>
@@ -110,7 +109,7 @@
 				<div class="col-lg-3 col-md-6 char_col">
 
 					<div class="char_item d-flex flex-row align-items-center justify-content-start">
-						<div class="char_icon"><img src="img/devolucion.png" alt="" width="50px"></div>
+						<div class="char_icon"><img src="/img/devolucion.png" alt="" width="50px"></div>
 						<div class="char_content">
 							<div class="char_title">Devoluciones fáciles</div>
 
@@ -122,7 +121,7 @@
 				<div class="col-lg-3 col-md-6 char_col">
 
 					<div class="char_item d-flex flex-row align-items-center justify-content-start">
-						<div class="char_icon"><img src="img/tarjetas.png" alt="" width="50px"></div>
+						<div class="char_icon"><img src="/img/tarjetas.png" alt="" width="50px"></div>
 						<div class="char_content">
 							<div class="char_title">Aceptamos diferentes métodos de pago</div>
 						</div>
@@ -168,7 +167,7 @@
 
 										echo "<div class='owl-item deals_item'>";
 										echo "<a href='/producto/".$key->clave."'>";
-										echo "<div class='deals_image'><img src='".$db->doc.$key->img."' alt=''></div>
+										echo "<div class='deals_image'><img src='/".$db->doc.$key->img."' alt=''></div>
 											<div class='deals_content'>
 												<div class='deals_info_line d-flex flex-row justify-content-start'>
 													<div class='deals_item_category'><a href='#'>".$key->categoria."</a></div>
@@ -236,7 +235,7 @@
 											echo "<a href='/producto/".$key->clave."'>";
 												echo "<div class='border_active'></div>
 												<div class='product_item discount d-flex flex-column align-items-center justify-content-center text-center'>
-													<div class='product_image d-flex flex-column align-items-center justify-content-center'><img src='".$db->doc.$key->img."' alt='' width='90%'></div>
+													<div class='product_image d-flex flex-column align-items-center justify-content-center'><img src='/".$db->doc.$key->img."' alt='' width='90%'></div>
 													<div class='product_content'>
 														<div class='product_price discount'>".moneda($preciof)."<span>".moneda($preciof)."</span></div>
 														<div class='product_name'><div><a href='/producto/".$key->clave."'>".$key->nombre."</a></div></div>
@@ -293,7 +292,7 @@
 							<!-- Popular Categories Item -->
 							<div class="owl-item">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image"><img src="img/categoria-almacenamiento.png" alt=""></div>
+									<div class="popular_category_image"><img src="/img/categoria-almacenamiento.png" alt=""></div>
 									<div class="popular_category_text">Almacenamiento</div>
 								</div>
 							</div>
@@ -301,7 +300,7 @@
 							<!-- Popular Categories Item -->
 							<div class="owl-item">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image"><img src="img/categoria-audio.png" alt=""></div>
+									<div class="popular_category_image"><img src="/img/categoria-audio.png" alt=""></div>
 									<div class="popular_category_text">Audio</div>
 								</div>
 							</div>
@@ -309,7 +308,7 @@
 							<!-- Popular Categories Item -->
 							<div class="owl-item">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image"><img src="img/categoria-computo.png" alt=""></div>
+									<div class="popular_category_image"><img src="/img/categoria-computo.png" alt=""></div>
 									<div class="popular_category_text">Computo</div>
 								</div>
 							</div>
@@ -317,7 +316,7 @@
 							<!-- Popular Categories Item -->
 							<div class="owl-item">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image"><img src="img/categoria-comunicaciones.png" alt=""></div>
+									<div class="popular_category_image"><img src="/img/categoria-comunicaciones.png" alt=""></div>
 									<div class="popular_category_text">Comunicaciones</div>
 								</div>
 							</div>
@@ -325,7 +324,7 @@
 							<!-- Popular Categories Item -->
 							<div class="owl-item">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image"><img src="img/categoria-gamer.png" alt=""></div>
+									<div class="popular_category_image"><img src="/img/categoria-gamer.png" alt=""></div>
 									<div class="popular_category_text">Gamer</div>
 								</div>
 							</div>
