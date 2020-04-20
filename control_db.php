@@ -389,9 +389,9 @@
 		public function cat_categoria($cat){
 			try{
 				self::set_names();
-				$sql="select * from productos where categoria=:id and activo=1";
+				$sql="select * from productos where categoria=:categoria and activo=1";
 				$sth = $this->dbh->prepare($sql);
-				$sth->bindValue(":id",$cat);
+				$sth->bindValue(":categoria",$cat);
 				$sth->execute();
 				return $sth->fetchAll(PDO::FETCH_OBJ);
 			}

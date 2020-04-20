@@ -17,12 +17,12 @@
 		$tipo=$_REQUEST['tipo'];
 		$id=$_REQUEST['id'];
 		$rx=$db->cat_categoria_name($id);
-		$nombre=$nombre=$rx->heredado;
+		$nombre=$rx->heredado;
 
-		$resp=$db->cat_categoria($id);
+		$resp=$db->cat_categoria($rx->categoria);
 		$contar=count($resp);
-	}
 
+	}
 	echo "<br>Tipo:".$tipo;
 	echo "<br>id:".$id;
 	/*
