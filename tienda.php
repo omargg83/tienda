@@ -13,17 +13,17 @@
 		$resp=$db->cat_categoriatic($id);
 		$contar=count($resp);
 	}
-
 	else if(isset($_REQUEST['tipo']) and $_REQUEST['tipo']==2){
-		/*
+		
 		$tipo=$_REQUEST['tipo'];
 		$id=$_REQUEST['id'];
 		$rx=$db->cat_categoria_name($id);
 		$nombre=$nombre=$rx->heredado;
 		$resp=$db->cat_categoria($id);
 		$contar=count($resp);
-		*/
+
 	}
+	/*
 	else if(isset($_REQUEST['tipo']) and $_REQUEST['tipo']==3){
 		$tipo=$_REQUEST['tipo'];
 		$sub=$_REQUEST['id'];
