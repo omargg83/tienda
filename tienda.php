@@ -179,24 +179,24 @@
 									$preciof=$p_total;
 								}
 
-								echo "<div class='owl-item deals_item'>";
+
+								echo "<div class='arrivals_slider_item' >";
 								echo "<a href='/producto/".$key->clave."'>";
-								echo "<div class='deals_image'><img src='/".$db->doc.$key->img."' alt=''></div>
-									<div class='deals_content'>
-										<div class='deals_info_line d-flex flex-row justify-content-start'>
-											<div class='deals_item_category'><a href='#'>".$key->categoria."</a></div>
-											<div class='deals_item_price_a ml-auto'>".moneda($preciof)."</div>
-										</div>
-										<div class='deals_info_line d-flex flex-row justify-content-start'>
-											<div class='deals_item_name'>".$key->nombre."</div>
-											<div class='deals_item_price ml-auto'>".moneda($preciof)."</div>
-										</div>
-										<div class='available'>
-											<div class='available_line d-flex flex-row justify-content-start'>
-												<button class='btn btn-outline-primary btn-block' onclick='carrito(".$key->id.",1)'>Agregar al carrito</button>
+									echo "<div class='border_active'></div>
+									<div class='product_item is_new d-flex flex-column align-items-center justify-content-center text-center' >
+										<div class='product_image d-flex flex-column align-items-center justify-content-center'><img src='/".$db->doc.$key->img."' alt='' width='100px'></div>
+										<div class='product_content'>
+											<div class='product_price'>".moneda($preciof)."</div>
+											<div class='product_name'><div><a href='/producto/".$key->clave."'>".$key->nombre."</a></div></div>
+											<div class='product_extras'>
+												<button class='product_cart_button' onclick='carrito(".$key->id.",1)'>Agregar al carrito</button>
 											</div>
 										</div>
-
+										<div class='product_fav' onclick='wish(".$key->id.")'><i class='fas fa-heart'></i></div>
+										<ul class='product_marks'>
+											<li class='product_mark product_discount'>-25%</li>
+											<li class='product_mark product_new'>Nuevo</li>
+										</ul>
 									</div>";
 									echo "</a>";
 								echo "</div>";
@@ -236,6 +236,7 @@
 								*/
 
 							 ?>
+							</div>
 						</div>
 					</div>
 				</div>
