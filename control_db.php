@@ -398,6 +398,7 @@
 								$sql.=" and productos.marca='$marca'";
 							}
 							$sql.=" group by productos.marca";
+							echo $sql;
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
 				return $sth->fetchAll(PDO::FETCH_OBJ);

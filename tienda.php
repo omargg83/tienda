@@ -168,7 +168,6 @@
 
 						<div class="product_grid">
 							<div class="product_grid_border"></div>
-
 							<!-- Product Item -->
 							<?php
 								foreach($resp as $key){
@@ -186,7 +185,7 @@
 										$p_total=$key->precio_tic+(($key->precio_tic*$db->cgeneral)/100);
 										$preciof=$p_total;
 									}
-									echo "<a href='/producto/'><div class='product_item'>
+									echo "<a href='/producto/".$key->clave."'><div class='product_item'>
 										<div class='product_border'></div>
 										<div class='product_image d-flex flex-column align-items-center justify-content-center'><img src='/".$db->doc.$key->img."' alt='' width='100px'></div>
 										<div class='product_content'>
@@ -200,9 +199,18 @@
 										</ul>
 									</div></a>";
 								}
-
-
 							 ?>
+						</div>
+						<div>
+							<nav aria-label="Page navigation example">
+							  <ul class="pagination">
+							    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+							    <li class="page-item"><a class="page-link" href="#">1</a></li>
+							    <li class="page-item"><a class="page-link" href="#">2</a></li>
+							    <li class="page-item"><a class="page-link" href="#">3</a></li>
+							    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+							  </ul>
+							</nav>
 						</div>
 					</div>
 				</div>
