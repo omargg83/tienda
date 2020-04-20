@@ -94,7 +94,7 @@ p
 	background-color:#b4f22f;
 	border: none;
 	cursor: pointer;
-	
+
 }
 p
 p a
@@ -3691,7 +3691,7 @@ select option
  .shop_content{margin-top: 10px!important;}
  .descripcioprod{width: 100%;flex: 0 0 100%; max-width: 100%;}
  .wishlist{display: none!important;}
- 
+
  .cartlist{width: 100%;flex: 0 0 100%; max-width: 100%; margin-bottom: 20px;}
  .cartgris{width: 100%;
     flex: 0 0 100%;
@@ -3703,6 +3703,3 @@ select option
 .arrivals_slider .slick-track{padding-bottom: 150px!important;}
 
 }
-
-
-.brands_subtitle, .brands_list{display: none;}
