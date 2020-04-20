@@ -376,7 +376,7 @@
 							left outer join categoria_ct on categoria_ct.id=producto_cat.idcategoria_ct
 							left outer join productos on productos.categoria=categoria_ct.categoria
 							where producto_cat.idcategoria=$cat and productos.activo=1";
-							if(strlen($marca>0)){
+							if(strlen($marca)>0){
 								$sql.=" and productos.marca='$marca'";
 							}
 				$sth = $this->dbh->prepare($sql);
@@ -394,7 +394,7 @@
 							left outer join categoria_ct on categoria_ct.id=producto_cat.idcategoria_ct
 							left outer join productos on productos.categoria=categoria_ct.categoria
 							where producto_cat.idcategoria=$cat and productos.activo=1";
-							if(strlen($marca>0)){
+							if(strlen($marca)>0){
 								$sql.=" and productos.marca='$marca'";
 							}
 							$sql.=" group by productos.marca";
