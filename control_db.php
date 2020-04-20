@@ -430,7 +430,7 @@
 		public function sub_categoria_name($cat){									//////////////nivel 3
 			try{
 				self::set_names();
-				$sql="select * from categoriasub_ct where idcategoria=:id and activo=1";
+				$sql="select * from categoriasub_ct where idcategoria=:id";
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(":id",$cat);
 				$sth->execute();
