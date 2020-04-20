@@ -4,6 +4,8 @@
 	$nombre="";
 	$contar=0;
 	$tipo=0;
+	$marca=$_REQUEST['marca'];
+	echo $marca;
 	if(isset($_REQUEST['marca']) and strlen($_REQUEST['marca'])>0){
 		$marca=$_REQUEST['marca'];
 	}
