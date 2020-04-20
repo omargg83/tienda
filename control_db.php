@@ -400,7 +400,6 @@
 			}
 		}
 		public function cat_categoria_name($cat){
-
 			try{
 				self::set_names();
 				$sql="select * from categoria_ct where id=:id";
@@ -412,7 +411,7 @@
 			catch(PDOException $e){
 				return "Database access FAILED!".$e->getMessage();
 			}
-			
+
 		}
 
 
