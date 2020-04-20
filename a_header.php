@@ -102,7 +102,7 @@
         <!-- Logo -->
         <div class="col-lg-2 col-sm-3 col-3 order-1">
           <div class="logo_container">
-            <div class="logo"><a href="/index.php"><img src='img/logo-ticshop.png' width='100px'></a></div>
+            <div class="logo"><a href="/"><img src='/img/logo-ticshop.png' width='100px'></a></div>
           </div>
         </div>
 
@@ -259,8 +259,8 @@
             </ul>
 
             <div class="menu_contact">
-              <div class="menu_contact_item"><div class="menu_contact_icon"><img src="images/phone_white.png" alt=""></div>+38 068 005 3570</div>
-              <div class="menu_contact_item"><div class="menu_contact_icon"><img src="images/mail_white.png" alt=""></div><a href="mailto:ventas@tic-shop.com.mx">ventas@tic-shop.com.mx</a></div>
+              <div class="menu_contact_item"><div class="menu_contact_icon"><img src="/images/phone_white.png" alt=""></div>+38 068 005 3570</div>
+              <div class="menu_contact_item"><div class="menu_contact_icon"><img src="/images/mail_white.png" alt=""></div><a href="mailto:ventas@tic-shop.com.mx">ventas@tic-shop.com.mx</a></div>
             </div>
           </div>
         </div>
