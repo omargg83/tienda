@@ -49,8 +49,8 @@
 			      <label>Autorizado</label>
 						<select id='autoriza' name='autoriza' class='form-control'>
 							<?php
-								echo "<option value=1 "; if ($autoriza==1) echo " selected"; echo ">Nivel 1- Administrador</option>";
-								echo "<option value=2 "; if ($autoriza==2) echo " selected"; echo ">Nivel 2- Nivel 1</option>";
+								echo "<option value=1 "; if ($autoriza==1) echo " selected"; echo ">Autoriza</option>";
+								echo "<option value=0 "; if ($autoriza==0) echo " selected"; echo ">Sin acceso</option>";
 							?>
 						</select>
 			    </div>

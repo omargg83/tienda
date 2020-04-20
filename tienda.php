@@ -158,8 +158,8 @@
 							</div>
 						</div>
 
-						<div class="product_grid">
-							<div class="product_grid_border"></div>
+						<div class="product_panel panel active">
+							<div class="arrivals_slider slider">
 
 							<!-- Product Item -->
 							<?php
