@@ -82,9 +82,9 @@
 					<ul class="image_list">
 						<?php
 							$a="?id=".rand(1,1500);
-							echo "<li data-image='".$db->doc.$prod->img."$a'><img src='".$db->doc.$prod->img."$a' alt=''></li>";
+							echo "<li data-image='/".$db->doc.$prod->img."$a'><img src='/".$db->doc.$prod->img."$a' alt=''></li>";
 							foreach($imextra as $key){
-								echo "<li data-image='".$db->extra.$key->direccion."$a'><img src='".$db->extra.$key->direccion."$a' alt=''></li>";
+								echo "<li data-image='/".$db->extra.$key->direccion."$a'><img src='/".$db->extra.$key->direccion."$a' alt=''></li>";
 							}
 						?>
 					</ul>
@@ -93,7 +93,7 @@
 				<!-- Selected Image -->
 				<div class="col-lg-5 order-lg-2 order-1">
 					<?php
-						echo "<div class='image_selected'><img src='".$db->doc.$prod->img."' alt=''></div>";
+						echo "<div class='image_selected'><img src='/".$db->doc.$prod->img."' alt=''></div>";
 					?>
 				</div>
 
