@@ -2,14 +2,12 @@
 	require_once("control_db.php");
 	$db = new Tienda();
 
-
 	////////////productos ofertas
 	$oferta=$db->ofertas();
 	//////////productos destacados
 	$destacados=$db->productos_destacados();
 	//////////////semana
 	$semana=$db->productos_semana();
-
 
 ?>
 
@@ -21,17 +19,17 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="TicShop la tienda de tecnología mas grande de México">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
-<link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
-<link rel="stylesheet" type="text/css" href="plugins/slick-1.8.0/slick.css">
+<link rel="stylesheet" type="text/css" href="/styles/bootstrap4/bootstrap.min.css">
+<link href="/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="/plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" type="text/css" href="/plugins/slick-1.8.0/slick.css">
 
 
-<link rel="stylesheet" type="text/css" href="styles/main_styles.css">
+<link rel="stylesheet" type="text/css" href="/styles/main_styles.css">
 <style type="text/css"> .cat_menu_container ul {visibility: visible; opacity: 100;}</style>
-<link rel="stylesheet" type="text/css" href="styles/responsive.css">
+<link rel="stylesheet" type="text/css" href="/styles/responsive.css">
 
 
 
@@ -64,7 +62,7 @@
 									echo "<h1 class='banner_text'>".$key->titulo."</h1>";
 									echo "<div class='banner_price'><span>".$key->texto."</span></div>";
 									if(strlen($key->enlace)>0){
-										echo "<div class='button banner_button'><a href='".$key->enlace."'>IR</a></div>";
+										echo "<div class='button banner_button'><a href='/".$key->enlace."'>IR</a></div>";
 									}
 								echo "</div>";
 							echo "</div>";
@@ -169,7 +167,7 @@
 										}
 
 										echo "<div class='owl-item deals_item'>";
-										echo "<a href='product.php?id=".$key->id."'>";
+										echo "<a href='/producto.php?id=".$key->id."'>";
 										echo "<div class='deals_image'><img src='".$db->doc.$key->img."' alt=''></div>
 											<div class='deals_content'>
 												<div class='deals_info_line d-flex flex-row justify-content-start'>
@@ -235,13 +233,13 @@
 
 
 											echo "<div class='featured_slider_item'>";
-											echo "<a href='product.php?id=".$key->id."'>";
+											echo "<a href='/producto.php?id=".$key->id."'>";
 												echo "<div class='border_active'></div>
 												<div class='product_item discount d-flex flex-column align-items-center justify-content-center text-center'>
 													<div class='product_image d-flex flex-column align-items-center justify-content-center'><img src='".$db->doc.$key->img."' alt='' width='90%'></div>
 													<div class='product_content'>
 														<div class='product_price discount'>".moneda($preciof)."<span>".moneda($preciof)."</span></div>
-														<div class='product_name'><div><a href='product.php?id=".$key->id."'>".$key->nombre."</a></div></div>
+														<div class='product_name'><div><a href='/producto.php?id=".$key->id."'>".$key->nombre."</a></div></div>
 														<div class='product_extras'>
 															<button class='product_cart_button' onclick='carrito(".$key->id.",1)'>Agregar al carrito</button>
 														</div>
@@ -412,13 +410,13 @@
 
 
 												echo "<div class='arrivals_slider_item' >";
-												echo "<a href='product.php?id=".$key->id."'>";
+												echo "<a href='/producto.php?id=".$key->id."'>";
 													echo "<div class='border_active'></div>
 													<div class='product_item is_new d-flex flex-column align-items-center justify-content-center text-center' >
-														<div class='product_image d-flex flex-column align-items-center justify-content-center'><img src='".$db->doc.$key->img."' alt='' width='100px'></div>
+														<div class='product_image d-flex flex-column align-items-center justify-content-center'><img src='/".$db->doc.$key->img."' alt='' width='100px'></div>
 														<div class='product_content'>
 															<div class='product_price'>".moneda($preciof)."</div>
-															<div class='product_name'><div><a href='product.php?id=".$key->id."'>".$key->nombre."</a></div></div>
+															<div class='product_name'><div><a href='/producto.php?id=".$key->id."'>".$key->nombre."</a></div></div>
 															<div class='product_extras'>
 																<button class='product_cart_button' onclick='carrito(".$key->id.",1)'>Agregar al carrito</button>
 															</div>
@@ -479,18 +477,18 @@
 
 </div>
 
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="styles/bootstrap4/popper.js"></script>
-<script src="styles/bootstrap4/bootstrap.min.js"></script>
-<script src="plugins/greensock/TweenMax.min.js"></script>
-<script src="plugins/greensock/TimelineMax.min.js"></script>
-<script src="plugins/scrollmagic/ScrollMagic.min.js"></script>
-<script src="plugins/greensock/animation.gsap.min.js"></script>
-<script src="plugins/greensock/ScrollToPlugin.min.js"></script>
-<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
-<script src="plugins/slick-1.8.0/slick.js"></script>
-<script src="plugins/easing/easing.js"></script>
-<script src="js/custom.js"></script>
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/styles/bootstrap4/popper.js"></script>
+<script src="/styles/bootstrap4/bootstrap.min.js"></script>
+<script src="/plugins/greensock/TweenMax.min.js"></script>
+<script src="/plugins/greensock/TimelineMax.min.js"></script>
+<script src="/plugins/scrollmagic/ScrollMagic.min.js"></script>
+<script src="/plugins/greensock/animation.gsap.min.js"></script>
+<script src="/plugins/greensock/ScrollToPlugin.min.js"></script>
+<script src="/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+<script src="/plugins/slick-1.8.0/slick.js"></script>
+<script src="/plugins/easing/easing.js"></script>
+<script src="/js/custom.js"></script>
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
@@ -498,7 +496,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 
-<script src="sagyc.js"></script>
+<script src="/sagyc.js"></script>
 </body>
 
 </html>
