@@ -13,11 +13,12 @@
         <!-- Recently Viewed Slider -->
         <div class="owl-carousel owl-theme viewed_slider">
           <?php
+            $a="?id=".rand(1,1500);
             foreach($rel as $key){
               echo "<div class='owl-item'>";
                 echo "<a href='/producto/".$key->clave."'>";
                   echo "<div class='viewed_item discount d-flex flex-column align-items-center justify-content-center text-center'>";
-                    echo "<div class='viewed_image'><img src='/".$db->doc.$key->img."' alt=''></div>";
+                    echo "<div class='viewed_image'><img src='/".$db->doc.$key->img.$a."' alt=''></div>";
                     echo "<div class='viewed_content text-center'>";
                       echo "<div class='viewed_price'>";
                         if($key->precio_tipo==0){
