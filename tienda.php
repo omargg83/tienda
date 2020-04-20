@@ -9,17 +9,17 @@
 		$id=$_REQUEST['id'];
 		$rx=$db->categorias_name($id);
 		$nombre=$rx->descripcion;
-		$resp=$db->cat_categoriatic($id);
 
+		$resp=$db->cat_categoriatic($id);
 		$contar=count($resp);
 	}
-	/*
+
 	else if(isset($_REQUEST['tipo']) and $_REQUEST['tipo']==2){
 		$tipo=$_REQUEST['tipo'];
-		$cat1=$_REQUEST['id'];
-		$ncat=$_REQUEST['ncat'];
-		$nombre=$ncat;
-		$resp=$db->cat_categoria($ncat);
+		$id=$_REQUEST['id'];
+		$rx=$db->cat_categoria_name($id);
+		$nombre=	$nombre=$rx->heredado;
+		$resp=$db->cat_categoria($id);
 		$contar=count($resp);
 	}
 	else if(isset($_REQUEST['tipo']) and $_REQUEST['tipo']==3){
