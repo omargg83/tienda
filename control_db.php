@@ -399,7 +399,7 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
-		public function cat_categoria_name($cat){
+		public function cat_categoria_name($cat){									//////////////nivel 2
 			try{
 				self::set_names();
 				$sql="select * from categoria_ct where id=:id";
@@ -412,6 +412,33 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 
+		}
+
+		public function sub_categoria($cat){
+			try{
+				self::set_names();
+				$sql="select * from categoriasub_ct where idcategoria=:id and activo=1";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(":id",$cat);
+				$sth->execute();
+				return $sth->fetchAll(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
+		public function sub_categoria_name($cat){
+			try{
+				self::set_names();
+				$sql="select * from categoriasub_ct where idcategoria=:id and activo=1";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(":id",$cat);
+				$sth->execute();
+				return $sth->fetch(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
 		}
 
 
@@ -762,20 +789,6 @@
 				$sth->bindValue(":id",$_SESSION['idcliente']);
 				$sth->execute();
 				return $sth->fetch(PDO::FETCH_OBJ);
-			}
-			catch(PDOException $e){
-				return "Database access FAILED!".$e->getMessage();
-			}
-		}
-
-		public function sub_categoria($cat){
-			try{
-				self::set_names();
-				$sql="select * from productos where subcategoria=:id and activo=1";
-				$sth = $this->dbh->prepare($sql);
-				$sth->bindValue(":id",$cat);
-				$sth->execute();
-				return $sth->fetchAll(PDO::FETCH_OBJ);
 			}
 			catch(PDOException $e){
 				return "Database access FAILED!".$e->getMessage();

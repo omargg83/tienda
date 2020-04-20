@@ -23,22 +23,22 @@
 		$contar=count($resp);
 
 	}
-	echo "<br>Tipo:".$tipo;
-	echo "<br>id:".$id;
-	/*
 	else if(isset($_REQUEST['tipo']) and $_REQUEST['tipo']==3){
 		$tipo=$_REQUEST['tipo'];
 		$sub=$_REQUEST['id'];
-		$ncat=$_REQUEST['ncat'];
-		$nombre=$ncat;
-		$resp=$db->sub_categoria($ncat);
+		$rx=$db->sub_categoria_name($id);
+		$nombre=$rx->heredado;
+
+		$resp=$db->sub_categoria($rx->sub_categoria);
 		$contar=count($resp);
 	}
 	else{
 		$tipo=4;
 		$resp=$db->productos_general();
 	}
-*/
+	echo "<br>Tipo:".$tipo;
+	echo "<br>id:".$id;
+
 
 ?>
 <!DOCTYPE html>
