@@ -14,11 +14,12 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
 # RewriteCond %{REQUEST_FILENAME}.php -f
 # RewriteRule ^(.*)$ $1.php
 
-Options -MultiViews
-RewriteEngine On
+
+
+RewriteEngine on
+RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^ index.php [QSA,L]
+RewriteCond %{REQUEST_FILENAME}.php -f
 
-
-RewriteRule ^producto/(.*)$  /productos.php?id=$1 [L]
+RewriteRule ^product/(.*)$  /product.php?id=$1 [L]
