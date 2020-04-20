@@ -375,7 +375,11 @@
 				$sql="select productos.* from producto_cat
 							left outer join categoria_ct on categoria_ct.id=producto_cat.idcategoria_ct
 							left outer join productos on productos.categoria=categoria_ct.categoria
-							where producto_cat.idcategoria=$cat and productos.activo=1";
+							where producto_cat.idcategoria=$cat";
+							if(strlen($marca>0)){
+								$sql.=" and productos.marca='$marca'";
+							}
+				$sql=." and productos.activo=1";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
 				return $sth->fetchAll(PDO::FETCH_OBJ);
@@ -390,7 +394,11 @@
 				$sql="select productos.* from producto_cat
 							left outer join categoria_ct on categoria_ct.id=producto_cat.idcategoria_ct
 							left outer join productos on productos.categoria=categoria_ct.categoria
-							where producto_cat.idcategoria=$cat and productos.activo=1 group by productos.marca";
+							where producto_cat.idcategoria=$cat";
+							if(strlen($marca>0)){
+								$sql.=" and productos.marca='$marca'";
+							}
+				$sql=." and productos.activo=1";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
 				return $sth->fetchAll(PDO::FETCH_OBJ);
