@@ -426,6 +426,18 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
+		public function n2_productos_marcas($cat){
+			try{
+				self::set_names();
+				$sql="select * from productos where categoria='$cat' and activo=1 group by marca";
+				$sth = $this->dbh->prepare($sql);
+				$sth->execute();
+				return $sth->fetchAll(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
 
 		public function sub_categoria_name($cat){									//////////////nivel 3
 			try{
@@ -451,6 +463,45 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
+		public function n3_productos_marcas($cat){
+			try{
+				self::set_names();
+				$sql="select * from productos where subcategoria='$cat' and activo=1 group by marca";
+				$sth = $this->dbh->prepare($sql);
+				$sth->execute();
+				return $sth->fetchAll(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
+
+		public function productos_general(){
+			try{
+				self::set_names();
+				$sql="select * from productos where activo=1 limit 100";
+				$sth = $this->dbh->prepare($sql);
+				$sth->execute();
+				return $sth->fetchAll(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
+		public function n4_productos_marcas(){
+			try{
+				self::set_names();
+				$sql="select * from productos where activo=1 and activo=1 group by marca limit 100";
+				$sth = $this->dbh->prepare($sql);
+				$sth->execute();
+				return $sth->fetchAll(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
+
+
 
 		public function cat_ct($id){															/////////////  HEADER
 			try{
@@ -471,19 +522,6 @@
 				$sql="SELECT * from categoriasub_ct where idcategoria=:id";
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(':id', "$id");
-				$sth->execute();
-				return $sth->fetchAll(PDO::FETCH_OBJ);
-			}
-			catch(PDOException $e){
-				return "Database access FAILED!".$e->getMessage();
-			}
-		}
-
-		public function productos_marcas($tipo){
-			try{
-				self::set_names();
-				$sql="SELECT * FROM productos group by marca limit 20";
-				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
 				return $sth->fetchAll(PDO::FETCH_OBJ);
 			}
@@ -815,18 +853,7 @@
 		}
 
 
-		public function productos_general(){
-			try{
-				self::set_names();
-				$sql="select * from productos where activo=1 limit 100";
-				$sth = $this->dbh->prepare($sql);
-				$sth->execute();
-				return $sth->fetchAll(PDO::FETCH_OBJ);
-			}
-			catch(PDOException $e){
-				return "Database access FAILED!".$e->getMessage();
-			}
-		}
+
 
 		public function busca() {
 			try{

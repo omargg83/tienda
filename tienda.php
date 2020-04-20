@@ -24,6 +24,7 @@
 		$resp=$db->cat_categoria($rx->categoria);
 		$contar=count($resp);
 
+		$marca=$db->n2_productos_marcas($rx->categoria);
 	}
 	else if(isset($_REQUEST['tipo']) and $_REQUEST['tipo']==3){
 		$tipo=$_REQUEST['tipo'];
@@ -33,10 +34,13 @@
 
 		$resp=$db->sub_categoria($rx->subcategoria);
 		$contar=count($resp);
+
+		$marca=$db->n3_productos_marcas($rx->subcategoria);
 	}
 	else{
 		$tipo=4;
 		$resp=$db->productos_general();
+		$marca=$db->n4_productos_marcas();
 	}
 
 ?>
