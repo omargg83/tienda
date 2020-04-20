@@ -98,7 +98,7 @@
 									<div class='sidebar_title'>Categoria</div>
 									<ul class='sidebar_categories'>";
 									foreach($db->cat_ct($id) as $key2){
-										echo "<li><a href='/tienda.php?tipo=1&id=".$key2->id."&ncat=".$key2->categoria."'>".$key2->categoria."</a></li>";
+										echo "<li><a href='/tienda.php?tipo=1&id=".$key2->id."'>".$key2->categoria."</a></li>";
 									}
 									echo "</ul>
 									</div>";
@@ -108,7 +108,7 @@
 									<div class='sidebar_title'>Categoria</div>
 									<ul class='sidebar_categories'>";
 									 foreach($db->sub_cat($id) as $key3){
-										echo "<li><a href='/tienda.php?tipo=2&id=".$key3->id."&ncat=".$key3->subcategoria."'>".$key3->subcategoria."</a></li>";
+										echo "<li><a href='/tienda.php?tipo=2&id=".$key3->id."'>".$key3->subcategoria."</a></li>";
 									}
 									echo "</ul>
 									</div>";
@@ -119,7 +119,7 @@
 									<div class='sidebar_title'>Categorias</div>
 									<ul class='sidebar_categories'>";
 									 foreach($db->categorias() as $key){
-										echo "<li><a href='/tienda.php?tipo=3&id=".$key->idcategoria."&ncat=".$key->descripcion."'>".$key->descripcion."</a></li>";
+										echo "<li><a href='/tienda.php?tipo=1&id=".$key->idcategoria."'>".$key->descripcion."</a></li>";
 									}
 									echo "</ul>
 									</div>";
