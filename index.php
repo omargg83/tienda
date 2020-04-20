@@ -167,7 +167,7 @@
 										}
 
 										echo "<div class='owl-item deals_item'>";
-										echo "<a href='/producto.php?id=".$key->id."'>";
+										echo "<a href='/producto/".$key->clave."'>";
 										echo "<div class='deals_image'><img src='".$db->doc.$key->img."' alt=''></div>
 											<div class='deals_content'>
 												<div class='deals_info_line d-flex flex-row justify-content-start'>
@@ -233,13 +233,13 @@
 
 
 											echo "<div class='featured_slider_item'>";
-											echo "<a href='/producto.php?id=".$key->id."'>";
+											echo "<a href='/producto/".$key->clave."'>";
 												echo "<div class='border_active'></div>
 												<div class='product_item discount d-flex flex-column align-items-center justify-content-center text-center'>
 													<div class='product_image d-flex flex-column align-items-center justify-content-center'><img src='".$db->doc.$key->img."' alt='' width='90%'></div>
 													<div class='product_content'>
 														<div class='product_price discount'>".moneda($preciof)."<span>".moneda($preciof)."</span></div>
-														<div class='product_name'><div><a href='/producto.php?id=".$key->id."'>".$key->nombre."</a></div></div>
+														<div class='product_name'><div><a href='/producto/".$key->clave."'>".$key->nombre."</a></div></div>
 														<div class='product_extras'>
 															<button class='product_cart_button' onclick='carrito(".$key->id.",1)'>Agregar al carrito</button>
 														</div>
@@ -410,13 +410,13 @@
 
 
 												echo "<div class='arrivals_slider_item' >";
-												echo "<a href='/producto.php?id=".$key->id."'>";
+												echo "<a href='/producto/".$key->clave."'>";
 													echo "<div class='border_active'></div>
 													<div class='product_item is_new d-flex flex-column align-items-center justify-content-center text-center' >
 														<div class='product_image d-flex flex-column align-items-center justify-content-center'><img src='/".$db->doc.$key->img."' alt='' width='100px'></div>
 														<div class='product_content'>
 															<div class='product_price'>".moneda($preciof)."</div>
-															<div class='product_name'><div><a href='/producto.php?id=".$key->id."'>".$key->nombre."</a></div></div>
+															<div class='product_name'><div><a href='/producto/".$key->clave."'>".$key->nombre."</a></div></div>
 															<div class='product_extras'>
 																<button class='product_cart_button' onclick='carrito(".$key->id.",1)'>Agregar al carrito</button>
 															</div>
