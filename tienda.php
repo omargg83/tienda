@@ -7,7 +7,7 @@
 	if(isset($_REQUEST['tipo']) and $_REQUEST['tipo']==1){
 		$tipo=$_REQUEST['tipo'];
 
-		$id_re=$_REQUEST['cat'];
+		$id_re=$_REQUEST['id'];
 		$ncat=$_REQUEST['ncat'];
 		$nombre=$ncat;
 		$resp=$db->cat_categoriatic($id_re);
@@ -91,7 +91,7 @@
 										<div class='sidebar_title'>Categoria</div>
 										<ul class='sidebar_categories'>";
 										foreach($db->cat_ct($id_re) as $key2){
-											echo "<li><a href='/tienda.php?cat1=".$key2->id."&ncat=".$key2->categoria."'>".$key2->categoria."</a></li>";
+											echo "<li><a href='/tienda.php?tipo=1&id=".$key2->id."&ncat=".$key2->categoria."'>".$key2->categoria."</a></li>";
 										}
 										echo "</ul>
 										</div>";
@@ -101,7 +101,7 @@
 										<div class='sidebar_title'>Categoria</div>
 										<ul class='sidebar_categories'>";
 										 foreach($db->sub_cat($cat1) as $key3){
-											echo "<li><a href='/tienda.php?sub=".$key3->id."&ncat=".$key3->subcategoria."'>".$key3->subcategoria."</a></li>";
+											echo "<li><a href='/tienda.php?tipo=2&id=".$key3->id."&ncat=".$key3->subcategoria."'>".$key3->subcategoria."</a></li>";
 										}
 										echo "</ul>
 										</div>";
@@ -112,7 +112,7 @@
 									<div class='sidebar_title'>Categorias</div>
 									<ul class='sidebar_categories'>";
 									 foreach($db->categorias() as $key){
-										echo "<li><a href='/tienda.php?cat=".$key->idcategoria."&ncat=".$key->descripcion."'>".$key->descripcion."</a></li>";
+										echo "<li><a href='/tienda.php?tipo=3&id=".$key->idcategoria."&ncat=".$key->descripcion."'>".$key->descripcion."</a></li>";
 									}
 									echo "</ul>
 									</div>";
