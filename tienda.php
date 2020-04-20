@@ -76,10 +76,6 @@
 		</div>
 	</div>
 
-<input id='tipo' name='tipo' value='<?php ?>'>
-
-
-
 	<!-- Shop -->
 	<div class="shop">
 		<div class="container">
@@ -158,52 +154,11 @@
 							</div>
 						</div>
 
-						<div class="product_panel panel active">
-							<div class="arrivals_slider slider">
+						<div class="product_grid">
+							<div class="product_grid_border"></div>
 
 							<!-- Product Item -->
 							<?php
-							foreach($resp as $key){
-								if($key->precio_tipo==0){
-									$preciof=$key->preciof;
-								}
-								if($key->precio_tipo==1){
-									$p_total=$key->preciof+(($key->preciof*$db->cgeneral)/100);
-									$preciof=$p_total;
-								}
-								if($key->precio_tipo==2){
-									$preciof=$key->precio_tic;
-								}
-								if($key->precio_tipo==3){
-									$p_total=$key->precio_tic+(($key->precio_tic*$db->cgeneral)/100);
-									$preciof=$p_total;
-								}
-
-
-								echo "<div class='arrivals_slider_item' >";
-								echo "<a href='/producto/".$key->clave."'>";
-									echo "<div class='border_active'></div>
-									<div class='product_item is_new d-flex flex-column align-items-center justify-content-center text-center' >
-										<div class='product_image d-flex flex-column align-items-center justify-content-center'><img src='/".$db->doc.$key->img."' alt='' width='100px'></div>
-										<div class='product_content'>
-											<div class='product_price'>".moneda($preciof)."</div>
-											<div class='product_name'><div><a href='/producto/".$key->clave."'>".$key->nombre."</a></div></div>
-											<div class='product_extras'>
-												<button class='product_cart_button' onclick='carrito(".$key->id.",1)'>Agregar al carrito</button>
-											</div>
-										</div>
-										<div class='product_fav' onclick='wish(".$key->id.")'><i class='fas fa-heart'></i></div>
-										<ul class='product_marks'>
-											<li class='product_mark product_discount'>-25%</li>
-											<li class='product_mark product_new'>Nuevo</li>
-										</ul>
-									</div>";
-									echo "</a>";
-								echo "</div>";
-							}
-
-
-							/*
 								foreach($resp as $key){
 									if($key->precio_tipo==0){
 										$preciof=$key->preciof;
@@ -233,10 +188,9 @@
 										</ul>
 									</div></a>";
 								}
-								*/
+
 
 							 ?>
-							</div>
 						</div>
 					</div>
 				</div>

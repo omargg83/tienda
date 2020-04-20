@@ -1,6 +1,10 @@
 <?php
 	require_once("db_.php");
-
+	if($_SESSION['nivel']!=1){
+    echo "<h4>Página no encontrada</h4>";
+    die();
+  }
+	
 	$per = $db->ajustes_editar();
 	$c_envio=$per->c_envio;
 	$p_general=$per->p_general;

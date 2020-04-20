@@ -1,6 +1,10 @@
 <?php
   require_once("db_.php");
   $_SESSION['nivel_captura']=1;
+  if($_SESSION['nivel']!=1){
+    echo "<h4>Página no encontrada</h4>";
+    die();
+  }
  ?>
 
  <nav class='navbar navbar-expand-sm navbar-light bg-light'>

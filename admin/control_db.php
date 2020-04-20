@@ -53,6 +53,7 @@
 					$_SESSION['nombre']=$CLAVE['nombre'];
 					$_SESSION['usuario'] = $CLAVE['usuario'];
 					$_SESSION['pass'] = $CLAVE['pass'];
+					$_SESSION['nivel'] = $CLAVE['nivel'];
 					$_SESSION['pagnivel']=40;
 					$_SESSION['idpersona']=$CLAVE['idpersona'];
 					$_SESSION['remoto']=0;
