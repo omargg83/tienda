@@ -773,7 +773,7 @@
 		public function busca() {
 			try{
 				self::set_names();
-				$texto=trim(htmlspecialchars($_REQUEST['texto']));
+				$texto=trim(htmlspecialchars($_REQUEST['id']));
 				$sql="SELECT * from productos where activo=1 and existencia>0 and
 				(clave like :texto or nombre like :texto or modelo like :texto or marca like :texto or idProducto like :texto) limit 100";
 				$sth = $this->dbh->prepare($sql);
