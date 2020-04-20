@@ -379,7 +379,7 @@
 							if(strlen($marca>0)){
 								$sql.=" and productos.marca='$marca'";
 							}
-				$sql=." and productos.activo=1";
+				$sql.=" and productos.activo=1";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
 				return $sth->fetchAll(PDO::FETCH_OBJ);
@@ -398,7 +398,7 @@
 							if(strlen($marca>0)){
 								$sql.=" and productos.marca='$marca'";
 							}
-				$sql=." and productos.activo=1";
+				$sql.=" and productos.activo=1";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
 				return $sth->fetchAll(PDO::FETCH_OBJ);
