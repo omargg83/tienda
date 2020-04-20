@@ -343,6 +343,7 @@
 			$_SESSION['correo']="";
 			$_SESSION['nombre']="";
 		}
+
 		public function categorias(){
 			try{
 				self::set_names();
@@ -350,6 +351,18 @@
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
 				return $sth->fetchAll(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
+		public function categorias_name($id){
+			try{
+				self::set_names();
+				$sql="select * from categorias where idcategoria='$id'";
+				$sth = $this->dbh->prepare($sql);
+				$sth->execute();
+				return $sth->fetch(PDO::FETCH_OBJ);
 			}
 			catch(PDOException $e){
 				return "Database access FAILED!".$e->getMessage();

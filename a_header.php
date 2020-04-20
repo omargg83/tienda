@@ -41,14 +41,8 @@
       $p_final=($key->cantidad*$preciof);
       $total+=$p_final;
     }
-
-
     $sumar=$total+$envio;
-
   }
-  $cat=$db->categorias();
-
-
 
 ?>
   <!-- Top Bar -->
@@ -178,16 +172,17 @@
 
               <ul class="cat_menu">
                 <?php
+                  $cat=$db->categorias();
                   foreach($cat as $key){
                     echo "<li class='hassubs'>
-                      <a href='/tienda.php?tipo=1&id=".$key->idcategoria."&ncat=".$key->descripcion."'>".$key->descripcion."<i class='fas fa-chevron-right'></i></a>
+                      <a href='/tienda.php?tipo=1&id=".$key->idcategoria."'>".$key->descripcion."<i class='fas fa-chevron-right'></i></a>
                       <ul>";
                       foreach($db->cat_ct($key->idcategoria) as $key2){
                         echo "<li class='hassubs'>
-                            <a href='/tienda.php?tipo=2&id=".$key2->id."&ncat=".$key2->categoria."'>".$key2->heredado."<i class='fas fa-chevron-right'></i></a>
+                            <a href='/tienda.php?tipo=2&id=".$key2->id."'>".$key2->heredado."<i class='fas fa-chevron-right'></i></a>
                             <ul>";
                             foreach($db->sub_cat($key2->id) as $key3){
-                              echo " <li><a href='/tienda.php?tipo=3&id=".$key3->id."&ncat=".$key3->subcategoria."'>".$key3->heredado."<i class='fas fa-chevron-right'></i></a></li>";
+                              echo " <li><a href='/tienda.php?tipo=3&id=".$key3->id."'>".$key3->heredado."<i class='fas fa-chevron-right'></i></a></li>";
                             }
                             echo "</ul>";
                           echo "</li>";

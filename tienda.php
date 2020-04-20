@@ -6,13 +6,14 @@
 
 	if(isset($_REQUEST['tipo']) and $_REQUEST['tipo']==1){
 		$tipo=$_REQUEST['tipo'];
+		$id=$_REQUEST['id'];
 
-		$id_re=$_REQUEST['id'];
-		$ncat=$_REQUEST['ncat'];
-		$nombre=$ncat;
-		$resp=$db->cat_categoriatic($id_re);
+		$nombre=$db->categorias_name($id);
+		$resp=$db->cat_categoriatic($id);
+
 		$contar=count($resp);
 	}
+	/*
 	else if(isset($_REQUEST['tipo']) and $_REQUEST['tipo']==2){
 		$tipo=$_REQUEST['tipo'];
 		$cat1=$_REQUEST['id'];
@@ -33,7 +34,7 @@
 		$tipo=4;
 		$resp=$db->productos_general();
 	}
-
+*/
 
 ?>
 <!DOCTYPE html>

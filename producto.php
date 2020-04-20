@@ -4,7 +4,7 @@
 	$id=$_REQUEST['id'];
 
 	$prod = $db->producto_ver($id);
-	
+
 	$id=$prod->id;
 	$imextra=$db->producto_imagen($id);
 	$espe = $db->producto_espe($id);
@@ -246,7 +246,6 @@
 		      </li>
 		    </ul>
 		  </div>
-
 
 			<div class='row'>
 				<div class='col-12'>
