@@ -406,6 +406,7 @@
 				$sql="select * from productos where categoria='$cat' and activo=1";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
+				echo $sql;
 				return $sth->fetchAll(PDO::FETCH_OBJ);
 			}
 			catch(PDOException $e){
@@ -431,6 +432,7 @@
 				$sql="select * from productos where subcategoria='$cat' and activo=1";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
+				echo $sql;
 				return $sth->fetchAll(PDO::FETCH_OBJ);
 			}
 			catch(PDOException $e){
