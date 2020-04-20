@@ -12,6 +12,8 @@
 
 		$resp=$db->cat_categoriatic($id);
 		$contar=count($resp);
+
+		$marca=$db->n1_productos_marcas($id);
 	}
 	else if(isset($_REQUEST['tipo']) and $_REQUEST['tipo']==2){
 		$tipo=$_REQUEST['tipo'];
@@ -124,7 +126,7 @@
 							<div class="sidebar_subtitle brands_subtitle">Marcas</div>
 							<ul class="brands_list">
 								<?php
-									foreach($db->productos_marcas($tipo) as $marca){
+									foreach($marca as $marca){
 										echo "<li class='brand'><a href='/tienda.php'>".$marca->marca."</a></li>";
 									}
 								 ?>
