@@ -3,6 +3,7 @@
 	$db = new Tienda();
 	$nombre="";
 	$contar=0;
+	$tipo=0;
 	if(isset($_REQUEST['marca']) and strlen($_REQUEST['marca'])>0){
 		$marca=$_REQUEST['marca'];
 	}
@@ -100,7 +101,7 @@
 						<?php
 							if($tipo==1){
 								echo "<div class='sidebar_section'>
-									<div class='sidebar_title'>Categoria 1</div>
+									<div class='sidebar_title'>Categoria</div>
 									<ul class='sidebar_categories'>";
 									foreach($db->cat_ct($id) as $key2){
 										echo "<li><a href='/tienda.php?tipo=2&id=".$key2->id."'>".$key2->categoria."</a></li>";
@@ -110,7 +111,7 @@
 							}
 							if($tipo==2){
 								echo "<div class='sidebar_section'>
-									<div class='sidebar_title'>Categoria 2</div>
+									<div class='sidebar_title'>Categoria</div>
 									<ul class='sidebar_categories'>";
 									 foreach($db->sub_cat($id) as $key3){
 										echo "<li><a href='/tienda.php?tipo=3&id=".$key3->id."'>".$key3->subcategoria."</a></li>";
@@ -121,7 +122,7 @@
 
 							if($tipo==4){
 									echo "<div class='sidebar_section'>
-									<div class='sidebar_title'>Categorias 4</div>
+									<div class='sidebar_title'>Categorias</div>
 									<ul class='sidebar_categories'>";
 									 foreach($db->categorias() as $key){
 										echo "<li><a href='/tienda.php?tipo=1&id=".$key->idcategoria."'>".$key->descripcion."</a></li>";
@@ -136,7 +137,7 @@
 							<ul class="brands_list">
 								<?php
 									foreach($marca as $key){
-										echo "<li class='brand'><a href='/tienda.php'>".$key->marca."</a></li>";
+										echo "<li class='brand'><a href='/tienda.php?tipo=".$tipo."&id=".$id."&marca=".$key->marca."'>".$key->marca."</a></li>";
 									}
 								 ?>
 							</ul>
@@ -185,7 +186,7 @@
 										$p_total=$key->precio_tic+(($key->precio_tic*$db->cgeneral)/100);
 										$preciof=$p_total;
 									}
-									echo "<div class='product_item'>
+									echo "<a href='/producto/'><div class='product_item'>
 										<div class='product_border'></div>
 										<div class='product_image d-flex flex-column align-items-center justify-content-center'><img src='/".$db->doc.$key->img."' alt='' width='100px'></div>
 										<div class='product_content'>
