@@ -4,25 +4,26 @@
 	$nombre="";
 	$contar=0;
 
-	if(isset($_REQUEST['cat'])){
-		$tipo=1;
+	if(isset($_REQUEST['tipo']) and $_REQUEST['tipo']==1){
+		$tipo=$_REQUEST['tipo'];
+
 		$id_re=$_REQUEST['cat'];
 		$ncat=$_REQUEST['ncat'];
 		$nombre=$ncat;
 		$resp=$db->cat_categoriatic($id_re);
 		$contar=count($resp);
 	}
-	else if(isset($_REQUEST['cat1'])){
-		$tipo=2;
-		$cat1=$_REQUEST['cat1'];
+	else if(isset($_REQUEST['tipo']) and $_REQUEST['tipo']==2){
+		$tipo=$_REQUEST['tipo'];
+		$cat1=$_REQUEST['id'];
 		$ncat=$_REQUEST['ncat'];
 		$nombre=$ncat;
 		$resp=$db->cat_categoria($ncat);
 		$contar=count($resp);
 	}
-	else if(isset($_REQUEST['sub'])){
-		$tipo=3;
-		$sub=$_REQUEST['sub'];
+	else if(isset($_REQUEST['tipo']) and $_REQUEST['tipo']==3){
+		$tipo=$_REQUEST['tipo'];
+		$sub=$_REQUEST['id'];
 		$ncat=$_REQUEST['ncat'];
 		$nombre=$ncat;
 		$resp=$db->sub_categoria($ncat);
@@ -32,8 +33,6 @@
 		$tipo=4;
 		$resp=$db->productos_general();
 	}
-
-
 
 
 ?>
