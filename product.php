@@ -20,14 +20,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
-<link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
-<link rel="stylesheet" type="text/css" href="styles/main_styles.css">
-<link rel="stylesheet" type="text/css" href="styles/product_styles.css">
-<link rel="stylesheet" type="text/css" href="styles/product_responsive.css">
+<link rel="stylesheet" type="text/css" href="/styles/bootstrap4/bootstrap.min.css">
+<link href="/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="/plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" type="text/css" href="/styles/main_styles.css">
+<link rel="stylesheet" type="text/css" href="/styles/product_styles.css">
+<link rel="stylesheet" type="text/css" href="/styles/product_responsive.css">
 <style>
 
 		/* Rating Star Widgets Style */
@@ -82,9 +82,9 @@
 					<ul class="image_list">
 						<?php
 							$a="?id=".rand(1,1500);
-							echo "<li data-image='".$db->doc.$prod->img."$a'><img src='".$db->doc.$prod->img."$a' alt=''></li>";
+							echo "<li data-image='/".$db->doc.$prod->img."$a'><img src='/".$db->doc.$prod->img."$a' alt=''></li>";
 							foreach($imextra as $key){
-								echo "<li data-image='".$db->extra.$key->direccion."$a'><img src='".$db->extra.$key->direccion."$a' alt=''></li>";
+								echo "<li data-image='/".$db->extra.$key->direccion."$a'><img src='/".$db->extra.$key->direccion."$a' alt=''></li>";
 							}
 						?>
 					</ul>
@@ -93,7 +93,7 @@
 				<!-- Selected Image -->
 				<div class="col-lg-5 order-lg-2 order-1">
 					<?php
-						echo "<div class='image_selected'><img src='".$db->doc.$prod->img."' alt=''></div>";
+						echo "<div class='image_selected'><img src='/".$db->doc.$prod->img."' alt=''></div>";
 					?>
 				</div>
 
@@ -366,27 +366,27 @@
 
 </div>
 
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="styles/bootstrap4/popper.js"></script>
-<script src="styles/bootstrap4/bootstrap.min.js"></script>
-<script src="plugins/greensock/TweenMax.min.js"></script>
-<script src="plugins/greensock/TimelineMax.min.js"></script>
-<script src="plugins/scrollmagic/ScrollMagic.min.js"></script>
-<script src="plugins/greensock/animation.gsap.min.js"></script>
-<script src="plugins/greensock/ScrollToPlugin.min.js"></script>
-<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
-<script src="plugins/easing/easing.js"></script>
-<script src="js/product_custom.js"></script>
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/styles/bootstrap4/popper.js"></script>
+<script src="/tyles/bootstrap4/bootstrap.min.js"></script>
+<script src="/plugins/greensock/TweenMax.min.js"></script>
+<script src="/plugins/greensock/TimelineMax.min.js"></script>
+<script src="/plugins/scrollmagic/ScrollMagic.min.js"></script>
+<script src="/plugins/greensock/animation.gsap.min.js"></script>
+<script src="/plugins/greensock/ScrollToPlugin.min.js"></script>
+<script src="/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+<script src="/plugins/easing/easing.js"></script>
+<script src="/js/product_custom.js"></script>
 
 <!--   Alertas   -->
-<script src="librerias15/swal/dist/sweetalert2.min.js"></script>
-<link rel="stylesheet" href="librerias15/swal/dist/sweetalert2.min.css">
+<script src="/librerias15/swal/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="/librerias15/swal/dist/sweetalert2.min.css">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
-<script src="sagyc.js"></script>
+<script src="/sagyc.js"></script>
 
 <script>
 $(document).ready(function(){
