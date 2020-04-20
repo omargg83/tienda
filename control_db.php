@@ -417,9 +417,9 @@
 		public function sub_categoria($cat){
 			try{
 				self::set_names();
-				$sql="select * from categoriasub_ct where idcategoria=:id and activo=1";
+				$sql="select * from productos where subcategoria=:subcategoria and activo=1";
 				$sth = $this->dbh->prepare($sql);
-				$sth->bindValue(":id",$cat);
+				$sth->bindValue(":subcategoria",$cat);
 				$sth->execute();
 				return $sth->fetchAll(PDO::FETCH_OBJ);
 			}
@@ -427,7 +427,7 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
-		public function sub_categoria_name($cat){
+		public function sub_categoria_name($cat){									//////////////nivel 3
 			try{
 				self::set_names();
 				$sql="select * from categoriasub_ct where idcategoria=:id and activo=1";

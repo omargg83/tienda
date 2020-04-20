@@ -25,7 +25,7 @@
 	}
 	else if(isset($_REQUEST['tipo']) and $_REQUEST['tipo']==3){
 		$tipo=$_REQUEST['tipo'];
-		$sub=$_REQUEST['id'];
+		$id=$_REQUEST['id'];
 		$rx=$db->sub_categoria_name($id);
 		$nombre=$rx->heredado;
 
