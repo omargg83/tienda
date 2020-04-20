@@ -21,3 +21,4 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.php -f
 
 RewriteRule ^producto/(.*)$  ./producto.php?id=$1 [L]
+RewriteRule ^buscar/(.*)$  ./buscar.php?id=$1 [L]
