@@ -425,7 +425,11 @@
 		public function cat_categoria($cat,$marca){
 			try{
 				self::set_names();
-				$sql="select * from productos where categoria='$cat' and activo=1";
+				$sql="select * from productos where categoria='$cat'";
+				if(strlen($marca)>0){
+					$sql.=" and productos.marca='$marca'";
+				}
+				$sql.=" and activo=1";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
 				return $sth->fetchAll(PDO::FETCH_OBJ);
@@ -437,7 +441,11 @@
 		public function n2_productos_marcas($cat){
 			try{
 				self::set_names();
-				$sql="select * from productos where categoria='$cat' and activo=1 group by marca";
+				$sql="select * from productos where categoria='$cat'";
+				if(strlen($marca)>0){
+					$sql.=" and productos.marca='$marca'";
+				}
+				$sql.=" and activo=1 group by marca";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
 				return $sth->fetchAll(PDO::FETCH_OBJ);
@@ -462,7 +470,11 @@
 		public function sub_categoria($cat,$marca){
 			try{
 				self::set_names();
-				$sql="select * from productos where subcategoria='$cat' and activo=1";
+				$sql="select * from productos where subcategoria='$cat'";
+				if(strlen($marca)>0){
+					$sql.=" and productos.marca='$marca'";
+				}
+				$sql.=" and activo=1";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
 				return $sth->fetchAll(PDO::FETCH_OBJ);
@@ -474,7 +486,11 @@
 		public function n3_productos_marcas($cat){
 			try{
 				self::set_names();
-				$sql="select * from productos where subcategoria='$cat' and activo=1 group by marca";
+				$sql="select * from productos where subcategoria='$cat'";
+				if(strlen($marca)>0){
+					$sql.=" and productos.marca='$marca'";
+				}
+				$sql.=" and activo=1 group by marca";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
 				return $sth->fetchAll(PDO::FETCH_OBJ);
@@ -487,7 +503,11 @@
 		public function productos_general($marca){
 			try{
 				self::set_names();
-				$sql="select * from productos where activo=1 limit 100";
+				$sql="select * from productos where activo=1";
+				if(strlen($marca)>0){
+					$sql.=" and productos.marca='$marca'";
+				}
+				$sql.=" limit 100";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
 				return $sth->fetchAll(PDO::FETCH_OBJ);
@@ -499,7 +519,11 @@
 		public function n4_productos_marcas($marca){
 			try{
 				self::set_names();
-				$sql="select * from productos where activo=1 group by marca limit 100";
+				$sql="select * from productos where activo=1";
+				if(strlen($marca)>0){
+					$sql.=" and productos.marca='$marca'";
+				}
+				$sql.=" group by marca limit 100";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
 				return $sth->fetchAll(PDO::FETCH_OBJ);
