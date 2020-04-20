@@ -126,8 +126,8 @@
 							<div class="sidebar_subtitle brands_subtitle">Marcas</div>
 							<ul class="brands_list">
 								<?php
-									foreach($marca as $marca){
-										echo "<li class='brand'><a href='/tienda.php'>".$marca->marca."</a></li>";
+									foreach($marca as $key){
+										echo "<li class='brand'><a href='/tienda.php'>".$key->marca."</a></li>";
 									}
 								 ?>
 							</ul>
