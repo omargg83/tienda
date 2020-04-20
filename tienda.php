@@ -50,6 +50,7 @@
 	}
 	else{
 		$tipo=4;
+		$id=0;
 		$resp=$db->productos_general($marca_f);
 		$marca=$db->n4_productos_marcas($marca_f);
 	}
