@@ -369,7 +369,7 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
-		public function cat_categoriatic($cat){										//////////nivel 1
+		public function cat_categoriatic($cat,$marca){										//////////nivel 1
 			try{
 				self::set_names();
 				$sql="select productos.* from producto_cat
@@ -384,7 +384,7 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
-		public function n1_productos_marcas($cat){
+		public function n1_productos_marcas($cat,$marca){
 			try{
 				self::set_names();
 				$sql="select productos.* from producto_cat
@@ -414,7 +414,7 @@
 			}
 
 		}
-		public function cat_categoria($cat){
+		public function cat_categoria($cat,$marca){
 			try{
 				self::set_names();
 				$sql="select * from productos where categoria='$cat' and activo=1";
@@ -451,7 +451,7 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
-		public function sub_categoria($cat){
+		public function sub_categoria($cat,$marca){
 			try{
 				self::set_names();
 				$sql="select * from productos where subcategoria='$cat' and activo=1";
@@ -476,7 +476,7 @@
 			}
 		}
 
-		public function productos_general(){
+		public function productos_general($marca){
 			try{
 				self::set_names();
 				$sql="select * from productos where activo=1 limit 100";
@@ -488,7 +488,7 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
-		public function n4_productos_marcas(){
+		public function n4_productos_marcas($marca){
 			try{
 				self::set_names();
 				$sql="select * from productos where activo=1 and activo=1 group by marca limit 100";
@@ -500,8 +500,6 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
-
-
 
 		public function cat_ct($id){															/////////////  HEADER
 			try{
