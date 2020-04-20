@@ -163,8 +163,47 @@
 
 							<!-- Product Item -->
 							<?php
+							foreach($resp as $key){
+								if($key->precio_tipo==0){
+									$preciof=$key->preciof;
+								}
+								if($key->precio_tipo==1){
+									$p_total=$key->preciof+(($key->preciof*$db->cgeneral)/100);
+									$preciof=$p_total;
+								}
+								if($key->precio_tipo==2){
+									$preciof=$key->precio_tic;
+								}
+								if($key->precio_tipo==3){
+									$p_total=$key->precio_tic+(($key->precio_tic*$db->cgeneral)/100);
+									$preciof=$p_total;
+								}
+
+								echo "<div class='owl-item deals_item'>";
+								echo "<a href='/producto/".$key->clave."'>";
+								echo "<div class='deals_image'><img src='/".$db->doc.$key->img."' alt=''></div>
+									<div class='deals_content'>
+										<div class='deals_info_line d-flex flex-row justify-content-start'>
+											<div class='deals_item_category'><a href='#'>".$key->categoria."</a></div>
+											<div class='deals_item_price_a ml-auto'>".moneda($preciof)."</div>
+										</div>
+										<div class='deals_info_line d-flex flex-row justify-content-start'>
+											<div class='deals_item_name'>".$key->nombre."</div>
+											<div class='deals_item_price ml-auto'>".moneda($preciof)."</div>
+										</div>
+										<div class='available'>
+											<div class='available_line d-flex flex-row justify-content-start'>
+												<button class='btn btn-outline-primary btn-block' onclick='carrito(".$key->id.",1)'>Agregar al carrito</button>
+											</div>
+										</div>
+
+									</div>";
+									echo "</a>";
+								echo "</div>";
+							}
 
 
+							/*
 								foreach($resp as $key){
 									if($key->precio_tipo==0){
 										$preciof=$key->preciof;
@@ -194,6 +233,8 @@
 										</ul>
 									</div></a>";
 								}
+								*/
+
 							 ?>
 						</div>
 					</div>

@@ -4,12 +4,16 @@
 	$nombre="";
 	$usuario="";
 	$pass="";
+	$autoriza="";
+	$nivel="";
 
 	if($id>0){
 		$per = $db->usuario_editar($id);
 		$nombre=$per->nombre;
 		$usuario=$per->usuario;
 		$pass=$per->pass;
+		$autoriza=$per->autoriza;
+		$nivel=$per->nivel;
 	}
 ?>
 <div class='container'>
@@ -30,6 +34,27 @@
 			      <label>Usuario</label>
 			      <input type="text" class="form-control" id="usuario" name='usuario' placeholder="Usuario" value="<?php echo $usuario; ?>" >
 			    </div>
+
+					<div class="form-group col-md-4">
+			      <label>Nivel</label>
+						<select id='nivel' name='nivel' class='form-control'>
+							<?php
+								echo "<option value=1 "; if ($nivel==1) echo " selected"; echo ">Nivel 1- Administrador</option>";
+								echo "<option value=2 "; if ($nivel==2) echo " selected"; echo ">Nivel 2- Nivel 1</option>";
+							?>
+						</select>
+			    </div>
+
+					<div class="form-group col-md-4">
+			      <label>Autorizado</label>
+						<select id='autoriza' name='autoriza' class='form-control'>
+							<?php
+								echo "<option value=1 "; if ($autoriza==1) echo " selected"; echo ">Nivel 1- Administrador</option>";
+								echo "<option value=2 "; if ($autoriza==2) echo " selected"; echo ">Nivel 2- Nivel 1</option>";
+							?>
+						</select>
+			    </div>
+
 					<div class="form-group col-md-4">
 						<label>Contraseña</label>
 						<input type="password" class="form-control" id="pass" name='pass' placeholder="Contraseña" value="<?php echo $pass; ?>" autocomplete="new-text" readonly>
