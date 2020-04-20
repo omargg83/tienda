@@ -70,8 +70,8 @@
     <div class="container">
       <div class="row">
         <div class="col d-flex flex-row">
-          <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="img/telefono blanco.png" alt=""style="width: 30px;"></div>777 324 77324</div>
-          <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="img/email.png" alt="" style="width: 30px;"></div><a href="mailto:correo@gmail.com">correo@gmail.com</a></div>
+          <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="img/telefono blanco.png" alt=""style="width: 30px;"></div>771 702 8040</div>
+          <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="img/email.png" alt="" style="width: 30px;"></div><a href="mailto:Ventas-ticshop-Pachuca@hotmail.com">Ventas-ticshop-Pachuca@hotmail.com</a></div>
           <div class="top_bar_content ml-auto">
 
             <div class="top_bar_user">

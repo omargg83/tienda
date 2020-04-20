@@ -47,17 +47,17 @@
             <div class="logo"><a href="#"><img src='img/LOGO.png' width='100px'></a></div>
           </div>
           <div class="footer_title">¿Tiene alguna duda?</div>
-          <div class="footer_phone">+469448498458654</div>
+          <div class="footer_phone">771 702 8040</div>
           <div class="footer_contact_text">
 
           </div>
           <div class="footer_social">
             <ul>
-              <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-              <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+              <li><a href="https://www.facebook.com/TicShopPachuca/" target="_blank" ><i class="fab fa-facebook-f"></i></a></li>
+          <!--    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
               <li><a href="#"><i class="fab fa-youtube"></i></a></li>
               <li><a href="#"><i class="fab fa-google"></i></a></li>
-              <li><a href="#"><i class="fab fa-vimeo-v"></i></a></li>
+              <li><a href="#"><i class="fab fa-vimeo-v"></i></a></li> -->
             </ul>
           </div>
         </div>
