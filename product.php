@@ -82,9 +82,9 @@
 					<ul class="image_list">
 						<?php
 							$a="?id=".rand(1,1500);
-							echo "<li data-image='".$db->doc.$prod->img."$a'><img src='".$db->doc.$prod->img."$a' alt=''></li>";
+							echo "<li data-image='../".$db->doc.$prod->img."$a'><img src='../".$db->doc.$prod->img."$a' alt=''></li>";
 							foreach($imextra as $key){
-								echo "<li data-image='".$db->extra.$key->direccion."$a'><img src='".$db->extra.$key->direccion."$a' alt=''></li>";
+								echo "<li data-image='../".$db->extra.$key->direccion."$a'><img src='../".$db->extra.$key->direccion."$a' alt=''></li>";
 							}
 						?>
 					</ul>
