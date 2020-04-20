@@ -2,13 +2,14 @@
 	require_once("control_db.php");
 	$db = new Tienda();
 	$id=$_REQUEST['id'];
-	$prod = $db->producto_ver($id);
 
+	$prod = $db->producto_ver($id);
+	
+	$id=$prod->id;
 	$imextra=$db->producto_imagen($id);
 	$espe = $db->producto_espe($id);
 	$alma = $db->producto_exist($id,1);
 	$rel=$db->relacionados($prod->subcategoria);
-
 	$star=$db->estrellas($id);
 ?>
 

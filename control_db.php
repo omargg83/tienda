@@ -385,7 +385,7 @@
 		public function producto_ver($id){
 			try{
 				self::set_names();
-				$sql="select * from productos where id=:id";
+				$sql="select * from productos where clave=:id";
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(':id', "$id");
 				$sth->execute();
