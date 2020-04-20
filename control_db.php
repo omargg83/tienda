@@ -378,7 +378,6 @@
 							where producto_cat.idcategoria=$cat and productos.activo=1";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
-				echo $sql;
 				return $sth->fetchAll(PDO::FETCH_OBJ);
 			}
 			catch(PDOException $e){
@@ -406,7 +405,6 @@
 				$sql="select * from productos where categoria='$cat' and activo=1";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
-				echo $sql;
 				return $sth->fetchAll(PDO::FETCH_OBJ);
 			}
 			catch(PDOException $e){
@@ -432,16 +430,12 @@
 				$sql="select * from productos where subcategoria='$cat' and activo=1";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
-				echo $sql;
 				return $sth->fetchAll(PDO::FETCH_OBJ);
 			}
 			catch(PDOException $e){
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
-
-
-
 
 		public function cat_ct($id){															/////////////  HEADER
 			try{

@@ -9,7 +9,7 @@
 		$id=$_REQUEST['id'];
 		$rx=$db->categorias_name($id);
 		$nombre=$rx->descripcion;
-
+		
 		$resp=$db->cat_categoriatic($id);
 		$contar=count($resp);
 	}
@@ -36,9 +36,6 @@
 		$tipo=4;
 		$resp=$db->productos_general();
 	}
-	echo "<br>Tipo:".$tipo;
-	echo "<br>id:".$id;
-
 
 ?>
 <!DOCTYPE html>
@@ -90,28 +87,27 @@
 					<div class="shop_sidebar">
 
 						<?php
-							if($tipo==1 or $tipo==2){
-								if($tipo==1){
-									echo "<div class='sidebar_section'>
-										<div class='sidebar_title'>Categoria</div>
-										<ul class='sidebar_categories'>";
-										foreach($db->cat_ct($id_re) as $key2){
-											echo "<li><a href='/tienda.php?tipo=1&id=".$key2->id."&ncat=".$key2->categoria."'>".$key2->categoria."</a></li>";
-										}
-										echo "</ul>
-										</div>";
-								}
-								if($tipo==2){
-									echo "<div class='sidebar_section'>
-										<div class='sidebar_title'>Categoria</div>
-										<ul class='sidebar_categories'>";
-										 foreach($db->sub_cat($cat1) as $key3){
-											echo "<li><a href='/tienda.php?tipo=2&id=".$key3->id."&ncat=".$key3->subcategoria."'>".$key3->subcategoria."</a></li>";
-										}
-										echo "</ul>
-										</div>";
-								}
+							if($tipo==1){
+								echo "<div class='sidebar_section'>
+									<div class='sidebar_title'>Categoria</div>
+									<ul class='sidebar_categories'>";
+									foreach($db->cat_ct($id_re) as $key2){
+										echo "<li><a href='/tienda.php?tipo=1&id=".$key2->id."&ncat=".$key2->categoria."'>".$key2->categoria."</a></li>";
+									}
+									echo "</ul>
+									</div>";
 							}
+							if($tipo==2){
+								echo "<div class='sidebar_section'>
+									<div class='sidebar_title'>Categoria</div>
+									<ul class='sidebar_categories'>";
+									 foreach($db->sub_cat($cat1) as $key3){
+										echo "<li><a href='/tienda.php?tipo=2&id=".$key3->id."&ncat=".$key3->subcategoria."'>".$key3->subcategoria."</a></li>";
+									}
+									echo "</ul>
+									</div>";
+							}
+
 							if($tipo==4){
 									echo "<div class='sidebar_section'>
 									<div class='sidebar_title'>Categorias</div>
