@@ -499,7 +499,7 @@
 		public function n4_productos_marcas($marca){
 			try{
 				self::set_names();
-				$sql="select * from productos where activo=1 and activo=1 group by marca limit 100";
+				$sql="select * from productos where activo=1 group by marca limit 100";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
 				return $sth->fetchAll(PDO::FETCH_OBJ);
