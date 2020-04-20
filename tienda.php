@@ -33,6 +33,9 @@
 		$resp=$db->productos_general();
 	}
 
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,16 +45,16 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
-<link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
-<link rel="stylesheet" type="text/css" href="plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="/styles/bootstrap4/bootstrap.min.css">
+<link href="/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="/plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" type="text/css" href="/plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
 
-<link rel="stylesheet" type="text/css" href="styles/main_styles.css">
-<link rel="stylesheet" type="text/css" href="styles/shop_styles.css">
-<link rel="stylesheet" type="text/css" href="styles/shop_responsive.css">
+<link rel="stylesheet" type="text/css" href="/styles/main_styles.css">
+<link rel="stylesheet" type="text/css" href="/styles/shop_styles.css">
+<link rel="stylesheet" type="text/css" href="/styles/shop_responsive.css">
 </head>
 
 <body>
@@ -93,7 +96,7 @@
 										<div class='sidebar_title'>Categoria</div>
 										<ul class='sidebar_categories'>";
 										foreach($db->cat_ct($id_re) as $key2){
-											echo "<li><a href='shop.php?cat1=".$key2->id."&ncat=".$key2->categoria."'>".$key2->categoria."</a></li>";
+											echo "<li><a href='/tienda.php?cat1=".$key2->id."&ncat=".$key2->categoria."'>".$key2->categoria."</a></li>";
 										}
 										echo "</ul>
 										</div>";
@@ -103,7 +106,7 @@
 										<div class='sidebar_title'>Categoria</div>
 										<ul class='sidebar_categories'>";
 										 foreach($db->sub_cat($cat1) as $key3){
-											echo "<li><a href='shop.php?sub=".$key3->id."&ncat=".$key3->subcategoria."'>".$key3->subcategoria."</a></li>";
+											echo "<li><a href='/tienda.php?sub=".$key3->id."&ncat=".$key3->subcategoria."'>".$key3->subcategoria."</a></li>";
 										}
 										echo "</ul>
 										</div>";
@@ -114,7 +117,7 @@
 									<div class='sidebar_title'>Categorias</div>
 									<ul class='sidebar_categories'>";
 									 foreach($db->categorias() as $key){
-										echo "<li><a href='shop.php?cat=".$key->idcategoria."&ncat=".$key->descripcion."'>".$key->descripcion."</a></li>";
+										echo "<li><a href='/tienda.php?cat=".$key->idcategoria."&ncat=".$key->descripcion."'>".$key->descripcion."</a></li>";
 									}
 									echo "</ul>
 									</div>";
@@ -126,7 +129,7 @@
 							<ul class="brands_list">
 								<?php
 									foreach($db->productos_marcas($tipo) as $marca){
-										echo "<li class='brand'><a href='shop.php'>".$marca->marca."</a></li>";
+										echo "<li class='brand'><a href='/tienda.php'>".$marca->marca."</a></li>";
 									}
 								 ?>
 							</ul>
@@ -179,7 +182,7 @@
 									}
 									echo "<div class='product_item'>
 										<div class='product_border'></div>
-										<div class='product_image d-flex flex-column align-items-center justify-content-center'><img src='".$db->doc.$key->img."' alt='' width='100px'></div>
+										<div class='product_image d-flex flex-column align-items-center justify-content-center'><img src='/".$db->doc.$key->img."' alt='' width='100px'></div>
 										<div class='product_content'>
 											<div class='product_price'>".round($preciof,2)."</div>
 											<div class='product_name'><div><a href='#' tabindex='0'>".$key->nombre."</a></div></div>
@@ -221,25 +224,23 @@
 
 </div>
 
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="styles/bootstrap4/popper.js"></script>
-<script src="styles/bootstrap4/bootstrap.min.js"></script>
-<script src="plugins/greensock/TweenMax.min.js"></script>
-<script src="plugins/greensock/TimelineMax.min.js"></script>
-<script src="plugins/scrollmagic/ScrollMagic.min.js"></script>
-<script src="plugins/greensock/animation.gsap.min.js"></script>
-<script src="plugins/greensock/ScrollToPlugin.min.js"></script>
-<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
-<script src="plugins/easing/easing.js"></script>
-<script src="plugins/Isotope/isotope.pkgd.min.js"></script>
-<script src="plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
-<script src="plugins/parallax-js-master/parallax.min.js"></script>
-<script src="js/shop_custom.js"></script>
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/styles/bootstrap4/popper.js"></script>
+<script src="/styles/bootstrap4/bootstrap.min.js"></script>
+<script src="/plugins/greensock/TweenMax.min.js"></script>
+<script src="/plugins/greensock/TimelineMax.min.js"></script>
+<script src="/plugins/scrollmagic/ScrollMagic.min.js"></script>
+<script src="/plugins/greensock/animation.gsap.min.js"></script>
+<script src="/plugins/greensock/ScrollToPlugin.min.js"></script>
+<script src="/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+<script src="/plugins/easing/easing.js"></script>
+<script src="/plugins/Isotope/isotope.pkgd.min.js"></script>
+<script src="/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+<script src="/plugins/parallax-js-master/parallax.min.js"></script>
+<script src="/js/shop_custom.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
-<script src="sagyc.js"></script>
-
-
+<script src="/sagyc.js"></script>
 
 
 </body>
