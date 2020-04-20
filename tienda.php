@@ -7,8 +7,8 @@
 	if(isset($_REQUEST['tipo']) and $_REQUEST['tipo']==1){
 		$tipo=$_REQUEST['tipo'];
 		$id=$_REQUEST['id'];
-
-		$nombre=$db->categorias_name($id);
+		$rx=$db->categorias_name($id);
+		$nombre=$rx->descripcion;
 		$resp=$db->cat_categoriatic($id);
 
 		$contar=count($resp);
