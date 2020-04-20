@@ -18,14 +18,11 @@
         <a href='#a_reportes/index' title='Reportes'><i class='fas fa-chart-line'></i><span>Reportes</span></a>
         <hr>
         <?php
-          echo $_SESSION['nivel'];
-        /*
           if($_SESSION['nivel']==1){
-            echo "<a href='#a_pagina/index' title='Banners'><i class="far fa-file-image"></i><span>banners</span></a>";
+            echo "<a href='#a_pagina/index' title='Banners'><i class='far fa-file-image'></i><span>banners</span></a>";
             echo "<a href='#a_ajustes/index' title='Cupones'><i class='fas fa-tools'></i><span>Ajustes</span></a>";
             echo "<a href='#a_usuarios/index' title='Usuarios'><i class='fas fa-users'></i> <span>Usuarios</span></a>";
           }
-          */
         ?>
       </div>
     </div>
