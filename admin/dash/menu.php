@@ -18,6 +18,7 @@
         <a href='#a_reportes/index' title='Reportes'><i class='fas fa-chart-line'></i><span>Reportes</span></a>
         <hr>
         <?php
+          echo $_SESSION['nivel'];
         /*
           if($_SESSION['nivel']==1){
             echo "<a href='#a_pagina/index' title='Banners'><i class="far fa-file-image"></i><span>banners</span></a>";
