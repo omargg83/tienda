@@ -29,7 +29,7 @@
 		$rx=$db->sub_categoria_name($id);
 		$nombre=$rx->heredado;
 
-		$resp=$db->sub_categoria($rx->sub_categoria);
+		$resp=$db->sub_categoria($rx->subcategoria);
 		$contar=count($resp);
 	}
 	else{
