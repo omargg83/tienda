@@ -102,7 +102,7 @@
         <!-- Logo -->
         <div class="col-lg-2 col-sm-3 col-3 order-1">
           <div class="logo_container">
-            <div class="logo"><a href="index.php"><img src='img/logo-ticshop.png' width='100px'></a></div>
+            <div class="logo"><a href="/"><img src='/img/logo-ticshop.png' width='100px'></a></div>
           </div>
         </div>
 
@@ -113,7 +113,7 @@
               <div class="header_search_form_container">
 
                   <input type="search" required="required" class="header_search_input" id='bucar_text' name='bucar_text' onkeyup='Javascript: if (event.keyCode==13) buscar_prod()' placeholder="Buscar productos...">
-                  <button type="button" class="header_search_button trans_300" onclick="buscar_prod()"><img src="images/search.png" alt=""></button>
+                  <button type="button" class="header_search_button trans_300" onclick="buscar_prod()"><img src="/images/search.png" alt=""></button>
                   <div class="custom_dropdown" style="display: none;">
                     <div class="custom_dropdown_list">
                       <span class="custom_dropdown_placeholder"></span>
@@ -131,9 +131,9 @@
         <div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
           <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
             <div class="wishlist d-flex flex-row align-items-center justify-content-end">
-              <div class="wishlist_icon"><img src="images/heart.png" alt=""></div>
+              <div class="wishlist_icon"><img src="/images/heart.png" alt=""></div>
               <div class="wishlist_content">
-                <div class="wishlist_text"><a href="wish.php">Deseos</a></div>
+                <div class="wishlist_text"><a href="/wish.php">Deseos</a></div>
                 <div class="wishlist_count" id='wish_count'><?php echo $contar_wish; ?></div>
               </div>
             </div>
@@ -142,12 +142,12 @@
             <div class="cart" ><a href="cart.php">
               <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                 <div class="cart_icon">
-                  <img src="images/cart.png" alt="">
+                  <img src="/images/cart.png" alt="">
                   <div class="cart_count"><span><?php echo $contar; ?></span></div>
                 </div>
                 <div class="cart_content">
-                  <div class="cart_text"><a href="cart.php">Carrito</a></div>
-                  <div class="cart_price"><a href="cart.php"><?php echo moneda($sumar); ?></a></div>
+                  <div class="cart_text"><a href="/cart.php">Carrito</a></div>
+                  <div class="cart_price"><a href="/cart.php"><?php echo moneda($sumar); ?></a></div>
                 </div>
               </div>
             </a>
@@ -204,10 +204,10 @@
 
             <div class="main_nav_menu ml-auto">
               <ul class="standard_dropdown main_nav_dropdown">
-                <li><a href="index.php">Inicio<i class="fas fa-chevron-down"></i></a></li>
-                <li><a href="nosotros.php">Nosotros<i class="fas fa-chevron-down"></i></a></li>
-                <li><a href="shop.php">Tienda<i class="fas fa-chevron-down"></i></a></li>
-                <li><a href="contact.php">Contacto<i class="fas fa-chevron-down"></i></a></li>
+                <li><a href="/index.php">Inicio<i class="fas fa-chevron-down"></i></a></li>
+                <li><a href="/nosotros.php">Nosotros<i class="fas fa-chevron-down"></i></a></li>
+                <li><a href="/shop.php">Tienda<i class="fas fa-chevron-down"></i></a></li>
+                <li><a href="/contact.php">Contacto<i class="fas fa-chevron-down"></i></a></li>
               </ul>
             </div>
 
