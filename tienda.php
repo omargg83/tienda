@@ -100,8 +100,9 @@
 
 	$sth = $db->dbh->prepare($sql);
 	$sth->execute();
-	$encontrados=$str->rowCount();
+
 	$resp=$sth->fetchAll(PDO::FETCH_OBJ);
+	$encontrados=$resp->total;
 	/////////////////////////////////////////////
 ?>
 <!DOCTYPE html>
