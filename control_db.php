@@ -1417,7 +1417,8 @@
 			$texto.="<br>Observaciones: $comentario";
 
 			$asunto="Cotización de Mayoreo";
-			return $this->correo($correo, $texto, $asunto);
+			return "gola mundo";
+			//return $this->correo($correo, $texto, $asunto);
 		}
 
 		public function correo($correo, $texto,$asunto){
