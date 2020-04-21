@@ -128,7 +128,7 @@
 	left outer join categoria_ct on productos.categoria=categoria_ct.categoria
 	left outer join producto_cat on categoria_ct.id=producto_cat.idcategoria_ct
 	where productos.activo=1 and productos.existencia>0 $consulta $filtro $forden $qprecio limit $tam,".$_SESSION['pag']."";
-
+	echo $sql;
 	$sth = $db->dbh->prepare($sql);
 	$sth->execute();
 
