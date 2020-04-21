@@ -16,9 +16,9 @@
 	$rfc=$ped->rfc;
 	$cfdi=$ped->cfdi;
 	$direccion1=$ped->direccion1;
-	$entrecalles=$resp->entrecalles;
-	$numero=$resp->numero;
-	$colonia=$resp->colonia;
+	$entrecalles=$ped->entrecalles;
+	$numero=$ped->numero;
+	$colonia=$ped->colonia;
 	$ciudad=$ped->ciudad;
 	$cp=$ped->cp;
 	$pais=$ped->pais;
