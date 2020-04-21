@@ -73,7 +73,7 @@ function borra_carrito(id){
       "id":id,
       "function":"borra_carrito"
     },
-    url:   'control_db.php',
+    url:   '/control_db.php',
     type:  'post',
     timeout:3000,
     beforeSend: function () {
@@ -633,13 +633,14 @@ $(document).on('submit','#carrito_form',function(e){
       "cantidad":cantidad,
       "function":"carrito"
     },
-    url:   'control_db.php',
+    url:   '/control_db.php',
     type:  'post',
     timeout:3000,
     beforeSend: function () {
 
     },
     success:  function (response) {
+      console.log(reponse);
       var datos = JSON.parse(response);
       if (datos.error==0){
         window.location.href="/cart.php";
