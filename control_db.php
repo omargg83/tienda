@@ -380,6 +380,7 @@
 					$sql.=" and productos.marca='$marca'";
 				}
 				$sth = $this->dbh->prepare($sql);
+				$sth->execute();
 				$resp=$sth->fetch(PDO::FETCH_OBJ);
 				echo "Total:".$resp->total;
 
