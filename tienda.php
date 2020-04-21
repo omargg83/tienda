@@ -248,11 +248,11 @@
 							<nav aria-label="Page navigation example">
 							  <ul class="pagination">
 									<?php
-										echo "<li class='page-item'><a class='page-link' href='tienda.php?tipo=$tipo&id=$id&pag=0&marca=$marcaf'>Primera</a></li>";
+										echo "<li class='page-item'><a class='page-link' href='tienda.php?tipo=$tipo&id=$id&pag=0&marcaf=$marcaf'>Primera</a></li>";
 										for($i=1; $i<$num_paginas;$i++){
-											echo "<li class='page-item'><a class='page-link' href='tienda.php?tipo=$tipo&id=$id&pag=$i&marca=$marcaf'>$i</a></li>";
+											echo "<li class='page-item'><a class='page-link' href='tienda.php?tipo=$tipo&id=$id&pag=$i&marcaf=$marcaf'>$i</a></li>";
 										}
-										echo "<li class='page-item'><a class='page-link' href='tienda.php?tipo=$tipo&id=$id&pag=$num_paginas&marca=$marcaf'>Ultima</a></li>";
+										echo "<li class='page-item'><a class='page-link' href='tienda.php?tipo=$tipo&id=$id&pag=$num_paginas&marcaf=$marcaf'>Ultima</a></li>";
 									?>
 							  </ul>
 							</nav>
