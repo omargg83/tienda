@@ -1,4 +1,6 @@
 <?php
+  echo "entrar";
+/*
 		require_once("control_db.php");
 		$db = new Tienda();
 
@@ -12,5 +14,5 @@
     echo "<pre>";
       echo var_dump($resp);
     echo "</pre>";
-
+*/
 ?>
