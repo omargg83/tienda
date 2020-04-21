@@ -6,6 +6,7 @@
 	$tipo=0;
 
 	$marca_f="";
+	$_SESSION['pag']=20;
 
 	if(isset($_REQUEST['marca']) and strlen($_REQUEST['marca'])>0){
 		$marca_f=$_REQUEST['marca'];
@@ -195,7 +196,7 @@
 										<div class='product_border'></div>
 										<div class='product_image d-flex flex-column align-items-center justify-content-center'><img src='/".$db->doc.$key->img.$a."' alt='' width='100px'></div>
 										<div class='product_content'>
-											<div class='product_price'>".round($preciof,2)."</div>
+											<div class='product_price'>".moneda($preciof)."</div>
 											<div class='product_name'><div><a href='#' tabindex='0'>".$key->nombre."</a></div></div>
 										</div>
 										<div class='product_fav' onclick='wish(".$key->id.")'><i class='fas fa-heart'></i></div>
