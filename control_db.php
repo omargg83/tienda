@@ -1424,22 +1424,6 @@
 			/////////////////////////////////////////////Correo
 			require 'vendor/autoload.php';
 			$mail = new PHPMailer;
-			/*
-			$mail->isSMTP();
-			$mail->Host = 'localhost';
-			$mail->SMTPAuth = false;
-			$mail->SMTPAutoTLS = false;
-			$mail->Port = 25;
-			*/
-			/*
-			$email->isSMTP();
-			$email->SMTPDebug = 1;
-			$email->SMTPAuth = true;
-			$email->SMTPSecure = 'tls';
-			$email->Host = "mail.tic-shop.com.mx";
-			$email->Port = 465;
-			//	  $mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
-			*/
 
 				$mail->IsSMTP(); // enable SMTP
 			  $mail->SMTPAuth = true; // authentication enabled
@@ -1450,7 +1434,9 @@
 
 				$mail->Username = $this->ecorreo;
 				$mail->Password = $this->Password;
-				$mail->setFrom("admin@tic-shop.com.mx", 'TIC-SHOP');
+				$mail->From = $this->ecorreo;
+				$mail->FromName = 'TIC-SHOP';
+				$mail->CharSet = 'UTF-8';
 
 /*
 			$mail->IsSMTP(); // enable SMTP
