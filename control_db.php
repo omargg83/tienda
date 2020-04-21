@@ -369,28 +369,30 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
+
 		public function cat_categoriatic($cat,$marca){										//////////nivel 1
 			try{
 				self::set_names();
-				$sql="select count(productos.id) as total from producto_cat
-				left outer join categoria_ct on categoria_ct.id=producto_cat.idcategoria_ct
-				left outer join productos on productos.categoria=categoria_ct.categoria
-				where producto_cat.idcategoria=$cat and productos.activo=1";
+				$filtro="";
+
 				if(strlen($marca)>0){
-					$sql.=" and productos.marca='$marca'";
+					$filtro=" and productos.marca='$marca'";
 				}
+
+				$sql="select count(productos.id) as total from productos
+				left outer join categoria_ct on productos.categoria=categoria_ct.categoria
+				left outer join producto_cat on categoria_ct.id=producto_cat.idcategoria_ct
+				where productos.activo=1 and productos.existencia>0 and producto_cat.idcategoria='$cat' $filtro";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
 				$resp=$sth->fetch(PDO::FETCH_OBJ);
 				echo "Total:".$resp->total;
 
-				$sql="select productos.* from producto_cat
-				left outer join categoria_ct on categoria_ct.id=producto_cat.idcategoria_ct
-				left outer join productos on productos.categoria=categoria_ct.categoria
-				where producto_cat.idcategoria=$cat and productos.activo=1";
-				if(strlen($marca)>0){
-					$sql.=" and productos.marca='$marca'";
-				}
+				$sql="select * from productos
+				left outer join categoria_ct on productos.categoria=categoria_ct.categoria
+				left outer join producto_cat on categoria_ct.id=producto_cat.idcategoria_ct
+				where productos.activo=1 and productos.existencia>0 and producto_cat.idcategoria='$cat' $filtro";
+
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
 				return $sth->fetchAll(PDO::FETCH_OBJ);
