@@ -1425,60 +1425,55 @@
 			require 'vendor/autoload.php';
 			$mail = new PHPMailer;
 
-				$mail->IsSMTP(); // enable SMTP
-				/*
-			  $mail->SMTPAuth = true; // authentication enabled
-			  $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
-			  $mail->Host = "mail.tic-shop.com.mx";
-			  $mail->Port = 465; // or 587
-			  $mail->IsHTML(true);
+			$mail->isSMTP();
+			$mail->Host = 'localhost';
+			$mail->SMTPAuth = false;
+			$mail->SMTPAutoTLS = false;
+			$mail->Port = 25;
 
-				$mail->Username = $this->ecorreo;
-				$mail->Password = $this->Password;
-				$mail->From = $this->ecorreo;
-				$mail->FromName = 'TIC-SHOP';
-				*/
-				$mail->CharSet = 'UTF-8';
+			$mail->IsHTML(true);
 
-				$mail->Body    = $asunto;
-				$mail->Subject = $asunto;
-				$mail->AltBody = $asunto;
+			$mail->Username = $this->ecorreo;
+			$mail->Password = $this->Password;
+			$mail->From = $this->ecorreo;
+			$mail->FromName = 'TIC-SHOP';
 
-				$mail->Host = "tls://smtp.gmail.com:587";						  // Specify main and backup SMTP servers
-				$mail->SMTPOptions = array(
-				   'ssl' => array(
-				     'verify_peer' => false,
-				     'verify_peer_name' => false,
-				     'allow_self_signed' => true
-				    )
-				);
-				$mail->SMTPAuth = true;                               // Enable SMTP authentication
-				$mail->Username = "sistema.subsaludpublicahgo@gmail.com";       // SMTP username
-				$mail->Password = "TEUFEL123";                       // SMTP password
-				$mail->SMTPSecure = "ssl";                            // Enable TLS encryption, `ssl` also accepted
-				$mail->Port = 465;                                    // TCP port to connect to
-				$mail->CharSet = 'UTF-8';
-				$mail->From = "sistema.subsaludpublicahgo@gmail.com";
-				$mail->FromName = "Sistema Administrativo de Salud Pública";
-/*
+			/*
 			$mail->IsSMTP(); // enable SMTP
-			$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-			$mail->Host = "tls://smtp.gmail.com:587";
-			$mail->SMTPOptions = array(
-			   'ssl' => array(
-			     'verify_peer' => false,
-			     'verify_peer_name' => false,
-			     'allow_self_signed' => true
-			    )
-			);
 			$mail->SMTPAuth = true; // authentication enabled
-			$mail->Username = "sistema.subsaludpublicahgo@gmail.com";       // SMTP username
-			$mail->Password = "TEUFEL123";                       // SMTP password                                // TCP port to connect to
+			$mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
 
+			$mail->Host = "mail.tic-shop.com.mx";
+			$mail->Port = 465; // or 587
+			$mail->IsHTML(true);
+
+			$mail->Username = $this->ecorreo;
+			$mail->Password = $this->Password;
+			$mail->From = $this->ecorreo;
+			$mail->FromName = 'TIC-SHOP';
+			*/
+
+			/*
+			$mail->CharSet = 'UTF-8';
+
+			$mail->Body    = $asunto;
+			$mail->Subject = $asunto;
+			$mail->AltBody = $asunto;
+
+			$mail->Host = "smtp.gmail.com";						  // Specify main and backup SMTP servers
+			$mail->SMTPAuth = true;                               // Enable SMTP authentication
+			$mail->Username = "sistema.subsaludpublicahgo@gmail.com";       // SMTP username
+			$mail->Password = "TEUFEL123";                       // SMTP password
+			$mail->SMTPSecure = "ssl";                            // Enable TLS encryption, `ssl` also accepted
+			$mail->Port = 465;                                    // TCP port to connect to
+			$mail->CharSet = 'UTF-8';
 			$mail->From = "sistema.subsaludpublicahgo@gmail.com";
 			$mail->FromName = "Sistema Administrativo de Salud Pública";
+			*/
 
-*/
+
+
+
 
 
 			$mail->IsHTML(true);
