@@ -476,7 +476,7 @@
 					$consulta="and producto_cat.idcategoria='$cat'";
 				}
 				if($tipo==2){
-					$consulta="and categoria='$cat'";
+					$consulta="and productos.categoria='$cat'";
 				}
 
 				$sql="select count(productos.id) as total from productos
