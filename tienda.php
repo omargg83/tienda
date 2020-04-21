@@ -89,8 +89,13 @@
 	where productos.activo=1 and productos.existencia>0 $consulta $filtro";
 	$sth = $db->dbh->prepare($sql);
 	$sth->execute();
-	$resp=$sth->fetch(PDO::FETCH_OBJ);
-	echo $sql;
+	$precio=$sth->fetch(PDO::FETCH_OBJ);
+
+	echo "<br>Maximo:".$precio->maximo;
+
+	$maxp=$key->preciof+(($precio->maximo*$db->cgeneral)/100);
+	echo "<br>Maximo:".$maxp;
+
 
 
 	$sql="select count(productos.id) as total from productos
@@ -206,7 +211,7 @@
 							<div class="filter_price">
 								<div id="slider-range" class="slider_range"></div>
 								<p>Rango: </p>
-								<p><input type="text" id="amount" readonly style="border:0; font-weight:bold;"></p>
+								<p><input type="text" id="amount" readonly style="border:0; font-weight:bold;" value='<?php echo $maxp; ?>'></p>
 							</div>
 						</div>
 
@@ -353,7 +358,7 @@
 <script type="text/javascript">
 
 	$(function(){
-		initPriceSlider();
+		//initPriceSlider();
 	});
 
 	function initPriceSlider() {
