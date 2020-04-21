@@ -490,51 +490,6 @@
 			}
 		}
 
-
-		public function cat_categoriatic($cat,$marca,$tipo){										//////////nivel 1
-			try{
-				self::set_names();
-				$filtro="";
-				$consulta="";
-				if(strlen($marca)>0){
-					$filtro=" and productos.marca='$marca'";
-				}
-				if($tipo==1){
-					$consulta="and producto_cat.idcategoria='$cat'";
-				}
-				if($tipo==2){
-					$consulta="and productos.categoria='$cat'";
-				}
-				if($tipo==3){
-					$consulta="and productos.subcategoria='$cat'";
-				}
-				if($tipo==4 or $tipo==0){
-					$consulta="";
-				}
-
-				$sql="select count(productos.id) as total from productos
-				left outer join categoria_ct on productos.categoria=categoria_ct.categoria
-				left outer join producto_cat on categoria_ct.id=producto_cat.idcategoria_ct
-				where productos.activo=1 and productos.existencia>0 $consulta $filtro";
-				$sth = $this->dbh->prepare($sql);
-				$sth->execute();
-				$resp=$sth->fetch(PDO::FETCH_OBJ);
-				echo "Total:".$resp->total;
-
-				$sql="select * from productos
-				left outer join categoria_ct on productos.categoria=categoria_ct.categoria
-				left outer join producto_cat on categoria_ct.id=producto_cat.idcategoria_ct
-				where productos.activo=1 and productos.existencia>0 $consulta $filtro";
-
-				$sth = $this->dbh->prepare($sql);
-				$sth->execute();
-				return $sth->fetchAll(PDO::FETCH_OBJ);
-			}
-			catch(PDOException $e){
-				return "Database access FAILED!".$e->getMessage();
-			}
-		}
-
 		public function producto_ver($id){
 			try{
 				self::set_names();

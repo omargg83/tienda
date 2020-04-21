@@ -8,6 +8,10 @@
 	$marca_f="";
 	$_SESSION['pag']=20;
 
+	$pag=0;
+	if(isset($_REQUEST['pag'])){
+		$pag=$_REQUEST['pag'];
+	}
 	if(isset($_REQUEST['marca']) and strlen($_REQUEST['marca'])>0){
 		$marca_f=$_REQUEST['marca'];
 	}
@@ -18,12 +22,9 @@
 	if(isset($_REQUEST['tipo']) and $_REQUEST['tipo']==1){
 		$tipo=$_REQUEST['tipo'];
 		$id=$_REQUEST['id'];
-
 		$rx=$db->categorias_name($id);
 		$nombre=$rx->descripcion;
 		$cat=$id;
-		//$resp=$db->cat_categoriatic($id, $marca_f, $tipo);
-
 		$marca=$db->n1_productos_marcas($id,$marca_f);
 	}
 	else if(isset($_REQUEST['tipo']) and $_REQUEST['tipo']==2){
@@ -32,8 +33,6 @@
 		$rx=$db->cat_categoria_name($id);
 		$nombre=$rx->heredado;
 		$cat=$rx->categoria;
-		//$resp=$db->cat_categoriatic($rx->categoria, $marca_f, $tipo);
-
 		$marca=$db->n2_productos_marcas($rx->categoria,$marca_f);
 	}
 	else if(isset($_REQUEST['tipo']) and $_REQUEST['tipo']==3){
@@ -42,15 +41,12 @@
 		$rx=$db->sub_categoria_name($id);
 		$nombre=$rx->heredado;
 		$cat=$rx->subcategoria;
-		//$resp=$db->cat_categoriatic($rx->subcategoria, $marca_f, $tipo);
-
 		$marca=$db->n3_productos_marcas($rx->subcategoria,$marca_f);
 	}
 	else{
 		$tipo=4;
 		$id=0;
 		$cat="";
-		//$resp=$db->cat_categoriatic("", $marca_f, $tipo);
 
 		$marca=$db->n4_productos_marcas($marca_f);
 	}
@@ -83,11 +79,13 @@
 	$resp=$sth->fetch(PDO::FETCH_OBJ);
 	echo "Total:".$resp->total;
 
+	$tam=($pag*$_SESSION['pag']);
 	$sql="select * from productos
 	left outer join categoria_ct on productos.categoria=categoria_ct.categoria
 	left outer join producto_cat on categoria_ct.id=producto_cat.idcategoria_ct
-	where productos.activo=1 and productos.existencia>0 $consulta $filtro";
+	where productos.activo=1 and productos.existencia>0 $consulta $filtro limit $tam, $_SESSION['pag']";
 
+	//echo $sql;
 	$sth = $db->dbh->prepare($sql);
 	$sth->execute();
 	$resp=$sth->fetchAll(PDO::FETCH_OBJ);
