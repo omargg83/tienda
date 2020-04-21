@@ -478,6 +478,9 @@
 				if($tipo==2){
 					$consulta="and productos.categoria='$cat'";
 				}
+				if($tipo==3){
+					$consulta="and productos.subcategoria='$cat'";
+				}
 
 				$sql="select count(productos.id) as total from productos
 				left outer join categoria_ct on productos.categoria=categoria_ct.categoria
@@ -519,38 +522,8 @@
 		}
 
 
-		public function cat_categoria($cat,$marca){
-			try{
-				self::set_names();
-				$sql="select * from productos where categoria='$cat'";
-				if(strlen($marca)>0){
-					$sql.=" and productos.marca='$marca'";
-				}
-				$sql.=" and activo=1";
-				$sth = $this->dbh->prepare($sql);
-				$sth->execute();
-				return $sth->fetchAll(PDO::FETCH_OBJ);
-			}
-			catch(PDOException $e){
-				return "Database access FAILED!".$e->getMessage();
-			}
-		}
-		public function sub_categoria($cat,$marca){
-			try{
-				self::set_names();
-				$sql="select * from productos where subcategoria='$cat'";
-				if(strlen($marca)>0){
-					$sql.=" and productos.marca='$marca'";
-				}
-				$sql.=" and activo=1";
-				$sth = $this->dbh->prepare($sql);
-				$sth->execute();
-				return $sth->fetchAll(PDO::FETCH_OBJ);
-			}
-			catch(PDOException $e){
-				return "Database access FAILED!".$e->getMessage();
-			}
-		}
+
+
 
 		public function cat_ct($id){															/////////////  HEADER
 			try{

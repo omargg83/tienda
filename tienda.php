@@ -32,14 +32,9 @@
 		$rx=$db->cat_categoria_name($id);
 		$nombre=$rx->heredado;
 
-		//$resp=$db->cat_categoria($rx->categoria,$marca_f);
-		//$contar=count($resp);
-
 		$resp=$db->cat_categoriatic($rx->categoria, $marca_f, $tipo);
 		$contar=count($resp);
 
-
-		echo $contar;
 		$marca=$db->n2_productos_marcas($rx->categoria,$marca_f);
 	}
 	else if(isset($_REQUEST['tipo']) and $_REQUEST['tipo']==3){
@@ -48,7 +43,7 @@
 		$rx=$db->sub_categoria_name($id);
 		$nombre=$rx->heredado;
 
-		$resp=$db->sub_categoria($rx->subcategoria,$marca_f);
+		$resp=$db->cat_categoriatic($rx->subcategoria, $marca_f, $tipo);
 		$contar=count($resp);
 		echo $contar;
 		$marca=$db->n3_productos_marcas($rx->subcategoria,$marca_f);
