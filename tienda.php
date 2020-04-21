@@ -385,6 +385,8 @@
 
 	function initPriceSlider() {
 		if($("#slider-range").length){
+			var pmin=$( "#pmin" ).val();
+			var pmax=$( "#pmax" ).val();
 			var maxprecio=$( "#amount" ).val();
 			var tipo=$( "#tipo" ).val();
 			var idpas=$( "#idpas" ).val();
@@ -398,7 +400,7 @@
 	          range: true,
 	          min: 0,
 	          max: maxprecio,
-	          values: [ 0, maxprecio ],
+	          values: [ pmin, pmax ],
 	          slide: function( event, ui ) {
 	            $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
 	          },
