@@ -1548,8 +1548,8 @@
 	    curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
 	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Content-Length: ' . strlen($json), 'x-auth: ' . $token));
-	    curl_setopt($ch, CURLOPT_TIMEOUT, 200);
-	    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 200);
+	    curl_setopt($ch, CURLOPT_TIMEOUT, 20);
+	    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 20);
 	    $result = curl_exec($ch);
 
 	    echo curl_error($ch);

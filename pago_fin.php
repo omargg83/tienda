@@ -71,14 +71,6 @@
 			$tok=$resp->token;
 			echo $tok;
 
-			echo "<hr>";
-
-			$resp =servicioApi('GET','pedido/detalle/W01-121248',NULL,$tok);
-			echo "<pre>";
-				echo var_dump($resp);
-			echo "</pre>";
-			echo "<hr>";
-
 			$envio=array(
 				'nombre' => $nombre. " ".$apellido,
 				'direccion' => $direccion1,
@@ -104,17 +96,17 @@
 				}
 			}
 
-			$resp=array(
+			$arreglo=array(
 				'idPedido' => (int)$idpedido,
 				'almacen' => "32A",
 				'tipoPago' => "03",
 				'envio' => $envio,
 				'producto' => $producto,
 			);
-			$json = json_encode($resp);
+			$json = json_encode($arreglo);
 
 			echo "<pre>";
-				echo var_dump($json);
+				echo print_r($json);
 			echo "</pre>";
 
 			$resp =servicioApi('POST','pedido',$json,$tok);
