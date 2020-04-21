@@ -97,9 +97,10 @@
 	left outer join categoria_ct on productos.categoria=categoria_ct.categoria
 	left outer join producto_cat on categoria_ct.id=producto_cat.idcategoria_ct
 	where productos.activo=1 and productos.existencia>0 $consulta $filtro $forden limit $tam,".$_SESSION['pag']."";
-	echo $sql;
+
 	$sth = $db->dbh->prepare($sql);
 	$sth->execute();
+	$encontrados=$str->rowCount();
 	$resp=$sth->fetchAll(PDO::FETCH_OBJ);
 	/////////////////////////////////////////////
 ?>
@@ -148,26 +149,6 @@
 	<div class="shop">
 		<div class="container">
 
-			<nav aria-label="breadcrumb">
-			  <ol class="breadcrumb">
-					<?php
-						echo "<li class='breadcrumb-item'><a href='/tienda.php'>Tienda</a></li>";
-
-						if($tipo>=1){
-							echo "<li class='breadcrumb-item'><a href='/tienda.php?tipo=1&id=$id'>$nombre</a></li>";
-						}
-
-						if($tipo>=2){
-							echo "<li class='breadcrumb-item'><a href='/tienda.php?tipo=2&id=$id'>$nombre</a></li>";
-						}
-
-						if($tipo>=3){
-							echo "<li class='breadcrumb-item'><a href='/tienda.php?tipo=3&id=$id'>$nombre</a></li>";
-						}
-					?>
-			  </ol>
-			</nav>
-
 			<div class="row">
 				<div class="col-lg-3">
 
@@ -208,6 +189,16 @@
 							}
 						?>
 
+						<div class="sidebar_section filter_by_section">
+							<div class="sidebar_title">Filter By</div>
+							<div class="sidebar_subtitle">Price</div>
+							<div class="filter_price">
+								<div id="slider-range" class="slider_range"></div>
+								<p>Range: </p>
+								<p><input type="text" id="amount" class="amount" readonly style="border:0; font-weight:bold;"></p>
+							</div>
+						</div>
+
 						<div class="sidebar_section">
 							<div class="sidebar_subtitle brands_subtitle">Marcas</div>
 							<ul class="brands_list">
@@ -232,7 +223,7 @@
 					<!-- Shop Content -->
 					<div class="shop_content">
 						<div class="shop_bar clearfix">
-							<div class="shop_product_count">Productos encontrados</div>
+							<div class="shop_product_count"><?php  echo $encontrados; ?>Productos encontrados</div>
 							<div class="shop_sorting">
 								<span>Ordernar por:</span>
 								<ul>
