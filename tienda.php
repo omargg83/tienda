@@ -341,7 +341,9 @@
 
 <script type="text/javascript">
 
-
+$(function(){
+		initPriceSlider();
+	});
 
 	function initPriceSlider() {
 		if($("#slider-range").length){
