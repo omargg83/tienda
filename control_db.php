@@ -1424,7 +1424,7 @@
 			/////////////////////////////////////////////Correo
 			require 'vendor/autoload.php';
 			$mail = new PHPMailer;
-
+/*
 			$mail->isSMTP();
 			$mail->Host = 'localhost';
 			$mail->SMTPAuth = false;
@@ -1443,7 +1443,7 @@
 			$mail->Body    = $asunto;
 			$mail->Subject = $asunto;
 			$mail->AltBody = $asunto;
-
+*/
 			/*
 			$mail->IsSMTP(); // enable SMTP
 			$mail->SMTPAuth = true; // authentication enabled
@@ -1457,9 +1457,9 @@
 			$mail->Password = $this->Password;
 			$mail->From = $this->ecorreo;
 			$mail->FromName = 'TIC-SHOP';
-			*/
+*/
 
-			/*
+
 			$mail->CharSet = 'UTF-8';
 
 			$mail->Body    = $asunto;
@@ -1475,11 +1475,7 @@
 			$mail->CharSet = 'UTF-8';
 			$mail->From = "sistema.subsaludpublicahgo@gmail.com";
 			$mail->FromName = "Sistema Administrativo de Salud Pública";
-			*/
-
-
-
-
+			
 
 
 			$mail->IsHTML(true);
