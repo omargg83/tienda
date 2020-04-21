@@ -72,7 +72,9 @@
 			echo $tok;
 
 			$envio=array();
-			$envio+=array(
+			$contar=0;
+
+			$envio[0]=array(
 				'nombre' => $nombre. " ".$apellido,
 				'direccion' => $direccion1,
 				'entreCalles' => $entrecalles,
@@ -85,16 +87,17 @@
 			);
 
 			$ct_producto=0;
-			$producto=array();
+			$contar=0;
 			foreach($datos as $key){
 				if($key->tipo=="CT"){
 					$ct_producto++;
-					$producto+=array(
+					$producto[$contar]=array(
 						'cantidad' => (int)$key->cantidad,
 						'clave' => $key->clave,
 						'precio' => (int)$key->precio,
 						'moneda' => "MXN"
 					);
+					$contar++;
 				}
 			}
 
