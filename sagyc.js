@@ -88,18 +88,16 @@ function borra_carrito(id){
   });
 }
 function wish(id){
-  console.log(id);
   $.ajax({
     data:  {
       "ctrl":"control",
       "id":id,
       "function":"wish"
     },
-    url:   'control_db.php',
+    url:   '/control_db.php',
     type:  'post',
     timeout:3000,
     success:  function (response) {
-      console.log(response);
       $("#wish_count").html(response);
     }
   });
