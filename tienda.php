@@ -232,8 +232,8 @@
 										<span class="sorting_text">-<i class="fas fa-chevron-down"></span></i>
 										<ul>
 											<?php
-												echo "<li><a href='/tienda.php?tipo=$tipo&id=$id&pag=$i&marcaf=$marcaf&ord=nombre'>Nombre</a></li>";
-												echo "<li><a href='/tienda.php?tipo=$tipo&id=$id&pag=$i&marcaf=$marcaf&ord=precio'>Precio</a></li>";
+												echo "<li><a href='/tienda.php?tipo=$tipo&id=$id&pag=0&marcaf=$marcaf&ord=nombre'>Nombre</a></li>";
+												echo "<li><a href='/tienda.php?tipo=$tipo&id=$id&pag=0&marcaf=$marcaf&ord=precio'>Precio</a></li>";
 											?>
 										</ul>
 									</li>
