@@ -175,6 +175,7 @@
 							<div class="product_grid_border"></div>
 							<!-- Product Item -->
 							<?php
+								$a="?id=".rand(1,1500);
 								foreach($resp as $key){
 									if($key->precio_tipo==0){
 										$preciof=$key->preciof;
@@ -192,7 +193,7 @@
 									}
 									echo "<a href='/producto/".$key->clave."'><div class='product_item'>
 										<div class='product_border'></div>
-										<div class='product_image d-flex flex-column align-items-center justify-content-center'><img src='/".$db->doc.$key->img."' alt='' width='100px'></div>
+										<div class='product_image d-flex flex-column align-items-center justify-content-center'><img src='/".$db->doc.$key->img.$a."' alt='' width='100px'></div>
 										<div class='product_content'>
 											<div class='product_price'>".round($preciof,2)."</div>
 											<div class='product_name'><div><a href='#' tabindex='0'>".$key->nombre."</a></div></div>
