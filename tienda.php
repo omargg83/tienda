@@ -14,6 +14,17 @@
 	if(isset($_REQUEST['pag'])){
 		$pag=$_REQUEST['pag'];
 	}
+
+	$pmin=0;
+	if(isset($_REQUEST['pmin'])){
+		$pmin=$_REQUEST['pmin'];
+	}
+
+	$pmax=0;
+	if(isset($_REQUEST['pmax'])){
+		$pmax=$_REQUEST['pmax'];
+	}
+
 	if(isset($_REQUEST['ord'])){
 		$orden=$_REQUEST['ord'];
 		if($orden=="nombre"){
@@ -29,8 +40,6 @@
 	else{
 		$marcaf="";
 	}
-
-
 
 	if(isset($_REQUEST['tipo']) and $_REQUEST['tipo']==1){
 		$tipo=$_REQUEST['tipo'];
@@ -91,12 +100,13 @@
 	$sth->execute();
 	$precio=$sth->fetch(PDO::FETCH_OBJ);
 
-	echo "<br>Maximo:".$precio->maximo;
-
 	$maxp=$precio->maximo+(($precio->maximo*$db->cgeneral)/100);
+	if($pmax==0){
+		$pmax=$maxp;
+	}
 	echo "<br>Maximo:".round($maxp);
-
-
+	echo "<input id='pmin' name='pmin' value='$pmin'>";
+	echo "<input id='pmax' name='pmax' value='$pmax'>";
 
 	$sql="select count(productos.id) as total from productos
 	left outer join categoria_ct on productos.categoria=categoria_ct.categoria
@@ -296,15 +306,15 @@
 							<nav aria-label="Page navigation example">
 							  <ul class="pagination">
 									<?php
-										echo "<li class='page-item'><a class='page-link' href='tienda.php?tipo=$tipo&id=$id&pag=0&marcaf=$marcaf&ord=$orden'>Primera</a></li>";
+										echo "<li class='page-item'><a class='page-link' href='tienda.php?tipo=$tipo&id=$id&pag=0&marcaf=$marcaf&ord=$orden&pmax=$pmax&pmin=$pmin'>Primera</a></li>";
 										for($i=0; $i<$num_paginas;$i++){
 											$t=$i+1;
 											echo "<li class='page-item";
 												if($i==$pag){ echo " active "; }
-											echo "'><a class='page-link' href='tienda.php?tipo=$tipo&id=$id&pag=$i&marcaf=$marcaf&ord=$orden'>".$t."</a></li>";
+											echo "'><a class='page-link' href='tienda.php?tipo=$tipo&id=$id&pag=$i&marcaf=$marcaf&ord=$orden&pmax=$pmax&pmin=$pmin'>".$t."</a></li>";
 										}
 										$t=ceil($num_paginas)-1;
-										echo "<li class='page-item'><a class='page-link' href='tienda.php?tipo=$tipo&id=$id&pag=$t&marcaf=$marcaf&ord=$orden'>Ultima</a></li>";
+										echo "<li class='page-item'><a class='page-link' href='tienda.php?tipo=$tipo&id=$id&pag=$t&marcaf=$marcaf&ord=$orden&pmax=$pmax&pmin=$pmin'>Ultima</a></li>";
 									?>
 							  </ul>
 							</nav>
