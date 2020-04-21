@@ -498,6 +498,22 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
+		public function productos_general($marca){							////////////////nivel 4 o nivel 0
+			try{
+				self::set_names();
+				$sql="select * from productos where activo=1";
+				if(strlen($marca)>0){
+					$sql.=" and productos.marca='$marca'";
+				}
+				$sql.=" limit 100";
+				$sth = $this->dbh->prepare($sql);
+				$sth->execute();
+				return $sth->fetchAll(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
 
 
 		public function cat_categoria($cat,$marca){
@@ -524,22 +540,6 @@
 					$sql.=" and productos.marca='$marca'";
 				}
 				$sql.=" and activo=1";
-				$sth = $this->dbh->prepare($sql);
-				$sth->execute();
-				return $sth->fetchAll(PDO::FETCH_OBJ);
-			}
-			catch(PDOException $e){
-				return "Database access FAILED!".$e->getMessage();
-			}
-		}
-		public function productos_general($marca){							////////////////nivel 4 o nivel 0
-			try{
-				self::set_names();
-				$sql="select * from productos where activo=1";
-				if(strlen($marca)>0){
-					$sql.=" and productos.marca='$marca'";
-				}
-				$sql.=" limit 100";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
 				return $sth->fetchAll(PDO::FETCH_OBJ);
