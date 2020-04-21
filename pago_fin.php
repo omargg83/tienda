@@ -103,7 +103,7 @@
 
 			$arreglo=array(
 				'idPedido' => (int)$idpedido,
-				'almacen' => "31A",
+				'almacen' => "",
 				'tipoPago' => "03",
 				'envio' => json_decode(json_encode($envio)),
 				'producto' => json_decode(json_encode($producto)),
