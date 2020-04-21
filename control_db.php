@@ -475,6 +475,9 @@
 				if($tipo==1){
 					$consulta="and producto_cat.idcategoria='$cat'";
 				}
+				if($tipo==2){
+					$consulta="and categoria='$cat'";
+				}
 
 				$sql="select count(productos.id) as total from productos
 				left outer join categoria_ct on productos.categoria=categoria_ct.categoria

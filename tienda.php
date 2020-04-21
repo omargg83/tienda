@@ -32,8 +32,13 @@
 		$rx=$db->cat_categoria_name($id);
 		$nombre=$rx->heredado;
 
-		$resp=$db->cat_categoria($rx->categoria,$marca_f);
+		//$resp=$db->cat_categoria($rx->categoria,$marca_f);
+		//$contar=count($resp);
+
+		$resp=$db->cat_categoriatic($rx->categoria, $marca_f, $tipo);
 		$contar=count($resp);
+
+
 		echo $contar;
 		$marca=$db->n2_productos_marcas($rx->categoria,$marca_f);
 	}
