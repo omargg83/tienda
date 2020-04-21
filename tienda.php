@@ -90,6 +90,7 @@
 	$sth->execute();
 	$resp=$sth->fetch(PDO::FETCH_OBJ);
 
+	$encontrados=$resp->total;
 	$num_paginas=$resp->total/$_SESSION['pag'];
 
 	$tam=($pag*$_SESSION['pag']);
@@ -102,7 +103,6 @@
 	$sth->execute();
 
 	$resp=$sth->fetchAll(PDO::FETCH_OBJ);
-	$encontrados=$resp->total;
 	/////////////////////////////////////////////
 ?>
 <!DOCTYPE html>
