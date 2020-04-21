@@ -359,7 +359,7 @@
 					      return actions.order.create({
 					        purchase_units: [{
 					          amount: {
-					            value: '<?php echo $gtotal; ?>'
+					            value: '<?php echo round($gtotal,2); ?>'
 					          }
 					        }]
 					      });
