@@ -113,9 +113,9 @@
 
 
 
-			$servicio = $json;
+			$servicio = "pedido";
 			$metodo="POST";
-			$resp =servicioApi($metodo,$servicio,NULL,$tok);
+			$resp =servicioApi($metodo,$servicio,$json,$tok);
 			echo "<br>respuesta:".$resp;
 			echo "<pre>";
 				echo var_dump($resp);
