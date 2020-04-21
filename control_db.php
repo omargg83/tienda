@@ -1552,7 +1552,7 @@
 	    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 20);
 	    $result = curl_exec($ch);
 
-	    //echo curl_error($ch);
+	    echo curl_error($ch);
 	    curl_close($ch); // close cURL handler
 	    return json_decode($result);
 	}

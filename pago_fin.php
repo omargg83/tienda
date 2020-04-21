@@ -120,8 +120,6 @@
 				echo var_dump($json);
 			echo "</pre>";
 
-
-
 			$servicio = "pedido/";
 			$metodo="POST";
 			$resp =servicioApi($metodo,$servicio,$json,$tok);
