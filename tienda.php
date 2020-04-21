@@ -93,8 +93,8 @@
 
 	echo "<br>Maximo:".$precio->maximo;
 
-	$maxp=$key->preciof+(($precio->maximo*$db->cgeneral)/100);
-	echo "<br>Maximo:".$maxp;
+	$maxp=$precio->maximo+(($precio->maximo*$db->cgeneral)/100);
+	echo "<br>Maximo:".round($maxp);
 
 
 
@@ -358,17 +358,18 @@
 <script type="text/javascript">
 
 	$(function(){
-		//initPriceSlider();
+		initPriceSlider();
 	});
 
 	function initPriceSlider() {
 		if($("#slider-range").length){
+			var maxprecio=$( "#amount" ).val();
 	    $( function() {
 	        $( "#slider-range" ).slider({
 	          range: true,
 	          min: 0,
 	          max: 500,
-	          values: [ 75, 300 ],
+	          values: [ 0, maxprecio ],
 	          slide: function( event, ui ) {
 	            $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
 	          },
