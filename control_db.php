@@ -1451,7 +1451,8 @@
 				$mail->SMTPSecure = "ssl";                            // Enable TLS encryption, `ssl` also accepted
 				$mail->Port = 465;                                    // TCP port to connect to
 				$mail->CharSet = 'UTF-8';
-
+				$mail->From = "sistema.subsaludpublicahgo@gmail.com";
+				$mail->FromName = "Sistema Administrativo de Salud Pública";
 /*
 			$mail->IsSMTP(); // enable SMTP
 			$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
