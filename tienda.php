@@ -5,7 +5,7 @@
 	$contar=0;
 	$tipo=0;
 
-	$marca_f="";
+	$marcaf="";
 	$_SESSION['pag']=20;
 
 	$pag=0;
@@ -13,10 +13,10 @@
 		$pag=$_REQUEST['pag'];
 	}
 	if(isset($_REQUEST['marca']) and strlen($_REQUEST['marca'])>0){
-		$marca_f=$_REQUEST['marca'];
+		$marcaf=$_REQUEST['marcaf'];
 	}
 	else{
-		$marca_f="";
+		$marcaf="";
 	}
 
 	if(isset($_REQUEST['tipo']) and $_REQUEST['tipo']==1){
@@ -25,7 +25,7 @@
 		$rx=$db->categorias_name($id);
 		$nombre=$rx->descripcion;
 		$cat=$id;
-		$marca=$db->n1_productos_marcas($id,$marca_f);
+		$marca=$db->n1_productos_marcas($id,$marcaf);
 	}
 	else if(isset($_REQUEST['tipo']) and $_REQUEST['tipo']==2){
 		$tipo=$_REQUEST['tipo'];
@@ -33,7 +33,7 @@
 		$rx=$db->cat_categoria_name($id);
 		$nombre=$rx->heredado;
 		$cat=$rx->categoria;
-		$marca=$db->n2_productos_marcas($rx->categoria,$marca_f);
+		$marca=$db->n2_productos_marcas($rx->categoria,$marcaf);
 	}
 	else if(isset($_REQUEST['tipo']) and $_REQUEST['tipo']==3){
 		$tipo=$_REQUEST['tipo'];
@@ -41,21 +41,21 @@
 		$rx=$db->sub_categoria_name($id);
 		$nombre=$rx->heredado;
 		$cat=$rx->subcategoria;
-		$marca=$db->n3_productos_marcas($rx->subcategoria,$marca_f);
+		$marca=$db->n3_productos_marcas($rx->subcategoria,$marcaf);
 	}
 	else{
 		$tipo=4;
 		$id=0;
 		$cat="";
 
-		$marca=$db->n4_productos_marcas($marca_f);
+		$marca=$db->n4_productos_marcas($marcaf);
 	}
 
 	/////////////////////////////////////////////
 	$filtro="";
 	$consulta="";
-	if(strlen($marca_f)>0){
-		$filtro=" and productos.marca='$marca_f'";
+	if(strlen($marcaf)>0){
+		$filtro=" and productos.marca='$marcaf'";
 	}
 	if($tipo==1){
 		$consulta="and producto_cat.idcategoria='$cat'";
@@ -248,11 +248,11 @@
 							<nav aria-label="Page navigation example">
 							  <ul class="pagination">
 									<?php
-										echo "<li class='page-item'><a class='page-link' href='tienda.php?tipo=$tipo&id=$id&pag=0'>Primera</a></li>";
+										echo "<li class='page-item'><a class='page-link' href='tienda.php?tipo=$tipo&id=$id&pag=0&marca=$marcaf'>Primera</a></li>";
 										for($i=1; $i<$num_paginas;$i++){
-											echo "<li class='page-item'><a class='page-link' href='tienda.php?tipo=$tipo&id=$id&pag=$i'>$i</a></li>";
+											echo "<li class='page-item'><a class='page-link' href='tienda.php?tipo=$tipo&id=$id&pag=$i&marca=$marcaf'>$i</a></li>";
 										}
-										echo "<li class='page-item'><a class='page-link' href='tienda.php?tipo=$tipo&id=$id&pag=$num_paginas'>Ultima</a></li>";
+										echo "<li class='page-item'><a class='page-link' href='tienda.php?tipo=$tipo&id=$id&pag=$num_paginas&marca=$marcaf'>Ultima</a></li>";
 									?>
 							  </ul>
 							</nav>
