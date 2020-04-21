@@ -21,8 +21,8 @@
 
 		$rx=$db->categorias_name($id);
 		$nombre=$rx->descripcion;
-
-		$resp=$db->cat_categoriatic($id, $marca_f, $tipo);
+		$cat=$id;
+		//$resp=$db->cat_categoriatic($id, $marca_f, $tipo);
 
 		$marca=$db->n1_productos_marcas($id,$marca_f);
 	}
@@ -31,8 +31,8 @@
 		$id=$_REQUEST['id'];
 		$rx=$db->cat_categoria_name($id);
 		$nombre=$rx->heredado;
-
-		$resp=$db->cat_categoriatic($rx->categoria, $marca_f, $tipo);
+		$cat=$rx->categoria;
+		//$resp=$db->cat_categoriatic($rx->categoria, $marca_f, $tipo);
 
 		$marca=$db->n2_productos_marcas($rx->categoria,$marca_f);
 	}
@@ -41,37 +41,57 @@
 		$id=$_REQUEST['id'];
 		$rx=$db->sub_categoria_name($id);
 		$nombre=$rx->heredado;
-
-		$resp=$db->cat_categoriatic($rx->subcategoria, $marca_f, $tipo);
+		$cat=$rx->subcategoria;
+		//$resp=$db->cat_categoriatic($rx->subcategoria, $marca_f, $tipo);
 
 		$marca=$db->n3_productos_marcas($rx->subcategoria,$marca_f);
 	}
 	else{
 		$tipo=4;
 		$id=0;
-		$resp=$db->cat_categoriatic("", $marca_f, $tipo);
+		$cat="";
+		//$resp=$db->cat_categoriatic("", $marca_f, $tipo);
 
 		$marca=$db->n4_productos_marcas($marca_f);
 	}
 
-	$marca2=array();
-	$contar=0;
-	foreach($resp as $key){
-		if(!array_search(trim($key->marca), $marca2)){
-			$marca2[$contar]=trim($key->marca);
-			echo "<br>no existe:".$key->marca;
-			$contar++;
-		}
+	/////////////////////////////////////////////
+	$filtro="";
+	$consulta="";
+	if(strlen($marca_f)>0){
+		$filtro=" and productos.marca='$marca_f'";
+	}
+	if($tipo==1){
+		$consulta="and producto_cat.idcategoria='$cat'";
+	}
+	if($tipo==2){
+		$consulta="and productos.categoria='$cat'";
+	}
+	if($tipo==3){
+		$consulta="and productos.subcategoria='$cat'";
+	}
+	if($tipo==4 or $tipo==0){
+		$consulta="";
 	}
 
-	echo "<pre>";
-	echo var_dump($marca2);
-	echo "</pre>";
-/*	asort($marca2);
-	foreach ($marca2 as $key){
-		echo "<br>".$key;
-	}
-	*/
+	$sql="select count(productos.id) as total from productos
+	left outer join categoria_ct on productos.categoria=categoria_ct.categoria
+	left outer join producto_cat on categoria_ct.id=producto_cat.idcategoria_ct
+	where productos.activo=1 and productos.existencia>0 $consulta $filtro";
+	$sth = $db->dbh->prepare($sql);
+	$sth->execute();
+	$resp=$sth->fetch(PDO::FETCH_OBJ);
+	echo "Total:".$resp->total;
+
+	$sql="select * from productos
+	left outer join categoria_ct on productos.categoria=categoria_ct.categoria
+	left outer join producto_cat on categoria_ct.id=producto_cat.idcategoria_ct
+	where productos.activo=1 and productos.existencia>0 $consulta $filtro";
+
+	$sth = $db->dbh->prepare($sql);
+	$sth->execute();
+	$resp=$sth->fetchAll(PDO::FETCH_OBJ);
+	/////////////////////////////////////////////
 ?>
 <!DOCTYPE html>
 <html lang="en">
