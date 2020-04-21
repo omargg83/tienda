@@ -100,13 +100,12 @@
 	$sth->execute();
 	$precio=$sth->fetch(PDO::FETCH_OBJ);
 
-	$maxp=$precio->maximo+(($precio->maximo*$db->cgeneral)/100);
+	$maxp=round($precio->maximo+(($precio->maximo*$db->cgeneral)/100));
 	if($pmax==0){
 		$pmax=$maxp;
 	}
 	echo "<br>Maximo:".round($maxp);
-	echo "<input id='pmin' name='pmin' value='$pmin'>";
-	echo "<input id='pmax' name='pmax' value='$pmax'>";
+
 
 	$sql="select count(productos.id) as total from productos
 	left outer join categoria_ct on productos.categoria=categoria_ct.categoria
@@ -130,6 +129,19 @@
 
 	$resp=$sth->fetchAll(PDO::FETCH_OBJ);
 	/////////////////////////////////////////////
+
+	echo "<input id='pmin' name='pmin' value='$pmin'>";
+	echo "<input id='pmax' name='pmax' value='$pmax'>";
+
+
+	echo "<input id='tipo' name='tipo' value='$tipo'>";
+	echo "<input id='id' name='id' value='$id'>";
+	echo "<input id='pag' name='pag' value='$pag'>";
+	echo "<input id='marcaf' name='marcaf' value='$marcaf'>";
+	echo "<input id='orden' name='orden' value='$orden'>";
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -306,15 +318,15 @@
 							<nav aria-label="Page navigation example">
 							  <ul class="pagination">
 									<?php
-										echo "<li class='page-item'><a class='page-link' href='tienda.php?tipo=$tipo&id=$id&pag=0&marcaf=$marcaf&ord=$orden&pmax=$pmax&pmin=$pmin'>Primera</a></li>";
+										echo "<li class='page-item'><a class='page-link' href='/tienda.php?tipo=$tipo&id=$id&pag=0&marcaf=$marcaf&ord=$orden&pmax=$pmax&pmin=$pmin'>Primera</a></li>";
 										for($i=0; $i<$num_paginas;$i++){
 											$t=$i+1;
 											echo "<li class='page-item";
 												if($i==$pag){ echo " active "; }
-											echo "'><a class='page-link' href='tienda.php?tipo=$tipo&id=$id&pag=$i&marcaf=$marcaf&ord=$orden&pmax=$pmax&pmin=$pmin'>".$t."</a></li>";
+											echo "'><a class='page-link' href='/tienda.php?tipo=$tipo&id=$id&pag=$i&marcaf=$marcaf&ord=$orden&pmax=$pmax&pmin=$pmin'>".$t."</a></li>";
 										}
 										$t=ceil($num_paginas)-1;
-										echo "<li class='page-item'><a class='page-link' href='tienda.php?tipo=$tipo&id=$id&pag=$t&marcaf=$marcaf&ord=$orden&pmax=$pmax&pmin=$pmin'>Ultima</a></li>";
+										echo "<li class='page-item'><a class='page-link' href='/tienda.php?tipo=$tipo&id=$id&pag=$t&marcaf=$marcaf&ord=$orden&pmax=$pmax&pmin=$pmin'>Ultima</a></li>";
 									?>
 							  </ul>
 							</nav>
@@ -374,6 +386,13 @@
 	function initPriceSlider() {
 		if($("#slider-range").length){
 			var maxprecio=$( "#amount" ).val();
+			var tipo=$( "#tipo" ).val();
+			var idx=$( "#id" ).val();
+			var pag=$( "#pag" ).val();
+			var marcaf=$( "#marcaf" ).val();
+			var orden=$( "#orden" ).val();
+
+
 	    $( function() {
 	        $( "#slider-range" ).slider({
 	          range: true,
@@ -384,8 +403,7 @@
 	            $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
 	          },
 	          change: function( event, ui ) {
-
-	            alert(ui.values[ 0 ] + " - " + ui.values[ 1 ]);
+							window.location.href="/tienda.php?tipo="+tipo+"&id="+id+"&pag="+pag+"&marcaf="+marcaf+"&ord="+orden+"&pmax="+ui.values[ 1 ]+"&pmin="+ui.values[ 0 ]+"";
 	          }
 	        });
 	        $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
