@@ -1440,7 +1440,7 @@
 			$email->Port = 465;
 			//	  $mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
 			*/
-/*
+
 				$mail->IsSMTP(); // enable SMTP
 			  $mail->SMTPAuth = true; // authentication enabled
 			  $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
@@ -1451,8 +1451,8 @@
 				$mail->Username = $this->ecorreo;
 				$mail->Password = $this->Password;
 				$mail->setFrom("admin@tic-shop.com.mx", 'TIC-SHOP');
-*/
 
+/*
 			$mail->IsSMTP(); // enable SMTP
 			$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 			$mail->Host = "tls://smtp.gmail.com:587";
@@ -1474,18 +1474,14 @@
 			$mail->Body    = $asunto;
 			$mail->Subject = $asunto;
 			$mail->AltBody = $asunto;
+*/
+
 
 			$mail->IsHTML(true);
-
-
 			$mail->addAddress($correo);
 			$mail->addCC("admin@tic-shop.com.mx");
-			$mail->CharSet = 'UTF-8';
-			//Set the subject line
 
 			$mail->msgHTML($texto);
-
-			$mail->AltBody = $asunto;
 			$arreglo=array();
 			//send the message, check for errors
 			if (!$mail->send()) {
