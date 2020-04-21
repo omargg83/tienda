@@ -26,7 +26,7 @@
 	}
 
 	$qprecio="";
-	if($pmin!=0 and $pmax!=0){
+	if($pmin!=0 or $pmax!=0){
 		$qprecio=" and productos.preciof BETWEEN $pmax and $pmin ";
 	}
 
