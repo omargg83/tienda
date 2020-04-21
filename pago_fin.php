@@ -103,7 +103,7 @@
 
 			$arreglo=array(
 				'idPedido' => (int)$idpedido,
-				'almacen' => "32A",
+				'almacen' => "31A",
 				'tipoPago' => "03",
 				'envio' => json_decode(json_encode($envio)),
 				'producto' => json_decode(json_encode($producto)),
@@ -115,7 +115,6 @@
 			echo "</pre>";
 
 			$resp =servicioApi('POST','pedido',$json,$tok);
-			echo "<br>respuesta:".$resp;
 			echo "<pre>";
 				echo var_dump($resp);
 			echo "</pre>";
