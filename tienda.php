@@ -6,7 +6,7 @@
 	$tipo=0;
 
 	$marcaf="";
-	$_SESSION['pag']=20;
+	$_SESSION['pag']=30;
 
 	$pag=0;
 	if(isset($_REQUEST['pag'])){
