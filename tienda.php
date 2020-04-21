@@ -18,11 +18,11 @@
 	if(isset($_REQUEST['tipo']) and $_REQUEST['tipo']==1){
 		$tipo=$_REQUEST['tipo'];
 		$id=$_REQUEST['id'];
+
 		$rx=$db->categorias_name($id);
 		$nombre=$rx->descripcion;
 
 		$resp=$db->cat_categoriatic($id, $marca_f, $tipo);
-		$contar=count($resp);
 
 		$marca=$db->n1_productos_marcas($id,$marca_f);
 	}
@@ -33,7 +33,6 @@
 		$nombre=$rx->heredado;
 
 		$resp=$db->cat_categoriatic($rx->categoria, $marca_f, $tipo);
-		$contar=count($resp);
 
 		$marca=$db->n2_productos_marcas($rx->categoria,$marca_f);
 	}
@@ -44,19 +43,29 @@
 		$nombre=$rx->heredado;
 
 		$resp=$db->cat_categoriatic($rx->subcategoria, $marca_f, $tipo);
-		$contar=count($resp);
-		echo $contar;
+
 		$marca=$db->n3_productos_marcas($rx->subcategoria,$marca_f);
 	}
 	else{
 		$tipo=4;
 		$id=0;
-		$resp=$db->productos_general($marca_f);
-		$contar=count($resp);
-		echo $contar;
+		$resp=$db->cat_categoriatic("", $marca_f, $tipo);
+
 		$marca=$db->n4_productos_marcas($marca_f);
 	}
 
+	$marca2=$array();
+	$contar=0;
+	foreach($resp as $key){
+		if(!$clave = array_search($key->marca, $marca2)){
+			$marca2[$contar]=$key->marca;
+			$contar++;
+		}
+	}
+	asort($marca2);
+	foreach ($marca2 as $key){
+		echo "<br>".$key;
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
