@@ -253,7 +253,7 @@
 											$t=$i+1;
 											echo "<li class='page-item'><a class='page-link' href='tienda.php?tipo=$tipo&id=$id&pag=$i&marcaf=$marcaf'>".$t."</a></li>";
 										}
-										$t=$num_paginas-1;
+										$t=ceil($num_paginas)-1;
 										echo "<li class='page-item'><a class='page-link' href='tienda.php?tipo=$tipo&id=$id&pag=$t&marcaf=$marcaf'>Ultima</a></li>";
 									?>
 							  </ul>
