@@ -1459,7 +1459,6 @@
 			$mail->FromName = 'TIC-SHOP';
 */
 
-
 			$mail->CharSet = 'UTF-8';
 
 			$mail->Body    = $asunto;
@@ -1475,8 +1474,6 @@
 			$mail->CharSet = 'UTF-8';
 			$mail->From = "sistema.subsaludpublicahgo@gmail.com";
 			$mail->FromName = "Sistema Administrativo de Salud Pública";
-			
-
 
 			$mail->IsHTML(true);
 			$mail->addAddress($correo);
