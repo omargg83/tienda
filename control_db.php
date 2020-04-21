@@ -1437,20 +1437,35 @@
 			$email->SMTPSecure = 'tls';
 			$email->Host = "mail.tic-shop.com.mx";
 			$email->Port = 465;
-			*/
-
-			$mail->IsSMTP(); // enable SMTP
 			//	  $mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
+			*/
+/*
+			$mail->IsSMTP(); // enable SMTP
 		  $mail->SMTPAuth = true; // authentication enabled
 		  $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
 		  $mail->Host = "mail.tic-shop.com.mx";
 		  $mail->Port = 465; // or 587
 		  $mail->IsHTML(true);
 
-
 			$mail->Username = $this->ecorreo;
 			$mail->Password = $this->Password;
 			$mail->setFrom("admin@tic-shop.com.mx", 'TIC-SHOP');
+*/
+			$mail->IsSMTP(); // enable SMTP
+			$mail->SMTPAuth = true; // authentication enabled
+			$mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
+			$mail->Host = "smtp.gmail.com";
+			$mail->Port = 465; // or 587
+			$mail->IsHTML(true);
+
+			$mail->Username = "sistema.subsaludpublicahgo@gmail.com";       // SMTP username
+			$mail->Password = "TEUFEL123";                       // SMTP password
+			$mail->Port = 465;                                    // TCP port to connect to
+			$mail->CharSet = 'UTF-8';
+
+
+
+
 			$mail->addAddress($correo);
 			$mail->addCC("admin@tic-shop.com.mx");
 			$mail->CharSet = 'UTF-8';
