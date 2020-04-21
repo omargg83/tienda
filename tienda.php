@@ -140,8 +140,15 @@
 			  <ol class="breadcrumb">
 					<?php
 						echo "<li class='breadcrumb-item'><a href='/tienda.php'>Tienda</a></li>";
+
+						if($tipo>1)
 			    	echo "<li class='breadcrumb-item'><a href='/tienda.php?tipo=1&id=$id'>$nombre</a></li>";
-			    	echo "<li class='breadcrumb-item active' aria-current='page'>Data</li>";
+
+						if($tipo>2)
+			    	echo "<li class='breadcrumb-item'><a href='/tienda.php?tipo=2&id=$id'>$nombre</a></li>";
+
+						if($tipo>3)
+			    	echo "<li class='breadcrumb-item'><a href='/tienda.php?tipo=3&id=$id'>$nombre</a></li>";
 					?>
 			  </ol>
 			</nav>
