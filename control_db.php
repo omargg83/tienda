@@ -1451,6 +1451,7 @@
 			$mail->Password = $this->Password;
 			$mail->setFrom("admin@tic-shop.com.mx", 'TIC-SHOP');
 */
+
 			$mail->IsSMTP(); // enable SMTP
 			$mail->SMTPAuth = true; // authentication enabled
 			$mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
@@ -1459,12 +1460,9 @@
 			$mail->IsHTML(true);
 
 			$mail->Username = "sistema.subsaludpublicahgo@gmail.com";       // SMTP username
-			$mail->Password = "TEUFEL123";                       // SMTP password
-			$mail->Port = 465;                                    // TCP port to connect to
+			$mail->Password = "TEUFEL123";                       // SMTP password                                // TCP port to connect to
 			$mail->CharSet = 'UTF-8';
-
-
-
+			$mail->setFrom('sistema.subsaludpublicahgo@gmail.com', 'sistema.subsaludpublicahgo@gmail.com');
 
 			$mail->addAddress($correo);
 			$mail->addCC("admin@tic-shop.com.mx");
