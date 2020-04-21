@@ -178,7 +178,7 @@
 							<ul class="brands_list">
 								<?php
 									foreach($marca as $key){
-										echo "<li class='brand'><a href='/tienda.php?tipo=".$tipo."&id=".$id."&pag=$pag&marcaf=".$key->marca."'>".$key->marca."</a></li>";
+										echo "<li class='brand'><a href='/tienda.php?tipo=".$tipo."&id=".$id."&pag=0&marcaf=".$key->marca."'>".$key->marca."</a></li>";
 									}
 								 ?>
 							</ul>
@@ -229,7 +229,7 @@
 									}
 									echo "<a href='/producto/".$key->clave."'><div class='product_item'>
 										<div class='product_border'></div>
-										<div class='product_image d-flex flex-column align-items-center justify-content-center'><img src='/".$db->doc.$key->img.$a."' alt='' width='100px'></div>
+										<div class='product_image d-flex flex-column align-items-center justify-content-center'><img src='/".$db->doc.$key->img.$a."' alt='' width='50px' ></div>
 										<div class='product_content'>
 											<div class='product_price'>".moneda($preciof)."</div>
 											<div class='product_name'><div><a href='#' tabindex='0'>".$key->nombre."</a></div></div>
