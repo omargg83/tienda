@@ -12,7 +12,7 @@
 	if(isset($_REQUEST['pag'])){
 		$pag=$_REQUEST['pag'];
 	}
-	if(isset($_REQUEST['marca']) and strlen($_REQUEST['marca'])>0){
+	if(isset($_REQUEST['marcaf']) and strlen($_REQUEST['marcaf'])>0){
 		$marcaf=$_REQUEST['marcaf'];
 	}
 	else{
