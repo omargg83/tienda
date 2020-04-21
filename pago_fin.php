@@ -71,6 +71,14 @@
 			$tok=$resp->token;
 			echo $tok;
 
+			echo "<hr>";
+			$resp =servicioApi('POST','pedido/listar',NULL,$tok);
+			echo "<br>Respuesta:".$resp;
+			echo "<pre>";
+				echo var_dump($resp);
+			echo "</pre>";
+			echo "<hr>";
+
 			$envio=array(
 				'nombre' => $nombre. " ".$apellido,
 				'direccion' => $direccion1,
