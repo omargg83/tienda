@@ -1415,6 +1415,7 @@
 			$texto.="<br>Nombre: $nombre -";
 			$texto.="<br>Cantidad: $cantidad";
 			$texto.="<br>Observaciones: $comentario";
+
 			$asunto="Cotización de Mayoreo";
 			return $this->correo($correo, $texto, $asunto);
 		}
@@ -1439,7 +1440,7 @@
 			$email->Port = 465;
 			//	  $mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
 			*/
-/*
+
 			$mail->IsSMTP(); // enable SMTP
 		  $mail->SMTPAuth = true; // authentication enabled
 		  $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
@@ -1450,8 +1451,8 @@
 			$mail->Username = $this->ecorreo;
 			$mail->Password = $this->Password;
 			$mail->setFrom("admin@tic-shop.com.mx", 'TIC-SHOP');
-*/
 
+/*
 			$mail->IsSMTP(); // enable SMTP
 			$mail->SMTPAuth = true; // authentication enabled
 			$mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
@@ -1463,6 +1464,7 @@
 			$mail->Password = "TEUFEL123";                       // SMTP password                                // TCP port to connect to
 			$mail->CharSet = 'UTF-8';
 			$mail->setFrom('sistema.subsaludpublicahgo@gmail.com', 'sistema.subsaludpublicahgo@gmail.com');
+			*/
 
 			$mail->addAddress($correo);
 			$mail->addCC("admin@tic-shop.com.mx");
