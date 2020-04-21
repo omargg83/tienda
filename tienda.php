@@ -57,8 +57,8 @@
 	$marca2=array();
 	$contar=0;
 	foreach($resp as $key){
-		if(!$clave = array_search($key->marca, $marca2)){
-			$marca2[$contar]=$key->marca;
+		if(!array_search(trim($key->marca), $marca2)){
+			$marca2[$contar]=trim($key->marca);
 			$contar++;
 		}
 	}
