@@ -6,7 +6,7 @@
 	$tipo=0;
 
 	$marcaf="";
-	$_SESSION['pag']=30;
+	$_SESSION['pag']=50;
 
 	$pag=0;
 	if(isset($_REQUEST['pag'])){
@@ -138,9 +138,11 @@
 
 			<nav aria-label="breadcrumb">
 			  <ol class="breadcrumb">
-			    <li class="breadcrumb-item"><a href="/tienda.php">Tienda</a></li>
-			    <li class="breadcrumb-item"><a href="#">Library</a></li>
-			    <li class="breadcrumb-item active" aria-current="page">Data</li>
+					<?php
+						echo "<li class='breadcrumb-item'><a href='/tienda.php'>Tienda</a></li>";
+			    	echo "<li class='breadcrumb-item'><a href='/tienda.php?tipo=1&id=$id'>$nombre</a></li>";
+			    	echo "<li class='breadcrumb-item active' aria-current='page'>Data</li>";
+					?>
 			  </ol>
 			</nav>
 
