@@ -72,7 +72,8 @@
 			echo $tok;
 
 			echo "<hr>";
-			$resp =servicioApi('GET','pedido/listar',NULL,$tok);
+
+			$resp =servicioApi('GET','pedido/detalle/W01-121248',NULL,$tok);
 			echo "<pre>";
 				echo var_dump($resp);
 			echo "</pre>";
