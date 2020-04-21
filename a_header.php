@@ -64,20 +64,20 @@
     <div class="container">
       <div class="row">
         <div class="col d-flex flex-row">
-          <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="img/telefono blanco.png" alt=""style="width: 30px;"></div>771 702 8040</div>
-          <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="img/email.png" alt="" style="width: 30px;"></div><a href="mailto:Ventas-ticshop-Pachuca@hotmail.com">Ventas-ticshop-Pachuca@hotmail.com</a></div>
+          <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="/img/telefono blanco.png" alt=""style="width: 30px;"></div>771 702 8040</div>
+          <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="/img/email.png" alt="" style="width: 30px;"></div><a href="mailto:Ventas-ticshop-Pachuca@hotmail.com">Ventas-ticshop-Pachuca@hotmail.com</a></div>
           <div class="top_bar_content ml-auto">
 
             <div class="top_bar_user">
               <div class="user_icon"><img src="images/user.svg" alt=""></div>
               <?php
                 if(isset($_SESSION['autoriza_web']) and $_SESSION['autoriza_web']==1 and strlen($_SESSION['idcliente'])>0 and $_SESSION['interno']==1){
-                  echo "<div><a href='clientes.php'>".$_SESSION['correo']."</a></div>";
+                  echo "<div><a href='/clientes.php'>".$_SESSION['correo']."</a></div>";
                   echo "<div><a href='#' onclick='salir()'>Salir</a></div>";
                 }
     						else{
-                  echo "<div><a href='registro.php'>Registro</a></div>";
-                  echo "<div><a href='acceso.php'>Ingresar</a></div>";
+                  echo "<div><a href='/registro.php'>Registro</a></div>";
+                  echo "<div><a href='/acceso.php'>Ingresar</a></div>";
                 }
               ?>
             </div>
