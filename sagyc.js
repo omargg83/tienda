@@ -24,7 +24,7 @@ function galletax(galleta){
 
 function salir(){
   $.ajax({
-    url: "control_db.php",
+    url: "/control_db.php",
     type: "POST",
     data: {
       "ctrl":"control",
@@ -101,7 +101,6 @@ function wish(id){
       $("#wish_count").html(response);
     }
   });
-
 }
 function borra_wish(id){
   $.confirm({
@@ -115,7 +114,7 @@ function borra_wish(id){
               "id":id,
               "function":"borra_wish"
             },
-            url:   'control_db.php',
+            url:   '/control_db.php',
             type:  'post',
             timeout:3000,
             beforeSend: function () {
@@ -154,8 +153,7 @@ function borra_carrito(id){
 
               },
               success:  function (response) {
-                console.log(response);
-                //window.location.href="/cart.php";
+                window.location.href="/cart.php";
               },
               error: function(jqXHR, textStatus, errorThrown) {
 
@@ -198,7 +196,7 @@ function estrella(idproducto){
               "idproducto":idproducto,
               "function":"estrella"
             },
-            url:   'control_db.php',
+            url:   '/control_db.php',
             type:  'post',
             timeout:3000,
             beforeSend: function () {
@@ -232,7 +230,7 @@ function factura_act(){
 function cupon_agrega(pedido){
   var cupon=$("#cupon").val();
   $.ajax({
-    url: "control_db.php",
+    url: "/control_db.php",
     type: "POST",
     data: {
       "cupon":cupon,
@@ -276,7 +274,7 @@ function elimina_cupon(id,idpedido){
               "idpedido":idpedido,
               "function":"elimina_cupon"
             },
-            url:   'control_db.php',
+            url:   '/control_db.php',
             type:  'post',
             timeout:3000,
             beforeSend: function () {
