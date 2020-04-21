@@ -9,8 +9,12 @@
 	$_SESSION['pag']=50;
 
 	$pag=0;
+	$orden="";
 	if(isset($_REQUEST['pag'])){
 		$pag=$_REQUEST['pag'];
+	}
+	if(isset($_REQUEST['ord'])){
+		$orden=$_REQUEST['ord'];
 	}
 	if(isset($_REQUEST['marcaf']) and strlen($_REQUEST['marcaf'])>0){
 		$marcaf=$_REQUEST['marcaf'];
@@ -141,14 +145,17 @@
 					<?php
 						echo "<li class='breadcrumb-item'><a href='/tienda.php'>Tienda</a></li>";
 
-						if($tipo>=1)
-			    	echo "<li class='breadcrumb-item'><a href='/tienda.php?tipo=1&id=$id'>$nombre</a></li>";
+						if($tipo>=1){
+							echo "<li class='breadcrumb-item'><a href='/tienda.php?tipo=1&id=$id'>$nombre</a></li>";
+						}
 
-						if($tipo>=2)
-			    	echo "<li class='breadcrumb-item'><a href='/tienda.php?tipo=2&id=$id'>$nombre</a></li>";
+						if($tipo>=2){
+							echo "<li class='breadcrumb-item'><a href='/tienda.php?tipo=2&id=$id'>$nombre</a></li>";
+						}
 
-						if($tipo>=3)
-			    	echo "<li class='breadcrumb-item'><a href='/tienda.php?tipo=3&id=$id'>$nombre</a></li>";
+						if($tipo>=3){
+							echo "<li class='breadcrumb-item'><a href='/tienda.php?tipo=3&id=$id'>$nombre</a></li>";
+						}
 					?>
 			  </ol>
 			</nav>
@@ -224,8 +231,10 @@
 									<li>
 										<span class="sorting_text">-<i class="fas fa-chevron-down"></span></i>
 										<ul>
-											<li class="shop_sorting_button" data-isotope-option='{ "sortBy": "name" }'>Nombre</li>
-											<li class="shop_sorting_button" data-isotope-option='{ "sortBy": "price" }'>Precio</li>
+											<?php
+												echo "<li><a href='/tienda.php?tipo=$tipo&id=$id&pag=$i&marcaf=$marcaf&ord=nombre'>Nombre</a></li>";
+												echo "<li><a href='/tienda.php?tipo=$tipo&id=$id&pag=$i&marcaf=$marcaf&ord=precio'>Precio</a></li>";
+											?>
 										</ul>
 									</li>
 								</ul>
@@ -272,15 +281,15 @@
 							<nav aria-label="Page navigation example">
 							  <ul class="pagination">
 									<?php
-										echo "<li class='page-item'><a class='page-link' href='tienda.php?tipo=$tipo&id=$id&pag=0&marcaf=$marcaf'>Primera</a></li>";
+										echo "<li class='page-item'><a class='page-link' href='tienda.php?tipo=$tipo&id=$id&pag=0&marcaf=$marcaf&ord=$orden'>Primera</a></li>";
 										for($i=0; $i<$num_paginas;$i++){
 											$t=$i+1;
 											echo "<li class='page-item";
 												if($i==$pag){ echo " active "; }
-											echo "'><a class='page-link' href='tienda.php?tipo=$tipo&id=$id&pag=$i&marcaf=$marcaf'>".$t."</a></li>";
+											echo "'><a class='page-link' href='tienda.php?tipo=$tipo&id=$id&pag=$i&marcaf=$marcaf&ord=$orden'>".$t."</a></li>";
 										}
 										$t=ceil($num_paginas)-1;
-										echo "<li class='page-item'><a class='page-link' href='tienda.php?tipo=$tipo&id=$id&pag=$t&marcaf=$marcaf'>Ultima</a></li>";
+										echo "<li class='page-item'><a class='page-link' href='tienda.php?tipo=$tipo&id=$id&pag=$t&marcaf=$marcaf&ord=$orden'>Ultima</a></li>";
 									?>
 							  </ul>
 							</nav>
