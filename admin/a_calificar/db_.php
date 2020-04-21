@@ -33,7 +33,7 @@ class Productos extends Tienda{
 	public function estrellla_editar($id){
 		try{
 			parent::set_names();
-			$sql="select producto_estrella.*,productos.nombre from producto_estrella
+			$sql="select producto_estrella.*,productos.nombre, productos.clave from producto_estrella
 			left outer join productos on productos.id=producto_estrella.idproducto
 			where producto_estrella.id=:id";
 			$sth = $this->dbh->prepare($sql);
