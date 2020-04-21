@@ -54,7 +54,7 @@
 		$marca=$db->n4_productos_marcas($marca_f);
 	}
 
-	$marca2=$array();
+	$marca2=array();
 	$contar=0;
 	foreach($resp as $key){
 		if(!$clave = array_search($key->marca, $marca2)){
