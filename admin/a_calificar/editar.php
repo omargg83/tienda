@@ -30,12 +30,12 @@
 			  <div class="form-row">
 					<div class="form-group col-3">
 					 <label>Clave</label>
-					 <textarea type="text" class="form-control" id="clave" name='clave' placeholder="Nombre" readonly><?php echo $clave; ?></textarea>
+					 <input type="text" class="form-control" id="clave" name='clave' placeholder="clave" readonly  value='<?php echo $clave; ?>' >
 				 </div>
 
 					<div class="form-group col-9">
 					 <label>Producto</label>
-					 <textarea type="text" class="form-control" id="nombre" name='nombre' placeholder="Nombre" readonly><?php echo $nombre; ?></textarea>
+					 <input type="text" class="form-control" id="nombre" name='nombre' placeholder="Nombre" readonly value='<?php echo $nombre; ?>¿  >
 				 </div>
 
 			    <div class="form-group col-12">
