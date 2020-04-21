@@ -810,9 +810,6 @@
 			}
 		}
 
-
-
-
 		public function busca() {
 			try{
 				self::set_names();
@@ -1424,26 +1421,26 @@
 			/////////////////////////////////////////////Correo
 			require 'vendor/autoload.php';
 			$mail = new PHPMailer;
-/*
-			$mail->isSMTP();
-			$mail->Host = 'localhost';
-			$mail->SMTPAuth = false;
-			$mail->SMTPAutoTLS = false;
-			$mail->Port = 25;
+			/*
+						$mail->isSMTP();
+						$mail->Host = 'localhost';
+						$mail->SMTPAuth = false;
+						$mail->SMTPAutoTLS = false;
+						$mail->Port = 25;
 
-			$mail->IsHTML(true);
+						$mail->IsHTML(true);
 
-			$mail->Username = $this->ecorreo;
-			$mail->Password = $this->Password;
-			$mail->From = $this->ecorreo;
-			$mail->FromName = 'TIC-SHOP';
+						$mail->Username = $this->ecorreo;
+						$mail->Password = $this->Password;
+						$mail->From = $this->ecorreo;
+						$mail->FromName = 'TIC-SHOP';
 
-			$mail->CharSet = 'UTF-8';
+						$mail->CharSet = 'UTF-8';
 
-			$mail->Body    = $asunto;
-			$mail->Subject = $asunto;
-			$mail->AltBody = $asunto;
-*/
+						$mail->Body    = $asunto;
+						$mail->Subject = $asunto;
+						$mail->AltBody = $asunto;
+			*/
 			/*
 			$mail->IsSMTP(); // enable SMTP
 			$mail->SMTPAuth = true; // authentication enabled
@@ -1457,14 +1454,14 @@
 			$mail->Password = $this->Password;
 			$mail->From = $this->ecorreo;
 			$mail->FromName = 'TIC-SHOP';
-*/
+			*/
 
 			$mail->CharSet = 'UTF-8';
 
 			$mail->Body    = $asunto;
 			$mail->Subject = $asunto;
 			$mail->AltBody = $asunto;
-
+			/*
 			$mail->Host = "smtp.gmail.com";						  // Specify main and backup SMTP servers
 			$mail->SMTPAuth = true;                               // Enable SMTP authentication
 			$mail->Username = "sistema.subsaludpublicahgo@gmail.com";       // SMTP username
@@ -1474,6 +1471,18 @@
 			$mail->CharSet = 'UTF-8';
 			$mail->From = "admin@tic-shop.com.mx";
 			$mail->FromName = "TIC-SHOP";
+			*/
+
+			$mail->Host = "smtp.gmail.com";						  // Specify main and backup SMTP servers
+			$mail->SMTPAuth = true;                               // Enable SMTP authentication
+			$mail->Username = "tic.shop.adm@gmail.com";       // SMTP username
+			$mail->Password = "ticshop2020";                       // SMTP password
+			$mail->SMTPSecure = "ssl";                            // Enable TLS encryption, `ssl` also accepted
+			$mail->Port = 465;                                    // TCP port to connect to
+			$mail->CharSet = 'UTF-8';
+			$mail->From = "admin@tic-shop.com.mx";
+			$mail->FromName = "TIC-SHOP";
+
 
 			$mail->IsHTML(true);
 			$mail->addAddress($correo);
