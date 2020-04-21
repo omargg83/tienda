@@ -72,7 +72,7 @@
 			echo $tok;
 
 			echo "<hr>";
-			$resp =servicioApi('POST','pedido/listar',NULL,$tok);
+			$resp =servicioApi('GET','pedido/listar',NULL,$tok);
 			echo "<pre>";
 				echo var_dump($resp);
 			echo "</pre>";
