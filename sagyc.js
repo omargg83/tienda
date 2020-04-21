@@ -156,7 +156,8 @@ function borra_carrito(id){
 
               },
               success:  function (response) {
-                window.location.href="/cart.php";
+                console.log(response);
+                //window.location.href="/cart.php";
               },
               error: function(jqXHR, textStatus, errorThrown) {
 
@@ -640,7 +641,7 @@ $(document).on('submit','#carrito_form',function(e){
 
     },
     success:  function (response) {
-      console.log(reponse);
+      console.log(response);
       var datos = JSON.parse(response);
       if (datos.error==0){
         window.location.href="/cart.php";
