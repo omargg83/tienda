@@ -1438,6 +1438,10 @@
 				$mail->FromName = 'TIC-SHOP';
 				$mail->CharSet = 'UTF-8';
 
+				$mail->Body    = $asunto;
+				$mail->Subject = $asunto;
+				$mail->AltBody = $asunto;
+
 /*
 			$mail->IsSMTP(); // enable SMTP
 			$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
@@ -1452,14 +1456,10 @@
 			$mail->SMTPAuth = true; // authentication enabled
 			$mail->Username = "sistema.subsaludpublicahgo@gmail.com";       // SMTP username
 			$mail->Password = "TEUFEL123";                       // SMTP password                                // TCP port to connect to
-			$mail->CharSet = 'UTF-8';
-
+			
 			$mail->From = "sistema.subsaludpublicahgo@gmail.com";
 			$mail->FromName = "Sistema Administrativo de Salud Pública";
 
-			$mail->Body    = $asunto;
-			$mail->Subject = $asunto;
-			$mail->AltBody = $asunto;
 */
 
 
