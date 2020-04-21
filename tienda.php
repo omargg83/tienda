@@ -25,6 +25,11 @@
 		$pmax=$_REQUEST['pmax'];
 	}
 
+	$qprecio="";
+	if($pmin!=0 and $pmax!=0){
+		$qprecio=" and productos.preciof BETWEEN $pmax and $pmin ";
+	}
+
 	if(isset($_REQUEST['ord'])){
 		$orden=$_REQUEST['ord'];
 		if($orden=="nombre"){
@@ -110,7 +115,7 @@
 	$sql="select count(productos.id) as total from productos
 	left outer join categoria_ct on productos.categoria=categoria_ct.categoria
 	left outer join producto_cat on categoria_ct.id=producto_cat.idcategoria_ct
-	where productos.activo=1 and productos.existencia>0 $consulta $filtro";
+	where productos.activo=1 and productos.existencia>0 $consulta $filtro $qprecio";
 	$sth = $db->dbh->prepare($sql);
 	$sth->execute();
 	$resp=$sth->fetch(PDO::FETCH_OBJ);
@@ -122,7 +127,7 @@
 	$sql="select * from productos
 	left outer join categoria_ct on productos.categoria=categoria_ct.categoria
 	left outer join producto_cat on categoria_ct.id=producto_cat.idcategoria_ct
-	where productos.activo=1 and productos.existencia>0 $consulta $filtro $forden limit $tam,".$_SESSION['pag']."";
+	where productos.activo=1 and productos.existencia>0 $consulta $filtro $forden $qprecio limit $tam,".$_SESSION['pag']."";
 
 	$sth = $db->dbh->prepare($sql);
 	$sth->execute();
@@ -393,7 +398,6 @@
 			var pag=$( "#pag" ).val();
 			var marcaf=$( "#marcaf" ).val();
 			var orden=$( "#orden" ).val();
-
 
 	    $( function() {
 	        $( "#slider-range" ).slider({
