@@ -191,7 +191,6 @@
 						?>
 
 						<div class="sidebar_section filter_by_section">
-							<div class="sidebar_title">Filter By</div>
 							<div class="sidebar_subtitle">Precio</div>
 							<div class="filter_price">
 								<div id="slider-range" class="slider_range"></div>
@@ -340,6 +339,36 @@
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 <script src="/sagyc.js"></script>
 
+<script type="text/javascript">
+
+
+
+	function initPriceSlider() {
+		if($("#slider-range").length){
+	    $( function() {
+	        $( "#slider-range" ).slider({
+	          range: true,
+	          min: 0,
+	          max: 500,
+	          values: [ 75, 300 ],
+	          slide: function( event, ui ) {
+	            $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+	          },
+	          change: function( event, ui ) {
+
+	            alert(ui.values[ 0 ] + " - " + ui.values[ 1 ]);
+	          }
+	        });
+	        $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+	          " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+	      } );
+
+
+		}
+	}
+
+
+</script>
 
 </body>
 

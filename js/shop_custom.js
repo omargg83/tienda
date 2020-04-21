@@ -37,7 +37,7 @@ $(document).ready(function()
 	initViewedSlider();
 	initBrandsSlider();
 	initIsotope();
-	initPriceSlider();
+
 	initFavs();
 
 	$(window).on('resize', function()
