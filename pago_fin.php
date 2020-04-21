@@ -102,8 +102,8 @@
 				'idPedido' => (int)$idpedido,
 				'almacen' => "32A",
 				'tipoPago' => "03",
-				'envio' => json_encode($envio),
-				'producto' => json_encode($producto),
+				'envio' => json_decode(json_encode($envio)),
+				'producto' => json_decode(json_encode($producto)),
 			);
 			$json = json_encode($arreglo);
 
@@ -336,7 +336,7 @@
 			$asunto="Se rechazo el pago";
 		}
 
-		$db->correo($correo, $texto, $asunto);
+		//$db->correo($correo, $texto, $asunto);
 		////////////////////////////////////////////////////
 
 	?>
