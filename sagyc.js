@@ -594,7 +594,6 @@ $(document).on('submit','#contact_form',function(e){
 $(document).on('submit','#cotizacion_form',function(e){
   e.preventDefault();
   var dataString = $(this).serialize()+"&function=mayoreo&ctrl=control";
-  alert(dataString);
   $.ajax({
     url: "/control_db.php",
     type: "POST",
