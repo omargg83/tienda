@@ -179,7 +179,7 @@
 							<ul class="brands_list">
 								<?php
 									foreach($marca as $key){
-										echo "<li class='brand'><a href='/tienda.php?tipo=".$tipo."&id=".$id."&marcaf=".$key->marca."'>".$key->marca."</a></li>";
+										echo "<li class='brand'><a href='/tienda.php?tipo=".$tipo."&id=".$id."&pag=$pag&marcaf=".$key->marca."'>".$key->marca."</a></li>";
 									}
 								 ?>
 							</ul>
