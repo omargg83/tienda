@@ -31,6 +31,7 @@
 	}
 
 
+
 	if(isset($_REQUEST['tipo']) and $_REQUEST['tipo']==1){
 		$tipo=$_REQUEST['tipo'];
 		$id=$_REQUEST['id'];
@@ -81,6 +82,16 @@
 	if($tipo==4 or $tipo==0){
 		$consulta="";
 	}
+
+	$sql="select max(preciof) as maximo from productos
+	left outer join categoria_ct on productos.categoria=categoria_ct.categoria
+	left outer join producto_cat on categoria_ct.id=producto_cat.idcategoria_ct
+	where productos.activo=1 and productos.existencia>0 $consulta $filtro";
+	$sth = $db->dbh->prepare($sql);
+	$sth->execute();
+	$resp=$sth->fetch(PDO::FETCH_OBJ);
+	echo $sql;
+
 
 	$sql="select count(productos.id) as total from productos
 	left outer join categoria_ct on productos.categoria=categoria_ct.categoria
@@ -341,7 +352,7 @@
 
 <script type="text/javascript">
 
-$(function(){
+	$(function(){
 		initPriceSlider();
 	});
 
