@@ -409,7 +409,7 @@
 	            $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
 	          },
 	          change: function( event, ui ) {
-							window.location.href="/tienda.php?tipo="+tipo+"&id="+idpas+"&pag="+pag+"&marcaf="+marcaf+"&ord="+orden+"&pmax="+ui.values[ 1 ]+"&pmin="+ui.values[ 0 ]+"";
+							window.location.href="/tienda.php?tipo="+tipo+"&id="+idpas+"&pag=0&marcaf="+marcaf+"&ord=&pmax="+ui.values[ 1 ]+"&pmin="+ui.values[ 0 ]+"";
 	          }
 	        });
 	        $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
