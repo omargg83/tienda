@@ -59,13 +59,19 @@
 	foreach($resp as $key){
 		if(!array_search(trim($key->marca), $marca2)){
 			$marca2[$contar]=trim($key->marca);
+			echo "<br>no existe:".$key->marca;
 			$contar++;
 		}
 	}
-	asort($marca2);
+
+	echo "<pre>";
+	echo var_dump($marca2);
+	echo "</pre>";
+/*	asort($marca2);
 	foreach ($marca2 as $key){
 		echo "<br>".$key;
 	}
+	*/
 ?>
 <!DOCTYPE html>
 <html lang="en">
