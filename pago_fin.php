@@ -66,49 +66,63 @@
 		$pago=$ped->pago;
 		$idpago=$ped->idpago;
 
-		if($payment_status=="approved"){
+		if($payment_status=="approved" or $payment_status=="in_process"){
 			$resp = crearNuevoToken();
 			$tok=$resp->token;
 			echo $tok;
-		}
 
-		$envio=array(
-			'nombre' => $nombre. " ".$apellido,
-			'direccion' => $direccion1,
-			'entreCalles' => $entrecalles,
-			'noExterior' => $numero,
-			'colonia' => $colonia,
-			'estado' => $estado,
-			'ciudad' => $ciudad,
-			'codigoPostal' => $cp,
-			'telefono' => $telefono
-		);
+			$envio=array(
+				'nombre' => $nombre. " ".$apellido,
+				'direccion' => $direccion1,
+				'entreCalles' => $entrecalles,
+				'noExterior' => $numero,
+				'colonia' => $colonia,
+				'estado' => $estado,
+				'ciudad' => $ciudad,
+				'codigoPostal' => $cp,
+				'telefono' => $telefono
+			);
 
-		$ct_producto=0;
-		foreach($datos as $key){
-			if($key->tipo=="CT"){
-				$ct_producto++;
-				$producto=array(
-					'cantidad' => $key->cantidad,
-					'clave' => $key->clave,
-					'precio' => $key->precio,
-					'moneda' => "MXN"
-				);
+			$ct_producto=0;
+			foreach($datos as $key){
+				if($key->tipo=="CT"){
+					$ct_producto++;
+					$producto=array(
+						'cantidad' => $key->cantidad,
+						'clave' => $key->clave,
+						'precio' => $key->precio,
+						'moneda' => "MXN"
+					);
+				}
 			}
+
+			$resp=array(
+				'idPedido' => $idpedido,
+				'almacen' => "31A",
+				'tipoPago' => "03",
+				'envio' => $envio,
+				'producto' => $producto,
+			);
+			$json = json_encode($resp);
+
+			echo "<pre>";
+				echo var_dump($json);
+			echo "</pre>";
+
+
+
+
+
+			$servicio = $json;
+			$metodo="POST";
+			$resp =servicioApi($metodo,$servicio,NULL,$tok);
+			echo "<br>respuesta:".$resp;
+			echo "<pre>";
+				echo var_dump($resp);
+			echo "</pre>";
 		}
 
-		$resp=array(
-			'idPedido' => $idpedido,
-			'almacen' => $cliente,
-			'tipoPago' => "03",
-			'envio' => $envio,
-			'producto' => $producto,
-		);
-		$json = json_encode($resp);
 
-		echo "<pre>";
-			echo var_dump($json);
-		echo "</pre>";
 
 		////////$ct_producto;
 
