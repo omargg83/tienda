@@ -102,8 +102,8 @@
 				'idPedido' => (int)$idpedido,
 				'almacen' => "32A",
 				'tipoPago' => "03",
-				'envio' => $envio,
-				'producto' => $producto,
+				'envio' => json_encode($envio),
+				'producto' => json_encode($producto),
 			);
 			$json = json_encode($arreglo);
 
