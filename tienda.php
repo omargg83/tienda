@@ -196,7 +196,7 @@
 							<div class="filter_price">
 								<div id="slider-range" class="slider_range"></div>
 								<p>Rango: </p>
-								<p><input type="text" id="amount" class="amount" readonly style="border:0; font-weight:bold;"></p>
+								<p><input type="text" id="amount" readonly style="border:0; font-weight:bold;"></p>
 							</div>
 						</div>
 
