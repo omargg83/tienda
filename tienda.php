@@ -109,8 +109,6 @@
 	if($pmax==0){
 		$pmax=$maxp;
 	}
-	echo "<br>Maximo:".round($maxp);
-
 
 	$sql="select count(productos.id) as total from productos
 	left outer join categoria_ct on productos.categoria=categoria_ct.categoria
@@ -128,7 +126,7 @@
 	left outer join categoria_ct on productos.categoria=categoria_ct.categoria
 	left outer join producto_cat on categoria_ct.id=producto_cat.idcategoria_ct
 	where productos.activo=1 and productos.existencia>0 $consulta $filtro $forden $qprecio limit $tam,".$_SESSION['pag']."";
-	
+
 	$sth = $db->dbh->prepare($sql);
 	$sth->execute();
 
