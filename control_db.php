@@ -723,9 +723,10 @@
 			try{
 				self::set_names();
 				$id=$_REQUEST['id'];
-				$sql="delete from cliente_carro where id=:id";
+				$sql="delete from cliente_carro where idproducto=:id and idcliente=:cli";
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(":id",$id);
+				$sth->bindValue(":cli",$_SESSION['idcliente']);
 				return $sth->execute();
 			}
 			catch(PDOException $e){
