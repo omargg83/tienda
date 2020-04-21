@@ -250,7 +250,8 @@
 									<?php
 										echo "<li class='page-item'><a class='page-link' href='tienda.php?tipo=$tipo&id=$id&pag=0&marcaf=$marcaf'>Primera</a></li>";
 										for($i=0; $i<$num_paginas;$i++){
-											echo "<li class='page-item'><a class='page-link' href='tienda.php?tipo=$tipo&id=$id&pag=$i&marcaf=$marcaf'>".$i+1."</a></li>";
+											$t=$i+1;
+											echo "<li class='page-item'><a class='page-link' href='tienda.php?tipo=$tipo&id=$id&pag=$i&marcaf=$marcaf'>".$t."</a></li>";
 										}
 										echo "<li class='page-item'><a class='page-link' href='tienda.php?tipo=$tipo&id=$id&pag=$num_paginas&marcaf=$marcaf'>Ultima</a></li>";
 									?>
