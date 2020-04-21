@@ -71,7 +71,8 @@
 			$tok=$resp->token;
 			echo $tok;
 
-			$envio=array(
+			$envio=array();
+			$envio+=array(
 				'nombre' => $nombre. " ".$apellido,
 				'direccion' => $direccion1,
 				'entreCalles' => $entrecalles,
@@ -84,10 +85,11 @@
 			);
 
 			$ct_producto=0;
+			$producto=array();
 			foreach($datos as $key){
 				if($key->tipo=="CT"){
 					$ct_producto++;
-					$producto=array(
+					$producto+=array(
 						'cantidad' => (int)$key->cantidad,
 						'clave' => $key->clave,
 						'precio' => (int)$key->precio,
