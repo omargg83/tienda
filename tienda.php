@@ -190,13 +190,6 @@
 							}
 						?>
 
-						<p>
-						  <label for="amount">Price range:</label>
-						  <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
-						</p>
-
-						<div id="slider-range"></div>
-
 						<div class="sidebar_section filter_by_section">
 							<div class="sidebar_title">Filter By</div>
 							<div class="sidebar_subtitle">Precio</div>

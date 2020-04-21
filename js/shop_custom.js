@@ -374,7 +374,24 @@ $(document).ready(function()
 
 			$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) + " - $" + $( "#slider-range" ).slider( "values", 1 ) );
 
+			$('.ui-slider-handle').on('mouseup', function(){
+				$('.product_grid').isotope({
+		            filter: function()
+		            {
+		            	var priceRange = $('#amount').val();
+			        	var priceMin = parseFloat(priceRange.split('-')[0].replace('$', ''));
+			        	var priceMax = parseFloat(priceRange.split('-')[1].replace('$', ''));
+			        	var itemPrice = $(this).find('.product_price').clone().children().remove().end().text().replace( '$', '' );
 
+			        	return (itemPrice > priceMin) && (itemPrice < priceMax);
+		            },
+		            animationOptions: {
+		                duration: 750,
+		                easing: 'linear',
+		                queue: false
+		            }
+		        });
+			});
 
 
     	}
