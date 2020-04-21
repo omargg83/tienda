@@ -683,7 +683,8 @@ $(document).on('submit','#carrito_form',function(e){
 
 			$('.ui-slider-handle').on('mouseup', function(){
 				$('.product_grid').isotope({
-		           
+		            filter: function(){
+
 
                 var priceRange = $('#amount').val();
 			        	var priceMin = parseFloat(priceRange.split('-')[0].replace('$', ''));
@@ -691,6 +692,16 @@ $(document).on('submit','#carrito_form',function(e){
 
                 alert(priceMin + "-" + priceMax);
 
+
+			        	var itemPrice = $(this).find('.product_price').clone().children().remove().end().text().replace( '$', '' );
+
+			        	return (itemPrice > priceMin) && (itemPrice < priceMax);
+		            },
+		            animationOptions: {
+		                duration: 750,
+		                easing: 'linear',
+		                queue: false
+		            }
 		        });
 			});
 
