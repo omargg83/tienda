@@ -21,7 +21,7 @@
 		$rx=$db->categorias_name($id);
 		$nombre=$rx->descripcion;
 
-		$resp=$db->cat_categoriatic($id,$marca_f);
+		$resp=$db->cat_categoriatic($id, $marca_f, $tipo);
 		$contar=count($resp);
 
 		$marca=$db->n1_productos_marcas($id,$marca_f);
