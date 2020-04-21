@@ -78,6 +78,7 @@
 	$sth->execute();
 	$resp=$sth->fetch(PDO::FETCH_OBJ);
 	echo "Total:".$resp->total;
+	$num_paginas=$resp->total/$_SESSION['pag'];
 
 	$tam=($pag*$_SESSION['pag']);
 	$sql="select * from productos
@@ -246,11 +247,13 @@
 						<div>
 							<nav aria-label="Page navigation example">
 							  <ul class="pagination">
-							    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-							    <li class="page-item"><a class="page-link" href="#">1</a></li>
-							    <li class="page-item"><a class="page-link" href="#">2</a></li>
-							    <li class="page-item"><a class="page-link" href="#">3</a></li>
-							    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+									<li class="page-item"><a class="page-link" href="#">Primera</a></li>
+									<?php
+										for($i=1; $i<$num_paginas;$i++){
+											echo "<li class='page-item'><a class='page-link' href='tienda.php?tipo=$tipo&id=$id&pag=$i'>$i</a></li>";
+										}
+									?>
+							    <li class="page-item"><a class="page-link" href="#">Ultima</a></li>
 							  </ul>
 							</nav>
 						</div>
