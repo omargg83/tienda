@@ -128,22 +128,22 @@
 	left outer join categoria_ct on productos.categoria=categoria_ct.categoria
 	left outer join producto_cat on categoria_ct.id=producto_cat.idcategoria_ct
 	where productos.activo=1 and productos.existencia>0 $consulta $filtro $forden $qprecio limit $tam,".$_SESSION['pag']."";
-	echo $sql;
+	
 	$sth = $db->dbh->prepare($sql);
 	$sth->execute();
 
 	$resp=$sth->fetchAll(PDO::FETCH_OBJ);
 	/////////////////////////////////////////////
 
-	echo "<input id='pmin' name='pmin' value='$pmin'>";
-	echo "<input id='pmax' name='pmax' value='$pmax'>";
+	echo "<input type='hidden' id='pmin' name='pmin' value='$pmin'>";
+	echo "<input type='hidden' id='pmax' name='pmax' value='$pmax'>";
 
 
-	echo "<input id='tipo' name='tipo' value='$tipo'>";
-	echo "<input id='idpas' name='idpas' value='$id'>";
-	echo "<input id='pag' name='pag' value='$pag'>";
-	echo "<input id='marcaf' name='marcaf' value='$marcaf'>";
-	echo "<input id='orden' name='orden' value='$orden'>";
+	echo "<input type='hidden' id='tipo' name='tipo' value='$tipo'>";
+	echo "<input type='hidden' id='idpas' name='idpas' value='$id'>";
+	echo "<input type='hidden' id='pag' name='pag' value='$pag'>";
+	echo "<input type='hidden' id='marcaf' name='marcaf' value='$marcaf'>";
+	echo "<input type='hidden' id='orden' name='orden' value='$orden'>";
 
 
 
