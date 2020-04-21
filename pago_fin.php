@@ -94,7 +94,7 @@
 					$producto[$contar]=array(
 						'cantidad' => (int)$key->cantidad,
 						'clave' => $key->clave,
-						'precio' => (int)$key->precio,
+						'precio' => "4.19",
 						'moneda' => "MXN"
 					);
 					$contar++;
@@ -103,7 +103,7 @@
 
 			$arreglo=array(
 				'idPedido' => (int)$idpedido,
-				'almacen' => "",
+				'almacen' => "32A",
 				'tipoPago' => "03",
 				'envio' => json_decode(json_encode($envio)),
 				'producto' => json_decode(json_encode($producto)),
