@@ -1438,6 +1438,12 @@
 			$mail->From = $this->ecorreo;
 			$mail->FromName = 'TIC-SHOP';
 
+			$mail->CharSet = 'UTF-8';
+
+			$mail->Body    = $asunto;
+			$mail->Subject = $asunto;
+			$mail->AltBody = $asunto;
+
 			/*
 			$mail->IsSMTP(); // enable SMTP
 			$mail->SMTPAuth = true; // authentication enabled
