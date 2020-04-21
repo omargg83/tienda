@@ -88,17 +88,17 @@
 				if($key->tipo=="CT"){
 					$ct_producto++;
 					$producto=array(
-						'cantidad' => $key->cantidad,
+						'cantidad' => (int)$key->cantidad,
 						'clave' => $key->clave,
-						'precio' => $key->precio,
+						'precio' => (int)$key->precio,
 						'moneda' => "MXN"
 					);
 				}
 			}
 
 			$resp=array(
-				'idPedido' => $idpedido,
-				'almacen' => "31A",
+				'idPedido' => (int)$idpedido,
+				'almacen' => "32A",
 				'tipoPago' => "03",
 				'envio' => $envio,
 				'producto' => $producto,
