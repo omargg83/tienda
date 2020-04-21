@@ -1454,12 +1454,13 @@
 */
 
 			$mail->IsSMTP(); // enable SMTP
+			$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 			$mail->Host = "smtp.gmail.com";
 			$mail->SMTPAuth = true; // authentication enabled
 			$mail->Username = "sistema.subsaludpublicahgo@gmail.com";       // SMTP username
 			$mail->Password = "TEUFEL123";                       // SMTP password                                // TCP port to connect to
 			$mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
-			$mail->Port = 465; // or 587
+			$mail->Port = 587; // or 587
 			$mail->CharSet = 'UTF-8';
 
 			$mail->From = "sistema.subsaludpublicahgo@gmail.com";
