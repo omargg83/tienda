@@ -71,17 +71,6 @@
 			$tok=$resp->token;
 			echo $tok;
 
-			echo "<hr>";
-			echo "<br>prueba1";
-			$clave="ACCYOS050";
-			$servicio = "existencia/$clave/TOTAL";
-			$metodo="GET";
-			$resp =servicioApi($metodo,$servicio,NULL,$tok);
-			$existencia=$resp->existencia_total;
-			echo "<br>existencia:".$existencia;
-			echo "<hr>";
-
-
 			$envio=array(
 				'nombre' => $nombre. " ".$apellido,
 				'direccion' => $direccion1,
@@ -120,9 +109,7 @@
 				echo var_dump($json);
 			echo "</pre>";
 
-			$servicio = "pedido/";
-			$metodo="POST";
-			$resp =servicioApi($metodo,$servicio,$json,$tok);
+			$resp =servicioApi('POST','pedido',$json,$tok);
 			echo "<br>respuesta:".$resp;
 			echo "<pre>";
 				echo var_dump($resp);
