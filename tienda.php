@@ -86,7 +86,7 @@
 	left outer join producto_cat on categoria_ct.id=producto_cat.idcategoria_ct
 	where productos.activo=1 and productos.existencia>0 $consulta $filtro limit $tam,".$_SESSION['pag']."";
 
-	//echo $sql;
+	echo $sql;
 	$sth = $db->dbh->prepare($sql);
 	$sth->execute();
 	$resp=$sth->fetchAll(PDO::FETCH_OBJ);
@@ -179,7 +179,7 @@
 							<ul class="brands_list">
 								<?php
 									foreach($marca as $key){
-										echo "<li class='brand'><a href='/tienda.php?tipo=".$tipo."&id=".$id."&marca=".$key->marca."'>".$key->marca."</a></li>";
+										echo "<li class='brand'><a href='/tienda.php?tipo=".$tipo."&id=".$id."&marcaf=".$key->marca."'>".$key->marca."</a></li>";
 									}
 								 ?>
 							</ul>
