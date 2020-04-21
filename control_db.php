@@ -1426,6 +1426,7 @@
 			$mail = new PHPMailer;
 
 				$mail->IsSMTP(); // enable SMTP
+				/*
 			  $mail->SMTPAuth = true; // authentication enabled
 			  $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
 			  $mail->Host = "mail.tic-shop.com.mx";
@@ -1436,11 +1437,20 @@
 				$mail->Password = $this->Password;
 				$mail->From = $this->ecorreo;
 				$mail->FromName = 'TIC-SHOP';
+				*/
 				$mail->CharSet = 'UTF-8';
 
 				$mail->Body    = $asunto;
 				$mail->Subject = $asunto;
 				$mail->AltBody = $asunto;
+
+				$mail->Host = "smtp.gmail.com";						  // Specify main and backup SMTP servers
+				$mail->SMTPAuth = true;                               // Enable SMTP authentication
+				$mail->Username = "sistema.subsaludpublicahgo@gmail.com";       // SMTP username
+				$mail->Password = "TEUFEL123";                       // SMTP password
+				$mail->SMTPSecure = "ssl";                            // Enable TLS encryption, `ssl` also accepted
+				$mail->Port = 465;                                    // TCP port to connect to
+				$mail->CharSet = 'UTF-8';
 
 /*
 			$mail->IsSMTP(); // enable SMTP
@@ -1456,7 +1466,7 @@
 			$mail->SMTPAuth = true; // authentication enabled
 			$mail->Username = "sistema.subsaludpublicahgo@gmail.com";       // SMTP username
 			$mail->Password = "TEUFEL123";                       // SMTP password                                // TCP port to connect to
-			
+
 			$mail->From = "sistema.subsaludpublicahgo@gmail.com";
 			$mail->FromName = "Sistema Administrativo de Salud Pública";
 
