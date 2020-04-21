@@ -77,7 +77,7 @@
 	$sth = $db->dbh->prepare($sql);
 	$sth->execute();
 	$resp=$sth->fetch(PDO::FETCH_OBJ);
-	echo "Total:".$resp->total;
+
 	$num_paginas=$resp->total/$_SESSION['pag'];
 
 	$tam=($pag*$_SESSION['pag']);
@@ -86,7 +86,6 @@
 	left outer join producto_cat on categoria_ct.id=producto_cat.idcategoria_ct
 	where productos.activo=1 and productos.existencia>0 $consulta $filtro limit $tam,".$_SESSION['pag']."";
 
-	echo $sql;
 	$sth = $db->dbh->prepare($sql);
 	$sth->execute();
 	$resp=$sth->fetchAll(PDO::FETCH_OBJ);
