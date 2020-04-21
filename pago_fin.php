@@ -94,8 +94,8 @@
 					$producto[$contar]=array(
 						'cantidad' => (int)$key->cantidad,
 						'clave' => $key->clave,
-						'precio' => "4.19",
-						'moneda' => "MXN"
+						'precio' => "0.17",
+						'moneda' => "USD"
 					);
 					$contar++;
 				}
