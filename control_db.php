@@ -1444,7 +1444,14 @@
 				$mail->Subject = $asunto;
 				$mail->AltBody = $asunto;
 
-				$mail->Host = "smtp.gmail.com";						  // Specify main and backup SMTP servers
+				$mail->Host = "tls://smtp.gmail.com:587";						  // Specify main and backup SMTP servers
+				$mail->SMTPOptions = array(
+				   'ssl' => array(
+				     'verify_peer' => false,
+				     'verify_peer_name' => false,
+				     'allow_self_signed' => true
+				    )
+				);
 				$mail->SMTPAuth = true;                               // Enable SMTP authentication
 				$mail->Username = "sistema.subsaludpublicahgo@gmail.com";       // SMTP username
 				$mail->Password = "TEUFEL123";                       // SMTP password
