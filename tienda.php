@@ -135,7 +135,7 @@
 
 
 	echo "<input id='tipo' name='tipo' value='$tipo'>";
-	echo "<input id='id' name='id' value='$id'>";
+	echo "<input id='idpas' name='idpas' value='$id'>";
 	echo "<input id='pag' name='pag' value='$pag'>";
 	echo "<input id='marcaf' name='marcaf' value='$marcaf'>";
 	echo "<input id='orden' name='orden' value='$orden'>";
@@ -387,7 +387,7 @@
 		if($("#slider-range").length){
 			var maxprecio=$( "#amount" ).val();
 			var tipo=$( "#tipo" ).val();
-			var idx=$( "#id" ).val();
+			var idpas=$( "#idpas" ).val();
 			var pag=$( "#pag" ).val();
 			var marcaf=$( "#marcaf" ).val();
 			var orden=$( "#orden" ).val();
@@ -403,7 +403,7 @@
 	            $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
 	          },
 	          change: function( event, ui ) {
-							window.location.href="/tienda.php?tipo="+tipo+"&id="+id+"&pag="+pag+"&marcaf="+marcaf+"&ord="+orden+"&pmax="+ui.values[ 1 ]+"&pmin="+ui.values[ 0 ]+"";
+							window.location.href="/tienda.php?tipo="+tipo+"&id="+idpas+"&pag="+pag+"&marcaf="+marcaf+"&ord="+orden+"&pmax="+ui.values[ 1 ]+"&pmin="+ui.values[ 0 ]+"";
 	          }
 	        });
 	        $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
