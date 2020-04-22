@@ -1,5 +1,6 @@
 <?php
   session_start();
+  echo "inicio->".date("Y-m-d H:i:s");
   class Tienda{
     public $nivel_personal;
     public $nivel_captura;
@@ -80,6 +81,7 @@
 
   if (file_exists ($destino)){
     ///////////////////////////////////////    PROCESO  /////////////////////////////////////////////////////////////
+    $fechaext=mktime(date("H"),date("i"),date("s"),date("m"),date("d"),date("Y"));
 
     //////////////////////////////////////   JSON SE CONVIERTE EN ARREGLO
     $data = file_get_contents($destino);
@@ -146,6 +148,7 @@
             $sth3 = $db->dbh->prepare($sql);
             $sth3->execute();
 
+            $existencia=0;
             ///////////////////////////  SE ACTUALIZAN LAS EXISTENCIAS CADA HORA
             if (is_array($product['existencia'])){
               while (current($product['existencia'])) {
@@ -159,12 +162,16 @@
                 $sth2->bindValue(':almacen', $name);
                 $sth2->bindValue(':existencia', $valor);
                 $sth2->execute();
+                $existencia+=$valor;
                 next($product['existencia']);
               }
             }
 
+            $sql="update productos set existencia='$existencia', timeexis='$fechaext', horaexist='$fmodif' where id='$id'";
+            $stmt2= $db->dbh->query($sql);
+
             ////////////////////////////  SE ACTUALIZAN LAS ESPECIFICACIONES A LAS 8 DE LA MAÑANA Y LAS 8 DE LA NOCHE
-            //if ($nuevo==1){
+            if ($nuevo==1){
               $sql="delete from producto_espe where id='".$id."'";
               $sth3 = $db->dbh->prepare($sql);
               $sth3->execute();
@@ -179,7 +186,7 @@
                   $sth2->execute();
                 }
               }
-            //}
+            }
 
           }
         }
@@ -226,5 +233,5 @@
 
   }
   echo "finalizo";
-
+  echo "fin->".date("Y-m-d H:i:s");
 ?>

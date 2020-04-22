@@ -82,7 +82,7 @@
 				echo "<br>idprod:".$idprod;
 				echo "<br>cantidad:".$cantidad;
 
-				$sql="select * from producto_exist where id='$idprod' and existencia>=$cantidad order by existencia desc";
+				$sql="select producto_exist.*,almacen.numero from producto_exist left outer join almacen on almacen.homoclave=producto_exist.almacen where id='$idprod' and existencia>=$cantidad order by existencia desc";
 				echo $sql;
 
 		    $exist = $db->dbh->prepare($sql);
