@@ -9,6 +9,8 @@
 	$paypal_client=$mercado->paypal_client;
 
 	$ped=$db->pedido_ver($idpedido);
+	echo var_dump($ped);
+	
 	if(!is_array($ped)){
 		$error=1;
 	}
