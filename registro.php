@@ -43,7 +43,7 @@
 	<!-- Cart -->
 	<form id='registro' action=''>
 		<div class="cart_section">
-			<div class="container" class="reg">
+			<div class="container reg">
 				<h3 class='text-center'>Registro</h3>
 				<div class="row">
 					<div class="col-4">
