@@ -44,7 +44,7 @@
       <div class="col-lg-3 footer_col">
         <div class="footer_column footer_contact">
           <div class="logo_container">
-            <div class="logo"><a href="#"><img src='img/LOGO.png' width='100px'></a></div>
+            <div class="logo"><a href="#"><img src='/img/LOGO.png' width='100px'></a></div>
           </div>
           <div class="footer_title">¿Tiene alguna duda?</div>
           <div class="footer_phone">771 702 8040</div>
@@ -82,7 +82,7 @@
         <div class="footer_column">
           <div class="footer_title">POLITICAS DE LA EMPRESA</div>
           <ul class="footer_list footer_list_2">
-             
+
             <li><a href="terminos-condiciones.php">Terminos y condiciones</a></li>
             <li><a href="aviso.php">Avíso de privacidad</a></li>
             <li><a href="preguntas.php">Preguntas frecuentes</a></li>
