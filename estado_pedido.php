@@ -89,7 +89,7 @@
 			<div class='col-9'>
 
 				<?php
-				if($error=0){
+				if($error==0){
 				?>
 
 				<h3 class='text-center'>Pedido</h3>
