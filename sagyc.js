@@ -55,7 +55,7 @@ function carrito(id,cantidad){
     success:  function (response) {
       var datos = JSON.parse(response);
       if (datos.error==0){
-        window.location.href="/cart.php";
+        window.location.href="/carrito/";
       }
       if(datos.error==2){
         window.location.href="/acceso";
@@ -153,7 +153,7 @@ function borra_carrito(id){
 
               },
               success:  function (response) {
-                window.location.href="/cart.php";
+                window.location.href="/carrito/";
               },
               error: function(jqXHR, textStatus, errorThrown) {
 
@@ -639,7 +639,7 @@ $(document).on('submit','#carrito_form',function(e){
       console.log(response);
       var datos = JSON.parse(response);
       if (datos.error==0){
-        window.location.href="/cart.php";
+        window.location.href="/carrito/";
       }
       if (datos.error==1){
         Swal.fire({
