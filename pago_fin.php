@@ -73,8 +73,7 @@
 			$resp = crearNuevoToken();
 			$tok=$resp->token;
 			echo $tok;
-
-
+/*
 			/////////////////////////////////comienza pedido
 			$datos=$db->datos_pedido($idpedido);
 			foreach($datos as $key){
@@ -97,7 +96,6 @@
 					echo "</pre>";
 
 					foreach($alma_pedido as $ped){
-						/*
 						if($cantidad>0){
 							$pedir=$ped->existencia-$cantidad;
 							if($pedir>=0){
@@ -159,11 +157,10 @@
 						else{
 							break;
 						}
-						*/
 					}
 				}
 			//$resp =servicioApi('POST','pedido',$json,$tok);
-
+*/
 		}
 
 
