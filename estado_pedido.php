@@ -2,7 +2,7 @@
 	require_once("control_db.php");
 	$db = new Tienda();
 	$idpedido=$_REQUEST['idpedido'];
-	$error=0;
+	$error=1;
 
 	$mercado=$db->ajustes_editar();
 	$merca=$mercado->mercado_public;
@@ -32,10 +32,6 @@
 		$pago=$ped->pago;
 		$error=0;
 	}
-	else{
-		$error=1;
-	}
-
 
 ?>
 

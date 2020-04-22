@@ -1,32 +1,28 @@
 <?php
 	require_once("control_db.php");
 	$db = new Tienda();
+	$id=0;
+	$direccion1="";
+	$direccion2="";
+	$ciudad="";
+	$cp="";
+	$pais="";
+	$estado="";
+	$error=1;
 	if(isset($_REQUEST['dir'])){
 		$id=$_REQUEST['dir'];
 		$per = $db->direccion_editar($id);
-
-		$direccion1=$per->direccion1;
-		$entrecalles=$per->entrecalles;
-		$numero=$per->numero;
-		$colonia=$per->colonia;
-		$ciudad=$per->ciudad;
-		$cp=$per->cp;
-		$pais=$per->pais;
-		$estado=$per->estado;
-	}
-	else{
-		$id=0;
-	/*	$nombre="";
-		$apellidos="";
-		$empresa="";
-		*/
-		$direccion1="";
-		$direccion2="";
-		$ciudad="";
-		$cp="";
-		$pais="";
-		$estado="";
-
+		if(is_object($per)){
+			$direccion1=$per->direccion1;
+			$entrecalles=$per->entrecalles;
+			$numero=$per->numero;
+			$colonia=$per->colonia;
+			$ciudad=$per->ciudad;
+			$cp=$per->cp;
+			$pais=$per->pais;
+			$estado=$per->estado;
+			$error=0;
+		}
 	}
 ?>
 
@@ -62,9 +58,9 @@
 		<div class='row'>
 			<div class='col-3'>
 				<div class="btn-group-vertical">
-					<a href='cli_pedidos.php' class="btn btn-primary btn-lg btn-block">Pedidos</a>
-					<a href='cli_direcciones.php' class="btn btn-primary btn-lg btn-block">Direcciones</a>
- 				 	<a href='cli_datos.php' class="btn btn-primary btn-lg btn-block">Mis datos</a>
+					<a href='/cli_pedidos.php' class="btn btn-primary btn-lg btn-block">Pedidos</a>
+					<a href='/cli_direcciones.php' class="btn btn-primary btn-lg btn-block">Direcciones</a>
+ 				 	<a href='/cli_datos.php' class="btn btn-primary btn-lg btn-block">Mis datos</a>
  				 	<a href='#' class="btn btn-primary btn-lg btn-block" onclick='salir()'>Salir</a>
 				</div>
 			</div>
@@ -72,8 +68,10 @@
 				<?php
 
 					echo "<div class='card-body'>";
+					if($error==0){
 				?>
 				<form id='direccion' action=''>
+
 					<div class='modal-header'>Dirección</h5>
 					</div>
 						<div class='modal-body' >
@@ -135,6 +133,10 @@
 				</form>
 
 				<?php
+				}
+				else{
+					echo "<h3 class='text-center'>No encontrado</h3>";
+				}
 					echo "</div>";
 
 				?>
