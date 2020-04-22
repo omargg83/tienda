@@ -2,6 +2,7 @@
 		require_once("control_db.php");
 		$db = new Tienda();
 
+		////////////////////////////////////////////////CONFIRMA COMPRA EN MERCADO PAGO
 		$idpedido=$_REQUEST['idpedido'];
 		$payment_id=$_REQUEST['payment_id'];
 		$payment_status=$_REQUEST['payment_status'];
@@ -38,7 +39,7 @@
 
 		}
 
-
+		/////////////////////////////////////////COMIENZA PEDIDO A CT
 		$ped=$db->pedido_ver($idpedido);
 		$datos=$db->datos_pedido($idpedido);
 		$cupones=$db->pedido_cupones($id);
@@ -66,11 +67,23 @@
 		$pago=$ped->pago;
 		$idpago=$ped->idpago;
 
+
+		/////////////////SI FUE PAGADO
 		if($payment_status=="approved" or $payment_status=="in_process"){
 			$resp = crearNuevoToken();
 			$tok=$resp->token;
 			echo $tok;
 
+			foreach($datos as $key){
+				$clave=$key->clave;
+				echo "<br>Clave:".$clave;
+
+				
+
+
+			}
+
+			/*
 			$envio=array();
 			$contar=0;
 
@@ -114,10 +127,19 @@
 				echo print_r($json);
 			echo "</pre>";
 
-			$resp =servicioApi('POST','pedido',$json,$tok);
+			//$resp =servicioApi('POST','pedido',$json,$tok);
+
+
+
 			echo "<pre>";
 				echo var_dump($resp);
 			echo "</pre>";
+			*/
+
+
+
+
+
 		}
 
 
