@@ -9,7 +9,7 @@
 	$paypal_client=$mercado->paypal_client;
 
 	$ped=$db->pedido_ver($idpedido);
-	if(!$ped){
+	if(!is_array($ped)){
 		$error=1;
 	}
 	else{
