@@ -9,8 +9,6 @@
 	$paypal_client=$mercado->paypal_client;
 
 	$ped=$db->pedido_ver($idpedido);
-	echo var_dump($ped);
-
 	if(is_object($ped)){
 		$datos=$db->datos_pedido($idpedido);
 		$nombre=$ped->nombre;
@@ -259,7 +257,7 @@
 						echo "</div>";
 					}
 					else{
-						echo "<h5>No encontrado</h5>";
+						echo "<h3 class='text-center'>No encontrado</h3>";
 					}
 				?>
 
