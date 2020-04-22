@@ -164,8 +164,9 @@
 								echo moneda($gtotal);
 							echo "</div>";
 						echo "</div>";
-
-						echo "<a class='btn btn-warning btn-block' href='/finalizar.php'><i class='fas fa-cart-plus'></i>Finalizar</a>";
+						if($gtotal>0){
+							echo "<a class='btn btn-warning btn-block' href='/finalizar/'><i class='fas fa-cart-plus'></i>Finalizar</a>";
+						}
 					?>
 				</div>
 			</div>
