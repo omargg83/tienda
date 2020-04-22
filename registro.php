@@ -20,7 +20,7 @@
 <title>TIC SHOP</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="description" content="OneTech shop project">
+<meta name="description" content="TIC-SHOP la mejor tienda de tecnologia>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="/styles/bootstrap4/bootstrap.min.css">
 <link href="/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
@@ -108,7 +108,12 @@
 
 				<div class="row">
 					<div class="col-4 offset-4">
-						<button type="submit" class="btn btn-primary btn-block">Registrar</button>
+						<button type="submit" class="btn btn-primary btn-block" style="    
+    margin-top: 20px;
+    background-color: #b4f22f;
+    border: none;
+    color: black;
+    cursor: pointer;">Registrar</button>
 					</div>
 				</div>
 				<div class="row">
