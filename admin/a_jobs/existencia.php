@@ -20,7 +20,6 @@
     }
   }
   $db = new Tienda();
-
   echo "inicio:".date("Y-m-d H:i:s");
 
   function servicioApi($metodo, $servicio, $json = null, $token = null) {
@@ -53,7 +52,7 @@
   $tok=$resp->token;
 
   $fecha=mktime(date("H"),date("i"),date("s"),date("m"),date("d"),date("Y"));
-  $sql="select * from productos where interno=0 order by timeexis asc limit 100";
+  $sql="select * from productos where interno=0 and existencia=0 order by timeexis asc limit 50";
   $stmt= $db->dbh->query($sql);
   foreach($stmt as $key){
     $fmodif = date("Y-m-d H:i:s");

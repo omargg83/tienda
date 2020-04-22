@@ -1,6 +1,6 @@
 <?php
   session_start();
-  echo "inicio->".date("Y-m-d H:i:s");
+
   class Tienda{
     public $nivel_personal;
     public $nivel_captura;
@@ -25,7 +25,7 @@
     }
   }
   $db = new Tienda();
-
+  echo "inicio->".date("Y-m-d H:i:s");
 
   $destino="file.json";     //////////////////////ARCHIVO JSON
 
@@ -202,7 +202,7 @@
         */
     }
 
-    $sql="update productos set activo=0 where modificado!='$fmodif'";
+    $sql="update productos set existencia=0 where modificado!='$fmodif' and interno=0";
     $sth4 = $db->dbh->prepare($sql);
     $sth4->execute();
 
