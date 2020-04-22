@@ -370,9 +370,10 @@
 					          title: 'no cierre la ventana, finalizando pago',
 					          showConfirmButton: false
 					      });
+
 					      return actions.order.capture().then(function(details) {
 					        $.ajax({
-					          url: "paypal-transaction-complete.php",
+					          url: "/paypal-transaction-complete.php",
 					          type: "POST",
 					          data: {
 					            "id":details.id,
