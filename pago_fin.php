@@ -91,7 +91,7 @@
 		    $exist->execute();
 				$contar=$exist->rowCount();
 				if($contar>0){
-					$alma_pedido=$exist->fetch(PDO::FETCH_OBJ);
+					$alma_pedido=$exist->fetchAll(PDO::FETCH_OBJ);
 					echo "<pre>";
 						echo var_dump($alma_pedido);
 					echo "</pre>";
