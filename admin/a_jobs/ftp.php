@@ -203,6 +203,7 @@
     }
 
     $sql="update productos set existencia=0, modificado='$fmodif' where modificado!='$fmodif' and interno=0";
+    echo $sql;
     $sth4 = $db->dbh->prepare($sql);
     $sth4->execute();
 
