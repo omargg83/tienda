@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Tic-Shop</title>
+<title>TIC SHOP</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
@@ -29,15 +29,15 @@
 			include "a_header.php";
 		?>
 	</header>
-	
+
 
 	<div class="banner">
 		<div class="container ">
 			<div class="row ">
 				<div class="col-lg-12 ">
 					<div class="banner_content">
-						<h1 class="banner_text" style="color: black; font-size: 30px;">Preguntas frecuentes</h1><br> 
-					
+						<h1 class="banner_text" style="color: black; font-size: 30px;">Preguntas frecuentes</h1><br>
+
 <p>Dudas sobre la compra</p>
 <ol>
 <li>&iquest;Es seguro comprar en Tic-Shop?</li>
@@ -63,7 +63,7 @@
 	</div>
 
 
-	
+
 
 	<!-- Footer -->
 	<footer class="footer">

@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Contact</title>
+<title>TIC SHOP</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
@@ -95,7 +95,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 	</div>
 	<!-- Footer -->
 	<footer class="footer">

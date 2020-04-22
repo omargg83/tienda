@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Tic-Shop</title>
+<title>TIC SHOP</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
@@ -30,7 +30,7 @@
 			include "a_header.php";
 		?>
 	</header>
-	
+
 
 	<div class="banner">
 		<div class="container ">
@@ -38,7 +38,7 @@
 				<div class="col-lg-12 ">
 					<div class="banner_content">
 						<h1 class="banner_text" style="color: black; font-size: 30px;">Términos y condiciones</h1><br>
-						
+
 <p>Te damos la m&aacute;s cordial Bienvenida a la tienda en L&iacute;nea www.tic-shop.com.mx</p>
 <p>Con el fin de ofrecer seguridad a nuestros usuarios, se han establecido condiciones de uso que rigen la relaci&oacute;n que existe entre www.tic-shop.com.mx y los usuarios o clientes que se entender&aacute;n como aceptadas al momento que procedan a la compra de productos en <a href="http://www.tic-shop.com.mx">www.tic-shop.com.mx</a> por lo que le pedimos las leas detenidamente ANTES de utilizarlo.</p>
 <p>&nbsp;<strong>GENERALES:</strong></p>
@@ -161,7 +161,7 @@
 	</div>
 
 
-	
+
 
 	<!-- Footer -->
 	<footer class="footer">
