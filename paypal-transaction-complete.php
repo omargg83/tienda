@@ -15,7 +15,6 @@
     $arreglo+= array('pagador'=>$mail);
     $arreglo+= array('estado_pago'=>$estatus);
     $x=$db->update('pedidos',array('id'=>$idx), $arreglo);
-    echo $x;
     $ped=json_decode($x);
     $id=$ped->id;
     if($ped->error==0){
