@@ -2,14 +2,14 @@
 	require_once("control_db.php");
 	$db = new Tienda();
 	$idpedido=$_REQUEST['idpedido'];
-
+	
 	$mercado=$db->ajustes_editar();
 	$merca=$mercado->mercado_public;
 	$paypal_client=$mercado->paypal_client;
 
 	$ped=$db->pedido_ver($idpedido);
-	$datos=$db->datos_pedido($idpedido);
 
+	$datos=$db->datos_pedido($idpedido);
 	$nombre=$ped->nombre;
 	$apellido=$ped->apellido;
 	$correo=$ped->correo;
