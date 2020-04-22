@@ -41,7 +41,7 @@
 
 		/////////////////////////////////////////COMIENZA PEDIDO A CT
 		$ped=$db->pedido_ver($idpedido);
-		$datos=$db->datos_pedido($idpedido);
+
 		$cupones=$db->pedido_cupones($id);
 
 		$nombre=$ped->nombre;
@@ -74,6 +74,9 @@
 			$tok=$resp->token;
 			echo $tok;
 
+
+			/////////////////////////////////comienza pedido
+			$datos=$db->datos_pedido($idpedido);
 			foreach($datos as $key){
 				$clave=$key->clave;
 				$idprod=$key->idprod;
@@ -82,7 +85,7 @@
 				echo "<br>idprod:".$idprod;
 				echo "<br>cantidad:".$cantidad;
 
-				$sql="select producto_exist.*,almacen.numero from producto_exist left outer join almacen on almacen.homoclave=producto_exist.almacen where id='$idprod' and existencia>=$cantidad order by existencia desc";
+				$sql="select producto_exist.*,almacen.numero from producto_exist left outer join almacen on almacen.homoclave=producto_exist.almacen where id='$idprod' order by existencia desc";
 				echo $sql;
 
 		    $exist = $db->dbh->prepare($sql);
