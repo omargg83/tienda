@@ -97,10 +97,9 @@
 
 					foreach($alma_pedido as $ped){
 						$sql="select * from productos where id='".$ped->id."'";
-						echo $sql;
 						$prod_query = $db->dbh->prepare($sql);
 				    $prod_query->execute();
-						$prod_pedido=$exist->fetch(PDO::FETCH_OBJ);
+						$prod_pedido=$prod_query->fetch(PDO::FETCH_OBJ);
 						echo "<br>Prod:".$prod_pedido->nombre;
 						echo "<br>clave:".$prod_pedido->clave;
 
