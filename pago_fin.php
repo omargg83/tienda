@@ -111,7 +111,7 @@
 							}
 							$cantidad=$cantidad-$pedir;
 
-							if($ped->existencia)
+							if($pedir>0){
 								$envio=array();
 								$contar=0;
 
@@ -133,7 +133,7 @@
 									if($key->tipo=="CT"){
 										$ct_producto++;
 										$producto[$contar]=array(
-											'cantidad' => (int)$pedir,
+											'cantidad' => $pedir,
 											'clave' => $key->clave,
 											'precio' => "0.17",
 											'moneda' => "USD"
@@ -154,8 +154,9 @@
 								echo "<pre>";
 									echo print_r($json);
 								echo "</pre>";
-
 								echo "<hr>";
+							}
+
 						}
 						else{
 							break;
