@@ -80,7 +80,7 @@ function borra_carrito(id){
 
     },
     success:  function (response) {
-      window.location.href="/wish.php";
+      window.location.href="/carrito/";
     },
     error: function(jqXHR, textStatus, errorThrown) {
 
@@ -121,7 +121,7 @@ function borra_wish(id){
 
             },
             success:  function (response) {
-              window.location.href="/wish.php";
+              window.location.href="/deseos/";
             },
             error: function(jqXHR, textStatus, errorThrown) {
 
