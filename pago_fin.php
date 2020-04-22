@@ -76,9 +76,28 @@
 
 			foreach($datos as $key){
 				$clave=$key->clave;
+				$idprod=$key->idprod;
+				$cantidad=$key->cantidad;
 				echo "<br>Clave:".$clave;
+				echo "<br>idprod:".$idprod;
+				echo "<br>cantidad:".$cantidad;
 
-				
+				$sql="select * from producto_exist where id='$idprod' and existencia>=$cantidad order by existencia desc";
+				echo $sql;
+
+		    $exist = $db->dbh->prepare($sql);
+		    $exist->execute();
+				$contar=$exist->rowCount();
+				if($contar>0){
+					echo "<br>hay";
+				}
+				$alma_pedido=$exist->fetch(PDO::FETCH_OBJ);
+
+				echo "<pre>";
+					echo var_dump($alma_pedido);
+				echo "</pre>";
+
+
 
 
 			}
@@ -368,7 +387,7 @@
 	<!DOCTYPE html>
 	<html lang="en">
 	<head>
-<title>TIC SHOP</title>
+	<title>TIC SHOP</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="description" content="OneTech shop project">
