@@ -90,21 +90,14 @@
 				$contar=$exist->rowCount();
 				if($contar>0){
 					$alma_pedido=$exist->fetchAll(PDO::FETCH_OBJ);
-					echo "<pre>";
-						echo var_dump($alma_pedido);
-					echo "</pre>";
-
 
 					foreach($alma_pedido as $ped){
 						$sql="select * from productos where id='".$ped->id."'";
 						$prod_query = $db->dbh->prepare($sql);
 				    $prod_query->execute();
 						$prod_pedido=$prod_query->fetch(PDO::FETCH_OBJ);
-						echo "<br>Prod:".$prod_pedido->nombre;
-						echo "<br>clave:".$prod_pedido->clave;
 
 						if($cantidad>0){
-
 							$pedir=$ped->existencia-$cantidad;
 							if($pedir>=0){
 								$pedir=$cantidad;
@@ -385,7 +378,7 @@
 			$asunto="Se rechazo el pago";
 		}
 
-		//$db->correo($correo, $texto, $asunto);
+		$db->correo($correo, $texto, $asunto);
 		////////////////////////////////////////////////////
 
 	?>
