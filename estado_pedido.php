@@ -10,11 +10,8 @@
 
 	$ped=$db->pedido_ver($idpedido);
 	echo var_dump($ped);
-	
-	if(!is_array($ped)){
-		$error=1;
-	}
-	else{
+
+	if(is_object($ped)){
 		$datos=$db->datos_pedido($idpedido);
 		$nombre=$ped->nombre;
 		$apellido=$ped->apellido;
@@ -36,6 +33,9 @@
 		$estatus=$ped->estatus;
 		$pago=$ped->pago;
 		$error=0;
+	}
+	else{
+		$error=1;
 	}
 
 
