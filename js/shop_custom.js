@@ -287,7 +287,7 @@ $(document).ready(function()
 				nav:false,
 				dots:false,
 				autoWidth:true,
-				items:16,
+				items:8,
 				margin:42
 			});
 
