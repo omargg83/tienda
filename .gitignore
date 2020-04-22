@@ -5,3 +5,4 @@ a_imagenpagina/
 .well-know/
 cgi-bin/
 *error_log
+*file.json

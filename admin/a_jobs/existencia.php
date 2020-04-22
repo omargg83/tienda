@@ -53,7 +53,7 @@
   $tok=$resp->token;
 
   $fecha=mktime(date("H"),date("i"),date("s"),date("m"),date("d"),date("Y"));
-  $sql="select * from productos where interno=0 order by timeexis asc limit 100";
+  $sql="select * from productos where interno=0 order by timeexis asc limit 50";
   $stmt= $db->dbh->query($sql);
   foreach($stmt as $key){
     $fmodif = date("Y-m-d H:i:s");
@@ -67,9 +67,9 @@
     $resp =servicioApi($metodo,$servicio,NULL,$tok);
     if (is_object($resp)){
       $existencia=$resp->existencia_total;
-      $sql="update productos set existencia='$existencia', timeexis='$fecha', horaexist='$fmodif' where id='$id'";
-      $stmt2= $db->dbh->query($sql);
     }
+    $sql="update productos set existencia='$existencia', timeexis='$fecha', horaexist='$fmodif' where id='$id'";
+    $stmt2= $db->dbh->query($sql);
 
     ///////////////////////////////////////////////////////////almacen
     $sql="delete from producto_exist where id='$id'";
