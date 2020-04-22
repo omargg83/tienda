@@ -71,7 +71,7 @@
               $cat=$db->categorias();
               foreach($cat as $key){
                 echo "<li>
-                  <a href='/shop.php?cat=".$key->idcategoria."&ncat=".$key->descripcion."'>".$key->descripcion."</a>
+                  <a href='/tienda.php?cat=".$key->idcategoria."&ncat=".$key->descripcion."'>".$key->descripcion."</a>
                   <li>";
               }
             ?>

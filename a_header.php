@@ -127,7 +127,7 @@
             <div class="wishlist d-flex flex-row align-items-center justify-content-end">
               <div class="wishlist_icon"><img src="/images/heart.png" alt=""></div>
               <div class="wishlist_content">
-                <div class="wishlist_text"><a href="/wish.php">Deseos</a></div>
+                <div class="wishlist_text"><a href="/deseos/">Deseos</a></div>
                 <div class="wishlist_count" id='wish_count'><?php echo $contar_wish; ?></div>
               </div>
             </div>
