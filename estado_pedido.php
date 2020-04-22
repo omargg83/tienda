@@ -9,7 +9,7 @@
 	$paypal_client=$mercado->paypal_client;
 
 	$ped=$db->pedido_ver($idpedido);
-	if($ped){
+	if(!$ped){
 		$error=1;
 	}
 	else{
@@ -33,6 +33,7 @@
 		$gtotal=$ped->total;
 		$estatus=$ped->estatus;
 		$pago=$ped->pago;
+		$error=0;
 	}
 
 
