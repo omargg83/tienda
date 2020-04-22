@@ -3703,5 +3703,6 @@ select option
 .arrivals_slider .slick-track{padding-bottom: 150px!important;}
 
 #registro div{width: 100%;flex: 0 0 100%; max-width: 100%; margin-bottom: 5px;}
+.offset-4{margin-left: 0px;}
 
 }
