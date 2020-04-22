@@ -48,60 +48,60 @@
 				<div class="row">
 					<div class="col-4">
 			      <label class='text-center'>Nombre</label>
-			      <input type="text" class="form-control" id="nombre" name='nombre' placeholder="Nombre" value="<?php echo $nombre; ?>" required>
+			      <input type="text" class="form-control" id="nombre" name='nombre' placeholder="" value="<?php echo $nombre; ?>" required>
 			    </div>
 
 					<div class="col-4">
 			      <label class='text-center'>Apellidos</label>
-			      <input type="text" class="form-control" id="apellido" name='apellido' placeholder="Apellidos" value="<?php echo $apellido; ?>" required autocomplete="off">
+			      <input type="text" class="form-control" id="apellido" name='apellido' placeholder="" value="<?php echo $apellido; ?>" required autocomplete="off">
 					</div>
 					<div class="col-4">
 			      <label class='text-center'>Correo</label>
-			      <input type="email" class="form-control" id="correo" name='correo' placeholder="Correo" value="<?php echo $correo; ?>" required autocomplete="off">
+			      <input type="email" class="form-control" id="correo" name='correo' placeholder="" value="<?php echo $correo; ?>" required autocomplete="off">
 			    </div>
 				</div>
 
 				<div class='row'>
 					<div class="col-12">
-						<label>Dirección (linea 1)</label>
-						<input type="text" class="form-control" id="direccion1" name='direccion1' placeholder="Dirección (linea 1)" value="" required>
+						<label>Dirección (línea 1)</label>
+						<input type="text" class="form-control" id="direccion1" name='direccion1' placeholder="" value="" required>
 					</div>
 					<div class="col-12">
-						<label>Dirección (linea 2)</label>
-						<input type="text" class="form-control" id="direccion2" name='direccion2' placeholder="Dirección (linea 2)" value="" >
+						<label>Dirección (línea 2)</label>
+						<input type="text" class="form-control" id="direccion2" name='direccion2' placeholder="" value="" >
 					</div>
 					<div class="col-4">
 						<label>Ciudad</label>
-						<input type="text" class="form-control" id="ciudad" name='ciudad' placeholder="Ciudad" value="" required>
+						<input type="text" class="form-control" id="ciudad" name='ciudad' placeholder="" value="" required>
 					</div>
 					<div class="col-4">
 						<label>Código postal</label>
-						<input type="text" class="form-control" id="cp" name='cp' placeholder="Código postal" value="" required>
+						<input type="text" class="form-control" id="cp" name='cp' placeholder="" value="" required>
 					</div>
 					<div class="col-4">
-						<label>Pais</label>
-						<input type="text" class="form-control" id="pais" name='pais' placeholder="Pais" value="" required>
+						<label>País</label>
+						<input type="text" class="form-control" id="pais" name='pais' placeholder="" value="" required>
 					</div>
 					<div class="col-4">
 						<label>Estado</label>
-						<input type="text" class="form-control" id="estado" name='estado' placeholder="Estado" value="" required>
+						<input type="text" class="form-control" id="estado" name='estado' placeholder="" value="" required>
 					</div>
 					<div class="col-4">
 						<label>Teléfono</label>
-						<input type="text" class="form-control" id="telefono" name='telefono' placeholder="Teléfono" value="" required>
+						<input type="text" class="form-control" id="telefono" name='telefono' placeholder="" value="" required>
 					</div>
 				</div>
 				<hr>
 				<div class="row">
 					<div class="col-4 offset-4">
 			      <label class='text-center'>Contraseña</label>
-			      <input type="password" class="form-control" id="pass" name='pass' placeholder="Contraseña" value="<?php echo $pass; ?>" required autocomplete="off">
+			      <input type="password" class="form-control" id="pass" name='pass' placeholder="" value="<?php echo $pass; ?>" required autocomplete="off">
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-4 offset-4">
 			      <label class='text-center'>Repetir contraseña</label>
-			      <input type="password" class="form-control" id="pass2" name='pass2' placeholder="Contraseña" value="<?php echo $pass; ?>" required autocomplete="off">
+			      <input type="password" class="form-control" id="pass2" name='pass2' placeholder="" value="<?php echo $pass; ?>" required autocomplete="off">
 			    </div>
 				</div>
 
