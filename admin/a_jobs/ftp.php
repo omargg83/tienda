@@ -81,7 +81,7 @@
 
   if (file_exists ($destino)){
     ///////////////////////////////////////    PROCESO  /////////////////////////////////////////////////////////////
-    $fechaext=mktime(date("H"),date("i"),date("s"),date("m"),date("d"),date("Y"));
+
 
     //////////////////////////////////////   JSON SE CONVIERTE EN ARREGLO
     $data = file_get_contents($destino);
@@ -166,8 +166,9 @@
                 next($product['existencia']);
               }
             }
-
-            $sql="update productos set existencia='$existencia', timeexis='$fechaext', horaexist='$fmodif' where id='$id'";
+            $fechaext=mktime(date("H"),date("i"),date("s"),date("m"),date("d"),date("Y"));
+            $fexist=date("Y-m-d H:i:s");
+            $sql="update productos set existencia='$existencia', timeexis='$fechaext', horaexist='$fexist' where id='$id'";
             $stmt2= $db->dbh->query($sql);
 
             ////////////////////////////  SE ACTUALIZAN LAS ESPECIFICACIONES A LAS 8 DE LA MAÑANA Y LAS 8 DE LA NOCHE
@@ -194,43 +195,11 @@
           return "Database access FAILED! ".$e->getMessage();
         }
         $i++;
-/*
-        if ($i==10){
-          echo "cancela";
-          break;
-        }
-        */
     }
 
     $sql="update productos set existencia=0, modificado='$fmodif' where modificado!='$fmodif' and interno=0";
-    echo $sql;
     $sth4 = $db->dbh->prepare($sql);
     $sth4->execute();
-
-/*
-    /////////////////////////////////////// BUSCAMOS PRODUCTOS QUE NO SE ACTUALIZARON PARA ELIMINAR EXISTENCIAS
-    echo "buscar productos modificados";
-
-    $sql="select * from productos where modificado!='$fmodif' and interno=0 limit 10";
-    $stmt= $db->dbh->query($sql);
-
-    foreach($stmt as $key){
-      $sql="delete from producto_exist where idProducto=:idproducto";
-      $sth3 = $db->dbh->prepare($sql);
-
-      $sth3->bindValue(':idproducto', $key['idProducto']);
-      $sth3->execute();
-
-      $sql="update productos set activo=0 where idProducto=:idproducto";
-      $sth4 = $db->dbh->prepare($sql);
-
-      $sth4->bindValue(':idproducto', $key['idProducto']);
-      $sth4->execute();
-    }*/
-
-    $date=date("YmdHis");
-    $file="file_".$date.".json";
-    //rename($destino, "../historial/$file");
 
   }
   echo "finalizo";

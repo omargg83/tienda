@@ -52,7 +52,7 @@
   $tok=$resp->token;
 
   $fecha=mktime(date("H"),date("i"),date("s"),date("m"),date("d"),date("Y"));
-  $sql="select * from productos where interno=0 and existencia=0 order by timeexis asc limit 50";
+  $sql="select * from productos where interno=0 and existencia=0 order by timeexis asc limit 100";
   $stmt= $db->dbh->query($sql);
   foreach($stmt as $key){
     $fmodif = date("Y-m-d H:i:s");
@@ -70,7 +70,6 @@
     $sql="update productos set existencia='$existencia', timeexis='$fecha', horaexist='$fmodif' where id='$id'";
     $stmt2= $db->dbh->query($sql);
 
-    ///////////////////////////////////////////////////////////almacen
     $sql="delete from producto_exist where id='$id'";
     $sth3 = $db->dbh->prepare($sql);
     $sth3->execute();
