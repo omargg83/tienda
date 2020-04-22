@@ -96,9 +96,15 @@
 
 
 					foreach($alma_pedido as $ped){
+						$sql="select * from productos where id='".$ped->id."'";
+						$prod_query = $db->dbh->prepare($sql);
+				    $prod_query->execute();
+						$prod_pedido=$exist->fetchAll(PDO::FETCH_OBJ);
+						echo "<br>Prod:".$prod_pedido->nombre;
+						echo "<br>clave:".$prod_pedido->clave;
 
 						if($cantidad>0){
-							
+
 							$pedir=$ped->existencia-$cantidad;
 							if($pedir>=0){
 								$pedir=$cantidad;
@@ -132,8 +138,8 @@
 										$producto[$contar]=array(
 											'cantidad' => $pedir,
 											'clave' => $key->clave,
-											'precio' => "0.17",
-											'moneda' => "USD"
+											'precio' => $prod_pedido->precio,
+											'moneda' => $prod_pedido->moneda
 										);
 										$contar++;
 									}
@@ -141,7 +147,7 @@
 
 								$arreglo=array(
 									'idPedido' => (int)$idpedido,
-									'almacen' => "32A",
+									'almacen' => $ped->numero,
 									'tipoPago' => "03",
 									'envio' => json_decode(json_encode($envio)),
 									'producto' => json_decode(json_encode($producto)),
