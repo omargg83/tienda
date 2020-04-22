@@ -43,7 +43,7 @@
 		$ped=$db->pedido_ver($idpedido);
 
 		$cupones=$db->pedido_cupones($id);
-
+		$datos=$db->datos_pedido($idpedido);
 		$nombre=$ped->nombre;
 		$apellido=$ped->apellido;
 		$correo=$ped->correo;
@@ -73,9 +73,8 @@
 			$resp = crearNuevoToken();
 			$tok=$resp->token;
 			echo $tok;
-/*
 			/////////////////////////////////comienza pedido
-			$datos=$db->datos_pedido($idpedido);
+
 			foreach($datos as $key){
 				$clave=$key->clave;
 				$idprod=$key->idprod;
@@ -84,6 +83,7 @@
 				echo "<br>Clave:".$clave;
 				echo "<br>idprod:".$idprod;
 				echo "<br>cantidad:".$cantidad;
+				/*
 
 				$sql="select producto_exist.*,almacen.numero from producto_exist left outer join almacen on almacen.homoclave=producto_exist.almacen where id='$idprod' order by existencia desc";
 		    $exist = $db->dbh->prepare($sql);
@@ -158,9 +158,9 @@
 							break;
 						}
 					}
+					*/
 				}
 			//$resp =servicioApi('POST','pedido',$json,$tok);
-*/
 		}
 
 
