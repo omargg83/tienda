@@ -342,7 +342,6 @@ $(document).on('submit','#acceso',function(e){
       "passAcceso":passAcceso
     },
     success: function( response ) {
-      console.log(response);
       var datos = JSON.parse(response);
       if (datos.acceso==1){
         Cookies.set('ticshop_x', datos.galleta);
