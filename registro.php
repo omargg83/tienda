@@ -114,7 +114,7 @@
 				<div class="row">
 					<div class="col-4 offset-4">
 						<small id="emailHelp" class="form-text text-muted">
-						Al crear una cuenta, aceptas los <a>Terminos y Condiciones </a href='/terminos-condiciones.php'> y el <a href='/aviso.php'>Aviso de Privacidad</a> de TIC-SHOP.
+						Al crear una cuenta, aceptas los <a href='/terminos-condiciones.php'>Terminos y Condiciones </a > y el <a href='/aviso.php'>Aviso de Privacidad</a> de TIC-SHOP.
 						¿Ya tienes una cuenta? <a href='/acceso.php'>Iniciar sesión</a>
 						</small>
 					</div>
