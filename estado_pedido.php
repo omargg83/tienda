@@ -2,6 +2,7 @@
 	require_once("control_db.php");
 	$db = new Tienda();
 	$idpedido=$_REQUEST['idpedido'];
+	$error=0;
 
 	$mercado=$db->ajustes_editar();
 	$merca=$mercado->mercado_public;
@@ -9,31 +10,31 @@
 
 	$ped=$db->pedido_ver($idpedido);
 	if($ped){
-		echo "bien";
+		$error=1;
 	}
 	else{
-		echo "no se ecnontro";
+		$datos=$db->datos_pedido($idpedido);
+		$nombre=$ped->nombre;
+		$apellido=$ped->apellido;
+		$correo=$ped->correo;
+		$rfc=$ped->rfc;
+		$cfdi=$ped->cfdi;
+		$direccion1=$ped->direccion1;
+		$entrecalles=$ped->entrecalles;
+		$numero=$ped->numero;
+		$colonia=$ped->colonia;
+		$ciudad=$ped->ciudad;
+		$cp=$ped->cp;
+		$pais=$ped->pais;
+		$estado=$ped->estado;
+		$telefono=$ped->telefono;
+		$gmonto=$ped->monto;
+		$genvio=$ped->envio;
+		$gtotal=$ped->total;
+		$estatus=$ped->estatus;
+		$pago=$ped->pago;
 	}
-	$datos=$db->datos_pedido($idpedido);
-	$nombre=$ped->nombre;
-	$apellido=$ped->apellido;
-	$correo=$ped->correo;
-	$rfc=$ped->rfc;
-	$cfdi=$ped->cfdi;
-	$direccion1=$ped->direccion1;
-	$entrecalles=$ped->entrecalles;
-	$numero=$ped->numero;
-	$colonia=$ped->colonia;
-	$ciudad=$ped->ciudad;
-	$cp=$ped->cp;
-	$pais=$ped->pais;
-	$estado=$ped->estado;
-	$telefono=$ped->telefono;
-	$gmonto=$ped->monto;
-	$genvio=$ped->envio;
-	$gtotal=$ped->total;
-	$estatus=$ped->estatus;
-	$pago=$ped->pago;
+
 
 ?>
 
@@ -76,13 +77,18 @@
 		<div class='row'>
 			<div class='col-3'>
 				<div class="btn-group-vertical">
-					<a href='clientes.php' class="btn btn-primary btn-lg btn-block">Pedidos</a>
-					<a href='cli_direcciones.php' class="btn btn-primary btn-lg btn-block">Direcciones</a>
-					<a href='cli_datos.php' class="btn btn-primary btn-lg btn-block">Mis datos</a>
+					<a href='/clientes.php' class="btn btn-primary btn-lg btn-block">Pedidos</a>
+					<a href='/cli_direcciones.php' class="btn btn-primary btn-lg btn-block">Direcciones</a>
+					<a href='/cli_datos.php' class="btn btn-primary btn-lg btn-block">Mis datos</a>
 					<a href='#' class="btn btn-primary btn-lg btn-block" onclick='salir()'>Salir</a>
 				</div>
 			</div>
 			<div class='col-9'>
+
+				<?php
+				if($error=0){
+				?>
+
 				<h3 class='text-center'>Pedido</h3>
 				<div class="row">
 					<div class="col-2">
@@ -248,7 +254,11 @@
 								echo moneda($gtotal);
 							echo "</div>";
 						echo "</div>";
-					?>
+					}
+					else{
+						echo "<h5>No encontrado</h5>";
+					}
+				?>
 
 				</div>
 			</div>
