@@ -1,6 +1,12 @@
 <?php
 	require_once("control_db.php");
 	$db = new Tienda();
+
+	if(!isset($_REQUEST['idpedido'])){
+
+		header('Location: /');
+		die();
+	}
 	$idpedido=$_REQUEST['idpedido'];
 
 	$mercado=$db->ajustes_editar();
