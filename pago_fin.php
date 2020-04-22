@@ -96,12 +96,9 @@
 						echo var_dump($alma_pedido);
 					echo "</pre>";
 
-
 					foreach($alma_pedido as $ped){
-
-						///////////////////////////////////////////////////////////////
+						/*
 						if($cantidad>0){
-
 							$pedir=$ped->existencia-$cantidad;
 							if($pedir>=0){
 								$pedir=$cantidad;
@@ -154,6 +151,7 @@
 								echo "<pre>";
 									echo print_r($json);
 								echo "</pre>";
+
 								echo "<hr>";
 							}
 
@@ -161,7 +159,7 @@
 						else{
 							break;
 						}
-
+						*/
 					}
 				}
 			//$resp =servicioApi('POST','pedido',$json,$tok);
