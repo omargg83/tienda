@@ -88,13 +88,13 @@
 		    $exist = $db->dbh->prepare($sql);
 		    $exist->execute();
 				$contar=$exist->rowCount();
-				/*
 				if($contar>0){
 					$alma_pedido=$exist->fetchAll(PDO::FETCH_OBJ);
 					echo "<pre>";
 						echo var_dump($alma_pedido);
 					echo "</pre>";
 
+					/*
 					foreach($alma_pedido as $ped){
 						if($cantidad>0){
 							$pedir=$ped->existencia-$cantidad;
@@ -157,8 +157,8 @@
 						else{
 							break;
 						}
+						*/
 					}
-					*/
 				}
 			//$resp =servicioApi('POST','pedido',$json,$tok);
 		}
