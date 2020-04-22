@@ -81,92 +81,93 @@
 				$clave=$key->clave;
 				$idprod=$key->idprod;
 				$cantidad=$key->cantidad;
-				
+
 				echo "<br>Clave:".$clave;
 				echo "<br>idprod:".$idprod;
 				echo "<br>cantidad:".$cantidad;
 
 				$sql="select producto_exist.*,almacen.numero from producto_exist left outer join almacen on almacen.homoclave=producto_exist.almacen where id='$idprod' order by existencia desc";
-
 		    $exist = $db->dbh->prepare($sql);
 		    $exist->execute();
 				$contar=$exist->rowCount();
 				if($contar>0){
-					echo "<br>hay";
+					$alma_pedido=$exist->fetch(PDO::FETCH_OBJ)
+					echo "<pre>";
+						echo var_dump($alma_pedido);
+					echo "</pre>";
+
+
+					foreach($alma_pedido as $ped){
+
+						///////////////////////////////////////////////////////////////
+						if($cantidad>0){
+
+							$pedir=$ped->existencia-$cantidad;
+							if($pedir>=0){
+								$pedir=$cantidad;
+							}
+							else{
+								$pedir=$cantidad+$pedir;
+							}
+							$cantidad=$cantidad-$pedir;
+
+							if($ped->existencia)
+								$envio=array();
+								$contar=0;
+
+								$envio[0]=array(
+									'nombre' => $nombre. " ".$apellido,
+									'direccion' => $direccion1,
+									'entreCalles' => $entrecalles,
+									'noExterior' => $numero,
+									'colonia' => $colonia,
+									'estado' => $estado,
+									'ciudad' => $ciudad,
+									'codigoPostal' => $cp,
+									'telefono' => $telefono
+								);
+
+								$ct_producto=0;
+								$contar=0;
+								foreach($datos as $key){
+									if($key->tipo=="CT"){
+										$ct_producto++;
+										$producto[$contar]=array(
+											'cantidad' => (int)$pedir,
+											'clave' => $key->clave,
+											'precio' => "0.17",
+											'moneda' => "USD"
+										);
+										$contar++;
+									}
+								}
+
+								$arreglo=array(
+									'idPedido' => (int)$idpedido,
+									'almacen' => "32A",
+									'tipoPago' => "03",
+									'envio' => json_decode(json_encode($envio)),
+									'producto' => json_decode(json_encode($producto)),
+								);
+								$json = json_encode($arreglo);
+
+								echo "<pre>";
+									echo print_r($json);
+								echo "</pre>";
+
+								echo "<hr>";
+						}
+						else{
+							break;
+						}
+
+					}
 				}
-				$alma_pedido=$exist->fetch(PDO::FETCH_OBJ);
 
-				echo "<pre>";
-					echo var_dump($alma_pedido);
-				echo "</pre>";
-
-
-
-
-			}
-
-			/*
-			$envio=array();
-			$contar=0;
-
-			$envio[0]=array(
-				'nombre' => $nombre. " ".$apellido,
-				'direccion' => $direccion1,
-				'entreCalles' => $entrecalles,
-				'noExterior' => $numero,
-				'colonia' => $colonia,
-				'estado' => $estado,
-				'ciudad' => $ciudad,
-				'codigoPostal' => $cp,
-				'telefono' => $telefono
-			);
-
-			$ct_producto=0;
-			$contar=0;
-			foreach($datos as $key){
-				if($key->tipo=="CT"){
-					$ct_producto++;
-					$producto[$contar]=array(
-						'cantidad' => (int)$key->cantidad,
-						'clave' => $key->clave,
-						'precio' => "0.17",
-						'moneda' => "USD"
-					);
-					$contar++;
-				}
-			}
-
-			$arreglo=array(
-				'idPedido' => (int)$idpedido,
-				'almacen' => "32A",
-				'tipoPago' => "03",
-				'envio' => json_decode(json_encode($envio)),
-				'producto' => json_decode(json_encode($producto)),
-			);
-			$json = json_encode($arreglo);
-
-			echo "<pre>";
-				echo print_r($json);
-			echo "</pre>";
 
 			//$resp =servicioApi('POST','pedido',$json,$tok);
 
-
-
-			echo "<pre>";
-				echo var_dump($resp);
-			echo "</pre>";
-			*/
-
-
-
-
-
 		}
-
-
-
-		////////$ct_producto;
 
 
 		/////////////////////////////////////////////Correo
