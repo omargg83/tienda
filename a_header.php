@@ -69,7 +69,7 @@
           <div class="top_bar_content ml-auto">
 
             <div class="top_bar_user">
-              <div class="user_icon"><img src="images/user.svg" alt=""></div>
+              <div class="user_icon"><img src="/images/user.svg" alt=""></div>
               <?php
                 if(isset($_SESSION['autoriza_web']) and $_SESSION['autoriza_web']==1 and strlen($_SESSION['idcliente'])>0 and $_SESSION['interno']==1){
                   echo "<div><a href='/clientes.php'>".$_SESSION['correo']."</a></div>";
@@ -77,7 +77,7 @@
                 }
     						else{
                   echo "<div><a href='/registro.php'>Registro</a></div>";
-                  echo "<div><a href='/acceso.php'>Ingresar</a></div>";
+                  echo "<div><a href='/acceso/'>Ingresar</a></div>";
                 }
               ?>
             </div>

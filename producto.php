@@ -2,7 +2,7 @@
 	require_once("control_db.php");
 	$db = new Tienda();
 	$id=$_REQUEST['id'];
-
+	$clave=$id;
 	$prod = $db->producto_ver($id);
 
 	$id=$prod->id;
@@ -253,7 +253,7 @@
 					<textarea placeholder='Comparte tu opinión' id='texto' name='texto' class='form-control' rows='5'></textarea>
 				</div>
 				<div class='col-12'>
-					<button type="button" class="btn btn-primary" onclick='estrella(<?php echo $id; ?>)'>Enviar reseña</button>
+					<button type="button" class="btn btn-primary" onclick='estrella(<?php echo $id; ?>,<?php echo $clave; ?> )'>Enviar reseña</button>
 				</div>
 			</div>
 		<?php

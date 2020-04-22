@@ -9,7 +9,7 @@ else{
 
 function galletax(galleta){
   $.ajax({
-    url: "control_db.php",
+    url: "/control_db.php",
     type: "POST",
     data: {
       "ctrl":"control",
@@ -58,7 +58,7 @@ function carrito(id,cantidad){
         window.location.href="/cart.php";
       }
       if(datos.error==2){
-        window.location.href="/acceso.php";
+        window.location.href="/acceso";
       }
     },
     error: function(jqXHR, textStatus, errorThrown) {
@@ -174,7 +174,7 @@ function buscar_prod(){
 function buscar_prod2(){
   window.location.href="/buscar/"+$("#bucar_textm").val();
 }
-function estrella(idproducto){
+function estrella(idproducto, clave){
   $.confirm({
       title: 'Calificación',
       content: '¿Desea enviar sus comentarios?',
@@ -203,7 +203,7 @@ function estrella(idproducto){
 
             },
             success:  function (response) {
-              window.location.href="/product.php?id="+idproducto;
+              window.location.href="/producto/"+clave;
             },
             error: function(jqXHR, textStatus, errorThrown) {
 
@@ -305,7 +305,7 @@ function captcha_fail(){
 function select_dir(){
   var dir_fin=$("#dir_fin").val();
   $.ajax({
-    url: "control_db.php",
+    url: "/control_db.php",
     type: "POST",
     data:  {
       "dir_fin":dir_fin,
@@ -333,7 +333,7 @@ $(document).on('submit','#acceso',function(e){
   var userAcceso=document.getElementById("userAcceso").value;
   var passAcceso=$.md5(document.getElementById("passAcceso").value);
   $.ajax({
-    url: "control_db.php",
+    url: "/control_db.php",
     type: "POST",
     data: {
       "ctrl":"control",
@@ -367,7 +367,7 @@ $(document).on('submit','#registro',function(e){
   var dataString = $(this).serialize()+"&function=registro&ctrl=control";
   if(pass==pass2){
     $.ajax({
-      url: "control_db.php",
+      url: "/control_db.php",
       type: "POST",
       data:  dataString,
       success: function( response ) {
@@ -407,7 +407,7 @@ $(document).on('submit','#recuperar',function(e){
   var mail=document.getElementById("mail").value;
   if(mail.length>0){
     $.ajax({
-      url: "control_db.php",
+      url: "/control_db.php",
       type: "POST",
       data:  dataString,
       success: function( response ) {
@@ -459,7 +459,7 @@ $(document).on('submit','#datos',function(e){
   var telefono=document.getElementById("telefono").value;
 
   $.ajax({
-    url: "control_db.php",
+    url: "/control_db.php",
     type: "POST",
     data: {
       "ctrl":"control",
@@ -505,7 +505,7 @@ $(document).on('submit','#direccion',function(e){
   var dataString = $(this).serialize()+"&function=guardar_direccion&ctrl=control";
 
   $.ajax({
-    url: "control_db.php",
+    url: "/control_db.php",
     type: "POST",
     data:  dataString,
     success: function( response ) {
@@ -534,7 +534,7 @@ $(document).on('submit','#pedido',function(e){
   e.preventDefault();
   var dataString = $(this).serialize()+"&function=pedido_generar&ctrl=control";
   $.ajax({
-    url: "control_db.php",
+    url: "/control_db.php",
     type: "POST",
     data:  dataString,
     success: function( response ) {
@@ -564,7 +564,7 @@ $(document).on('submit','#contact_form',function(e){
   e.preventDefault();
   var dataString = $(this).serialize()+"&function=contacto&ctrl=control";
   $.ajax({
-    url: "control_db.php",
+    url: "/control_db.php",
     type: "POST",
     data:  dataString,
     success: function( response ) {
@@ -651,7 +651,7 @@ $(document).on('submit','#carrito_form',function(e){
         });
       }
       if(datos.error==2){
-        window.location.href="/acceso.php";
+        window.location.href="/acceso/";
       }
     },
     error: function(jqXHR, textStatus, errorThrown) {
