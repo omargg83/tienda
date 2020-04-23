@@ -23,7 +23,7 @@
 							echo "<div class='btn-group'>";
 								echo "<button class='btn btn-outline-secondary btn-sm' id='edit_comision' title='Editar' data-lugar='a_categorias/editar'><i class='fas fa-pencil-alt'></i></i></button>";
 
-									echo "<button class='btn btn-outline-secondary btn-sm' id='eliminar_cat' data-lugar='a_categorias/db_' data-destino='a_categorias/lista' data-id='".$key['idcategoria']."' data-iddest='$id' data-funcion='quitar_principal' data-div='trabajo'><i class='far fa-trash-alt'></i></i></button>";
+									echo "<button class='btn btn-outline-secondary btn-sm' id='eliminar_cat' data-lugar='a_categorias/db_' data-destino='a_categorias/lista' data-id='".$key['idcategoria']."' data-funcion='quitar_principal' data-div='trabajo'><i class='far fa-trash-alt'></i></i></button>";
 
 							echo "</div>";
 						echo "</td>";
