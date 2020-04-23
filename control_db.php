@@ -1513,7 +1513,7 @@
 		}
 	}
 	function moneda($valor){
-		return "$ ".number_format( $valor, 2, "." , "," );
+		return "$ ".number_format( round($valor,2), 2, "." , "," );
 	}
 	function fecha($fecha,$key=""){
 		$fecha = new DateTime($fecha);

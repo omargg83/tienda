@@ -93,7 +93,7 @@
 											echo "<b>Cantidad</b>";
 										echo "</div>";
 										echo "<div class='col-3 text-center'>";
-											echo "<b>(Precio unitario +</b>";
+											echo "<b>($ Unitario +</b>";
 										echo "</div>";
 										echo "<div class='col-3 text-center'>";
 											echo "<b>Envio) =</b>";
