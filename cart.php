@@ -115,17 +115,19 @@
 
 										echo "<div class='col-3 text-right'>";
 											if($key->envio_tipo==0){
-												echo moneda($db->egeneral);
+												$envioP=$db->egeneral;
+												echo moneda($envioP);
 												$envio+=($db->egeneral*$key->cantidad);
 											}
 											if($key->envio_tipo==1){
-												echo moneda($key->envio_costo);
+												$envioP=$key->envio_costo
+												echo moneda($envioP);
 												$envio+=($key->envio_costo*$key->cantidad);
 											}
 										echo "</div>";
 
 										echo "<div class='col-3 text-right'>";
-											$p_final=($key->cantidad*($preciof+$envio));
+											$p_final=($key->cantidad*($preciof+$envioP));
 											echo moneda($p_final);
 										echo "</div>";
 									echo "</div>";
