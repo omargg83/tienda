@@ -46,6 +46,7 @@
 				<?php
 				$total=0;
 				$envio=0;
+				$preciot=0;
 				foreach($carro as $key){
 					$preciof=0;
 					$enviof=0;
@@ -106,18 +107,20 @@
 										echo "<div class='col-3 text-center'>";
 											echo $key->cantidad;
 										echo "</div>";
+
 										echo "<div class='col-3 text-right'>";
 											echo moneda($preciof);
+											$preciot+=$preciof;
 										echo "</div>";
 
 										echo "<div class='col-3 text-right'>";
 											if($key->envio_tipo==0){
 												echo moneda($db->egeneral);
-												$envio=$db->egeneral;
+												$envio+=($db->egeneral*$key->cantidad);
 											}
 											if($key->envio_tipo==1){
 												echo moneda($key->envio_costo);
-												$envio=$key->envio_costo;
+												$envio+=($key->envio_costo*$key->cantidad);
 											}
 										echo "</div>";
 
@@ -147,7 +150,7 @@
 								echo "Subtotal";
 							echo "</div>";
 							echo "<div class='col-6 text-right'>";
-								echo moneda($total);
+								echo moneda($preciot);
 							echo "</div>";
 						echo "</div>";
 
