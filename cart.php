@@ -2,7 +2,7 @@
 	require_once("control_db.php");
 	$db = new Tienda();
 	$carro=$db->carro_list();
-	echo var_dump($carro);
+
 ?>
 
 <!DOCTYPE html>

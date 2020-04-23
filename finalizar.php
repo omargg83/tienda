@@ -4,11 +4,12 @@
 	$mercado=$db->ajustes_editar();
 	$merca=$mercado->mercado_public;
 
-
 	$carro=$db->carro_list();
+	echo var_dump($carro);
+
 	if(!is_object($carro)){
-		header('Location: /');
-		die();
+	//	header('Location: /');
+	//	die();
 	}
 
 
