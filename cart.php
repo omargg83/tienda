@@ -86,12 +86,7 @@
 							echo "</div>";
 
 							echo "<div class='row'>";
-							
-								echo "<div class='col-2'>";
-									echo "<button class='btn btn-warning btn-sm' onclick='borra_carrito(".$key->id.")'><i class='far fa-trash-alt'></i></button>";
-								echo "</div>";
-
-								echo "<div class='col-10'>";
+								echo "<div class='col-12'>";
 									echo "<div class='row'>";
 										echo "<div class='col-3 text-center'>";
 											echo "<b>Cantidad</b>";
@@ -135,7 +130,7 @@
 								echo "</div>";
 
 							echo "</div>";
-
+							echo "<button class='btn btn-warning btn-sm' onclick='borra_carrito(".$key->id.")'><i class='far fa-trash-alt'></i></button>";
 						echo "</div>";
 					echo "</div>";
 					$total+=$p_final;
