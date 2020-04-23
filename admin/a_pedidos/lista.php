@@ -42,7 +42,7 @@
 						echo "<td class='text-right'>".moneda($gtotal)."</td>";
 						echo "<td class='text-right'>".$key['pago']."</td>";
 						echo "<td class='text-right'>".$key['idpago']."</td>";
-						echo "<td class='text-right'>".$key['approved']."</td>";
+						echo "<td class='text-right'>".$key['estatus']."</td>";
 						echo "</tr>";
 					}
 				}
