@@ -11,14 +11,14 @@
 			<th>#</th>
 			<th>Pedido</th>
 			<th>Cliente</th>
-			<th>Estado</th>
+			<th>Estado pedido</th>
 			<th>Fecha</th>
 			<th>Envio</th>
 			<th>Monto</th>
 			<th>Total</th>
 			<th>Pago</th>
 			<th>Idpago</th>
-			<th>Estatus</th>
+			<th>Estatus Pago</th>
 			</tr>
 			</thead>
 			<tbody>
@@ -42,7 +42,7 @@
 						echo "<td class='text-right'>".moneda($gtotal)."</td>";
 						echo "<td class='text-right'>".$key['pago']."</td>";
 						echo "<td class='text-right'>".$key['idpago']."</td>";
-						echo "<td class='text-right'>".$key['approved']."</td>";
+						echo "<td class='text-right'>".$key['estado_pago']."</td>";
 						echo "</tr>";
 					}
 				}

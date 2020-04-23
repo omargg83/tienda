@@ -162,7 +162,7 @@
 										echo $resp[0]->respuestaCT->estatus;
 										echo "<hr>";
 
-										$sql="insert into pedidos_web (idprod, clave, cantidad, pedidoWeb, estatus) values ('$idprod', '$clave', '$pedir', '$pedidoweb', '$estatus')";
+										$sql="insert into pedidos_web (idprod, clave, cantidad, pedidoWeb, estatus, idpedido) values ('$idprod', '$clave', '$pedir', '$pedidoweb', '$estatus', '$idpedido')";
 										$stmt= $db->dbh->query($sql);
 									*/
 

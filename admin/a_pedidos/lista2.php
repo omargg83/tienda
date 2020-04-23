@@ -8,17 +8,14 @@
 		<div class="content table-responsive table-full-width" >
 			<table id='x_lista' class='dataTable compact hover row-border' style='font-size:10pt;'>
 			<thead>
-			<th>#</th>
-			<th>Pedido</th>
-			<th>Cliente</th>
-			<th>Estado</th>
-			<th>Fecha</th>
-			<th>Envio</th>
-			<th>Monto</th>
-			<th>Total</th>
-			<th>Pago</th>
-			<th>Idpago</th>
+			<th>-</th>
+			<th># Pedido</th>
+			<th>Prod</th>
+			<th>Clave</th>
+			<th>Cantidad</th>
+			<th>Pedido CT</th>
 			<th>Estatus</th>
+
 			</tr>
 			</thead>
 			<tbody>
@@ -26,23 +23,19 @@
 				if (count($pd)>0){
 					foreach($pd as $key){
 						echo "<tr id='".$key['id']."' class='edit-t'>";
+
 						echo "<td>";
-							echo "<div class='btn-group'>";
-								echo "<button class='btn btn-outline-secondary btn-sm' id='edit_comision' title='Editar' data-lugar='a_pedidos/editar'><i class='fas fa-pencil-alt'></i></i></button>";
-							echo "</div>";
+						echo "<div class='btn-group'>";
+							echo "<button class='btn btn-outline-secondary btn-sm' id='edit_comision' title='Editar' data-lugar='a_pedidos/editar'><i class='fas fa-pencil-alt'></i></button>";
+						echo "</div>";
 						echo "</td>";
+
 						echo "<td>".$key["id"]."</td>";
-						$cli=$db->cliente($key['idcliente']);
-						echo "<td>".$cli["nombre"]."</td>";
+						echo "<td>".$key["idprod"]."</td>";
+						echo "<td>".$key["clave"]."</td>";
+						echo "<td>".$key["cantidad"]."</td>";
+						echo "<td>".$key["pedidoWeb"]."</td>";
 						echo "<td>".$key["estatus"]."</td>";
-						echo "<td>".fecha($key["fecha"])."</td>";
-						echo "<td class='text-right'>".moneda($key["envio"])."</td>";
-						echo "<td class='text-right'>".moneda($key["monto"])."</td>";
-						$gtotal=$key["monto"]+$key["envio"];
-						echo "<td class='text-right'>".moneda($gtotal)."</td>";
-						echo "<td class='text-right'>".$key['pago']."</td>";
-						echo "<td class='text-right'>".$key['idpago']."</td>";
-						echo "<td class='text-right'>".$key['approved']."</td>";
 						echo "</tr>";
 					}
 				}
