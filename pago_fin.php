@@ -112,7 +112,10 @@
 								$contar=0;
 
 								$resp =servicioApi('GET',"existencia/detalle/".$clave."/".$ped->numero,NULL,$tok);
+								echo "<br>hay promocion:"$resp->promocion;
+								echo "<pre>";
 								echo "consulta almacen:".var_dump($resp);
+								echo "</pre>";
 
 								$envio[0]=array(
 									'nombre' => $nombre. " ".$apellido,
