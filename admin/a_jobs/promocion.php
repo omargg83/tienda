@@ -52,14 +52,11 @@
   $tok=$resp->token;
 
   $metodo="GET";
-
-
-  $clave=$key['clave'];
   $servicio = "existencia/promociones";
 
 
 
   $resp =servicioApi($metodo,$servicio,NULL,$tok);
-  echo var_dump($resp);
+  echo var_dump(json_encode($resp));
 
 ?>
