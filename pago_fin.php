@@ -158,7 +158,7 @@
 		}
 
 
-		$resp =servicioApi('GET','pedido/detalle/ACCYOS050',$json,$tok);
+		$resp =servicioApi('GET','pedido/detalle/W32-018504',$json,$tok);
 		echo "<hr>";
 		echo $resp->respuestaCT->pedidoWeb;
 
