@@ -146,27 +146,22 @@
 
 								echo "<pre>";
 									echo var_dump($json);
-									//$resp =servicioApi('POST','pedido',$json,$tok); 					/////////////////////////////////////////////PEDIDO
-									//echo var_dump($resp);
 
+									/*
+									$resp =servicioApi('POST','pedido',$json,$tok); 					/////////////////////////////////////////////PEDIDO
+									echo var_dump($resp);
 
-									//http://187.210.141.12:3001/existencia/detalle/:codigo/:almacen
+										echo "<hr>";
+										$pedidoweb=$resp[0]->respuestaCT->pedidoWeb;
+										$estatus=$resp[0]->respuestaCT->estatus;
 
+										echo $resp[0]->respuestaCT->pedidoWeb;
+										echo $resp[0]->respuestaCT->estatus;
+										echo "<hr>";
 
-
-
-
-									echo "<hr>";
-									$pedidoweb=$resp[0]->respuestaCT->pedidoWeb;
-									$estatus=$resp[0]->respuestaCT->estatus;
-
-									echo $resp[0]->respuestaCT->pedidoWeb;
-									echo $resp[0]->respuestaCT->estatus;
-									echo "<hr>";
-
-									$sql="insert into pedidos_web (idprod, clave, cantidad, pedidoWeb, estatus) values ('$idprod', '$clave', '$pedir', '$pedidoweb', '$estatus')";
-									$stmt= $db->dbh->query($sql);
-
+										$sql="insert into pedidos_web (idprod, clave, cantidad, pedidoWeb, estatus) values ('$idprod', '$clave', '$pedir', '$pedidoweb', '$estatus')";
+										$stmt= $db->dbh->query($sql);
+									*/
 
 								echo "</pre>";
 
