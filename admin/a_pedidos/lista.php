@@ -11,14 +11,14 @@
 			<th>#</th>
 			<th>Pedido</th>
 			<th>Cliente</th>
-			<th>Estado</th>
+			<th>Estado pedido</th>
 			<th>Fecha</th>
 			<th>Envio</th>
 			<th>Monto</th>
 			<th>Total</th>
 			<th>Pago</th>
 			<th>Idpago</th>
-			<th>Estatus</th>
+			<th>Estatus Pago</th>
 			</tr>
 			</thead>
 			<tbody>

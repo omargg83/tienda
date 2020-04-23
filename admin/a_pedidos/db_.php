@@ -547,7 +547,7 @@ class Pedidos extends Tienda{
 	public function pedidos_ct(){
 		try{
 			parent::set_names();
-			$sql="SELECT * from pedidos_web order by id desc";
+			$sql="select pedidos_web.idprod, pedidos_web.clave, pedidos_web.pedidoWeb, pedidos_web.estatus,pedidos.* from pedidos_web left outer join pedidos on pedidos_web.idpedido=pedidos.id";
 			$sth = $this->dbh->prepare($sql);
 			$sth->execute();
 			return $sth->fetchAll();
