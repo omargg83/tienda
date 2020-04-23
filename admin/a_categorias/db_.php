@@ -121,6 +121,10 @@ class Categorias extends Tienda{
 		if (isset($_POST['id'])){$id=$_REQUEST['id'];}
 		return $this->borrar('producto_cat',"idcatprod",$id);
 	}
+	public function quitar_principal(){
+		if (isset($_POST['id'])){$id=$_REQUEST['id'];}
+		return $this->borrar('categorias',"idcategoria",$id);
+	}
 
 	public function busca_sub(){
 		try{

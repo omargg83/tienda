@@ -143,6 +143,19 @@
 								echo "<pre>";
 									echo var_dump($json);
 									//$resp =servicioApi('POST','pedido',$json,$tok);
+
+
+									$resp =servicioApi('GET','pedido/detalle/W32-018504',$json,$tok);
+
+									echo "<hr>";
+									echo $resp[0]->respuestaCT->pedidoWeb;
+									echo $resp[0]->respuestaCT->estatus;
+									echo "<hr>";
+
+									$sql="insert into pedidos_web () values ()";
+
+
+
 								echo "</pre>";
 
 								echo "<hr>";
@@ -158,13 +171,7 @@
 		}
 
 
-		$resp =servicioApi('GET','pedido/detalle/W32-018504',$json,$tok);
 
-		echo "<hr>";
-		echo $resp[0]->respuestaCT->pedidoWeb;
-
-		echo "<hr>";
-		echo var_dump($resp);
 
 
 
@@ -196,7 +203,9 @@
 					</td>
 				</tr>
 				</table>
+				<br>
 				<hr>
+				<h3>Información de envíó</h3>
 				<table style='width:100%'>
 				<tr>
 					<td>
@@ -233,6 +242,9 @@
 						<b>Teléfono:</b><br> $telefono
 					</div>
 				</tr>
+				<br>
+				<hr>
+				<h3>Productos</h3>
 				<table>
 				<hr>
 				<table style='width:100%'>
@@ -246,6 +258,10 @@
 						<td>
 							<b>Precio unitario</b>
 						</td>
+						<td>
+							<b>Envío</b>
+						</td>
+
 						<td>
 							<b>Total</b>
 						</td>
@@ -273,6 +289,10 @@
 
 							$texto.= "<td>";
 								$texto.= moneda($key->precio);
+							$texto.= "</td>";
+
+							$texto.= "<td>";
+								$texto.= moneda($key->envio);
 							$texto.= "</td>";
 
 							$texto.= "<td'>";
