@@ -175,8 +175,6 @@
 						$preciof=0;
 						$enviof=0;
 
-
-
 						echo "<div class='row'>";
 							echo "<div class='col-12'>";
 									echo $key->nombre;
@@ -184,7 +182,7 @@
 
 							echo "<div class='col-12'>";
 								echo "<label>Costo envio: ";
-								echo moneda($key->envio);
+								echo moneda($key->envio*$key->cantidad);
 								$envio+=$key->envio;
 								echo "</label>";
 							echo "</div>";
