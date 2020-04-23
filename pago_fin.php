@@ -159,11 +159,12 @@
 
 
 		$resp =servicioApi('GET','pedido/detalle/W32-018504',$json,$tok);
+		$jresponse=json_decode($resp);
 		echo "<hr>";
 		echo $resp->respuestaCT->pedidoWeb;
 
 		echo "<hr>";
-		echo var_dump($resp);
+		echo var_dump($jresponse);
 
 
 
@@ -173,7 +174,7 @@
 				$texto="<h3>TIC-SHOP</h3><br>
 				<h3><b>Pedido</b></h3>
 
-				<table>
+				<table style='width:100%'>
 					<tr>
 					<td>
 						<b>Pedido #:</b><br> $idpedido
