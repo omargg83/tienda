@@ -40,8 +40,8 @@
 						<div class="contact_info_item d-flex flex-row align-items-center justify-content-start">
 							<div class="contact_info_image"><img src="img/telefono negro.png" alt=""></div>
 							<div class="contact_info_content">
-								<div class="contact_info_title">Telefono</div>
-								<div class="contact_info_text">+34534554545</div>
+								<div class="contact_info_title">Teléfono</div>
+								<div class="contact_info_text">771 702 8040</div>
 							</div>
 						</div>
 
@@ -50,7 +50,7 @@
 							<div class="contact_info_image"><img src="img/correo negro.png" alt=""></div>
 							<div class="contact_info_content">
 								<div class="contact_info_title">Email Ventas</div>
-								<div class="contact_info_text">ventas@tic-shop.com.mx</div>
+								<div class="contact_info_text">Ventas-ticshop-Pachuca@hotmail.com</div>
 							</div>
 						</div>
 
