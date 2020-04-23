@@ -18,6 +18,10 @@
 	$paypal_client=$mercado->paypal_client;
 
 	$ped=$db->pedido_ver($idpedido);
+	if(!is_object($ped)){
+		header('Location: /');
+		die();
+	}
 	$datos=$db->datos_pedido($idpedido);
 	$cupones=$db->pedido_cupones($idpedido);
 
