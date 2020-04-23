@@ -45,7 +45,7 @@
 				</div>
 				<?php
 				$total=0;
-				$envio=0;
+				$enviot=0;
 				$preciot=0;
 				foreach($carro as $key){
 					$preciof=0;
@@ -64,7 +64,15 @@
 						$p_total=$key->precio_tic+(($key->precio_tic*$db->cgeneral)/100);
 						$preciof=$p_total;
 					}
-					$preciof=round($preciof,2);
+					$preciof=$preciof;
+
+					if($key->envio_tipo==0){
+						$enviof=($db->egeneral);
+					}
+					if($key->envio_tipo==1){
+						$enviof=($key->envio_costo);
+					}
+
 					echo "<div class='row' style='border-bottom:.5px solid silver'>";
 						echo "<div class='col-3 text-center'>";
 							echo "<img src='/".$db->doc.$key->img."' alt='' width='130px'>";
@@ -106,20 +114,12 @@
 										echo "</div>";
 
 										echo "<div class='col-3 text-right'>";
-											if($key->envio_tipo==0){
-												$envioP=$db->egeneral;
-												echo moneda($envioP);
-												$envio+=($db->egeneral*$key->cantidad);
-											}
-											if($key->envio_tipo==1){
-												$envioP=$key->envio_costo;
-												echo moneda($envioP);
-												$envio+=($key->envio_costo*$key->cantidad);
-											}
+											echo moneda($enviof);
+											$enviot+=($enviof*$key->cantidad);
 										echo "</div>";
 
 										echo "<div class='col-3 text-right'>";
-											$p_final=($key->cantidad*($preciof+$envioP));
+											$p_final=($key->cantidad*($preciof+$enviof));
 											echo moneda($p_final);
 										echo "</div>";
 									echo "</div>";
@@ -153,7 +153,7 @@
 								echo "Envío";
 							echo "</div>";
 							echo "<div class='col-6 text-right'>";
-								echo moneda($envio);
+								echo moneda($enviot);
 							echo "</div>";
 						echo "</div>";
 
