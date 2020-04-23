@@ -1,6 +1,9 @@
 <?php
 	require_once("control_db.php");
 	$db = new Tienda();
+	$mercado=$db->ajustes_editar();
+	$merca=$mercado->mercado_public;
+
 
 	$carro=$db->carro_list();
 	if(!is_object($carro)){
@@ -8,8 +11,7 @@
 		die();
 	}
 
-	$mercado=$db->ajustes_editar();
-	$merca=$mercado->mercado_public;
+
 
 	$resp=$db->datos();
 	$nombre=$resp->nombre;
