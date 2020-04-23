@@ -70,10 +70,10 @@
 
 		/////////////////SI FUE PAGADO
 		if($payment_status=="approved" or $payment_status=="in_process"){
+
+
 			$resp = crearNuevoToken();
 			$tok=$resp->token;
-			echo $tok;
-			/////////////////////////////////comienza pedido
 
 			foreach($datos as $key){
 				$clave=$key->clave;
@@ -148,7 +148,8 @@
 								$json = json_encode($arreglo);
 
 								echo "<pre>";
-									echo print_r($json);
+									echo var_dump($json);
+									//$resp =servicioApi('POST','pedido',$json,$tok);
 								echo "</pre>";
 
 								echo "<hr>";
@@ -161,7 +162,7 @@
 					}
 				}
 			}
-			//$resp =servicioApi('POST','pedido',$json,$tok);
+
 		}
 
 

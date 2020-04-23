@@ -17,11 +17,9 @@
 <link rel="stylesheet" type="text/css" href="/styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="/styles/cart_styles.css">
 <link rel="stylesheet" type="text/css" href="/styles/cart_responsive.css">
-
 </head>
 
 <body>
-
 <div class="super_container">
 
 	<!-- Header -->

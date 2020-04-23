@@ -6,15 +6,16 @@
     $res2=$db->wish_sum();
     $contar_wish=$res2->contar;
 
-    $carro=$db->carro_list();
     $contar=0;
     $envio=0;
-    $total=0;
+    $t_carro=0;
+    $carro=$db->carro_list();
     foreach($carro as $key){
       $preciof=0;
       $enviof=0;
       $contar++;
-      ///////////////preico
+      ///////////////precio
+
       if($key->precio_tipo==0){
         $preciof=$key->preciof;
       }
@@ -32,16 +33,16 @@
 
       ////////////envio
       if($key->envio_tipo==0){
-        $envio+=$db->egeneral;
+        $envio=$db->egeneral;
       }
       if($key->envio_tipo==1){
-        $envio+=$key->envio_costo;
+        $envio=$key->envio_costo;
       }
 
-      $p_final=($key->cantidad*$preciof);
-      $total+=$p_final;
+      $subx=($preciof+$envio);
+      $p_final=($key->cantidad*$subx);
+      $t_carro+=$p_final;
     }
-    $sumar=$total+$envio;
   }
 
 ?>
@@ -141,7 +142,7 @@
                 </div>
                 <div class="cart_content">
                   <div class="cart_text"><a href="/carrito/">Carrito</a></div>
-                  <div class="cart_price"><a href="/carrito/"><?php echo moneda($sumar); ?></a></div>
+                  <div class="cart_price"><a href="/carrito/"><?php echo moneda($t_carro); ?></a></div>
                 </div>
               </div>
             </a>
