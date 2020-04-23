@@ -120,7 +120,7 @@
 												$envio+=($db->egeneral*$key->cantidad);
 											}
 											if($key->envio_tipo==1){
-												$envioP=$key->envio_costo
+												$envioP=$key->envio_costo;
 												echo moneda($envioP);
 												$envio+=($key->envio_costo*$key->cantidad);
 											}
