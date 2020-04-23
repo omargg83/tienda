@@ -96,6 +96,7 @@
 					$alma_pedido=$exist->fetchAll(PDO::FETCH_OBJ);
 					foreach($alma_pedido as $ped){
 
+
 						if($cantidad>0){
 							$pedir=$ped->existencia-$cantidad;
 							if($pedir>=0){
@@ -109,6 +110,12 @@
 							if($pedir>0){
 								$envio=array();
 								$contar=0;
+
+								$resp =servicioApi('GET',"existencia/detalle/".$clave."/".$ped->numero,NULL,$tok);
+								echo "<br>hay promocion:".$resp[0]->promocion;
+								echo "<pre>";
+								echo "consulta almacen:".var_dump($resp);
+								echo "</pre>";
 
 								$envio[0]=array(
 									'nombre' => $nombre. " ".$apellido,
@@ -142,21 +149,22 @@
 
 								echo "<pre>";
 									echo var_dump($json);
-									$resp =servicioApi('POST','pedido',$json,$tok);
+
+									/*
+									$resp =servicioApi('POST','pedido',$json,$tok); 					/////////////////////////////////////////////PEDIDO
 									echo var_dump($resp);
-									//$resp =servicioApi('GET','pedido/detalle/W32-018504',$json,$tok);
 
-									echo "<hr>";
-									$pedidoweb=$resp[0]->respuestaCT->pedidoWeb;
-									$estatus=$resp[0]->respuestaCT->estatus;
+										echo "<hr>";
+										$pedidoweb=$resp[0]->respuestaCT->pedidoWeb;
+										$estatus=$resp[0]->respuestaCT->estatus;
 
-									echo $resp[0]->respuestaCT->pedidoWeb;
-									echo $resp[0]->respuestaCT->estatus;
-									echo "<hr>";
+										echo $resp[0]->respuestaCT->pedidoWeb;
+										echo $resp[0]->respuestaCT->estatus;
+										echo "<hr>";
 
-									$sql="insert into pedidos_web (idprod, clave, cantidad, pedidoWeb, estatus) values ('$idprod', '$clave', '$pedir', '$pedidoweb', '$estatus')";
-									$stmt= $db->dbh->query($sql);
-
+										$sql="insert into pedidos_web (idprod, clave, cantidad, pedidoWeb, estatus) values ('$idprod', '$clave', '$pedir', '$pedidoweb', '$estatus')";
+										$stmt= $db->dbh->query($sql);
+									*/
 
 								echo "</pre>";
 
@@ -271,8 +279,8 @@
 				";
 
 					///////////////////////////////////
-					$total=0;
-					$envio=0;
+					$sub_total=0;
+					$sub_envio=0;
 					foreach($datos as $key){
 						$texto.="<tr>";
 							$texto.= "<td>";
@@ -289,10 +297,12 @@
 
 							$texto.= "<td>";
 								$texto.= moneda($key->precio);
+								$sub_total+=$key->precio*$key->cantidad;
 							$texto.= "</td>";
 
 							$texto.= "<td>";
 								$texto.= moneda($key->envio);
+								$sub_envio+=$key->envio*$key->cantidad;
 							$texto.= "</td>";
 
 							$texto.= "<td>";
@@ -309,7 +319,15 @@
 								$texto.= "<b>Subtotal</b>";
 							$texto.= "</td>";
 							$texto.= "<td>";
-								$texto.= moneda($gmonto);
+								$texto.= moneda($sub_total);
+							$texto.= "</td>";
+						$texto.= "</tr>";
+						$texto.= "<tr>";
+							$texto.= "<td colspan=4>";
+								$texto.= "<b>Envio</b>";
+							$texto.= "</td>";
+							$texto.= "<td>";
+								$texto.= moneda($sub_envio);
 							$texto.= "</td>";
 						$texto.= "</tr>";
 

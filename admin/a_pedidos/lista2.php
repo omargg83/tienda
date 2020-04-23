@@ -1,6 +1,6 @@
 <?php
 	require_once("db_.php");
-	$pd = $db->pedidos_lista();
+	$pd = $db->pedidos_ct();
 	echo "<div class='container-fluid' style='background-color:".$_SESSION['cfondo']."; '>";
 	echo "<br><h5>Pedidos</h5>";
 	echo "<hr>";
