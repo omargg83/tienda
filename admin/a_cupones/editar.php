@@ -60,8 +60,8 @@
 			      <label>Tipo</label>
 						<select class='form-control' id='tipo' name='tipo'>
 							<?php
-								echo "<option value='porcentaje' "; if ($tipo=="porcentaje"){ echo " selected"; } echo "Descuento en porcentaje</option>";
-								echo "<option value='carrito' "; if ($tipo=="carrito"){ echo " selected"; } echo "Descuento fijo en el carrito</option>";
+								echo "<option value='porcentaje' "; if ($tipo=="porcentaje"){ echo " selected"; } echo ">Descuento en porcentaje</option>";
+								echo "<option value='carrito' "; if ($tipo=="carrito"){ echo " selected"; } echo ">Descuento fijo en el carrito</option>";
 								//echo "<option value='producto' "; if ($tipo=="producto"){ echo " selected"; } echo "Descuento fijo de productos</option>";
 							?>
 						</select>

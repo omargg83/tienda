@@ -1,10 +1,14 @@
 <?php
 	require_once("control_db.php");
 	$db = new Tienda();
-
-	$carro=$db->carro_list();
 	$mercado=$db->ajustes_editar();
 	$merca=$mercado->mercado_public;
+
+	$carro=$db->carro_list();
+	if(!is_array($carro) or count($carro)==0){
+		header('Location: /');
+		die();
+	}
 
 	$resp=$db->datos();
 	$nombre=$resp->nombre;
@@ -200,6 +204,13 @@
 							$preciof=$p_total;
 						}
 
+						if($key->envio_tipo==0){
+							$enviof=($db->egeneral);
+						}
+						if($key->envio_tipo==1){
+							$enviof=($key->envio_costo);
+						}
+
 						echo "<div class='row'>";
 							echo "<div class='col-12'>";
 									echo $key->nombre;
@@ -207,14 +218,7 @@
 
 							echo "<div class='col-12'>";
 								echo "<label>Costo envio: ";
-								if($key->envio_tipo==0){
-									echo moneda($db->egeneral);
-									$envio+=$db->egeneral;
-								}
-								if($key->envio_tipo==1){
-									echo moneda($key->envio_costo);
-									$envio+=$key->envio_costo;
-								}
+									echo moneda($enviof*$key->cantidad);
 								echo "</label>";
 							echo "</div>";
 						echo "</div>";
@@ -240,7 +244,7 @@
 								echo moneda($preciof);
 							echo "</div>";
 							echo "<div class='col-4 text-right'>";
-								$p_final=($key->cantidad*$preciof);
+								$p_final=$key->cantidad*($preciof+$enviof);
 								echo moneda($p_final);
 							echo "</div>";
 						echo "</div>";
@@ -262,14 +266,6 @@
 							echo "</div>";
 						echo "</div>";
 
-						echo "<div class='row'>";
-							echo "<div class='col-6'>";
-								echo "Envío";
-							echo "</div>";
-							echo "<div class='col-6 text-right'>";
-								echo moneda($envio);
-							echo "</div>";
-						echo "</div>";
 
 						$gtotal=$total+$envio;
 						echo "<hr>";

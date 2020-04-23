@@ -70,10 +70,10 @@
 
 		/////////////////SI FUE PAGADO
 		if($payment_status=="approved" or $payment_status=="in_process"){
+
+
 			$resp = crearNuevoToken();
 			$tok=$resp->token;
-			echo $tok;
-			/////////////////////////////////comienza pedido
 
 			foreach($datos as $key){
 				$clave=$key->clave;
@@ -90,15 +90,14 @@
 				$contar=$exist->rowCount();
 				if($contar>0){
 					$alma_pedido=$exist->fetchAll(PDO::FETCH_OBJ);
-					echo "<pre>";
-						echo var_dump($alma_pedido);
-					echo "</pre>";
-
 
 					foreach($alma_pedido as $ped){
+						$sql="select * from productos where id='".$ped->id."'";
+						$prod_query = $db->dbh->prepare($sql);
+				    $prod_query->execute();
+						$prod_pedido=$prod_query->fetch(PDO::FETCH_OBJ);
 
 						if($cantidad>0){
-							
 							$pedir=$ped->existencia-$cantidad;
 							if($pedir>=0){
 								$pedir=$cantidad;
@@ -132,8 +131,8 @@
 										$producto[$contar]=array(
 											'cantidad' => $pedir,
 											'clave' => $key->clave,
-											'precio' => "0.17",
-											'moneda' => "USD"
+											'precio' => $prod_pedido->precio,
+											'moneda' => $prod_pedido->moneda
 										);
 										$contar++;
 									}
@@ -141,7 +140,7 @@
 
 								$arreglo=array(
 									'idPedido' => (int)$idpedido,
-									'almacen' => "32A",
+									'almacen' => $ped->numero,
 									'tipoPago' => "03",
 									'envio' => json_decode(json_encode($envio)),
 									'producto' => json_decode(json_encode($producto)),
@@ -149,7 +148,8 @@
 								$json = json_encode($arreglo);
 
 								echo "<pre>";
-									echo print_r($json);
+									echo var_dump($json);
+									//$resp =servicioApi('POST','pedido',$json,$tok);
 								echo "</pre>";
 
 								echo "<hr>";
@@ -162,7 +162,7 @@
 					}
 				}
 			}
-			//$resp =servicioApi('POST','pedido',$json,$tok);
+
 		}
 
 
@@ -379,7 +379,7 @@
 			$asunto="Se rechazo el pago";
 		}
 
-		//$db->correo($correo, $texto, $asunto);
+		$db->correo($correo, $texto, $asunto);
 		////////////////////////////////////////////////////
 
 	?>

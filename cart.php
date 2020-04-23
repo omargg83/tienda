@@ -2,6 +2,7 @@
 	require_once("control_db.php");
 	$db = new Tienda();
 	$carro=$db->carro_list();
+
 ?>
 
 <!DOCTYPE html>
@@ -17,11 +18,9 @@
 <link rel="stylesheet" type="text/css" href="/styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="/styles/cart_styles.css">
 <link rel="stylesheet" type="text/css" href="/styles/cart_responsive.css">
-
 </head>
 
 <body>
-
 <div class="super_container">
 
 	<!-- Header -->
@@ -47,7 +46,8 @@
 				</div>
 				<?php
 				$total=0;
-				$envio=0;
+				$enviot=0;
+				$preciot=0;
 				foreach($carro as $key){
 					$preciof=0;
 					$enviof=0;
@@ -65,7 +65,15 @@
 						$p_total=$key->precio_tic+(($key->precio_tic*$db->cgeneral)/100);
 						$preciof=$p_total;
 					}
-					$preciof=round($preciof,2);
+					$preciof=$preciof;
+
+					if($key->envio_tipo==0){
+						$enviof=($db->egeneral);
+					}
+					if($key->envio_tipo==1){
+						$enviof=($key->envio_costo);
+					}
+
 					echo "<div class='row' style='border-bottom:.5px solid silver'>";
 						echo "<div class='col-3 text-center'>";
 							echo "<img src='/".$db->doc.$key->img."' alt='' width='130px'>";
@@ -80,43 +88,39 @@
 							echo "</div>";
 
 							echo "<div class='row'>";
-								echo "<div class='col-6'>";
-									echo "<label>Costo envio: ";
-									if($key->envio_tipo==0){
-										echo moneda($db->egeneral);
-										$envio+=$db->egeneral;
-									}
-									if($key->envio_tipo==1){
-										echo moneda($key->envio_costo);
-										$envio+=$key->envio_costo;
-									}
-									echo "</label>";
-								echo "</div>";
-							echo "</div>";
-
-							echo "<div class='row'>";
-								echo "<div class='col-10 offset-2'>";
+								echo "<div class='col-12'>";
 									echo "<div class='row'>";
-										echo "<div class='col-4 text-center'>";
+										echo "<div class='col-3 text-center'>";
 											echo "<b>Cantidad</b>";
 										echo "</div>";
-										echo "<div class='col-4 text-center'>";
-											echo "<b>Precio unitario</b>";
+										echo "<div class='col-3 text-center'>";
+											echo "<b>$ Unitario: </b>";
 										echo "</div>";
-										echo "<div class='col-4 text-center'>";
-											echo "<b>Total</b>";
+										echo "<div class='col-3 text-center'>";
+											echo "<b>Envio:</b>";
+										echo "</div>";
+										echo "<div class='col-3 text-center'>";
+											echo "<b>Total:</b>";
 										echo "</div>";
 									echo "</div>";
 
 									echo "<div class='row'>";
-										echo "<div class='col-4 text-center'>";
+										echo "<div class='col-3 text-center'>";
 											echo $key->cantidad;
 										echo "</div>";
-										echo "<div class='col-4 text-right'>";
+
+										echo "<div class='col-3 text-right'>";
 											echo moneda($preciof);
+											$preciot+=($preciof*$key->cantidad);
 										echo "</div>";
-										echo "<div class='col-4 text-right'>";
-											$p_final=($key->cantidad*$preciof);
+
+										echo "<div class='col-3 text-right'>";
+											echo moneda($enviof);
+											$enviot+=($enviof*$key->cantidad);
+										echo "</div>";
+
+										echo "<div class='col-3 text-right'>";
+											$p_final=($key->cantidad*($preciof+$enviof));
 											echo moneda($p_final);
 										echo "</div>";
 									echo "</div>";
@@ -127,7 +131,6 @@
 							echo "<button class='btn btn-warning btn-sm' onclick='borra_carrito(".$key->id.")'><i class='far fa-trash-alt'></i></button>";
 						echo "</div>";
 					echo "</div>";
-					$total+=$p_final;
 				}
 
 				?>
@@ -141,7 +144,7 @@
 								echo "Subtotal";
 							echo "</div>";
 							echo "<div class='col-6 text-right'>";
-								echo moneda($total);
+								echo moneda($preciot);
 							echo "</div>";
 						echo "</div>";
 
@@ -150,11 +153,11 @@
 								echo "Envío";
 							echo "</div>";
 							echo "<div class='col-6 text-right'>";
-								echo moneda($envio);
+								echo moneda($enviot);
 							echo "</div>";
 						echo "</div>";
 
-						$gtotal=$total+$envio;
+						$gtotal=$preciot+$enviot;
 						echo "<hr>";
 						echo "<div class='row'>";
 							echo "<div class='col-6'>";
