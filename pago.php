@@ -230,23 +230,13 @@
 							echo "</div>";
 						echo "</div>";
 
-						echo "<div class='row'>";
-							echo "<div class='col-6'>";
-								echo "Envío";
-							echo "</div>";
-							echo "<div class='col-6 text-right'>";
-								echo moneda($envio);
-							echo "</div>";
-						echo "</div>";
-
-						$gtotal=$total+$envio;
 						echo "<hr>";
 						echo "<div class='row' style='font-size:14px;'>";
 							echo "<div class='col-6'>";
 								echo "<b>Total</b>";
 							echo "</div>";
 							echo "<div class='col-6 text-right'>";
-								echo moneda($gtotal);
+								echo moneda($total);
 							echo "</div>";
 						echo "</div>";
 
@@ -262,6 +252,7 @@
 										echo "<br>";
 										echo $keyc->descripcion;
 									echo "</div>";
+
 									echo "<div class='col-4 text-right'>";
 
 										/*
@@ -272,18 +263,18 @@
 
 										if($keyc->tipo=='porcentaje'){
 											echo $keyc->descuento."%";
-											$monto=($gtotal*$keyc->descuento)/100;
+											$monto=($total*$keyc->descuento)/100;
 											echo "<br>- ".moneda($monto);
-											$gtotal=$gtotal-$monto;
+											$total=$total-$monto;
 										}
 
 										if($keyc->tipo=='carrito'){
 											echo "<br>- ".moneda($keyc->descuento);
-											$gtotal=$gtotal-$keyc->descuento;
+											$total=$total-$keyc->descuento;
 										}
 
 										if($keyc->envio=='si'){
-											$gtotal=$gtotal-$envio;
+											$total=$total-$envio;
 											echo "<br>Envio: -".$envio;
 										}
 
@@ -296,7 +287,7 @@
 									echo "</div>";
 
 									echo "<div class='col-6 text-right'>";
-										echo "<h4><b>".moneda($gtotal)."</b></h4>";
+										echo "<h4><b>".moneda($total)."</b></h4>";
 									echo "</div>";
 								echo "</div>";
 							}
@@ -320,7 +311,7 @@
 						$item = new MercadoPago\Item();
 						$item->title = 'TIC-SHOP';
 						$item->quantity = 1;
-						$item->unit_price = round($gtotal,2);
+						$item->unit_price = round($total,2);
 						$preference->items = array($item);
 						$preference->save();
 					?>
@@ -345,7 +336,7 @@
 					      return actions.order.create({
 					        purchase_units: [{
 					          amount: {
-					            value: '<?php echo round($gtotal,2); ?>'
+					            value: '<?php echo round($total,2); ?>'
 					          }
 					        }]
 					      });
