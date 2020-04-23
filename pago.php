@@ -4,7 +4,7 @@
 
 	$idpedido=$_REQUEST['id'];
 
-	if(!isset($_REQUEST['id'] or !isset($_SESSION['idcliente']) or strlen($_REQUEST['id'])==0){
+	if(!isset($_REQUEST['id']  or strlen($_REQUEST['id'])==0){
 		header('Location: /');
 		die();
 	}
@@ -15,7 +15,6 @@
 	$paypal_client=$mercado->paypal_client;
 
 	$ped=$db->pedido_ver($idpedido);
-	echo $_SESSION['idcliente'];
 	if(!is_object($ped)){
 		header('Location: /');
 		die();
