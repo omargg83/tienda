@@ -404,8 +404,9 @@
 								echo "</div>";
 								echo "</td>";
 								echo "<td>";
-								echo "(".$key->almacen.")";
+								echo "(".$key->almacen.") ";
 								echo $almacen->sucursal;
+								echo " ->".$almacen->homoclave;
 								echo "</td>";
 
 								echo "<td>";
