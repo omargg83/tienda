@@ -183,7 +183,7 @@
 							echo "<div class='col-12'>";
 								echo "<label>Costo envio: ";
 								echo moneda($key->envio*$key->cantidad);
-								$envio+=$key->envio;
+								$envio+=$key->envio*$key->cantidad;
 								echo "</label>";
 							echo "</div>";
 						echo "</div>";
