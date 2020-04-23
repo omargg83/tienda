@@ -5,8 +5,8 @@
 	$idpedido=$_REQUEST['id'];
 
 	if(!isset($_REQUEST['id']) or strlen($_REQUEST['id'])==0){
-		header('Location: /');
-		die();
+		//header('Location: /');
+	//	die();
 	}
 
 	$mercado=$db->ajustes_editar();
@@ -15,9 +15,10 @@
 	$paypal_client=$mercado->paypal_client;
 
 	$ped=$db->pedido_ver($idpedido);
+	echo $_SESSION['idcliente'];
 	if(!is_object($ped)){
-		header('Location: /');
-		die();
+		//header('Location: /');
+		//die();
 	}
 	$datos=$db->datos_pedido($idpedido);
 	$cupones=$db->pedido_cupones($idpedido);
