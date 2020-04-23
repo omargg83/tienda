@@ -543,6 +543,19 @@ class Pedidos extends Tienda{
 			return "Database access FAILED!".$e->getMessage();
 		}
 	}
+
+	public function pedidos_ct(){
+		try{
+			parent::set_names();
+			$sql="SELECT * from pedidos_web order by id desc";
+			$sth = $this->dbh->prepare($sql);
+			$sth->execute();
+			return $sth->fetchAll();
+		}
+		catch(PDOException $e){
+			return "Database access FAILED! ".$e->getMessage();
+		}
+	}
 }
 $db = new Pedidos();
 if(strlen($function)>0){

@@ -21,6 +21,7 @@
 
  				<li class='nav-item active'><a class='nav-link barranav' title='Mostrar todo' id='new_poliza' data-lugar='a_pedidos/editar'><i class="fas fa-folder-plus"></i><span>Nuevo</span></a></li>
  				<li class='nav-item active'><a class='nav-link barranav' title='Mostrar todo' id='lista_prod' data-lugar='a_pedidos/lista'><i class="fas fa-list"></i><span>Lista</span></a></li>
+ 				<li class='nav-item active'><a class='nav-link barranav' title='Mostrar todo' id='lista_prod2' data-lugar='a_pedidos/lista2'><i class="fas fa-list"></i><span>Pedidos CT</span></a></li>
 
       </li>
 
