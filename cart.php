@@ -80,40 +80,48 @@
 							echo "<div class='row'>";
 								echo "<div class='col-6'>";
 									echo "<label>Costo envio: ";
-									if($key->envio_tipo==0){
-										echo moneda($db->egeneral);
-										$envio+=$db->egeneral;
-									}
-									if($key->envio_tipo==1){
-										echo moneda($key->envio_costo);
-										$envio+=$key->envio_costo;
-									}
+
 									echo "</label>";
 								echo "</div>";
 							echo "</div>";
 
 							echo "<div class='row'>";
-								echo "<div class='col-10 offset-2'>";
+								echo "<div class='col-12'>";
 									echo "<div class='row'>";
-										echo "<div class='col-4 text-center'>";
+										echo "<div class='col-3 text-center'>";
 											echo "<b>Cantidad</b>";
 										echo "</div>";
-										echo "<div class='col-4 text-center'>";
-											echo "<b>Precio unitario</b>";
+										echo "<div class='col-3 text-center'>";
+											echo "<b>Precio unitario:</b>";
 										echo "</div>";
-										echo "<div class='col-4 text-center'>";
-											echo "<b>Total</b>";
+										echo "<div class='col-3 text-center'>";
+											echo "<b>Envio:</b>";
+										echo "</div>";
+										echo "<div class='col-3 text-center'>";
+											echo "<b>Total:</b>";
 										echo "</div>";
 									echo "</div>";
 
 									echo "<div class='row'>";
-										echo "<div class='col-4 text-center'>";
+										echo "<div class='col-3 text-center'>";
 											echo $key->cantidad;
 										echo "</div>";
-										echo "<div class='col-4 text-right'>";
+										echo "<div class='col-3 text-right'>";
 											echo moneda($preciof);
 										echo "</div>";
-										echo "<div class='col-4 text-right'>";
+
+										echo "<div class='col-3 text-right'>";
+											if($key->envio_tipo==0){
+												echo moneda($db->egeneral);
+												$envio=$db->egeneral;
+											}
+											if($key->envio_tipo==1){
+												echo moneda($key->envio_costo);
+												$envio=$key->envio_costo;
+											}
+										echo "</div>";
+
+										echo "<div class='col-3 text-right'>";
 											$p_final=($key->cantidad*$preciof);
 											echo moneda($p_final);
 										echo "</div>";
