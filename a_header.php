@@ -2,6 +2,7 @@
   $contar=0;
   $sumar=0;
   $contar_wish=0;
+  $t_carro=0;
   if(isset($_SESSION['idcliente'])){
     $res2=$db->wish_sum();
     $contar_wish=$res2->contar;
