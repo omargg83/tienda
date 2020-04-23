@@ -5,12 +5,12 @@
 	$merca=$mercado->mercado_public;
 
 	$carro=$db->carro_list();
-
+	echo "contar:".count($carro);
 	if(!is_array($carro) and count($carro)>0){
 		header('Location: /');
 		die();
 	}
-	
+
 	$resp=$db->datos();
 	$nombre=$resp->nombre;
 	$apellido=$resp->apellido;
