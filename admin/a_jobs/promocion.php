@@ -20,7 +20,6 @@
     }
   }
   $db = new Tienda();
-  echo "inicio:".date("Y-m-d H:i:s");
 
   function servicioApi($metodo, $servicio, $json = null, $token = null) {
       $ch = curl_init('http://187.210.141.12:3001/' . $servicio);
@@ -56,7 +55,7 @@
 
   $resp =servicioApi($metodo,$servicio,NULL,$tok);
   $rx=var_dump($resp);
-  
+
   $sql="insert into new_table2 (id,respuesta) values (:id, :log)";
   $sth = $db->dbh->prepare($sql);
   $sth->bindValue(':id',"1");
