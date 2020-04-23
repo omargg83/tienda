@@ -8,6 +8,7 @@
 		<div class="content table-responsive table-full-width" >
 			<table id='x_lista' class='dataTable compact hover row-border' style='font-size:10pt;'>
 			<thead>
+			<th>-</th>
 			<th># Pedido</th>
 			<th>Prod</th>
 			<th>Clave</th>
