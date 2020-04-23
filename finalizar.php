@@ -3,6 +3,11 @@
 	$db = new Tienda();
 
 	$carro=$db->carro_list();
+	if(!is_object($carro)){
+		header('Location: /');
+		die();
+	}
+
 	$mercado=$db->ajustes_editar();
 	$merca=$mercado->mercado_public;
 
