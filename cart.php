@@ -79,14 +79,6 @@
 							echo "</div>";
 
 							echo "<div class='row'>";
-								echo "<div class='col-6'>";
-									echo "<label>Costo envio: ";
-
-									echo "</label>";
-								echo "</div>";
-							echo "</div>";
-
-							echo "<div class='row'>";
 								echo "<div class='col-12'>";
 									echo "<div class='row'>";
 										echo "<div class='col-3 text-center'>";
@@ -110,7 +102,7 @@
 
 										echo "<div class='col-3 text-right'>";
 											echo moneda($preciof);
-											$preciot+=$preciof;
+											$preciot+=($preciof*$key->cantidad);
 										echo "</div>";
 
 										echo "<div class='col-3 text-right'>";
