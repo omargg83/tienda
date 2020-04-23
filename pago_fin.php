@@ -159,12 +159,12 @@
 
 
 		$resp =servicioApi('GET','pedido/detalle/W32-018504',$json,$tok);
-		$jresponse=json_decode($resp);
-		echo "<hr>";
-		echo $resp->respuestaCT->pedidoWeb;
 
 		echo "<hr>";
-		echo var_dump($jresponse);
+		echo $resp[0]->respuestaCT->pedidoWeb;
+
+		echo "<hr>";
+		echo var_dump($resp);
 
 
 
@@ -197,44 +197,45 @@
 				</tr>
 				</table>
 				<hr>
-				<div class='row'>
-					<div class='col-3'>
-						<label>RFC: $rfc</label>
+				<table style='width:100%'>
+				<tr>
+					<td>
+						<b>RFC:</b><br> $rfc
+					</td>
+					<td>
+						<b>Uso CFDI:</b><br> $cfdi
+					</td>
+					<td>
+						<b>Dirección:</b><br> $direccion1
+					</td>
+					<td>
+						<b>Entre calles:</b><br> $entrecalles
+					</td>
+					<td>
+						<b>Num. Exterior:</b><br> $numero
+					</td>
+					<td>
+						<b>Colonia:</b><br> $colonia
+					</td>
+					<td>
+						<b>Ciudad:</b><br> $ciudad
+					</td>
+					<td>
+						<b>Código postal:</b><br> $cp
+					</td>
+					<td>
+						<b>Pais:</b><br> $pais
+					</td>
+					<td>
+						<b>Estado:</b><br> $estado
+					</td>
+					<td>
+						<b>Teléfono:</b><br> $telefono
 					</div>
-					<div class='col-3'>
-						<label>Uso CFDI: $cfdi</label>
-					</div>
-
-					<div class='col-12'>
-						<label>Dirección: $direccion1</label>
-					</div>
-					<div class='col-4'>
-						<label>Entre calles: $entrecalles</label>
-					</div>
-					<div class='col-4'>
-						<label>Num. Exterior: $numero</label>
-					</div>
-					<div class='col-4'>
-						<label>Colonia: $colonia</label>
-					</div>
-					<div class='col-12'>
-						<label>Ciudad: $ciudad</label>
-					</div>
-					<div class='col-12'>
-						<label>Código postal: $cp</label>
-					</div>
-					<div class='col-12'>
-						<label>Pais: $pais</label>
-					</div>
-					<div class='col-12'>
-						<label>Estado: $estado</label>
-					</div>
-					<div class='col-12'>
-						<label>Teléfono: $telefono</label>
-					</div>
-				</div>
-				<hr>
+				</tr>
 				<table>
+				<hr>
+				<table style='width:100%'>
 					<tr>
 						<td>
 							<b>Descripción</b>
