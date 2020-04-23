@@ -54,9 +54,13 @@
   $metodo="GET";
   $servicio = "existencia/promociones";
 
-
-
   $resp =servicioApi($metodo,$servicio,NULL,$tok);
-  echo var_dump(json_encode($resp));
+
+  $sql="insert into new_table2 (id,respuesta) values (:id, :log)";
+  $sth = $db->dbh->prepare($sql);
+  $sth->bindValue(':id',"1");
+  $sth->bindValue(':log',$resp);
+  echo $sth->execute();
+
 
 ?>
