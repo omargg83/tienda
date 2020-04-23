@@ -4,7 +4,7 @@
 
 	$idpedido=$_REQUEST['id'];
 
-	if(!isset($_REQUEST['id']  or strlen($_REQUEST['id'])==0){
+	if(!isset($_REQUEST['id']) or strlen($_REQUEST['id'])==0){
 		header('Location: /');
 		die();
 	}
