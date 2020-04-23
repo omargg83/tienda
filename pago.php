@@ -2,14 +2,12 @@
 	require_once("control_db.php");
 	$db = new Tienda();
 
-
 	$idpedido=$_REQUEST['id'];
 
 	if(!isset($_REQUEST['id']) or strlen($_REQUEST['id'])==0){
 		header('Location: /');
 		die();
 	}
-
 
 	$mercado=$db->ajustes_editar();
 	$merca_public=$mercado->mercado_public;
