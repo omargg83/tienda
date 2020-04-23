@@ -173,26 +173,28 @@
 				$texto="<h3>TIC-SHOP</h3><br>
 				<h3><b>Pedido</b></h3>
 
-				<div class='row'>
-					<div class='col-2'>
-						<label>Pedido #: $idpedido</label>
-					</div>
-					<div class='col-3'>
-						<label>Estatus: $estatus</label>
-					</div>
-					<div class='col-3'>
-						<label>Pago: $pago</label>
-					</div>
-					<div class='col-3'>
-						<label>Pago #: $idpago</label>
-					</div>
-					<div class='col-4'>
-						<label>Nombre: $nombre $apellido</label>
-					</div>
-					<div class='col-4'>
-						<label>Correo: $correo</label>
-					</div>
-				</div>
+				<table>
+					<tr>
+					<td>
+						<b>Pedido #:</b><br> $idpedido
+					</td>
+					<td>
+						<b>Estatus:</b><br> $estatus
+					</td>
+					<td>
+						<b>Pago:</b><br> $pago
+					</td>
+					<td>
+						<b>Pago #:</b><br> $idpago
+					</td>
+					<td>
+						<b>Nombre:</b><br> $nombre $apellido</b>
+					</td>
+					<td>
+						<b>Correo:</b><br> $correo
+					</td>
+				</tr>
+				</table>
 				<hr>
 				<div class='row'>
 					<div class='col-3'>
