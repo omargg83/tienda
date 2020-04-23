@@ -200,6 +200,13 @@
 							$preciof=$p_total;
 						}
 
+						if($key->envio_tipo==0){
+							$enviof=($db->egeneral);
+						}
+						if($key->envio_tipo==1){
+							$enviof=($key->envio_costo);
+						}
+
 						echo "<div class='row'>";
 							echo "<div class='col-12'>";
 									echo $key->nombre;
@@ -207,14 +214,7 @@
 
 							echo "<div class='col-12'>";
 								echo "<label>Costo envio: ";
-								if($key->envio_tipo==0){
-									echo moneda($db->egeneral);
-									$envio+=$db->egeneral;
-								}
-								if($key->envio_tipo==1){
-									echo moneda($key->envio_costo);
-									$envio+=$key->envio_costo;
-								}
+									echo moneda($enviof*$key->cantidad);
 								echo "</label>";
 							echo "</div>";
 						echo "</div>";
