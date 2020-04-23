@@ -451,7 +451,7 @@
 		<h1>Extenso surtido en productos de tecnología</h1>
 <div class="button banner_2_button" style="
     background: white;
-"><a href="#">Ver productos</a></div>
+"><a href="https://tic-shop.com.mx/tienda.php">Ver productos</a></div>
 	</div>
 
 
