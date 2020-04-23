@@ -1097,8 +1097,11 @@
 						$pedido=json_decode($x);
 
 						$carro=$this->carro_list();
+
+						$preciot=0;
+						$enviot=0;
+						$totalPrecio=0;
 						$totalEnvio=0;
-						$total=0;
 						//////////////////////////////////////////////////////////////////////////
 						foreach($carro as $key){
 							////////////precio
@@ -1121,21 +1124,26 @@
 							//////////////////envio
 
 							if($key->envio_tipo==0){
-								$envio=$this->egeneral;
+								$enviof=$this->egeneral;
 							}
 							if($key->envio_tipo==1){
-								$envio=$key->envio_costo;
+								$enviof=$key->envio_costo;
 							}
+
+							$enviot=$enviof*$key->cantidad;
+							$preciot=$preciof*$key->cantidad;
+							$sub=$enviot+$preciot;
 
 							$arreglo =array();
 							$arreglo+= array('idprod'=>$key->id);
 							$arreglo+= array('idpedido'=>$pedido->id);
-							$arreglo+= array('precio'=>round($preciof,2));
-							$arreglo+= array('envio'=>$envio);
 							$arreglo+= array('cantidad'=>$key->cantidad);
-							$subtotal=round($preciof*$key->cantidad);
 
-							$arreglo+= array('total'=>$subtotal);
+							$arreglo+= array('precio'=>$preciof);
+							$arreglo+= array('envio'=>$enviof);
+
+							$arreglo+= array('total'=>$sub);
+
 							$arreglo+= array('idProducto'=>$key->idProducto);
 							$arreglo+= array('clave'=>$key->clave);
 							$arreglo+= array('numParte'=>$key->numParte);
@@ -1153,13 +1161,13 @@
 							}
 							$this->insert('pedidos_prod', $arreglo);
 
-							$total+=$subtotal;
-							$totalEnvio+=$envio;
+							$totalPrecio+=$preciot;
+							$totalEnvio+=$enviot;
 						}
 						$arreglo =array();
-						$arreglo+= array('monto'=>$total);
+						$arreglo+= array('monto'=>$totalPrecio);
 						$arreglo+= array('envio'=>$totalEnvio);
-						$gtotal=$total+$totalEnvio;
+						$gtotal=$totalPrecio+$totalEnvio;
 						$arreglo+= array('total'=>round($gtotal,2));
 						$this->update('pedidos',array('id'=>$pedido->id), $arreglo);
 						//////////////////////////////////////////////////////////////////////////

@@ -262,14 +262,6 @@
 							echo "</div>";
 						echo "</div>";
 
-						echo "<div class='row'>";
-							echo "<div class='col-6'>";
-								echo "Envío";
-							echo "</div>";
-							echo "<div class='col-6 text-right'>";
-								echo moneda($envio);
-							echo "</div>";
-						echo "</div>";
 
 						$gtotal=$total+$envio;
 						echo "<hr>";
