@@ -122,7 +122,7 @@
 										echo "</div>";
 
 										echo "<div class='col-3 text-right'>";
-											$p_final=($key->cantidad*$preciof);
+											$p_final=($key->cantidad*($preciof+$envio));
 											echo moneda($p_final);
 										echo "</div>";
 									echo "</div>";
