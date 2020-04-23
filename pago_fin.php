@@ -80,6 +80,11 @@
 				$idprod=$key->idprod;
 				$cantidad=$key->cantidad;
 
+				$sql="select * from productos where id='".$idprod."'";
+				$prod_query = $db->dbh->prepare($sql);
+				$prod_query->execute();
+				$prod_pedido=$prod_query->fetch(PDO::FETCH_OBJ);
+
 				echo "<br>Clave:".$clave;
 				echo "<br>idprod:".$idprod;
 				echo "<br>cantidad:".$cantidad;
@@ -90,12 +95,7 @@
 				$contar=$exist->rowCount();
 				if($contar>0){
 					$alma_pedido=$exist->fetchAll(PDO::FETCH_OBJ);
-
 					foreach($alma_pedido as $ped){
-						$sql="select * from productos where id='".$ped->id."'";
-						$prod_query = $db->dbh->prepare($sql);
-				    $prod_query->execute();
-						$prod_pedido=$prod_query->fetch(PDO::FETCH_OBJ);
 
 						if($cantidad>0){
 							$pedir=$ped->existencia-$cantidad;
@@ -123,19 +123,13 @@
 									'telefono' => $telefono
 								);
 
-								$ct_producto=0;
-								$contar=0;
-								foreach($datos as $key){
-									if($key->tipo=="CT"){
-										$ct_producto++;
-										$producto[$contar]=array(
-											'cantidad' => $pedir,
-											'clave' => $key->clave,
-											'precio' => $prod_pedido->precio,
-											'moneda' => $prod_pedido->moneda
-										);
-										$contar++;
-									}
+								if($key->tipo=="CT"){
+									$producto[0]=array(
+										'cantidad' => $pedir,
+										'clave' => $clave,
+										'precio' => $prod_pedido->precio,
+										'moneda' => $prod_pedido->moneda
+									);
 								}
 
 								$arreglo=array(
@@ -162,7 +156,6 @@
 					}
 				}
 			}
-
 		}
 
 
