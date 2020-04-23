@@ -5,11 +5,9 @@
 	$merca=$mercado->mercado_public;
 
 	$carro=$db->carro_list();
-	echo var_dump($carro);
-
-	if(!is_object($carro)){
-	//	header('Location: /');
-	//	die();
+	if(!is_array($carro)){
+		header('Location: /');
+		die();
 	}
 
 
