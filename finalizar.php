@@ -5,7 +5,7 @@
 	$merca=$mercado->mercado_public;
 
 	$carro=$db->carro_list();
-	echo is_object($carro);
+	echo var_dump($carro);
 
 	if(!is_object($carro)){
 	//	header('Location: /');
