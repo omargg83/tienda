@@ -142,10 +142,9 @@
 
 								echo "<pre>";
 									echo var_dump($json);
-									//$resp =servicioApi('POST','pedido',$json,$tok);
-
-
-									$resp =servicioApi('GET','pedido/detalle/W32-018504',$json,$tok);
+									$resp =servicioApi('POST','pedido',$json,$tok);
+									echo var_dump($resp);
+									//$resp =servicioApi('GET','pedido/detalle/W32-018504',$json,$tok);
 
 									echo "<hr>";
 									$pedidoweb=$resp[0]->respuestaCT->pedidoWeb;
@@ -282,8 +281,6 @@
 									$texto.= "<br>".$key->modelo;
 									$texto.= "<br>".$key->marca;
 									$texto.= "<br>".$key->categoria;
-									$texto.= "<br>+ Costo envio:";
-									$texto.= "<b>".moneda($key->envio)."</b>";
 							$texto.= "</td>";
 
 							$texto.= "<td>";
@@ -298,39 +295,29 @@
 								$texto.= moneda($key->envio);
 							$texto.= "</td>";
 
-							$texto.= "<td'>";
+							$texto.= "<td>";
 								$texto.= moneda($key->total);
 							$texto.= "</td>";
 
 						$texto.= "</tr>";
 					}
-					$texto.="</table>";
+
 					///////////////////////////////////
 
-						$texto.= "<h4>TOTAL DE LA COMPRA</h4>";
-						$texto.= "<div class='row'>";
-							$texto.= "<div class='col-2 offset-8 text-right'>";
+						$texto.= "<tr>";
+							$texto.= "<td colspan=4>";
 								$texto.= "<b>Subtotal</b>";
-							$texto.= "</div>";
-							$texto.= "<div class='col-2 text-right'>";
+							$texto.= "</td>";
+							$texto.= "<td>";
 								$texto.= moneda($gmonto);
-							$texto.= "</div>";
-						$texto.= "</div>";
+							$texto.= "</td>";
+						$texto.= "</tr>";
 
-						$texto.= "<div class='row'>";
-							$texto.= "<div class='col-2 offset-8 text-right'>";
-								$texto.= "<b>Envío</b>";
-							$texto.= "</div>";
-							$texto.= "<div class='col-2 text-right'>";
-								$texto.= moneda($genvio);
-							$texto.= "</div>";
-						$texto.= "</div>";
-
-						$texto.= "<div class='row'>";
-							$texto.= "<div class='col-2 offset-8 text-right'>";
+						$texto.= "<tr>";
+							$texto.= "<td colspan=4>";
 								$texto.= "<b>Total</b>";
-							$texto.= "</div>";
-							$texto.= "<div class='col-2 text-right'>";
+								$texto.= "</td>";
+								$texto.= "<td>";
 								$texto.= moneda($gtotal);
 							$texto.= "</div>";
 						$texto.= "</div>";
