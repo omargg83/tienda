@@ -148,12 +148,15 @@
 									$resp =servicioApi('GET','pedido/detalle/W32-018504',$json,$tok);
 
 									echo "<hr>";
+									$pedidoweb=$resp[0]->respuestaCT->pedidoWeb;
+									$estatus=$resp[0]->respuestaCT->estatus;
+
 									echo $resp[0]->respuestaCT->pedidoWeb;
 									echo $resp[0]->respuestaCT->estatus;
 									echo "<hr>";
 
-									$sql="insert into pedidos_web () values ()";
-
+									$sql="insert into pedidos_web (idprod, clave, cantidad, pedidoWeb, estatus) values ('$idprod', '$clave', '$pedir', '$pedidoweb', '$estatus')";
+									$stmt= $db->dbh->query($sql);
 
 
 								echo "</pre>";
