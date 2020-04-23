@@ -121,6 +121,10 @@
 								</div>
 
 								<div class="product_price">Precio: <?php
+
+									echo "<br>Preciof:".$prod->preciof;
+									echo "<br>Tipo:".$prod->precio_tipo;
+
 									if($prod->precio_tipo==0){
 										echo moneda($prod->preciof);
 									}
@@ -135,6 +139,7 @@
 										$total=$prod->precio_tic+(($prod->precio_tic*$db->cgeneral)/100);
 										echo moneda($total);
 									}
+									echo "<br>total:".$total;
 							  ?></div>
 								<?php
 								$envio=0;
