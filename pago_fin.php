@@ -71,7 +71,6 @@
 		/////////////////SI FUE PAGADO
 		if($payment_status=="approved" or $payment_status=="in_process"){
 
-
 			$resp = crearNuevoToken();
 			$tok=$resp->token;
 
@@ -157,6 +156,16 @@
 				}
 			}
 		}
+
+
+		$resp =servicioApi('GET','pedido/detalle/ACCYOS050',$json,$tok);
+		echo "<hr>";
+		echo $resp->respuestaCT->pedidoWeb;
+
+		echo "<hr>";
+		echo var_dump($resp);
+
+
 
 
 		/////////////////////////////////////////////Correo
