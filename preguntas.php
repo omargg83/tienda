@@ -37,24 +37,46 @@
 				<div class="col-lg-12 ">
 					<div class="banner_content">
 						<h1 class="banner_text" style="color: black; font-size: 30px;">Preguntas frecuentes</h1><br>
-
-<p>Dudas sobre la compra</p>
 <ol>
 <li>&iquest;Es seguro comprar en Tic-Shop?</li>
-<li>&iquest;Tienen tiendas donde pueda ver o comprar la mercanc&iacute;a en persona?</li>
-<li>&iquest;Puedo pagar a Meses Sin Intereses o con pagos diferidos?</li>
-<li>&iquest;Los precios incluyen IVA, me pueden dar factura?</li>
-<li>&iquest;Tienen garant&iacute;a?</li>
-<li>&iquest;No vivo en M&eacute;xico pero me interesa comprar enTic-Shop?</li>
 </ol>
-<p>&nbsp;</p>
+<p>TIC-SHOP ACTUALIZA SUS PROCEDIMIENTOS ADMINISTRATIVOS, CONTABLES Y LOGISTICOS CONSTANTEMENTE CON EL OBJETIVO DE BRINDAR HERRAMIENTAS DE SATISFACCION Y SEGURIDAD AL CLIENTE FINAL RATIFICANDO QUE EL CLIENTE ES NUESTRA PRIORIDAD.</p>
+<p>PARA TIC-SHOP LA SEGURIDAD DEL PAGO Y LA CONFIDENCIALIDAD DE LOS DATOS PERSONALES DE TODOS NUESTROS CLIENTES ES PRIMORDIAL, ES POR ELLO QUE LA TIENDA ONLINE CUENTA CON LA IMPLEMENTACION DE LA TECNOLOGIA MAS AVANZADA, SERVIDORES SSL QUE ENCRIPTAN LA INFORMACION BLINDANDO SU ESTRUCTURA TOTAL DE LA MISMA CON EL OBJETIVO DE EVITAR QUE LOS DATOS SEAN USADOS INDEBIDAMENTE</p>
+<ol start="2">
+<li>&iquest;Tienen tiendas donde pueda ver o comprar la mercanc&iacute;a en persona?</li>
+</ol>
+<p>TIC-SHOP ES UNA TIENDA VIRTUAL, LOS PRODUCTOS NO PUEDEN SER VISTOS HASTA SU COMPRA YA QUE LA MERCANCIA SE DISPONE DE ALMACENES DISTRIBUIDOS EN EL TERRITORIO MEXICANO</p>
+<ol start="3">
+<li>&iquest;Puedo pagar a Meses Sin Intereses o con pagos diferidos?</li>
+</ol>
+<p>POR MEDIO DE MERCADO PAGO</p>
+<ol start="4">
+<li>&iquest;Los precios incluyen IVA, me pueden dar factura?</li>
+</ol>
+<p>TIC-SHOP ES UNA EMPRESA ESTABLECIDA EN TERMINOS DE LEGALIDAD Y HACENDARIOS POR LO TANTO SI EMITIMOS COMPROBANTES FISCALES, LOS PRECIOS SI INLUYEN IVA</p>
+<ol start="5">
+<li>&iquest;Tienen garant&iacute;a?</li>
+</ol>
+<p>TIC-SHOP OFRECE PRODUCTOS NUEVOS Y EMPAQUES ORIGINALES, SI LAS POLITCAS DE GARANTIA APLICAN DENTRO DE LOS PRIMEROS 10 DIAS TIC-SHOP SE HACE CARGO, DESPUES DE ESE PLAZO ES DIRECTAMENTE CON LA MARCA.</p>
+<ol start="6">
+<li>&iquest;No vivo en M&eacute;xico pero me interesa comprar en Tic-Shop?</li>
+</ol>
+<p>TIC-SHOP SOLO HACE ENVIO EN TERRITORIO NACIONAL</p>
 <p>Dudas sobre el env&iacute;o</p>
 <ol>
 <li>&iquest;Puedo recoger mi pedido en alg&uacute;n establecimiento?</li>
-<li>&iquest;Puedo ahorrarme el env&iacute;o?</li>
+</ol>
+<p>TIC-SHOP DESPUES DE ACREDITAR EL PAGO PUEDE HACERLE ENTREGA EN SU OFICINA CENTRAL EN PACHUCA HIDALGO</p>
+<ol start="2">
 <li>&iquest;Si pido m&aacute;s de una pieza tengo que pagar doble env&iacute;o?</li>
+</ol>
+<p>EN GENERAL SI, YA QUE LOS PRODUCTOS VIENEN DE DIFERENTES ALMACENES.</p>
+<ol start="3">
 <li>Me urge mi pedido, &iquest;me lo pueden enviar express?</li>
 </ol>
+<p>TIC-SHOP FAVORECE SU SERVICIO CON ENTREGAS INMEDIATAS EN OFICINA CENTRAL Y/O ENVIOS POR PAQUETERIA EL MISMO DIA DE SU COMPRA ANTES DE LAS 13:00 HRS</p>
+
+
 
 					</div>
 				</div>
