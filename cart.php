@@ -130,7 +130,6 @@
 							echo "<button class='btn btn-warning btn-sm' onclick='borra_carrito(".$key->id.")'><i class='far fa-trash-alt'></i></button>";
 						echo "</div>";
 					echo "</div>";
-					$total+=$p_final;
 				}
 
 				?>
@@ -157,7 +156,7 @@
 							echo "</div>";
 						echo "</div>";
 
-						$gtotal=$total+$envio;
+						$gtotal=$preciot+$enviot;
 						echo "<hr>";
 						echo "<div class='row'>";
 							echo "<div class='col-6'>";

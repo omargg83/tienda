@@ -39,8 +39,7 @@
         $envio=$key->envio_costo;
       }
 
-      $subx=($preciof+$envio);
-      $p_final=($key->cantidad*$subx);
+      $p_final=($key->cantidad*($preciof+$envio));
       $t_carro+=$p_final;
     }
   }
