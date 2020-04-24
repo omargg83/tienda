@@ -110,26 +110,30 @@
 								$contar=0;
 
 								$resp =servicioApi('GET',"existencia/detalle/".$clave."/".$ped->numero,NULL,$tok);
-								//echo "<br>hay promocion:".$resp[0]->promocion;
-								echo "consulta almacen:";
-								echo "<pre>";
+								if(is_object($resp)){
+									echo "<br>hay promocion:";
+									echo "<pre>";
 									echo var_dump($resp);
-								echo "</pre>";
+									echo "</pre>";
 
-								echo "<hr";
-								echo "<br>Precio:".$precio_prod;
-								echo "<br>descuentoprecio:".$resp->promocion->descuentoPrecio;
-								echo "<br>descuentoporcentaje:".$resp->promocion->descuentoPorcentaje;
+									echo "<hr";
+									echo "<br>Precio:".$precio_prod;
+									echo "<br>descuentoprecio:".$resp->promocion->descuentoPrecio;
+									echo "<br>descuentoporcentaje:".$resp->promocion->descuentoPorcentaje;
 
-								if ($resp->promocion->descuentoPrecio>0){
-									$precio_desc=$resp->promocion->descuentoPrecio;
+									if ($resp->promocion->descuentoPrecio>0){
+										$precio_desc=$resp->promocion->descuentoPrecio;
+									}
+									if($resp->promocion->descuentoPorcentaje>0){
+										$porc=$resp->promocion->descuentoPorcentaje;
+										$precio_desc=$precio_prod-(($precio_prod*$porc)/100);
+									}
+									$precio_f=round($precio_desc,2);
+									echo "<br>tipo de variable:".var_dump("$precio_f");
 								}
-								if($resp->promocion->descuentoPorcentaje>0){
-									$porc=$resp->promocion->descuentoPorcentaje;
-									$precio_desc=$precio_prod-(($precio_prod*$porc)/100);
+								else{
+									$precio_f=$precio_prod;
 								}
-								$precio_f=round($precio_desc,2);
-								echo "<br>tipo de variable:".var_dump("$precio_f");
 								echo "</hr>";
 
 								$envio[0]=array(
