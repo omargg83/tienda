@@ -431,10 +431,11 @@
 
 <script type="text/javascript">
 
-$('img').error(function() {
-        $(this).remove();
-});	
-
+ $(document).ready(function(){
+   $('img').error(function() {
+     $(this).remove();
+   }) 
+ });
 
 </body>
 
