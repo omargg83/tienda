@@ -347,7 +347,7 @@
 					      });
 
 					      return actions.order.capture().then(function(details) {
-
+									console.log(details);
 									$.ajax({
 					          url: "/paypal-transaction-complete.php",
 					          type: "POST",
