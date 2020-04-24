@@ -349,7 +349,7 @@
 									console.log(details);
 
 									$.ajax({
-								    url: "paypal-transaction-complete.php",
+								    url: "/paypal-transaction-complete.php",
 								    type: "POST",
 										data: {
 										 "id":details.id,
@@ -360,11 +360,11 @@
 								    success: function( response ) {
 											console.log(response);
 											Swal.fire({
-												icon: 'success',
-												title: "Correcto",
-												showConfirmButton: false,
-												timer: 1500
-											});
+							            type: 'success',
+							            title: "Se agregó correctamente",
+							            showConfirmButton: false,
+							            timer: 1000
+							        });
 								    }
 								  });
 
