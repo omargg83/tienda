@@ -33,7 +33,7 @@
             "idx":<?php echo $idpedido; ?>
           },
           success: function( response ) {
-
+            window.location.href="https://www.tic-shop.com.mx/estado_pedido.php?idpedido="+$idpedido;
           }
         });
         alert('Transaction completed by ' + details.payer.name.given_name);

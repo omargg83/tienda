@@ -144,7 +144,7 @@
 				}
 			}
 		}
-
+		$rechazado=0;
 		/////////////////////////////////////////////Correo
 		if($rechazado==0){
 				$texto="<h3>TIC-SHOP</h3><br>
