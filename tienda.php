@@ -446,6 +446,8 @@ function imgrm() {
 
 setInterval(imgrm, 1000)
 
+$('.product_item').removeAttr("style");
+
  });
 
 </script>
