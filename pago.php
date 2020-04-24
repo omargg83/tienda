@@ -345,28 +345,29 @@
 					          title: 'no cierre la ventana, finalizando pago',
 					          showConfirmButton: false
 					      });
-
 					      return actions.order.capture().then(function(details) {
 									console.log(details);
+
 									$.ajax({
-					          url: "paypal-transaction-complete.php",
-					          type: "POST",
-					          data: {
-					            "id":details.id,
-					            "mail":details.payer.email_address,
-					            "estatus":details.status,
-					            "idx":<?php echo $idpedido; ?>
-					          },
-					          success: function( response ) {
+								    url: "paypal-transaction-complete.php",
+								    type: "POST",
+										data: {
+										 "id":details.id,
+										 "mail":details.payer.email_address,
+										 "estatus":details.status,
+										 "idx":<?php echo $idpedido; ?>
+									 	},
+								    success: function( response ) {
 											console.log(response);
 											Swal.fire({
 												icon: 'success',
-												title: response,
+												title: "Correcto",
 												showConfirmButton: false,
 												timer: 1500
-											})
-					          }
-					        });
+											});
+								    }
+								  });
+
 
 					        alert('Transaction completed by ' + details.payer.name.given_name);
 					      });
