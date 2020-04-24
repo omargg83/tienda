@@ -84,9 +84,6 @@
 				$prod_query->execute();
 				$prod_pedido=$prod_query->fetch(PDO::FETCH_OBJ);
 				$precio_prod=$prod_pedido->precio;
-				echo "<br>Clave:".$clave;
-				echo "<br>idprod:".$idprod;
-				echo "<br>cantidad:".$cantidad;
 
 				$sql="select producto_exist.*,almacen.numero from producto_exist left outer join almacen on almacen.homoclave=producto_exist.almacen where id='$idprod' order by existencia desc";
 		    $exist = $db->dbh->prepare($sql);
@@ -111,7 +108,6 @@
 
 								$resp =servicioApi('GET',"existencia/detalle/".$clave."/".$ped->numero,NULL,$tok);
 								if($resp->promocion){
-									echo "<br>hay promocion:";
 
 									if ($resp->promocion->descuentoPrecio>0){
 										$precio_desc=$resp->promocion->descuentoPrecio;
@@ -156,25 +152,11 @@
 								);
 								$json = json_encode($arreglo);
 
-
-									echo var_dump($json);
-
-									/*
-									$resp =servicioApi('POST','pedido',$json,$tok); 					/////////////////////////////////////////////PEDIDO
-									echo var_dump($resp);
-
-										echo "<hr>";
-										$pedidoweb=$resp[0]->respuestaCT->pedidoWeb;
-										$estatus=$resp[0]->respuestaCT->estatus;
-
-										echo $resp[0]->respuestaCT->pedidoWeb;
-										echo $resp[0]->respuestaCT->estatus;
-										echo "<hr>";
-
-										$sql="insert into pedidos_web (idprod, clave, cantidad, pedidoWeb, estatus, idpedido) values ('$idprod', '$clave', '$pedir', '$pedidoweb', '$estatus', '$idpedido')";
-										$stmt= $db->dbh->query($sql);
-									*/
-
+								$resp =servicioApi('POST','pedido',$json,$tok); 					/////////////////////////////////////////////PEDIDO
+								$pedidoweb=$resp[0]->respuestaCT->pedidoWeb;
+								$estatus=$resp[0]->respuestaCT->estatus;
+								$sql="insert into pedidos_web (idprod, clave, cantidad, pedidoWeb, estatus, idpedido) values ('$idprod', '$clave', '$pedir', '$pedidoweb', '$estatus', '$idpedido')";
+								$stmt= $db->dbh->query($sql);
 							}
 
 						}
@@ -288,7 +270,7 @@
 						$texto.="<tr>";
 							$texto.= "<td>";
 									$texto.= $key->clave;
-									$texto.= "<br>".$key->nombre;
+									$texto.= "<br><b>".$key->nombre."</b>";
 									$texto.= "<br>".$key->modelo;
 									$texto.= "<br>".$key->marca;
 									$texto.= "<br>".$key->categoria;
