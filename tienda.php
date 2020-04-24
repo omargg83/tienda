@@ -326,9 +326,13 @@
 											echo "<li class='page-item'><a class='page-link' href='/tienda.php?tipo=$tipo&id=$id&pag=0&marcaf=$marcaf&ord=$orden&pmax=$pmax&pmin=$pmin'>Primera</a></li>";
 											$max=$pag+4;
 											$min=$pag-4;
+
+											echo "<br>min:".$min;
+											echo "<br>MAx:".$max;
+
 											for($i=0; $i<$num_paginas;$i++){
 												$t=$i+1;
-												if($min>=$i and $i<=$max){
+												if($min<=$i and $i<=$max){
 													echo "<li class='page-item";
 														if($i==$pag){ echo " active "; }
 													echo "'><a class='page-link' href='/tienda.php?tipo=$tipo&id=$id&pag=$i&marcaf=$marcaf&ord=$orden&pmax=$pmax&pmin=$pmin'>".$t."</a></li>";
