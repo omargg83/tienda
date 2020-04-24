@@ -110,18 +110,9 @@
 								$contar=0;
 
 								$resp =servicioApi('GET',"existencia/detalle/".$clave."/".$ped->numero,NULL,$tok);
-
 								if($resp->promocion){
 									echo "<br>hay promocion:";
-									echo "<pre>";
-									echo var_dump($resp);
-									echo "</pre>";
-
-									echo "<hr";
-									echo "<br>Precio:".$precio_prod;
-									echo "<br>descuentoprecio:".$resp->promocion->descuentoPrecio;
-									echo "<br>descuentoporcentaje:".$resp->promocion->descuentoPorcentaje;
-
+								
 									if ($resp->promocion->descuentoPrecio>0){
 										$precio_desc=$resp->promocion->descuentoPrecio;
 									}
