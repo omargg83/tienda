@@ -318,8 +318,8 @@
 							 ?>
 						</div>
 						<div>
-							<nav aria-label="Page navigation example">
-							  <ul class="pagination">
+							<nav aria-label="Page navigation example" style="display: flex; align-items: center;justify-content: center;">
+							  <ul class="pagination" style="display: inline-flex;">
 									<?php
 										if($num_paginas>1){
 

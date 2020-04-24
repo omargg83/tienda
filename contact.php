@@ -50,7 +50,7 @@
 							<div class="contact_info_image"><img src="img/correo negro.png" alt=""></div>
 							<div class="contact_info_content">
 								<div class="contact_info_title">Email Ventas</div>
-								<div class="contact_info_text">Ventas-ticshop-Pachuca@hotmail.com</div>
+								<div class="contact_info_text">ventas@tic-shop.com.mx</div>
 							</div>
 						</div>
 
