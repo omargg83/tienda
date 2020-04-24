@@ -431,11 +431,16 @@
 
 <script type="text/javascript">
 
- $(document).ready(function(){
-   $('img').error(function() {
-     $(this).remove();
-   }) 
- });
+$(window).load(function() {
+  $('img').each(function() {
+    if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
+      // image was broken, replace with your new image
+       $(this).remove();
+    }
+  });
+});;
+
+</script>
 
 </body>
 
