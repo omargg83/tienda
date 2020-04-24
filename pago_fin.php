@@ -221,8 +221,7 @@
 				</tr>
 				</table>
 				<br>
-				<hr>
-				<h3>Información de envíó</h3>
+				<h3><center>Información de envíó</center></h3>
 				<table style='width:100%'>
 				<tr>
 					<td>
@@ -237,6 +236,10 @@
 					<td>
 						<b>Entre calles:</b><br> $entrecalles
 					</td>
+				</tr>
+				</table>
+				<table style='width:100%'>
+				<tr>
 					<td>
 						<b>Num. Exterior:</b><br> $numero
 					</td>
