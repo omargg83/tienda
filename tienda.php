@@ -303,7 +303,7 @@
 									}
 									echo "<a href='/producto/".$key->clave."'><div class='product_item'>
 										<div class='product_border'></div>
-										<div class='product_image d-flex flex-column align-items-center justify-content-center'><img src='/".$db->doc.$key->img.$a."' alt='' width='50px' ></div>
+										<div class='product_image d-flex flex-column align-items-center justify-content-center'><img src='/".$db->doc.$key->img.$a."' alt='' style='max-width:65px;' ></div>
 										<div class='product_content'>
 											<div class='product_price'>".moneda($preciof)."</div>
 											<div class='product_name'><div><a href='#' tabindex='0'>".$key->nombre."</a></div></div>
