@@ -444,7 +444,7 @@ function imgrm() {
 
 };
 
-setInterval(imgrm, 3000)
+setInterval(imgrm, 500)
 
  });
 
