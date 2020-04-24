@@ -114,7 +114,7 @@
 
 					<div class="col-6">
 						<label>Uso cfdi</label>
-						<input type="text" class="form-control" id="cfdi" name='cfdi' placeholder="Uso cfdi" value="<?php echo $cfdi; ?>" >
+						<input type="text" class="form-control" id="cfdi" name='cfdi' placeholder="Ejemplo: P01 o  Gastos por definir" value="<?php echo $cfdi; ?>" >
 					</div>
 				</div>
 				<?php
