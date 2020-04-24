@@ -56,7 +56,7 @@
 							"><i class="fa fa-check"></i>Aceptar</button>
 
 							<br>
-							<p><a href='recuperar.php'>¿Olvidaste tu contraseña?</a></p>
+							<p><a href='/recuperar.php'>¿Olvidaste tu contraseña?</a></p>
 						</div>
 					</div>
 				</div>
