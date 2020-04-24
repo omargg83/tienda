@@ -429,6 +429,12 @@
 
 </script>
 
+<script type="text/javascript">
+$('img').error(function() {
+        $(this).parent().parent().parent().remove();
+});	
+</script>
+
 </body>
 
 </html>
