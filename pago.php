@@ -346,8 +346,6 @@
 					          showConfirmButton: false
 					      });
 					      return actions.order.capture().then(function(details) {
-									console.log(details);
-
 									$.ajax({
 								    url: "/paypal-transaction-complete.php",
 								    type: "POST",
@@ -358,18 +356,16 @@
 										 "idx":<?php echo $idpedido; ?>
 									 	},
 								    success: function( response ) {
-											console.log(response);
 											Swal.fire({
 							            type: 'success',
-							            title: "Se agregó correctamente",
+							            title: "Se proceso correctamente",
 							            showConfirmButton: false,
 							            timer: 1000
 							        });
+											window.location.href="https://www.tic-shop.com.mx/estado_pedido.php?idpedido="+<?php echo $idpedido; ?>;
 								    }
 								  });
-
-
-					        alert('Transaction completed by ' + details.payer.name.given_name);
+					        //alert('Transaction completed by ' + details.payer.name.given_name);
 					      });
 					    }
 					  }).render('#paypal-button-container');
