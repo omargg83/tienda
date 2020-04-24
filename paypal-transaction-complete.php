@@ -10,7 +10,7 @@
 
   if($estatus=="COMPLETED"){
     $arreglo =array();
-    $arreglo+= array('estatus'=>"procesando");
+    $arreglo+= array('estatus'=>"PROCESANDO");
     $arreglo+= array('pago'=>"PayPal");
     $arreglo+= array('idpago'=>$idpago);
     $arreglo+= array('pagador'=>$mail);
