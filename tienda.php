@@ -321,7 +321,7 @@
 							<nav aria-label="Page navigation example">
 							  <ul class="pagination">
 									<?php
-										if($numpaginas>1){
+										if($num_paginas>1){
 
 											echo "<li class='page-item'><a class='page-link' href='/tienda.php?tipo=$tipo&id=$id&pag=0&marcaf=$marcaf&ord=$orden&pmax=$pmax&pmin=$pmin'>Primera</a></li>";
 											$max=$pag+4;
