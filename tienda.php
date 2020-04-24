@@ -327,9 +327,6 @@
 											$max=$pag+4;
 											$min=$pag-4;
 
-											echo "<br>min:".$min;
-											echo "<br>MAx:".$max;
-
 											for($i=0; $i<$num_paginas;$i++){
 												$t=$i+1;
 												if($min<=$i and $i<=$max){
