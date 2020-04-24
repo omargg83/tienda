@@ -129,7 +129,7 @@
 									$precio_desc=$precio_prod-(($precio_prod*$porc)/100);
 								}
 								$precio_f=round($precio_desc,2);
-								echo "<br>tipo de variable:".var_dump($precio_f);
+								echo "<br>tipo de variable:".var_dump("$precio_f");
 								echo "</hr>";
 
 								$envio[0]=array(
@@ -148,7 +148,7 @@
 									$producto[0]=array(
 										'cantidad' => $pedir,
 										'clave' => $clave,
-										'precio' => $precio_f,
+										'precio' => "$precio_f",
 										'moneda' => $prod_pedido->moneda
 									);
 								}
