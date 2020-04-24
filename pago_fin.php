@@ -110,8 +110,8 @@
 								$contar=0;
 
 								$resp =servicioApi('GET',"existencia/detalle/".$clave."/".$ped->numero,NULL,$tok);
-								echo var_dump($resp);
-								if($resp->errorCode and $resp){
+
+								if($resp->promocion){
 									echo "<br>hay promocion:";
 									echo "<pre>";
 									echo var_dump($resp);
