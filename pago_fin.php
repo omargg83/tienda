@@ -83,7 +83,7 @@
 				$prod_query = $db->dbh->prepare($sql);
 				$prod_query->execute();
 				$prod_pedido=$prod_query->fetch(PDO::FETCH_OBJ);
-
+				$precio_prod=$prod_pedido->precio;
 				echo "<br>Clave:".$clave;
 				echo "<br>idprod:".$idprod;
 				echo "<br>cantidad:".$cantidad;
@@ -122,6 +122,12 @@
 									echo "<br>descuentoprecio:".$resp->promocion->descuentoPrecio;
 									echo "<br>descuentoporcentaje:".$resp->promocion->descuentoPorcentaje;
 
+									if ($resp->promocion->descuentoPrecio>0){
+										$precio_prod=$resp->promocion->descuentoPrecio;
+									}
+									if($resp->promocion->descuentoPorcentaje>0){
+										$precio_prod=$precio_prod-($precio_prod*$resp->promocion->descuentoPrecio)/100;
+									}
 								echo "</hr>";
 
 								$envio[0]=array(
@@ -140,7 +146,7 @@
 									$producto[0]=array(
 										'cantidad' => $pedir,
 										'clave' => $clave,
-										'precio' => $prod_pedido->precio,
+										'precio' => $precio_prod,
 										'moneda' => $prod_pedido->moneda
 									);
 								}
@@ -187,16 +193,10 @@
 			}
 		}
 
-
-
-
-
-
-
 		/////////////////////////////////////////////Correo
 		if($rechazado==0){
 				$texto="<h3>TIC-SHOP</h3><br>
-				<h3><b>Pedido</b></h3>
+				<h3><b><center>Pedido</center></b></h3>
 
 				<table style='width:100%'>
 					<tr>
@@ -221,7 +221,7 @@
 				</tr>
 				</table>
 				<br>
-				<h3><center>Información de envíó</center></h3>
+				<h3><center>Información de envío</center></h3>
 				<table style='width:100%'>
 				<tr>
 					<td>
