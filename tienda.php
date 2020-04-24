@@ -430,6 +430,7 @@
 </script>
 
 <script type="text/javascript">
+$( document ).ready(function() {
 
   $('img').each(function() {
     if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
@@ -438,7 +439,7 @@
     }
   });
 
-
+ });
 </script>
 
 </body>
