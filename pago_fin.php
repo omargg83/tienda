@@ -95,8 +95,6 @@
 				if($contar>0){
 					$alma_pedido=$exist->fetchAll(PDO::FETCH_OBJ);
 					foreach($alma_pedido as $ped){
-
-
 						if($cantidad>0){
 							$pedir=$ped->existencia-$cantidad;
 							if($pedir>=0){
@@ -119,19 +117,20 @@
 								echo "</pre>";
 
 								echo "<hr";
-									echo "<br>Precio:".$precio_prod;
-									echo "<br>descuentoprecio:".$resp->promocion->descuentoPrecio;
-									echo "<br>descuentoporcentaje:".$resp->promocion->descuentoPorcentaje;
+								echo "<br>Precio:".$precio_prod;
+								echo "<br>descuentoprecio:".$resp->promocion->descuentoPrecio;
+								echo "<br>descuentoporcentaje:".$resp->promocion->descuentoPorcentaje;
 
-									if ($resp->promocion->descuentoPrecio>0){
-										$precio_desc=$resp->promocion->descuentoPrecio;
-									}
-									if($resp->promocion->descuentoPorcentaje>0){
-										$porc=$resp->promocion->descuentoPorcentaje;
-										$precio_desc=$precio_prod-(($precio_prod*$porc)/100);
-									}
+								if ($resp->promocion->descuentoPrecio>0){
+									$precio_desc=$resp->promocion->descuentoPrecio;
+								}
+								if($resp->promocion->descuentoPorcentaje>0){
+									$porc=$resp->promocion->descuentoPorcentaje;
+									$precio_desc=$precio_prod-(($precio_prod*$porc)/100);
+								}
 								echo "</hr>";
-
+								$precio_f=round($precio_desc,2);
+								
 								$envio[0]=array(
 									'nombre' => $nombre. " ".$apellido,
 									'direccion' => $direccion1,
@@ -148,7 +147,7 @@
 									$producto[0]=array(
 										'cantidad' => $pedir,
 										'clave' => $clave,
-										'precio' => round($precio_desc,2),
+										'precio' => $precio_f,
 										'moneda' => $prod_pedido->moneda
 									);
 								}
