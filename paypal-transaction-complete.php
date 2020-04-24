@@ -7,7 +7,6 @@
   $estatus=$_REQUEST['estatus'];
   $idx=$_REQUEST['idx'];
 
-	return $estatus;
 
   if($estatus=="COMPLETED"){
     $arreglo =array();
