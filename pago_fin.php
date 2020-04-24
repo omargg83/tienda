@@ -112,7 +112,7 @@
 								$resp =servicioApi('GET',"existencia/detalle/".$clave."/".$ped->numero,NULL,$tok);
 								if($resp->promocion){
 									echo "<br>hay promocion:";
-								
+
 									if ($resp->promocion->descuentoPrecio>0){
 										$precio_desc=$resp->promocion->descuentoPrecio;
 									}
@@ -156,7 +156,7 @@
 								);
 								$json = json_encode($arreglo);
 
-								echo "<pre>";
+
 									echo var_dump($json);
 
 									/*
@@ -175,9 +175,6 @@
 										$stmt= $db->dbh->query($sql);
 									*/
 
-								echo "</pre>";
-
-								echo "<hr>";
 							}
 
 						}
@@ -343,19 +340,19 @@
 								$texto.= "</td>";
 								$texto.= "<td>";
 								$texto.= moneda($gtotal);
-							$texto.= "</div>";
-						$texto.= "</div>";
+							$texto.= "</td>";
+						$texto.= "</tr>";
 
 						if(is_array($cupones)){
-							$texto.= "<h4>Cupones</h4>";
+							$texto.= "<tr><td colspan=5>Cupones</td></tr>";
 							foreach($cupones as $keyc){
-								$texto.= "<div class='row'>";
-									$texto.= "<div class='col-10'>";
+								$texto.= "<tr>";
+									$texto.= "<td colspan=4>";
 										$texto.= $keyc->codigo;
 										$texto.= "<br>";
 										$texto.= $keyc->descripcion;
-									$texto.= "</div>";
-									$texto.= "<div class='col-2 text-right'>";
+									$texto.= "</td>";
+									$texto.= "<td>";
 
 										if($keyc->tipo=='porcentaje'){
 											$texto.= $keyc->descuento."%";
@@ -374,23 +371,21 @@
 											$texto.= "<br>Envio: -".$envio;
 										}
 
-									$texto.= "</div>";
-								$texto.= "</div>";
+									$texto.= "</td>";
+								$texto.= "</tr>";
 
-								$texto.= "<div class='row'>";
-									$texto.= "<div class='col-6'>";
+								$texto.= "<tr>";
+									$texto.= "<td colspan=4>";
 										$texto.= "<h4><b>Total:</b></h4>";
-									$texto.= "</div>";
+									$texto.= "</td>";
 
-									$texto.= "<div class='col-6 text-right'>";
+									$texto.= "<td>";
 										$texto.= "<h4><b>".moneda($gtotal)."</b></h4>";
-									$texto.= "</div>";
-								$texto.= "</div>";
+									$texto.= "</td>";
+								$texto.= "</tr>";
 							}
 						}
-
-				$texto.="</div>";
-			$texto.="</div>";
+				$texto.="</table>";
 
 			$asunto="Compra Exitosa";
 		}
@@ -418,7 +413,6 @@
 			$texto.="<br><br>PAGO RECHAZADO";
 			$asunto="Se rechazo el pago";
 		}
-
 		$db->correo($correo, $texto, $asunto);
 		////////////////////////////////////////////////////
 
