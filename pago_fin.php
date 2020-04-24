@@ -119,6 +119,7 @@
 								echo "</pre>";
 
 								echo "<hr";
+									echo "<br>Precio:".$precio_prod;
 									echo "<br>descuentoprecio:".$resp->promocion->descuentoPrecio;
 									echo "<br>descuentoporcentaje:".$resp->promocion->descuentoPorcentaje;
 
