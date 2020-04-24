@@ -128,9 +128,10 @@
 									$porc=$resp->promocion->descuentoPorcentaje;
 									$precio_desc=$precio_prod-(($precio_prod*$porc)/100);
 								}
+								echo "<br>tipo de variable:".var_dump($precio_desc);
 								echo "</hr>";
 								$precio_f=round($precio_desc,2);
-								
+
 								$envio[0]=array(
 									'nombre' => $nombre. " ".$apellido,
 									'direccion' => $direccion1,
