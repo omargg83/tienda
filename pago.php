@@ -347,7 +347,8 @@
 					      });
 
 					      return actions.order.capture().then(function(details) {
-					        $.ajax({
+
+									$.ajax({
 					          url: "/paypal-transaction-complete.php",
 					          type: "POST",
 					          data: {
@@ -357,7 +358,13 @@
 					            "idx":<?php echo $idpedido; ?>
 					          },
 					          success: function( response ) {
-
+											console.log(response);
+											Swal.fire({
+												icon: 'success',
+												title: response,
+												showConfirmButton: false,
+												timer: 1500
+											})
 					          }
 					        });
 
