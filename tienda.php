@@ -321,15 +321,22 @@
 							<nav aria-label="Page navigation example">
 							  <ul class="pagination">
 									<?php
-										echo "<li class='page-item'><a class='page-link' href='/tienda.php?tipo=$tipo&id=$id&pag=0&marcaf=$marcaf&ord=$orden&pmax=$pmax&pmin=$pmin'>Primera</a></li>";
-										for($i=0; $i<$num_paginas;$i++){
-											$t=$i+1;
-											echo "<li class='page-item";
-												if($i==$pag){ echo " active "; }
-											echo "'><a class='page-link' href='/tienda.php?tipo=$tipo&id=$id&pag=$i&marcaf=$marcaf&ord=$orden&pmax=$pmax&pmin=$pmin'>".$t."</a></li>";
+										if($numpaginas>1){
+
+											echo "<li class='page-item'><a class='page-link' href='/tienda.php?tipo=$tipo&id=$id&pag=0&marcaf=$marcaf&ord=$orden&pmax=$pmax&pmin=$pmin'>Primera</a></li>";
+											$max=$pag+4;
+											$min=$pag-4;
+											for($i=0; $i<$num_paginas;$i++){
+												$t=$i+1;
+												if($min>=$i and $i<=$max){
+													echo "<li class='page-item";
+														if($i==$pag){ echo " active "; }
+													echo "'><a class='page-link' href='/tienda.php?tipo=$tipo&id=$id&pag=$i&marcaf=$marcaf&ord=$orden&pmax=$pmax&pmin=$pmin'>".$t."</a></li>";
+												}
+											}
+											$t=ceil($num_paginas)-1;
+											echo "<li class='page-item'><a class='page-link' href='/tienda.php?tipo=$tipo&id=$id&pag=$t&marcaf=$marcaf&ord=$orden&pmax=$pmax&pmin=$pmin'>Ultima</a></li>";
 										}
-										$t=ceil($num_paginas)-1;
-										echo "<li class='page-item'><a class='page-link' href='/tienda.php?tipo=$tipo&id=$id&pag=$t&marcaf=$marcaf&ord=$orden&pmax=$pmax&pmin=$pmin'>Ultima</a></li>";
 									?>
 							  </ul>
 							</nav>
