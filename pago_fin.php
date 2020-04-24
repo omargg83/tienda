@@ -7,8 +7,6 @@
 		$payment_id=$_REQUEST['payment_id'];
 		$payment_status=$_REQUEST['payment_status'];
 
-		$ped=$db->pedido_ver($idpedido);
-
 		$estatus="";
 		$rechazado=0;
 	  if($payment_status=="approved"){
@@ -33,16 +31,15 @@
 		$arreglo+= array('idpago'=>$payment_id);
 		$arreglo+= array('estado_pago'=>$payment_status);
 		$x=$db->update('pedidos',array('id'=>$idpedido), $arreglo);
-		$ped=json_decode($x);
-		$id=$ped->id;
-		if($ped->error==0){
+		$ped_up=json_decode($x);
+		$id=$ped_up->id;
+		if($ped_up->error==0){
 
 		}
 
 		/////////////////////////////////////////COMIENZA PEDIDO A CT
 		$ped=$db->pedido_ver($idpedido);
-
-		$cupones=$db->pedido_cupones($id);
+		$cupones=$db->pedido_cupones($idpedido);
 		$datos=$db->datos_pedido($idpedido);
 		$nombre=$ped->nombre;
 		$apellido=$ped->apellido;
@@ -73,7 +70,6 @@
 
 			$resp = crearNuevoToken();
 			$tok=$resp->token;
-
 			foreach($datos as $key){
 				$clave=$key->clave;
 				$idprod=$key->idprod;
@@ -91,9 +87,9 @@
 				$contar=$exist->rowCount();
 				if($contar>0){
 					$alma_pedido=$exist->fetchAll(PDO::FETCH_OBJ);
-					foreach($alma_pedido as $ped){
+					foreach($alma_pedido as $pedx){
 						if($cantidad>0){
-							$pedir=$ped->existencia-$cantidad;
+							$pedir=$pedx->existencia-$cantidad;
 							if($pedir>=0){
 								$pedir=$cantidad;
 							}
@@ -106,7 +102,7 @@
 								$envio=array();
 								$contar=0;
 
-								$resp =servicioApi('GET',"existencia/detalle/".$clave."/".$ped->numero,NULL,$tok);
+								$resp =servicioApi('GET',"existencia/detalle/".$clave."/".$pedx->numero,NULL,$tok);
 								if($resp->promocion){
 
 									if ($resp->promocion->descuentoPrecio>0){
@@ -145,7 +141,7 @@
 
 								$arreglo=array(
 									'idPedido' => (int)$idpedido,
-									'almacen' => $ped->numero,
+									'almacen' => $pedx->numero,
 									'tipoPago' => "03",
 									'envio' => json_decode(json_encode($envio)),
 									'producto' => json_decode(json_encode($producto)),
@@ -166,6 +162,8 @@
 					}
 				}
 			}
+
+
 		}
 
 		/////////////////////////////////////////////Correo
@@ -446,7 +444,7 @@
 					</div>
 				</div>
 				<div class='col-9'>
-					<h3 class='text-center'><?php echo "#".$id; ?> Pedido</h3>
+					<h3 class='text-center'><?php echo "#".$idpedido; ?> Pedido</h3>
 					<div class="row">
 						<div class="col-2">
 							<label class='text-center'>Pedido</label>
