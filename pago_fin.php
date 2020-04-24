@@ -124,11 +124,11 @@
 									echo "<br>descuentoporcentaje:".$resp->promocion->descuentoPorcentaje;
 
 									if ($resp->promocion->descuentoPrecio>0){
-										$precio_prod=$resp->promocion->descuentoPrecio;
+										$precio_desc=$resp->promocion->descuentoPrecio;
 									}
 									if($resp->promocion->descuentoPorcentaje>0){
-
-										$precio_prod=round($precio_prod-(($precio_prod*$resp->promocion->descuentoPorcentaje)/100),2);
+										$porc=$resp->promocion->descuentoPorcentaje;
+										$precio_desc=$precio_prod-(($precio_prod*$porc)/100));
 									}
 								echo "</hr>";
 
@@ -148,7 +148,7 @@
 									$producto[0]=array(
 										'cantidad' => $pedir,
 										'clave' => $clave,
-										'precio' => $precio_prod,
+										'precio' => round($precio_desc,2),
 										'moneda' => $prod_pedido->moneda
 									);
 								}
