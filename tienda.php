@@ -430,10 +430,11 @@
 </script>
 
 <script type="text/javascript">
+
 $('img').error(function() {
-        $(this).parent().parent().parent().remove();
+        $(this).remove();
 });	
-</script>
+
 
 </body>
 
