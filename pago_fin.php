@@ -127,7 +127,8 @@
 										$precio_prod=$resp->promocion->descuentoPrecio;
 									}
 									if($resp->promocion->descuentoPorcentaje>0){
-										$precio_prod=round($precio_prod-(($precio_prod*$resp->promocion->descuentoPrecio)/100),2);
+
+										$precio_prod=round($precio_prod-(($precio_prod*$resp->promocion->descuentoPorcentaje)/100),2);
 									}
 								echo "</hr>";
 
