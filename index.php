@@ -340,6 +340,53 @@
 							</div>
 						</a>
 
+							<!-- Popular Categories Item -->
+
+						<a href="https://tic-shop.com.mx/tienda.php?tipo=1&id=6">
+							<div class="owl-item">
+								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
+									<div class="popular_category_image"><img src="/img/cat/Impresion.jpg" alt=""></div>
+									<div class="popular_category_text">Impresión</div>
+								</div>
+							</div>
+						</a>
+
+							<!-- Popular Categories Item -->
+
+						<a href="https://tic-shop.com.mx/tienda.php?tipo=1&id=2">
+							<div class="owl-item">
+								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
+									<div class="popular_category_image"><img src="/img/cat/Mejora-tu-Pc.jpg" alt=""></div>
+									<div class="popular_category_text">Mejora tu Pc</div>
+								</div>
+							</div>
+						</a>
+
+
+							<!-- Popular Categories Item -->
+
+						<a href="hhttps://tic-shop.com.mx/tienda.php?tipo=1&id=4">
+							<div class="owl-item">
+								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
+									<div class="popular_category_image"><img src="/img/cat/Mi-Compu.jpg" alt=""></div>
+									<div class="popular_category_text">Mi compu</div>
+								</div>
+							</div>
+						</a>
+
+							<!-- Popular Categories Item -->
+
+						<a href="https://tic-shop.com.mx/tienda.php?tipo=1&id=5">
+							<div class="owl-item">
+								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
+									<div class="popular_category_image"><img src="/img/cat/Seguridad-y-Vigilancia.jpg" alt=""></div>
+									<div class="popular_category_text">Seguridad y Vigilancia</div>
+								</div>
+							</div>
+						</a>
+
+
+
 						</div>
 					</div>
 				</div>
