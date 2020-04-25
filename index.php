@@ -28,7 +28,7 @@
 
 
 <link rel="stylesheet" type="text/css" href="/styles/main_styles.css">
-<style type="text/css"> .cat_menu_container ul {visibility: visible; opacity: 100;}</style>
+<style type="text/css"> .cat_menu_container ul {visibility: visible; opacity: 100; min-height: 75vh; box-shadow: none;}</style>
 <link rel="stylesheet" type="text/css" href="/styles/responsive.css">
 
 
