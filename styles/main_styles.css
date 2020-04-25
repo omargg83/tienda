@@ -953,6 +953,7 @@ select option
 	width: 100%;
 	background: #FFFFFF;
 	box-shadow: 0px 10px 25px rgba(0,0,0,0.1);
+	min-height: auto!important;
 }
 .cat_menu li:hover > ul
 {

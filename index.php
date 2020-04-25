@@ -291,45 +291,54 @@
 						<div class="owl-carousel owl-theme popular_categories_slider">
 
 							<!-- Popular Categories Item -->
-							<a href="https://tic-shop.com.mx/tienda.php?tipo=1&id=9">
+						<a href="https://tic-shop.com.mx/tienda.php?tipo=1&id=9">
 							<div class="owl-item">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
 									<div class="popular_category_image"><img src="/img/cat/Comunicaciones-y-Redes.jpg" alt=""></div>
 									<div class="popular_category_text">Comunicaciones y Redes</div>
 								</div>
 							</div>
-							</a>
+						</a>
 							<!-- Popular Categories Item -->
+							<a href="https://tic-shop.com.mx/tienda.php?tipo=1&id=3">
 							<div class="owl-item">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
 									<div class="popular_category_image"><img src="/img/cat/Construye-tu-Negocio.jpg" alt=""></div>
 									<div class="popular_category_text">Construye tu Negocio</div>
 								</div>
 							</div>
+							</a>
 
 							<!-- Popular Categories Item -->
+						<a href="https://tic-shop.com.mx/tienda.php?tipo=1&id=8">
 							<div class="owl-item">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
 									<div class="popular_category_image"><img src="/img/cat/Electrónica-Y-Hogar.jpg" alt=""></div>
 									<div class="popular_category_text">Electrónica y Hogar</div>
 								</div>
 							</div>
+						</a>
 
 							<!-- Popular Categories Item -->
+						<a href="https://tic-shop.com.mx/tienda.php?tipo=1&id=7">
 							<div class="owl-item">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
 									<div class="popular_category_image"><img src="/img/cat/Equipo-de-Energía.jpg" alt=""></div>
 									<div class="popular_category_text">Equipo de Energía</div>
 								</div>
 							</div>
+						</a>
 
 							<!-- Popular Categories Item -->
+
+						<a href="https://tic-shop.com.mx/tienda.php?tipo=1&id=1">
 							<div class="owl-item">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
 									<div class="popular_category_image"><img src="/img/cat/Gamer.jpg" alt=""></div>
-									<div class="popular_category_text">Gamer</div>
+									<div class="popular_category_text">Gamers</div>
 								</div>
 							</div>
+						</a>
 
 						</div>
 					</div>
