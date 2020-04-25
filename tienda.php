@@ -444,7 +444,7 @@ function imgrm() {
 
 };
 
-setInterval(imgrm, 2500)
+setInterval(imgrm, 3000)
 
 $('.product_item').removeAttr("style");
 $('.product_grid').removeAttr("style");
