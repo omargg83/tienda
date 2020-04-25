@@ -291,41 +291,42 @@
 						<div class="owl-carousel owl-theme popular_categories_slider">
 
 							<!-- Popular Categories Item -->
+							<a href="https://tic-shop.com.mx/tienda.php?tipo=1&id=9">
 							<div class="owl-item">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image"><img src="/img/categoria-almacenamiento.png" alt=""></div>
-									<div class="popular_category_text">Almacenamiento</div>
+									<div class="popular_category_image"><img src="/img/cat/Comunicaciones-y-Redes.jpg" alt=""></div>
+									<div class="popular_category_text">Comunicaciones y Redes</div>
+								</div>
+							</div>
+							</a>
+							<!-- Popular Categories Item -->
+							<div class="owl-item">
+								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
+									<div class="popular_category_image"><img src="/img/cat/Construye-tu-Negocio.jpg" alt=""></div>
+									<div class="popular_category_text">Construye tu Negocio</div>
 								</div>
 							</div>
 
 							<!-- Popular Categories Item -->
 							<div class="owl-item">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image"><img src="/img/categoria-audio.png" alt=""></div>
-									<div class="popular_category_text">Audio</div>
+									<div class="popular_category_image"><img src="/img/cat/Electrónica-Y-Hogar.jpg" alt=""></div>
+									<div class="popular_category_text">Electrónica y Hogar</div>
 								</div>
 							</div>
 
 							<!-- Popular Categories Item -->
 							<div class="owl-item">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image"><img src="/img/categoria-computo.png" alt=""></div>
-									<div class="popular_category_text">Computo</div>
+									<div class="popular_category_image"><img src="/img/cat/Equipo-de-Energía.jpg" alt=""></div>
+									<div class="popular_category_text">Equipo de Energía</div>
 								</div>
 							</div>
 
 							<!-- Popular Categories Item -->
 							<div class="owl-item">
 								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image"><img src="/img/categoria-comunicaciones.png" alt=""></div>
-									<div class="popular_category_text">Comunicaciones</div>
-								</div>
-							</div>
-
-							<!-- Popular Categories Item -->
-							<div class="owl-item">
-								<div class="popular_category d-flex flex-column align-items-center justify-content-center">
-									<div class="popular_category_image"><img src="/img/categoria-gamer.png" alt=""></div>
+									<div class="popular_category_image"><img src="/img/cat/Gamer.jpg" alt=""></div>
 									<div class="popular_category_text">Gamer</div>
 								</div>
 							</div>
