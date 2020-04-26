@@ -151,11 +151,16 @@
 									'producto' => json_decode(json_encode($producto)),
 								);
 								$json = json_encode($arreglo);
+								
+								echo "<pre>";
+									echo var_dump($json);
+								echo "</pre>";
 
 								$resp =servicioApi('POST','pedido',$json,$tok); 					/////////////////////////////////////////////PEDIDO
 								echo "<pre>";
 									echo var_dump($resp);
 								echo "</pre>";
+
 								$pedidoweb=$resp[0]->respuestaCT->pedidoWeb;
 								$estatus=$resp[0]->respuestaCT->estatus;
 								$sql="insert into pedidos_web (idprod, clave, cantidad, pedidoWeb, estatus, idpedido) values ('$idprod', '$clave', '$pedir', '$pedidoweb', '$estatus', '$idpedido')";
