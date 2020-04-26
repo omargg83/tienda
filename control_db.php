@@ -1458,7 +1458,7 @@
 			$mail->Subject = $asunto;
 			$mail->AltBody = $asunto;
 
-			//$mail->isSMTP();
+			$mail->isSMTP();
 			$mail->Host = "smtp.gmail.com";						  // Specify main and backup SMTP servers
 			$mail->SMTPAuth = true;                               // Enable SMTP authentication
 			$mail->Username = "tic.shop.adm@gmail.com";       // SMTP username
