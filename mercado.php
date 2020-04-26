@@ -7,6 +7,8 @@
 
 	$idpedido=$_REQUEST['id'];
 	$monto_pago=100000;
+	$estado_pago="approved";
+	$id="1111";
 /*
 	$input = @file_get_contents("php://input");
 	$texto=$input;
