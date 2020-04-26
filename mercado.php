@@ -5,11 +5,12 @@
 	$mercado=$db->ajustes_editar();
 	$mercado_token=$mercado->mercado_token;
 
+/*
 	$idpedido=$_REQUEST['id'];
 	$monto_pago=100000;
 	$estado_pago="approved";
 	$id="1111";
-/*
+*/
 	$input = @file_get_contents("php://input");
 	$texto=$input;
 	$event_json = json_decode($input);
@@ -22,7 +23,7 @@
 	$idpedido=$payment->external_reference;
 	$monto_pago=$payment->transaction_amount;
 	$estado_pago=$payment->status;
-*/
+
 	$sql="select * from pedidos where id='$idpedido'";
 	$sth = $db->dbh->prepare($sql);
 	$sth->execute();
@@ -151,7 +152,6 @@
 									'producto' => json_decode(json_encode($producto)),
 								);
 								$json = json_encode($arreglo);
-							
 								$resp =servicioApi('POST','pedido',$json,$tok); 					/////////////////////////////////////////////PEDIDO
 
 								$pedidoweb=$resp[0]->respuestaCT->pedidoWeb;
