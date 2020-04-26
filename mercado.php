@@ -143,7 +143,6 @@
 										'moneda' => $prod_pedido->moneda
 									);
 								}
-
 								$arreglo=array(
 									'idPedido' => (int)$idpedido,
 									'almacen' => $pedx->numero,
@@ -154,6 +153,9 @@
 								$json = json_encode($arreglo);
 
 								$resp =servicioApi('POST','pedido',$json,$tok); 					/////////////////////////////////////////////PEDIDO
+								echo "<pre>";
+									echo var_dump($resp);
+								echo "</pre>";
 								$pedidoweb=$resp[0]->respuestaCT->pedidoWeb;
 								$estatus=$resp[0]->respuestaCT->estatus;
 								$sql="insert into pedidos_web (idprod, clave, cantidad, pedidoWeb, estatus, idpedido) values ('$idprod', '$clave', '$pedir', '$pedidoweb', '$estatus', '$idpedido')";
