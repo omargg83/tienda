@@ -419,7 +419,7 @@ $(document).on('submit','#recuperar',function(e){
               showConfirmButton: false,
               timer: 2000
           });
-          //window.location.href="index.php";
+          window.location.href="/";
         }
         else{
           Swal.fire({
