@@ -61,9 +61,15 @@
 	if($monto>=$pedido->total){
 		echo "<br>Bien pagado";
 
-		$sql="update pedidos set confirmacion='$estado',idpago='$id',pagador='ipn' where id='".$pedido->id."'";
+		$sql="update pedidos set confirmacion='$estado', idpago='$id', pagador='ipn', pago='Mercado Pago', estatus='Mercado Pago' where id='".$pedido->id."'";
 		$sth = $db->dbh->prepare($sql);
 		$sth->execute();
+
+		
+
+
+
+
 	}
 
 

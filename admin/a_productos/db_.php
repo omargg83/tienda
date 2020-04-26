@@ -199,8 +199,8 @@ class Productos extends Tienda{
 				if (isset($_REQUEST['existencia'])){
 					$arreglo+= array('existencia'=>$_REQUEST['existencia']);
 				}
-				if (isset($_REQUEST['preciof'])){
-					$arreglo+= array('preciof'=>$_REQUEST['preciof']);
+				if (isset($_REQUEST['precio_tic'])){
+					$arreglo+= array('preciof'=>$_REQUEST['precio_tic']);
 				}
 			}
 
