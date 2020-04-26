@@ -19,7 +19,7 @@
 	$monto=$payment->transaction_amount;
 	$estado=$payment->status;
 
-	$texto="$id $idpedido ";
+	$texto="$id $idpedido $estado";
 	$sql="insert into new_table (log) values (:log)";
 	$sth = $db->dbh->prepare($sql);
 	$sth->bindValue(':log',$texto);
@@ -40,6 +40,28 @@
 		$ped=$db->pedido_ver($idpedido);
 		$cupones=$db->pedido_cupones($idpedido);
 		$datos=$db->datos_pedido($idpedido);
+		$nombre=$ped->nombre;
+		$apellido=$ped->apellido;
+		$correo=$ped->correo;
+		$rfc=$ped->rfc;
+		$cfdi=$ped->cfdi;
+		$direccion1=$ped->direccion1;
+
+		$entrecalles=$ped->entrecalles;
+		$numero=$ped->numero;
+		$colonia=$ped->colonia;
+
+		$ciudad=$ped->ciudad;
+		$cp=$ped->cp;
+		$pais=$ped->pais;
+		$estado=$ped->estado;
+		$telefono=$ped->telefono;
+		$gmonto=$ped->monto;
+		$genvio=$ped->envio;
+		$gtotal=$ped->total;
+		$estatus=$ped->estatus;
+		$pago=$ped->pago;
+		$idpago=$ped->idpago;
 
 		if ($estado=="approved"){
 			$estatus="";
