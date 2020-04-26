@@ -18,7 +18,6 @@
 	$pais=$resp->pais;
 	$estado=$resp->estado;
 	$telefono=$resp->telefono;
-
 ?>
 
 <!DOCTYPE html>
@@ -125,7 +124,7 @@
 	          </div>
 	          <div class="col-4">
 	            <label>Teléfono</label>
-	            <input type="number" class="form-control" id="telefono" name='telefono' placeholder="Teléfono" value="<?php echo $telefono; ?>" >
+	            <input type="text" class="form-control input-number" id="telefono" name='telefono' placeholder="Teléfono" value="<?php echo $telefono; ?>" >
 	          </div>
 	        </div>
 
