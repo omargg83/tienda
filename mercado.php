@@ -17,9 +17,9 @@
 
 	$idpedido=$payment->external_reference;
 	$monto=$payment->transaction_amount;
-	$estado=$payment->status;
+	$estado_pago=$payment->status;
 
-	$texto="$id $idpedido $estado";
+	$texto="$id $idpedido $estado_pago";
 	$sql="insert into new_table (log) values (:log)";
 	$sth = $db->dbh->prepare($sql);
 	$sth->bindValue(':log',$texto);
@@ -32,7 +32,7 @@
 
 	if($monto>=$pedido->total){
 
-		$sql="update pedidos set confirmacion='$estado', idpago='$id', pagador='ipn', pago='Mercado Pago', estatus='Mercado Pago' where id='$idpedido'";
+		$sql="update pedidos set confirmacion='$estado_pago', idpago='$id', pagador='ipn', pago='Mercado Pago', estatus='PROCESANDO' where id='$idpedido'";
 		$sth = $db->dbh->prepare($sql);
 		$sth->execute();
 
@@ -40,6 +40,7 @@
 		$ped=$db->pedido_ver($idpedido);
 		$cupones=$db->pedido_cupones($idpedido);
 		$datos=$db->datos_pedido($idpedido);
+
 		$nombre=$ped->nombre;
 		$apellido=$ped->apellido;
 		$correo=$ped->correo;
@@ -63,7 +64,7 @@
 		$pago=$ped->pago;
 		$idpago=$ped->idpago;
 
-		if ($estado=="approved"){
+		if ($estado_pago=="approved"){
 			$estatus="";
 			$rechazado=0;
 
