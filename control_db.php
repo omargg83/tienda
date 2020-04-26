@@ -313,6 +313,7 @@
 				$sth_i->execute();
 				if($sth_i->rowCount()>0){
 					$resp=$sth_i->fetch(PDO::FETCH_OBJ);
+					return $resp->correo;
 					$pass=$this->genera_random(8);
 					$passg=md5(trim($pass));
 
@@ -1467,7 +1468,6 @@
 			$mail->CharSet = 'UTF-8';
 			$mail->From = "admin@tic-shop.com.mx";
 			$mail->FromName = "TIC-SHOP";
-
 
 			$mail->IsHTML(true);
 			$mail->addAddress($correo);
