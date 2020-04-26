@@ -418,8 +418,9 @@ $(document).on('submit','#recuperar',function(e){
               title: 'Se nofiticó correctamente',
               showConfirmButton: false,
               timer: 2000
+            }).then((result) => {
+            window.location.href="/";
           });
-          //window.location.href="/";
         }
         else{
           Swal.fire({
