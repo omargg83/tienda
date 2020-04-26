@@ -395,10 +395,7 @@
 				<label>Pedido #: $idpedido</label>
 			</div>
 			<div class='col-3'>
-				<label>Estatus: $estatus</label>
-			</div>
-			<div class='col-3'>
-				<label>Pago: $pago</label>
+				<label>Estatus: $estado_pago</label>
 			</div>
 			<div class='col-4'>
 				<label>Nombre: $nombre $apellido</label>
