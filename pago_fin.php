@@ -4,7 +4,7 @@
 
 		////////////////////////////////////////////////CONFIRMA COMPRA EN MERCADO PAGO
 		$idpedido=$_REQUEST['idpedido'];
-		/////////////////////////////////////////COMIENZA PEDIDO A CT
+		
 		$ped=$db->pedido_ver($idpedido);
 		$cupones=$db->pedido_cupones($idpedido);
 		$datos=$db->datos_pedido($idpedido);

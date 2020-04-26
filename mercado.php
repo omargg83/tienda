@@ -19,13 +19,19 @@
 	$monto=$payment->transaction_amount;
 	$estado=$payment->status;
 
+	$texto="$id $idpedido ";
+	$sql="insert into new_table (log) values (:log)";
+	$sth = $db->dbh->prepare($sql);
+	$sth->bindValue(':log',$texto);
+ 	$sth->execute();
+
 	$sql="select * from pedidos where id='$idpedido'";
 	$sth = $db->dbh->prepare($sql);
 	$sth->execute();
 	$pedido=$sth->fetch(PDO::FETCH_OBJ);
 
 	if($monto>=$pedido->total){
-		
+
 		$sql="update pedidos set confirmacion='$estado', idpago='$id', pagador='ipn', pago='Mercado Pago', estatus='Mercado Pago' where id='$idpedido'";
 		$sth = $db->dbh->prepare($sql);
 		$sth->execute();
@@ -371,13 +377,6 @@
 
 
 	}
-
-
-	$texto="$id $texto  Pedido:".$rex->id;
-	$sql="insert into new_table (log) values (:log)";
-	$sth = $db->dbh->prepare($sql);
-	$sth->bindValue(':log',$texto);
-	echo $sth->execute();
 
 	if (isset($id)) {
 			http_response_code(200);
