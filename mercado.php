@@ -372,13 +372,22 @@
 
 			$asunto="Compra Exitosa";
 
-
-
-
 			////////////////////////////////////////////////////
 
 	}
 	else{
+		$ped=$db->pedido_ver($idpedido);
+		$cupones=$db->pedido_cupones($idpedido);
+		$datos=$db->datos_pedido($idpedido);
+
+		$nombre=$ped->nombre;
+		$apellido=$ped->apellido;
+		$correo=$ped->correo;
+		$rfc=$ped->rfc;
+		$cfdi=$ped->cfdi;
+		$direccion1=$ped->direccion1;
+
+
 		$texto="<h3>TIC-SHOP</h3>
 		<h3 class='text-center'>Pedido</h3>
 		<div class='row'>
