@@ -29,7 +29,6 @@
 	$sth->execute();
 	$pedido=$sth->fetch(PDO::FETCH_OBJ);
 
-
 	if($monto_pago>=$pedido->total){
 
 		$sql="update pedidos set estado_pago='$estado_pago' confirmacion='$estado_pago', idpago='$id', pagador='ipn', pago='Mercado Pago', estatus='PROCESANDO' where id='$idpedido'";
