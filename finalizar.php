@@ -88,7 +88,7 @@
 
 					<div class="col-4">
 						<label>Teléfono</label>
-						<input type="text" class="form-control" id="telefono" name='telefono' placeholder="Teléfono" value="<?php echo $telefono; ?>" required>
+						<input type="text" class="form-control input-number" id="telefono" name='telefono' placeholder="Teléfono" value="<?php echo $telefono; ?>" required>
 					</div>
 
 					<?php
@@ -158,7 +158,7 @@
 					</div>
 					<div class="col-4">
 						<label>Código postal</label>
-						<input type="text" class="form-control" id="cp" name='cp' placeholder="Código postal" value="<?php echo $cp; ?>" required>
+						<input type="text" class="form-control input-number" id="cp" name='cp' placeholder="Código postal" value="<?php echo $cp; ?>" required>
 					</div>
 					<div class="col-4">
 						<label>Pais</label>
@@ -167,10 +167,6 @@
 					<div class="col-4">
 						<label>Estado</label>
 						<input type="text" class="form-control" id="estado" name='estado' placeholder="Estado" value="<?php echo $estado; ?>" required>
-					</div>
-					<div class="col-4">
-						<label>Teléfono</label>
-						<input type="text" class="form-control" id="telefono" name='telefono' placeholder="Teléfono" value="<?php echo $telefono; ?>" required>
 					</div>
 					<div class="col-12">
 						<label>Notas</label>

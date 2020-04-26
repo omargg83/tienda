@@ -107,7 +107,7 @@
 
 								<div class="col-4">
 									<label>Código postal</label>
-									<input type="number" class="form-control" id="cp" name='cp' placeholder="Código postal" value="<?php echo $cp; ?>" required>
+									<input type="number" class="form-control input-number" id="cp" name='cp' placeholder="Código postal" value="<?php echo $cp; ?>" required>
 								</div>
 
 								<div class="col-4">
