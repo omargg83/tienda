@@ -4,8 +4,9 @@
 
 	$mercado=$db->ajustes_editar();
 	$mercado_token=$mercado->mercado_token;
-	
+
 	$idpedido=$_REQUEST['id'];
+	$monto_pago=100000;
 /*
 	$input = @file_get_contents("php://input");
 	$texto=$input;
