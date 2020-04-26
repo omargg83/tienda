@@ -31,7 +31,7 @@
 		$pago=$ped->pago;
 		$idpago=$ped->idpago;
 
-
+/*
 		if (isset($_REQUEST['payment_id'])){
 			$payment_id=$_REQUEST['payment_id'];
 			$payment_status=$_REQUEST['payment_status'];
@@ -396,9 +396,8 @@
 					}
 					$db->correo($correo, $texto, $asunto);
 					////////////////////////////////////////////////////
-
 		}
-
+*/
 
 	?>
 

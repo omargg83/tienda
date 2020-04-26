@@ -414,7 +414,7 @@ $(document).on('submit','#recuperar',function(e){
         if (datos.error==0){
           Swal.fire({
               type: 'success',
-              title: 'Se nofiticó correctamente',
+              title: 'Se notificó correctamente',
               showConfirmButton: false,
               timer: 2000
             }).then((result) => {
