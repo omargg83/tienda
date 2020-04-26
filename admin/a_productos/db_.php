@@ -16,7 +16,7 @@ class Productos extends Tienda{
 				$sql="SELECT * from productos where clave like '%$texto%' or nombre like '%$texto%' or modelo like '%$texto%' or marca like '%$texto%' or idProducto like '%$texto%' or id like '%$texto%' limit 100";
 			}
 			else{
-				$sql="SELECT * from productos order by id desc limit 100";
+				$sql="SELECT * from productos order by id desc limit 300";
 			}
 			$sth = $this->dbh->prepare($sql);
 			$sth->execute();
@@ -455,7 +455,7 @@ class Productos extends Tienda{
 	public function existencia_api(){
 		$resp = crearNuevoToken();
 	  $tok=$resp->token;
-		
+
 		$clave=$_REQUEST['clave'];
 		$id=$_REQUEST['id'];
 

@@ -75,7 +75,7 @@
 						<input type="text" class="form-control" id="numero" name='numero' placeholder="" value="" >
 					</div>
 					<div class="col-4">
-						<label>Colinia</label>
+						<label>Colonia</label>
 						<input type="text" class="form-control" id="colonia" name='colonia' placeholder="" value="" >
 					</div>
 					<div class="col-4">

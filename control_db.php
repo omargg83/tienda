@@ -739,6 +739,21 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
+		public function limpia_carrito(){
+			try{
+				self::set_names();
+				$id=$_REQUEST['id'];
+				$sql="delete from cliente_carro where idcliente=:cli";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(":cli",$_SESSION['idcliente']);
+				return $sth->execute();
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
+
+
 		public function wish(){
 			try{
 				self::set_names();

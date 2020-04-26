@@ -8,6 +8,7 @@
 		header('Location: /');
 		die();
 	}
+	$db->limpia_carrito();
 
 	$mercado=$db->ajustes_editar();
 	$merca_public=$mercado->mercado_public;
