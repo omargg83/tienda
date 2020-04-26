@@ -1449,7 +1449,7 @@
 			return $this->correo($correo, $texto, $asunto);
 		}
 
-		public function correo($correo, $texto,$asunto){
+		public function correo($correo, $texto, $asunto){
 			/////////////////////////////////////////////Correo
 			require 'vendor/autoload.php';
 			$mail = new PHPMailer;
