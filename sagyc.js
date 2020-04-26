@@ -410,7 +410,6 @@ $(document).on('submit','#recuperar',function(e){
       type: "POST",
       data:  dataString,
       success: function( response ) {
-        console.log(response);
         var datos = JSON.parse(response);
         if (datos.error==0){
           Swal.fire({

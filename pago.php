@@ -306,6 +306,13 @@
 						$preference = new MercadoPago\Preference();
 						$preference->external_reference="$idpedido";
 
+						$preference->back_urls = array(
+						    "success" => "https://www.tic-shop.com.mx/pago_fin.php?idpedido=$idpedido",
+						    "failure" => "https://www.tic-shop.com.mx/pago/$idpedido",
+						    "pending" => "https://www.tic-shop.com.mx/pago_fin.php?idpedido=$idpedido"
+						);
+						$preference->auto_return = "approved";
+
 						// Crea un ítem en la preferencia
 						$item = new MercadoPago\Item();
 						$item->title = 'TIC-SHOP';
