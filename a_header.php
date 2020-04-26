@@ -54,7 +54,7 @@
       	echo "<div class='container'>";
 
          echo "<div class='row'>";
-         	echo "<a style='text-align: center;width: 100%;cursor: pointer;height: 50px;color: black;padding-top: 15px;font-weight: 600;' href='https://tic-shop.com.mx/tienda.php'> $key->texto </a>";
+         	echo "<a style='text-align: center;width: 100%;cursor: pointer;height: 50px;color: black;padding-top: 15px;font-weight: 600;' href='$key->texto'> $key->texto </a>";
          echo "</div>";
         echo "</div>";
       echo "</div>";
