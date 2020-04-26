@@ -84,7 +84,7 @@
 					</div>
 					<div class="col-4">
 						<label>Código postal</label>
-						<input type="text" class="form-control" id="cp" name='cp' placeholder="" value="" required>
+						<input type="number" class="form-control" id="cp" name='cp' placeholder="" value="" required>
 					</div>
 					<div class="col-4">
 						<label>País</label>
@@ -96,7 +96,7 @@
 					</div>
 					<div class="col-4">
 						<label>Teléfono</label>
-						<input type="text" class="form-control" id="telefono" name='telefono' placeholder="" value="" required>
+						<input type="number" class="form-control" id="telefono" name='telefono' placeholder="" value="" required>
 					</div>
 				</div>
 				<hr>

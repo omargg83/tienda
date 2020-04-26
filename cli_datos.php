@@ -113,7 +113,7 @@
 	          </div>
 	          <div class="col-4">
 	            <label>Código postal</label>
-	            <input type="text" class="form-control" id="cp" name='cp' placeholder="Código postal" value="<?php echo $cp; ?>" >
+	            <input type="number" class="form-control" id="cp" name='cp' placeholder="Código postal" value="<?php echo $cp; ?>" >
 	          </div>
 	          <div class="col-4">
 	            <label>Pais</label>
@@ -125,7 +125,7 @@
 	          </div>
 	          <div class="col-4">
 	            <label>Teléfono</label>
-	            <input type="text" class="form-control" id="telefono" name='telefono' placeholder="Teléfono" value="<?php echo $telefono; ?>" >
+	            <input type="number" class="form-control" id="telefono" name='telefono' placeholder="Teléfono" value="<?php echo $telefono; ?>" >
 	          </div>
 	        </div>
 
