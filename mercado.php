@@ -4,12 +4,13 @@
 
 	$mercado=$db->ajustes_editar();
 	$mercado_token=$mercado->mercado_token;
-
+	
+	$idpedido=$_REQUEST['id'];
+/*
 	$input = @file_get_contents("php://input");
 	$texto=$input;
 	$event_json = json_decode($input);
 	$id = $event_json->data->id;
-
 
 	require __DIR__ .  '/vendor/autoload.php';
 	MercadoPago\SDK::setAccessToken($mercado_token);
@@ -18,7 +19,7 @@
 	$idpedido=$payment->external_reference;
 	$monto_pago=$payment->transaction_amount;
 	$estado_pago=$payment->status;
-
+*/
 	$sql="select * from pedidos where id='$idpedido'";
 	$sth = $db->dbh->prepare($sql);
 	$sth->execute();
@@ -30,8 +31,6 @@
 		$sql="update pedidos set estado_pago='$estado_pago' confirmacion='$estado_pago', idpago='$id', pagador='ipn', pago='Mercado Pago', estatus='PROCESANDO' where id='$idpedido'";
 		$sth = $db->dbh->prepare($sql);
 		$sth->execute();
-
-
 
 
 		$ped=$db->pedido_ver($idpedido);
