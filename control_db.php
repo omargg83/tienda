@@ -1466,8 +1466,8 @@
 			$mail->SMTPSecure = "ssl";                            // Enable TLS encryption, `ssl` also accepted
 			$mail->Port = 465;                                    // TCP port to connect to
 			$mail->CharSet = 'UTF-8';
-			$mail->From = "tic.shop.adm@gmail.com";
-			//$mail->From = "admin@tic-shop.com.mx";
+			//$mail->From = "tic.shop.adm@gmail.com";
+			$mail->From = "admin@tic-shop.com.mx";
 			$mail->FromName = "TIC-SHOP";
 
 			$mail->IsHTML(true);
