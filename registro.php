@@ -66,9 +66,17 @@
 						<label>Dirección (línea 1)</label>
 						<input type="text" class="form-control" id="direccion1" name='direccion1' placeholder="" value="" required>
 					</div>
-					<div class="col-12">
-						<label>Dirección (línea 2)</label>
-						<input type="text" class="form-control" id="direccion2" name='direccion2' placeholder="" value="" >
+					<div class="col-4">
+						<label>Entre calles</label>
+						<input type="text" class="form-control" id="entrecalles" name='entrecalles' placeholder="" value="" >
+					</div>
+					<div class="col-4">
+						<label>No. exterior</label>
+						<input type="text" class="form-control" id="numero" name='numero' placeholder="" value="" >
+					</div>
+					<div class="col-4">
+						<label>Colinia</label>
+						<input type="text" class="form-control" id="colonia" name='colonia' placeholder="" value="" >
 					</div>
 					<div class="col-4">
 						<label>Ciudad</label>
@@ -108,7 +116,7 @@
 
 				<div class="row">
 					<div class="col-4 offset-4">
-						<button type="submit" class="btn btn-primary btn-block" style="    
+						<button type="submit" class="btn btn-primary btn-block" style="
     margin-top: 20px;
     background-color: #b4f22f;
     border: none;

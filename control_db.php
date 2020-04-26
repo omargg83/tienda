@@ -196,8 +196,14 @@
 				if (isset($_REQUEST['direccion1'])){
 					$arreglo+= array('direccion1'=>trim(htmlspecialchars($_REQUEST["direccion1"])));
 				}
-				if (isset($_REQUEST['direccion2'])){
-					$arreglo+= array('direccion2'=>trim(htmlspecialchars($_REQUEST["direccion2"])));
+				if (isset($_REQUEST['entrecalles'])){
+					$arreglo+= array('entrecalles'=>trim(htmlspecialchars($_REQUEST["entrecalles"])));
+				}
+				if (isset($_REQUEST['colonia'])){
+					$arreglo+= array('colonia'=>trim(htmlspecialchars($_REQUEST["colonia"])));
+				}
+				if (isset($_REQUEST['numero'])){
+					$arreglo+= array('numero'=>trim(htmlspecialchars($_REQUEST["numero"])));
 				}
 				if (isset($_REQUEST['ciudad'])){
 					$arreglo+= array('ciudad'=>trim(htmlspecialchars($_REQUEST["ciudad"])));
