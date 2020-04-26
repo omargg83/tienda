@@ -313,7 +313,7 @@
 				$sth_i->execute();
 				if($sth_i->rowCount()>0){
 					$resp=$sth_i->fetch(PDO::FETCH_OBJ);
-					
+
 					$pass=$this->genera_random(8);
 					$passg=md5(trim($pass));
 
@@ -1466,7 +1466,8 @@
 			$mail->SMTPSecure = "ssl";                            // Enable TLS encryption, `ssl` also accepted
 			$mail->Port = 465;                                    // TCP port to connect to
 			$mail->CharSet = 'UTF-8';
-			$mail->From = "admin@tic-shop.com.mx";
+			$mail->From = "tic.shop.adm@gmail.com";
+			//$mail->From = "admin@tic-shop.com.mx";
 			$mail->FromName = "TIC-SHOP";
 
 			$mail->IsHTML(true);
