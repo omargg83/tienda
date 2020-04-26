@@ -370,7 +370,6 @@
 				$texto.="</table>";
 
 			$asunto="Compra Exitosa";
-
 			////////////////////////////////////////////////////
 	}
 	if($estado_pago=="in_process"){

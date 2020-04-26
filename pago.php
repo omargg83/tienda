@@ -309,7 +309,7 @@
 						$preference->back_urls = array(
 						    "success" => "https://www.tic-shop.com.mx/pago_fin.php?idpedido=$idpedido",
 						    "failure" => "https://www.tic-shop.com.mx/pago/$idpedido",
-						    "pending" => "https://www.tic-shop.com.mx/pago_fin.php?idpedido=$idpedido"
+						    "pending" => "https://www.tic-shop.com.mx/pago_fin.php?idpedido=$idpedido&procesando=1"
 						);
 						$preference->auto_return = "approved";
 
