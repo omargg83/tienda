@@ -1467,12 +1467,12 @@
 			$mail->Port = 465;                                    // TCP port to connect to
 			$mail->CharSet = 'UTF-8';
 			//$mail->From = "tic.shop.adm@gmail.com";
-			$mail->From = "admin@tic-shop.com.mx";
+			$mail->From = "ventas@tic-shop.com.mx";
 			$mail->FromName = "TIC-SHOP";
 
 			$mail->IsHTML(true);
 			$mail->addAddress($correo);
-			$mail->addCC("admin@tic-shop.com.mx");
+			$mail->addCC("ventas@tic-shop.com.mx");
 
 			$mail->msgHTML($texto);
 			$arreglo=array();
