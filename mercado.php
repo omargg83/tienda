@@ -63,7 +63,6 @@
 		$pago=$ped->pago;
 		$idpago=$ped->idpago;
 
-		$rechazado=0;
 
 		$texto="$id $idpedido $estado_pago";
 		$sql="insert into new_table (log) values (:log)";
@@ -402,9 +401,6 @@
 		$estatus=$ped->estatus;
 		$pago=$ped->pago;
 		$idpago=$ped->idpago;
-
-		$estatus="";
-		$rechazado=0;
 
 
 		$texto="<h3>TIC-SHOP</h3><br>
