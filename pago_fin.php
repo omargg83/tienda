@@ -33,12 +33,13 @@
 
 		$payment_id=$_REQUEST['payment_id'];
 		$payment_status=$_REQUEST['payment_status'];
+
 		if(isset($_REQUEST['procesando'])){
 			echo "procesando pago";
 		}
 
-		echo "estado:".$payment_status;
-		echo "payment_id:".$payment_id;
+		//echo "estado:".$payment_status;
+		//echo "payment_id:".$payment_id;
 
 	?>
 

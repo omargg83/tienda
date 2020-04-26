@@ -63,7 +63,6 @@
 		$pago=$ped->pago;
 		$idpago=$ped->idpago;
 
-		$estatus="";
 		$rechazado=0;
 
 		$texto="$id $idpedido $estado_pago";
@@ -152,9 +151,9 @@
 							$json = json_encode($arreglo);
 							$resp =servicioApi('POST','pedido',$json,$tok); 					/////////////////////////////////////////////PEDIDO
 
-							$pedidoweb=$resp[0]->respuestaCT->pedidoWeb;
-							$estatus=$resp[0]->respuestaCT->estatus;
-							$sql="insert into pedidos_web (idprod, clave, cantidad, pedidoWeb, estatus, idpedido) values ('$idprod', '$clave', '$pedir', '$pedidoweb', '$estatus', '$idpedido')";
+							$pedido_web=$resp[0]->respuestaCT->pedidoWeb;
+							$estatus_web=$resp[0]->respuestaCT->estatus;
+							$sql="insert into pedidos_web (idprod, clave, cantidad, pedidoWeb, estatus, idpedido) values ('$idprod', '$clave', '$pedir', '$pedido_web', '$estatus_web', '$idpedido')";
 							$stmt= $db->dbh->query($sql);
 						}
 
@@ -644,8 +643,6 @@
 		$texto.="<br><br>PAGO RECHAZADO";
 		$asunto="Se rechazo el pago";
 	}
-
-
 
 
 	$db->correo($correo, $texto, $asunto);
