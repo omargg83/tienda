@@ -283,7 +283,11 @@
 						}
 
 
-							$row=$db->pedidos_web($id);
+							echo "</table>";
+						echo "</div>";
+
+
+						$row=$db->pedidos_web($id);
 						echo "<div class='card-body'>";
 							echo "<h5>PEDIDOS A CT</h5>";
 							echo "<table class='table table-sm'>";
@@ -306,7 +310,6 @@
 							}
 							echo "</table>";
 						echo "</div>";
-
 					}
 
 
