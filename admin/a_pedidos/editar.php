@@ -281,12 +281,39 @@
 								echo "</td>";
 							echo "</tr>";
 						}
+
+
+							$row=$db->pedidos_web($id);
+						echo "<div class='card-body'>";
+							echo "<table class='table table-sm'>";
+							foreach($row as $key){
+								echo "<tr id='".$key['id']."' class='edit-t'>";
+
+								echo "<td>";
+								echo "<div class='btn-group'>";
+									echo "<button class='btn btn-outline-secondary btn-sm' id='edit_comision' title='Editar' data-lugar='a_pedidos/editar'><i class='fas fa-pencil-alt'></i></button>";
+								echo "</div>";
+								echo "</td>";
+
+								echo "<td>".$key["id"]."</td>";
+								echo "<td>".$key["idprod"]."</td>";
+								echo "<td>".$key["clave"]."</td>";
+								echo "<td>".$key["cantidad"]."</td>";
+								echo "<td>".$key["pedidoWeb"]."</td>";
+								echo "<td>".$key["estatus"]."</td>";
+								echo "</tr>";
+							}
+							echo "</table>";
+						echo "</div>";
+
 					}
-					
+
 
 					echo "</table>";
 				echo "</div>";
 				}
+
+
       echo "</div>";
     echo "</form>";
   echo "</div>";

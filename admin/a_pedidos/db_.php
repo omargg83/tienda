@@ -40,6 +40,19 @@ class Pedidos extends Tienda{
 			return "Database access FAILED! ".$e->getMessage();
 		}
 	}
+	public function pedidos_web($id){
+		try{
+			parent::set_names();
+			$sql="SELECT * from pedidos_web where idpedido=:id";
+			$sth = $this->dbh->prepare($sql);
+			$sth->bindValue(':id', "$id");
+			$sth->execute();
+			return $sth->fetchAll();
+		}
+		catch(PDOException $e){
+			return "Database access FAILED! ".$e->getMessage();
+		}
+	}
 	public function guardar_pedido(){
 		try{
 			parent::set_names();
