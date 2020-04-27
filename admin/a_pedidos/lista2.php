@@ -26,7 +26,7 @@
 
 						echo "<td>";
 						echo "<div class='btn-group'>";
-							echo "<button class='btn btn-outline-secondary btn-sm' id='edit_comision' title='Editar' data-lugar='a_pedidos/editar'><i class='fas fa-pencil-alt'></i></button>";
+							echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='edit_comision' title='Editar' data-lugar='a_pedidos/editar'><i class='fas fa-pencil-alt'></i></button>";
 						echo "</div>";
 						echo "</td>";
 
