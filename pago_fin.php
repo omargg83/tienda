@@ -31,8 +31,8 @@
 		$pago=$ped->pago;
 		$idpago=$ped->idpago;
 
-		$payment_id=$_REQUEST['payment_id'];
-		$payment_status=$_REQUEST['payment_status'];
+		//$payment_id=$_REQUEST['payment_id'];
+		//$payment_status=$_REQUEST['payment_status'];
 
 		if(isset($_REQUEST['procesando'])){
 			echo "procesando pago";
