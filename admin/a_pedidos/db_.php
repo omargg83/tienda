@@ -570,7 +570,11 @@ class Pedidos extends Tienda{
 		}
 	}
 	public function confirmar_web(){
-		return "algo";
+
+		$resp = crearNuevoToken();
+		$tok=$resp->token;
+			
+		return "<br>Token:".$tok;
 	}
 
 }

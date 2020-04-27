@@ -13,7 +13,7 @@
       curl_close($ch); // close cURL handler
       return json_decode($result);
   }
-    function crearNuevoToken() {
+  function crearNuevoToken() {
       //Credenciales del cliente para poder consumir el servicio de TOKEN
       $cliente = 'PAC0736';
       $email = 'juanluisvitevivanco@hotmail.com';
