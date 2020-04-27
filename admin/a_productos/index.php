@@ -296,9 +296,6 @@
       }
     });
   }
-
-
-
   function isJSON (something) {
     if (typeof something != 'string')
         something = JSON.stringify(something);
@@ -310,7 +307,6 @@
         return false;
     }
   }
-
   function generar_codigoprod(){
     $.ajax({
       data:  {

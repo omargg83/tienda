@@ -35,11 +35,16 @@
     $imagen = file_get_contents($url);
     if(file_put_contents("../a_imagen/".$nombre, $imagen)){
       echo "error de imagen";
+
+      $data = file_get_contents($imagen);
+      $img = imagecreatefromstring($data);
+      echo imagejpeg($img,"../a_imagen/".$almax->img);
+
     }
 
-    $sth2->bindValue(':nombre', $nombre);
-    $sth2->bindValue(':id',$key['id']);
-    $sth2->execute();
+    //$sth2->bindValue(':nombre', $nombre);
+    //$sth2->bindValue(':id',$key['id']);
+    //$sth2->execute();
   }
 
 ?>
