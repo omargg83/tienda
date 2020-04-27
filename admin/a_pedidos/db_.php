@@ -573,7 +573,13 @@ class Pedidos extends Tienda{
 
 		$resp = crearNuevoToken();
 		$tok=$resp->token;
-			
+		$json = json_encode(array('folio' =>  "W32-018504"));
+		//$resp =servicioApi('POST','pedido/confirmar',$json,$tok);
+
+		echo "<pre>";
+			echo var_dump($resp);
+		echo "</pre>";
+
 		return "<br>Token:".$tok;
 	}
 
