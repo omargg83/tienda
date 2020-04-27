@@ -75,7 +75,8 @@
 			 	</div>
 
 				<div class="row">
-
+					<?php
+					/*
 	 				<div class='col-4'>
 			      <label>Permitir el envío gratuito</label>
 						<select class='form-control' id='envio' name='envio'>
@@ -84,7 +85,9 @@
 						</select>
 						<small id="emailHelp" class="form-text text-muted">El cupón ofrece envío gratuito. El método de envío gratuito debe estar activo</small>
 			    </div>
-
+					*/
+					?>
+					
 					<div class='col-4'>
 			      <label>Caducidad</label>
 			      <input type='text' class='form-control fechaclass' id='caducidad' name='caducidad' placeholder='Caducidad' value='<?php echo $caducidad; ?>' >

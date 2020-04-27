@@ -264,5 +264,52 @@
         }
       });
   }
-
+  function confirmar_web(pedido_web,idpedido){
+    $.confirm({
+      title: 'Cliente',
+      content: '¿Desea confirmar el pedido a CT?',
+      buttons: {
+        Aceptar: function () {
+          $.ajax({
+            data:  {
+              "pedido_web":pedido_web,
+              "idpedido":idpedido,
+              "function":"confirmar_web"
+            },
+            url:   "a_pedidos/db_.php",
+            type:  'post',
+            success:  function (response) {
+              console.log(response);
+              var datos = JSON.parse(response);
+              if (datos.error==0){
+                $.ajax({
+                  data:  {
+                    "id":datos.id
+                  },
+                  url:   'a_pedidos/editar.php',
+                  type:  'post',
+                  success:  function (response) {
+                    $("#trabajo").html(response);
+                  }
+                });
+                Swal.fire({
+                  type: 'success',
+                  title: "Se agregó correctamente",
+                  showConfirmButton: false,
+                  timer: 1000
+                });
+                $('#myModal').modal('hide');
+              }
+              else{
+                $.alert(datos.terror);
+              }
+            }
+          });
+        },
+        Cancelar: function () {
+          $.alert('Canceled!');
+        }
+      }
+    });
+  }
 </script>

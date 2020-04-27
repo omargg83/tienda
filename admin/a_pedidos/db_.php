@@ -40,6 +40,19 @@ class Pedidos extends Tienda{
 			return "Database access FAILED! ".$e->getMessage();
 		}
 	}
+	public function pedidos_web($id){
+		try{
+			parent::set_names();
+			$sql="SELECT * from pedidos_web where idpedido=:id";
+			$sth = $this->dbh->prepare($sql);
+			$sth->bindValue(':id', "$id");
+			$sth->execute();
+			return $sth->fetchAll();
+		}
+		catch(PDOException $e){
+			return "Database access FAILED! ".$e->getMessage();
+		}
+	}
 	public function guardar_pedido(){
 		try{
 			parent::set_names();
@@ -556,6 +569,20 @@ class Pedidos extends Tienda{
 			return "Database access FAILED! ".$e->getMessage();
 		}
 	}
+	public function confirmar_web(){
+
+		$resp = crearNuevoToken();
+		$tok=$resp->token;
+		$json = json_encode(array('folio' =>  "W32-018504"));
+		//$resp =servicioApi('POST','pedido/confirmar',$json,$tok);
+
+		echo "<pre>";
+			echo var_dump($resp);
+		echo "</pre>";
+
+		return "<br>Token:".$tok;
+	}
+
 }
 $db = new Pedidos();
 if(strlen($function)>0){

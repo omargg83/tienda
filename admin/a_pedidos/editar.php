@@ -281,12 +281,45 @@
 								echo "</td>";
 							echo "</tr>";
 						}
+
+
+							echo "</table>";
+						echo "</div>";
+
+
+						$row=$db->pedidos_web($id);
+						echo "<div class='card-body'>";
+							echo "<h5>PEDIDOS A CT</h5>";
+							echo "<table class='table table-sm'>";
+							foreach($row as $key){
+								echo "<tr id='".$key['id']."' class='edit-t'>";
+
+								echo "<td>";
+								echo "<div class='btn-group'>";
+								?>
+									<button type="button" class="btn btn-outline-secondary btn-sm" id="confirma" title="Editar" onclick="confirmar_web('<?php echo $key["pedidoWeb"]; ?>')"><i class="far fa-check-circle"></i></button>
+								<?php
+								echo "</div>";
+								echo "</td>";
+
+								echo "<td>".$key["id"]."</td>";
+								echo "<td>".$key["idprod"]."</td>";
+								echo "<td>".$key["clave"]."</td>";
+								echo "<td>".$key["cantidad"]."</td>";
+								echo "<td>".$key["pedidoWeb"]."</td>";
+								echo "<td>".$key["estatus"]."</td>";
+								echo "</tr>";
+							}
+							echo "</table>";
+						echo "</div>";
 					}
-					
+
 
 					echo "</table>";
 				echo "</div>";
 				}
+
+
       echo "</div>";
     echo "</form>";
   echo "</div>";
