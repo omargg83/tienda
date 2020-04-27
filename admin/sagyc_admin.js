@@ -23,7 +23,6 @@
 				$("#cargando").addClass("is-active");
 			},
 			success:  function (response) {
-				console.log(response);
 				if (isJSON(response)){
 					var datos = JSON.parse(response);
 					if (datos.sess=="cerrada"){
