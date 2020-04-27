@@ -24,8 +24,8 @@
   $sql="select * from productos where activo=1 and imagen_exist=0 and interno=0 limit 10";
   $stmt= $db->dbh->query($sql);
 
-  //$sql="update productos set imagen_exist=1, img=:nombre where id=:id";
-  //$sth2 = $db->dbh->prepare($sql);
+  $sql="update productos set imagen_exist=1, img=:nombre where id=:id";
+  $sth2 = $db->dbh->prepare($sql);
 
   foreach($stmt as $key){
     $url=$key['imagen'];
@@ -34,16 +34,21 @@
 
     $imagen = file_get_contents($url);
     if(file_put_contents("../a_imagen/".$nombre, $imagen)){
-      echo "error de imagen";
-
+      $sth2->bindValue(':nombre', $nombre);
+      $sth2->bindValue(':id',$key['id']);
+      $sth2->execute();
+    }
+    else{
       $img = imagecreatefromstring($imagen);
-      echo imagejpeg($img,"../a_imagen/".$nombre);
-
+      if(imagejpeg($img,"../a_imagen/".$nombre)){
+        $sth2->bindValue(':nombre', $nombre);
+        $sth2->bindValue(':id',$key['id']);
+        $sth2->execute();
+      }
     }
 
-    //$sth2->bindValue(':nombre', $nombre);
-    //$sth2->bindValue(':id',$key['id']);
-    //$sth2->execute();
+
+
   }
 
 ?>
