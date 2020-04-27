@@ -36,9 +36,8 @@
     if(file_put_contents("../a_imagen/".$nombre, $imagen)){
       echo "error de imagen";
 
-      $data = file_get_contents($imagen);
-      $img = imagecreatefromstring($data);
-      echo imagejpeg($img,"../a_imagen/".$almax->img);
+      $img = imagecreatefromstring($imagen);
+      echo imagejpeg($img,"../a_imagen/".$nombre);
 
     }
 
