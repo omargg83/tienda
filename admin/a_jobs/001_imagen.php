@@ -39,11 +39,15 @@
       $sth2->execute();
     }
     else{
+      echo "error de imagen 1";
       $img = imagecreatefromstring($imagen);
       if(imagejpeg($img,"../a_imagen/".$nombre)){
         $sth2->bindValue(':nombre', $nombre);
         $sth2->bindValue(':id',$key['id']);
         $sth2->execute();
+      }
+      else{
+        echo "error de imagen 2";
       }
     }
 
