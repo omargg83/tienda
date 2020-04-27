@@ -296,7 +296,7 @@
 
 								echo "<td>";
 								echo "<div class='btn-group'>";
-									echo "<button class='btn btn-outline-secondary btn-sm' id='edit_comision' title='Editar' data-lugar='a_pedidos/editar'><i class='far fa-check-circle'></i></button>";
+									echo "<button class='btn btn-outline-secondary btn-sm' id='confirma' title='Editar' onclick='confirmar_web(".$key["pedidoWeb"].")'><i class='far fa-check-circle'></i></button>";
 								echo "</div>";
 								echo "</td>";
 

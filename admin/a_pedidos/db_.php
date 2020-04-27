@@ -569,6 +569,10 @@ class Pedidos extends Tienda{
 			return "Database access FAILED! ".$e->getMessage();
 		}
 	}
+	public function confirmar_web(){
+		return "algo";
+	}
+
 }
 $db = new Pedidos();
 if(strlen($function)>0){
