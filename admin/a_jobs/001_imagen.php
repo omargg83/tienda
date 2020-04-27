@@ -24,8 +24,8 @@
   $sql="select * from productos where activo=1 and imagen_exist=0 and interno=0 limit 10";
   $stmt= $db->dbh->query($sql);
 
-  $sql="update productos set imagen_exist=1, img=:nombre where id=:id";
-  $sth2 = $db->dbh->prepare($sql);
+  //$sql="update productos set imagen_exist=1, img=:nombre where id=:id";
+  //$sth2 = $db->dbh->prepare($sql);
 
   foreach($stmt as $key){
     $url=$key['imagen'];
