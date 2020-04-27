@@ -155,7 +155,7 @@
 <meta name="description" content="OneTech shop project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="/styles/bootstrap4/bootstrap.min.css">
-<link href="/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" >
 <link rel="stylesheet" type="text/css" href="/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
 <link rel="stylesheet" type="text/css" href="/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
 <link rel="stylesheet" type="text/css" href="/plugins/OwlCarousel2-2.2.1/animate.css">
@@ -429,29 +429,7 @@
 
 </script>
 
-<script type="text/javascript">
 
-$( document ).ready(function() {
-
-function imgrm() {
- 
-  $('img').each(function() {
-    if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
-      // image was broken, replace with your new image
-       $(this).parent().parent().parent().remove();
-    }
-  });
-
-};
-
-setInterval(imgrm, 3000)
-
-$('.product_item').removeAttr("style");
-$('.product_grid').removeAttr("style");
-
- });
-
-</script>
 
 </body>
 
