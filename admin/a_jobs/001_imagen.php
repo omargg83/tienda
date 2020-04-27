@@ -31,12 +31,12 @@
     $url=$key['imagen'];
     echo "<br>".$url;
     $nombre=trim(basename(trim($key['imagen'])));
-    if (!file_exists("../a_imagen/".$nombre)) {
-      $imagen = file_get_contents($url);
-      if(file_put_contents("../a_imagen/".$nombre, $imagen)){
-        echo "error de imagen";
-      }
+
+    $imagen = file_get_contents($url);
+    if(file_put_contents("../a_imagen/".$nombre, $imagen)){
+      echo "error de imagen";
     }
+
     $sth2->bindValue(':nombre', $nombre);
     $sth2->bindValue(':id',$key['id']);
     $sth2->execute();
