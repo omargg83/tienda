@@ -297,7 +297,7 @@
 								echo "<td>";
 								echo "<div class='btn-group'>";
 								?>
-									<button type="button" class="btn btn-outline-secondary btn-sm" id="confirma" title="Editar" onclick="confirmar_web('<?php echo $key["pedidoWeb"]; ?>')"><i class="far fa-check-circle"></i></button>
+									<button type="button" class="btn btn-outline-secondary btn-sm" id="confirma" title="Editar" onclick="confirmar_web('<?php echo $key["pedidoWeb"]; ?>',<? echo $id; ?>)"><i class="far fa-check-circle"></i></button>
 								<?php
 								echo "</div>";
 								echo "</td>";
