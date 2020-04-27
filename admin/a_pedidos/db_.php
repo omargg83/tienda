@@ -579,10 +579,10 @@ class Pedidos extends Tienda{
 			$json = json_encode(array('folio' => $pedido_web."1"));
 			$resp =servicioApi('POST','pedido/confirmar',$json,$tok);
 
-			echo "<pre>";
-				echo var_dump($resp);
-			echo "</pre>";
-
+			//echo "<pre>";
+				//echo var_dump($resp);
+			//echo "</pre>";
+			echo $resp->errorCode;
 			echo "<br>Token:".$tok;
 		}
 		catch(PDOException $e){
