@@ -570,17 +570,24 @@ class Pedidos extends Tienda{
 		}
 	}
 	public function confirmar_web(){
+		try{
+			$pedido_web=$_REQUEST['pedido_web'];
+			$idpedido=$_REQUEST['idpedido'];
 
-		$resp = crearNuevoToken();
-		$tok=$resp->token;
-		$json = json_encode(array('folio' =>  "W32-018504"));
-		//$resp =servicioApi('POST','pedido/confirmar',$json,$tok);
+			$resp = crearNuevoToken();
+			$tok=$resp->token;
+			$json = json_encode(array('folio' => $pedido_web."1"));
+			$resp =servicioApi('POST','pedido/confirmar',$json,$tok);
 
-		echo "<pre>";
-			echo var_dump($resp);
-		echo "</pre>";
+			echo "<pre>";
+				echo var_dump($resp);
+			echo "</pre>";
 
-		return "<br>Token:".$tok;
+			echo "<br>Token:".$tok;
+		}
+		catch(PDOException $e){
+			return "Database access FAILED! ".$e->getMessage();
+		}
 	}
 
 }

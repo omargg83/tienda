@@ -5,12 +5,12 @@
 	$mercado=$db->ajustes_editar();
 	$mercado_token=$mercado->mercado_token;
 
-/*
-	$idpedido=$_REQUEST['id'];
-	$monto_pago=100000;
-	$estado_pago="approved";
-	$id="1111";
-*/
+	/*
+		$idpedido=$_REQUEST['id'];
+		$monto_pago=100000;
+		$estado_pago="approved";
+		$id="1111";
+	*/
 	$input = @file_get_contents("php://input");
 	$texto=$input;
 	$event_json = json_decode($input);
@@ -370,7 +370,7 @@
 			$asunto="Compra Exitosa";
 			////////////////////////////////////////////////////
 	}
-	if($estado_pago=="in_process" or $estado_pago=="pending"){
+	else if($estado_pago=="in_process" or $estado_pago=="pending"){
 		$sql="update pedidos set estado_pago='$estado_pago', confirmacion='$estado_pago', idpago='$id', pagador='ipn', pago='Mercado Pago', estatus='PROCESANDO PAGO' where id='$idpedido'";
 		$sth = $db->dbh->prepare($sql);
 		$sth->execute();
@@ -639,7 +639,6 @@
 		$texto.="<br><br>PAGO RECHAZADO";
 		$asunto="Se rechazo el pago";
 	}
-
 
 	$db->correo($correo, $texto, $asunto);
 
