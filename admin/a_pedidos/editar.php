@@ -285,6 +285,7 @@
 
 							$row=$db->pedidos_web($id);
 						echo "<div class='card-body'>";
+							echo "<h5>PEDIDOS A CT</h5>";
 							echo "<table class='table table-sm'>";
 							foreach($row as $key){
 								echo "<tr id='".$key['id']."' class='edit-t'>";
