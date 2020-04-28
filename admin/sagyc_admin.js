@@ -826,6 +826,7 @@
 						$(btn).children("i").addClass(tmp);
 					},
 					success:function(response){
+						console.log(response);
 						var datos = JSON.parse(response);
 			      if (datos.error==0){
 							Swal.fire({
