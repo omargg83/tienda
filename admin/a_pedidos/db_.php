@@ -586,6 +586,9 @@ class Pedidos extends Tienda{
 				$arreglo+=array('error'=>1);
 				$arreglo+=array('terror'=>$estado);
 			}
+			if(isset($resp->okReference)){
+				$estado=$resp->okReference;
+			}
 
 			$sql="update pedidos_web set estatus='$estado' where pedidoWeb='$pedido_web'";
 			$sth = $this->dbh->prepare($sql);
