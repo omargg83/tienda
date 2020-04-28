@@ -6,7 +6,7 @@
 	$tipo=0;
 
 	$marcaf="";
-	$_SESSION['pag']=150;
+	$_SESSION['pag']=50;
 
 	$pag=0;
 	$orden="";

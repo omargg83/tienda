@@ -531,6 +531,7 @@ $(document).on('submit','#direccion',function(e){
 $(document).on('submit','#pedido',function(e){
   e.preventDefault();
   var dataString = $(this).serialize()+"&function=pedido_generar&ctrl=control";
+  console.log(dataString);
   $.ajax({
     url: "/control_db.php",
     type: "POST",

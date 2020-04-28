@@ -37,6 +37,7 @@
 	$pais=$ped->pais;
 	$estado=$ped->estado;
 	$telefono=$ped->telefono;
+	echo $telefono;
 	$total=$ped->total;
 
 ?>
