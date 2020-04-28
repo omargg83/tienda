@@ -21,7 +21,7 @@ function myscandir($dir, $exp, $how='name', $desc=0)
   return(array_keys($r));
 }
 
-$r = myscandir('./book/', '/^article[0-9]{4}\.txt$/i', 'ctime', 1);
+$r = myscandir('admin/a_imagen/', '/^article[0-9]{4}\.txt$/i', 'ctime', 1);
 print_r($r);
 
 ?>
