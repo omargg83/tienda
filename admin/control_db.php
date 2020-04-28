@@ -454,7 +454,9 @@
 				return 0;
 			}
 		}
-
+		public function genera_random($length = 8) {
+			return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
+		}
 		public function correo($correo, $texto, $asunto){
 			/////////////////////////////////////////////Correo
 			require 'vendor/autoload.php';
