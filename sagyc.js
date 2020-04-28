@@ -540,7 +540,7 @@ $(document).on('submit','#pedido',function(e){
       console.log(response);
       var datos = JSON.parse(response);
       if (datos.error==0){
-        window.location.href="/pago/"+datos.id;
+        //window.location.href="/pago/"+datos.id;
         Swal.fire({
             type: 'success',
             title: 'Se generó el pedido correctamente',
