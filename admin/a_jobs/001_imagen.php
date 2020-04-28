@@ -34,8 +34,9 @@
 
     $imagen = file_get_contents($url);
     $resp=file_put_contents("../a_imagen/".$nombre, $imagen);
-    echo "respuesta:".$resp;
-    
+    echo "respuesta:";
+    echo $resp;
+
     if($resp){
       $sth2->bindValue(':nombre', $nombre);
       $sth2->bindValue(':id',$key['id']);
