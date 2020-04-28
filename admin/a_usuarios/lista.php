@@ -11,6 +11,7 @@
 			<th>#</th>
 			<th>Nombre</th>
 			<th>Usuario</th>
+			<th>Correo</th>
 			</tr>
 			</thead>
 			<tbody>
@@ -27,6 +28,7 @@
 
 						echo "<td>".$key["nombre"]."</td>";
 						echo "<td>".$key["usuario"]."</td>";
+						echo "<td>".$key["correo"]."</td>";
 						echo "</tr>";
 					}
 				}
