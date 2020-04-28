@@ -1044,7 +1044,7 @@
 				$pais = trim(htmlspecialchars($_REQUEST["pais"]));
 				$pais = trim(htmlspecialchars($_REQUEST["pais"]));
 				$estado = trim(htmlspecialchars($_REQUEST["estado"]));
-				$telefono = trim(htmlspecialchars($_REQUEST["telefono"]));
+				$telefono = trim($_REQUEST["tele_x"]);
 				$correo = trim(htmlspecialchars($_REQUEST["correo"]));
 				$notas = trim(htmlspecialchars($_REQUEST["notas"]));
 				if(isset($_REQUEST["pass"])){

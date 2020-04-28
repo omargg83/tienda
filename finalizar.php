@@ -88,7 +88,7 @@
 
 					<div class="col-4">
 						<label>Teléfono</label>
-						<input type="text" class="form-control input-number" id="telefono" name='telefono' placeholder="Teléfono" value="<?php echo $telefono; ?>" required>
+						<input type="text" class="form-control input-number" id="tele_x" name='tele_x' placeholder="Teléfono" value="<?php echo $telefono; ?>" required>
 					</div>
 
 					<?php
