@@ -11,6 +11,11 @@
 	$alma = $db->producto_exist($id,1);
 	$rel=$db->relacionados($prod->subcategoria);
 	$star=$db->estrellas($id);
+
+
+	list($ancho, $alto, $tipo, $atributos) = getimagesize("/".$db->doc.$prod->img.$a);
+	echo " $atributos ";
+
 ?>
 
 <!DOCTYPE html>
