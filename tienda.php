@@ -438,7 +438,7 @@ function imgrm() {
 	    if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
 	      // image was broken, replace with your new image
 
-				console.log($('this').data('id'));
+				console.log(this.data('id'));
 	      //$(this).parent().parent().parent().remove();
 	    }
 	  });
