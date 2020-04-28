@@ -61,6 +61,7 @@
 		$moneda=$per->moneda;
 		$tipoCambio=$per->tipoCambio;
 		$imagen=$per->img;
+		$origen=$per->imagen;
 		$upc=$per->upc;
 		$activo=$per->activo;
 		$moneda=$per->moneda;
@@ -162,6 +163,16 @@
 								<label for="descripcion">Descripción corta</label>
 								<input type="text" class="form-control form-control-sm" id="descripcion_corta" name='descripcion_corta' placeholder="Descripción corta" value="<?php echo $descripcion_corta; ?>" <?php  echo $bloqueo;  ?>>
 							</div>
+							<?php
+ 						if($interno!=1){
+						 	 ?>
+							<div class="col-12">
+								<label for="originalx">Imagen original</label>
+								<input type="text" class="form-control form-control-sm" id="originalx" name='originalx' placeholder="Imagen original" value="<?php echo $origen; ?>" >
+							</div>
+							<?php
+							}
+						?>
 					  </div>
 					</div>
 				</div>

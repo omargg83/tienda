@@ -32,17 +32,13 @@
     echo "<br>".$url;
     $nombre=trim(basename(trim($key['imagen'])));
 
-    $imagen = file_get_contents($url);
-    $resp=file_put_contents("../a_imagen/".$nombre, $imagen);
-    echo "respuesta:";
-    echo $resp;
+      $imagen = file_get_contents($url);
 
-    if($resp){
-      $sth2->bindValue(':nombre', $nombre);
-      $sth2->bindValue(':id',$key['id']);
-      $sth2->execute();
-    }
-    else{
+
+
+      $resp=file_put_contents("../a_imagen/".$nombre, $imagen);
+
+
       echo "error de imagen 1";
       $img = imagecreatefromstring($imagen);
       if(imagejpeg($img,"../a_imagen/".$nombre)){
@@ -53,9 +49,6 @@
       else{
         echo "error de imagen 2";
       }
-    }
-
-
 
   }
 
