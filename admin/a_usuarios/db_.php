@@ -57,6 +57,9 @@ class Usuarios extends Tienda{
 			if (isset($_REQUEST['nivel'])){
 				$arreglo+= array('nivel'=>$_REQUEST['nivel']);
 			}
+			if (isset($_REQUEST['correo'])){
+				$arreglo+= array('correo'=>$_REQUEST['correo']);
+			}
 
 			$x="";
 			if($id==0){

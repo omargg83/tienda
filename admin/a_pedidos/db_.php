@@ -576,7 +576,7 @@ class Pedidos extends Tienda{
 
 			$resp = crearNuevoToken();
 			$tok=$resp->token;
-			$json = json_encode(array('folio' => $pedido_web."1"));
+			$json = json_encode(array('folio' => $pedido_web));
 			$resp =servicioApi('POST','pedido/confirmar',$json,$tok);
 
 			if (isset($resp->errorCode)){

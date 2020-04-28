@@ -6,6 +6,7 @@
 	$pass="";
 	$autoriza="";
 	$nivel="";
+	$correo="";
 
 	if($id>0){
 		$per = $db->usuario_editar($id);
@@ -14,6 +15,7 @@
 		$pass=$per->pass;
 		$autoriza=$per->autoriza;
 		$nivel=$per->nivel;
+		$correo=$per->correo;
 	}
 ?>
 <div class='container'>
@@ -33,6 +35,10 @@
 					<div class="form-group col-md-4">
 			      <label>Usuario</label>
 			      <input type="text" class="form-control" id="usuario" name='usuario' placeholder="Usuario" value="<?php echo $usuario; ?>" >
+			    </div>
+					<div class="form-group col-md-4">
+			      <label>Correo</label>
+			      <input type="text" class="form-control" id="correo" name='correo' placeholder="Correo" value="<?php echo $correo; ?>" >
 			    </div>
 
 					<div class="form-group col-md-4">

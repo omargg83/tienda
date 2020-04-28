@@ -6,6 +6,8 @@
 	error_reporting(E_ALL);
 	ini_set('display_errors', '1');
 	date_default_timezone_set("America/Mexico_City");
+	use PHPMailer\PHPMailer\PHPMailer;
+	use PHPMailer\PHPMailer\SMTP;
 
 	class Tienda{
 		public $nivel_personal;
@@ -417,6 +419,90 @@
 			}
 			return "$x";
 		}
+		public function recuperar(){
+			$x="";
+			if (isset($_REQUEST['telefono'])){$texto=$_REQUEST['telefono'];}
+			$sql="select * from usuarios where usuario='$texto' or correo='$texto'";
+			$res=$this->general($sql);
+			if(count($res)>0){
+				if(strlen($res[0]['correo'])>0){
+
+
+					$pass=$this->genera_random(8);
+					$passg=md5(trim($pass));
+
+					$sql="update personal set pass=:pass where idpersona=:id";
+					$sth = $this->dbh->prepare($sql);
+					$sth->bindValue(":pass",$passg);
+					$sth->bindValue(":id",$res[0]['idpersona']);
+					$sth->execute();
+
+					$texto="La nueva contraseña es: <br> $pass";
+					$texto.="<br></a>";
+
+					$asunto= "Recuperar contraseña";
+					return $this->correo($res[0]['correo'], $texto, $asunto);
+				}
+				else{
+					$arreglo+=array('id'=>0);
+					$arreglo+=array('error'=>0);
+					$arreglo+=array('terror'=>"no tiene correo registrado en la plantilla");
+				}
+				return json_encode($arreglo);
+			}
+			else{
+				return 0;
+			}
+		}
+
+		public function correo($correo, $texto, $asunto){
+			/////////////////////////////////////////////Correo
+			require 'vendor/autoload.php';
+			$mail = new PHPMailer;
+			$mail->CharSet = 'UTF-8';
+
+			$mail->Body    = $asunto;
+			$mail->Subject = $asunto;
+			$mail->AltBody = $asunto;
+
+			$mail->isSMTP();
+			$mail->Host = "smtp.gmail.com";						  // Specify main and backup SMTP servers
+			$mail->SMTPAuth = true;                               // Enable SMTP authentication
+			$mail->Username = "tic.shop.adm@gmail.com";       // SMTP username
+			$mail->Password = "ticshop2020";                       // SMTP password
+			$mail->SMTPSecure = "ssl";                            // Enable TLS encryption, `ssl` also accepted
+			$mail->Port = 465;                                    // TCP port to connect to
+			$mail->CharSet = 'UTF-8';
+			//$mail->From = "tic.shop.adm@gmail.com";
+			$mail->From = "ventas@tic-shop.com.mx";
+			$mail->FromName = "TIC-SHOP";
+
+			$mail->IsHTML(true);
+			$mail->addAddress($correo);
+			$mail->addCC("ventas@tic-shop.com.mx");
+
+			$mail->msgHTML($texto);
+			$arreglo=array();
+			//send the message, check for errors
+			if (!$mail->send()) {
+				$arreglo+=array('id'=>0);
+				$arreglo+=array('error'=>1);
+				$arreglo+=array('terror'=>$mail->ErrorInfo);
+				$arreglo+=array('param1'=>'');
+				$arreglo+=array('param2'=>'');
+				$arreglo+=array('param3'=>'');
+				return json_encode($arreglo);
+			} else {
+				$arreglo+=array('id'=>0);
+				$arreglo+=array('error'=>0);
+				$arreglo+=array('terror'=>'');
+				$arreglo+=array('param1'=>'');
+				$arreglo+=array('param2'=>'');
+				$arreglo+=array('param3'=>'');
+				return json_encode($arreglo);
+			}
+		}
+
 }
 	if(strlen($ctrl)>0){
 		$db = new Tienda();
