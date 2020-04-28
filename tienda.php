@@ -122,7 +122,7 @@
 	$num_paginas=$resp->total/$_SESSION['pag'];
 
 	$tam=($pag*$_SESSION['pag']);
-	$sql="select * from productos
+	$sql="select productos.* from productos
 	left outer join categoria_ct on productos.categoria=categoria_ct.categoria
 	left outer join producto_cat on categoria_ct.id=producto_cat.idcategoria_ct
 	where productos.activo=1 and productos.existencia>0 $consulta $filtro $forden $qprecio limit $tam,".$_SESSION['pag']."";
@@ -135,16 +135,11 @@
 
 	echo "<input type='hidden' id='pmin' name='pmin' value='$pmin'>";
 	echo "<input type='hidden' id='pmax' name='pmax' value='$pmax'>";
-
-
 	echo "<input type='hidden' id='tipo' name='tipo' value='$tipo'>";
 	echo "<input type='hidden' id='idpas' name='idpas' value='$id'>";
 	echo "<input type='hidden' id='pag' name='pag' value='$pag'>";
 	echo "<input type='hidden' id='marcaf' name='marcaf' value='$marcaf'>";
 	echo "<input type='hidden' id='orden' name='orden' value='$orden'>";
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -303,7 +298,8 @@
 									}
 									echo "<a href='/producto/".$key->clave."'><div class='product_item'>
 										<div class='product_border'></div>
-										<div class='product_image d-flex flex-column align-items-center justify-content-center'><img src='/".$db->doc.$key->img.$a."' alt='' style='max-width:65px;' data-id='".$key->id."'></div>
+										<div class='product_image d-flex flex-column align-items-center justify-content-center'>
+										<img src='/".$db->doc.$key->img.$a."' alt='' style='max-width:65px;' data-id='".$key->id."'></div>
 										<div class='product_content'>
 											<div class='product_price'>".moneda($preciof)."</div>
 											<div class='product_name'><div><a href='#' tabindex='0'>".$key->nombre."</a></div></div>
@@ -438,8 +434,8 @@ function imgrm() {
 	    if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
 	      // image was broken, replace with your new image
 
-				console.log($(this).data('id'));
-	      //$(this).parent().parent().parent().remove();
+				//console.log($(this).data('id'));
+	      $(this).parent().parent().parent().remove();
 	    }
 	  });
 	};
