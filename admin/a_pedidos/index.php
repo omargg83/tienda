@@ -284,7 +284,7 @@
               if (datos.error==0){
                 $.ajax({
                   data:  {
-                    "id":datos.id
+                    "id":idpedido
                   },
                   url:   'a_pedidos/editar.php',
                   type:  'post',
@@ -301,6 +301,16 @@
                 $('#myModal').modal('hide');
               }
               else{
+                $.ajax({
+                  data:  {
+                    "id":idpedido
+                  },
+                  url:   'a_pedidos/editar.php',
+                  type:  'post',
+                  success:  function (response) {
+                    $("#trabajo").html(response);
+                  }
+                });
                 Swal.fire({
                   type: 'error',
                   title: datos.terror,
@@ -308,6 +318,7 @@
                   timer: 1000
                 });
               }
+
             }
           });
         },

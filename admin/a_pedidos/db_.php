@@ -571,7 +571,7 @@ class Pedidos extends Tienda{
 	}
 	public function confirmar_web(){
 		try{
-			$pedido_web=$_REQUEST['pedido_web'];
+			$pedido_web=trim($_REQUEST['pedido_web']);
 			$idpedido=$_REQUEST['idpedido'];
 
 			$resp = crearNuevoToken();
@@ -579,17 +579,18 @@ class Pedidos extends Tienda{
 			$json = json_encode(array('folio' => $pedido_web."1"));
 			$resp =servicioApi('POST','pedido/confirmar',$json,$tok);
 
-			//echo "<pre>";
-				//echo var_dump($resp);
-			//echo "</pre>";
 			if (isset($resp->errorCode)){
+				$estado=$resp->errorMessage;
 				$arreglo =array();
 				$arreglo+=array('id'=>$idpedido);
 				$arreglo+=array('error'=>1);
-				$arreglo+=array('terror'=>$resp->errorMessage);
-				return json_encode($arreglo);
+				$arreglo+=array('terror'=>$estado);
 			}
-			echo "<br>Token:".$tok;
+
+			$sql="update pedidos_web set estado='$estado' where pedidoWeb='$pedido_web'";
+			$sth = $this->dbh->prepare($sql);
+			$sth->execute();
+			return json_encode($arreglo);
 		}
 		catch(PDOException $e){
 			return "Database access FAILED! ".$e->getMessage();

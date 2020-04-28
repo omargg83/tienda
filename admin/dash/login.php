@@ -16,7 +16,8 @@
           <input class='form-control' placeholder='Contraseña' type='password'  id='passAcceso' name='passAcceso' required>
         </div>
         <button class='btn btn-secondary btn-block' type='submit'><i class='fa fa-check'></i>Aceptar</button>
-        <button class='btn btn-secondary btn-block' type='button' id='recuperar'><i class='fas fa-key'></i>Recuperar contraseña</button>
+        <button class='btn btn-secondary btn-block' type='button' id='recuperar' ><i class='fas fa-key'></i>Recuperar contraseña</button>
+
         <center>http://tic-shop.com.mx/</center>
     </div>
   </form>

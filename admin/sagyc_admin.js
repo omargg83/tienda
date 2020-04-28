@@ -790,17 +790,17 @@
 	$(document).on("click",'#recuperar',function(e){
 		e.preventDefault();
 		$.ajax({
-			url:   'acceso/recuperar.php',
+				url:   'dash/pass.php',
 			  beforeSend: function () {
-					$("#data").html("Procesando, espere por favor...");
+					$("#modal_form").html("Procesando, espere por favor...");
 			  },
 			  success:  function (response) {
-				$("#data").html('');
-				$("#data").html(response);
+				$("#modal_form").html('');
+				$("#modal_form").html(response);
 			  }
 		});
 	});
-	$(document).on('submit','#recovery',function(e){
+	$(document).on('submit','#passx',function(e){
 			e.preventDefault();
 			var telefono=document.getElementById("userAcceso").value;
 			telefono=telefono.trim();
@@ -826,18 +826,20 @@
 						$(btn).children("i").addClass(tmp);
 					},
 					success:function(response){
-						if (response == "") {
+						var datos = JSON.parse(response);
+			      if (datos.error==0){
 							Swal.fire({
-							  type: "error",
-							  title: response,
+							  type: "success",
+							  title: datos.error,
 							  showConfirmButton: false,
 							  timer: 1000
 							});
-
-						} else {
+							$("#modal_form").load('dash/login.php');
+						}
+						else {
 							Swal.fire({
-							  type: 'success',
-							  title: response,
+							  type: 'error',
+							  title: datos.error,
 							  showConfirmButton: false,
 							  timer: 3000
 							});
@@ -853,3 +855,15 @@
 				$( "#telefono" ).val("");
 			}
 		});
+	$(document).on('click','#cancel_pass',function(e){
+		$.ajax({
+				url:   'dash/login.php',
+				beforeSend: function () {
+					$("#modal_form").html("Procesando, espere por favor...");
+				},
+				success:  function (response) {
+					$("#modal_form").html('');
+					$("#modal_form").html(response);
+				}
+		});
+	});
