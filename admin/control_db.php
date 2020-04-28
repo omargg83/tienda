@@ -431,7 +431,7 @@
 					$pass=$this->genera_random(8);
 					$passg=md5(trim($pass));
 
-					$sql="update personal set pass=:pass where idpersona=:id";
+					$sql="update usuarios set pass=:pass where idpersona=:id";
 					$sth = $this->dbh->prepare($sql);
 					$sth->bindValue(":pass",$passg);
 					$sth->bindValue(":id",$res[0]['idpersona']);
