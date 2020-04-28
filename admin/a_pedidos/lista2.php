@@ -14,7 +14,8 @@
 			<th>Clave</th>
 			<th>Cantidad</th>
 			<th>Pedido CT</th>
-			<th>Estatus</th>
+			<th>Estado CT</th>
+			<th>Estado pedido</th>
 
 			</tr>
 			</thead>
@@ -35,6 +36,7 @@
 						echo "<td>".$key["clave"]."</td>";
 						echo "<td>".$key["cantidad"]."</td>";
 						echo "<td>".$key["pedidoWeb"]."</td>";
+						echo "<td>".$key["webs"]."</td>";
 						echo "<td>".$key["estatus"]."</td>";
 						echo "</tr>";
 					}

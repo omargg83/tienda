@@ -831,7 +831,7 @@
 			      if (datos.error==0){
 							Swal.fire({
 							  type: "success",
-							  title: datos.error,
+							  title: "Se envío correctamente al correo registrados",
 							  showConfirmButton: false,
 							  timer: 1000
 							});
