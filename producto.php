@@ -13,8 +13,11 @@
 	$star=$db->estrellas($id);
 
 
-	list($ancho, $alto, $tipo, $atributos) = getimagesize($db->doc.$prod->img);
-	echo " $atributos ";
+	if (!getimagesize($db->doc.$prod->img)){
+		$sql="update productos set imagen_exist=0 where id='$id'";
+		$db->dbh->query($sql);
+	}
+
 
 ?>
 
