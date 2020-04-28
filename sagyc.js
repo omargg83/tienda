@@ -418,7 +418,7 @@ $(document).on('submit','#recuperar',function(e){
               showConfirmButton: false,
               timer: 2000
             }).then((result) => {
-            window.location.href="/";
+            window.location.href="/acceso/";
           });
         }
         else{
@@ -658,8 +658,6 @@ $(document).on('submit','#carrito_form',function(e){
   });
 
 });
-
-
-$('.input-number').on('input', function () { 
+$('.input-number').on('input', function () {
     this.value = this.value.replace(/[^0-9]/g,'');
 });
