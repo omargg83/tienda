@@ -13,7 +13,7 @@
 	$star=$db->estrellas($id);
 
 
-	list($ancho, $alto, $tipo, $atributos) = getimagesize("/".$db->doc.$prod->img.$a);
+	list($ancho, $alto, $tipo, $atributos) = getimagesize("/".$db->doc.$prod->img);
 	echo " $atributos ";
 
 ?>
