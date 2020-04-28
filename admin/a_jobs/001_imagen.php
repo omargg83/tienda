@@ -3,7 +3,7 @@
 
   error_reporting(E_ALL);
   ini_set('display_errors', '1');
-
+  echo "entra";
   class Imagen{
     public function __construct(){
       $this->Salud = array();
@@ -80,5 +80,5 @@
       }
       */
   }
-
+  echo "<br>Fin";
 ?>
