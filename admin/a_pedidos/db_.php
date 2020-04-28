@@ -587,7 +587,7 @@ class Pedidos extends Tienda{
 				$arreglo+=array('terror'=>$estado);
 			}
 
-			$sql="update pedidos_web set estado='$estado' where pedidoWeb='$pedido_web'";
+			$sql="update pedidos_web set estatus='$estado' where pedidoWeb='$pedido_web'";
 			$sth = $this->dbh->prepare($sql);
 			$sth->execute();
 			return json_encode($arreglo);

@@ -291,6 +291,7 @@
 						echo "<div class='card-body'>";
 							echo "<h5>PEDIDOS A CT</h5>";
 							echo "<table class='table table-sm'>";
+							echo "<tr><td></td><td>Clave</td><td>Cantidad</td><td>Pedido Web</td><td>Estado</td></tr>";
 							foreach($row as $key){
 								echo "<tr id='".$key['id']."' class='edit-t'>";
 
@@ -302,8 +303,7 @@
 								echo "</div>";
 								echo "</td>";
 
-								echo "<td>".$key["id"]."</td>";
-								echo "<td>".$key["idprod"]."</td>";
+
 								echo "<td>".$key["clave"]."</td>";
 								echo "<td>".$key["cantidad"]."</td>";
 								echo "<td>".$key["pedidoWeb"]."</td>";
