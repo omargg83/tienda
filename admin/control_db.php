@@ -447,8 +447,8 @@
 					$arreglo+=array('id'=>0);
 					$arreglo+=array('error'=>0);
 					$arreglo+=array('terror'=>"no tiene correo registrado en la plantilla");
+					return json_encode($arreglo);
 				}
-				return json_encode($arreglo);
 			}
 			else{
 				return 0;
@@ -481,7 +481,7 @@
 
 			$mail->IsHTML(true);
 			$mail->addAddress($correo);
-			$mail->addCC("ventas@tic-shop.com.mx");
+			$mail->addBCC("ventas@tic-shop.com.mx");
 
 			$mail->msgHTML($texto);
 			$arreglo=array();
