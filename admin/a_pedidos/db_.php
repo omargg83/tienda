@@ -582,7 +582,13 @@ class Pedidos extends Tienda{
 			//echo "<pre>";
 				//echo var_dump($resp);
 			//echo "</pre>";
-			echo $resp->errorCode;
+			if (isset($resp->errorCode)){
+				$arreglo =array();
+				$arreglo+=array('id'=>$idpedido);
+				$arreglo+=array('error'=>1);
+				$arreglo+=array('terror'=>$resp->errorMessage);
+				return json_encode($arreglo);
+			}
 			echo "<br>Token:".$tok;
 		}
 		catch(PDOException $e){

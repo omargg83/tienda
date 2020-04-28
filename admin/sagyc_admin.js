@@ -112,7 +112,6 @@
 			url: "control_db.php",
 			type: "post",
 			success:  function (response) {
-				console.log(response);
 				if (isJSON(response)){
 					var datos = JSON.parse(response);
 					if (datos.sess=="cerrada"){

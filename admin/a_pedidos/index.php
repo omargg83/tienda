@@ -301,7 +301,12 @@
                 $('#myModal').modal('hide');
               }
               else{
-                $.alert(datos.terror);
+                Swal.fire({
+                  type: 'error',
+                  title: datos.terror,
+                  showConfirmButton: false,
+                  timer: 1000
+                });
               }
             }
           });
