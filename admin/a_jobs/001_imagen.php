@@ -30,11 +30,28 @@
   foreach($stmt as $key){
     $url=$key['imagen'];
     echo "<br>".$url;
-    $nombre=trim(basename(trim($key['imagen'])));
+
+    $data = file_get_contents($url);
+    $img = imagecreatefromstring($data);
+    if($img){
+      if(imagejpeg($img,"../a_imagen/".$key['imagen']) ){
+        echo "<br>bien";
+      }
+      else{
+        echo "<br>error";
+      }
+    }
+    else{
+      echo "<br>error";
+    }
+
+      /*
+      $nombre=trim(basename(trim($key['imagen'])));
 
       $imagen = file_get_contents($url);
 
-
+      $data = file_get_contents($almax->imagen);
+      $img = imagecreatefromstring($data);
 
       $resp=file_put_contents("../a_imagen/".$nombre, $imagen);
 
@@ -49,7 +66,7 @@
       else{
         echo "error de imagen 2";
       }
-
+      */
   }
 
 ?>

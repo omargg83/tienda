@@ -563,7 +563,6 @@ class Productos extends Tienda{
 			$sth->execute();
 			$almax=$sth->fetch(PDO::FETCH_OBJ);
 
-			$nombre=trim(basename(trim($almax->imagen)));
 			try {
 				$data = file_get_contents($almax->imagen);
 				$img = imagecreatefromstring($data);
