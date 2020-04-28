@@ -296,10 +296,17 @@
 										$p_total=$key->precio_tic+(($key->precio_tic*$db->cgeneral)/100);
 										$preciof=$p_total;
 									}
+
+									if (!getimagesize($db->doc.$key->img)){
+
+										$sql="update productos set imagen_exist=0 where id='".$key->id."'";
+										$db->dbh->query($sql);
+									}
+
 									echo "<a href='/producto/".$key->clave."'><div class='product_item'>
 										<div class='product_border'></div>
 										<div class='product_image d-flex flex-column align-items-center justify-content-center'>
-										<img src='/".$db->doc.$key->img.$a."' alt='' style='max-width:65px;' data-id='".$key->id."'></div>
+										<img src='/".$db->doc.$key->img.$a."' alt='' style='max-width:65px;' ></div>
 										<div class='product_content'>
 											<div class='product_price'>".moneda($preciof)."</div>
 											<div class='product_name'><div><a href='/producto/".$key->clave."' tabindex='0'>".$key->nombre."</a></div></div>

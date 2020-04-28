@@ -11,14 +11,6 @@
 	$alma = $db->producto_exist($id,1);
 	$rel=$db->relacionados($prod->subcategoria);
 	$star=$db->estrellas($id);
-
-
-	if (!getimagesize($db->doc.$prod->img)){
-		$sql="update productos set imagen_exist=0 where id='$id'";
-		$db->dbh->query($sql);
-	}
-
-
 ?>
 
 <!DOCTYPE html>
