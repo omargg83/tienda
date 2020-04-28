@@ -302,7 +302,7 @@
 										<img src='/".$db->doc.$key->img.$a."' alt='' style='max-width:65px;' data-id='".$key->id."'></div>
 										<div class='product_content'>
 											<div class='product_price'>".moneda($preciof)."</div>
-											<div class='product_name'><div><a href='#' tabindex='0'>".$key->nombre."</a></div></div>
+											<div class='product_name'><div><a href='/producto/".$key->clave."' tabindex='0'>".$key->nombre."</a></div></div>
 										</div>
 										<div class='product_fav' onclick='wish(".$key->id.")'><i class='fas fa-heart'></i></div>
 										<ul class='product_marks'>
