@@ -34,7 +34,7 @@
     $data = file_get_contents($url);
     $img = imagecreatefromstring($data);
     if($img){
-      if(imagejpeg($img,"../a_imagen/".$key['imagen']) ){
+      if(imagejpeg($img,"../a_imagen/".$key['img']) ){
         echo "<br>bien";
       }
       else{
