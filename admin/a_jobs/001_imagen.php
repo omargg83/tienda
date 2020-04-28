@@ -50,11 +50,11 @@
       }
     }
     else{
-      $sql="update productos set imagen_exist=2 where id=:id";
+      /*$sql="update productos set imagen_exist=2 where id=:id";
       $sth2 = $db->dbh->prepare($sql);
       $sth2->bindValue(':id',$key['id']);
       $sth2->execute();
-      echo "<br>error";
+      echo "<br>error";*/
     }
 
       /*
