@@ -29,12 +29,12 @@
   foreach($stmt as $key){
     $url=$key['imagen'];
     echo "<br>".$url;
-    echo "<br>"."../a_imagen/".$key['img'];
+    echo "<br>../a_imagen/".$key['img'];
     $data = file_get_contents($url);
     $img = imagecreatefromstring($data);
 
     if($img){
-      if(imagejpeg($img,"../a_imagen/".$key['img']) ){
+      if(imagejpeg($img,"../a_imagen/".$key['img'])){
         echo "<br>bien";
         $sql="update productos set imagen_exist=1 where id=:id";
         $sth2 = $db->dbh->prepare($sql);
