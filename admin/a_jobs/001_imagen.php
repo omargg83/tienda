@@ -33,7 +33,10 @@
     $nombre=trim(basename(trim($key['imagen'])));
 
     $imagen = file_get_contents($url);
-    if(file_put_contents("../a_imagen/".$nombre, $imagen)){
+    $resp=file_put_contents("../a_imagen/".$nombre, $imagen);
+    echo "respuesta:".$resp;
+    
+    if($resp){
       $sth2->bindValue(':nombre', $nombre);
       $sth2->bindValue(':id',$key['id']);
       $sth2->execute();
