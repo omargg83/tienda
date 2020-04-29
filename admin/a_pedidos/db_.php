@@ -153,6 +153,7 @@ class Pedidos extends Tienda{
 			$arreglo+= array('pais'=>$cli_x->pais);
 			$arreglo+= array('estado'=>$cli_x->estado);
 			$arreglo+= array('telefono'=>$cli_x->telefono);
+			$arreglo+= array('ciudad'=>$cli_x->ciudad);
 
 			if($id==0){
 				$arreglo+= array('fecha'=>date("Y-m-d H:i:s"));

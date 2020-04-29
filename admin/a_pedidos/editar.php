@@ -84,6 +84,7 @@
 								echo "<option value='PROCESANDO'"; if($estatus=='PROCESANDO'){ echo " selected"; } echo ">PROCESANDO</option>";
 								echo "<option value='PROCESANDO PAGO'"; if($estatus=='PROCESANDO PAGO'){ echo " selected"; } echo ">PROCESANDO PAGO</option>";
 								echo "<option value='PROCESANDO PAGO PENDIENTE'"; if($estatus=='PROCESANDO PAGO PENDIENTE'){ echo " selected"; } echo ">PROCESANDO PAGO PENDIENTE</option>";
+								echo "<option value='PEDIDO CONFIRMADO'"; if($estatus=='PEDIDO CONFIRMADO'){ echo " selected"; } echo ">PEDIDO CONFIRMADO</option>";
 							echo "</select>";
 						echo "</div>";
 
@@ -176,10 +177,7 @@
 							echo "<label>Teléfono:</label>";
 							echo "<input type='text' class='form-control form-control-sm' id='telefono' name='telefono' value='$telefono' readonly>";
 						echo "</div>";
-
 					echo "</div>";
-
-
 					echo "<hr>";
 
 				  echo "<div class='row'>";
@@ -188,7 +186,7 @@
               echo "<input type='text' class='form-control form-control-sm' id='notas' name='notas' value='$notas' placeholder='Notas del pedido'>";
             echo "</div>";
           echo "</div>";
-
+					echo "<hr>";
 
 					echo "<div class='row'>";
             echo "<div class='col-2'>";
