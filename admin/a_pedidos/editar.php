@@ -298,7 +298,7 @@
 
 						foreach($cupones as $keyc){
 							echo "<tr>";
-								echo "<td colspan=2 class='text-right'>";
+								echo "<td class='text-right'>";
 									echo "<button type='button' class='btn btn-outline-secondary btn-sm'  onclick='elimina_cuadmin(".$keyc->id.", $id)'><i class='far fa-times-circle'></i></button>";
 								echo "</td>";
 
