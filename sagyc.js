@@ -636,7 +636,6 @@ $(document).on('submit','#carrito_form',function(e){
 
     },
     success:  function (response) {
-      console.log(response);
       var datos = JSON.parse(response);
       if (datos.error==0){
         window.location.href="/carrito/";

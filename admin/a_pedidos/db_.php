@@ -211,10 +211,10 @@ class Pedidos extends Tienda{
 			echo "</div>";
 			$envio=0;
 			foreach($sth->fetchAll(PDO::FETCH_OBJ) as $key){
-				echo "<div class='row' style='border-bottom: 1px solid silver;font-size:12px'>";
+				echo "<div class='row' style='border-bottom: 1px solid silver;font-size:14px'>";
 					echo "<div class='col-1' >";
 						echo "<div class='btn-group'>";
-						echo "<button type='button' onclick='prod_add(".$key->id.",$idpedido)' class='btn btn-outline-secondary btn-sm' title='Seleccionar cliente'><i class='fas fa-plus'></i></button>";
+						echo "<button type='button' onclick='prod_add(".$key->id.",$idpedido)' class='btn btn-outline-secondary btn-sm' title='Agregar producto'><i class='fas fa-plus'></i></button>";
 						echo "</div>";
 					echo "</div>";
 					echo "<div class='col-2' >";
@@ -232,7 +232,7 @@ class Pedidos extends Tienda{
 								echo moneda($key->envio_costo);
 								$envio+=$key->envio_costo;
 							}
-							echo "<br>Exitencia:".$key->existencia;
+							echo "<br><b>Exitencia: </b>".$key->existencia;
 					echo "</div>";
 					echo "<div class='col-2 text-center' >";
 							echo "<input id='cantidad' name='cantidad' placeholder='cantidad' value='1' class='form-control form-control-sm'>";
