@@ -279,6 +279,7 @@ class Pedidos extends Tienda{
 				$id=$ped->id;
 			}
 			////////////////////////////////////////////////////////
+			$cantidad_carro=0;
 			$sql="select * from pedidos_prod where idprod='$idproducto' and idpedido='".$id."'";
 			$sth_i = $this->dbh->prepare($sql);
 			$sth_i->execute();
