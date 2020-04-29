@@ -206,7 +206,7 @@ class Pedidos extends Tienda{
 				echo "<div class='col-1'>-</div>";
 				echo "<div class='col-2'><b>Clave</b></div>";
 				echo "<div class='col-5'><b>Nombre</b></div>";
-				echo "<div class='col-2 text-center'><b>Existencia</b></div>";
+				echo "<div class='col-2 text-center'><b>Cantidad</b></div>";
 				echo "<div class='col-2'><b>Precio</b></div>";
 			echo "</div>";
 			$envio=0;
@@ -232,12 +232,10 @@ class Pedidos extends Tienda{
 								echo moneda($key->envio_costo);
 								$envio+=$key->envio_costo;
 							}
+							echo "<br>Exitencia:".$key->existencia;
 					echo "</div>";
 					echo "<div class='col-2 text-center' >";
 							echo "<input id='cantidad' name='cantidad' placeholder='cantidad' value='1' class='form-control form-control-sm'>";
-					echo "</div>";
-					echo "<div class='col-2 text-center' >";
-							echo $key->existencia;
 					echo "</div>";
 					echo "<div class='col-2 text-right'>";
 
