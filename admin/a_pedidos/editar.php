@@ -34,14 +34,18 @@
 		$pagador=$row['pagador'];
 		$estado_pago=$row['estado_pago'];
 
+		$nombre_cli=$row['nombre'];
+		$apellido_cli=$row['apellido'];
+		$correo_cli=$row['correo'];
+		$direccion1_cli=$row['direccion1'];
+		$entrecalles_cli=$row['entrecalles'];
+		$numero_cli=$row['numero'];
+		$colonia_cli=$row['colonia'];
+
+
     $cli=$db->cliente($idcliente);
-    $nombre_cli=$cli['nombre'];
-		$apellido_cli=$cli['apellido'];
-    $correo_cli=$cli['correo'];
-    $direccion1_cli=$cli['direccion1'];
-    $entrecalles_cli=$cli['entrecalles'];
-    $numero_cli=$cli['numero'];
-    $colonia_cli=$cli['colonia'];
+
+
   }
   echo "<div class='container'>";
     echo "<form id='form_comision' action='' data-lugar='a_pedidos/db_' data-destino='a_pedidos/editar' data-funcion='guardar_pedido'>";
@@ -74,7 +78,12 @@
 					echo "<div class='row'>";
 						echo "<div class='col-4'>";
 							echo "<label>Nombre:</label>";
-							echo "<input type='text' class='form-control form-control-sm' placeholder='Click para agregar Cliente' id='winmodal_cliente' name='winmodal_cliente' value='$nombre_cli' readonly  data-id='$idcliente' data-id2='$id' data-lugar='a_pedidos/form_cliente' title='Click para agregar Cliente'>";
+							if($estatus=='EN ESPERA'){
+								echo "<input type='text' class='form-control form-control-sm' placeholder='Click para agregar Cliente' id='winmodal_cliente' name='winmodal_cliente' value='$nombre_cli' readonly  data-id='$idcliente' data-id2='$id' data-lugar='a_pedidos/form_cliente' title='Click para agregar Cliente'>";
+							}
+							else{
+								echo "<input type='text' class='form-control form-control-sm' id='cliente' name='cliente' value='$nombre_cli' readonly>";
+							}
 						echo "</div>";
 
 						echo "<div class='col-4'>";
