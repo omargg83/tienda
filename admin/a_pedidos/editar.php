@@ -22,6 +22,10 @@
 	$ciudad="";
 	$rfc="";
 	$cfdi="";
+	$cp="";
+	$pais="";
+	$estado="";
+	$telefono="";
 
 	if($id>0){
     $row=$db->editar_pedido($id);
@@ -40,6 +44,10 @@
 		$rfc=$row['rfc'];
 		$cfdi=$row['cfdi'];
 		$ciudad=$row['ciudad'];
+		$cp=$row['cp'];
+		$pais=$row['pais'];
+		$estado=$row['estado'];
+		$telefono=$row['telefono'];
 
 		$nombre_cli=$row['nombre'];
 		$apellido_cli=$row['apellido'];
@@ -49,8 +57,7 @@
 		$numero_cli=$row['numero'];
 		$colonia_cli=$row['colonia'];
 
-
-    $cli=$db->cliente($idcliente);
+  	$cli=$db->cliente($idcliente);
   }
   echo "<div class='container'>";
     echo "<form id='form_comision' action='' data-lugar='a_pedidos/db_' data-destino='a_pedidos/editar' data-funcion='guardar_pedido'>";
@@ -133,6 +140,26 @@
 						echo "<div class='col-4'>";
 							echo "<label>Ciudad:</label>";
 							echo "<input type='text' class='form-control form-control-sm' id='ciudad' name='ciudad' value='$ciudad' readonly>";
+						echo "</div>";
+
+						echo "<div class='col-4'>";
+							echo "<label>CP:</label>";
+							echo "<input type='text' class='form-control form-control-sm' id='cp' name='cp' value='$cp' readonly>";
+						echo "</div>";
+
+						echo "<div class='col-4'>";
+							echo "<label>Pais:</label>";
+							echo "<input type='text' class='form-control form-control-sm' id='pais' name='pais' value='$pais' readonly>";
+						echo "</div>";
+
+						echo "<div class='col-4'>";
+							echo "<label>Estado:</label>";
+							echo "<input type='text' class='form-control form-control-sm' id='estado' name='estado' value='$estado' readonly>";
+						echo "</div>";
+
+						echo "<div class='col-4'>";
+							echo "<label>Teléfono:</label>";
+							echo "<input type='text' class='form-control form-control-sm' id='telefono' name='telefono' value='$telefono' readonly>";
 						echo "</div>";
 
 					echo "</div>";
