@@ -302,7 +302,7 @@
 									echo "<button type='button' class='btn btn-outline-secondary btn-sm'  onclick='elimina_cuadmin(".$keyc->id.", $id)'><i class='far fa-times-circle'></i></button>";
 								echo "</td>";
 
-								echo "<td colspan=4>";
+								echo "<td colspan=5>";
 									echo $keyc->codigo." ".$keyc->descripcion;
 								echo "</td>";
 

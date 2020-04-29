@@ -594,7 +594,7 @@ class Pedidos extends Tienda{
 			$sql="delete from pedidos_cupon where id=:id";
 			$sth = $this->dbh->prepare($sql);
 			$sth->bindValue(":id",$id);
-			$a=$sth->execute();
+			return $sth->execute();
 		}
 		catch(PDOException $e){
 			return "Database access FAILED!".$e->getMessage();

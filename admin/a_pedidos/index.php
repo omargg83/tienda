@@ -283,7 +283,8 @@
 
               },
               success:  function (response) {
-                $("#trabajo").load("a_pedidos/editar.php?id="+idpedido);
+                console.log(response);
+                //$("#trabajo").load("a_pedidos/editar.php?id="+idpedido);
               },
               error: function(jqXHR, textStatus, errorThrown) {
 
