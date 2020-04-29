@@ -222,8 +222,8 @@
 
 								echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_cup' data-id='$idcliente' data-id2='$id' data-lugar='a_pedidos/form_cupon' title='Agregar Cupón' ><i class='fas fa-ticket-alt'></i>Agregar Cupón</button>";
 							}
-						echo "<button class='btn btn-outline-secondary btn-sm' onclick='solicitar_ct($id)'><i class='fas fa-poo-storm'></i></button>";
-            echo "<button class='btn btn-outline-secondary btn-sm' id='lista_cat' data-lugar='a_pedidos/lista' title='regresar'><i class='fas fa-undo-alt'></i>Regresar</button>";
+						echo "<button type='button' class='btn btn-outline-secondary btn-sm' onclick='solicitar_ct($id)'><i class='fas fa-poo-storm'></i></button>";
+            echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='lista_cat' data-lugar='a_pedidos/lista' title='regresar'><i class='fas fa-undo-alt'></i>Regresar</button>";
           echo "</div>";
         echo "</div>";
 
