@@ -44,8 +44,6 @@
 
 
     $cli=$db->cliente($idcliente);
-
-
   }
   echo "<div class='container'>";
     echo "<form id='form_comision' action='' data-lugar='a_pedidos/db_' data-destino='a_pedidos/editar' data-funcion='guardar_pedido'>";
@@ -154,13 +152,15 @@
         echo "</div>";
         echo "<div class='card-footer'>";
           echo "<div class='btn-group'>";
-            echo "<button type='submit' class='btn btn-outline-secondary btn-sm'><i class='far fa-save'></i>Guardar</button>";
+							if($estatus=='EN ESPERA'){
+            		echo "<button type='submit' class='btn btn-outline-secondary btn-sm'><i class='far fa-save'></i>Guardar</button>";
 
-            	echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_cli' data-id='$idcliente' data-id2='$id' data-lugar='a_pedidos/form_cliente' title='Agregar Cliente' ><i class='fas fa-user-tag'></i>Agregar Cliente</button>";
+	            	echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_cli' data-id='$idcliente' data-id2='$id' data-lugar='a_pedidos/form_cliente' title='Agregar Cliente' ><i class='fas fa-user-tag'></i>Agregar Cliente</button>";
 
-              echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_prod' data-id='$idcliente' data-id2='$id' data-lugar='a_pedidos/form_producto' title='Agregar Producto' ><i class='fab fa-product-hunt'></i>Agregar Producto</button>";
+	              echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_prod' data-id='$idcliente' data-id2='$id' data-lugar='a_pedidos/form_producto' title='Agregar Producto' ><i class='fab fa-product-hunt'></i>Agregar Producto</button>";
 
-							echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_cup' data-id='$idcliente' data-id2='$id' data-lugar='a_pedidos/form_cupon' title='Agregar Cupón' ><i class='fas fa-ticket-alt'></i>Agregar Cupón</button>";
+								echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_cup' data-id='$idcliente' data-id2='$id' data-lugar='a_pedidos/form_cupon' title='Agregar Cupón' ><i class='fas fa-ticket-alt'></i>Agregar Cupón</button>";
+							}
 
             echo "<button class='btn btn-outline-secondary btn-sm' id='lista_cat' data-lugar='a_pedidos/lista' title='regresar'><i class='fas fa-undo-alt'></i>Regresar</button>";
           echo "</div>";
