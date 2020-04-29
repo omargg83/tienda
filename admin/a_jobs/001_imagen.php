@@ -37,6 +37,7 @@
 
 
   foreach($stmt as $key){
+    echo "<hr>";
     $url=$key['imagen'];
     echo "<br>".$url;
     echo "<br>../a_imagen/".$key['img'];
@@ -52,6 +53,8 @@
         $sth2->execute();
       }
       else{
+        $imagen = file_get_contents($url);
+        echo "contenido:".file_put_contents("../a_imagen/".$nombre, $imagen);
         /*
         $sql="update productos set imagen_exist=2 where id=:id";
         $sth2 = $db->dbh->prepare($sql);
