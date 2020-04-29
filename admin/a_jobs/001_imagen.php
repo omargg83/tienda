@@ -21,7 +21,7 @@
   }
   $db = new Imagen();
 
-  $sql="select * from productos where activo=1 and imagen_exist=0 and interno=0 limit 10";
+  $sql="select * from productos where  imagen_exist=0 and interno=0 limit 10";
   $stmt= $db->dbh->query($sql);
 
   /*
