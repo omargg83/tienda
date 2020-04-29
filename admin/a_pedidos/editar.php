@@ -147,7 +147,7 @@
 							echo "<input type='text' class='form-control form-control-sm' id='colonia' name='colonia' value='$colonia_cli' readonly>";
 						echo "</div>";
 
-						echo "<div class='col-4'>";
+						echo "<div class='col-3'>";
 							echo "<label>Ciudad:</label>";
 							echo "<input type='text' class='form-control form-control-sm' id='ciudad' name='ciudad' value='$ciudad' readonly>";
 						echo "</div>";
@@ -210,8 +210,8 @@
         echo "</div>";
         echo "<div class='card-footer'>";
           echo "<div class='btn-group'>";
-							if($estatus=='EN ESPERA'){
-            		echo "<button type='submit' class='btn btn-outline-secondary btn-sm'><i class='far fa-save'></i>Guardar</button>";
+							echo "<button type='submit' class='btn btn-outline-secondary btn-sm'><i class='far fa-save'></i>Guardar</button>";
+							if($estatus=='EN ESPERA' or $id==0){
 
 	            	echo "<button type='button' class='btn btn-outline-secondary btn-sm' id='winmodal_cli' data-id='$idcliente' data-id2='$id' data-lugar='a_pedidos/form_cliente' title='Agregar Cliente' ><i class='fas fa-user-tag'></i>Agregar Cliente</button>";
 
