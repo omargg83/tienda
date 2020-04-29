@@ -26,6 +26,7 @@
 	$pais="";
 	$estado="";
 	$telefono="";
+	$factura="";
 
 	if($id>0){
     $row=$db->editar_pedido($id);
@@ -48,6 +49,7 @@
 		$pais=$row['pais'];
 		$estado=$row['estado'];
 		$telefono=$row['telefono'];
+		$factura=$row['factura'];
 
 		$nombre_cli=$row['nombre'];
 		$apellido_cli=$row['apellido'];
@@ -82,6 +84,14 @@
 								echo "<option value='PROCESANDO'"; if($estatus=='PROCESANDO'){ echo " selected"; } echo ">PROCESANDO</option>";
 								echo "<option value='PROCESANDO PAGO'"; if($estatus=='PROCESANDO PAGO'){ echo " selected"; } echo ">PROCESANDO PAGO</option>";
 								echo "<option value='PROCESANDO PAGO PENDIENTE'"; if($estatus=='PROCESANDO PAGO PENDIENTE'){ echo " selected"; } echo ">PROCESANDO PAGO PENDIENTE</option>";
+							echo "</select>";
+						echo "</div>";
+
+						echo "<div class='col-3'>";
+							echo "<label>Factura</label>";
+							echo "<select id='factura' name='factura' class='form-control form-control-sm'>";
+								echo "<option value='0'"; if($factura=='0'){ echo " selected"; } echo ">No</option>";
+								echo "<option value='1'"; if($factura=='1'){ echo " selected"; } echo ">Si</option>";
 							echo "</select>";
 						echo "</div>";
 					echo "</div>";
@@ -142,22 +152,22 @@
 							echo "<input type='text' class='form-control form-control-sm' id='ciudad' name='ciudad' value='$ciudad' readonly>";
 						echo "</div>";
 
-						echo "<div class='col-4'>";
+						echo "<div class='col-3'>";
 							echo "<label>CP:</label>";
 							echo "<input type='text' class='form-control form-control-sm' id='cp' name='cp' value='$cp' readonly>";
 						echo "</div>";
 
-						echo "<div class='col-4'>";
+						echo "<div class='col-3'>";
 							echo "<label>Pais:</label>";
 							echo "<input type='text' class='form-control form-control-sm' id='pais' name='pais' value='$pais' readonly>";
 						echo "</div>";
 
-						echo "<div class='col-4'>";
+						echo "<div class='col-3'>";
 							echo "<label>Estado:</label>";
 							echo "<input type='text' class='form-control form-control-sm' id='estado' name='estado' value='$estado' readonly>";
 						echo "</div>";
 
-						echo "<div class='col-4'>";
+						echo "<div class='col-3'>";
 							echo "<label>Teléfono:</label>";
 							echo "<input type='text' class='form-control form-control-sm' id='telefono' name='telefono' value='$telefono' readonly>";
 						echo "</div>";
