@@ -157,7 +157,7 @@
         Aceptar: function () {
           $.ajax({
             data:  {
-              "idcliente":idcliente,
+              "id":id,
               "idpedido":idpedido,
               "cantidad":cantidad,
               "function":"producto_add"
