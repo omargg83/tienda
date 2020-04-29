@@ -269,7 +269,7 @@ class Pedidos extends Tienda{
 			$idproducto=$_REQUEST['id'];
 			$id=$_REQUEST['idpedido'];
 			$cantidad=$_REQUEST['cantidad'];
-			return "$idproducto, $id , $cantidad";
+
 
 			$arreglo =array();
 			if($id==0){
@@ -286,7 +286,7 @@ class Pedidos extends Tienda{
 			if($contar>0){
 				$resp=$sth_i->fetch(PDO::FETCH_OBJ);
 				$cantidad_carro=$resp->cantidad;
-				$id_carro=$resp->id;
+				$idpedido_prod=$resp->id;
 			}
 			else{
 
@@ -304,7 +304,7 @@ class Pedidos extends Tienda{
 			}
 			////////////////////////////////////////////////////////
 
-
+			return "$idproducto, $id , $cantidad";
 
 			/*
 			$arreglo =array();
