@@ -19,6 +19,9 @@
 	$entrecalles_cli="";
 	$numero_cli="";
 	$colonia_cli="";
+	$ciudad="";
+	$rfc="";
+	$cfdi="";
 
 	if($id>0){
     $row=$db->editar_pedido($id);
@@ -36,6 +39,7 @@
 
 		$rfc=$row['rfc'];
 		$cfdi=$row['cfdi'];
+		$ciudad=$row['ciudad'];
 
 		$nombre_cli=$row['nombre'];
 		$apellido_cli=$row['apellido'];
@@ -124,6 +128,11 @@
 						echo "<div class='col-4'>";
 							echo "<label>Colonia:</label>";
 							echo "<input type='text' class='form-control form-control-sm' id='colonia' name='colonia' value='$colonia_cli' readonly>";
+						echo "</div>";
+
+						echo "<div class='col-4'>";
+							echo "<label>Ciudad:</label>";
+							echo "<input type='text' class='form-control form-control-sm' id='ciudad' name='ciudad' value='$ciudad' readonly>";
 						echo "</div>";
 
 					echo "</div>";
