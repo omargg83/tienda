@@ -279,6 +279,7 @@ class Pedidos extends Tienda{
 				$id=$ped->id;
 			}
 			////////////////////////////////////////////////////////
+			$idpedido_prod=0;
 			$cantidad_carro=0;
 			$sql="select * from pedidos_prod where idprod='$idproducto' and idpedido='".$id."'";
 			$sth_i = $this->dbh->prepare($sql);
@@ -289,15 +290,13 @@ class Pedidos extends Tienda{
 				$cantidad_carro=$resp->cantidad;
 				$idpedido_prod=$resp->id;
 			}
-			else{
 
-			}
 			//////////////verificar existencia
 			$sql="select * from productos where id='$idproducto'";
 			$sth_i = $this->dbh->prepare($sql);
 			$sth_i->execute();
-			$verifica_exi=$sth_i->fetch(PDO::FETCH_OBJ);
-			if($verifica_exi->existencia<($cantidad_carro+$cantidad)){
+			$prod=$sth_i->fetch(PDO::FETCH_OBJ);
+			if($prod->existencia<($cantidad_carro+$cantidad)){
 				$arr=array();
 				$arr+=array('error'=>1);
 				$arr+=array('terror'=>"Verificar existencias");
@@ -305,47 +304,62 @@ class Pedidos extends Tienda{
 			}
 			////////////////////////////////////////////////////////
 
-			return "$idproducto, $id , $cantidad";
 
-			/*
+
+
+
+
+					if($prod->precio_tipo==0){
+						$preciof=$prod->preciof;
+					}
+					if($prod->precio_tipo==1){
+						$p_total=$prod->preciof+(($prod->preciof*$this->cgeneral)/100);
+						$preciof=$p_total;
+					}
+					if($prod->precio_tipo==2){
+						$preciof=$prod->precio_tic;
+					}
+					if($prod->precio_tipo==3){
+						$p_total=$prod->precio_tic+(($prod->precio_tic*$this->cgeneral)/100);
+						$preciof=$p_total;
+					}
+					//////////////////envio
+
+					if($prod->envio_tipo==0){
+						$enviof=$this->egeneral;
+					}
+					if($prod->envio_tipo==1){
+						$enviof=$prod->envio_costo;
+					}
+
+					$enviot=$enviof*$cantidad_carro;
+					$preciot=$preciof*$cantidad_carro;
+					$sub=$enviot+$preciot;
+
+
 			$arreglo =array();
-			$arreglo+= array('idprod'=>$idproducto);
-			$arreglo+= array('idpedido'=>$id);
-			$precio=$_REQUEST['preciof'];
-			$envio=$_REQUEST['envio'];
+			$arreglo+= array('precio'=>$preciof);
+			$arreglo+= array('envio'=>$enviof);
+			$arreglo+= array('total'=>$sub);
+			$arreglo+= array('cantidad'=>$cantidad_carro);
 
+			if($idpedido_prod==0){
+				$arreglo+= array('idprod'=>$idproducto);
+				$arreglo+= array('idpedido'=>$id);
+				$arreglo+= array('idProducto'=>$prod->idProducto);
+				$arreglo+= array('clave'=>$prod->clave);
+				$arreglo+= array('numParte'=>$prod->numParte);
+				$arreglo+= array('nombre'=>$prod->nombre);
+				$arreglo+= array('modelo'=>$prod->modelo);
+				$arreglo+= array('marca'=>$prod->marca);
+				$arreglo+= array('categoria'=>$prod->categoria);
+				$arreglo+= array('descripcion_corta'=>$prod->descripcion_corta);
+				$x=$this->insert('pedidos_prod', $arreglo);
+			}
+			else{
+				$x=$this->update('pedidos_prod',array('id'=>$idpedido_prod), $arreglo);
+			}
 
-			$arreglo+= array('envio'=>$envio);
-			$arreglo+= array('precio'=>$precio);
-			$arreglo+= array('cantidad'=>1);
-			$arreglo+= array('total'=>$precio);
-
-
-			if (isset($_REQUEST['idProducto'])){
-				$arreglo+= array('idProducto'=>$_REQUEST['idProducto']);
-			}
-			if (isset($_REQUEST['clave'])){
-				$arreglo+= array('clave'=>$_REQUEST['clave']);
-			}
-			if (isset($_REQUEST['numParte'])){
-				$arreglo+= array('numParte'=>$_REQUEST['numParte']);
-			}
-			if (isset($_REQUEST['nombre'])){
-				$arreglo+= array('nombre'=>$_REQUEST['nombre']);
-			}
-			if (isset($_REQUEST['modelo'])){
-				$arreglo+= array('modelo'=>$_REQUEST['modelo']);
-			}
-			if (isset($_REQUEST['marca'])){
-				$arreglo+= array('marca'=>$_REQUEST['marca']);
-			}
-			if (isset($_REQUEST['categoria'])){
-				$arreglo+= array('categoria'=>$_REQUEST['categoria']);
-			}
-			if (isset($_REQUEST['descripcion_corta'])){
-				$arreglo+= array('descripcion_corta'=>$_REQUEST['descripcion_corta']);
-			}
-			$x=$this->insert('pedidos_prod', $arreglo);
 			$ped=json_decode($x);
 			if($ped->error==0){
 				////////////////////////// update total
@@ -374,7 +388,6 @@ class Pedidos extends Tienda{
 			else{
 				return $x;
 			}
-			*/
 		}
 		catch(PDOException $e){
 			return "Database access FAILED! ".$e->getMessage();
