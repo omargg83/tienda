@@ -344,11 +344,11 @@ class Pedidos extends Tienda{
 			else{
 				return $x;
 			}
+			*/
 		}
 		catch(PDOException $e){
 			return "Database access FAILED! ".$e->getMessage();
 		}
-		*/
 	}
 	public function productos_pedido($idpedido){
 		try{
