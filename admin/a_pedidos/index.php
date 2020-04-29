@@ -271,12 +271,11 @@
           Eliminar: function () {
             $.ajax({
               data:  {
-                "ctrl":"control",
                 "id":id,
                 "idpedido":idpedido,
                 "function":"elimina_cupon"
               },
-              url:   'control_db.php',
+              url:   'a_pedidos/db_.php',
               type:  'post',
               timeout:3000,
               beforeSend: function () {
