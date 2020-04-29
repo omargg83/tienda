@@ -34,6 +34,9 @@
 		$pagador=$row['pagador'];
 		$estado_pago=$row['estado_pago'];
 
+		$rfc=$row['rfc'];
+		$cfdi=$row['cfdi'];
+
 		$nombre_cli=$row['nombre'];
 		$apellido_cli=$row['apellido'];
 		$correo_cli=$row['correo'];
@@ -74,6 +77,15 @@
 					echo "<hr>";
 
 					echo "<div class='row'>";
+						echo "<div class='col-4'>";
+							echo "<label>RFC:</label>";
+							echo "<input type='text' class='form-control form-control-sm' placeholder='RFC' id='rfc' name='rfc' value='$rfc' readonly  >";
+						echo "</div>";
+						echo "<div class='col-8'>";
+							echo "<label>CFDI:</label>";
+							echo "<input type='text' class='form-control form-control-sm' placeholder='CFDI' id='cfdi' name='cfdi' value='$cfdi' readonly  >";
+						echo "</div>";
+
 						echo "<div class='col-4'>";
 							echo "<label>Nombre:</label>";
 							if($estatus=='EN ESPERA'){
