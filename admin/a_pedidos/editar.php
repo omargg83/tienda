@@ -326,8 +326,8 @@
 									}
 
 									if($keyc->envio=='si'){
-										$gtotal=$gtotal-$envio;
-										echo "<br>Envio: -".$envio;
+										$gtotal=$gtotal-$genvio;
+										echo "<br>Envio: -".$genvio;
 									}
 
 								echo "</td>";
