@@ -25,6 +25,8 @@
  				<li class='nav-item active'><a class='nav-link barranav' title='Productos de la semana' id='lista_semana' data-lugar='a_productos/semana'><i class="fas fa-list"></i><span>P. Semana</span></a></li>
  				<li class='nav-item active'><a class='nav-link barranav' title='Oferta de la semana' id='lista_oferta' data-lugar='a_productos/oferta'><i class="fas fa-list"></i><span>O. Semana</span></a></li>
 
+        <li class='nav-item active'><a class='nav-link barranav' title='Productos con error en imagen' id='lista_imagen' data-lugar='a_productos/imagen_error'><i class="fas fa-list"></i><span>Imagen</span></a></li>
+
       </li>
 
  			</ul>

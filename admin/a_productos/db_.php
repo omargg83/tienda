@@ -63,6 +63,18 @@ class Productos extends Tienda{
 			return "Database access FAILED! ".$e->getMessage();
 		}
 	}
+	public function imagen_error(){
+		try{
+			parent::set_names();
+			$sql="SELECT * from productos where imagen_exist=2";
+			$sth = $this->dbh->prepare($sql);
+			$sth->execute();
+			return $sth->fetchAll();
+		}
+		catch(PDOException $e){
+			return "Database access FAILED! ".$e->getMessage();
+		}
+	}
 
 	public function producto_editar($id){
 		try{
