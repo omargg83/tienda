@@ -190,9 +190,9 @@
 										echo $key['nombre'];
 									echo "<br><b> Modelo: </b>";
 										echo $key['modelo'];
-									echo "<b> Marca: </b>";
+									echo "<br><b> Marca: </b>";
 										echo $key['marca'];
-										echo "<br>+ Envio:".$key['envio'];
+										echo "<br>+ Envio:".moneda($key['envio']);
 									echo "</td>";
 									echo "<td class='text-right'>";
 										echo moneda($key['precio']);
