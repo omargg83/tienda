@@ -28,7 +28,7 @@
 
     $url=$key['imagen'];
      echo "<br>".$url;
-     $nombre=trim(basename(trim($key['imagen'])));
+
      if (!file_exists("../a_imagen/".$nombre)) {
        $imagen = file_get_contents($url);
        file_put_contents("../a_imagen/".$nombre, $imagen);
@@ -38,40 +38,44 @@
 
   foreach($stmt as $key){
     echo "<hr>";
+    $nombre=trim(basename(trim($key['imagen'])));
+
     $url=$key['imagen'];
     echo "<br>".$url;
-    echo "<br>../a_imagen/".$key['img'];
+    echo "<br>../a_imagen/".$nombre;
     $data = file_get_contents($url);
     $img = imagecreatefromstring($data);
 
     if($img){
-      if(imagejpeg($img,"../a_imagen/".$key['img'])){
+      if(imagejpeg($img,"../a_imagen/".$nombre)){
         echo "<br>bien";
-        $sql="update productos set imagen_exist=1 where id=:id";
+        $sql="update productos set imagen_exist=1, img=:nombre where id=:id";
         $sth2 = $db->dbh->prepare($sql);
         $sth2->bindValue(':id',$key['id']);
+        $sth2->bindValue(':nombre', $nombre);
         $sth2->execute();
       }
       else{
-        $imagen = file_get_contents($url);
-        echo "contenido:".file_put_contents("../a_imagen/".$nombre, $imagen);
-        /*
-        $sql="update productos set imagen_exist=2 where id=:id";
+        //$imagen = file_get_contents($url);
+        //echo "contenido:".file_put_contents("../a_imagen/".$nombre, $imagen);
+
+        $sql="update productos set imagen_exist=2, img=:nombre where id=:id";
         $sth2 = $db->dbh->prepare($sql);
         $sth2->bindValue(':id',$key['id']);
+        $sth2->bindValue(':nombre', $nombre);
         $sth2->execute();
         echo "<br>error";
-        */
+
       }
     }
     else{
       echo "<br>mal";
-      /*
-      $sql="update productos set imagen_exist=2 where id=:id";
+      $sql="update productos set imagen_exist=2, img=:nombre where id=:id";
       $sth2 = $db->dbh->prepare($sql);
       $sth2->bindValue(':id',$key['id']);
+      $sth2->bindValue(':nombre', $nombre);
       $sth2->execute();
-      */
+
     }
 
       /*
