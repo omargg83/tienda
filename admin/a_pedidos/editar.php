@@ -209,19 +209,9 @@
 
 							echo "<tr>";
 								echo "<td colspan=6 class='text-right'>";
-									echo "<b>Envío:</b>";
-								echo "</td>";
-								echo "<td class='text-right'>";
-									echo moneda($genvio);
-								echo "</td>";
-							echo "</tr>";
-
-							echo "<tr>";
-								echo "<td colspan=6 class='text-right'>";
 									echo "<b>Total:</b>";
 								echo "</td>";
 								echo "<td class='text-right'>";
-									$gtotal=$gtotal+$genvio;
 									echo moneda($gtotal);
 								echo "</td>";
 							echo "</tr>";
