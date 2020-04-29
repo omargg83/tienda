@@ -94,19 +94,27 @@
 								echo "<option value='1'"; if($factura=='1'){ echo " selected"; } echo ">Si</option>";
 							echo "</select>";
 						echo "</div>";
+
+						echo "<div class='col-4'>";
+							echo "<label>Correo:</label>";
+							echo "<input type='text' class='form-control form-control-sm' id='correo' name='correo' value='$correo_cli' readonly>";
+						echo "</div>";
+
 					echo "</div>";
+
 					echo "<hr>";
 
 					echo "<div class='row'>";
-						echo "<div class='col-4'>";
+						echo "<div class='col-3'>";
 							echo "<label>RFC:</label>";
 							echo "<input type='text' class='form-control form-control-sm' placeholder='RFC' id='rfc' name='rfc' value='$rfc' readonly  >";
 						echo "</div>";
-						echo "<div class='col-8'>";
+						echo "<div class='col-9'>";
 							echo "<label>CFDI:</label>";
 							echo "<input type='text' class='form-control form-control-sm' placeholder='CFDI' id='cfdi' name='cfdi' value='$cfdi' readonly  >";
 						echo "</div>";
-
+					echo "</div>";
+					echo "<div class='row'>";
 						echo "<div class='col-4'>";
 							echo "<label>Nombre:</label>";
 							if($estatus=='EN ESPERA' or $id==0){
@@ -117,17 +125,14 @@
 							}
 						echo "</div>";
 
-						echo "<div class='col-4'>";
+						echo "<div class='col-8'>";
 							echo "<label>Apellido:</label>";
 							echo "<input type='text' class='form-control form-control-sm' placeholder='Apellido' id='apellido' name='apellido' value='$apellido_cli' readonly  >";
 						echo "</div>";
+					echo "</div>";
 
-						echo "<div class='col-4'>";
-							echo "<label>Correo:</label>";
-							echo "<input type='text' class='form-control form-control-sm' id='correo' name='correo' value='$correo_cli' readonly>";
-						echo "</div>";
-
-						echo "<div class='col-12'>";
+					echo "<div class='row'>";
+						echo "<div class='col-8'>";
 							echo "<label>Dirección 1:</label>";
 							echo "<input type='text' class='form-control form-control-sm' id='direccion1' name='direccion1' value='$direccion1_cli' readonly>";
 						echo "</div>";
@@ -137,12 +142,12 @@
 							echo "<input type='text' class='form-control form-control-sm' id='entrecalles' name='entrecalles' value='$entrecalles_cli' readonly>";
 						echo "</div>";
 
-						echo "<div class='col-4'>";
+						echo "<div class='col-3'>";
 							echo "<label>Num. Exterior:</label>";
 							echo "<input type='text' class='form-control form-control-sm' id='numero' name='numero' value='$numero_cli' readonly>";
 						echo "</div>";
 
-						echo "<div class='col-4'>";
+						echo "<div class='col-3'>";
 							echo "<label>Colonia:</label>";
 							echo "<input type='text' class='form-control form-control-sm' id='colonia' name='colonia' value='$colonia_cli' readonly>";
 						echo "</div>";
