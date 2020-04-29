@@ -263,7 +263,7 @@
       }
     });
   }
-  function elimina_cupon(id,idpedido){
+  function elimina_cuadmin(id,idpedido){
     $.confirm({
         title: 'Cupon',
         content: '¿Desea eliminar el cupón?',
@@ -283,7 +283,7 @@
 
               },
               success:  function (response) {
-                window.location.href="pago.php?idpedido="+idpedido;
+                $("#trabajo").load("a_pedidos/editar.php?idpedido="+idpedido);
               },
               error: function(jqXHR, textStatus, errorThrown) {
 

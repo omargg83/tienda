@@ -299,7 +299,7 @@
 						foreach($cupones as $keyc){
 							echo "<tr>";
 								echo "<td colspan=2 class='text-right'>";
-									echo "<a href='#' onclick='elimina_cupon(".$keyc->id.", $id)'><i class='far fa-times-circle'></i></a>";
+									echo "<a href='#' onclick='elimina_cuadmin(".$keyc->id.", $id)'><i class='far fa-times-circle'></i></a>";
 								echo "</td>";
 
 								echo "<td colspan=4>";
