@@ -92,7 +92,7 @@
 
 						echo "<div class='col-4'>";
 							echo "<label>Nombre:</label>";
-							if($estatus=='EN ESPERA'){
+							if($estatus=='EN ESPERA' or $id==0){
 								echo "<input type='text' class='form-control form-control-sm' placeholder='Click para agregar Cliente' id='winmodal_cliente' name='winmodal_cliente' value='$nombre_cli' readonly  data-id='$idcliente' data-id2='$id' data-lugar='a_pedidos/form_cliente' title='Click para agregar Cliente'>";
 							}
 							else{
