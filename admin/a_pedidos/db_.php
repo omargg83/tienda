@@ -270,7 +270,7 @@ class Pedidos extends Tienda{
 			$id=$_REQUEST['idpedido'];
 			$cantidad=$_REQUEST['cantidad'];
 			return "$idproducto, $id , $cantidad";
-			/*
+
 			$arreglo =array();
 			if($id==0){
 				$arreglo+= array('estatus'=>"EN ESPERA");
@@ -278,6 +278,35 @@ class Pedidos extends Tienda{
 				$ped=json_decode($x);
 				$id=$ped->id;
 			}
+			////////////////////////////////////////////////////////
+			$sql="select * from pedidos_prod where idprod='$idproducto' and idpedido='".$id."'";
+			$sth_i = $this->dbh->prepare($sql);
+			$sth_i->execute();
+			$contar=$sth_i->rowCount();
+			if($contar>0){
+				$resp=$sth_i->fetch(PDO::FETCH_OBJ);
+				$cantidad_carro=$resp->cantidad;
+				$id_carro=$resp->id;
+			}
+			else{
+
+			}
+			//////////////verificar existencia
+			$sql="select * from productos where id='$idproducto'";
+			$sth_i = $this->dbh->prepare($sql);
+			$sth_i->execute();
+			$verifica_exi=$sth_i->fetch(PDO::FETCH_OBJ);
+			if($verifica_exi->existencia<($cantidad_carro+$cantidad)){
+				$arr=array();
+				$arr+=array('error'=>1);
+				$arr+=array('terror'=>"Verificar existencias");
+				return json_encode($arr);
+			}
+			////////////////////////////////////////////////////////
+
+
+
+			/*
 			$arreglo =array();
 			$arreglo+= array('idprod'=>$idproducto);
 			$arreglo+= array('idpedido'=>$id);
