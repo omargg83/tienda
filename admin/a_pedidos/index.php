@@ -149,19 +149,52 @@
     });
   }
   function prod_add(id,idpedido){
-    $.ajax({
-      data:  {
-        "id":id,
-        "idpedido":idpedido
-      },
-      url:   'a_pedidos/form_prodver.php',
-      type:  'post',
-      beforeSend: function () {
-        $("#cargando").addClass("is-active");
-      },
-      success:  function (response) {
-        $("#resultadosx").html(response);
-        $("#cargando").removeClass("is-active");
+    var cantidad=$("#cantidad_"+id).val();
+    $.confirm({
+      title: 'Producto',
+      content: '¿Desea agregar el producto seleccionado?',
+      buttons: {
+        Aceptar: function () {
+          $.ajax({
+            data:  {
+              "idcliente":idcliente,
+              "idpedido":idpedido,
+              "cantidad":cantidad,
+              "function":"producto_add"
+            },
+            url:   "a_pedidos/db_.php",
+            type:  'post',
+            success:  function (response) {
+              console.log(response);
+              var datos = JSON.parse(response);
+              if (datos.error==0){
+                $.ajax({
+                  data:  {
+                    "id":datos.id
+                  },
+                  url:   'a_pedidos/editar.php',
+                  type:  'post',
+                  success:  function (response) {
+                    $("#trabajo").html(response);
+                  }
+                });
+                Swal.fire({
+                  type: 'success',
+                  title: "Se agregó correctamente",
+                  showConfirmButton: false,
+                  timer: 1000
+                });
+                $('#myModal').modal('hide');
+              }
+              else{
+                $.alert(datos.terror);
+              }
+            }
+          });
+        },
+        Cancelar: function () {
+          $.alert('Canceled!');
+        }
       }
     });
   }

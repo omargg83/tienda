@@ -223,6 +223,7 @@ class Pedidos extends Tienda{
 					echo "<div class='col-5' >";
 							echo $key->nombre."<br>";
 							echo "<b>Parte: </b>".$key->numParte;
+							echo "<br>Exitencia: ".$key->existencia;
 							echo "<br>+ Envio: ";
 							if($key->envio_tipo==0){
 								echo moneda($this->egeneral);
@@ -232,10 +233,9 @@ class Pedidos extends Tienda{
 								echo moneda($key->envio_costo);
 								$envio+=$key->envio_costo;
 							}
-							echo "<br><b>Exitencia: </b>".$key->existencia;
 					echo "</div>";
 					echo "<div class='col-2 text-center' >";
-							echo "<input id='cantidad' name='cantidad' placeholder='cantidad' value='1' class='form-control form-control-sm'>";
+							echo "<input id='cantidad_".$key->id."' name='cantidad_".$key->id."' placeholder='cantidad' value='1' class='form-control form-control-sm'>";
 					echo "</div>";
 					echo "<div class='col-2 text-right'>";
 
@@ -268,6 +268,9 @@ class Pedidos extends Tienda{
 			$x="";
 			$idproducto=$_REQUEST['id'];
 			$id=$_REQUEST['idpedido'];
+			$cantidad=$_REQUEST['cantidad'];
+			return "$idproducto, $id , $cantidad";
+			/*
 			$arreglo =array();
 			if($id==0){
 				$arreglo+= array('estatus'=>"EN ESPERA");
@@ -345,6 +348,7 @@ class Pedidos extends Tienda{
 		catch(PDOException $e){
 			return "Database access FAILED! ".$e->getMessage();
 		}
+		*/
 	}
 	public function productos_pedido($idpedido){
 		try{
