@@ -324,11 +324,12 @@
 										echo "<br>- ".moneda($keyc->descuento);
 										$gtotal=$gtotal-$keyc->descuento;
 									}
-
+									/*
 									if($keyc->envio=='si'){
 										$gtotal=$gtotal-$genvio;
 										echo "<br>Envio: -".$genvio;
 									}
+									*/
 
 								echo "</td>";
 							echo "</tr>";
