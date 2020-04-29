@@ -154,6 +154,7 @@ class Pedidos extends Tienda{
 			$arreglo+= array('estado'=>$cli_x->estado);
 			$arreglo+= array('telefono'=>$cli_x->telefono);
 			$arreglo+= array('ciudad'=>$cli_x->ciudad);
+			$arreglo+= array('cfdi'=>$cli_x->cfdi);
 
 			if($id==0){
 				$arreglo+= array('fecha'=>date("Y-m-d H:i:s"));
@@ -231,6 +232,9 @@ class Pedidos extends Tienda{
 								echo moneda($key->envio_costo);
 								$envio+=$key->envio_costo;
 							}
+					echo "</div>";
+					echo "<div class='col-2 text-center' >";
+							echo "<input id='cantidad' name='cantidad' placeholder='cantidad' value='1' class='form-control form-control-sm'>";
 					echo "</div>";
 					echo "<div class='col-2 text-center' >";
 							echo $key->existencia;
