@@ -280,14 +280,13 @@ class Pedidos extends Tienda{
 			}
 			////////////////////////////////////////////////////////
 			$idpedido_prod=0;
-			$cantidad_carro=0;
 			$sql="select * from pedidos_prod where idprod='$idproducto' and idpedido='".$id."'";
 			$sth_i = $this->dbh->prepare($sql);
 			$sth_i->execute();
 			$contar=$sth_i->rowCount();
 			if($contar>0){
 				$resp=$sth_i->fetch(PDO::FETCH_OBJ);
-				$cantidad_carro=$resp->cantidad;
+				$cantidad=$cantidad+$resp->cantidad;
 				$idpedido_prod=$resp->id;
 			}
 
@@ -296,7 +295,7 @@ class Pedidos extends Tienda{
 			$sth_i = $this->dbh->prepare($sql);
 			$sth_i->execute();
 			$prod=$sth_i->fetch(PDO::FETCH_OBJ);
-			if($prod->existencia<($cantidad_carro+$cantidad)){
+			if($prod->existencia<$cantidad){
 				$arr=array();
 				$arr+=array('error'=>1);
 				$arr+=array('terror'=>"Verificar existencias");
@@ -304,44 +303,39 @@ class Pedidos extends Tienda{
 			}
 			////////////////////////////////////////////////////////
 
+			if($prod->precio_tipo==0){
+				$preciof=$prod->preciof;
+			}
+			if($prod->precio_tipo==1){
+				$p_total=$prod->preciof+(($prod->preciof*$this->cgeneral)/100);
+				$preciof=$p_total;
+			}
+			if($prod->precio_tipo==2){
+				$preciof=$prod->precio_tic;
+			}
+			if($prod->precio_tipo==3){
+				$p_total=$prod->precio_tic+(($prod->precio_tic*$this->cgeneral)/100);
+				$preciof=$p_total;
+			}
+			//////////////////envio
 
+			if($prod->envio_tipo==0){
+				$enviof=$this->egeneral;
+			}
+			if($prod->envio_tipo==1){
+				$enviof=$prod->envio_costo;
+			}
 
-
-
-
-					if($prod->precio_tipo==0){
-						$preciof=$prod->preciof;
-					}
-					if($prod->precio_tipo==1){
-						$p_total=$prod->preciof+(($prod->preciof*$this->cgeneral)/100);
-						$preciof=$p_total;
-					}
-					if($prod->precio_tipo==2){
-						$preciof=$prod->precio_tic;
-					}
-					if($prod->precio_tipo==3){
-						$p_total=$prod->precio_tic+(($prod->precio_tic*$this->cgeneral)/100);
-						$preciof=$p_total;
-					}
-					//////////////////envio
-
-					if($prod->envio_tipo==0){
-						$enviof=$this->egeneral;
-					}
-					if($prod->envio_tipo==1){
-						$enviof=$prod->envio_costo;
-					}
-
-					$enviot=$enviof*$cantidad_carro;
-					$preciot=$preciof*$cantidad_carro;
-					$sub=$enviot+$preciot;
+			$enviot=$enviof*$cantidad;
+			$preciot=$preciof*$cantidad;
+			$sub=$enviot+$preciot;
 
 
 			$arreglo =array();
 			$arreglo+= array('precio'=>$preciof);
 			$arreglo+= array('envio'=>$enviof);
 			$arreglo+= array('total'=>$sub);
-			$arreglo+= array('cantidad'=>$cantidad_carro);
+			$arreglo+= array('cantidad'=>$cantidad);
 
 			if($idpedido_prod==0){
 				$arreglo+= array('idprod'=>$idproducto);
