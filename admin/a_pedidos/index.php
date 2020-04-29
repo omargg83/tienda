@@ -360,4 +360,18 @@
       }
     });
   }
+  function solicitar_ct(id){
+    $.confirm({
+      title: 'Cliente',
+      content: '¿Desea solicitar el producto a CT?',
+      buttons: {
+        Aceptar: function () {
+          alert("entra");
+        },
+        Cancelar: function () {
+          $.alert('Canceled!');
+        }
+      }
+    });
+  }
 </script>
