@@ -647,33 +647,33 @@ class Pedidos extends Tienda{
 		//////////////////////////////////////////////////////
 		$idpedido=$_REQUEST['id'];
 		return $idpedido;
-		
+
 		$ped=$this->editar_pedido($idpedido);
 		$cupones=$this->pedido_cupones($idpedido);
 		$datos=$this->productos_pedido($idpedido);
 
-		$nombre=$ped->nombre;
-		$apellido=$ped->apellido;
-		$correo=$ped->correo;
-		$rfc=$ped->rfc;
-		$cfdi=$ped->cfdi;
-		$direccion1=$ped->direccion1;
+		$nombre=$ped['nombre'];
+		$apellido=$ped['apellido'];
+		$correo=$ped['correo'];
+		$rfc=$ped['rfc'];
+		$cfdi=$ped['cfdi'];
+		$direccion1=$ped['direccion1'];
 
-		$entrecalles=$ped->entrecalles;
-		$numero=$ped->numero;
-		$colonia=$ped->colonia;
+		$entrecalles=$ped['entrecalles'];
+		$numero=$ped['numero'];
+		$colonia=$ped['colonia'];
 
-		$ciudad=$ped->ciudad;
-		$cp=$ped->cp;
-		$pais=$ped->pais;
-		$estado=$ped->estado;
-		$telefono=$ped->telefono;
-		$gmonto=$ped->monto;
-		$genvio=$ped->envio;
-		$gtotal=$ped->total;
-		$estatus=$ped->estatus;
-		$pago=$ped->pago;
-		$idpago=$ped->idpago;
+		$ciudad=$ped['ciudad'];
+		$cp=$ped['cp'];
+		$pais=$ped['pais'];
+		$estado=$ped['estado'];
+		$telefono=$ped['telefono'];
+		$gmonto=$ped['monto'];
+		$genvio=$ped['envio'];
+		$gtotal=$ped['total'];
+		$estatus=$ped['estatus'];
+		$pago=$ped['pago'];
+		$idpago=$ped['idpago'];
 
 		/*
 		$resp = crearNuevoToken();
@@ -872,29 +872,29 @@ class Pedidos extends Tienda{
 			foreach($datos as $key){
 				$texto.="<tr>";
 					$texto.= "<td>";
-							$texto.= $key->clave;
-							$texto.= "<br><b>".$key->nombre."</b>";
-							$texto.= "<br>".$key->modelo;
-							$texto.= "<br>".$key->marca;
-							$texto.= "<br>".$key->categoria;
+							$texto.= $key['clave'];
+							$texto.= "<br><b>".$key['nombre']."</b>";
+							$texto.= "<br>".$key['modelo'];
+							$texto.= "<br>".$key['marca'];
+							$texto.= "<br>".$key['categoria'];
 					$texto.= "</td>";
 
 					$texto.= "<td>";
-						$texto.= $key->cantidad;
+						$texto.= $key['cantidad'];
 					$texto.= "</td>";
 
 					$texto.= "<td>";
-						$texto.= moneda($key->precio);
-						$sub_total+=$key->precio*$key->cantidad;
+						$texto.= moneda($key['precio']);
+						$sub_total+=$key['precio']*$key['cantidad'];
 					$texto.= "</td>";
 
 					$texto.= "<td>";
-						$texto.= moneda($key->envio);
-						$sub_envio+=$key->envio*$key->cantidad;
+						$texto.= moneda($key['envio']);
+						$sub_envio+=$key['envio']*$key['cantidad'];
 					$texto.= "</td>";
 
 					$texto.= "<td>";
-						$texto.= moneda($key->total);
+						$texto.= moneda($key['total']);
 					$texto.= "</td>";
 
 				$texto.= "</tr>";
@@ -933,25 +933,25 @@ class Pedidos extends Tienda{
 					foreach($cupones as $keyc){
 						$texto.= "<tr>";
 							$texto.= "<td colspan=4>";
-								$texto.= $keyc->codigo;
+								$texto.= $keyc['codigo'];
 								$texto.= "<br>";
-								$texto.= $keyc->descripcion;
+								$texto.= $keyc['descripcion'];
 							$texto.= "</td>";
 							$texto.= "<td>";
 
-								if($keyc->tipo=='porcentaje'){
-									$texto.= $keyc->descuento."%";
-									$monto=($gtotal*$keyc->descuento)/100;
+								if($keyc['tipo']=='porcentaje'){
+									$texto.= $keyc['descuento']."%";
+									$monto=($gtotal*$keyc['descuento'])/100;
 									$texto.= "<br>- ".moneda($monto);
 									$gtotal=$gtotal-$monto;
 								}
 
-								if($keyc->tipo=='carrito'){
-									$texto.= "<br>- ".moneda($keyc->descuento);
-									$gtotal=$gtotal-$keyc->descuento;
+								if($keyc['tipo']=='carrito'){
+									$texto.= "<br>- ".moneda($keyc['descuento']);
+									$gtotal=$gtotal-$keyc['descuento'];
 								}
 
-								if($keyc->envio=='si'){
+								if($keyc['envio']=='si'){
 									$gtotal=$gtotal-$envio;
 									$texto.= "<br>Envio: -".$envio;
 								}
