@@ -374,10 +374,11 @@
       			url:   "a_pedidos/db_.php",
       			type:  'post',
       			beforeSend: function () {
-
+              $("#cargando").addClass("is-active");
       			},
       			success:  function (response) {
       				alert(response);
+              $("#cargando").removeClass("is-active");
       			}
       		});
         },
