@@ -1008,7 +1008,7 @@
 		public function pedido_generar(){
 			try{
 				$carro=$this->carro_list();
-				$factora=0;
+				$factura=0;
 				if(isset($_REQUEST["factura"])){
 					$factura=1;
 				}
