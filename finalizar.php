@@ -26,8 +26,6 @@
 	$estado=$resp->estado;
 	$telefono=$resp->telefono;
 	$correo=$resp->correo;
-
-
 ?>
 
 <!DOCTYPE html>

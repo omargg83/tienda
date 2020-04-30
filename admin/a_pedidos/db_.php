@@ -776,7 +776,6 @@ class Pedidos extends Tienda{
 								$stmt= $this->dbh->query($sql);
 							}
 						}
-
 					}
 					else{
 						break;
