@@ -970,10 +970,57 @@ class Pedidos extends Tienda{
 					}
 				}
 		$texto.="</table>";
-
-	$asunto="Compra Exitosa";
-		$this->correo($correo, $texto, $asunto);
+		$asunto="Compra Exitosa";
+		return $this->correo2($correo, $texto, $asunto);
 	}
+	public function correo2($correo, $texto, $asunto){
+		/////////////////////////////////////////////Correo
+		require '../vendor/autoload.php';
+		$mail = new PHPMailer;
+		$mail->CharSet = 'UTF-8';
+
+		$mail->Body    = $asunto;
+		$mail->Subject = $asunto;
+		$mail->AltBody = $asunto;
+
+		$mail->isSMTP();
+		$mail->Host = "smtp.gmail.com";						  // Specify main and backup SMTP servers
+		$mail->SMTPAuth = true;                               // Enable SMTP authentication
+		$mail->Username = "tic.shop.adm@gmail.com";       // SMTP username
+		$mail->Password = "ticshop2020";                       // SMTP password
+		$mail->SMTPSecure = "ssl";                            // Enable TLS encryption, `ssl` also accepted
+		$mail->Port = 465;                                    // TCP port to connect to
+		$mail->CharSet = 'UTF-8';
+		//$mail->From = "tic.shop.adm@gmail.com";
+		$mail->From = "ventas@tic-shop.com.mx";
+		$mail->FromName = "TIC-SHOP";
+
+		$mail->IsHTML(true);
+		$mail->addAddress($correo);
+		$mail->addBCC("ventas@tic-shop.com.mx");
+
+		$mail->msgHTML($texto);
+		$arreglo=array();
+		//send the message, check for errors
+		if (!$mail->send()) {
+			$arreglo+=array('id'=>0);
+			$arreglo+=array('error'=>1);
+			$arreglo+=array('terror'=>$mail->ErrorInfo);
+			$arreglo+=array('param1'=>'');
+			$arreglo+=array('param2'=>'');
+			$arreglo+=array('param3'=>'');
+			return json_encode($arreglo);
+		} else {
+			$arreglo+=array('id'=>0);
+			$arreglo+=array('error'=>0);
+			$arreglo+=array('terror'=>'');
+			$arreglo+=array('param1'=>'');
+			$arreglo+=array('param2'=>'');
+			$arreglo+=array('param3'=>'');
+			return json_encode($arreglo);
+		}
+	}
+
 }
 $db = new Pedidos();
 if(strlen($function)>0){
