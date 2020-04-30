@@ -682,9 +682,9 @@ class Pedidos extends Tienda{
 
 
 		foreach($datos as $key){
-			$clave=$key->clave;
-			$idprod=$key->idprod;
-			$cantidad=$key->cantidad;
+			$clave=$key['clave'];
+			$idprod=$key['idprod'];
+			$cantidad=$key['cantidad'];
 
 			$sql="select * from productos where id='".$idprod."'";
 			$prod_query = $db->dbh->prepare($sql);
@@ -692,12 +692,12 @@ class Pedidos extends Tienda{
 			$prod_pedido=$prod_query->fetch(PDO::FETCH_OBJ);
 			$precio_prod=$prod_pedido->precio;
 
-			return $sql;
-
 			$sql="select producto_exist.*,almacen.numero from producto_exist left outer join almacen on almacen.homoclave=producto_exist.almacen where id='$idprod' order by existencia desc";
 			$exist = $db->dbh->prepare($sql);
 			$exist->execute();
 			$contar=$exist->rowCount();
+
+			return $sql;
 			if($contar>0){
 				$alma_pedido=$exist->fetchAll(PDO::FETCH_OBJ);
 				foreach($alma_pedido as $pedx){
@@ -743,7 +743,7 @@ class Pedidos extends Tienda{
 								'telefono' => $telefono
 							);
 
-							if($key->tipo=="CT"){
+							if($key['tipo']=="CT"){
 								$producto[0]=array(
 									'cantidad' => $pedir,
 									'clave' => $clave,
