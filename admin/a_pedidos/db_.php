@@ -763,11 +763,18 @@ class Pedidos extends Tienda{
 							$json = json_encode($arreglo);
 
 							$resp =servicioApi('POST','pedido',$json,$tok); 					/////////////////////////////////////////////PEDIDO
-							return var_dump($resp);
-							$pedidoweb=$resp[0]->respuestaCT->pedidoWeb;
-							$estatus=$resp[0]->respuestaCT->estatus;
-							$sql="insert into pedidos_web (idprod, clave, cantidad, pedidoWeb, estatus, idpedido) values ('$idprod', '$clave', '$pedir', '$pedidoweb', '$estatus', '$idpedido')";
-							$stmt= $this->dbh->query($sql);
+							if (isset($resp->errorCode)){
+								$arreglo+=array('id'=>0);
+								$arreglo+=array('error'=>1);
+								$arreglo+=array('terror'=>$resp->errorMessage;);
+								return json_encode($arreglo);
+							}
+							else{
+								$pedidoweb=$resp[0]->respuestaCT->pedidoWeb;
+								$estatus=$resp[0]->respuestaCT->estatus;
+								$sql="insert into pedidos_web (idprod, clave, cantidad, pedidoWeb, estatus, idpedido) values ('$idprod', '$clave', '$pedir', '$pedidoweb', '$estatus', '$idpedido')";
+								$stmt= $this->dbh->query($sql);
+							}
 						}
 
 					}
