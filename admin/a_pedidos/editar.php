@@ -242,7 +242,6 @@
 											if($estatus=='EN ESPERA'){
 												echo "<button class='btn btn-outline-secondary btn-sm' id='eliminar_prodn".$key['id']."' data-lugar='a_pedidos/db_' data-destino='a_pedidos/editar' data-id='".$key['id']."' data-iddest='$id' data-funcion='borrar_prodped' data-div='trabajo'><i class='far fa-trash-alt'></i></button>";
 											}
-
 										echo "</div>";
 									echo "</td>";
 									echo "<td>";

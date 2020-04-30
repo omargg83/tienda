@@ -687,101 +687,104 @@ class Pedidos extends Tienda{
 			$clave=$key['clave'];
 			$idprod=$key['idprod'];
 			$cantidad=$key['cantidad'];
-
 			$sql="select * from productos where id='".$idprod."'";
 			$prod_query = $this->dbh->prepare($sql);
 			$prod_query->execute();
 			$prod_pedido=$prod_query->fetch(PDO::FETCH_OBJ);
 			$precio_prod=$prod_pedido->precio;
 
-			$sql="select producto_exist.*,almacen.numero from producto_exist left outer join almacen on almacen.homoclave=producto_exist.almacen where id='$idprod' order by existencia desc";
-			$exist = $this->dbh->prepare($sql);
-			$exist->execute();
-			$contar=$exist->rowCount();
+			if($key['tipo']=="CT"){
+				$sql="select producto_exist.*,almacen.numero from producto_exist left outer join almacen on almacen.homoclave=producto_exist.almacen where id='$idprod' order by existencia desc";
+				$exist = $this->dbh->prepare($sql);
+				$exist->execute();
+				$contar=$exist->rowCount();
 
-			if($contar>0){
-				$alma_pedido=$exist->fetchAll(PDO::FETCH_OBJ);
-				foreach($alma_pedido as $pedx){
-					if($cantidad>0){
-						$pedir=$pedx->existencia-$cantidad;
-						if($pedir>=0){
-							$pedir=$cantidad;
-						}
-						else{
-							$pedir=$cantidad+$pedir;
-						}
-						$cantidad=$cantidad-$pedir;
-
-						if($pedir>0){
-							$envio=array();
-							$contar=0;
-
-							$resp =servicioApi('GET',"existencia/detalle/".$clave."/".$pedx->numero,NULL,$tok);
-							if($resp->promocion){
-
-								if ($resp->promocion->descuentoPrecio>0){
-									$precio_desc=$resp->promocion->descuentoPrecio;
-								}
-								if($resp->promocion->descuentoPorcentaje>0){
-									$porc=$resp->promocion->descuentoPorcentaje;
-									$precio_desc=$precio_prod-(($precio_prod*$porc)/100);
-								}
-								$precio_f=round($precio_desc,2);
+				if($contar>0){
+					$alma_pedido=$exist->fetchAll(PDO::FETCH_OBJ);
+					foreach($alma_pedido as $pedx){
+						if($cantidad>0){
+							$pedir=$pedx->existencia-$cantidad;
+							if($pedir>=0){
+								$pedir=$cantidad;
 							}
 							else{
-								$precio_f=$precio_prod;
+								$pedir=$cantidad+$pedir;
 							}
+							$cantidad=$cantidad-$pedir;
 
-							$envio[0]=array(
-								'nombre' => $nombre. " ".$apellido,
-								'direccion' => $direccion1,
-								'entreCalles' => $entrecalles,
-								'noExterior' => $numero,
-								'colonia' => $colonia,
-								'estado' => $estado,
-								'ciudad' => $ciudad,
-								'codigoPostal' => $cp,
-								'telefono' => $telefono
-							);
+							if($pedir>0){
+								$envio=array();
+								$contar=0;
 
-							if($key['tipo']=="CT"){
+								$resp =servicioApi('GET',"existencia/detalle/".$clave."/".$pedx->numero,NULL,$tok);
+								if($resp->promocion){
+
+									if ($resp->promocion->descuentoPrecio>0){
+										$precio_desc=$resp->promocion->descuentoPrecio;
+									}
+									if($resp->promocion->descuentoPorcentaje>0){
+										$porc=$resp->promocion->descuentoPorcentaje;
+										$precio_desc=$precio_prod-(($precio_prod*$porc)/100);
+									}
+									$precio_f=round($precio_desc,2);
+								}
+								else{
+									$precio_f=$precio_prod;
+								}
+
+								$envio[0]=array(
+									'nombre' => $nombre. " ".$apellido,
+									'direccion' => $direccion1,
+									'entreCalles' => $entrecalles,
+									'noExterior' => $numero,
+									'colonia' => $colonia,
+									'estado' => $estado,
+									'ciudad' => $ciudad,
+									'codigoPostal' => $cp,
+									'telefono' => $telefono
+								);
+
 								$producto[0]=array(
 									'cantidad' => $pedir,
 									'clave' => $clave,
 									'precio' => "$precio_f",
 									'moneda' => $prod_pedido->moneda
 								);
-							}
 
-							$arreglo=array(
-								'idPedido' => (int)$idpedido,
-								'almacen' => $pedx->numero,
-								'tipoPago' => "03",
-								'envio' => json_decode(json_encode($envio)),
-								'producto' => json_decode(json_encode($producto)),
-							);
-							$json = json_encode($arreglo);
+								$arreglo=array(
+									'idPedido' => (int)$idpedido,
+									'almacen' => $pedx->numero,
+									'tipoPago' => "03",
+									'envio' => json_decode(json_encode($envio)),
+									'producto' => json_decode(json_encode($producto)),
+								);
+								$json = json_encode($arreglo);
 
-							$resp =servicioApi('POST','pedido',$json,$tok); 					/////////////////////////////////////////////PEDIDO
-							if (isset($resp->errorCode)){
-								$arreglo+=array('id'=>0);
-								$arreglo+=array('error'=>1);
-								$arreglo+=array('terror'=>$resp->errorMessage);
-								return json_encode($arreglo);
-							}
-							else{
-								$pedidoweb=$resp[0]->respuestaCT->pedidoWeb;
-								$estatus=$resp[0]->respuestaCT->estatus;
-								$sql="insert into pedidos_web (idprod, clave, cantidad, pedidoWeb, estatus, idpedido) values ('$idprod', '$clave', '$pedir', '$pedidoweb', '$estatus', '$idpedido')";
-								$stmt= $this->dbh->query($sql);
+								$resp =servicioApi('POST','pedido',$json,$tok); 					/////////////////////////////////////////////PEDIDO
+								if (isset($resp->errorCode)){
+									$arreglo+=array('id'=>0);
+									$arreglo+=array('error'=>1);
+									$arreglo+=array('terror'=>$resp->errorMessage);
+									return json_encode($arreglo);
+								}
+								else{
+									$pedidoweb=$resp[0]->respuestaCT->pedidoWeb;
+									$estatus=$resp[0]->respuestaCT->estatus;
+									$sql="insert into pedidos_web (idprod, clave, cantidad, pedidoWeb, estatus, idpedido) values ('$idprod', '$clave', '$pedir', '$pedidoweb', '$estatus', '$idpedido')";
+									$stmt= $this->dbh->query($sql);
+								}
 							}
 						}
-					}
-					else{
-						break;
+						else{
+							break;
+						}
 					}
 				}
 			}
+			else{
+
+			}
+
 		}
 
 		/////////////////////////////////////////////Correo
