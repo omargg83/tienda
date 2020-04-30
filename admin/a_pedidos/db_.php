@@ -975,7 +975,7 @@ class Pedidos extends Tienda{
 	}
 	public function correo2($correo, $texto, $asunto){
 		/////////////////////////////////////////////Correo
-		require '../vendor/autoload.php';
+		require '/../vendor/autoload.php';
 		$mail = new PHPMailer;
 		$mail->CharSet = 'UTF-8';
 
