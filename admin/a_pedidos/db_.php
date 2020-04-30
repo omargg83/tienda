@@ -678,9 +678,11 @@ class Pedidos extends Tienda{
 		$pago=$ped['pago'];
 		$idpago=$ped['idpago'];
 
-		/*
+
 		$resp = crearNuevoToken();
 		$tok=$resp->token;
+		return $tok;
+		
 		foreach($datos as $key){
 			$clave=$key->clave;
 			$idprod=$key->idprod;
@@ -773,7 +775,7 @@ class Pedidos extends Tienda{
 				}
 			}
 		}
-		*/
+
 		/////////////////////////////////////////////Correo
 
 		$texto="<h3>TIC-SHOP</h3><br>
