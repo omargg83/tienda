@@ -18,10 +18,10 @@ class Pedidos extends Tienda{
 				$texto=trim(htmlspecialchars($_REQUEST['buscar']));
 				$sql="SELECT * from pedidos
 				left outer join clientes on clientes.id=pedidos.idcliente
-				where pedidos.id like '%$texto%' or pedidos.estatus like '%$texto%' or clientes.nombre like '%$texto' order by fecha desc limit 100";
+				where pedidos.id like '%$texto%' or pedidos.estatus like '%$texto%' or clientes.nombre like '%$texto' order by pedidos.id desc limit 100";
 			}
 			else{
-				$sql="SELECT * from pedidos order by fecha desc";
+				$sql="SELECT * from pedidos order by pedidos.id desc";
 			}
 			$sth = $this->dbh->prepare($sql);
 			$sth->execute();
