@@ -3663,7 +3663,7 @@ select option
 	margin-right: 0px;
 }
 
-
+#paypal-button-container{display: none!important;}
 
 
 @media (max-width: 990px) {
