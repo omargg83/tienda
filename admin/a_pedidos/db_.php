@@ -687,13 +687,13 @@ class Pedidos extends Tienda{
 			$cantidad=$key['cantidad'];
 
 			$sql="select * from productos where id='".$idprod."'";
-			$prod_query = $db->dbh->prepare($sql);
+			$prod_query = $this->dbh->prepare($sql);
 			$prod_query->execute();
 			$prod_pedido=$prod_query->fetch(PDO::FETCH_OBJ);
 			$precio_prod=$prod_pedido->precio;
 
 			$sql="select producto_exist.*,almacen.numero from producto_exist left outer join almacen on almacen.homoclave=producto_exist.almacen where id='$idprod' order by existencia desc";
-			$exist = $db->dbh->prepare($sql);
+			$exist = $this->dbh->prepare($sql);
 			$exist->execute();
 			$contar=$exist->rowCount();
 
@@ -765,7 +765,7 @@ class Pedidos extends Tienda{
 							$pedidoweb=$resp[0]->respuestaCT->pedidoWeb;
 							$estatus=$resp[0]->respuestaCT->estatus;
 							$sql="insert into pedidos_web (idprod, clave, cantidad, pedidoWeb, estatus, idpedido) values ('$idprod', '$clave', '$pedir', '$pedidoweb', '$estatus', '$idpedido')";
-							$stmt= $db->dbh->query($sql);
+							$stmt= $this->dbh->query($sql);
 						}
 
 					}
