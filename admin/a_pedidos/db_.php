@@ -334,7 +334,6 @@ class Pedidos extends Tienda{
 			$preciot=$preciof*$cantidad;
 			$sub=$enviot+$preciot;
 
-
 			$arreglo =array();
 			$arreglo+= array('precio'=>$preciof);
 			$arreglo+= array('envio'=>$enviof);
@@ -342,6 +341,9 @@ class Pedidos extends Tienda{
 			$arreglo+= array('cantidad'=>$cantidad);
 
 			if($idpedido_prod==0){
+				if($prod->interno==0){
+					$arreglo+= array('tipo'=>"CT");
+				}
 				$arreglo+= array('idprod'=>$idproducto);
 				$arreglo+= array('idpedido'=>$id);
 				$arreglo+= array('idProducto'=>$prod->idProducto);
