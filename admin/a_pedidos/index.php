@@ -366,7 +366,20 @@
       content: '¿Desea solicitar el producto a CT?',
       buttons: {
         Aceptar: function () {
-          alert("entra");
+          $.ajax({
+      			data:  {
+      				"id":id,
+      				"function":"pedir_ct"
+      			},
+      			url:   "a_pedidos/db_.php",
+      			type:  'post',
+      			beforeSend: function () {
+
+      			},
+      			success:  function (response) {
+      				alert(response);
+      			}
+      		});
         },
         Cancelar: function () {
           $.alert('Canceled!');
