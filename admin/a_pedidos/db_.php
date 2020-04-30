@@ -766,7 +766,7 @@ class Pedidos extends Tienda{
 							if (isset($resp->errorCode)){
 								$arreglo+=array('id'=>0);
 								$arreglo+=array('error'=>1);
-								$arreglo+=array('terror'=>$resp->errorMessage;);
+								$arreglo+=array('terror'=>$resp->errorMessage);
 								return json_encode($arreglo);
 							}
 							else{
