@@ -46,12 +46,12 @@
 
 					<div class="col-3">
 						<label>RFC</label>
-						<input type="text" class="form-control form-control-sm" id="rfc" name='rfc' placeholder="RFC" value="<?php echo $rfc; ?>" required>
+						<input type="text" class="form-control form-control-sm" id="rfc" name='rfc' placeholder="RFC" value="<?php echo $rfc; ?>" >
 					</div>
 
 					<div class="col-3">
 						<label>Uso cfdi</label>
-						<input type="text" class="form-control form-control-sm" id="cfdi" name='cfdi' placeholder="Uso cfdi" value="<?php echo $cfdi; ?>" required>
+						<input type="text" class="form-control form-control-sm" id="cfdi" name='cfdi' placeholder="Uso cfdi" value="<?php echo $cfdi; ?>" >
 					</div>
 				</div>
 

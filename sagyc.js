@@ -546,12 +546,6 @@ $(document).on('submit','#pedido',function(e){
       var datos = JSON.parse(response);
       if (datos.error==0){
         window.location.href="/pago/"+datos.id;
-        Swal.fire({
-            type: 'success',
-            title: 'Se generó el pedido correctamente',
-            showConfirmButton: false,
-            timer: 1000
-        });
       }
       else{
         Swal.fire({

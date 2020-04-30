@@ -64,12 +64,24 @@
 				<div class="row">
 					<div class="col-4">
 						<label class='text-center'>Nombre</label>
-						<input type="text" class="form-control" id="nombre" name='nombre' placeholder="Nombre" value="<?php echo $nombre; ?>" required>
+						<input type="text" class="form-control" id="nombre" name='nombre' placeholder="Nombre" value="<?php echo $nombre; ?>" required
+						<?php
+							if (strlen($_SESSION['correo'])>0){
+								echo "readonly";
+							}
+						?>
+						>
 					</div>
 
 					<div class="col-4">
 						<label class='text-center'>Apellidos</label>
-						<input type="text" class="form-control" id="apellido" name='apellido' placeholder="Apellidos" value="<?php echo $apellido; ?>" required autocomplete="off">
+						<input type="text" class="form-control" id="apellido" name='apellido' placeholder="Apellidos" value="<?php echo $apellido; ?>" required autocomplete="off"
+						<?php
+							if (strlen($_SESSION['correo'])>0){
+								echo "readonly";
+							}
+						?>
+						>
 					</div>
 
 					<div class="col-4">
@@ -81,12 +93,24 @@
 				<div class="row">
 					<div class="col-6">
 						<label class='text-center'>Correo</label>
-						<input type="email" class="form-control" id="correo" name='correo' placeholder="Correo" value="<?php echo $correo; ?>" required>
+						<input type="email" class="form-control" id="correo" name='correo' placeholder="Correo" value="<?php echo $correo; ?>" required
+						<?php
+							if (strlen($_SESSION['correo'])>0){
+								echo "readonly";
+							}
+						?>
+						>
 					</div>
 
 					<div class="col-4">
 						<label>Teléfono</label>
-						<input type="text" class="form-control input-number" id="tele_x" name='tele_x' placeholder="Teléfono" value="<?php echo $telefono; ?>" required>
+						<input type="text" class="form-control input-number" id="tele_x" name='tele_x' placeholder="Teléfono" value="<?php echo $telefono; ?>" required
+						<?php
+							if (strlen($_SESSION['correo'])>0){
+								echo "readonly";
+							}
+						?>
+						>
 					</div>
 
 					<?php
@@ -247,9 +271,7 @@
 						$total+=$p_final;
 					}
 
-					///////////////////////////////////
-
-
+					///////////////////////////////////s
 						echo "<h4>TOTAL DEL CARRITO</h4>";
 						echo "<div class='row'>";
 							echo "<div class='col-6'>";

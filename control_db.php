@@ -1007,17 +1007,10 @@
 
 		public function pedido_generar(){
 			try{
-
 				$carro=$this->carro_list();
-				foreach($carro as $key){
-
-				}
-
+				$factora=0;
 				if(isset($_REQUEST["factura"])){
 					$factura=1;
-				}
-				else{
-					$factura=0;
 				}
 
 				if (isset($_REQUEST["pass"]) and strlen($_REQUEST["pass"])){
@@ -1047,6 +1040,7 @@
 				$telefono = trim($_REQUEST["tele_x"]);
 				$correo = trim(htmlspecialchars($_REQUEST["correo"]));
 				$notas = trim(htmlspecialchars($_REQUEST["notas"]));
+
 				if(isset($_REQUEST["pass"])){
 					$pass = trim($_REQUEST["pass"]);
 				}
