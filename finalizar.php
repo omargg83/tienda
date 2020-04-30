@@ -57,7 +57,7 @@
 	<!-- Cart -->
 	<div class='container'>
 		<h3 class='text-center'>Pedido</h3>
-		<form id='pedido' action=''>
+		<form id='pedido_form' action=''>
 		<div class='row'>
 			<div class='col-8'>
 

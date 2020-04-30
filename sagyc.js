@@ -528,7 +528,7 @@ $(document).on('submit','#direccion',function(e){
     }
   });
 });
-$(document).on('submit','#pedido',function(e){
+$(document).on('submit','#pedido_form',function(e){
   e.preventDefault();
   var dataString = $(this).serialize()+"&function=pedido_generar&ctrl=control";
   $.ajax({
@@ -543,6 +543,7 @@ $(document).on('submit','#pedido',function(e){
       });
     },
     success: function( response ) {
+      console.log(response);
       var datos = JSON.parse(response);
       if (datos.error==0){
         window.location.href="/pago/"+datos.id;
