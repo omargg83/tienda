@@ -646,7 +646,8 @@ class Pedidos extends Tienda{
 	public function pedir_ct(){
 		//////////////////////////////////////////////////////
 		$idpedido=$_REQUEST['id'];
-
+		return $idpedido;
+		
 		$ped=$this->editar_pedido($idpedido);
 		$cupones=$this->pedido_cupones($idpedido);
 		$datos=$this->productos_pedido($idpedido);
