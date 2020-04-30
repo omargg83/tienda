@@ -697,7 +697,6 @@ class Pedidos extends Tienda{
 			$exist->execute();
 			$contar=$exist->rowCount();
 
-			return $sql;
 			if($contar>0){
 				$alma_pedido=$exist->fetchAll(PDO::FETCH_OBJ);
 				foreach($alma_pedido as $pedx){
