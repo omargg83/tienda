@@ -648,8 +648,8 @@ class Pedidos extends Tienda{
 		$idpedido=$_REQUEST['id'];
 
 		$ped=$this->editar_pedido($idpedido);
-		$cupones=$db->pedido_cupones($idpedido);
-		$datos=$db->productos_pedido($idpedido);
+		$cupones=$this->pedido_cupones($idpedido);
+		$datos=$this->productos_pedido($idpedido);
 
 		$nombre=$ped->nombre;
 		$apellido=$ped->apellido;
