@@ -15,6 +15,7 @@
 <html lang="en">
 <head>
 <title>TIC SHOP</title>
+<link rel="icon" type="image/png" href="/img/LOGO.png">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="TicShop la tienda de tecnología mas grande de México">
