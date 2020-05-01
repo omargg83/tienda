@@ -35,7 +35,7 @@
 
 					<div class="form-group col-9">
 					 <label>Producto</label>
-					 <input type="text" class="form-control" id="nombre" name='nombre' placeholder="Nombre" readonly value='<?php echo $nombre; ?>¿  >
+					 <input type="text" class="form-control" id="nombre" name='nombre' placeholder="Nombre" readonly value='<?php echo $nombre; ?>'  >
 				 </div>
 
 			    <div class="form-group col-12">
