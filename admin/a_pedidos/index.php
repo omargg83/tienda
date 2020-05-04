@@ -363,7 +363,7 @@
   function solicitar_ct(id){
     $.confirm({
       title: 'Cliente',
-      content: '¿Desea solicitar el producto a CT?',
+      content: '¿Desea procesar el pedido?, (envio de productos a CT, descuento de inventario)',
       buttons: {
         Aceptar: function () {
           $.ajax({
