@@ -380,10 +380,20 @@
               var datos = JSON.parse(response);
               if (datos.error==0){
                 Swal.fire({
-                  type: 'sucess',
+                  type: 'success',
                   title: "Pedido procesado correctamente",
                   showConfirmButton: false,
                   timer: 1000
+                });
+                $.ajax({
+                  data:  {
+                    "id":id
+                  },
+                  url:   'a_pedidos/editar.php',
+                  type:  'post',
+                  success:  function (response) {
+                    $("#trabajo").html(response);
+                  }
                 });
       				}
               else{
