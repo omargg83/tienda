@@ -805,6 +805,8 @@ class Pedidos extends Tienda{
 			}
 		}
 
+		$sql="update pedidos set estatus='PEDIDO CONFIRMADO' where id='$idpedido'";
+		$stmt2= $this->dbh->query($sql);
 		/////////////////////////////////////////////Correo
 
 		$texto="<h3>TIC-SHOP</h3><br>

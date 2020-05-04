@@ -377,13 +377,29 @@
               $("#cargando").addClass("is-active");
       			},
       			success:  function (response) {
-      				alert(response);
+              var datos = JSON.parse(response);
+              if (datos.error==0){
+                Swal.fire({
+                  type: 'sucess',
+                  title: "Pedido procesado correctamente",
+                  showConfirmButton: false,
+                  timer: 1000
+                });
+      				}
+              else{
+                Swal.fire({
+                  type: 'error',
+                  title: datos.terror,
+                  showConfirmButton: false,
+                  timer: 1000
+                });
+              }
               $("#cargando").removeClass("is-active");
       			}
       		});
         },
         Cancelar: function () {
-          
+
         }
       }
     });
