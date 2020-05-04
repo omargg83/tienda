@@ -1,29 +1,35 @@
 <?php
 	require_once("control_db.php");
 	$db = new Tienda();
-	$id=0;
-	$direccion1="";
-	$direccion2="";
-	$ciudad="";
-	$cp="";
-	$pais="";
-	$estado="";
-	$error=1;
-	if(isset($_REQUEST['dir'])){
+
+	if (isset($_REQUEST['dir'])){
 		$id=$_REQUEST['dir'];
-		$per = $db->direccion_editar($id);
-		if(is_object($per)){
-			$direccion1=$per->direccion1;
-			$entrecalles=$per->entrecalles;
-			$numero=$per->numero;
-			$colonia=$per->colonia;
-			$ciudad=$per->ciudad;
-			$cp=$per->cp;
-			$pais=$per->pais;
-			$estado=$per->estado;
-			$error=0;
+		if($id>0){
+			$per = $db->direccion_editar($id);
+			if(is_object($per)){
+				$direccion1=$per->direccion1;
+				$entrecalles=$per->entrecalles;
+				$numero=$per->numero;
+				$colonia=$per->colonia;
+				$ciudad=$per->ciudad;
+				$cp=$per->cp;
+				$pais=$per->pais;
+				$estado=$per->estado;
+				$error=0;
+			}
 		}
 	}
+	else{
+		$id=0;
+		$direccion1="";
+		$direccion2="";
+		$ciudad="";
+		$cp="";
+		$pais="";
+		$estado="";
+		$error=0;
+	}
+
 ?>
 
 <!DOCTYPE html>
