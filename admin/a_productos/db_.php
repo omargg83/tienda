@@ -26,6 +26,18 @@ class Productos extends Tienda{
 			return "Database access FAILED! ".$e->getMessage();
 		}
 	}
+	public function productos_interno(){
+		try{
+			parent::set_names();
+			$sql="SELECT * from productos where interno=1";
+			$sth = $this->dbh->prepare($sql);
+			$sth->execute();
+			return $sth->fetchAll();
+		}
+		catch(PDOException $e){
+			return "Database access FAILED! ".$e->getMessage();
+		}
+	}
 
 	public function productos_destacados(){
 		try{
