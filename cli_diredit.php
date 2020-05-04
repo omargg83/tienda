@@ -22,7 +22,9 @@
 	else{
 		$id=0;
 		$direccion1="";
-		$direccion2="";
+		$entrecalles="";
+		$colonia="";
+		$numero="";
 		$ciudad="";
 		$cp="";
 		$pais="";
