@@ -146,7 +146,28 @@
 				}
 			}
 			else{
+				/*
+				$sql="select * from producto_exist where id='".$idprod."' order by existencia desc limit 1";
+				$exist = $this->dbh->prepare($sql);
+				$exist->execute();
+				if($exist->rowCount()>0){
+					$invent=$exist->fetch(PDO::FETCH_OBJ);
+					$total=($invent->existencia-$cantidad);
+					$sql="update producto_exist set existencia='$total' where idexist='".$invent->idexist."'";
+					$stmt= $this->dbh->query($sql);
 
+					$sql="select sum(existencia) as total from producto_exist where id='$idprod'";
+					$sth = $this->dbh->prepare($sql);
+					$sth->execute();
+					$resp=$sth->fetch(PDO::FETCH_OBJ);
+
+					$fecha=mktime(date("H"),date("i"),date("s"),date("m"),date("d"),date("Y"));
+					$fmodif = date("Y-m-d H:i:s");
+
+					$sql="update productos set existencia='".$resp->total."', timeexis='$fecha', horaexist='$fmodif' where id='$idprod'";
+					$stmt2= $this->dbh->query($sql);
+				}
+				*/
 			}
 		}
 		$rechazado=0;
