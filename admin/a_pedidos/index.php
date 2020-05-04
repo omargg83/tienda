@@ -383,7 +383,7 @@
       		});
         },
         Cancelar: function () {
-          $.alert('Canceled!');
+          
         }
       }
     });
