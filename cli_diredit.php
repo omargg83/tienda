@@ -65,7 +65,7 @@
 	<!-- Cart -->
 	<div class='container'>
 		<div class='row'>
-			<div class='col-3'>
+			<div class='col-3' id='cliedash'>
 				<div class="btn-group-vertical">
 					<a href='/clientes.php' class="btn btn-primary btn-lg btn-block">Pedidos</a>
 					<a href='/cli_direcciones.php' class="btn btn-primary btn-lg btn-block">Direcciones</a>
@@ -73,7 +73,7 @@
  				 	<a href='#' class="btn btn-primary btn-lg btn-block" onclick='salir()'>Salir</a>
 				</div>
 			</div>
-			<div class='col-9'>
+			<div class='col-9' id='cliedash'>
 				<?php
 
 					echo "<div class='card-body'>";

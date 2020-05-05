@@ -3702,4 +3702,11 @@ select option
 #registro div{width: 100%;flex: 0 0 100%; max-width: 100%; margin-bottom: 5px;}
 .offset-4{margin-left: 0px;}
 
+#direccion div{width: 100%;flex: 0 0 100%; max-width: 100%; margin-bottom: 5px;}
+
+#listdir div{width: 100%;flex: 0 0 100%; max-width: 100%; margin-bottom: 5px;}
+
+#cliedash {width: 100%;flex: 0 0 100%; max-width: 100%; margin-bottom: 5px;}
+#cliedash div {width: 100%;flex: 0 0 100%; max-width: 100%; margin-bottom: 5px;}
+
 }
