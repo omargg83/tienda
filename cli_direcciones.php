@@ -47,11 +47,9 @@
 				<?php
 
 					$row=$db->direcciones();
-					echo "<div class='card-header'>";
-						echo "Direcciones adicionales";
 
-					echo "</div>";
-					echo "<div class='card-body'>";
+						echo "<h4>Direcciones adicionales</h4>";
+
 						echo "<a class='btn btn-outline-secondary btn-sm' href='cli_diredit.php' title='Agregar dirección' ><i class='fas fa-street-view'></i>Agregar Direccion</a>";
 
 						echo "<div class='row'>";
@@ -82,7 +80,6 @@
 								echo "</div>";
 							echo "</div>";
 						}
-						echo "</table>";
 					echo "</div>";
 
 				?>
