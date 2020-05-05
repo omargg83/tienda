@@ -54,7 +54,7 @@
 
 						echo "<div class='row'>";
 						echo "<div class='col-1'>-</div>
-						<div class='col-4'>Direccion</div>
+						<div class='col-3'>Direccion</div>
 						<div class='col-3'>Entre calles</div>
 						<div class='col-2'>Num. Exterior</div>
 						<div class='col-3'>Ciudad</div>
@@ -66,7 +66,7 @@
 										echo "<a class='btn btn-outline-secondary btn-sm' href='cli_diredit.php?dir=".$key['iddireccion']."' title='Editar' ><i class='fas fa-pencil-alt'></i></a>";
 									echo "</div>";
 								echo "</div>";
-								echo "<div class='col-4'>";
+								echo "<div class='col-3'>";
 									echo $key['direccion1'];
 								echo "</div>";
 								echo "<div class='col-3'>";
