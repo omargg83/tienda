@@ -48,7 +48,7 @@
 				<?php
 					echo "<h4>Pedidos</h4>";
 
-					echo "<div class='row'>";
+					echo "<div class='row' id='pedidostitulo'>";
 					echo "<div class='col-2'>-</div>
 							<div class='col-4'>Pedido</div>
 							<div class='col-2'>Total</div>
