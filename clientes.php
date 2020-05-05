@@ -49,10 +49,8 @@
 					echo "<h4>Pedidos</h4>";
 
 					echo "<div class='row'>";
-					echo "<div class='col-1'>-</div>
-							<div class='col-1'>Pedido</div>
-							<div class='col-2'>Fecha</div>
-							<div class='col-2'>Estatus</div>
+					echo "<div class='col-2'>-</div>
+							<div class='col-4'>Pedido</div>
 							<div class='col-2'>Total</div>
 							<div class='col-2'>Envio</div>
 							<div class='col-2'>Total</div>
@@ -73,14 +71,9 @@
 							echo "</div>";
 
 							echo "<div class='col-1'>#";
-								echo $key->id;
-							echo "</div>";
-
-							echo "<div class='col-2'>";
-								echo fecha($key->fecha);
-							echo "</div>";
-							echo "<div class='col-2'>";
-								echo $key->estatus;
+								echo "#".$key->id;
+								echo "<br>".fecha($key->fecha);
+								echo "<br>".$key->estatus;
 							echo "</div>";
 							echo "<div class='col-2'>";
 								echo moneda($key->monto);
