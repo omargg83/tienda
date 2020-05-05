@@ -58,7 +58,7 @@
 					foreach ($ped as $key) {
 						echo "<div class='row'>";
 
-							echo "<div class='col-1'>";
+							echo "<div class='col-2'>";
 								echo "<div class='btn-group'>";
 									if($key->estatus=="EN ESPERA"){
 										echo "<a class='btn btn-outline-secondary btn-sm' href='/pago/".$key->id."' title='Editar' ><i class='fas fa-pencil-alt'></i></a>";
