@@ -81,11 +81,11 @@
 						echo "</a></div>";
 						echo "<div class='col-9'>";
 							echo "<div class='row'>";
-								echo "<div class='col-12'>";
+								echo "<div class='col-12'><a href='/producto/".$key->clave."' tabindex='0'>";
 										echo $key->clave;
 										echo "<br>";
 										echo $key->nombre;
-								echo "</div>";
+								echo "</a></div>";
 							echo "</div>";
 
 							echo "<div class='row'>";
