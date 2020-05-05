@@ -53,29 +53,29 @@
 						echo "<a class='btn btn-outline-secondary btn-sm' href='cli_diredit.php' title='Agregar dirección' ><i class='fas fa-street-view'></i>Agregar Direccion</a>";
 
 						echo "<div class='row'>";
-						echo "<div class='1'>-</div>
-						<div class='4'>Direccion</div>
-						<div class='3'>Entre calles</div>
-						<div class='2'>Num. Exterior</div>
-						<div class='3'>Ciudad</div>
+						echo "<div class='col-1'>-</div>
+						<div class='col-4'>Direccion</div>
+						<div class='col-3'>Entre calles</div>
+						<div class='col-2'>Num. Exterior</div>
+						<div class='col-3'>Ciudad</div>
 						</div>";
 						foreach($row as $key){
 							echo "<div class='row'>";
-								echo "<div class='1'>";
+								echo "<div class='col-1'>";
 									echo "<div class='btn-group'>";
 										echo "<a class='btn btn-outline-secondary btn-sm' href='cli_diredit.php?dir=".$key['iddireccion']."' title='Editar' ><i class='fas fa-pencil-alt'></i></a>";
 									echo "</div>";
 								echo "</div>";
-								echo "<div class='4'>";
+								echo "<div class='col-4'>";
 									echo $key['direccion1'];
 								echo "</div>";
-								echo "<div class='3'>";
+								echo "<div class='col-3'>";
 									echo $key['entrecalles'];
 								echo "</div>";
-								echo "<div class='2'>";
+								echo "<div class='col-2'>";
 									echo $key['numero'];
 								echo "</div>";
-								echo "<div class='3'>";
+								echo "<div class='col-3'>";
 									echo $key['ciudad'];
 								echo "</div>";
 							echo "</div>";
