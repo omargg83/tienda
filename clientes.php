@@ -70,11 +70,12 @@
 								echo "</div>";
 							echo "</div>";
 
-							echo "<div class='col-1'>#";
+							echo "<div class='col-4'>";
 								echo "#".$key->id;
 								echo "<br>".fecha($key->fecha);
 								echo "<br>".$key->estatus;
 							echo "</div>";
+
 							echo "<div class='col-2'>";
 								echo moneda($key->monto);
 							echo "</div>";
