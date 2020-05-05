@@ -46,12 +46,20 @@
 			<div class='col-9'>
 				<?php
 					echo "<h4>Pedidos</h4>";
-					echo "<table class='table table-sm'>";
-					echo "<tr><th>-</th><th>Pedido</th><th>Fecha</th><th>Estatus</th><th>Total</th><th>Envio</th><th>Total</th></tr>";
-					foreach ($ped as $key) {
-						echo "<tr>";
 
-							echo "<td>";
+					echo "<div class='row'>";
+					echo "<div class='col-1'>-</div>
+							<div class='col-1'>Pedido</div>
+							<div class='col-2'>Fecha</div>
+							<div class='col-2'>Estatus</div>
+							<div class='col-2'>Total</div>
+							<div class='col-2'>Envio</div>
+							<div class='col-2'>Total</div>
+						</div>";
+					foreach ($ped as $key) {
+						echo "<div class='row'>";
+
+							echo "<div class='col-1'>";
 								echo "<div class='btn-group'>";
 									if($key->estatus=="EN ESPERA"){
 										echo "<a class='btn btn-outline-secondary btn-sm' href='/pago/".$key->id."' title='Editar' ><i class='fas fa-pencil-alt'></i></a>";
@@ -61,30 +69,30 @@
 									}
 
 								echo "</div>";
-							echo "</td>";
+							echo "</div>";
 
-							echo "<td>#";
+							echo "<div class='col-1'>#";
 								echo $key->id;
-							echo "</td>";
+							echo "</div>";
 
-							echo "<td>";
+							echo "<div class='col-2'>";
 								echo fecha($key->fecha);
-							echo "</td>";
-							echo "<td>";
+							echo "</div>";
+							echo "<div class='col-2'>";
 								echo $key->estatus;
-							echo "</td>";
-							echo "<td class='text-right'>";
+							echo "</div>";
+							echo "<div class='col-2'>";
 								echo moneda($key->monto);
-							echo "</td>";
-							echo "<td class='text-right'>";
+							echo "</div>";
+							echo "<div class='col-2 text-right'>";
 								echo moneda($key->envio);
-							echo "</td>";
-							echo "<td class='text-right'>";
+							echo "</div>";
+							echo "<div class='col-2 text-right'>";
 								echo moneda($key->total);
-							echo "</td>";
-						echo "</tr>";
+							echo "</div>";
+						echo "</div>";
 					}
-					echo "</table>";
+					echo "</div>";
 
 
 				 ?>
