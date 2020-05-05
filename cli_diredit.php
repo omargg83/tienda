@@ -1,29 +1,37 @@
 <?php
 	require_once("control_db.php");
 	$db = new Tienda();
-	$id=0;
-	$direccion1="";
-	$direccion2="";
-	$ciudad="";
-	$cp="";
-	$pais="";
-	$estado="";
-	$error=1;
-	if(isset($_REQUEST['dir'])){
+
+	if (isset($_REQUEST['dir'])){
 		$id=$_REQUEST['dir'];
-		$per = $db->direccion_editar($id);
-		if(is_object($per)){
-			$direccion1=$per->direccion1;
-			$entrecalles=$per->entrecalles;
-			$numero=$per->numero;
-			$colonia=$per->colonia;
-			$ciudad=$per->ciudad;
-			$cp=$per->cp;
-			$pais=$per->pais;
-			$estado=$per->estado;
-			$error=0;
+		if($id>0){
+			$per = $db->direccion_editar($id);
+			if(is_object($per)){
+				$direccion1=$per->direccion1;
+				$entrecalles=$per->entrecalles;
+				$numero=$per->numero;
+				$colonia=$per->colonia;
+				$ciudad=$per->ciudad;
+				$cp=$per->cp;
+				$pais=$per->pais;
+				$estado=$per->estado;
+				$error=0;
+			}
 		}
 	}
+	else{
+		$id=0;
+		$direccion1="";
+		$entrecalles="";
+		$colonia="";
+		$numero="";
+		$ciudad="";
+		$cp="";
+		$pais="";
+		$estado="";
+		$error=0;
+	}
+
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +40,8 @@
 <title>TIC SHOP</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="description" content="OneTech shop project">
+<meta name="description" content="TicShop la tienda de tecnología mas grande de México">
+<meta name="keywords" content="Electrónica,Tecnología,Hardware,Software,Tarjetas Video,Tarjetas Madre,Procesadores,Tienda de tecnología,Tienda de tecnología online,Electronicos en linea" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
 <link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
@@ -58,7 +67,7 @@
 		<div class='row'>
 			<div class='col-3'>
 				<div class="btn-group-vertical">
-					<a href='/cli_pedidos.php' class="btn btn-primary btn-lg btn-block">Pedidos</a>
+					<a href='/clientes.php' class="btn btn-primary btn-lg btn-block">Pedidos</a>
 					<a href='/cli_direcciones.php' class="btn btn-primary btn-lg btn-block">Direcciones</a>
  				 	<a href='/cli_datos.php' class="btn btn-primary btn-lg btn-block">Mis datos</a>
  				 	<a href='#' class="btn btn-primary btn-lg btn-block" onclick='salir()'>Salir</a>
@@ -81,8 +90,8 @@
 							<div class='row'>
 
 								<div class="col-12">
-									<label>Dirección linea 1</label>
-									<input type="text" class="form-control" id="direccion1" name='direccion1' placeholder="Dirección linea 1" value="<?php echo $direccion1; ?>" required>
+									<label>Dirección</label>
+									<input type="text" class="form-control" id="direccion1" name='direccion1' placeholder="Dirección" value="<?php echo $direccion1; ?>" required>
 								</div>
 
 								<div class="col-4">

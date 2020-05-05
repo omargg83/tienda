@@ -54,6 +54,7 @@
           <div class="footer_social">
             <ul>
               <li><a href="https://www.facebook.com/TicShopPachuca/" target="_blank" ><i class="fab fa-facebook-f"></i></a></li>
+              <li><a href="https://www.instagram.com/ticshoppachuca/" target="_blank" ><i class="fab fa-instagram"></i></a></li>
           <!--    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
               <li><a href="#"><i class="fab fa-youtube"></i></a></li>
               <li><a href="#"><i class="fab fa-google"></i></a></li>
@@ -93,3 +94,12 @@
   </div>
 </div>
 <script src="//code.tidio.co/ylbayjzufl3r0a8aku5sjorrnm7ztqco.js" async></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-163331577-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-163331577-1');
+</script>

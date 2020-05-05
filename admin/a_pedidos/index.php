@@ -363,7 +363,7 @@
   function solicitar_ct(id){
     $.confirm({
       title: 'Cliente',
-      content: '¿Desea solicitar el producto a CT?',
+      content: '¿Desea procesar el pedido?, (envio de productos a CT, descuento de inventario)',
       buttons: {
         Aceptar: function () {
           $.ajax({
@@ -377,13 +377,39 @@
               $("#cargando").addClass("is-active");
       			},
       			success:  function (response) {
-      				alert(response);
+              var datos = JSON.parse(response);
+              if (datos.error==0){
+                Swal.fire({
+                  type: 'success',
+                  title: "Pedido procesado correctamente",
+                  showConfirmButton: false,
+                  timer: 1000
+                });
+                $.ajax({
+                  data:  {
+                    "id":id
+                  },
+                  url:   'a_pedidos/editar.php',
+                  type:  'post',
+                  success:  function (response) {
+                    $("#trabajo").html(response);
+                  }
+                });
+      				}
+              else{
+                Swal.fire({
+                  type: 'error',
+                  title: datos.terror,
+                  showConfirmButton: false,
+                  timer: 1000
+                });
+              }
               $("#cargando").removeClass("is-active");
       			}
       		});
         },
         Cancelar: function () {
-          $.alert('Canceled!');
+
         }
       }
     });
