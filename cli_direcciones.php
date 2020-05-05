@@ -47,40 +47,39 @@
 				<?php
 
 					$row=$db->direcciones();
-					echo "<div class='card-header'>";
-						echo "Direcciones adicionales";
 
-					echo "</div>";
-					echo "<div class='card-body'>";
+						echo "<h4>Direcciones adicionales</h4>";
+
 						echo "<a class='btn btn-outline-secondary btn-sm' href='cli_diredit.php' title='Agregar dirección' ><i class='fas fa-street-view'></i>Agregar Direccion</a>";
 
-						echo "<table class='table table-sm'>";
-						echo "<tr><th>-</th><th>Direccion</th><th>Entre calles</th><th>Num. Exterior</th><th>Ciudad</th><th>Estado</th></tr>";
+						echo "<div class='row'>";
+						echo "<div class='col-1'>-</div>
+						<div class='col-3'>Direccion</div>
+						<div class='col-3'>Entre calles</div>
+						<div class='col-2'>Num. Exterior</div>
+						<div class='col-3'>Ciudad</div>
+						</div>";
 						foreach($row as $key){
-							echo "<tr>";
-								echo "<td>";
+							echo "<div class='row'>";
+								echo "<div class='col-1'>";
 									echo "<div class='btn-group'>";
 										echo "<a class='btn btn-outline-secondary btn-sm' href='cli_diredit.php?dir=".$key['iddireccion']."' title='Editar' ><i class='fas fa-pencil-alt'></i></a>";
 									echo "</div>";
-								echo "</td>";
-								echo "<td>";
+								echo "</div>";
+								echo "<div class='col-3'>";
 									echo $key['direccion1'];
-								echo "</td>";
-								echo "<td>";
+								echo "</div>";
+								echo "<div class='col-3'>";
 									echo $key['entrecalles'];
-								echo "</td>";
-								echo "<td>";
+								echo "</div>";
+								echo "<div class='col-2'>";
 									echo $key['numero'];
-								echo "</td>";
-								echo "<td>";
+								echo "</div>";
+								echo "<div class='col-3'>";
 									echo $key['ciudad'];
-								echo "</td>";
-								echo "<td>";
-									echo $key['estado'];
-								echo "</td>";
-							echo "</tr>";
+								echo "</div>";
+							echo "</div>";
 						}
-						echo "</table>";
 					echo "</div>";
 
 				?>
