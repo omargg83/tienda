@@ -544,12 +544,13 @@ $(document).on('submit','#direccion',function(e){
 });
 $(document).on('submit','#pedido_form',function(e){
   e.preventDefault();
+  var dataString = $(this).serialize()+"&function=pedido_generar&ctrl=control";
   $.confirm({
       title: 'Realizar pedido',
       content: '¿Desea realizar el pedido con la información proporcionada?',
       buttons: {
           Aceptar: function () {
-            var dataString = $(this).serialize()+"&function=pedido_generar&ctrl=control";
+
             $.ajax({
               url: "/control_db.php",
               type: "POST",
@@ -578,7 +579,7 @@ $(document).on('submit','#pedido_form',function(e){
               }
             });
         },
-        cancel: function () {
+        cancelar: function () {
 
         }
       }
