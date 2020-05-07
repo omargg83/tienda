@@ -253,6 +253,13 @@ class Clientes extends Tienda{
 		if (isset($_POST['id'])){$id=$_POST['id'];}
 		return $this->borrar('clientes_direccion',"iddireccion",$id);
 	}
+	public function borrar_cliente(){
+		if (isset($_REQUEST['id'])){$id=$_REQUEST['id'];}
+		$this->borrar('cliente_wish',"idcliente",$id);
+		$this->borrar('clientes_direccion',"idcliente",$id);
+		$this->borrar('cliente_carro',"idcliente",$id);
+		return $this->borrar('clientes',"id",$id);
+	}
 }
 $db = new Clientes();
 if(strlen($function)>0){
