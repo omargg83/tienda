@@ -140,10 +140,11 @@
 						<input type="text" class="form-control" id="cfdi" name='cfdi' placeholder="Ejemplo: P01 o  Gastos por definir" value="<?php echo $cfdi; ?>" >
 					</div>
 				</div>
+				<hr>
 				<?php
 					$resp=$db->direcciones();
 					if(is_array($resp) and strlen($_SESSION['correo'])>0){
-						echo "<hr>";
+
 						echo "<div class='row'>";
 							echo "<div class='col-12'>";
 								echo "<label>Dirección</label>";
