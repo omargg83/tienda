@@ -546,10 +546,9 @@ $(document).on('submit','#pedido_form',function(e){
   var dataString = $(this).serialize()+"&function=pedido_generar&ctrl=control";
   $.confirm({
       title: 'Realizar pedido',
-      content: '¿Desea realizar el pedido con la información proporcionada?',
+      content: '¿Esta seguro que todos sus datos son correctos?',
       buttons: {
           Aceptar: function () {
-
             $.ajax({
               url: "/control_db.php",
               type: "POST",
