@@ -160,7 +160,7 @@
 								foreach($resp as $key){
 									echo "<option value='".$key['iddireccion']."'>".$key['direccion1']."</option>";
 								}
-								echo "<option value=''>Nueva dirección</option>";
+								echo "<option value='nueva'>Nueva dirección</option>";
 								echo "</select>";
 							echo "</div>";
 						echo "</div>";

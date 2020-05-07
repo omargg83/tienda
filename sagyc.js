@@ -304,8 +304,7 @@ function captcha_fail(){
 }
 function select_dir(){
   var dir_fin=$("#dir_fin").val();
-  console.log(dir_fin);
-  if(dir_fin==''){
+  if(dir_fin=='nueva'){
     $("#direccion1").val("");
     $("#entrecalles").val("");
     $("#numero").val("");
