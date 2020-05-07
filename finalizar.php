@@ -156,11 +156,11 @@
 							echo "<div class='col-12'>";
 								echo "<label>Dirección</label>";
 								echo "<select id='dir_fin' name='dir_fin' class='form-control' onchange='select_dir()'>";
-								echo "<option value=''>Nueva dirección</option>";
 								echo "<option value='0'>utilizar principal</option>";
 								foreach($resp as $key){
 									echo "<option value='".$key['iddireccion']."'>".$key['direccion1']."</option>";
 								}
+								echo "<option value=''>Nueva dirección</option>";
 								echo "</select>";
 							echo "</div>";
 						echo "</div>";

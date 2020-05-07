@@ -304,28 +304,42 @@ function captcha_fail(){
 }
 function select_dir(){
   var dir_fin=$("#dir_fin").val();
-  $.ajax({
-    url: "/control_db.php",
-    type: "POST",
-    data:  {
-      "dir_fin":dir_fin,
-      "ctrl":"control",
-      "function":"dir_update"
-    },
-    success: function( response ) {
-      var datos = JSON.parse(response);
-      if(datos.error==0){
-        $("#direccion1").val(datos.direccion1);
-        $("#entrecalles").val(datos.entrecalles);
-        $("#numero").val(datos.numero);
-        $("#colonia").val(datos.colonia);
-        $("#ciudad").val(datos.ciudad);
-        $("#cp").val(datos.cp);
-        $("#pais").val(datos.pais);
-        $("#estado").val(datos.estado);
+  console.log(dir_fin);
+  if(dir_fin==''){
+    $("#direccion1").val("");
+    $("#entrecalles").val("");
+    $("#numero").val("");
+    $("#colonia").val("");
+    $("#ciudad").val("");
+    $("#cp").val("");
+    $("#pais").val("");
+    $("#estado").val("");
+  }
+  else{
+    $.ajax({
+      url: "/control_db.php",
+      type: "POST",
+      data:  {
+        "dir_fin":dir_fin,
+        "ctrl":"control",
+        "function":"dir_update"
+      },
+      success: function( response ) {
+        var datos = JSON.parse(response);
+        if(datos.error==0){
+          $("#direccion1").val(datos.direccion1);
+          $("#entrecalles").val(datos.entrecalles);
+          $("#numero").val(datos.numero);
+          $("#colonia").val(datos.colonia);
+          $("#ciudad").val(datos.ciudad);
+          $("#cp").val(datos.cp);
+          $("#pais").val(datos.pais);
+          $("#estado").val(datos.estado);
+        }
       }
-    }
-  });
+    });
+  }
+
 }
 
 $(document).on('submit','#acceso',function(e){
