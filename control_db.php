@@ -1099,6 +1099,7 @@
 				if(strlen($dir_fin)==0){
 					$sql="insert into clientes_direccion (idcliente, direccion1, entrecalles, numero, colonia, ciudad, cp, pais, estado) values (:id, :direccion1, :entrecalles, :numero, :colonia, :ciudad, :cp, :pais, :estado)";
 					$sth = $this->dbh->prepare($sql);
+					$sth->bindValue(":id",$_SESSION['idcliente']);
 					$sth->bindValue(":direccion1",$direccion1);
 					$sth->bindValue(":entrecalles",$entrecalles);
 					$sth->bindValue(":numero",$numero);
