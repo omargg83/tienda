@@ -38,6 +38,7 @@
 	$estado=$ped->estado;
 	$telefono=$ped->telefono;
 	$total=$ped->total;
+	$factura=$ped->factura;
 
 ?>
 
@@ -95,17 +96,23 @@
 						<input type="email" class="form-control" id="correo" name='correo' placeholder="Correo" value="<?php echo $correo; ?>" readonly>
 					</div>
 				</div>
-				<div class='row'>
-					<div class="col-3">
-						<label>RFC</label>
-						<input type="text" class="form-control" id="rfc" name='rfc' placeholder="RFC" value="<?php echo $rfc; ?>" readonly>
-					</div>
+				<?php
 
-					<div class="col-6">
-						<label>Uso cfdi</label>
-						<input type="text" class="form-control" id="cfdi" name='cfdi' placeholder="Uso cfdi" value="<?php echo $cfdi; ?>" readonly>
-					</div>
-				</div>
+					if($factura==1){
+						echo "<div class='row'>";
+							echo "<div class='col-3'>";
+								echo "<label>RFC</label>";
+								echo "<input type='text' class='form-control' id='rfc' name='rfc' placeholder='RFC' value='<?php echo $rfc; ?>' readonly>";
+							echo "</div>";
+
+							echo "<div class='col-6'>";
+								echo "<label>Uso cfdi</label>";
+								echo "<input type='text' class='form-control' id='cfdi' name='cfdi' placeholder='Uso cfdi' value='<?php echo $cfdi; ?>' readonly>";
+							echo "</div>";
+						echo "</div>";
+					}
+
+				?>
 
 				<div class='row'>
 					<div class="col-12">
