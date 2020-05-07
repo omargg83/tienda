@@ -102,12 +102,12 @@
 						echo "<div class='row'>";
 							echo "<div class='col-3'>";
 								echo "<label>RFC</label>";
-								echo "<input type='text' class='form-control' id='rfc' name='rfc' placeholder='RFC' value='<?php echo $rfc; ?>' readonly>";
+								echo "<input type='text' class='form-control' id='rfc' name='rfc' placeholder='RFC' value='$rfc' readonly>";
 							echo "</div>";
 
 							echo "<div class='col-6'>";
 								echo "<label>Uso cfdi</label>";
-								echo "<input type='text' class='form-control' id='cfdi' name='cfdi' placeholder='Uso cfdi' value='<?php echo $cfdi; ?>' readonly>";
+								echo "<input type='text' class='form-control' id='cfdi' name='cfdi' placeholder='Uso cfdi' value='$cfdi' readonly>";
 							echo "</div>";
 						echo "</div>";
 					}
