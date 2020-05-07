@@ -1053,6 +1053,7 @@
 				$telefono = trim($_REQUEST["tele_x"]);
 				$correo = trim(htmlspecialchars($_REQUEST["correo"]));
 				$notas = trim(htmlspecialchars($_REQUEST["notas"]));
+				$dir_fin = $_REQUEST["dir_fin"];
 
 				if(isset($_REQUEST["pass"])){
 					$pass = trim($_REQUEST["pass"]);
@@ -1094,6 +1095,19 @@
 						$_SESSION['correo']=$correo;
 						$_SESSION['nombre']=$nombre." ".$apellido;
 					}
+				}
+				if(strlen($dir_fin)==0){
+					$sql="insert into clientes_direccion (idcliente, direccion1, entrecalles, numero, colonia, ciudad, cp, pais, estado) values (:id, :direccion1, :entrecalles, :numero, :colonia, :ciudad, :cp, :pais)";
+					$sth = $this->dbh->prepare($sql);
+					$sth->bindValue(":direccion1",$direccion1);
+					$sth->bindValue(":entrecalles",$entrecalles);
+					$sth->bindValue(":numero",$numero);
+					$sth->bindValue(":colonia",$colonia);
+					$sth->bindValue(":ciudad",$ciudad);
+					$sth->bindValue(":cp",$cp);
+					$sth->bindValue(":pais",$pais);
+					$sth->bindValue(":estado",$estado);
+					$sth->execute();
 				}
 
 				///////////////////////////se genera el pedido
