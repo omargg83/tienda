@@ -159,7 +159,7 @@
 				}
 			}
 			else{
-				/*
+
 				$sql="select * from producto_exist where id='".$idprod."' order by existencia desc limit 1";
 				$exist = $db->dbh->prepare($sql);
 				$exist->execute();
@@ -180,7 +180,7 @@
 					$sql="update productos set existencia='".$resp->total."', timeexis='$fecha', horaexist='$fmodif' where id='$idprod'";
 					$stmt2= $db->dbh->query($sql);
 				}
-				*/
+
 			}
 		}
 

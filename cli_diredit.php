@@ -1,29 +1,37 @@
 <?php
 	require_once("control_db.php");
 	$db = new Tienda();
-	$id=0;
-	$direccion1="";
-	$direccion2="";
-	$ciudad="";
-	$cp="";
-	$pais="";
-	$estado="";
-	$error=1;
-	if(isset($_REQUEST['dir'])){
+
+	if (isset($_REQUEST['dir'])){
 		$id=$_REQUEST['dir'];
-		$per = $db->direccion_editar($id);
-		if(is_object($per)){
-			$direccion1=$per->direccion1;
-			$entrecalles=$per->entrecalles;
-			$numero=$per->numero;
-			$colonia=$per->colonia;
-			$ciudad=$per->ciudad;
-			$cp=$per->cp;
-			$pais=$per->pais;
-			$estado=$per->estado;
-			$error=0;
+		if($id>0){
+			$per = $db->direccion_editar($id);
+			if(is_object($per)){
+				$direccion1=$per->direccion1;
+				$entrecalles=$per->entrecalles;
+				$numero=$per->numero;
+				$colonia=$per->colonia;
+				$ciudad=$per->ciudad;
+				$cp=$per->cp;
+				$pais=$per->pais;
+				$estado=$per->estado;
+				$error=0;
+			}
 		}
 	}
+	else{
+		$id=0;
+		$direccion1="";
+		$entrecalles="";
+		$colonia="";
+		$numero="";
+		$ciudad="";
+		$cp="";
+		$pais="";
+		$estado="";
+		$error=0;
+	}
+
 ?>
 
 <!DOCTYPE html>
@@ -57,15 +65,15 @@
 	<!-- Cart -->
 	<div class='container'>
 		<div class='row'>
-			<div class='col-3'>
+			<div class='col-3' id='cliedash'>
 				<div class="btn-group-vertical">
-					<a href='/cli_pedidos.php' class="btn btn-primary btn-lg btn-block">Pedidos</a>
+					<a href='/clientes.php' class="btn btn-primary btn-lg btn-block">Pedidos</a>
 					<a href='/cli_direcciones.php' class="btn btn-primary btn-lg btn-block">Direcciones</a>
  				 	<a href='/cli_datos.php' class="btn btn-primary btn-lg btn-block">Mis datos</a>
  				 	<a href='#' class="btn btn-primary btn-lg btn-block" onclick='salir()'>Salir</a>
 				</div>
 			</div>
-			<div class='col-9'>
+			<div class='col-9' id='cliedash'>
 				<?php
 
 					echo "<div class='card-body'>";
@@ -82,8 +90,8 @@
 							<div class='row'>
 
 								<div class="col-12">
-									<label>Dirección linea 1</label>
-									<input type="text" class="form-control" id="direccion1" name='direccion1' placeholder="Dirección linea 1" value="<?php echo $direccion1; ?>" required>
+									<label>Dirección</label>
+									<input type="text" class="form-control" id="direccion1" name='direccion1' placeholder="Dirección" value="<?php echo $direccion1; ?>" required>
 								</div>
 
 								<div class="col-4">

@@ -21,7 +21,9 @@
 						echo "<tr id='".$key['id']."' class='edit-t'>";
 						echo "<td>";
 							echo "<div class='btn-group'>";
-								echo "<button class='btn btn-outline-secondary btn-sm' id='edit_comision' title='Editar' data-lugar='a_clientes/editar'><i class='fas fa-pencil-alt'></i></i></button>";
+								echo "<button class='btn btn-outline-secondary btn-sm' id='edit_comision' title='Editar' data-lugar='a_clientes/editar'><i class='fas fa-pencil-alt'></i></button>";
+
+								echo "<button class='btn btn-outline-secondary btn-sm' id='eliminar_comision' data-lugar='a_clientes/db_' data-destino='a_clientes/lista' data-id='".$key['id']."' data-funcion='borrar_cliente' data-div='trabajo'><i class='far fa-trash-alt'></i></button>";
 							echo "</div>";
 						echo "</td>";
 						echo "<td>".$key["nombre"]."</td>";

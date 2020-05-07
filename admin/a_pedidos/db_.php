@@ -1057,7 +1057,13 @@ class Pedidos extends Tienda{
 			return json_encode($arreglo);
 		}
 	}
-
+	public function borrar_pedido(){
+		if (isset($_REQUEST['id'])){$id=$_REQUEST['id'];}
+		$this->borrar('pedidos_cupon',"idpedido",$id);
+		$this->borrar('pedidos_web',"idpedido",$id);
+		$this->borrar('pedidos_prod',"idpedido",$id);
+		return $this->borrar('pedidos',"id",$id);
+	}
 }
 $db = new Pedidos();
 if(strlen($function)>0){

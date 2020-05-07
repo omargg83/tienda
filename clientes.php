@@ -36,7 +36,7 @@
 	<!-- Cart -->
 	<div class='container'>
 		<div class='row'>
-			<div class='col-3'>
+			<div class='col-3' id='cliedash'>
 				<div class="btn-group-vertical">
 					<a href='/clientes.php' class="btn btn-primary btn-lg btn-block">Pedidos</a>
 					<a href='/cli_direcciones.php' class="btn btn-primary btn-lg btn-block">Direcciones</a>
@@ -44,15 +44,21 @@
  				 	<a href='#' class="btn btn-primary btn-lg btn-block" onclick='salir()'>Salir</a>
 				</div>
 			</div>
-			<div class='col-9'>
+			<div class='col-9' id='cliedash'>
 				<?php
 					echo "<h4>Pedidos</h4>";
-					echo "<table class='table table-sm'>";
-					echo "<tr><th>-</th><th>Pedido</th><th>Fecha</th><th>Estatus</th><th>Total</th><th>Envio</th><th>Total</th></tr>";
-					foreach ($ped as $key) {
-						echo "<tr>";
 
-							echo "<td>";
+					echo "<div class='row' id='pedidostitulo'>";
+					echo "<div class='col-2'>-</div>
+							<div class='col-4'>Pedido</div>
+							<div class='col-2'>Total</div>
+							<div class='col-2'>Envio</div>
+							<div class='col-2'>Total</div>
+						</div>";
+					foreach ($ped as $key) {
+						echo "<div class='row'>";
+
+							echo "<div class='col-2'>";
 								echo "<div class='btn-group'>";
 									if($key->estatus=="EN ESPERA"){
 										echo "<a class='btn btn-outline-secondary btn-sm' href='/pago/".$key->id."' title='Editar' ><i class='fas fa-pencil-alt'></i></a>";
@@ -62,30 +68,26 @@
 									}
 
 								echo "</div>";
-							echo "</td>";
+							echo "</div>";
 
-							echo "<td>#";
-								echo $key->id;
-							echo "</td>";
+							echo "<div class='col-4'>";
+								echo "#".$key->id;
+								echo "<br>".fecha($key->fecha);
+								echo "<br>".$key->estatus;
+							echo "</div>";
 
-							echo "<td>";
-								echo fecha($key->fecha);
-							echo "</td>";
-							echo "<td>";
-								echo $key->estatus;
-							echo "</td>";
-							echo "<td class='text-right'>";
+							echo "<div class='col-2'>";
 								echo moneda($key->monto);
-							echo "</td>";
-							echo "<td class='text-right'>";
+							echo "</div>";
+							echo "<div class='col-2 text-right'>";
 								echo moneda($key->envio);
-							echo "</td>";
-							echo "<td class='text-right'>";
+							echo "</div>";
+							echo "<div class='col-2 text-right'>";
 								echo moneda($key->total);
-							echo "</td>";
-						echo "</tr>";
+							echo "</div>";
+						echo "</div>";
 					}
-					echo "</table>";
+					echo "</div>";
 
 
 				 ?>

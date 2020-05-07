@@ -156,7 +156,7 @@ h6::selection
 }
 .form-control
 {
-	color: #db5246;
+	color: black;
 }
 section
 {
@@ -3695,11 +3695,21 @@ select option
     max-width: 100%;
     margin-top: 20px;}
 #pedido div{width: 100%;flex: 0 0 100%; max-width: 100%; margin-bottom: 5px;}
+
+#pedido_form div{width: 100%;flex: 0 0 100%; max-width: 100%; margin-bottom: 5px;}
 .pagm div{width: 100%;flex: 0 0 100%; max-width: 100%; margin-bottom: 5px;}
 
 .arrivals_slider .slick-track{padding-bottom: 150px!important;}
 
 #registro div{width: 100%;flex: 0 0 100%; max-width: 100%; margin-bottom: 5px;}
 .offset-4{margin-left: 0px;}
+
+#direccion div{width: 100%;flex: 0 0 100%; max-width: 100%; margin-bottom: 5px;}
+
+#listdir div{width: 100%;flex: 0 0 100%; max-width: 100%; margin-bottom: 5px;}
+
+#cliedash {width: 100%;flex: 0 0 100%; max-width: 100%; margin-bottom: 5px;}
+#cliedash div {width: 100%;flex: 0 0 100%; max-width: 100%; margin-bottom: 5px;}
+#pedidostitulo{display: none;}
 
 }

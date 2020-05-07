@@ -59,7 +59,7 @@
 
 					echo "<div class='row' style='border-bottom:.5px solid silver;padding-bottom: 20px;padding-top: 20px;'>";
 						echo "<div class='col-3 text-center'>";
-							echo "<img src='/".$db->doc.$key->img."' alt='' width='130px'>";
+							echo "<img src='/".$db->doc.$key->img."' alt='' width='50px'>";
 						echo "</div>";
 						echo "<div class='col-9'>";
 							echo "<div class='row'>";

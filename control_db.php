@@ -390,6 +390,19 @@
 			}
 		}
 
+		public function cfdi(){
+			try{
+				self::set_names();
+				$sql="select * from cfdi";
+				$sth = $this->dbh->prepare($sql);
+				$sth->execute();
+				return $sth->fetchAll(PDO::FETCH_OBJ);
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
+			}
+		}
+
 		public function categorias_name($id){
 			try{
 				self::set_names();

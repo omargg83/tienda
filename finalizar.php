@@ -130,20 +130,28 @@
 				</div>
 
 				<div class='row' id='factura_div' style='display:none'>
+					<hr>
 					<div class="col-3">
 						<label>RFC</label>
 						<input type="text" class="form-control" id="rfc" name='rfc' placeholder="RFC" value="<?php echo $rfc; ?>">
 					</div>
 
-					<div class="col-6">
-						<label>Uso cfdi</label>
-						<input type="text" class="form-control" id="cfdi" name='cfdi' placeholder="Ejemplo: P01 o  Gastos por definir" value="<?php echo $cfdi; ?>" >
-					</div>
+					<?php
+						echo "<div class='col-9'>";
+							echo "<label>Uso cfdi</label>";
+							echo "<select id='cfdi' name='cfdi' class='form-control'>";
+							$cfdi_obj=$db->cfdi();
+							foreach($cfdi_obj as $key){
+								echo "<option value='".$key->cfdi."'"; if($cfdi==$key->cfdi){ echo " selected";} echo " >".$key->cfdi."</option>";
+							}
+							echo "</select>";
+						echo "</div>";
+					 ?>
 				</div>
+				<hr>
 				<?php
 					$resp=$db->direcciones();
-					if(is_array($resp)){
-						echo "<hr>";
+					if(is_array($resp) and strlen($_SESSION['correo'])>0){
 						echo "<div class='row'>";
 							echo "<div class='col-12'>";
 								echo "<label>Dirección</label>";
@@ -161,8 +169,8 @@
 				?>
 				<div class='row'>
 					<div class="col-12">
-						<label>Dirección (linea 1)</label>
-						<input type="text" class="form-control" id="direccion1" name='direccion1' placeholder="Dirección (linea 1)" value="<?php echo $direccion1; ?>" required>
+						<label>Dirección</label>
+						<input type="text" class="form-control" id="direccion1" name='direccion1' placeholder="Dirección" value="<?php echo $direccion1; ?>" required>
 					</div>
 					<div class="col-4">
 						<label>Entre calles</label>
