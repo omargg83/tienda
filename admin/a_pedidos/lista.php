@@ -29,6 +29,9 @@
 						echo "<td>";
 							echo "<div class='btn-group'>";
 								echo "<button class='btn btn-outline-secondary btn-sm' id='edit_comision' title='Editar' data-lugar='a_pedidos/editar'><i class='fas fa-pencil-alt'></i></i></button>";
+
+								echo "<button class='btn btn-outline-secondary btn-sm' id='eliminar_pedido' data-lugar='a_pedidos/db_' data-destino='a_pedidos/lista' data-id='".$key['id']."' data-funcion='borrar_pedido' data-div='trabajo'><i class='far fa-trash-alt'></i></button>";
+
 							echo "</div>";
 						echo "</td>";
 						echo "<td>".$key["id"]."</td>";
