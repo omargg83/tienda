@@ -142,7 +142,7 @@
 				</div>
 				<?php
 					$resp=$db->direcciones();
-					if(is_array($resp)){
+					if(is_array($resp) and strlen($_SESSION['correo'])>0){
 						echo "<hr>";
 						echo "<div class='row'>";
 							echo "<div class='col-12'>";
