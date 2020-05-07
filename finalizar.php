@@ -145,10 +145,10 @@
 						echo "<div class='col-6'>";
 							echo "<label>Uso cfdi</label>";
 							echo "<select id='cfdi' name='cfdi' class='form-control'>";
-							$cfdi=$db->cfdi();
-							foreach($cfdi as $key){
+							$cfdi_obj=$db->cfdi();
+							foreach($cfdi_obj as $key){
 
-								echo "<option value='".$cfdi->cfdi."'"; if($cfdi==$cfdi->cfdi){ echo " selected";} echo " >".$cfdi->cfdi."</option>";
+								echo "<option value='".$key->cfdi."'"; if($cfdi==$key->cfdi){ echo " selected";} echo " >".$key->cfdi."</option>";
 
 							}
 							echo "</select>";
