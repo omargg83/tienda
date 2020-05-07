@@ -130,6 +130,7 @@
 				</div>
 
 				<div class='row' id='factura_div' style='display:none'>
+					<hr>
 					<div class="col-3">
 						<label>RFC</label>
 						<input type="text" class="form-control" id="rfc" name='rfc' placeholder="RFC" value="<?php echo $rfc; ?>">
@@ -139,6 +140,21 @@
 						<label>Uso cfdi</label>
 						<input type="text" class="form-control" id="cfdi" name='cfdi' placeholder="Ejemplo: P01 o  Gastos por definir" value="<?php echo $cfdi; ?>" >
 					</div>
+
+					<?php
+						echo "<div class='col-6'>";
+							echo "<label>Uso cfdi</label>";
+							echo "<select id='cfdi' name='cfdi' class='form-control'>";
+							$cfdi=$db->cfdi();
+							foreach($cfdi as $key){
+
+								echo "<option value='".$cfdi->cfdi."'"; if($cfdi==$cfdi->cfdi){ echo " selected";} echo " >".$cfdi->cfdi."</option>";
+
+							}
+							echo "</select>";
+						echo "</div>";
+
+					 ?>
 				</div>
 				<hr>
 				<?php
