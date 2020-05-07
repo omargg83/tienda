@@ -1096,7 +1096,7 @@
 						$_SESSION['nombre']=$nombre." ".$apellido;
 					}
 				}
-				if($dir_fin)=="nueva"){
+				if($dir_fin=="nueva"){
 					$sql="insert into clientes_direccion (idcliente, direccion1, entrecalles, numero, colonia, ciudad, cp, pais, estado) values (:id, :direccion1, :entrecalles, :numero, :colonia, :ciudad, :cp, :pais, :estado)";
 					$sth = $this->dbh->prepare($sql);
 					$sth->bindValue(":id",$_SESSION['idcliente']);
