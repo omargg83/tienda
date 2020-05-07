@@ -544,34 +544,45 @@ $(document).on('submit','#direccion',function(e){
 });
 $(document).on('submit','#pedido_form',function(e){
   e.preventDefault();
-  var dataString = $(this).serialize()+"&function=pedido_generar&ctrl=control";
-  $.ajax({
-    url: "/control_db.php",
-    type: "POST",
-    data:  dataString,
-    beforeSend: function () {
-      Swal.fire({
-          type: 'info',
-          title: 'Procesando',
-          showConfirmButton: false
-      });
-    },
-    success: function( response ) {
-      console.log(response);
-      var datos = JSON.parse(response);
-      if (datos.error==0){
-        window.location.href="/pago/"+datos.id;
+  $.confirm({
+      title: 'Realizar pedido',
+      content: '¿Desea realizar el pedido con la información proporcionada?',
+      buttons: {
+          Aceptar: function () {
+            var dataString = $(this).serialize()+"&function=pedido_generar&ctrl=control";
+            $.ajax({
+              url: "/control_db.php",
+              type: "POST",
+              data:  dataString,
+              beforeSend: function () {
+                Swal.fire({
+                    type: 'info',
+                    title: 'Procesando',
+                    showConfirmButton: false
+                });
+              },
+              success: function( response ) {
+                console.log(response);
+                var datos = JSON.parse(response);
+                if (datos.error==0){
+                  window.location.href="/pago/"+datos.id;
+                }
+                else{
+                  Swal.fire({
+                      type: 'error',
+                      title: 'Error:'+datos.terror,
+                      showConfirmButton: false,
+                      timer: 1000
+                  });
+                }
+              }
+            });
+        },
+        cancel: function () {
+
+        }
       }
-      else{
-        Swal.fire({
-            type: 'error',
-            title: 'Error:'+datos.terror,
-            showConfirmButton: false,
-            timer: 1000
-        });
-      }
-    }
-  });
+    });
 });
 $(document).on('submit','#contact_form',function(e){
   e.preventDefault();
