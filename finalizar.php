@@ -105,19 +105,19 @@
 						>
 					</div>
 
-					<div class="col-3">
+					<div class="col-4">
 						<label>Requiere factura</label><br>
 						<input type="checkbox" id="factura" name='factura' value=1 onclick='factura_act()'>
 					</div>
 
 					<?php
 						if (strlen($_SESSION['correo'])==0){
-							echo "<div class='col-3'>";
+							echo "<div class='col-4'>";
 								echo "<label class='text-center'>Contraseña</label>";
 								echo "<input type='password' class='form-control' id='pass' name='pass' placeholder='Contraseña' value='' required>";
 							echo "</div>";
 
-							echo "<div class='col-3'>";
+							echo "<div class='col-4'>";
 								echo "<label class='text-center'>Repetir</label>";
 								echo "<input type='password' class='form-control' id='pass2' name='pass2' placeholder='Contraseña' value='' required>";
 							echo "</div>";
