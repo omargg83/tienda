@@ -145,7 +145,6 @@
 						echo "</div>";
 					 ?>
 
-					 <div class='row'>
  						<div class="col-12">
  							<label>Dirección</label>
  							<input type="text" class="form-control" id="fact_direccion1" name='fact_direccion1' placeholder="Dirección" value="<?php echo $direccion1; ?>" required>
@@ -178,9 +177,6 @@
  							<label>Estado</label>
  							<input type="text" class="form-control" id="fact_estado" name='fact_estado' placeholder="Estado" value="<?php echo $estado; ?>" required>
  						</div>
- 					</div>
-
-
 				</div>
 
 				<?php
