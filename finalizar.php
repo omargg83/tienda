@@ -128,13 +128,13 @@
 
 					<div class="col-9" id='factura_div' style='display:none'>
 						<div class='row'>
-							<div class="col-3">
+							<div class="col-4">
 								<label>RFC</label>
 								<input type="text" class="form-control" id="rfc" name='rfc' placeholder="RFC" value="<?php echo $rfc; ?>">
 							</div>
 
 							<?php
-								echo "<div class='col-9'>";
+								echo "<div class='col-8'>";
 									echo "<label>Uso cfdi</label>";
 									echo "<select id='cfdi' name='cfdi' class='form-control'>";
 									$cfdi_obj=$db->cfdi();
@@ -183,11 +183,14 @@
  						</div>
 				</div>
 
-				<?php
-					$resp=$db->direcciones();
-					if(is_array($resp) and strlen($_SESSION['correo'])>0){
-						echo "<div class='row'>";
-							echo "<div class='col-12'>";
+
+				<hr>
+				<h4 class='text-center'>Dirección de envio</h4>
+				<div class='row'>
+					<?php
+						$resp=$db->direcciones();
+						if(is_array($resp) and strlen($_SESSION['correo'])>0){
+							echo "<div class='col-3'>";
 								echo "<label>Direcciones disponibles</label>";
 								echo "<select id='dir_fin' name='dir_fin' class='form-control' onchange='select_dir()'>";
 								echo "<option value='0'>utilizar principal</option>";
@@ -197,13 +200,9 @@
 								echo "<option value='nueva'>Nueva dirección</option>";
 								echo "</select>";
 							echo "</div>";
-						echo "</div>";
-					}
-				?>
-				<hr>
-				<h4 class='text-center'>Dirección de envio</h4>
-				<div class='row'>
-					<div class="col-12">
+						}
+					?>
+					<div class="col-4">
 						<label>Dirección</label>
 						<input type="text" class="form-control" id="direccion1" name='direccion1' placeholder="Dirección" value="<?php echo $direccion1; ?>" required>
 					</div>
