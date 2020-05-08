@@ -105,7 +105,6 @@
 						>
 					</div>
 
-
 					<?php
 						if (strlen($_SESSION['correo'])==0){
 							echo "<div class='col-3'>";
@@ -147,7 +146,23 @@
 						</div>
 					</div>
 				</div>
-
+				<div class='row'>
+				<?php
+					$resp=$db->direcciones();
+					if(is_array($resp) and strlen($_SESSION['correo'])>0){
+						echo "<div class='col-4'>";
+							echo "<label>Direcciones disponibles</label>";
+							echo "<select id='dir_fin' name='dir_fin' class='form-control' onchange='select_dir()'>";
+							echo "<option value='0'>Utilizar la misma dirección de envío</option>";
+							foreach($resp as $key){
+								echo "<option value='".$key['iddireccion']."'>".$key['direccion1']."</option>";
+							}
+							echo "<option value='nueva'>Nueva dirección</option>";
+							echo "</select>";
+						echo "</div>";
+					}
+				?>
+				</div>
 				<div class='row'>
  						<div class="col-12">
  							<label>Dirección</label>
@@ -188,7 +203,7 @@
 					<?php
 						$resp=$db->direcciones();
 						if(is_array($resp) and strlen($_SESSION['correo'])>0){
-							echo "<div class='col-4'>";
+							echo "<div class='col-12'>";
 								echo "<label>Direcciones disponibles</label>";
 								echo "<select id='dir_fin' name='dir_fin' class='form-control' onchange='select_dir()'>";
 								echo "<option value='0'>utilizar principal</option>";
@@ -200,7 +215,7 @@
 							echo "</div>";
 						}
 					?>
-					<div class="col-8">
+					<div class="col-12">
 						<label>Dirección</label>
 						<input type="text" class="form-control" id="direccion1" name='direccion1' placeholder="Dirección" value="<?php echo $direccion1; ?>" required>
 					</div>
