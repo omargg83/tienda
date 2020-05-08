@@ -159,6 +159,9 @@
 				</div>
 
 				<div class='row' id='dirfactura_div' style='display:none'>
+					<hr>
+					<h4 class='text-center'>Dirección de facturación</h4>
+
  						<div class="col-12">
  							<label>Dirección</label>
  							<input type="text" class="form-control" id="fact_direccion1" name='fact_direccion1' placeholder="Dirección" value="<?php echo $direccion1; ?>" required>
@@ -192,9 +195,10 @@
  							<input type="text" class="form-control" id="fact_estado" name='fact_estado' placeholder="Estado" value="<?php echo $estado; ?>" required>
  						</div>
 				</div>
-				<hr>
-				<h4 class='text-center'>Dirección de envio</h4>
+
 				<div class='row'>
+					<hr>
+					<h4 class='text-center'>Dirección de envio</h4>
 					<?php
 						$resp=$db->direcciones();
 						if(is_array($resp) and strlen($_SESSION['correo'])>0){
