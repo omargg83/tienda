@@ -156,7 +156,7 @@
 						echo "</div>";
 					echo "</div>";
 
-					//if($dir_tipo==1){
+					if($dir_tipo==1){
 						echo "<hr>";
 						echo "<h5>Dirección de facturación</h5>";
 						echo "<div class='row'>";
@@ -201,7 +201,7 @@
 							echo "</div>";
 
 						echo "</div>";
-					//}
+					}
 
 
 					echo "<hr>";
