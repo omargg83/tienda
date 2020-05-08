@@ -144,65 +144,66 @@
 							echo "<input type='text' class='form-control form-control-sm' placeholder='Apellido' id='apellido' name='apellido' value='$apellido_cli' readonly  >";
 						echo "</div>";
 					echo "</div>";
-
-					echo "<div class='row'>";
-						echo "<div class='col-3'>";
-							echo "<label>RFC:</label>";
-							echo "<input type='text' class='form-control form-control-sm' placeholder='RFC' id='rfc' name='rfc' value='$rfc' readonly  >";
-						echo "</div>";
-						echo "<div class='col-9'>";
-							echo "<label>CFDI:</label>";
-							echo "<input type='text' class='form-control form-control-sm' placeholder='CFDI' id='cfdi' name='cfdi' value='$cfdi' readonly  >";
-						echo "</div>";
-					echo "</div>";
-
-					if($dir_tipo==1){
-						echo "<hr>";
-						echo "<h5>Dirección de facturación</h5>";
+					
+					if($factura=='1'){
 						echo "<div class='row'>";
-							echo "<div class='col-8'>";
-								echo "<label>Dirección 1:</label>";
-								echo "<input type='text' class='form-control form-control-sm' id='fact_direccion1' name='fact_direccion1' value='$fact_direccion1_cli' readonly>";
-							echo "</div>";
-
-							echo "<div class='col-4'>";
-								echo "<label>Entrecalles:</label>";
-								echo "<input type='text' class='form-control form-control-sm' id='fact_entrecalles' name='fact_entrecalles' value='$fact_entrecalles_cli' readonly>";
-							echo "</div>";
-
 							echo "<div class='col-3'>";
-								echo "<label>Num. Exterior:</label>";
-								echo "<input type='text' class='form-control form-control-sm' id='fact_numero' name='fact_numero' value='$fact_numero_cli' readonly>";
+								echo "<label>RFC:</label>";
+								echo "<input type='text' class='form-control form-control-sm' placeholder='RFC' id='rfc' name='rfc' value='$rfc' readonly  >";
 							echo "</div>";
-
-							echo "<div class='col-3'>";
-								echo "<label>Colonia:</label>";
-								echo "<input type='text' class='form-control form-control-sm' id='fact_colonia' name='fact_colonia' value='$fact_colonia_cli' readonly>";
+							echo "<div class='col-9'>";
+								echo "<label>CFDI:</label>";
+								echo "<input type='text' class='form-control form-control-sm' placeholder='CFDI' id='cfdi' name='cfdi' value='$cfdi' readonly  >";
 							echo "</div>";
-
-							echo "<div class='col-3'>";
-								echo "<label>Ciudad:</label>";
-								echo "<input type='text' class='form-control form-control-sm' id='fact_ciudad' name='fact_ciudad' value='$fact_ciudad' readonly>";
-							echo "</div>";
-
-							echo "<div class='col-3'>";
-								echo "<label>CP:</label>";
-								echo "<input type='text' class='form-control form-control-sm' id='fact_cp' name='fact_cp' value='$fact_cp' readonly>";
-							echo "</div>";
-
-							echo "<div class='col-3'>";
-								echo "<label>Pais:</label>";
-								echo "<input type='text' class='form-control form-control-sm' id='fact_pais' name='fact_pais' value='$fact_pais' readonly>";
-							echo "</div>";
-
-							echo "<div class='col-3'>";
-								echo "<label>Estado:</label>";
-								echo "<input type='text' class='form-control form-control-sm' id='fact_estado' name='fact_estado' value='$fact_estado' readonly>";
-							echo "</div>";
-
 						echo "</div>";
-					}
 
+						if($dir_tipo==1){
+							echo "<hr>";
+							echo "<h5>Dirección de facturación</h5>";
+							echo "<div class='row'>";
+								echo "<div class='col-8'>";
+									echo "<label>Dirección 1:</label>";
+									echo "<input type='text' class='form-control form-control-sm' id='fact_direccion1' name='fact_direccion1' value='$fact_direccion1_cli' readonly>";
+								echo "</div>";
+
+								echo "<div class='col-4'>";
+									echo "<label>Entrecalles:</label>";
+									echo "<input type='text' class='form-control form-control-sm' id='fact_entrecalles' name='fact_entrecalles' value='$fact_entrecalles_cli' readonly>";
+								echo "</div>";
+
+								echo "<div class='col-3'>";
+									echo "<label>Num. Exterior:</label>";
+									echo "<input type='text' class='form-control form-control-sm' id='fact_numero' name='fact_numero' value='$fact_numero_cli' readonly>";
+								echo "</div>";
+
+								echo "<div class='col-3'>";
+									echo "<label>Colonia:</label>";
+									echo "<input type='text' class='form-control form-control-sm' id='fact_colonia' name='fact_colonia' value='$fact_colonia_cli' readonly>";
+								echo "</div>";
+
+								echo "<div class='col-3'>";
+									echo "<label>Ciudad:</label>";
+									echo "<input type='text' class='form-control form-control-sm' id='fact_ciudad' name='fact_ciudad' value='$fact_ciudad' readonly>";
+								echo "</div>";
+
+								echo "<div class='col-3'>";
+									echo "<label>CP:</label>";
+									echo "<input type='text' class='form-control form-control-sm' id='fact_cp' name='fact_cp' value='$fact_cp' readonly>";
+								echo "</div>";
+
+								echo "<div class='col-3'>";
+									echo "<label>Pais:</label>";
+									echo "<input type='text' class='form-control form-control-sm' id='fact_pais' name='fact_pais' value='$fact_pais' readonly>";
+								echo "</div>";
+
+								echo "<div class='col-3'>";
+									echo "<label>Estado:</label>";
+									echo "<input type='text' class='form-control form-control-sm' id='fact_estado' name='fact_estado' value='$fact_estado' readonly>";
+								echo "</div>";
+
+							echo "</div>";
+						}
+					}
 
 					echo "<hr>";
 					echo "<h5>Dirección de envío</h5>";
