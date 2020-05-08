@@ -160,6 +160,16 @@
 
 						$gtotal=$preciot+$enviot;
 
+						echo "<hr>";
+						echo "<div class='row'>";
+							echo "<div class='col-6'>";
+								echo "Subtotal";
+							echo "</div>";
+							echo "<div class='col-6 text-right'>";
+								echo moneda($gtotal);
+							echo "</div>";
+						echo "</div>";
+
 						$iva=$gtotal*.16;
 						echo "<hr>";
 						echo "<div class='row'>";
