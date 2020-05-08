@@ -157,6 +157,7 @@ h6::selection
 .form-control
 {
 	color: black;
+	min-width: 100%!important;
 }
 section
 {
