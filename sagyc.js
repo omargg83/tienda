@@ -348,6 +348,7 @@ function select_dir(){
 }
 function select_factdir(){
   var dir_fin=$("#dir_factfin").val();
+  console.log(dir_fin);
   if(dir_fin=='0'){
     $("#fact_direccion1").val("");
     $("#fact_entrecalles").val("");
