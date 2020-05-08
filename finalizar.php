@@ -132,21 +132,17 @@
 						<input type="text" class="form-control" id="rfc" name='rfc' placeholder="RFC" value="<?php echo $rfc; ?>">
 					</div>
 
-					<?php
-						echo "<div class='col-8'>";
-							echo "<label>Uso cfdi</label>";
-							echo "<select id='cfdi' name='cfdi' class='form-control'>";
-							$cfdi_obj=$db->cfdi();
-							foreach($cfdi_obj as $key){
-								echo "<option value='".$key->cfdi."'"; if($cfdi==$key->cfdi){ echo " selected";} echo " >".$key->cfdi."</option>";
-							}
-							echo "</select>";
-						echo "</div>";
-					 ?>
-				</div>
-
-				<div class='row'>
 				<?php
+					echo "<div class='col-8'>";
+						echo "<label>Uso cfdi</label>";
+						echo "<select id='cfdi' name='cfdi' class='form-control'>";
+						$cfdi_obj=$db->cfdi();
+						foreach($cfdi_obj as $key){
+							echo "<option value='".$key->cfdi."'"; if($cfdi==$key->cfdi){ echo " selected";} echo " >".$key->cfdi."</option>";
+						}
+						echo "</select>";
+					echo "</div>";
+
 					$resp=$db->direcciones();
 					if(is_array($resp) and strlen($_SESSION['correo'])>0){
 						echo "<div class='col-12'>";
