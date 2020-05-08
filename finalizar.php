@@ -159,7 +159,7 @@
 				</div>
 
 				<div class='row' id='dirfactura_div' style='display:none'>
-					<hr>
+					<br>
 					<h4 class='text-center'>Dirección de facturación</h4>
 
  						<div class="col-12">
@@ -197,7 +197,7 @@
 				</div>
 
 				<div class='row'>
-					<hr>
+					<br>
 					<h4 class='text-center'>Dirección de envio</h4>
 					<?php
 						$resp=$db->direcciones();

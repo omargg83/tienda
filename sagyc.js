@@ -357,10 +357,9 @@ function select_factdir(){
     $("#fact_cp").val("");
     $("#fact_pais").val("");
     $("#fact_estado").val("");
-
     $("#dirfactura_div").hide();
   }
-  if(dir_fin=='nueva'){
+  else if(dir_fin=='nueva'){
     $("#fact_direccion1").val("");
     $("#fact_entrecalles").val("");
     $("#fact_numero").val("");

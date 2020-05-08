@@ -1039,6 +1039,9 @@
 				$apellido = trim(htmlspecialchars($_REQUEST["apellido"]));
 				$rfc = trim(htmlspecialchars($_REQUEST["rfc"]));
 				$cfdi = trim(htmlspecialchars($_REQUEST["cfdi"]));
+
+
+				////////////////////direccion normal
 				$direccion1 = trim(htmlspecialchars($_REQUEST["direccion1"]));
 				$entrecalles = trim(htmlspecialchars($_REQUEST["entrecalles"]));
 				$numero = trim(htmlspecialchars($_REQUEST["numero"]));
@@ -1048,9 +1051,26 @@
 				$pais = trim(htmlspecialchars($_REQUEST["pais"]));
 				$pais = trim(htmlspecialchars($_REQUEST["pais"]));
 				$estado = trim(htmlspecialchars($_REQUEST["estado"]));
+
+				$dir_factfin = $_REQUEST["dir_factfin"];
+
+				if($dir_factfin!="0"){
+					////////////////////direccion factura
+					$fact_direccion1 = trim(htmlspecialchars($_REQUEST["fact_direccion1"]));
+					$fact_entrecalles = trim(htmlspecialchars($_REQUEST["fact_entrecalles"]));
+					$fact_numero = trim(htmlspecialchars($_REQUEST["fact_numero"]));
+					$fact_colonia = trim(htmlspecialchars($_REQUEST["fact_colonia"]));
+					$fact_ciudad = trim(htmlspecialchars($_REQUEST["fact_ciudad"]));
+					$fact_cp = trim(htmlspecialchars($_REQUEST["fact_cp"]));
+					$fact_pais = trim(htmlspecialchars($_REQUEST["fact_pais"]));
+					$fact_estado = trim(htmlspecialchars($_REQUEST["fact_estado"]));
+				}
+
+
 				$telefono = trim($_REQUEST["tele_x"]);
 				$correo = trim(htmlspecialchars($_REQUEST["correo"]));
 				$notas = trim(htmlspecialchars($_REQUEST["notas"]));
+
 				$dir_fin = $_REQUEST["dir_fin"];
 
 				if(isset($_REQUEST["pass"])){
@@ -1094,6 +1114,7 @@
 						$_SESSION['nombre']=$nombre." ".$apellido;
 					}
 				}
+
 				if($dir_fin=="nueva"){
 					$sql="insert into clientes_direccion (idcliente, direccion1, entrecalles, numero, colonia, ciudad, cp, pais, estado) values (:id, :direccion1, :entrecalles, :numero, :colonia, :ciudad, :cp, :pais, :estado)";
 					$sth = $this->dbh->prepare($sql);
@@ -1109,6 +1130,21 @@
 					$sth->execute();
 				}
 
+				if($dir_factfin=="nueva"){
+					$sql="insert into clientes_direccion (idcliente, direccion1, entrecalles, numero, colonia, ciudad, cp, pais, estado) values (:id, :direccion1, :entrecalles, :numero, :colonia, :ciudad, :cp, :pais, :estado)";
+					$sth = $this->dbh->prepare($sql);
+					$sth->bindValue(":id",$_SESSION['idcliente']);
+					$sth->bindValue(":direccion1",$fact_direccion1);
+					$sth->bindValue(":entrecalles",$fact_entrecalles);
+					$sth->bindValue(":numero",$fact_numero);
+					$sth->bindValue(":colonia",$fact_colonia);
+					$sth->bindValue(":ciudad",$fact_ciudad);
+					$sth->bindValue(":cp",$fact_cp);
+					$sth->bindValue(":pais",$fact_pais);
+					$sth->bindValue(":estado",$fact_estado);
+					$sth->execute();
+				}
+
 				///////////////////////////se genera el pedido
 				try{
 					self::set_names();
@@ -1120,6 +1156,7 @@
 					$arreglo+= array('apellido'=>$apellido);
 					$arreglo+= array('rfc'=>$rfc);
 					$arreglo+= array('cfdi'=>$cfdi);
+
 					$arreglo+= array('direccion1'=>$direccion1);
 					$arreglo+= array('entrecalles'=>$entrecalles);
 					$arreglo+= array('numero'=>$numero);
@@ -1129,6 +1166,20 @@
 					$arreglo+= array('pais'=>$pais);
 					$arreglo+= array('telefono'=>$telefono);
 					$arreglo+= array('estado'=>$estado);
+
+					if($dir_factfin!="0"){
+						$arreglo+= array('fact_direccion1'=>$fact_direccion1);
+						$arreglo+= array('fact_entrecalles'=>$fact_entrecalles);
+						$arreglo+= array('fact_numero'=>$fact_numero);
+						$arreglo+= array('fact_ciudad'=>$fact_ciudad);
+						$arreglo+= array('fact_colonia'=>$fact_colonia);
+						$arreglo+= array('fact_cp'=>$fact_cp);
+						$arreglo+= array('fact_pais'=>$fact_pais);
+						$arreglo+= array('fact_telefono'=>$fact_telefono);
+						$arreglo+= array('fact_estado'=>$fact_estado);
+					}
+
+
 					$arreglo+= array('correo'=>$correo);
 					$arreglo+= array('idcliente'=>$_SESSION['idcliente']);
 					$arreglo+= array('factura'=>$factura);
@@ -1139,7 +1190,6 @@
 						$pedido=json_decode($x);
 
 						$carro=$this->carro_list();
-
 						$preciot=0;
 						$enviot=0;
 						$totalPrecio=0;
