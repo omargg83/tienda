@@ -1273,6 +1273,8 @@ select option
 {
 	margin-right: 24px;
 }
+
+#dir_factfin{margin-left: 0px;}
 .char_content
 {
 	transform: translate(-1px, 3px);
