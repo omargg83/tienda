@@ -125,7 +125,6 @@
 					?>
 				</div>
 
-
 				<div class='row' id='factura_div' style='display:none'>
 					<div class="col-4">
 						<label>RFC</label>
@@ -152,7 +151,7 @@
 							foreach($resp as $key){
 								echo "<option value='".$key['iddireccion']."'>".$key['direccion1']."</option>";
 							}
-							echo "<option value='nueva'>Nueva dirección</option>";
+							echo "<option value='nueva'>* Nueva dirección</option>";
 							echo "</select>";
 						echo "</div>";
 					}
@@ -206,7 +205,7 @@
 								foreach($resp as $key){
 									echo "<option value='".$key['iddireccion']."'>".$key['direccion1']."</option>";
 								}
-								echo "<option value='nueva'>Nueva dirección</option>";
+								echo "<option value='nueva'>* Nueva dirección</option>";
 								echo "</select>";
 							echo "</div>";
 						}
