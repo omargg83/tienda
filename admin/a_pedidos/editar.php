@@ -144,7 +144,7 @@
 							echo "<input type='text' class='form-control form-control-sm' placeholder='Apellido' id='apellido' name='apellido' value='$apellido_cli' readonly  >";
 						echo "</div>";
 					echo "</div>";
-					
+
 					if($factura=='1'){
 						echo "<div class='row'>";
 							echo "<div class='col-3'>";
@@ -202,6 +202,11 @@
 								echo "</div>";
 
 							echo "</div>";
+						}
+						else{
+							echo "<hr>";
+							echo "<h5>Dirección de facturación</h5>";
+							echo "<h5>Usar la misma de envío</h5>";
 						}
 					}
 
