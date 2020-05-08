@@ -1,15 +1,15 @@
 <?php
 	require_once("control_db.php");
 	$db = new Tienda();
-	$mercado=$db->ajustes_editar();
-	$merca=$mercado->mercado_public;
-
-	$carro=$db->carro_list();
-	if(!is_array($carro) or count($carro)==0){
+	
+	if(strlen($_SESSION['idcliente'])==0 or !isset($_SESSION['idcliente'])){
 		header('Location: /');
 		die();
 	}
 
+	$mercado=$db->ajustes_editar();
+	$merca=$mercado->mercado_public;
+	$carro=$db->carro_list();
 	$resp=$db->datos();
 	$nombre=$resp->nombre;
 	$apellido=$resp->apellido;
