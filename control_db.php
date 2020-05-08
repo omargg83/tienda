@@ -1175,7 +1175,6 @@
 						$arreglo+= array('fact_colonia'=>$fact_colonia);
 						$arreglo+= array('fact_cp'=>$fact_cp);
 						$arreglo+= array('fact_pais'=>$fact_pais);
-						$arreglo+= array('fact_telefono'=>$fact_telefono);
 						$arreglo+= array('fact_estado'=>$fact_estado);
 						$arreglo+= array('dir_tipo'=>1);
 					}
