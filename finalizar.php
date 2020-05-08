@@ -105,6 +105,11 @@
 						>
 					</div>
 
+					<div class="col-3">
+						<label>Requiere factura</label><br>
+						<input type="checkbox" id="factura" name='factura' value=1 onclick='factura_act()'>
+					</div>
+
 					<?php
 						if (strlen($_SESSION['correo'])==0){
 							echo "<div class='col-3'>";
@@ -119,52 +124,46 @@
 						}
 					?>
 				</div>
-				<div class='row'>
-					<div class="col-3">
-						<label>Requiere factura</label><br>
-						<input type="checkbox" id="factura" name='factura' value=1 onclick='factura_act()'>
+
+
+				<div class='row' id='factura_div' style='display:none'>
+					<div class="col-4">
+						<label>RFC</label>
+						<input type="text" class="form-control" id="rfc" name='rfc' placeholder="RFC" value="<?php echo $rfc; ?>">
 					</div>
 
-					<div class="col-9" id='factura_div' style='display:none'>
-						<div class='row'>
-							<div class="col-4">
-								<label>RFC</label>
-								<input type="text" class="form-control" id="rfc" name='rfc' placeholder="RFC" value="<?php echo $rfc; ?>">
-							</div>
-
-							<?php
-								echo "<div class='col-8'>";
-									echo "<label>Uso cfdi</label>";
-									echo "<select id='cfdi' name='cfdi' class='form-control'>";
-									$cfdi_obj=$db->cfdi();
-									foreach($cfdi_obj as $key){
-										echo "<option value='".$key->cfdi."'"; if($cfdi==$key->cfdi){ echo " selected";} echo " >".$key->cfdi."</option>";
-									}
-									echo "</select>";
-								echo "</div>";
-							 ?>
-						</div>
-
-						<div class='row'>
-						<?php
-							$resp=$db->direcciones();
-							if(is_array($resp) and strlen($_SESSION['correo'])>0){
-								echo "<div class='col-12'>";
-									echo "<label>Direcciones de facturación disponibles</label>";
-									echo "<select id='dir_fin' name='dir_fin' class='form-control' onchange='select_dir()'>";
-									echo "<option value='0'>Utilizar la misma dirección de envío</option>";
-									foreach($resp as $key){
-										echo "<option value='".$key['iddireccion']."'>".$key['direccion1']."</option>";
-									}
-									echo "<option value='nueva'>Nueva dirección</option>";
-									echo "</select>";
-								echo "</div>";
+					<?php
+						echo "<div class='col-8'>";
+							echo "<label>Uso cfdi</label>";
+							echo "<select id='cfdi' name='cfdi' class='form-control'>";
+							$cfdi_obj=$db->cfdi();
+							foreach($cfdi_obj as $key){
+								echo "<option value='".$key->cfdi."'"; if($cfdi==$key->cfdi){ echo " selected";} echo " >".$key->cfdi."</option>";
 							}
-						?>
-						</div>
-
-					</div>
+							echo "</select>";
+						echo "</div>";
+					 ?>
 				</div>
+
+				<div class='row'>
+				<?php
+					$resp=$db->direcciones();
+					if(is_array($resp) and strlen($_SESSION['correo'])>0){
+						echo "<div class='col-12'>";
+							echo "<label>Direcciones de facturación disponibles</label>";
+							echo "<select id='dir_fin' name='dir_fin' class='form-control' onchange='select_dir()'>";
+							echo "<option value='0'>Utilizar la misma dirección de envío</option>";
+							foreach($resp as $key){
+								echo "<option value='".$key['iddireccion']."'>".$key['direccion1']."</option>";
+							}
+							echo "<option value='nueva'>Nueva dirección</option>";
+							echo "</select>";
+						echo "</div>";
+					}
+				?>
+				</div>
+
+
 
 				<div class='row'>
  						<div class="col-12">
