@@ -124,7 +124,7 @@
 						<label>Requiere factura</label><br>
 						<input type="checkbox" id="factura" name='factura' value=1 onclick='factura_act()'>
 					</div>
-					
+
 				</div>
 
 				<div class='row' id='factura_div' style='display:none'>
@@ -145,7 +145,7 @@
 					echo "</div>";
 
 					$resp=$db->direcciones();
-					if(is_array($resp) and strlen($_SESSION['correo'])>0){
+					/*if(is_array($resp) and strlen($_SESSION['correo'])>0){*/
 						echo "<div class='col-12'>";
 							echo "<label>Direcciones de facturación disponibles</label>";
 							echo "<select id='dir_factfin' name='dir_factfin' class='form-control' onchange='select_factdir()'>";
@@ -156,7 +156,7 @@
 							echo "<option value='nueva'>* Nueva dirección</option>";
 							echo "</select>";
 						echo "</div>";
-					}
+					/*}*/
 				?>
 				</div>
 
