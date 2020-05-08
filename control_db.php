@@ -32,14 +32,12 @@
 			$this->cgeneral=$tmp->p_general;
 			$this->egeneral=$tmp->c_envio;
 
-
 			$this->ecorreo=$tmp->correo;
 			$this->host=$tmp->host;
 			$this->SMTPAuth=$tmp->SMTPAuth;
 			$this->Password=$tmp->Password;
 			$this->SMTPSecure=$tmp->SMTPSecure;
 			$this->Port=$tmp->Port;
-
 		}
 		public function set_names(){
 			return $this->dbh->query("SET NAMES 'utf8'");

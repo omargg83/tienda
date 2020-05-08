@@ -7,6 +7,13 @@ else{
   galletax(galleta);
 }
 
+
+
+$(function(){
+
+
+});
+
 function galletax(galleta){
   $.ajax({
     url: "/control_db.php",
@@ -21,7 +28,6 @@ function galletax(galleta){
     }
   });
 }
-
 function salir(){
   $.ajax({
     url: "/control_db.php",

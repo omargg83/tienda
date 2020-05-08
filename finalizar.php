@@ -1,12 +1,10 @@
 <?php
 	require_once("control_db.php");
 	$db = new Tienda();
-
 	if(!isset($_SESSION['idcliente']) or strlen($_SESSION['idcliente'])==0){
 		header('Location: /');
 		die();
 	}
-
 	$mercado=$db->ajustes_editar();
 	$merca=$mercado->mercado_public;
 	$carro=$db->carro_list();
@@ -128,9 +126,8 @@
 						}
 					?>
 				</div>
-
+				<hr>
 				<div class='row' id='factura_div' style='display:none'>
-					<hr>
 					<div class="col-3">
 						<label>RFC</label>
 						<input type="text" class="form-control" id="rfc" name='rfc' placeholder="RFC" value="<?php echo $rfc; ?>">
