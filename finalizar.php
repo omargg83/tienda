@@ -147,7 +147,7 @@
 					if(is_array($resp) and strlen($_SESSION['correo'])>0){
 						echo "<div class='col-12'>";
 							echo "<label>Direcciones de facturación disponibles</label>";
-							echo "<select id='dir_fin' name='dir_fin' class='form-control' onchange='select_factdir()'>";
+							echo "<select id='dir_factfin' name='dir_factfin' class='form-control' onchange='select_factdir()'>";
 							echo "<option value='0'>Utilizar la misma dirección de envío</option>";
 							foreach($resp as $key){
 								echo "<option value='".$key['iddireccion']."'>".$key['direccion1']."</option>";

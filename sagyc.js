@@ -347,16 +347,28 @@ function select_dir(){
 
 }
 function select_factdir(){
-  var dir_fin=$("#dir_fin").val();
+  var dir_fin=$("#dir_factfin").val();
+  if(dir_fin=='0'){
+    $("#fact_direccion1").val("");
+    $("#fact_entrecalles").val("");
+    $("#fact_numero").val("");
+    $("#fact_colonia").val("");
+    $("#fact_ciudad").val("");
+    $("#fact_cp").val("");
+    $("#fact_pais").val("");
+    $("#fact_estado").val("");
+    $("#dirfactura_div").hide();
+  }
   if(dir_fin=='nueva'){
-    $("#direccion1").val("");
-    $("#entrecalles").val("");
-    $("#numero").val("");
-    $("#colonia").val("");
-    $("#ciudad").val("");
-    $("#cp").val("");
-    $("#pais").val("");
-    $("#estado").val("");
+    $("#fact_direccion1").val("");
+    $("#fact_entrecalles").val("");
+    $("#fact_numero").val("");
+    $("#fact_colonia").val("");
+    $("#fact_ciudad").val("");
+    $("#fact_cp").val("");
+    $("#fact_pais").val("");
+    $("#fact_estado").val("");
+    $("#fact_dirfactura_div").show();
   }
   else{
     $.ajax({
@@ -370,14 +382,15 @@ function select_factdir(){
       success: function( response ) {
         var datos = JSON.parse(response);
         if(datos.error==0){
-          $("#direccion1").val(datos.direccion1);
-          $("#entrecalles").val(datos.entrecalles);
-          $("#numero").val(datos.numero);
-          $("#colonia").val(datos.colonia);
-          $("#ciudad").val(datos.ciudad);
-          $("#cp").val(datos.cp);
-          $("#pais").val(datos.pais);
-          $("#estado").val(datos.estado);
+          $("#fact_direccion1").val(datos.direccion1);
+          $("#fact_entrecalles").val(datos.entrecalles);
+          $("#fact_numero").val(datos.numero);
+          $("#fact_colonia").val(datos.colonia);
+          $("#fact_ciudad").val(datos.ciudad);
+          $("#fact_cp").val(datos.cp);
+          $("#fact_pais").val(datos.pais);
+          $("#fact_estado").val(datos.estado);
+          $("#fact_dirfactura_div").hide();
         }
       }
     });
