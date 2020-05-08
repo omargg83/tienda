@@ -1,8 +1,8 @@
 <?php
 	require_once("control_db.php");
 	$db = new Tienda();
-	
-	if(strlen($_SESSION['idcliente'])==0 or !isset($_SESSION['idcliente'])){
+
+	if(!isset($_SESSION['idcliente']) or strlen($_SESSION['idcliente'])==0){
 		header('Location: /');
 		die();
 	}
