@@ -1177,8 +1177,11 @@
 						$arreglo+= array('fact_pais'=>$fact_pais);
 						$arreglo+= array('fact_telefono'=>$fact_telefono);
 						$arreglo+= array('fact_estado'=>$fact_estado);
+						$arreglo+= array('dir_tipo'=>1);
 					}
-
+					else{
+						$arreglo+= array('dir_tipo'=>0);
+					}
 
 					$arreglo+= array('correo'=>$correo);
 					$arreglo+= array('idcliente'=>$_SESSION['idcliente']);
