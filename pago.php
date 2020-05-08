@@ -126,7 +126,41 @@
 							echo "<hr>";
 							echo "<h5>Dirección de facturación</h5>";
 						?>
+						<div class='row'>
+							<div class="col-12">
+								<label>Dirección</label>
+								<input type="text" class="form-control" id="fact_direccion1" name='fact_direccion1' placeholder="Dirección" value="<?php echo $fact_direccion1; ?>" readonly>
+							</div>
+							<div class="col-4">
+								<label>Entre calles</label>
+								<input type="text" class="form-control" id="fact_entrecalles" name='fact_entrecalles' placeholder="Entre calles" value="<?php echo $fact_entrecalles; ?>" readonly>
+							</div>
+							<div class="col-4">
+								<label>Num. Exterior</label>
+								<input type="text" class="form-control" id="fact_numero" name='fact_numero' placeholder="Num. Exterior" value="<?php echo $fact_numero; ?>" readonly>
+							</div>
+							<div class="col-4">
+								<label>Colonia</label>
+								<input type="text" class="form-control" id="fact_colonia" name='fact_colonia' placeholder="Colonia" value="<?php echo $fact_colonia; ?>" readonly>
+							</div>
+							<div class="col-4">
+								<label>Ciudad</label>
+								<input type="text" class="form-control" id="fact_ciudad" name='fact_ciudad' placeholder="Ciudad" value="<?php echo $fact_ciudad; ?>" readonly>
+							</div>
+							<div class="col-4">
+								<label>Código postal</label>
+								<input type="text" class="form-control" id="fact_cp" name='fact_cp' placeholder="Código postal" value="<?php echo $fact_cp; ?>" readonly>
+							</div>
+							<div class="col-4">
+								<label>Pais</label>
+								<input type="text" class="form-control" id="fact_pais" name='fact_pais' placeholder="Pais" value="<?php echo $fact_pais; ?>" readonly>
+							</div>
+							<div class="col-4">
+								<label>Estado</label>
+								<input type="text" class="form-control" id="fact_estado" name='fact_estado' placeholder="Estado" value="<?php echo $fact_estado; ?>" readonly>
+							</div>
 							
+						</div>
 						<?php
 						}
 						else{
@@ -144,7 +178,7 @@
 				<div class='row'>
 					<div class="col-12">
 						<label>Dirección</label>
-						<input type="text" class="form-control" id="direccion1" name='direccion1' placeholder="Dirección (linea 1)" value="<?php echo $direccion1; ?>" readonly>
+						<input type="text" class="form-control" id="direccion1" name='direccion1' placeholder="Dirección" value="<?php echo $direccion1; ?>" readonly>
 					</div>
 					<div class="col-4">
 						<label>Entre calles</label>
