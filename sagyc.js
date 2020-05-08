@@ -358,6 +358,7 @@ function select_factdir(){
     $("#fact_cp").val("");
     $("#fact_pais").val("");
     $("#fact_estado").val("");
+
     $("#dirfactura_div").hide();
   }
   if(dir_fin=='nueva'){
@@ -369,7 +370,7 @@ function select_factdir(){
     $("#fact_cp").val("");
     $("#fact_pais").val("");
     $("#fact_estado").val("");
-    $("#fact_dirfactura_div").show();
+    $("#dirfactura_div").show();
   }
   else{
     $.ajax({
@@ -391,7 +392,7 @@ function select_factdir(){
           $("#fact_cp").val(datos.cp);
           $("#fact_pais").val(datos.pais);
           $("#fact_estado").val(datos.estado);
-          $("#fact_dirfactura_div").show();
+          $("#dirfactura_div").show();
         }
       }
     });
