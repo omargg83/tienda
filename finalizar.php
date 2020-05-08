@@ -105,7 +105,7 @@
 						>
 					</div>
 
-					
+
 
 					<?php
 						if (strlen($_SESSION['correo'])==0){
@@ -135,7 +135,7 @@
 
 				<?php
 					echo "<div class='col-8'>";
-						echo "<label>Uso cfdi</label>";
+						echo "<label>Uso CFDI</label>";
 						echo "<select id='cfdi' name='cfdi' class='form-control'>";
 						$cfdi_obj=$db->cfdi();
 						foreach($cfdi_obj as $key){
@@ -341,6 +341,17 @@
 						echo "</div>";
 
 
+						$iva=$total*.16;
+						echo "<div class='row'>";
+							echo "<div class='col-6'>";
+								echo "IVA";
+							echo "</div>";
+							echo "<div class='col-6 text-right'>";
+								echo moneda($iva);
+							echo "</div>";
+						echo "</div>";
+
+
 						$gtotal=$total+$envio;
 						echo "<hr>";
 						echo "<div class='row'>";
@@ -351,6 +362,7 @@
 								echo moneda($gtotal);
 							echo "</div>";
 						echo "</div>";
+						
 						echo "<button type='submit' class='btn btn-warning btn-block'><i class='fas fa-cart-plus'></i>Finalizar pedido</button>";
 						echo "<input type='checkbox' id='terminos' name='terminos' value=1 required checked> Acepto los <a href='/terminos-condiciones.php' target='blanck_'>Términos y condiciones</a>";
 					?>
