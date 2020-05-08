@@ -44,7 +44,7 @@
       $t_carro+=$p_final;
     }
   }
-
+  $t_carro=$t_carro*1.16;
 ?>
   <!-- Top Bar -->
   <?php
