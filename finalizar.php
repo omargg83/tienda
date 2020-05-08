@@ -125,26 +125,31 @@
 						<label>Requiere factura</label><br>
 						<input type="checkbox" id="factura" name='factura' value=1 onclick='factura_act()'>
 					</div>
-				</div>
-				<hr>
-				<div class='row' id='factura_div' style='display:none'>
-					<div class="col-3">
-						<label>RFC</label>
-						<input type="text" class="form-control" id="rfc" name='rfc' placeholder="RFC" value="<?php echo $rfc; ?>">
+
+
+					<div class="col-8" id='factura_div' style='display:none'>
+						<div class='row'>
+							<div class="col-3">
+								<label>RFC</label>
+								<input type="text" class="form-control" id="rfc" name='rfc' placeholder="RFC" value="<?php echo $rfc; ?>">
+							</div>
+
+							<?php
+								echo "<div class='col-9'>";
+									echo "<label>Uso cfdi</label>";
+									echo "<select id='cfdi' name='cfdi' class='form-control'>";
+									$cfdi_obj=$db->cfdi();
+									foreach($cfdi_obj as $key){
+										echo "<option value='".$key->cfdi."'"; if($cfdi==$key->cfdi){ echo " selected";} echo " >".$key->cfdi."</option>";
+									}
+									echo "</select>";
+								echo "</div>";
+							 ?>
+						</div>
 					</div>
+				</div>
 
-					<?php
-						echo "<div class='col-9'>";
-							echo "<label>Uso cfdi</label>";
-							echo "<select id='cfdi' name='cfdi' class='form-control'>";
-							$cfdi_obj=$db->cfdi();
-							foreach($cfdi_obj as $key){
-								echo "<option value='".$key->cfdi."'"; if($cfdi==$key->cfdi){ echo " selected";} echo " >".$key->cfdi."</option>";
-							}
-							echo "</select>";
-						echo "</div>";
-					 ?>
-
+				<div class='row'>
  						<div class="col-12">
  							<label>Dirección</label>
  							<input type="text" class="form-control" id="fact_direccion1" name='fact_direccion1' placeholder="Dirección" value="<?php echo $direccion1; ?>" required>
