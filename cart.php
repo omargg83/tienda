@@ -171,10 +171,9 @@
 						echo "</div>";
 
 						$iva=$gtotal*.16;
-						echo "<hr>";
 						echo "<div class='row'>";
 							echo "<div class='col-6'>";
-								echo "Iva";
+								echo "IVA";
 							echo "</div>";
 							echo "<div class='col-6 text-right'>";
 								echo moneda($iva);
