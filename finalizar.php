@@ -184,7 +184,7 @@
 					if(is_array($resp) and strlen($_SESSION['correo'])>0){
 						echo "<div class='row'>";
 							echo "<div class='col-12'>";
-								echo "<label>Dirección</label>";
+								echo "<label>Direcciones disponibles</label>";
 								echo "<select id='dir_fin' name='dir_fin' class='form-control' onchange='select_dir()'>";
 								echo "<option value='0'>utilizar principal</option>";
 								foreach($resp as $key){
@@ -197,6 +197,7 @@
 					}
 				?>
 				<hr>
+				<h3>Dirección de envio</h3>
 				<div class='row'>
 					<div class="col-12">
 						<label>Dirección</label>
