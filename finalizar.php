@@ -121,13 +121,12 @@
 					?>
 				</div>
 				<div class='row'>
-					<div class="col-4">
+					<div class="col-3">
 						<label>Requiere factura</label><br>
 						<input type="checkbox" id="factura" name='factura' value=1 onclick='factura_act()'>
 					</div>
 
-
-					<div class="col-8" id='factura_div' style='display:none'>
+					<div class="col-9" id='factura_div' style='display:none'>
 						<div class='row'>
 							<div class="col-3">
 								<label>RFC</label>
