@@ -159,6 +159,19 @@
 						echo "</div>";
 
 						$gtotal=$preciot+$enviot;
+
+						$iva=$gtotal*.16;
+						echo "<hr>";
+						echo "<div class='row'>";
+							echo "<div class='col-6'>";
+								echo "Iva";
+							echo "</div>";
+							echo "<div class='col-6 text-right'>";
+								echo moneda($iva);
+							echo "</div>";
+						echo "</div>";
+
+						$gtotal=$gtotal*1.16;
 						echo "<hr>";
 						echo "<div class='row'>";
 							echo "<div class='col-6'>";
