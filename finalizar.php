@@ -144,8 +144,45 @@
 							echo "</select>";
 						echo "</div>";
 					 ?>
+
+					 <div class='row'>
+ 						<div class="col-12">
+ 							<label>Dirección</label>
+ 							<input type="text" class="form-control" id="fact_direccion1" name='fact_direccion1' placeholder="Dirección" value="<?php echo $direccion1; ?>" required>
+ 						</div>
+ 						<div class="col-4">
+ 							<label>Entre calles</label>
+ 							<input type="text" class="form-control" id="fact_entrecalles" name='fact_entrecalles' placeholder="Entre calles" value="<?php echo $entrecalles; ?>" >
+ 						</div>
+ 						<div class="col-4">
+ 							<label>Num. Exterior</label>
+ 							<input type="text" class="form-control" id="fact_numero" name='fact_numero' placeholder="Num. Exterior" value="<?php echo $numero; ?>" >
+ 						</div>
+ 						<div class="col-4">
+ 							<label>Colonia</label>
+ 							<input type="text" class="form-control" id="fact_colonia" name='fact_colonia' placeholder="Col" value="<?php echo $colonia; ?>" >
+ 						</div>
+ 						<div class="col-4">
+ 							<label>Ciudad</label>
+ 							<input type="text" class="form-control" id="fact_ciudad" name='fact_ciudad' placeholder="Ciudad" value="<?php echo $ciudad; ?>" required>
+ 						</div>
+ 						<div class="col-4">
+ 							<label>Código postal</label>
+ 							<input type="text" class="form-control input-number" id="fact_cp" name='fact_cp' placeholder="Código postal" value="<?php echo $cp; ?>" required>
+ 						</div>
+ 						<div class="col-4">
+ 							<label>Pais</label>
+ 							<input type="text" class="form-control" id="fact_pais" name='fact_pais' placeholder="Pais" value="<?php echo $pais; ?>" required>
+ 						</div>
+ 						<div class="col-4">
+ 							<label>Estado</label>
+ 							<input type="text" class="form-control" id="fact_estado" name='fact_estado' placeholder="Estado" value="<?php echo $estado; ?>" required>
+ 						</div>
+ 					</div>
+
+
 				</div>
-				<hr>
+
 				<?php
 					$resp=$db->direcciones();
 					if(is_array($resp) and strlen($_SESSION['correo'])>0){
@@ -161,9 +198,9 @@
 								echo "</select>";
 							echo "</div>";
 						echo "</div>";
-						echo "<hr>";
 					}
 				?>
+				<hr>
 				<div class='row'>
 					<div class="col-12">
 						<label>Dirección</label>
