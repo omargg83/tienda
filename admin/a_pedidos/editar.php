@@ -20,11 +20,22 @@
 	$numero_cli="";
 	$colonia_cli="";
 	$ciudad="";
-	$rfc="";
-	$cfdi="";
-	$cp="";
 	$pais="";
 	$estado="";
+	$cp="";
+
+	$fact_direccion1_cli="";
+	$fact_entrecalles_cli="";
+	$fact_numero_cli="";
+	$fact_colonia_cli="";
+	$fact_ciudad="";
+	$fact_pais="";
+	$fact_estado="";
+	$fact_cp="";
+
+	$rfc="";
+	$cfdi="";
+
 	$telefono="";
 	$factura="";
 
@@ -44,22 +55,32 @@
 
 		$rfc=$row['rfc'];
 		$cfdi=$row['cfdi'];
-		$ciudad=$row['ciudad'];
-		$cp=$row['cp'];
-		$pais=$row['pais'];
-		$estado=$row['estado'];
+
 		$telefono=$row['telefono'];
 		$factura=$row['factura'];
 
 		$nombre_cli=$row['nombre'];
 		$apellido_cli=$row['apellido'];
 		$correo_cli=$row['correo'];
+
 		$direccion1_cli=$row['direccion1'];
 		$entrecalles_cli=$row['entrecalles'];
 		$numero_cli=$row['numero'];
 		$colonia_cli=$row['colonia'];
+		$ciudad=$row['ciudad'];
+		$cp=$row['cp'];
+		$pais=$row['pais'];
+		$estado=$row['estado'];
 
-  	$cli=$db->cliente($idcliente);
+		$fact_direccion1_cli=$row['fact_direccion1'];
+		$fact_entrecalles_cli=$row['fact_entrecalles'];
+		$fact_numero_cli=$row['fact_numero'];
+		$fact_colonia_cli=$row['fact_colonia'];
+		$fact_ciudad=$row['fact_ciudad'];
+		$fact_cp=$row['fact_cp'];
+		$fact_pais=$row['fact_pais'];
+		$fact_estado=$row['fact_estado'];
+
   }
   echo "<div class='container'>";
     echo "<form id='form_comision' action='' data-lugar='a_pedidos/db_' data-destino='a_pedidos/editar' data-funcion='guardar_pedido'>";
@@ -132,6 +153,8 @@
 						echo "</div>";
 					echo "</div>";
 
+					echo "<hr>";
+					echo "<h5>Dirección de envío</h5>";
 					echo "<div class='row'>";
 						echo "<div class='col-8'>";
 							echo "<label>Dirección 1:</label>";
