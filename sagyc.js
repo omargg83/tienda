@@ -391,7 +391,7 @@ function select_factdir(){
           $("#fact_cp").val(datos.cp);
           $("#fact_pais").val(datos.pais);
           $("#fact_estado").val(datos.estado);
-          $("#fact_dirfactura_div").hide();
+          $("#fact_dirfactura_div").show();
         }
       }
     });
