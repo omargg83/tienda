@@ -84,13 +84,6 @@
 					</div>
 
 					<div class="col-4">
-						<label>Requiere factura</label><br>
-						<input type="checkbox" id="factura" name='factura' value=1 onclick='factura_act()'>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-6">
 						<label class='text-center'>Correo</label>
 						<input type="email" class="form-control" id="correo" name='correo' placeholder="Correo" value="<?php echo $correo; ?>" required
 						<?php
@@ -112,6 +105,7 @@
 						>
 					</div>
 
+
 					<?php
 						if (strlen($_SESSION['correo'])==0){
 							echo "<div class='col-3'>";
@@ -125,6 +119,12 @@
 							echo "</div>";
 						}
 					?>
+				</div>
+				<div class='row'>
+					<div class="col-4">
+						<label>Requiere factura</label><br>
+						<input type="checkbox" id="factura" name='factura' value=1 onclick='factura_act()'>
+					</div>
 				</div>
 				<hr>
 				<div class='row' id='factura_div' style='display:none'>
@@ -197,7 +197,7 @@
 					}
 				?>
 				<hr>
-				<h3>Dirección de envio</h3>
+				<h4 class='text-center'>Dirección de envio</h4>
 				<div class='row'>
 					<div class="col-12">
 						<label>Dirección</label>
