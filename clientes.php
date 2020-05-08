@@ -50,7 +50,8 @@
 
 					echo "<div class='row' id='pedidostitulo'>";
 					echo "<div class='col-2'>-</div>
-							<div class='col-4'>Pedido</div>
+							<div class='col-1'>#</div>
+							<div class='col-3'>Pedido</div>
 							<div class='col-2'>Total</div>
 							<div class='col-2'>Envio</div>
 							<div class='col-2'>Total</div>
@@ -70,9 +71,12 @@
 								echo "</div>";
 							echo "</div>";
 
-							echo "<div class='col-4'>";
+							echo "<div class='col-1'>";
 								echo "#".$key->id;
-								echo "<br>".fecha($key->fecha);
+							echo "</div>";
+
+							echo "<div class='col-3'>";
+								echo fecha($key->fecha);
 								echo "<br>".$key->estatus;
 							echo "</div>";
 

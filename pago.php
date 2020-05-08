@@ -28,6 +28,7 @@
 	$correo=$ped->correo;
 	$rfc=$ped->rfc;
 	$cfdi=$ped->cfdi;
+
 	$direccion1=$ped->direccion1;
 	$entrecalles=$ped->entrecalles;
 	$numero=$ped->numero;
@@ -39,6 +40,16 @@
 	$telefono=$ped->telefono;
 	$total=$ped->total;
 	$factura=$ped->factura;
+
+	$fact_direccion1=$ped->fact_direccion1;
+	$fact_entrecalles=$ped->fact_entrecalles;
+	$fact_numero=$ped->fact_numero;
+	$fact_colonia=$ped->fact_colonia;
+	$fact_ciudad=$ped->fact_ciudad;
+	$fact_cp=$ped->fact_cp;
+	$fact_pais=$ped->fact_pais;
+	$fact_estado=$ped->fact_estado;
+	$dir_tipo=$ped->dir_tipo;
 
 ?>
 
@@ -100,23 +111,39 @@
 
 					if($factura==1){
 						echo "<div class='row'>";
-							echo "<div class='col-3'>";
+							echo "<div class='col-4'>";
 								echo "<label>RFC</label>";
 								echo "<input type='text' class='form-control' id='rfc' name='rfc' placeholder='RFC' value='$rfc' readonly>";
 							echo "</div>";
 
-							echo "<div class='col-6'>";
+							echo "<div class='col-8'>";
 								echo "<label>Uso cfdi</label>";
 								echo "<input type='text' class='form-control' id='cfdi' name='cfdi' placeholder='Uso cfdi' value='$cfdi' readonly>";
 							echo "</div>";
 						echo "</div>";
+
+						if ($dir_tipo==1){
+							echo "<hr>";
+							echo "<h5>Dirección de facturación</h5>";
+						?>
+							
+						<?php
+						}
+						else{
+							echo "<hr>";
+							echo "<h5>Dirección de facturación</h5>";
+							echo "<h5>Usar la misma de envío</h5>";
+						}
+
+
 					}
 
 				?>
-
+				<hr>
+				<h5>Dirección de envio</h5>
 				<div class='row'>
 					<div class="col-12">
-						<label>Dirección (linea 1)</label>
+						<label>Dirección</label>
 						<input type="text" class="form-control" id="direccion1" name='direccion1' placeholder="Dirección (linea 1)" value="<?php echo $direccion1; ?>" readonly>
 					</div>
 					<div class="col-4">
