@@ -105,10 +105,7 @@
 						>
 					</div>
 
-					<div class="col-4">
-						<label>Requiere factura</label><br>
-						<input type="checkbox" id="factura" name='factura' value=1 onclick='factura_act()'>
-					</div>
+					
 
 					<?php
 						if (strlen($_SESSION['correo'])==0){
@@ -123,6 +120,11 @@
 							echo "</div>";
 						}
 					?>
+					<div class="col-4">
+						<label>Requiere factura</label><br>
+						<input type="checkbox" id="factura" name='factura' value=1 onclick='factura_act()'>
+					</div>
+					
 				</div>
 
 				<div class='row' id='factura_div' style='display:none'>
