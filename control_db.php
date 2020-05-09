@@ -1040,7 +1040,6 @@
 				$rfc = trim(htmlspecialchars($_REQUEST["rfc"]));
 				$cfdi = trim(htmlspecialchars($_REQUEST["cfdi"]));
 
-
 				////////////////////direccion normal
 				$direccion1 = trim(htmlspecialchars($_REQUEST["direccion1"]));
 				$entrecalles = trim(htmlspecialchars($_REQUEST["entrecalles"]));
@@ -1051,7 +1050,6 @@
 				$pais = trim(htmlspecialchars($_REQUEST["pais"]));
 				$pais = trim(htmlspecialchars($_REQUEST["pais"]));
 				$estado = trim(htmlspecialchars($_REQUEST["estado"]));
-
 				$dir_factfin = $_REQUEST["dir_factfin"];
 
 				if($dir_factfin!="0"){
@@ -1066,13 +1064,11 @@
 					$fact_estado = trim(htmlspecialchars($_REQUEST["fact_estado"]));
 				}
 
-
 				$telefono = trim($_REQUEST["tele_x"]);
 				$correo = trim(htmlspecialchars($_REQUEST["correo"]));
 				$notas = trim(htmlspecialchars($_REQUEST["notas"]));
 
 				$dir_fin = $_REQUEST["dir_fin"];
-
 				if(isset($_REQUEST["pass"])){
 					$pass = trim($_REQUEST["pass"]);
 				}
@@ -1187,104 +1183,96 @@
 					$arreglo+= array('factura'=>$factura);
 					$arreglo+= array('notas'=>$notas);
 					$x="";
-					if($id==0){
-						$x=$this->insert('pedidos', $arreglo);
-						$pedido=json_decode($x);
 
-						$carro=$this->carro_list();
-						$preciot=0;
-						$enviot=0;
-						$totalPrecio=0;
-						$totalEnvio=0;
-						//////////////////////////////////////////////////////////////////////////
-						foreach($carro as $key){
-							////////////precio
-							$preciof=0;
-							$enviof=0;
-							if($key->precio_tipo==0){
-								$preciof=$key->preciof;
-							}
-							if($key->precio_tipo==1){
-								$p_total=$key->preciof+(($key->preciof*$this->cgeneral)/100);
-								$preciof=$p_total;
-							}
-							if($key->precio_tipo==2){
-								$preciof=$key->precio_tic;
-							}
-							if($key->precio_tipo==3){
-								$p_total=$key->precio_tic+(($key->precio_tic*$this->cgeneral)/100);
-								$preciof=$p_total;
-							}
-							//////////////////envio
+					$x=$this->insert('pedidos', $arreglo);
+					$pedido=json_decode($x);
 
-							if($key->envio_tipo==0){
-								$enviof=$this->egeneral;
-							}
-							if($key->envio_tipo==1){
-								$enviof=$key->envio_costo;
-							}
-
-							$enviot=$enviof*$key->cantidad;
-							$preciot=$preciof*$key->cantidad;
-							$sub=$enviot+$preciot;
-
-							$arreglo =array();
-							$arreglo+= array('idprod'=>$key->id);
-							$arreglo+= array('idpedido'=>$pedido->id);
-							$arreglo+= array('cantidad'=>$key->cantidad);
-
-							$arreglo+= array('precio'=>$preciof);
-							$arreglo+= array('envio'=>$enviof);
-
-							$arreglo+= array('total'=>$sub);
-
-							$arreglo+= array('idProducto'=>$key->idProducto);
-							$arreglo+= array('clave'=>$key->clave);
-							$arreglo+= array('numParte'=>$key->numParte);
-							$arreglo+= array('nombre'=>$key->nombre);
-							$arreglo+= array('modelo'=>$key->modelo);
-							$arreglo+= array('marca'=>$key->marca);
-							$arreglo+= array('categoria'=>$key->categoria);
-							$arreglo+= array('descripcion_corta'=>$key->descripcion_corta);
-
-							if($key->interno==1){
-								$arreglo+= array('tipo'=>"TIC");
-							}
-							else{
-								$arreglo+= array('tipo'=>"CT");
-							}
-							$this->insert('pedidos_prod', $arreglo);
-
-							$totalPrecio+=$preciot;
-							$totalEnvio+=$enviot;
+					$carro=$this->carro_list();
+					$preciot=0;
+					$enviot=0;
+					$totalPrecio=0;
+					$totalEnvio=0;
+					//////////////////////////////////////////////////////////////////////////
+					foreach($carro as $key){
+						////////////precio
+						$preciof=0;
+						$enviof=0;
+						if($key->precio_tipo==0){
+							$preciof=$key->preciof;
 						}
-						$arreglo =array();
-						$arreglo+= array('monto'=>$totalPrecio);
-						$arreglo+= array('envio'=>$totalEnvio);
-						$gtotal=$totalPrecio+$totalEnvio;
+						if($key->precio_tipo==1){
+							$p_total=$key->preciof+(($key->preciof*$this->cgeneral)/100);
+							$preciof=$p_total;
+						}
+						if($key->precio_tipo==2){
+							$preciof=$key->precio_tic;
+						}
+						if($key->precio_tipo==3){
+							$p_total=$key->precio_tic+(($key->precio_tic*$this->cgeneral)/100);
+							$preciof=$p_total;
+						}
+						//////////////////envio
 
-						$gtotal=$gtotal*1.16;
-						$arreglo+= array('total'=>round($gtotal,2));
-						$this->update('pedidos',array('id'=>$pedido->id), $arreglo);
-						//////////////////////////////////////////////////////////////////////////
+						if($key->envio_tipo==0){
+							$enviof=$this->egeneral;
+						}
+						if($key->envio_tipo==1){
+							$enviof=$key->envio_costo;
+						}
+
+						$enviot=$enviof*$key->cantidad;
+						$preciot=$preciof*$key->cantidad;
+						$sub=$enviot+$preciot;
+
+						$arreglo =array();
+						$arreglo+= array('idprod'=>$key->id);
+						$arreglo+= array('idpedido'=>$pedido->id);
+						$arreglo+= array('cantidad'=>$key->cantidad);
+
+						$arreglo+= array('precio'=>$preciof);
+						$arreglo+= array('envio'=>$enviof);
+
+						$arreglo+= array('total'=>$sub);
+
+						$arreglo+= array('idProducto'=>$key->idProducto);
+						$arreglo+= array('clave'=>$key->clave);
+						$arreglo+= array('numParte'=>$key->numParte);
+						$arreglo+= array('nombre'=>$key->nombre);
+						$arreglo+= array('modelo'=>$key->modelo);
+						$arreglo+= array('marca'=>$key->marca);
+						$arreglo+= array('categoria'=>$key->categoria);
+						$arreglo+= array('descripcion_corta'=>$key->descripcion_corta);
+
+						if($key->interno==1){
+							$arreglo+= array('tipo'=>"TIC");
+						}
+						else{
+							$arreglo+= array('tipo'=>"CT");
+						}
+						$this->insert('pedidos_prod', $arreglo);
+
+						$totalPrecio+=$preciot;
+						$totalEnvio+=$enviot;
 					}
-					else{
-						$x=$this->update('pedidos',array('id'=>$id), $arreglo);
-					}
-					/////////////////////////////////////////////////////////////////////////////////////////////////
-					$idpedido=$id;
+					$arreglo =array();
+					$arreglo+= array('monto'=>$totalPrecio);
+					$arreglo+= array('envio'=>$totalEnvio);
+					$gtotal=$totalPrecio+$totalEnvio;
+
+					$gtotal=$gtotal*1.16;
+					$arreglo+= array('total'=>round($gtotal,2));
+					$this->update('pedidos',array('id'=>$pedido->id), $arreglo);
+					////////////////////////////////////////////////////////////////
+					/// pedidos a CT..
+					////////////////////////////////////////////////////////////////
+					$idpedido=$pedido->id;
 
 					$ped=$this->pedido_ver($idpedido);
 					$cupones=$this->pedido_cupones($idpedido);
 					$datos=$this->datos_pedido($idpedido);
 
-					$nombre=$ped['nombre'];
-					$apellido=$ped['apellido'];
-					$correo=$ped['correo'];
-					$rfc=$ped['rfc'];
-					$cfdi=$ped['cfdi'];
+					/*
 					$direccion1=$ped['direccion1'];
-
 					$entrecalles=$ped['entrecalles'];
 					$numero=$ped['numero'];
 					$colonia=$ped['colonia'];
@@ -1300,9 +1288,9 @@
 					$estatus=$ped['estatus'];
 					$pago=$ped['pago'];
 					$idpago=$ped['idpago'];
+					*/
 					$resp = crearNuevoToken();
 					$tok=$resp->token;
-
 
 					foreach($datos as $key){
 						$clave=$key->clave;
@@ -1382,7 +1370,6 @@
 											$json = json_encode($arreglo);
 
 											$resp =servicioApi('POST','pedido',$json,$tok); 					/////////////////////////////////////////////PEDIDO
-											echo "CT:.".var_dump($resp);
 											if (isset($resp->errorCode)){
 												$arreglo+=array('id'=>0);
 												$arreglo+=array('error'=>1);
