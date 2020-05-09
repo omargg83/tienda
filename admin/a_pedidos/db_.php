@@ -1002,25 +1002,25 @@ class Pedidos extends Tienda{
 					}
 				}
 
-				$iva=$gtotal*.16;
-				$texto.= "<tr>";
-					$texto.= "<td colspan=4>";
-						$texto.= "<b>IVA</b>";
-						$texto.= "</td>";
-						$texto.= "<td>";
-						$texto.= moneda($iva);
+			$iva=$gtotal*.16;
+			$texto.= "<tr>";
+				$texto.= "<td colspan=4>";
+					$texto.= "<b>IVA</b>";
 					$texto.= "</td>";
-				$texto.= "</tr>";
+					$texto.= "<td>";
+					$texto.= moneda($iva);
+				$texto.= "</td>";
+			$texto.= "</tr>";
 
-				$gtotal=$gtotal*1.16;
-				$texto.= "<tr>";
-					$texto.= "<td colspan=4>";
-						$texto.= "<b>TOTAL</b>";
-						$texto.= "</td>";
-						$texto.= "<td>";
-						$texto.= moneda($gtotal);
+			$gtotal=$gtotal*1.16;
+			$texto.= "<tr>";
+				$texto.= "<td colspan=4>";
+					$texto.= "<b>TOTAL</b>";
 					$texto.= "</td>";
-				$texto.= "</tr>";
+					$texto.= "<td>";
+					$texto.= moneda($gtotal);
+				$texto.= "</td>";
+			$texto.= "</tr>";
 
 		$texto.="</table>";
 		$asunto="Compra Exitosa";
