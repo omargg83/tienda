@@ -946,6 +946,7 @@ class Pedidos extends Tienda{
 						$texto.= moneda($sub_total);
 					$texto.= "</td>";
 				$texto.= "</tr>";
+
 				$texto.= "<tr>";
 					$texto.= "<td colspan=4>";
 						$texto.= "<b>Envio</b>";
@@ -955,16 +956,9 @@ class Pedidos extends Tienda{
 					$texto.= "</td>";
 				$texto.= "</tr>";
 
-				$texto.= "<tr>";
-					$texto.= "<td colspan=4>";
-						$texto.= "<b>Total</b>";
-						$texto.= "</td>";
-						$texto.= "<td>";
-						$texto.= moneda($gtotal);
-					$texto.= "</td>";
-				$texto.= "</tr>";
+				$gtotal=$sub_total+$sub_envio;
 
-				if(is_array($cupones)){
+				if(is_array($cupones) and count($cupones)>0){
 					$texto.= "<tr><td colspan=5>Cupones</td></tr>";
 					foreach($cupones as $keyc){
 						$texto.= "<tr>";
@@ -1004,8 +998,30 @@ class Pedidos extends Tienda{
 								$texto.= "<h4><b>".moneda($gtotal)."</b></h4>";
 							$texto.= "</td>";
 						$texto.= "</tr>";
+
 					}
 				}
+
+				$iva=$gtotal*.16;
+				$texto.= "<tr>";
+					$texto.= "<td colspan=4>";
+						$texto.= "<b>IVA</b>";
+						$texto.= "</td>";
+						$texto.= "<td>";
+						$texto.= moneda($iva);
+					$texto.= "</td>";
+				$texto.= "</tr>";
+
+				$gtotal=$gtotal*1.16;
+				$texto.= "<tr>";
+					$texto.= "<td colspan=4>";
+						$texto.= "<b>TOTAL</b>";
+						$texto.= "</td>";
+						$texto.= "<td>";
+						$texto.= moneda($gtotal);
+					$texto.= "</td>";
+				$texto.= "</tr>";
+
 		$texto.="</table>";
 		$asunto="Compra Exitosa";
 		return $this->correo2($correo, $texto, $asunto);
