@@ -1529,7 +1529,7 @@
 						foreach($datos as $key){
 							$texto.="<tr>";
 								$texto.= "<td>";
-										$texto.= $key['clave'];
+										$texto.= $key->clave;
 										$texto.= "<br><b>".$key->nombre."</b>";
 										$texto.= "<br>".$key->modelo;
 										$texto.= "<br>".$key->marca;
