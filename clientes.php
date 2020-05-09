@@ -1,7 +1,10 @@
 <?php
 	require_once("control_db.php");
 	$db = new Tienda();
-
+	if(!isset($_SESSION['idcliente']) or strlen($_SESSION['idcliente'])==0){
+		header('Location: /');
+		die();
+	}
 	$ped=$db->pedidos_lista();
 
 ?>
