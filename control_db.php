@@ -1262,6 +1262,8 @@
 						$arreglo+= array('monto'=>$totalPrecio);
 						$arreglo+= array('envio'=>$totalEnvio);
 						$gtotal=$totalPrecio+$totalEnvio;
+
+						$gtotal=$gtotal*1.16;
 						$arreglo+= array('total'=>round($gtotal,2));
 						$this->update('pedidos',array('id'=>$pedido->id), $arreglo);
 						//////////////////////////////////////////////////////////////////////////
