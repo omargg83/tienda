@@ -376,6 +376,9 @@
 							echo "</div>";
 						echo "</div>";
 
+						$sql="update pedidos set total='".round($total,2)."' where id='$idpedido'";
+						$sth = $db->dbh->prepare($sql);
+						$sth->execute();
 
 					?>
 					<?php
