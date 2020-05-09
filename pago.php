@@ -287,15 +287,17 @@
 						$total+=$key->total;
 					}
 
-						if(is_array($cupones) and count($cupones)>0){
-							echo "<div class='row'>";
-								echo "<div class='col-6'>";
-									echo "Subtotal";
-								echo "</div>";
-								echo "<div class='col-6 text-right'>";
-									echo moneda($total);
-								echo "</div>";
+						echo "<div class='row'>";
+							echo "<div class='col-6'>";
+								echo "Subtotal";
 							echo "</div>";
+							echo "<div class='col-6 text-right'>";
+								echo moneda($total);
+							echo "</div>";
+						echo "</div>";
+
+						if(is_array($cupones) and count($cupones)>0){
+
 
 							echo "<hr>";
 							echo "<h4>Cupones</h4>";
