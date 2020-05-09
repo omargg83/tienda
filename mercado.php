@@ -196,7 +196,7 @@
 					}
 
 					///////////////////////////////////
-						$gtotal=$sub_total*$sub_envio;
+						$gtotal=$sub_total+$sub_envio;
 						$texto.= "<tr>";
 							$texto.= "<td colspan=4>";
 								$texto.= "<b>Subtotal</b>";
@@ -205,7 +205,6 @@
 								$texto.= moneda($gtotal);
 							$texto.= "</td>";
 						$texto.= "</tr>";
-
 
 						if(is_array($cupones) and count($cupones)>0){
 							$texto.= "<tr><td colspan=5>Cupones</td></tr>";
