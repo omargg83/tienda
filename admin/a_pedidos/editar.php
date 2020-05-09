@@ -360,7 +360,7 @@
 								echo "</td>";
 							echo "</tr>";
 
-							
+
 
 
 						if(is_array($cupones)){
@@ -381,11 +381,6 @@
 									echo "</td>";
 
 									echo "<td class='text-right'>";
-										/*
-										<option value='porcentaje' <?php if ($tipo=="porcentaje"){ echo " selected"; } ?> >Descuento en porcentaje</option>
-										<option value='carrito' <?php if ($tipo=="carrito"){ echo " selected"; } ?> >Descuento fijo en el carrito</option>
-										<option value='producto' <?php if ($tipo=="producto"){ echo " selected"; } ?> >Descuento fijo de productos</option>
-										*/
 
 										if($keyc->tipo=='porcentaje'){
 											echo $keyc->descuento."%";
