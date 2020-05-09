@@ -292,7 +292,7 @@
 								echo "<h4><b>Subtotal:</b></h4>";
 							echo "</div>";
 							echo "<div class='col-6 text-right'>";
-								echo moneda($total);
+								echo "<h4><b>".moneda($total)."</b></h4>";
 							echo "</div>";
 						echo "</div>";
 
