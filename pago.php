@@ -287,19 +287,16 @@
 						$total+=$key->total;
 					}
 
-					///////////////////////////////////
-
-						echo "<div class='row'>";
-							echo "<div class='col-6'>";
-								echo "Subtotal";
+						if(is_array($cupones) and count($cupones)>0){
+							echo "<div class='row'>";
+								echo "<div class='col-6'>";
+									echo "Subtotal";
+								echo "</div>";
+								echo "<div class='col-6 text-right'>";
+									echo moneda($total);
+								echo "</div>";
 							echo "</div>";
-							echo "<div class='col-6 text-right'>";
-								echo moneda($total);
-							echo "</div>";
-						echo "</div>";
 
-						if(is_array($cupones)){
-							echo "numero:".count($cupones);
 							echo "<hr>";
 							echo "<h4>Cupones</h4>";
 							foreach($cupones as $keyc){
@@ -376,7 +373,6 @@
 								echo "<h4><b>".moneda($total)."</b></h4>";
 							echo "</div>";
 						echo "</div>";
-
 
 
 					?>
