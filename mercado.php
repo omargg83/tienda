@@ -23,7 +23,7 @@
 	$sth->execute();
 	$pedido=$sth->fetch(PDO::FETCH_OBJ);
 
-	//if($estado_pago=="approved"){
+	if($estado_pago=="approved"){
 
 		$sql="update pedidos set estado_pago='$estado_pago', confirmacion='$estado_pago', idpago='$id', pagador='ipn', pago='Mercado Pago', estatus='PROCESANDO' where id='$idpedido'";
 		$sth = $db->dbh->prepare($sql);
@@ -263,7 +263,7 @@
 								$texto.= "<b>IVA</b>";
 							$texto.= "</td>";
 							$texto.= "<td>";
-								$texto.= moneda($gtotal);
+								$texto.= moneda($iva);
 							$texto.= "</td>";
 						$texto.= "</tr>";
 
@@ -282,7 +282,7 @@
 			$asunto="Compra Exitosa";
 			////////////////////////////////////////////////////
 			$db->correo($correo, $texto, $asunto);
-	//}
+	}
 
 	if (isset($id)) {
 			http_response_code(200);
