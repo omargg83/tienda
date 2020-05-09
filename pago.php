@@ -348,41 +348,40 @@
 
 									echo "</div>";
 								echo "</div>";
-
-
-								echo "<div class='row'>";
-									echo "<div class='col-6'>";
-										echo "<h4><b>Subtotal:</b></h4>";
-									echo "</div>";
-
-									echo "<div class='col-6 text-right'>";
-										echo "<h4><b>".moneda($total)."</b></h4>";
-									echo "</div>";
-								echo "</div>";
-
-								$iva=$total*.16;
-								echo "<div class='row'>";
-									echo "<div class='col-6'>";
-										echo "<h4><b>IVA:</b></h4>";
-									echo "</div>";
-
-									echo "<div class='col-6 text-right'>";
-										echo "<h4><b>".moneda($iva)."</b></h4>";
-									echo "</div>";
-								echo "</div>";
-
-								$total=$total*1.16;
-								echo "<div class='row'>";
-									echo "<div class='col-6'>";
-										echo "<h4><b>Total:</b></h4>";
-									echo "</div>";
-
-									echo "<div class='col-6 text-right'>";
-										echo "<h4><b>".moneda($total)."</b></h4>";
-									echo "</div>";
-								echo "</div>";
 							}
 						}
+
+						echo "<div class='row'>";
+							echo "<div class='col-6'>";
+								echo "<h4><b>Subtotal:</b></h4>";
+							echo "</div>";
+
+							echo "<div class='col-6 text-right'>";
+								echo "<h4><b>".moneda($total)."</b></h4>";
+							echo "</div>";
+						echo "</div>";
+
+						$iva=$total*.16;
+						echo "<div class='row'>";
+							echo "<div class='col-6'>";
+								echo "<h4><b>IVA:</b></h4>";
+							echo "</div>";
+
+							echo "<div class='col-6 text-right'>";
+								echo "<h4><b>".moneda($iva)."</b></h4>";
+							echo "</div>";
+						echo "</div>";
+
+						$total=$total*1.16;
+						echo "<div class='row'>";
+							echo "<div class='col-6'>";
+								echo "<h4><b>Total:</b></h4>";
+							echo "</div>";
+
+							echo "<div class='col-6 text-right'>";
+								echo "<h4><b>".moneda($total)."</b></h4>";
+							echo "</div>";
+						echo "</div>";
 
 
 
