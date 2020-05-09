@@ -1414,8 +1414,6 @@
 						}
 					}
 
-					$sql="update pedidos set estatus='PEDIDO CONFIRMADO' where id='$idpedido'";
-					$stmt2= $this->dbh->query($sql);
 					/////////////////////////////////////////////Correo
 
 					$texto="<h3>TIC-SHOP</h3><br>
@@ -1430,11 +1428,9 @@
 							<b>Estatus:</b><br> $estatus
 						</td>
 						<td>
-							<b>Pago:</b><br> $pago
+							<b>Pago:</b><br> Pendiente por pagar
 						</td>
-						<td>
-							<b>Pago #:</b><br> $idpago
-						</td>
+
 						<td>
 							<b>Nombre:</b><br> $nombre $apellido</b>
 						</td>
@@ -1617,11 +1613,8 @@
 							}
 					$texto.="</table>";
 					$asunto="Compra Exitosa";
-					return $this->correo($correo, $texto, $asunto);
+					$this->correo($correo, $texto, $asunto);
 					/////////////////////////////////////////////////////////////////////////////////////////////////
-
-					/*
-
 					$arreglo=array();
 					$arreglo+=array('id'=>$pedido->id);
 					$arreglo+=array('error'=>0);
@@ -1629,7 +1622,7 @@
 					$arreglo+=array('param1'=>0);
 					$arreglo+=array('param2'=>"");
 					$arreglo+=array('param3'=>"");
-					return json_encode($arreglo);*/
+					return json_encode($arreglo);
 				}
 				catch(PDOException $e){
 					return "Database access FAILED!".$e->getMessage();
