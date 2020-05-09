@@ -288,7 +288,6 @@
 					}
 
 					///////////////////////////////////
-						echo "<h4>TOTAL DEL CARRITO</h4>";
 
 						echo "<div class='row'>";
 							echo "<div class='col-6'>";
