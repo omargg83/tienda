@@ -1382,6 +1382,7 @@
 											$json = json_encode($arreglo);
 
 											$resp =servicioApi('POST','pedido',$json,$tok); 					/////////////////////////////////////////////PEDIDO
+											echo "CT:.".var_dump($resp);
 											if (isset($resp->errorCode)){
 												$arreglo+=array('id'=>0);
 												$arreglo+=array('error'=>1);
