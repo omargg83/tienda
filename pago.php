@@ -299,6 +299,7 @@
 						echo "</div>";
 
 						if(is_array($cupones)){
+							echo "numero:".count($cupones);
 							echo "<hr>";
 							echo "<h4>Cupones</h4>";
 							foreach($cupones as $keyc){
@@ -353,9 +354,6 @@
 								echo "</div>";
 							echo "</div>";
 						}
-
-
-
 
 						$iva=$total*.16;
 						echo "<div class='row'>";
