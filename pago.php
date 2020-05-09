@@ -309,6 +309,7 @@
 						echo "</div>";
 
 						if(is_array($cupones)){
+							echo "<hr>";
 							echo "<h4>Cupones</h4>";
 							foreach($cupones as $keyc){
 								echo "<div class='row'>";
@@ -349,6 +350,7 @@
 									echo "</div>";
 								echo "</div>";
 							}
+							echo "<hr>";
 						}
 						/*
 						echo "</hr>";
