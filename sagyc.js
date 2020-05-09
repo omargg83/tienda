@@ -360,21 +360,21 @@ function select_factdir(){
     $("#fact_estado").val("");
     $("#dirfactura_div").hide();
 
-    $("#fact_direccion1").attr("required", "false");
-    $("#fact_colonia").attr("required", "false");
-    $("#fact_ciudad").attr("required", "false");
-    $("#fact_cp").attr("required", "false");
-    $("#fact_pais").attr("required", "false");
-    $("#fact_estado").attr("required", "false");
+    $("#fact_direccion1").prop("required", "false");
+    $("#fact_colonia").prop("required", "false");
+    $("#fact_ciudad").prop("required", "false");
+    $("#fact_cp").prop("required", "false");
+    $("#fact_pais").prop("required", "false");
+    $("#fact_estado").prop("required", "false");
   }
   else if(dir_fin=='nueva'){
 
-    $("#fact_direccion1").attr("required", "true");
-    $("#fact_colonia").attr("required", "true");
-    $("#fact_ciudad").attr("required", "true");
-    $("#fact_cp").attr("required", "true");
-    $("#fact_pais").attr("required", "true");
-    $("#fact_estado").attr("required", "true");
+    $("#fact_direccion1").prop("required", "true");
+    $("#fact_colonia").prop("required", "true");
+    $("#fact_ciudad").prop("required", "true");
+    $("#fact_cp").prop("required", "true");
+    $("#fact_pais").prop("required", "true");
+    $("#fact_estado").prop("required", "true");
 
     $("#fact_direccion1").val("");
     $("#fact_entrecalles").val("");
@@ -398,13 +398,13 @@ function select_factdir(){
       success: function( response ) {
         var datos = JSON.parse(response);
         if(datos.error==0){
-          $("#fact_direccion1").attr("required", "true");
-          $("#fact_colonia").attr("required", "true");
-          $("#fact_ciudad").attr("required", "true");
-          $("#fact_cp").attr("required", "true");
-          $("#fact_pais").attr("required", "true");
-          $("#fact_estado").attr("required", "true");
-          
+          $("#fact_direccion1").prop("required", "true");
+          $("#fact_colonia").prop("required", "true");
+          $("#fact_ciudad").prop("required", "true");
+          $("#fact_cp").prop("required", "true");
+          $("#fact_pais").prop("required", "true");
+          $("#fact_estado").prop("required", "true");
+
           $("#fact_direccion1").val(datos.direccion1);
           $("#fact_entrecalles").val(datos.entrecalles);
           $("#fact_numero").val(datos.numero);
