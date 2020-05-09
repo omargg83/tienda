@@ -23,7 +23,7 @@
 	$sth->execute();
 	$pedido=$sth->fetch(PDO::FETCH_OBJ);
 
-	if($estado_pago=="approved"){
+	//if($estado_pago=="approved"){
 
 		$sql="update pedidos set estado_pago='$estado_pago', confirmacion='$estado_pago', idpago='$id', pagador='ipn', pago='Mercado Pago', estatus='PROCESANDO' where id='$idpedido'";
 		$sth = $db->dbh->prepare($sql);
@@ -67,7 +67,7 @@
 		/////////////////////////////////////////////Correo
 
 				$texto="<h3>TIC-SHOP</h3><br>
-				<h3><b><center>Pedido m</center></b></h3>
+				<h3><b><center>Pedido confirmado</center></b></h3>
 
 				<table style='width:100%'>
 					<tr>
@@ -196,34 +196,18 @@
 					}
 
 					///////////////////////////////////
-
+						$gtotal=$sub_total*$sub_envio;
 						$texto.= "<tr>";
 							$texto.= "<td colspan=4>";
 								$texto.= "<b>Subtotal</b>";
 							$texto.= "</td>";
 							$texto.= "<td>";
-								$texto.= moneda($sub_total);
-							$texto.= "</td>";
-						$texto.= "</tr>";
-						$texto.= "<tr>";
-							$texto.= "<td colspan=4>";
-								$texto.= "<b>Envio</b>";
-							$texto.= "</td>";
-							$texto.= "<td>";
-								$texto.= moneda($sub_envio);
-							$texto.= "</td>";
-						$texto.= "</tr>";
-
-						$texto.= "<tr>";
-							$texto.= "<td colspan=4>";
-								$texto.= "<b>Total</b>";
-								$texto.= "</td>";
-								$texto.= "<td>";
 								$texto.= moneda($gtotal);
 							$texto.= "</td>";
 						$texto.= "</tr>";
 
-						if(is_array($cupones)){
+
+						if(is_array($cupones) and count($cupones)>0){
 							$texto.= "<tr><td colspan=5>Cupones</td></tr>";
 							foreach($cupones as $keyc){
 								$texto.= "<tr>";
@@ -265,12 +249,41 @@
 								$texto.= "</tr>";
 							}
 						}
+						$texto.= "<tr>";
+							$texto.= "<td colspan=4>";
+								$texto.= "<b>Subtotal</b>";
+							$texto.= "</td>";
+							$texto.= "<td>";
+								$texto.= moneda($gtotal);
+							$texto.= "</td>";
+						$texto.= "</tr>";
+
+						$iva=$gtotal*.16;
+						$texto.= "<tr>";
+							$texto.= "<td colspan=4>";
+								$texto.= "<b>IVA</b>";
+							$texto.= "</td>";
+							$texto.= "<td>";
+								$texto.= moneda($gtotal);
+							$texto.= "</td>";
+						$texto.= "</tr>";
+
+						$gtotal=$gtotal*1.16;
+						$texto.= "<tr>";
+							$texto.= "<td colspan=4>";
+								$texto.= "<b>Total</b>";
+							$texto.= "</td>";
+							$texto.= "<td>";
+								$texto.= moneda($gtotal);
+							$texto.= "</td>";
+						$texto.= "</tr>";
+
 				$texto.="</table>";
 
 			$asunto="Compra Exitosa";
 			////////////////////////////////////////////////////
 			$db->correo($correo, $texto, $asunto);
-	}
+	//}
 
 	if (isset($id)) {
 			http_response_code(200);

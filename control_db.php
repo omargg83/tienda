@@ -1594,6 +1594,7 @@
 										$texto.= "</td>";
 									$texto.= "</tr>";
 								}
+								
 								$texto.= "<tr>";
 									$texto.= "<td colspan=4>";
 										$texto.= "<b>Subtotal</b>";
