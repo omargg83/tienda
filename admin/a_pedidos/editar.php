@@ -396,7 +396,7 @@
 							}
 						}
 							echo "<tr>";
-								echo "<td colspan=6'>";
+								echo "<td colspan=6' class='text-right'>";
 									echo "<h4><b>Subtotal:</b></h4>";
 								echo "</td>";
 
@@ -408,7 +408,7 @@
 							$iva=$gtotal*.16;
 							echo "<tr>";
 								echo "<td colspan=6 class='text-right'>";
-									echo "<b>IVA:</b>";
+									echo "<h4><b>IVA:</b></h4>";
 								echo "</td>";
 								echo "<td class='text-right'>";
 									echo moneda($iva);
@@ -418,7 +418,7 @@
 							$gtotal=$gtotal*1.16;
 							echo "<tr>";
 								echo "<td colspan=6 class='text-right'>";
-									echo "<b>Total:</b>";
+									echo "<h4><b>Total:</b></h4>";
 								echo "</td>";
 								echo "<td class='text-right'>";
 									echo moneda($gtotal);
