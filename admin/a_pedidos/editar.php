@@ -401,7 +401,7 @@
 								echo "</td>";
 
 								echo "<td class='text-right'>";
-									echo "<h4><b>".moneda($gtotal)."</b></h4>";
+									echo "<b>".moneda($gtotal)."</b>";
 								echo "</td>";
 							echo "</tr>";
 
