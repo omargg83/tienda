@@ -360,14 +360,7 @@
 								echo "</td>";
 							echo "</tr>";
 
-							echo "<tr>";
-								echo "<td colspan=6 class='text-right'>";
-									echo "<b>Total:</b>";
-								echo "</td>";
-								echo "<td class='text-right'>";
-									echo moneda($gtotal);
-								echo "</td>";
-							echo "</tr>";
+							
 
 
 						if(is_array($cupones)){
@@ -377,44 +370,38 @@
 								echo "</td>";
 							echo "</tr>";
 
-						foreach($cupones as $keyc){
-							echo "<tr>";
-								echo "<td class='text-right'>";
-									echo "<button type='button' class='btn btn-outline-secondary btn-sm'  onclick='elimina_cuadmin(".$keyc->id.", $id)'><i class='far fa-times-circle'></i></button>";
-								echo "</td>";
+							foreach($cupones as $keyc){
+								echo "<tr>";
+									echo "<td class='text-right'>";
+										echo "<button type='button' class='btn btn-outline-secondary btn-sm'  onclick='elimina_cuadmin(".$keyc->id.", $id)'><i class='far fa-times-circle'></i></button>";
+									echo "</td>";
 
-								echo "<td colspan=5>";
-									echo $keyc->codigo." ".$keyc->descripcion;
-								echo "</td>";
+									echo "<td colspan=5>";
+										echo $keyc->codigo." ".$keyc->descripcion;
+									echo "</td>";
 
-								echo "<td class='text-right'>";
-									/*
-									<option value='porcentaje' <?php if ($tipo=="porcentaje"){ echo " selected"; } ?> >Descuento en porcentaje</option>
-									<option value='carrito' <?php if ($tipo=="carrito"){ echo " selected"; } ?> >Descuento fijo en el carrito</option>
-									<option value='producto' <?php if ($tipo=="producto"){ echo " selected"; } ?> >Descuento fijo de productos</option>
-									*/
+									echo "<td class='text-right'>";
+										/*
+										<option value='porcentaje' <?php if ($tipo=="porcentaje"){ echo " selected"; } ?> >Descuento en porcentaje</option>
+										<option value='carrito' <?php if ($tipo=="carrito"){ echo " selected"; } ?> >Descuento fijo en el carrito</option>
+										<option value='producto' <?php if ($tipo=="producto"){ echo " selected"; } ?> >Descuento fijo de productos</option>
+										*/
 
-									if($keyc->tipo=='porcentaje'){
-										echo $keyc->descuento."%";
-										$monto=($gtotal*$keyc->descuento)/100;
-										echo "<br>- ".moneda($monto);
-										$gtotal=$gtotal-$monto;
-									}
+										if($keyc->tipo=='porcentaje'){
+											echo $keyc->descuento."%";
+											$monto=($gtotal*$keyc->descuento)/100;
+											echo "<br>- ".moneda($monto);
+											$gtotal=$gtotal-$monto;
+										}
 
-									if($keyc->tipo=='carrito'){
-										echo "<br>- ".moneda($keyc->descuento);
-										$gtotal=$gtotal-$keyc->descuento;
-									}
-									/*
-									if($keyc->envio=='si'){
-										$gtotal=$gtotal-$genvio;
-										echo "<br>Envio: -".$genvio;
-									}
-									*/
+										if($keyc->tipo=='carrito'){
+											echo "<br>- ".moneda($keyc->descuento);
+											$gtotal=$gtotal-$keyc->descuento;
+										}
 
-								echo "</td>";
-							echo "</tr>";
-
+									echo "</td>";
+								echo "</tr>";
+							}
 							echo "<tr>";
 								echo "<td colspan=6'>";
 									echo "<h4><b>Total:</b></h4>";
@@ -424,8 +411,6 @@
 									echo "<h4><b>".moneda($gtotal)."</b></h4>";
 								echo "</td>";
 							echo "</tr>";
-						}
-
 
 							echo "</table>";
 						echo "</div>";
@@ -446,7 +431,6 @@
 								<?php
 								echo "</div>";
 								echo "</td>";
-
 
 								echo "<td>".$key["clave"]."</td>";
 								echo "<td>".$key["cantidad"]."</td>";
