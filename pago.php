@@ -289,6 +289,7 @@
 
 					///////////////////////////////////
 						echo "<h4>TOTAL DEL CARRITO</h4>";
+
 						echo "<div class='row'>";
 							echo "<div class='col-6'>";
 								echo "Subtotal";
@@ -350,7 +351,8 @@
 								echo "</div>";
 							}
 						}
-
+						/*
+						echo "</hr>";
 						echo "<div class='row'>";
 							echo "<div class='col-6'>";
 								echo "<h4><b>Subtotal:</b></h4>";
@@ -360,6 +362,7 @@
 								echo "<h4><b>".moneda($total)."</b></h4>";
 							echo "</div>";
 						echo "</div>";
+						*/
 
 						$iva=$total*.16;
 						echo "<div class='row'>";
