@@ -360,12 +360,12 @@ function select_factdir(){
     $("#fact_estado").val("");
     $("#dirfactura_div").hide();
 
-    $("#fact_direccion1").prop("required", "false");
-    $("#fact_colonia").prop("required", "false");
-    $("#fact_ciudad").prop("required", "false");
-    $("#fact_cp").prop("required", "false");
-    $("#fact_pais").prop("required", "false");
-    $("#fact_estado").prop("required", "false");
+    $("#fact_direccion1").removeAttr("required");
+    $("#fact_colonia").removeAttr("required");
+    $("#fact_ciudad").removeAttr("required");
+    $("#fact_cp").removeAttr("required");
+    $("#fact_pais").removeAttr("required");
+    $("#fact_estado").removeAttr("required");
   }
   else if(dir_fin=='nueva'){
 
