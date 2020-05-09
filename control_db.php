@@ -1594,16 +1594,15 @@
 										$texto.= "</td>";
 									$texto.= "</tr>";
 								}
+								$texto.= "<tr>";
+									$texto.= "<td colspan=4>";
+										$texto.= "<b>Subtotal</b>";
+									$texto.= "</td>";
+									$texto.= "<td>";
+										$texto.= moneda($gtotal);
+									$texto.= "</td>";
+								$texto.= "</tr>";
 							}
-
-							$texto.= "<tr>";
-								$texto.= "<td colspan=4>";
-									$texto.= "<b>Subtotal</b>";
-								$texto.= "</td>";
-								$texto.= "<td>";
-									$texto.= moneda($gtotal);
-								$texto.= "</td>";
-							$texto.= "</tr>";
 
 							$iva=$gtotal*.16;
 							$texto.= "<tr>";
