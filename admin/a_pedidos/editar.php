@@ -360,10 +360,7 @@
 								echo "</td>";
 							echo "</tr>";
 
-
-
-
-						if(is_array($cupones)){
+						if(is_array($cupones) or count($cupones)>0){
 							echo "<tr>";
 								echo "<td colspan=7 class='text-center'>";
 								echo "<h5>Cupones</h5>";
@@ -397,13 +394,34 @@
 									echo "</td>";
 								echo "</tr>";
 							}
+						}
 							echo "<tr>";
 								echo "<td colspan=6'>";
-									echo "<h4><b>Total:</b></h4>";
+									echo "<h4><b>Subtotal:</b></h4>";
 								echo "</td>";
 
 								echo "<td class='text-right'>";
 									echo "<h4><b>".moneda($gtotal)."</b></h4>";
+								echo "</td>";
+							echo "</tr>";
+
+							$iva=$gtotal*.16;
+							echo "<tr>";
+								echo "<td colspan=6 class='text-right'>";
+									echo "<b>IVA:</b>";
+								echo "</td>";
+								echo "<td class='text-right'>";
+									echo moneda($iva);
+								echo "</td>";
+							echo "</tr>";
+
+							$gtotal=$gtotal*1.16;
+							echo "<tr>";
+								echo "<td colspan=6 class='text-right'>";
+									echo "<b>Total:</b>";
+								echo "</td>";
+								echo "<td class='text-right'>";
+									echo moneda($gtotal);
 								echo "</td>";
 							echo "</tr>";
 
@@ -435,7 +453,7 @@
 							}
 							echo "</table>";
 						echo "</div>";
-					}
+
 
 
 					echo "</table>";
