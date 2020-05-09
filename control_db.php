@@ -1542,34 +1542,18 @@
 						}
 
 						///////////////////////////////////
-
+							$gtotal=$sub_total+$sub_envio;
 							$texto.= "<tr>";
 								$texto.= "<td colspan=4>";
 									$texto.= "<b>Subtotal</b>";
 								$texto.= "</td>";
 								$texto.= "<td>";
-									$texto.= moneda($sub_total);
-								$texto.= "</td>";
-							$texto.= "</tr>";
-							$texto.= "<tr>";
-								$texto.= "<td colspan=4>";
-									$texto.= "<b>Envio</b>";
-								$texto.= "</td>";
-								$texto.= "<td>";
-									$texto.= moneda($sub_envio);
+									$texto.= moneda($sub_total+$sub_envio);
 								$texto.= "</td>";
 							$texto.= "</tr>";
 
-							$texto.= "<tr>";
-								$texto.= "<td colspan=4>";
-									$texto.= "<b>Total</b>";
-									$texto.= "</td>";
-									$texto.= "<td>";
-									$texto.= moneda($gtotal);
-								$texto.= "</td>";
-							$texto.= "</tr>";
 
-							if(is_array($cupones)){
+							if(is_array($cupones) and count($cupones)>0){
 								$texto.= "<tr><td colspan=5>Cupones</td></tr>";
 								foreach($cupones as $keyc){
 									$texto.= "<tr>";
@@ -1611,6 +1595,36 @@
 									$texto.= "</tr>";
 								}
 							}
+
+							$texto.= "<tr>";
+								$texto.= "<td colspan=4>";
+									$texto.= "<b>Subtotal</b>";
+								$texto.= "</td>";
+								$texto.= "<td>";
+									$texto.= moneda($gtotal);
+								$texto.= "</td>";
+							$texto.= "</tr>";
+
+							$iva=$gtotal*.16;
+							$texto.= "<tr>";
+								$texto.= "<td colspan=4>";
+									$texto.= "<b>IVA</b>";
+								$texto.= "</td>";
+								$texto.= "<td>";
+									$texto.= moneda($iva);
+								$texto.= "</td>";
+							$texto.= "</tr>";
+
+							$gtotal=$gtotal*1.16;
+							$texto.= "<tr>";
+								$texto.= "<td colspan=4>";
+									$texto.= "<b>Total</b>";
+								$texto.= "</td>";
+								$texto.= "<td>";
+									$texto.= moneda($gtotal);
+								$texto.= "</td>";
+							$texto.= "</tr>";
+
 					$texto.="</table>";
 					$asunto="Compra Exitosa";
 					$this->correo($correo, $texto, $asunto);

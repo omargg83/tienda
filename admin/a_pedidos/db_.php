@@ -810,7 +810,7 @@ class Pedidos extends Tienda{
 		/////////////////////////////////////////////Correo
 
 		$texto="<h3>TIC-SHOP</h3><br>
-		<h3><b><center>Pedido</center></b></h3>
+		<h3><b><center>Pedido realizado</center></b></h3>
 
 		<table style='width:100%'>
 			<tr>
@@ -818,13 +818,7 @@ class Pedidos extends Tienda{
 				<b>Pedido #:</b><br> $idpedido
 			</td>
 			<td>
-				<b>Estatus:</b><br> $estatus
-			</td>
-			<td>
-				<b>Pago:</b><br> $pago
-			</td>
-			<td>
-				<b>Pago #:</b><br> $idpago
+				<b>Estatus:</b><br> Pendiende de pago
 			</td>
 			<td>
 				<b>Nombre:</b><br> $nombre $apellido</b>
@@ -991,7 +985,7 @@ class Pedidos extends Tienda{
 
 						$texto.= "<tr>";
 							$texto.= "<td colspan=4>";
-								$texto.= "<h4><b>Total:</b></h4>";
+								$texto.= "<h4><b>Subtotal:</b></h4>";
 							$texto.= "</td>";
 
 							$texto.= "<td>";
