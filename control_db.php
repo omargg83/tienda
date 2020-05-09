@@ -1305,16 +1305,16 @@
 
 
 					foreach($datos as $key){
-						$clave=$key['clave'];
-						$idprod=$key['idprod'];
-						$cantidad=$key['cantidad'];
+						$clave=$key->clave;
+						$idprod=$key->idprod;
+						$cantidad=$key->cantidad;
 						$sql="select * from productos where id='".$idprod."'";
 						$prod_query = $this->dbh->prepare($sql);
 						$prod_query->execute();
 						$prod_pedido=$prod_query->fetch(PDO::FETCH_OBJ);
 						$precio_prod=$prod_pedido->precio;
 
-						if($key['tipo']=="CT"){
+						if($key->tipo=="CT"){
 							$sql="select producto_exist.*,almacen.numero from producto_exist left outer join almacen on almacen.homoclave=producto_exist.almacen where id='$idprod' order by existencia desc";
 							$exist = $this->dbh->prepare($sql);
 							$exist->execute();
