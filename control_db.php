@@ -1530,28 +1530,28 @@
 							$texto.="<tr>";
 								$texto.= "<td>";
 										$texto.= $key['clave'];
-										$texto.= "<br><b>".$key['nombre']."</b>";
-										$texto.= "<br>".$key['modelo'];
-										$texto.= "<br>".$key['marca'];
-										$texto.= "<br>".$key['categoria'];
+										$texto.= "<br><b>".$key->nombre."</b>";
+										$texto.= "<br>".$key->modelo;
+										$texto.= "<br>".$key->marca;
+										$texto.= "<br>".$key->categoria;
 								$texto.= "</td>";
 
 								$texto.= "<td>";
-									$texto.= $key['cantidad'];
+									$texto.= $key->cantidad;
 								$texto.= "</td>";
 
 								$texto.= "<td>";
-									$texto.= moneda($key['precio']);
-									$sub_total+=$key['precio']*$key['cantidad'];
+									$texto.= moneda($key->precio);
+									$sub_total+=$key->precio*$key->cantidad;
 								$texto.= "</td>";
 
 								$texto.= "<td>";
-									$texto.= moneda($key['envio']);
-									$sub_envio+=$key['envio']*$key['cantidad'];
+									$texto.= moneda($key->envio);
+									$sub_envio+=$key->envio*$key->cantidad;
 								$texto.= "</td>";
 
 								$texto.= "<td>";
-									$texto.= moneda($key['total']);
+									$texto.= moneda($key->total);
 								$texto.= "</td>";
 
 							$texto.= "</tr>";
