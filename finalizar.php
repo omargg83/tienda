@@ -105,8 +105,6 @@
 						>
 					</div>
 
-
-
 					<?php
 						if (strlen($_SESSION['correo'])==0){
 							echo "<div class='col-4'>";
@@ -166,7 +164,7 @@
 
  						<div class="col-12">
  							<label>Dirección</label>
- 							<input type="text" class="form-control" id="fact_direccion1" name='fact_direccion1' placeholder="Dirección" value="<?php echo $direccion1; ?>" required>
+ 							<input type="text" class="form-control" id="fact_direccion1" name='fact_direccion1' placeholder="Dirección" value="<?php echo $direccion1; ?>">
  						</div>
  						<div class="col-4">
  							<label>Entre calles</label>
@@ -182,19 +180,19 @@
  						</div>
  						<div class="col-4">
  							<label>Ciudad</label>
- 							<input type="text" class="form-control" id="fact_ciudad" name='fact_ciudad' placeholder="Ciudad" value="<?php echo $ciudad; ?>" required>
+ 							<input type="text" class="form-control" id="fact_ciudad" name='fact_ciudad' placeholder="Ciudad" value="<?php echo $ciudad; ?>">
  						</div>
  						<div class="col-4">
  							<label>Código postal</label>
- 							<input type="text" class="form-control input-number" id="fact_cp" name='fact_cp' placeholder="Código postal" value="<?php echo $cp; ?>" required>
+ 							<input type="text" class="form-control input-number" id="fact_cp" name='fact_cp' placeholder="Código postal" value="<?php echo $cp; ?>">
  						</div>
  						<div class="col-4">
  							<label>Pais</label>
- 							<input type="text" class="form-control" id="fact_pais" name='fact_pais' placeholder="Pais" value="<?php echo $pais; ?>" required>
+ 							<input type="text" class="form-control" id="fact_pais" name='fact_pais' placeholder="Pais" value="<?php echo $pais; ?>">
  						</div>
  						<div class="col-4">
  							<label>Estado</label>
- 							<input type="text" class="form-control" id="fact_estado" name='fact_estado' placeholder="Estado" value="<?php echo $estado; ?>" required>
+ 							<input type="text" class="form-control" id="fact_estado" name='fact_estado' placeholder="Estado" value="<?php echo $estado; ?>">
  						</div>
 				</div>
 
