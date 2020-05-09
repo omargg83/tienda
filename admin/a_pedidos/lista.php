@@ -42,8 +42,7 @@
 						echo "<td>".fecha($key["fecha"])."</td>";
 						echo "<td class='text-right'>".moneda($key["envio"])."</td>";
 						echo "<td class='text-right'>".moneda($key["monto"])."</td>";
-						$gtotal=$key["monto"]+$key["envio"];
-						echo "<td class='text-right'>".moneda($gtotal)."</td>";
+						echo "<td class='text-right'>".moneda($key["total"]."</td>";
 						echo "<td class='text-right'>".$key['pago']."</td>";
 						echo "<td class='text-right'>".$key['idpago']."</td>";
 						echo "<td class='text-right'>".$key['estado_pago']."</td>";
