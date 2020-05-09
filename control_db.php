@@ -1274,9 +1274,9 @@
 					/////////////////////////////////////////////////////////////////////////////////////////////////
 					$idpedido=$id;
 
-					$ped=$this->editar_pedido($idpedido);
+					$ped=$this->pedido_ver($idpedido);
 					$cupones=$this->pedido_cupones($idpedido);
-					$datos=$this->productos_pedido($idpedido);
+					$datos=$this->datos_pedido($idpedido);
 
 					$nombre=$ped['nombre'];
 					$apellido=$ped['apellido'];
