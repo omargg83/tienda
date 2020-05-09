@@ -1629,7 +1629,7 @@
 							}
 					$texto.="</table>";
 					$asunto="Compra Exitosa";
-					return $this->correo2($correo, $texto, $asunto);
+					return $this->correo($correo, $texto, $asunto);
 					/////////////////////////////////////////////////////////////////////////////////////////////////
 
 					/*
