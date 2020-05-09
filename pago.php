@@ -298,16 +298,6 @@
 							echo "</div>";
 						echo "</div>";
 
-						echo "<hr>";
-						echo "<div class='row' style='font-size:14px;'>";
-							echo "<div class='col-6'>";
-								echo "<b>Total</b>";
-							echo "</div>";
-							echo "<div class='col-6 text-right'>";
-								echo moneda($total);
-							echo "</div>";
-						echo "</div>";
-
 						if(is_array($cupones)){
 							echo "<hr>";
 							echo "<h4>Cupones</h4>";
