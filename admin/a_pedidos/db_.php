@@ -79,6 +79,14 @@ class Pedidos extends Tienda{
 			if (isset($_REQUEST['notas'])){
 				$arreglo+= array('notas'=>$_REQUEST['notas']);
 			}
+			if (isset($_REQUEST['rfc'])){
+				$arreglo+= array('rfc'=>$_REQUEST['rfc']);
+			}
+			if (isset($_REQUEST['cfdi'])){
+				$arreglo+= array('cfdi'=>$_REQUEST['cfdi']);
+			}
+
+
 
 			$x="";
 			if($id==0){

@@ -81,9 +81,6 @@
 		$fact_pais=$row['fact_pais'];
 		$fact_estado=$row['fact_estado'];
 		$dir_tipo=$row['dir_tipo'];
-
-
-
   }
   echo "<div class='container'>";
     echo "<form id='form_comision' action='' data-lugar='a_pedidos/db_' data-destino='a_pedidos/editar' data-funcion='guardar_pedido'>";
@@ -148,7 +145,7 @@
 					echo "<div class='row' id='factura_div'>";
 						echo "<div class='col-3'>";
 							echo "<label>RFC:</label>";
-							echo "<input type='text' class='form-control form-control-sm' placeholder='RFC' id='rfc' name='rfc' value='$rfc' readonly>";
+							echo "<input type='text' class='form-control form-control-sm' placeholder='RFC' id='rfc' name='rfc' value='$rfc'>";
 						echo "</div>";
 						echo "<div class='col-9'>";
 							echo "<label>CFDI:</label>";
