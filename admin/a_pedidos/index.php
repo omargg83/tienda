@@ -40,9 +40,11 @@
 <script type="text/javascript">
   function factura_datos(){
     if($("#factura").is(':checked')){
+      console.log("show");
       $( "#factura_div" ).show();
     }
     else{
+      console.log("hide");
       $( "#factura_div" ).hide();
     }
   }
