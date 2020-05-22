@@ -226,9 +226,11 @@ function estrella(idproducto, clave){
 }
 function factura_act(){
   if($("#factura").is(':checked')){
+    console.log("show");
     $( "#factura_div" ).show();
   }
   else{
+    console.log("hide");
     $( "#factura_div" ).hide();
   }
 }

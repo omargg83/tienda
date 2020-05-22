@@ -145,18 +145,17 @@
 						echo "</div>";
 					echo "</div>";
 
-
-						echo "<div class='row' id='factura_div'>";
-							echo "<div class='col-3'>";
-								echo "<label>RFC:</label>";
-								echo "<input type='text' class='form-control form-control-sm' placeholder='RFC' id='rfc' name='rfc' value='$rfc' readonly  >";
-							echo "</div>";
-							echo "<div class='col-9'>";
-								echo "<label>CFDI:</label>";
-								echo "<input type='text' class='form-control form-control-sm' placeholder='CFDI' id='cfdi' name='cfdi' value='$cfdi' readonly  >";
-							echo "</div>";
-							
+					echo "<div class='row' id='factura_div'>";
+						echo "<div class='col-3'>";
+							echo "<label>RFC:</label>";
+							echo "<input type='text' class='form-control form-control-sm' placeholder='RFC' id='rfc' name='rfc' value='$rfc' readonly  >";
 						echo "</div>";
+						echo "<div class='col-9'>";
+							echo "<label>CFDI:</label>";
+							echo "<input type='text' class='form-control form-control-sm' placeholder='CFDI' id='cfdi' name='cfdi' value='$cfdi' readonly  >";
+						echo "</div>";
+					echo "</div>";
+
 					if($factura=='1'){
 						if($dir_tipo==1){
 							echo "<hr>";
