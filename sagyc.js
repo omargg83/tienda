@@ -231,7 +231,6 @@ function factura_act(){
   else{
     $( "#factura_div" ).hide();
   }
-
 }
 function cupon_agrega(pedido){
   var cupon=$("#cupon").val();

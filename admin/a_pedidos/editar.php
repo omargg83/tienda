@@ -114,7 +114,7 @@
 
 						echo "<div class='col-3'>";
 							echo "<label>Factura</label>";
-							echo "<select id='factura' name='factura' class='form-control form-control-sm'>";
+							echo "<select id='factura' name='factura' class='form-control form-control-sm' onchange='factura_datos()'>";
 								echo "<option value='0'"; if($factura=='0'){ echo " selected"; } echo ">No</option>";
 								echo "<option value='1'"; if($factura=='1'){ echo " selected"; } echo ">Si</option>";
 							echo "</select>";
@@ -145,8 +145,8 @@
 						echo "</div>";
 					echo "</div>";
 
-					if($factura=='1'){
-						echo "<div class='row'>";
+
+						echo "<div class='row' id='factura_div'>";
 							echo "<div class='col-3'>";
 								echo "<label>RFC:</label>";
 								echo "<input type='text' class='form-control form-control-sm' placeholder='RFC' id='rfc' name='rfc' value='$rfc' readonly  >";
@@ -155,8 +155,9 @@
 								echo "<label>CFDI:</label>";
 								echo "<input type='text' class='form-control form-control-sm' placeholder='CFDI' id='cfdi' name='cfdi' value='$cfdi' readonly  >";
 							echo "</div>";
+							
 						echo "</div>";
-
+					if($factura=='1'){
 						if($dir_tipo==1){
 							echo "<hr>";
 							echo "<h5>Dirección de facturación</h5>";

@@ -38,7 +38,14 @@
 
  ?>
 <script type="text/javascript">
-
+  function factura_datos(){
+    if($("#factura").is(':checked')){
+      $( "#factura_div" ).show();
+    }
+    else{
+      $( "#factura_div" ).hide();
+    }
+  }
   function buscar_pedido(){
     var buscar = $("#buscar").val();
     $.ajax({
