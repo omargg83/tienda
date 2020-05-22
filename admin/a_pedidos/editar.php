@@ -114,7 +114,7 @@
 
 						echo "<div class='col-3'>";
 							echo "<label>Factura</label>";
-							echo "<select id='factura' name='factura' class='form-control form-control-sm' onclick='factura_datos()'>";
+							echo "<select id='factura' name='factura' class='form-control form-control-sm' onchange='factura_datos()'>";
 								echo "<option value='0'"; if($factura=='0'){ echo " selected"; } echo ">No</option>";
 								echo "<option value='1'"; if($factura=='1'){ echo " selected"; } echo ">Si</option>";
 							echo "</select>";

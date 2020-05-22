@@ -39,7 +39,8 @@
  ?>
 <script type="text/javascript">
   function factura_datos(){
-    if($("#factura").is(':checked')){
+    console.log($("#factura").val());
+    if($("#factura").val()=="1"){
       console.log("show");
       $( "#factura_div" ).show();
     }
