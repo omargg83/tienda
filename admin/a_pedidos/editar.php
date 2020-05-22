@@ -150,7 +150,7 @@
 						echo "<div class='col-9'>";
 							echo "<label>CFDI:</label>";
 
-							echo "<select id='cfdi' name='cfdi' class='form-control'>";
+							echo "<select id='cfdi' name='cfdi' class='form-control form-control-sm'>";
 							$cfdi_obj=$db->cfdi();
 							foreach($cfdi_obj as $key){
 								echo "<option value='".$key->cfdi."'"; if($cfdi==$key->cfdi){ echo " selected";} echo " >".$key->cfdi."</option>";
