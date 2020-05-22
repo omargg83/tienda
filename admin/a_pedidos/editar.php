@@ -148,11 +148,18 @@
 					echo "<div class='row' id='factura_div'>";
 						echo "<div class='col-3'>";
 							echo "<label>RFC:</label>";
-							echo "<input type='text' class='form-control form-control-sm' placeholder='RFC' id='rfc' name='rfc' value='$rfc' readonly  >";
+							echo "<input type='text' class='form-control form-control-sm' placeholder='RFC' id='rfc' name='rfc' value='$rfc' readonly>";
 						echo "</div>";
 						echo "<div class='col-9'>";
 							echo "<label>CFDI:</label>";
-							echo "<input type='text' class='form-control form-control-sm' placeholder='CFDI' id='cfdi' name='cfdi' value='$cfdi' readonly  >";
+
+							echo "<select id='cfdi' name='cfdi' class='form-control'>";
+							$cfdi_obj=$db->cfdi();
+							foreach($cfdi_obj as $key){
+								echo "<option value='".$key->cfdi."'"; if($cfdi==$key->cfdi){ echo " selected";} echo " >".$key->cfdi."</option>";
+							}
+							echo "</select>";
+
 						echo "</div>";
 					echo "</div>";
 

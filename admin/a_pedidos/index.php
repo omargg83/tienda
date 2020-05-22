@@ -39,13 +39,10 @@
  ?>
 <script type="text/javascript">
   function factura_datos(){
-    console.log($("#factura").val());
     if($("#factura").val()=="1"){
-      console.log("show");
       $( "#factura_div" ).show();
     }
     else{
-      console.log("hide");
       $( "#factura_div" ).hide();
     }
   }

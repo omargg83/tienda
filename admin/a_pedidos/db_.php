@@ -1074,6 +1074,18 @@ class Pedidos extends Tienda{
 		$this->borrar('pedidos_prod',"idpedido",$id);
 		return $this->borrar('pedidos',"id",$id);
 	}
+	public function cfdi(){
+		try{
+			self::set_names();
+			$sql="select * from cfdi";
+			$sth = $this->dbh->prepare($sql);
+			$sth->execute();
+			return $sth->fetchAll(PDO::FETCH_OBJ);
+		}
+		catch(PDOException $e){
+			return "Database access FAILED!".$e->getMessage();
+		}
+	}
 }
 $db = new Pedidos();
 if(strlen($function)>0){
