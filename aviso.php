@@ -40,7 +40,7 @@
 					<div class="banner_content">
 						<h1 class="banner_text" style="color: black; font-size: 30px;">Aviso de privacidad</h1><br>
 					
-<p>TIC SHOP, con domicilio en Av. Tecnol&oacute;gico de Monterrey, Col. Puerta de Hierro, Pachuca de Soto, Hidalgo, C.P 42086, Ciudad Pachuca, Municipio o delegaci&oacute;n PACHUCA, C.P. 42083, en la entidad de Hidalgo, pa&iacute;s M&eacute;xico y portal de internet www.tic-shop.com.mx es el responsable del uso y protecci&oacute;n de datos personales y al respecto le informamos lo siguiente, ha desarrollado una pol&iacute;tica de privacidad que deseamos te ayude a comprender la forma en la utilizamos, transferimos y almacenamos tu informaci&oacute;n, en conformidad con el Art&iacute;culo 16 Constitucional y los Art&iacute;culos 1 y 2 de la Ley Federal de Protecci&oacute;n de Datos Personales en Posesi&oacute;n de los Particulares.</p>
+<p>TIC SHOP,  www.tic-shop.com.mx es el responsable del uso y protecci&oacute;n de datos personales y al respecto le informamos lo siguiente, ha desarrollado una pol&iacute;tica de privacidad que deseamos te ayude a comprender la forma en la utilizamos, transferimos y almacenamos tu informaci&oacute;n, en conformidad con el Art&iacute;culo 16 Constitucional y los Art&iacute;culos 1 y 2 de la Ley Federal de Protecci&oacute;n de Datos Personales en Posesi&oacute;n de los Particulares.</p>
 <p>El departamento de Servicio al Cliente, es el responsable de la protecci&oacute;n y tratamiento de los datos recabados de manera directa por medios electr&oacute;nicos ya sea a trav&eacute;s del "chat" o por correo electr&oacute;nico y/o por tel&eacute;fono, y el titular podr&aacute; contactarlo en la misma direcci&oacute;n antes mencionada o al correo electr&oacute;nico: info@tic-shop.com.mx o al tel&eacute;fono 7717028040</p>
 <p><strong>&iquest;QU&Eacute; DATOS PERSONALES UTILIZAREMOS?</strong></p>
 <p>El tipo de informaci&oacute;n que recabamos consiste principalmente en:</p>
@@ -84,10 +84,9 @@
 <p>En el caso de las solicitudes de rectificaci&oacute;n de datos personales, el Titular deber&aacute; tambi&eacute;n indicar las modificaciones a realizarse y aportar la documentaci&oacute;n que sustente su petici&oacute;n.</p>
 <p>Para la petici&oacute;n del formato, recepci&oacute;n y respuesta de las solicitudes para ejercer sus derechos <strong>ARCO,</strong> la revocaci&oacute;n de su consentimiento y los dem&aacute;s derechos previstos en la LFPDP ponemos a su disposici&oacute;n los siguientes medios:</p>
 <ol>
-<li>a) Nombre de la persona o departamento de datos personales: <strong>JUAN LUIS VITE VIVANCO</strong></li>
-<li>b) Domicilio: <strong> Tecnol&oacute;gico de Monterrey, Col. Puerta de Hierro, Pachuca de Soto, Hidalgo, C.P 42086, Ciudad Pachuca, en la entidad de Hidalgo, pa&iacute;s MEXICO</strong></li>
-<li>c) Correo electr&oacute;nico: <strong>info@tic-shop.com.mx</strong></li>
-<li>d) N&uacute;mero telef&oacute;nico: <strong>7717028040</strong></li>
+
+<li>a) Correo electr&oacute;nico: <strong>info@tic-shop.com.mx</strong></li>
+<li>b) N&uacute;mero telef&oacute;nico: <strong>7717028040</strong></li>
 </ol>
 <p><strong>USTED PUEDE REVOCAR SU CONSENTIMIENTO PARA EL USO DE SUS DATOS PERSONALES</strong></p>
 <p>Usted puede revocar el consentimiento que, en su caso, nos haya otorgado para el tratamiento de sus datos personales. Sin embargo, es importante que tenga en cuenta que no en todos los casos podremos atender su solicitud o concluir el uso de forma inmediata, ya que es posible que por alguna obligaci&oacute;n legal requiramos seguir tratando sus datos personales. Asimismo, usted deber&aacute; considerar que para ciertos fines, la revocaci&oacute;n de su consentimiento implicar&aacute; que no le podamos seguir prestando el servicio que nos solicit&oacute;, o la conclusi&oacute;n de su relaci&oacute;n con nosotros.</p>
