@@ -14,7 +14,7 @@
         <div class="owl-carousel owl-theme viewed_slider">
           <?php
             $a="?id=".rand(1,1500);
-            
+
             foreach($rel as $key){
               echo "<div class='owl-item'>";
                 echo "<a href='/producto/".$key->clave."'>";
@@ -37,7 +37,7 @@
                           echo moneda($total);
                         }
                       echo "</div>";
-                      echo "<div class='viewed_name'>".$prod->nombre."</div>";
+                      echo "<div class='viewed_name'>".$key->nombre."</div>";
                     echo "</div>";
                   echo "</div>";
                 echo "</a>";

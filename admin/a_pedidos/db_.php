@@ -79,14 +79,71 @@ class Pedidos extends Tienda{
 			if (isset($_REQUEST['notas'])){
 				$arreglo+= array('notas'=>$_REQUEST['notas']);
 			}
+
+			$arreglo+= array('factura'=>$_REQUEST['factura']);
+
+
+			///////////////////////////////////////////////////////////
 			if (isset($_REQUEST['rfc'])){
 				$arreglo+= array('rfc'=>$_REQUEST['rfc']);
 			}
 			if (isset($_REQUEST['cfdi'])){
 				$arreglo+= array('cfdi'=>$_REQUEST['cfdi']);
 			}
+			if (isset($_REQUEST['direccion1'])){
+				$arreglo+= array('direccion1'=>$_REQUEST['direccion1']);
+			}
+			if (isset($_REQUEST['entrecalles'])){
+				$arreglo+= array('entrecalles'=>$_REQUEST['entrecalles']);
+			}
+			if (isset($_REQUEST['numero'])){
+				$arreglo+= array('numero'=>$_REQUEST['numero']);
+			}
+			if (isset($_REQUEST['colonia'])){
+				$arreglo+= array('colonia'=>$_REQUEST['colonia']);
+			}
+			if (isset($_REQUEST['ciudad'])){
+				$arreglo+= array('ciudad'=>$_REQUEST['ciudad']);
+			}
+			if (isset($_REQUEST['cp'])){
+				$arreglo+= array('cp'=>$_REQUEST['cp']);
+			}
+			if (isset($_REQUEST['pais'])){
+				$arreglo+= array('pais'=>$_REQUEST['pais']);
+			}
+			if (isset($_REQUEST['estado'])){
+				$arreglo+= array('estado'=>$_REQUEST['estado']);
+			}
+			if (isset($_REQUEST['telefono'])){
+				$arreglo+= array('telefono'=>$_REQUEST['telefono']);
+			}
 
-
+			//////////////////////////////////////////////// dirección de facturacion
+			if (isset($_REQUEST['fact_direccion1'])){
+				$arreglo+= array('fact_direccion1'=>$_REQUEST['fact_direccion1']);
+			}
+			if (isset($_REQUEST['fact_entrecalles'])){
+				$arreglo+= array('fact_entrecalles'=>$_REQUEST['fact_entrecalles']);
+			}
+			if (isset($_REQUEST['fact_numero'])){
+				$arreglo+= array('fact_numero'=>$_REQUEST['fact_numero']);
+			}
+			if (isset($_REQUEST['fact_ciudad'])){
+				$arreglo+= array('fact_ciudad'=>$_REQUEST['fact_ciudad']);
+			}
+			if (isset($_REQUEST['fact_colonia'])){
+				$arreglo+= array('fact_colonia'=>$_REQUEST['fact_colonia']);
+			}
+			if (isset($_REQUEST['fact_cp'])){
+				$arreglo+= array('fact_cp'=>$_REQUEST['fact_cp']);
+			}
+			if (isset($_REQUEST['fact_pais'])){
+				$arreglo+= array('fact_pais'=>$_REQUEST['fact_pais']);
+			}
+			if (isset($_REQUEST['fact_estado'])){
+				$arreglo+= array('fact_estado'=>$_REQUEST['fact_estado']);
+			}
+			$arreglo+= array('dir_tipo'=>$_REQUEST['dir_tipo']);
 
 			$x="";
 			if($id==0){
@@ -99,6 +156,42 @@ class Pedidos extends Tienda{
 		}
 		catch(PDOException $e){
 			return "Database access FAILED!".$e->getMessage();
+		}
+	}
+
+	public function dir_update(){
+		try{
+			$dir=$_REQUEST['dir_fin'];
+			$idcliente=$_REQUEST['idcliente'];
+
+
+			$sql="select * from clientes_direccion where iddireccion=:iddir and idcliente=:id";
+			$sth = $this->dbh->prepare($sql);
+			$sth->bindValue(":iddir",$dir);
+			$sth->bindValue(":id",$idcliente);
+			$sth->execute();
+			$resp=$sth->fetch(PDO::FETCH_OBJ);
+
+			$arreglo=array();
+			$arreglo+=array('id'=>0);
+			$arreglo+=array('error'=>0);
+			$arreglo+=array('terror'=>'');
+			$arreglo+=array('direccion1'=>$resp->direccion1);
+			$arreglo+=array('entrecalles'=>$resp->entrecalles);
+			$arreglo+=array('numero'=>$resp->numero);
+			$arreglo+=array('colonia'=>$resp->colonia);
+			$arreglo+=array('ciudad'=>$resp->ciudad);
+			$arreglo+=array('cp'=>$resp->cp);
+			$arreglo+=array('pais'=>$resp->pais);
+			$arreglo+=array('estado'=>$resp->estado);
+			return json_encode($arreglo);
+		}
+		catch(PDOException $e){
+			return "Database access FAILED!".$e->getMessage();
+			$arreglo+=array('id'=>0);
+			$arreglo+=array('error'=>1);
+			$arreglo+=array('terror'=>'Favor de verificar');
+			return json_encode($arreglo);
 		}
 	}
 	public function busca_cliente(){
@@ -1092,6 +1185,19 @@ class Pedidos extends Tienda{
 		}
 		catch(PDOException $e){
 			return "Database access FAILED!".$e->getMessage();
+		}
+	}
+	public function direcciones($id){
+		try{
+			self::set_names();
+			$sql="SELECT * from clientes_direccion where idcliente=:id";
+			$sth = $this->dbh->prepare($sql);
+			$sth->bindValue(':id',$id);
+			$sth->execute();
+			return $sth->fetchAll();
+		}
+		catch(PDOException $e){
+			return "Database access FAILED! ".$e->getMessage();
 		}
 	}
 }

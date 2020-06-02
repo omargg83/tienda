@@ -37,7 +37,8 @@
 	$cfdi="";
 
 	$telefono="";
-	$factura="";
+	$factura="0";
+	$dir_tipo=0;
 
 	if($id>0){
     $row=$db->editar_pedido($id);
@@ -85,6 +86,7 @@
   echo "<div class='container'>";
     echo "<form id='form_comision' action='' data-lugar='a_pedidos/db_' data-destino='a_pedidos/editar' data-funcion='guardar_pedido'>";
       echo "<input type='hidden' class='form-control' id='id' name='id' value='$id'>";
+      echo "<input type='hidden' class='form-control' id='idcliente' name='idcliente' value='$idcliente'>";
       echo "<div class='card'>";
         echo "<div class='card-header'>";
           echo "Pedido # $id";
@@ -137,12 +139,15 @@
 						echo "</div>";
 
 						echo "<div class='col-8'>";
-							echo "<label>Apellido:</label>";
+							echo "<label>Apellido: </label>";
 							echo "<input type='text' class='form-control form-control-sm' placeholder='Apellido' id='apellido' name='apellido' value='$apellido_cli' readonly  >";
 						echo "</div>";
 					echo "</div>";
 
-					echo "<div class='row' id='factura_div'>";
+
+					echo "<div class='row' id='factura_div' ";
+					if ($factura=="0"){ echo " style='display:none' "; }
+					echo " >";
 						echo "<div class='col-3'>";
 							echo "<label>RFC:</label>";
 							echo "<input type='text' class='form-control form-control-sm' placeholder='RFC' id='rfc' name='rfc' value='$rfc'>";
@@ -156,110 +161,121 @@
 								echo "<option value='".$key->cfdi."'"; if($cfdi==$key->cfdi){ echo " selected";} echo " >".$key->cfdi."</option>";
 							}
 							echo "</select>";
-
 						echo "</div>";
-					echo "</div>";
 
-					if($factura=='1'){
-						if($dir_tipo==1){
-							echo "<hr>";
-							echo "<h5>Dirección de facturación</h5>";
+						echo "<div class='col-12'>";
+							echo "<label>Direcciones de facturación disponibles</label>";
+							$resp=$db->direcciones($idcliente);
+							echo "<select id='dir_tipo' name='dir_tipo' class='form-control' onchange='select_factdir()'>";
+							echo "<option value='0'>Utilizar la misma dirección de envío</option>";
+							foreach($resp as $key){
+								echo "<option value='".$key['iddireccion']."'";
+								if ($dir_tipo==$key['iddireccion']){ echo " selected";}
+								echo ">".$key['direccion1']."</option>";
+							}
+							echo "<option value='nueva'>* Nueva dirección</option>";
+							echo "</select>";
+						echo "</div>";
+
+						echo "<div class='col-12' id='dirfactura_div' ";
+							if ($dir_tipo=="0"){ echo " style='display:none' "; }
+							echo  " >";
 							echo "<div class='row'>";
+
+								echo "<div class='col-12'>";
+									echo "<h5>Dirección de facturación</h5>";
+								echo "</div>";
+
 								echo "<div class='col-8'>";
 									echo "<label>Dirección 1:</label>";
-									echo "<input type='text' class='form-control form-control-sm' id='fact_direccion1' name='fact_direccion1' value='$fact_direccion1_cli' readonly>";
+									echo "<input type='text' class='form-control form-control-sm' id='fact_direccion1' name='fact_direccion1' value='$fact_direccion1_cli' >";
 								echo "</div>";
 
 								echo "<div class='col-4'>";
 									echo "<label>Entrecalles:</label>";
-									echo "<input type='text' class='form-control form-control-sm' id='fact_entrecalles' name='fact_entrecalles' value='$fact_entrecalles_cli' readonly>";
+									echo "<input type='text' class='form-control form-control-sm' id='fact_entrecalles' name='fact_entrecalles' value='$fact_entrecalles_cli' >";
 								echo "</div>";
 
 								echo "<div class='col-3'>";
 									echo "<label>Num. Exterior:</label>";
-									echo "<input type='text' class='form-control form-control-sm' id='fact_numero' name='fact_numero' value='$fact_numero_cli' readonly>";
+									echo "<input type='text' class='form-control form-control-sm' id='fact_numero' name='fact_numero' value='$fact_numero_cli' >";
 								echo "</div>";
 
 								echo "<div class='col-3'>";
 									echo "<label>Colonia:</label>";
-									echo "<input type='text' class='form-control form-control-sm' id='fact_colonia' name='fact_colonia' value='$fact_colonia_cli' readonly>";
+									echo "<input type='text' class='form-control form-control-sm' id='fact_colonia' name='fact_colonia' value='$fact_colonia_cli' >";
 								echo "</div>";
 
 								echo "<div class='col-3'>";
 									echo "<label>Ciudad:</label>";
-									echo "<input type='text' class='form-control form-control-sm' id='fact_ciudad' name='fact_ciudad' value='$fact_ciudad' readonly>";
+									echo "<input type='text' class='form-control form-control-sm' id='fact_ciudad' name='fact_ciudad' value='$fact_ciudad'>";
 								echo "</div>";
 
 								echo "<div class='col-3'>";
 									echo "<label>CP:</label>";
-									echo "<input type='text' class='form-control form-control-sm' id='fact_cp' name='fact_cp' value='$fact_cp' readonly>";
+									echo "<input type='text' class='form-control form-control-sm' id='fact_cp' name='fact_cp' value='$fact_cp'>";
 								echo "</div>";
 
 								echo "<div class='col-3'>";
 									echo "<label>Pais:</label>";
-									echo "<input type='text' class='form-control form-control-sm' id='fact_pais' name='fact_pais' value='$fact_pais' readonly>";
+									echo "<input type='text' class='form-control form-control-sm' id='fact_pais' name='fact_pais' value='$fact_pais'>";
 								echo "</div>";
 
 								echo "<div class='col-3'>";
 									echo "<label>Estado:</label>";
-									echo "<input type='text' class='form-control form-control-sm' id='fact_estado' name='fact_estado' value='$fact_estado' readonly>";
+									echo "<input type='text' class='form-control form-control-sm' id='fact_estado' name='fact_estado' value='$fact_estado'>";
 								echo "</div>";
 
 							echo "</div>";
-						}
-						else{
-							echo "<hr>";
-							echo "<h5>Dirección de facturación</h5>";
-							echo "<h5>Usar la misma de envío</h5>";
-						}
-					}
+						echo "</div>";
+					echo "</div>";
 
 					echo "<hr>";
 					echo "<h5>Dirección de envío</h5>";
 					echo "<div class='row'>";
 						echo "<div class='col-8'>";
 							echo "<label>Dirección 1:</label>";
-							echo "<input type='text' class='form-control form-control-sm' id='direccion1' name='direccion1' value='$direccion1_cli' readonly>";
+							echo "<input type='text' class='form-control form-control-sm' id='direccion1' name='direccion1' value='$direccion1_cli'>";
 						echo "</div>";
 
 						echo "<div class='col-4'>";
 							echo "<label>Entrecalles:</label>";
-							echo "<input type='text' class='form-control form-control-sm' id='entrecalles' name='entrecalles' value='$entrecalles_cli' readonly>";
+							echo "<input type='text' class='form-control form-control-sm' id='entrecalles' name='entrecalles' value='$entrecalles_cli' >";
 						echo "</div>";
 
 						echo "<div class='col-3'>";
 							echo "<label>Num. Exterior:</label>";
-							echo "<input type='text' class='form-control form-control-sm' id='numero' name='numero' value='$numero_cli' readonly>";
+							echo "<input type='text' class='form-control form-control-sm' id='numero' name='numero' value='$numero_cli'>";
 						echo "</div>";
 
 						echo "<div class='col-3'>";
 							echo "<label>Colonia:</label>";
-							echo "<input type='text' class='form-control form-control-sm' id='colonia' name='colonia' value='$colonia_cli' readonly>";
+							echo "<input type='text' class='form-control form-control-sm' id='colonia' name='colonia' value='$colonia_cli'>";
 						echo "</div>";
 
 						echo "<div class='col-3'>";
 							echo "<label>Ciudad:</label>";
-							echo "<input type='text' class='form-control form-control-sm' id='ciudad' name='ciudad' value='$ciudad' readonly>";
+							echo "<input type='text' class='form-control form-control-sm' id='ciudad' name='ciudad' value='$ciudad'>";
 						echo "</div>";
 
 						echo "<div class='col-3'>";
 							echo "<label>CP:</label>";
-							echo "<input type='text' class='form-control form-control-sm' id='cp' name='cp' value='$cp' readonly>";
+							echo "<input type='text' class='form-control form-control-sm' id='cp' name='cp' value='$cp' >";
 						echo "</div>";
 
 						echo "<div class='col-3'>";
 							echo "<label>Pais:</label>";
-							echo "<input type='text' class='form-control form-control-sm' id='pais' name='pais' value='$pais' readonly>";
+							echo "<input type='text' class='form-control form-control-sm' id='pais' name='pais' value='$pais' >";
 						echo "</div>";
 
 						echo "<div class='col-3'>";
 							echo "<label>Estado:</label>";
-							echo "<input type='text' class='form-control form-control-sm' id='estado' name='estado' value='$estado' readonly>";
+							echo "<input type='text' class='form-control form-control-sm' id='estado' name='estado' value='$estado' >";
 						echo "</div>";
 
 						echo "<div class='col-3'>";
 							echo "<label>Teléfono:</label>";
-							echo "<input type='text' class='form-control form-control-sm' id='telefono' name='telefono' value='$telefono' readonly>";
+							echo "<input type='text' class='form-control form-control-sm' id='telefono' name='telefono' value='$telefono' >";
 						echo "</div>";
 					echo "</div>";
 					echo "<hr>";

@@ -421,4 +421,80 @@
       }
     });
   }
+  function select_factdir(){
+    var dir_fin=$("#dir_tipo").val();
+    var idcliente=$("#idcliente").val();
+
+    if(dir_fin=='0'){
+      $("#fact_direccion1").val("");
+      $("#fact_entrecalles").val("");
+      $("#fact_numero").val("");
+      $("#fact_colonia").val("");
+      $("#fact_ciudad").val("");
+      $("#fact_cp").val("");
+      $("#fact_pais").val("");
+      $("#fact_estado").val("");
+      $("#dirfactura_div").hide();
+
+      $("#fact_direccion1").removeAttr("required");
+      $("#fact_colonia").removeAttr("required");
+      $("#fact_ciudad").removeAttr("required");
+      $("#fact_cp").removeAttr("required");
+      $("#fact_pais").removeAttr("required");
+      $("#fact_estado").removeAttr("required");
+    }
+    else if(dir_fin=='nueva'){
+
+      $("#fact_direccion1").prop("required", "true");
+      $("#fact_colonia").prop("required", "true");
+      $("#fact_ciudad").prop("required", "true");
+      $("#fact_cp").prop("required", "true");
+      $("#fact_pais").prop("required", "true");
+      $("#fact_estado").prop("required", "true");
+
+      $("#fact_direccion1").val("");
+      $("#fact_entrecalles").val("");
+      $("#fact_numero").val("");
+      $("#fact_colonia").val("");
+      $("#fact_ciudad").val("");
+      $("#fact_cp").val("");
+      $("#fact_pais").val("");
+      $("#fact_estado").val("");
+      $("#dirfactura_div").show();
+    }
+    else{
+      $.ajax({
+        url: "a_pedidos/db_.php",
+        type: "POST",
+        data:  {
+          "dir_fin":dir_fin,
+          "idcliente":idcliente,
+          "function":"dir_update"
+        },
+        success: function( response ) {
+          console.log(response);
+          var datos = JSON.parse(response);
+          if(datos.error==0){
+            $("#fact_direccion1").prop("required", "true");
+            $("#fact_colonia").prop("required", "true");
+            $("#fact_ciudad").prop("required", "true");
+            $("#fact_cp").prop("required", "true");
+            $("#fact_pais").prop("required", "true");
+            $("#fact_estado").prop("required", "true");
+
+            $("#fact_direccion1").val(datos.direccion1);
+            $("#fact_entrecalles").val(datos.entrecalles);
+            $("#fact_numero").val(datos.numero);
+            $("#fact_colonia").val(datos.colonia);
+            $("#fact_ciudad").val(datos.ciudad);
+            $("#fact_cp").val(datos.cp);
+            $("#fact_pais").val(datos.pais);
+            $("#fact_estado").val(datos.estado);
+            $("#dirfactura_div").show();
+          }
+        }
+      });
+    }
+
+  }
 </script>
