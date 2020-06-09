@@ -21,18 +21,12 @@
 		public function __construct(){
 			try{
 				date_default_timezone_set("America/Mexico_City");
-				/*
-				$_SESSION['mysqluser']="ticshopc_admin";
-				$_SESSION['mysqlpass']="admin123$%";
-				$_SESSION['servidor'] ="tic-shop.com.mx";
-				$_SESSION['bdd']="ticshopc_tienda";*/
 
-				$_SESSION['mysqluser']="sagyccom_esponda";
-				$_SESSION['mysqlpass']="esponda123$";
-				$_SESSION['servidor'] ="sagyc.com.mx";
-				$_SESSION['bdd']="sagycrmr_tienda";
-
-				$this->dbh = new PDO("mysql:host=".$_SESSION['servidor'].";dbname=".$_SESSION['bdd']."", $_SESSION['mysqluser'], $_SESSION['mysqlpass']);
+				$mysqluser="ticshopc_admin";
+				$mysqlpass="admin123$%";
+				$servidor ="tic-shop.com.mx";
+				$bdd="ticshopc_tienda";
+				$this->dbh = new PDO("mysql:host=$servidor;dbname=$bdd", $mysqluser, $mysqlpass);
 				self::set_names();
 
 				$sql="select * from ajustes";
@@ -42,8 +36,8 @@
 				$this->cgeneral=$tmp->p_general;
 				$this->egeneral=$tmp->c_envio;
 			}
-			else {
-				return "error";
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
 			}
 		}
 		public function set_names(){
@@ -51,9 +45,28 @@
 		}
 		public function acceso(){
 			try{
-				$userPOST = htmlspecialchars($_REQUEST["userAcceso"]);
-				$passPOST=$_REQUEST["passAcceso"];
-				$sql="SELECT* FROM usuarios where (usuario=:usuario) and (UPPER(pass)=UPPER(:pass)) and autoriza=1";
+				$metodo=$_SERVER['REQUEST_METHOD'];
+				$keys=array_keys($_REQUEST);
+				$uno=$keys[0];
+				$dos=$keys[1];
+
+				$user=$_REQUEST[$uno];
+				$pass=$_REQUEST[$dos];
+
+				$sql="SELECT in_u, in_p FROM token_pikatic where in_u=:usuario and in_p=:pass";
+
+				/*
+					$sql="SELECT in_u, in_p FROM token_pikatic where (in_u=:usuario) and (UPPER(pass)=UPPER(:pass)) and autoriza=1";
+					$sth = $this->dbh->prepare($sql);
+					$sth->bindValue(":in_u",$userPOST);
+					$sth->bindValue(":pass",$passPOST);
+					$sth->execute();
+				*/
+
+				$userPOST=htmlspecialchars($_REQUEST["userAcceso"]);
+				$passPOST=htmlspecialchars($_REQUEST["passAcceso"]);
+
+				$sql="SELECT nombre, correo, nivel, idpersona FROM usuarios where (correo=:usuario) and (UPPER(pass)=UPPER(:pass)) and autoriza=1";
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(":usuario",$userPOST);
 				$sth->bindValue(":pass",$passPOST);
@@ -64,27 +77,18 @@
 					$CLAVE=$sth->fetch();
 					$_SESSION['autoriza']=1;
 					$_SESSION['nombre']=$CLAVE['nombre'];
-					$_SESSION['usuario'] = $CLAVE['usuario'];
-					$_SESSION['pass'] = $CLAVE['pass'];
 					$_SESSION['nivel'] = $CLAVE['nivel'];
+					$_SESSION['idpersona'] = $CLAVE['idpersona'];
 					$_SESSION['pagnivel']=40;
-					$_SESSION['idpersona']=$CLAVE['idpersona'];
 					$_SESSION['remoto']=0;
-					//$fondo=mysqli_fetch_array(mysqli_query($link,"select * from config_fondo where idfondo='".$CLAVE['idfondo']."'"));
-					//$_SESSION['fondo']=$fondo['fondo'];
-					$_SESSION['anio']=date("Y");
-					$_SESSION['mes']=date("m");
-					$_SESSION['dia']=date("d");
-					$_SESSION['hasta']=2016;
-					$_SESSION['foco']=mktime(date("H"),date("i"),date("s"),date("m"),date("d"),date("Y"));
 					$_SESSION['cfondo']="white";
 					$arr=array();
-					$arr=array('acceso'=>1,'idpersona'=>$_SESSION['idpersona']);
+					$arr=array('acceso'=>1);
 					return json_encode($arr);
 				}
 				else {
 					$arr=array();
-					$arr=array('acceso'=>0,'idpersona'=>0);
+					$arr=array('acceso'=>0);
 					return json_encode($arr);
 				}
 				return $obj;
@@ -99,78 +103,12 @@
 				$_SESSION['idfondo']="";
 			}
 			if(isset($_SESSION['idpersona']) and $_SESSION['autoriza'] == 1) {
-				///////////////////////////sesion abierta
 				$valor=$_SESSION['idfondo'];
-				$x="";
-				$x.="<nav class='navbar navbar-expand-sm navbar-dark fixed-top bg-dark' style='opacity:1;'>";
-					$x.="<button class='btn btn-outline-secondary' type='button' id='sidebarCollapse'>";
-						$x.="<span class='navbar-toggler-icon'></span>";
-					$x.="</button>";
-					/*
-					$x.="<img src='img/escudo.png' width='40' height='30' alt=''>";
-					$x.="<img src='img/SSH.png' width='40' height='30' alt=''>";
-					*/
-					$x.="<a class='navbar-brand' href='#escritorio/dashboard' style='font-size:10px'>Tic Shop ASASD</a>";
-
-					$x.="<button class='navbar-toggler navbar-toggler-right' type='button' data-toggle='collapse' data-target='#principal' aria-controls='principal' aria-expanded='false' aria-label='Toggle navigation'>";
-						$x.="<i class='fab fa-rocketchat'></i>";
-					$x.="</button>";
-
-					$x.="<div class='collapse navbar-collapse' id='principal'>";
-						$x.="<ul class='navbar-nav mr-auto'>";
-							$x.="<li class='nav-item dropdown'>";
-								$x.="<a class='nav-link navbar-brand' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'></a>";
-							$x.="</li>";
-						$x.="</ul>";
-						$x.="<ul class='nav navbar-nav navbar-right' id='notificaciones'></ul>";
-
-						$x.="<ul class='nav navbar-nav navbar-right' id='fondo'></ul>";
-						$x.="<ul class='nav navbar-nav navbar-right'>";
-							$x.="<li class='nav-item dropdown'>";
-								$x.="<a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>";
-									$x.="<i class='fas fa-user-check'></i>";
-									$x.=$_SESSION['nombre'];
-								$x.="</a>";
-
-								$x.="<div class='dropdown-menu' aria-labelledby='navbarDropdown'>";
-									$x.="<a class='dropdown-item' id='winmodal_pass' data-id='".$_SESSION['idpersona']."' data-lugar='a_usuarios/form_pass' title='Cambiar contraseña' ><i class='fas fa-key'></i>Contraseña</a>";
-								$x.="</div>";
-							$x.="</li>";
-						$x.="</ul>";
-						$x.="<ul class='nav navbar-nav navbar-right'>";
-							$x.="<li class='nav-item'>";
-								$x.="<a class='nav-link pull-left' onclick='salir()'>";
-									$x.="<i class='fas fa-door-open' style='color:red;'></i>Salir";
-								$x.="</a>";
-							$x.="</li>";
-						$x.="</ul>";
-					$x.="</div>";
-				$x.="</nav>";
-
-				$y="";
-				/////////////fin del header
-				$y.="<div class='wrapper'>";
-					$y.="<div class='content navbar-default'>";
-						$y.="<div class='container-fluid'>";
-							$y.="<div class='sidebar sidenav' id='navx'>";
-								$y.="<a href='#escritorio/dashboard' class='activeside'><i class='fas fa-home'></i> <span>Inicio</span></a>";
-								$y.="<a href='#a_productos/index' title='Productos'><i class='fas fa-users '></i> <span>Productos</span></a>";				/////////////// listo
-							$y.="</div>";
-						$y.="</div>";
-						$y.="<div class='fijaproceso main' id='contenido'>";
-						$y.="</div>";
-					$y.="</div>";
-				$y.="</div>";
-
-				$admin=0;
-				$arreglo=array('sess'=>"abierta", 'fondo'=>$valor, 'header'=>$x, 'cuerpo'=>$y, 'admin'=>$admin);
-				///////////////////////////fin sesion abierta
+				$arreglo=array('sess'=>"abierta", 'fondo'=>$valor);
 			}
 			else {
-				///////////////////////////login
 				$valor=$_SESSION['idfondo'];
 				$arreglo=array('sess'=>"cerrada", 'fondo'=>$valor);
-				//////////////////////////fin login
 			}
 			return json_encode($arreglo);
 		}

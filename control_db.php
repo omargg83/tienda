@@ -15,17 +15,11 @@
 				try{
 				date_default_timezone_set("America/Mexico_City");
 
-				$_SESSION['mysqluser']="sagyccom_esponda";
-				$_SESSION['mysqlpass']="esponda123$";
-				$_SESSION['servidor'] ="sagyc.com.mx";
-				$_SESSION['bdd']="sagycrmr_tienda";
-
-				/*
 				$_SESSION['mysqluser']="ticshopc_admin";
 				$_SESSION['mysqlpass']="admin123$%";
 				$_SESSION['servidor'] ="tic-shop.com.mx";
 				$_SESSION['bdd']="ticshopc_tienda";
-				*/
+
 				$this->dbh = new PDO("mysql:host=".$_SESSION['servidor'].";dbname=".$_SESSION['bdd']."", $_SESSION['mysqluser'], $_SESSION['mysqlpass']);
 				self::set_names();
 
@@ -47,8 +41,8 @@
 				$this->SMTPSecure=$tmp->SMTPSecure;
 				$this->Port=$tmp->Port;
 			}
-			else {
-				return "error";
+			catch(PDOException $e){
+				return "Database access FAILED!".$e->getMessage();
 			}
 		}
 		public function set_names(){

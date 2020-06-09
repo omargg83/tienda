@@ -7,7 +7,6 @@ class Reporte extends Tienda{
 	public function __construct(){
 		parent::__construct();
 	}
-
 	public function productos_numero(){
 		try{
 			parent::set_names();
@@ -44,8 +43,6 @@ class Reporte extends Tienda{
 			return "Database access FAILED!".$e->getMessage();
 		}
 	}
-
-
 }
 $db = new Reporte();
 if(strlen($function)>0){

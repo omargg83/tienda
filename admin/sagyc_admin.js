@@ -6,9 +6,6 @@
 	$(function(){
 		$("#cargando").removeClass("is-active");
 		acceso();
-		if(intval==""){
-			intval=window.setInterval("sesion_ver()",60000);
-		}
 	});
 	function acceso(){
 		$.ajax({
@@ -45,6 +42,9 @@
 						}
 						setTimeout(fondos, 15000);
 						loadContent(location.hash.slice(1));
+						if(intval==""){
+							intval=window.setInterval("sesion_ver()",60000);
+						}
 					}
 				}
 				else{
@@ -112,9 +112,11 @@
 			url: "control_db.php",
 			type: "post",
 			success:  function (response) {
+				console.log("sesion_ver");
 				if (isJSON(response)){
 					var datos = JSON.parse(response);
 					if (datos.sess=="cerrada"){
+						clearInterval(intval);
 						$("#header").html("");
 						$("#bodyx").html("");
 						$("#modal_dispo").removeClass("modal-lg");
@@ -211,25 +213,17 @@
 	}
 	$(document).on('submit','#acceso',function(e){
 		e.preventDefault();
-		var tipo=1;
-		var userAcceso=document.getElementById("userAcceso").value;
-		var passAcceso=$.md5(document.getElementById("passAcceso").value);
-
+		var dataString = $(this).serialize()+"&function=acceso&ctrl=control";
 		$.ajax({
 		  url: "control_db.php",
 			type: "POST",
-		  data: {
-				"tipo":tipo,
-				"ctrl":"control",
-				"function":"acceso",
-				"userAcceso":userAcceso,
-				"passAcceso":passAcceso
-		  },
+		  data:  dataString,
 		  success: function( response ) {
+				console.log(response);
+
 				var data = JSON.parse(response);
 				if (data.acceso==1){
 					acceso();
-
 					$('#myModal').modal('hide');
 					$("#modal_dispo").addClass("modal-lg");
 				}
