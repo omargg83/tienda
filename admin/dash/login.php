@@ -6,10 +6,17 @@
   class Login{
 		public function __construct(){
       try{
+        $mysqluser="sagyccom_esponda";
+        $mysqlpass="esponda123$";
+        $servidor ="sagyc.com.mx";
+        $bdd="sagycrmr_tienda";
+
+        /*
 				$mysqluser="ticshopc_admin";
 				$mysqlpass="admin123$%";
 				$servidor ="tic-shop.com.mx";
-				$bdd="ticshopc_tienda";
+				$bdd="ticshopc_tienda";*/
+
 				$this->dbh = new PDO("mysql:host=$servidor;dbname=$bdd", $mysqluser, $mysqlpass);
         self::set_names();
 			}
