@@ -86,13 +86,13 @@
       }
     }
   }
-
+  $intentos=0;
   $db = new Login();
-  $intentos=$db->ip();
+  //$intentos=$db->ip();
   echo "intentos:".$intentos;
   if($intentos>3){
     echo "muchos intentos espere";
-    die();
+    //die();
   }
   else{
     //$ar=$db->genera_random();
