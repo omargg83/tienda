@@ -198,9 +198,19 @@
 			return json_encode($arreglo);
 		}
 		public function salir(){
-			$_SESSION['autoriza'] = 0;
-			$_SESSION['idpersona']="";
-			$_SESSION['idsess']="";
+			try{
+				$ip=$this->getRealIP();
+				$sql="delete from token_pikatic where ip=:ip";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(":ip",$ip);
+				$sth->execute();
+				$_SESSION['autoriza'] = 0;
+				$_SESSION['idpersona']="";
+				$_SESSION['idsess']="";
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!";
+			}
 		}
 		public function ses(){
 			if(isset($_SESSION['autoriza']) and isset($_SESSION['idpersona']) and ($_SESSION['autoriza']==1 and strlen($_SESSION['idpersona'])>0)){
