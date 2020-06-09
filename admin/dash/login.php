@@ -79,7 +79,6 @@
         return $CLAVE->numero;
       }
       catch(PDOException $e){
-        die();
         return "Database access FAILED!";
       }
     }
