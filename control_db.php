@@ -12,40 +12,44 @@
 
 	class Tienda{
 		public function __construct(){
-			$this->Salud = array();
-			date_default_timezone_set("America/Mexico_City");
+				try{
+				date_default_timezone_set("America/Mexico_City");
 
-			$_SESSION['mysqluser']="sagyccom_esponda";
-			$_SESSION['mysqlpass']="esponda123$";
-			$_SESSION['servidor'] ="sagyc.com.mx";
-			$_SESSION['bdd']="sagycrmr_tienda";
-			
-			/*
-			$_SESSION['mysqluser']="ticshopc_admin";
-			$_SESSION['mysqlpass']="admin123$%";
-			$_SESSION['servidor'] ="tic-shop.com.mx";
-			$_SESSION['bdd']="ticshopc_tienda";
-			*/
-			$this->dbh = new PDO("mysql:host=".$_SESSION['servidor'].";dbname=".$_SESSION['bdd']."", $_SESSION['mysqluser'], $_SESSION['mysqlpass']);
-			self::set_names();
+				$_SESSION['mysqluser']="sagyccom_esponda";
+				$_SESSION['mysqlpass']="esponda123$";
+				$_SESSION['servidor'] ="sagyc.com.mx";
+				$_SESSION['bdd']="sagycrmr_tienda";
 
-			$this->doc="admin/a_imagen/";
-			$this->extra="admin/a_imagenextra/";
-			$this->banner="admin/a_imagenpagina/";
+				/*
+				$_SESSION['mysqluser']="ticshopc_admin";
+				$_SESSION['mysqlpass']="admin123$%";
+				$_SESSION['servidor'] ="tic-shop.com.mx";
+				$_SESSION['bdd']="ticshopc_tienda";
+				*/
+				$this->dbh = new PDO("mysql:host=".$_SESSION['servidor'].";dbname=".$_SESSION['bdd']."", $_SESSION['mysqluser'], $_SESSION['mysqlpass']);
+				self::set_names();
 
-			$sql="select * from ajustes";
-			$sth = $this->dbh->prepare($sql);
-			$sth->execute();
-			$tmp=$sth->fetch(PDO::FETCH_OBJ);
-			$this->cgeneral=$tmp->p_general;
-			$this->egeneral=$tmp->c_envio;
+				$this->doc="admin/a_imagen/";
+				$this->extra="admin/a_imagenextra/";
+				$this->banner="admin/a_imagenpagina/";
 
-			$this->ecorreo=$tmp->correo;
-			$this->host=$tmp->host;
-			$this->SMTPAuth=$tmp->SMTPAuth;
-			$this->Password=$tmp->Password;
-			$this->SMTPSecure=$tmp->SMTPSecure;
-			$this->Port=$tmp->Port;
+				$sql="select * from ajustes";
+				$sth = $this->dbh->prepare($sql);
+				$sth->execute();
+				$tmp=$sth->fetch(PDO::FETCH_OBJ);
+				$this->cgeneral=$tmp->p_general;
+				$this->egeneral=$tmp->c_envio;
+
+				$this->ecorreo=$tmp->correo;
+				$this->host=$tmp->host;
+				$this->SMTPAuth=$tmp->SMTPAuth;
+				$this->Password=$tmp->Password;
+				$this->SMTPSecure=$tmp->SMTPSecure;
+				$this->Port=$tmp->Port;
+			}
+			else {
+				return "error";
+			}
 		}
 		public function set_names(){
 			return $this->dbh->query("SET NAMES 'utf8'");

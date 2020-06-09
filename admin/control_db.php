@@ -19,29 +19,32 @@
 		public $limite=300;
 
 		public function __construct(){
-			$this->Salud = array();
-			date_default_timezone_set("America/Mexico_City");
-			/*
-			$_SESSION['mysqluser']="ticshopc_admin";
-			$_SESSION['mysqlpass']="admin123$%";
-			$_SESSION['servidor'] ="tic-shop.com.mx";
-			$_SESSION['bdd']="ticshopc_tienda";*/
+			try{
+				date_default_timezone_set("America/Mexico_City");
+				/*
+				$_SESSION['mysqluser']="ticshopc_admin";
+				$_SESSION['mysqlpass']="admin123$%";
+				$_SESSION['servidor'] ="tic-shop.com.mx";
+				$_SESSION['bdd']="ticshopc_tienda";*/
 
-			$_SESSION['mysqluser']="sagyccom_esponda";
-			$_SESSION['mysqlpass']="esponda123$";
-			$_SESSION['servidor'] ="sagyc.com.mx";
-			$_SESSION['bdd']="sagycrmr_tienda";
+				$_SESSION['mysqluser']="sagyccom_esponda";
+				$_SESSION['mysqlpass']="esponda123$";
+				$_SESSION['servidor'] ="sagyc.com.mx";
+				$_SESSION['bdd']="sagycrmr_tienda";
 
+				$this->dbh = new PDO("mysql:host=".$_SESSION['servidor'].";dbname=".$_SESSION['bdd']."", $_SESSION['mysqluser'], $_SESSION['mysqlpass']);
+				self::set_names();
 
-			$this->dbh = new PDO("mysql:host=".$_SESSION['servidor'].";dbname=".$_SESSION['bdd']."", $_SESSION['mysqluser'], $_SESSION['mysqlpass']);
-			self::set_names();
-
-			$sql="select * from ajustes";
-			$sth = $this->dbh->prepare($sql);
-			$sth->execute();
-			$tmp=$sth->fetch(PDO::FETCH_OBJ);
-			$this->cgeneral=$tmp->p_general;
-			$this->egeneral=$tmp->c_envio;
+				$sql="select * from ajustes";
+				$sth = $this->dbh->prepare($sql);
+				$sth->execute();
+				$tmp=$sth->fetch(PDO::FETCH_OBJ);
+				$this->cgeneral=$tmp->p_general;
+				$this->egeneral=$tmp->c_envio;
+			}
+			else {
+				return "error";
+			}
 		}
 		public function set_names(){
 			return $this->dbh->query("SET NAMES 'utf8'");
