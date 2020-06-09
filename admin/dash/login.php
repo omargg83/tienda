@@ -87,6 +87,7 @@
 
   $db = new Login();
   $intentos=$db->ip();
+  echo "intentos:".$intentos;
   if($intentos>3){
     echo "muchos intentos espere";
     die();
