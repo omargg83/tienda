@@ -95,9 +95,9 @@
     die();
   }
   else{
-    $ar=$db->genera_random();
-    $a=$ar[0];
-    $b=$ar[1];
+    //$ar=$db->genera_random();
+    //$a=$ar[0];
+    //$b=$ar[1];
   }
 ?>
 
