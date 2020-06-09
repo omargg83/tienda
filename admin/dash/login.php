@@ -1,4 +1,7 @@
 <?php
+  error_reporting(E_ALL);
+  ini_set('display_errors', '1');
+
   date_default_timezone_set("America/Mexico_City");
   class Login{
 		public function __construct(){
@@ -43,8 +46,8 @@
       try{
 
         $random=substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
-        $in=md5(substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 16));
-        $pin=md5(substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 16));
+        $in=substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 16);
+        $pin=substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 16);
 
         $encrip=password_hash($random, PASSWORD_DEFAULT);
         $ip=self::getRealIP();
