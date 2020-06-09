@@ -81,12 +81,17 @@
     public function ip(){
       try{
         $ip=self::getRealIP();
-        $sql="select count(token) as numero from token_pikatic where ip=:ip";
-        $sth = $this->dbh->prepare($sql);
-        $sth->bindValue(":ip",$ip);
-        $sth->execute();
-        $CLAVE=$sth->fetch(PDO::FETCH_OBJ);
-        return $CLAVE->numero;
+        if(strlen($ip)>8){
+          $sql="select count(token) as numero from token_pikatic where ip=:ip";
+          $sth = $this->dbh->prepare($sql);
+          $sth->bindValue(":ip",$ip);
+          $sth->execute();
+          $CLAVE=$sth->fetch(PDO::FETCH_OBJ);
+          return $CLAVE->numero;
+        }
+        else{
+          return 100;
+        }
       }
       catch(PDOException $e){
         return "Database access FAILED!";
@@ -96,9 +101,8 @@
   $intentos=0;
   $db = new Login();
   $intentos=$db->ip();
-  echo "intentos:".$intentos;
   if($intentos>3){
-    echo "muchos intentos espere";
+    echo "Ha superado el número de ingresos permitidos, favor de esperar 10 minutos para volver a intentarlo";
     die();
   }
   else{
