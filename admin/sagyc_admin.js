@@ -15,7 +15,7 @@
 			},
 			url:   'control_db.php',
 			type:  'post',
-			timeout:30000,
+			timeout:10000,
 			beforeSend: function () {
 				$("#cargando").addClass("is-active");
 			},
@@ -102,7 +102,6 @@
 		});
 		$("#cargando").removeClass("is-active");
 	}
-
 	function sesion_ver(){
 		$.ajax({
 			data:  {
@@ -112,7 +111,6 @@
 			url: "control_db.php",
 			type: "post",
 			success:  function (response) {
-				console.log("sesion_ver");
 				if (isJSON(response)){
 					var datos = JSON.parse(response);
 					if (datos.sess=="cerrada"){
@@ -219,8 +217,6 @@
 			type: "POST",
 		  data:  dataString,
 		  success: function( response ) {
-				console.log(response);
-
 				var data = JSON.parse(response);
 				if (data.acceso==1){
 					acceso();
@@ -230,9 +226,10 @@
 				else{
 					Swal.fire({
 						  type: 'error',
-						  title: 'Usuario o contraseña incorrecta',
+						  title: data.info,
+							allowOutsideClick: false,
 						  showConfirmButton: false,
-						  timer: 1000
+						  timer: 5000
 					})
 				}
 		  }

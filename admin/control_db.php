@@ -21,82 +21,167 @@
 		public function __construct(){
 			try{
 				date_default_timezone_set("America/Mexico_City");
+				$ip=self::getRealIP();
+        $clave=md5("tic%pika_$%&/()=".$ip);
+        if($_SESSION['idsess']==$clave){
+					$mysqluser="ticshopc_admin";
+					$mysqlpass="admin123$%";
+					$servidor ="tic-shop.com.mx";
+					$bdd="ticshopc_tienda";
+					$this->dbh = new PDO("mysql:host=$servidor;dbname=$bdd", $mysqluser, $mysqlpass);
+					self::set_names();
 
-				$mysqluser="ticshopc_admin";
-				$mysqlpass="admin123$%";
-				$servidor ="tic-shop.com.mx";
-				$bdd="ticshopc_tienda";
-				$this->dbh = new PDO("mysql:host=$servidor;dbname=$bdd", $mysqluser, $mysqlpass);
-				self::set_names();
+					if($this->baneada()>0){
+						echo ".";
+						die();
+					}
 
-				$sql="select * from ajustes";
-				$sth = $this->dbh->prepare($sql);
-				$sth->execute();
-				$tmp=$sth->fetch(PDO::FETCH_OBJ);
-				$this->cgeneral=$tmp->p_general;
-				$this->egeneral=$tmp->c_envio;
+					$sql="select p_general, c_envio from ajustes";
+					$sth = $this->dbh->prepare($sql);
+					$sth->execute();
+					$tmp=$sth->fetch(PDO::FETCH_OBJ);
+					$this->cgeneral=$tmp->p_general;
+					$this->egeneral=$tmp->c_envio;
+				}
+				else{
+					die();
+				}
 			}
 			catch(PDOException $e){
-				return "Database access FAILED!".$e->getMessage();
+				return "Database access FAILED!";
 			}
 		}
 		public function set_names(){
 			return $this->dbh->query("SET NAMES 'utf8'");
 		}
+		private function getRealIP(){
+      if (isset($_SERVER["HTTP_CLIENT_IP"])){
+          return $_SERVER["HTTP_CLIENT_IP"];
+      }
+      elseif (isset($_SERVER["HTTP_X_FORWARDED_FOR"])){
+          return $_SERVER["HTTP_X_FORWARDED_FOR"];
+      }
+      elseif (isset($_SERVER["HTTP_X_FORWARDED"])){
+          return $_SERVER["HTTP_X_FORWARDED"];
+      }
+      elseif (isset($_SERVER["HTTP_FORWARDED_FOR"])){
+          return $_SERVER["HTTP_FORWARDED_FOR"];
+      }
+      elseif (isset($_SERVER["HTTP_FORWARDED"])){
+          return $_SERVER["HTTP_FORWARDED"];
+      }
+      else{
+          return $_SERVER["REMOTE_ADDR"];
+      }
+    }
+		public function baneada(){
+			try{
+				$ip=self::getRealIP();
+				$sql="SELECT baneada FROM token_log where baneada=:baneada";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(":baneada",$ip);
+				$sth->execute();
+				$contar=$sth->rowCount();
+				return $contar;
+			}
+			catch(PDOException $e){
+				return "Database access FAILED!";
+			}
+		}
 		public function acceso(){
 			try{
+				$ip=self::getRealIP();
+
+
+				$sql="SELECT baneada FROM token_log where baneada=:baneada";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(":baneada",$ip);
+				$sth->execute();
+				$contar=$sth->rowCount();
+				if($contar>0){
+					$arr=array();
+					$arr=array('acceso'=>0);
+					$arr=array('info'=>"Error 1");
+					return json_encode($arr);
+				}
+				////////////////////////////los id y name de los input de login son variantes por lo que si no existen quiere decir que el usuario intento hackear y por lo tanto se banea la IP
 				$metodo=$_SERVER['REQUEST_METHOD'];
 				$keys=array_keys($_REQUEST);
 				$uno=$keys[0];
 				$dos=$keys[1];
 
-				$user=$_REQUEST[$uno];
-				$pass=$_REQUEST[$dos];
+				$user=trim($_REQUEST[$uno]);
+				$pass=trim($_REQUEST[$dos]);
 
-				$sql="SELECT in_u, in_p FROM token_pikatic where in_u=:usuario and in_p=:pass";
+				$sql="SELECT in_u, in_p, intentos FROM token_pikatic where in_u=:usuario and in_p=:pass";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(":usuario",$uno);
+				$sth->bindValue(":pass",$dos);
+				$sth->execute();
+				$contar=$sth->rowCount();
+				$row=$sth->fetch(PDO::FETCH_OBJ);
+				if($contar and $row->intentos<3){
+					///////////////////////numero de intentos
 
-				/*
-					$sql="SELECT in_u, in_p FROM token_pikatic where (in_u=:usuario) and (UPPER(pass)=UPPER(:pass)) and autoriza=1";
+					$total=$row->intentos+1;
+					$sql="update token_pikatic set intentos=$total where in_u=:usuario and in_p=:pass";
 					$sth = $this->dbh->prepare($sql);
-					$sth->bindValue(":in_u",$userPOST);
+					$sth->bindValue(":usuario",$uno);
+					$sth->bindValue(":pass",$dos);
+					$sth->execute();
+
+					$userPOST=$user;
+					$passPOST=md5($pass);
+
+					$sql="SELECT nombre, correo, nivel, idpersona FROM usuarios where (correo=:usuario) and (UPPER(pass)=UPPER(:pass)) and autoriza=1";
+					$sth = $this->dbh->prepare($sql);
+					$sth->bindValue(":usuario",$userPOST);
 					$sth->bindValue(":pass",$passPOST);
 					$sth->execute();
-				*/
-
-				$userPOST=htmlspecialchars($_REQUEST["userAcceso"]);
-				$passPOST=htmlspecialchars($_REQUEST["passAcceso"]);
-
-				$sql="SELECT nombre, correo, nivel, idpersona FROM usuarios where (correo=:usuario) and (UPPER(pass)=UPPER(:pass)) and autoriza=1";
-				$sth = $this->dbh->prepare($sql);
-				$sth->bindValue(":usuario",$userPOST);
-				$sth->bindValue(":pass",$passPOST);
-				$sth->execute();
-
-				 if ($sth->rowCount()>0){
-					$suma=1;
-					$CLAVE=$sth->fetch();
-					$_SESSION['autoriza']=1;
-					$_SESSION['nombre']=$CLAVE['nombre'];
-					$_SESSION['nivel'] = $CLAVE['nivel'];
-					$_SESSION['idpersona'] = $CLAVE['idpersona'];
-					$_SESSION['pagnivel']=40;
-					$_SESSION['remoto']=0;
-					$_SESSION['cfondo']="white";
-					$arr=array();
-					$arr=array('acceso'=>1);
-					return json_encode($arr);
+					 if ($sth->rowCount()>0){
+						$suma=1;
+						$CLAVE=$sth->fetch();
+						$_SESSION['autoriza']=1;
+						$_SESSION['nombre']=$CLAVE['nombre'];
+						$_SESSION['nivel'] = $CLAVE['nivel'];
+						$_SESSION['idpersona'] = $CLAVE['idpersona'];
+						$_SESSION['pagnivel']=40;
+						$_SESSION['remoto']=0;
+						$_SESSION['cfondo']="white";
+						$arr=array();
+						$arr=array('acceso'=>1);
+						return json_encode($arr);
+					}
+					else {
+						$arr=array();
+						$arr=array('acceso'=>0);
+						$arr=array('info'=>"Usuario o contraseña incorrecta");
+						return json_encode($arr);
+					}
+					return $obj;
 				}
-				else {
+				else{
+					if($contar==0){
+						$sql="insert into token_log (baneada) values (:ip)";
+						$sth = $this->dbh->prepare($sql);
+						$sth->bindValue(":ip",$ip);
+						$sth->execute();
+						$arr=array();
+						$arr=array('acceso'=>0);
+						$arr=array('info'=>"Error 1");
+						return json_encode($arr);
+					}
 					$arr=array();
 					$arr=array('acceso'=>0);
+					$arr=array('info'=>"Ha excedido el numero máximo de intentos permitido, espere unos minutos y vuelva a intentarlo");
 					return json_encode($arr);
 				}
-				return $obj;
 			}
 			catch(PDOException $e){
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
+
 		public function login(){
 			$arreglo=array();
 			if(!isset($_SESSION['idfondo'])){
@@ -115,6 +200,7 @@
 		public function salir(){
 			$_SESSION['autoriza'] = 0;
 			$_SESSION['idpersona']="";
+			$_SESSION['idsess']="";
 		}
 		public function ses(){
 			if(isset($_SESSION['autoriza']) and isset($_SESSION['idpersona']) and ($_SESSION['autoriza']==1 and strlen($_SESSION['idpersona'])>0)){
@@ -453,8 +539,7 @@
 				return json_encode($arreglo);
 			}
 		}
-
-}
+	}
 	if(strlen($ctrl)>0){
 		$db = new Tienda();
 		if(strlen($function)>0){
