@@ -1,3 +1,5 @@
+RewriteEngine On
+
 RewriteRule ^producto/(.*)$  ./producto.php?id=$1 [L]
 RewriteRule ^buscar/(.*)$  ./buscar.php?id=$1 [L,QSA]
 RewriteRule ^acceso/(.*)$  ./acceso.php?id=$1 [L,QSA]
@@ -12,6 +14,12 @@ Options All -Indexes
 
 
 RewriteEngine On
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^http://172.16.0.3 [NC]
+RewriteCond %{HTTP_REFERER} !^http://localhost [NC]
+RewriteCond %{HTTP_REFERER} !^http://xtienda.sagyc.com.mx [NC]
+RewriteCond %{HTTP_REFERER} !^https://xtienda.sagyc.com.mx/ [NC]
+RewriteRule .*\.(gif|jpg|png|js)$ - [NC,F]
 
 # Evitar escaneos y cualquier intento de manipulación malintencionada
 # de la URL. Con esta regla es casi imposible lanzar ataques de inyección (SQL, XSS, etc)
