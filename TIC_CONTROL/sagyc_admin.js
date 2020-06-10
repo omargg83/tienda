@@ -859,3 +859,14 @@
 				}
 		});
 	});
+
+	function md5pass(){
+		var user=$("#usuario").val();
+		var pass=$("#password").val();
+		if(user.length>0 || pass.length>0){
+			$("#submit").prop( "disabled", true );
+		}
+		else{
+			$("#submit").prop( "disabled", false );
+		}
+	}

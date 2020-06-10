@@ -2,7 +2,6 @@
 	session_start();
 	require_once("control_db.php");
 	$bdd = new Tienda();
-
 ?>
 <!DOCTYPE HTML>
 <html lang="es">
@@ -62,7 +61,7 @@
 
 </body>
 	<!--   Core JS Files   -->
-	<script src="librerias15/jquery-3.4.1.min.js" type="text/javascript"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
 	<!--   url   -->
 	<script src="librerias15/jquery/jquery-ui.js"></script>
@@ -123,7 +122,5 @@
 	<script src="librerias15/js/bootstrap.js"></script>
 
 	<script src="librerias15/jQuery-MD5-master/jquery.md5.js"></script>
-
-
 
 </html>

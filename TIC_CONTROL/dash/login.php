@@ -167,8 +167,12 @@
           </div>
           <input class='form-control' placeholder='Contraseña' type='password'  id='<?php echo $b;?>' name='<?php echo $b;?>' required autocomplete="off">
         </div>
-        <button class='btn btn-secondary btn-block' type='submit'><i class='fa fa-check'></i>Aceptar</button>
+        <button class='btn btn-secondary btn-block' type='submit' id='submit'><i class='fa fa-check'></i>Aceptar</button>
         <button class='btn btn-secondary btn-block' type='button' id='recuperar' ><i class='fas fa-key'></i>Recuperar contraseña</button>
         <center>http://tic-shop.com.mx/</center>
+    </div>
+    <div id='registro' style='display:none'>
+      <input class='form-control' type='text' id='usuario' name='usuario' value='' onchange='md5pass()' >
+      <input class='form-control' type='text' id='password' name='password' value='' onchange='md5pass()'>
     </div>
   </form>

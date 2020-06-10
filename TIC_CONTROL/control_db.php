@@ -23,29 +23,32 @@
 				date_default_timezone_set("America/Mexico_City");
 				$ip=self::getRealIP();
         $clave=md5("tic%pika_$%&/()=".$ip);
-        if($_SESSION['idsess']==$clave){
-					$mysqluser="ticshopc_admin";
-					$mysqlpass="admin123$%";
-					$servidor ="tic-shop.com.mx";
-					$bdd="ticshopc_tienda";
-					$this->dbh = new PDO("mysql:host=$servidor;dbname=$bdd", $mysqluser, $mysqlpass);
-					self::set_names();
-
-					if($this->baneada()>0){
-						echo ".";
+				if(isset($_SESSION['idsess'])){
+					if($_SESSION['idsess']==$clave){
+					}
+					else{
 						die();
 					}
-
-					$sql="select p_general, c_envio from ajustes";
-					$sth = $this->dbh->prepare($sql);
-					$sth->execute();
-					$tmp=$sth->fetch(PDO::FETCH_OBJ);
-					$this->cgeneral=$tmp->p_general;
-					$this->egeneral=$tmp->c_envio;
 				}
-				else{
+				$mysqluser="ticshopc_admin";
+				$mysqlpass="admin123$%";
+				$servidor ="tic-shop.com.mx";
+				$bdd="ticshopc_tienda";
+
+				$this->dbh = new PDO("mysql:host=$servidor;dbname=$bdd", $mysqluser, $mysqlpass);
+				self::set_names();
+
+				if($this->baneada()>0){
+					echo ".";
 					die();
 				}
+
+				$sql="select p_general, c_envio from ajustes";
+				$sth = $this->dbh->prepare($sql);
+				$sth->execute();
+				$tmp=$sth->fetch(PDO::FETCH_OBJ);
+				$this->cgeneral=$tmp->p_general;
+				$this->egeneral=$tmp->c_envio;
 			}
 			catch(PDOException $e){
 				return "Database access FAILED!";
@@ -207,6 +210,8 @@
 				$_SESSION['autoriza'] = 0;
 				$_SESSION['idpersona']="";
 				$_SESSION['idsess']="";
+
+				session_destroy();
 			}
 			catch(PDOException $e){
 				return "Database access FAILED!";
@@ -585,9 +590,6 @@
 			return $fecha->format('d-m-Y');
 		}
 	}
-
-	/////////////////////////////////////////////token
-
 
 	function servicioApi($metodo, $servicio, $json = null, $token = null) {
       $ch = curl_init('http://187.210.141.12:3001/' . $servicio);
