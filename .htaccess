@@ -1,6 +1,6 @@
 RewriteEngine On
 Options All -Indexes
-
+LimitRequestBody 10240000
 
 RewriteRule ^producto/(.*)$  ./producto.php?id=$1 [L]
 RewriteRule ^buscar/(.*)$  ./buscar.php?id=$1 [L,QSA]
@@ -19,7 +19,8 @@ RewriteCond %{HTTP_REFERER} !^$
 RewriteCond %{HTTP_REFERER} !^http://172.16.0.3 [NC]
 RewriteCond %{HTTP_REFERER} !^http://localhost [NC]
 RewriteCond %{HTTP_REFERER} !^http://xtienda.sagyc.com.mx [NC]
-RewriteCond %{HTTP_REFERER} !^https://xtienda.sagyc.com.mx/ [NC]
+RewriteCond %{HTTP_REFERER} !^https://xtienda.sagyc.com.mx [NC]
+RewriteCond %{HTTP_REFERER} !^https://http://tic-shop.com.mx [NC]
 RewriteRule .*\.(gif|jpg|png|js)$ - [NC,F]
 
 # Evitar escaneos y cualquier intento de manipulación malintencionada
