@@ -20,7 +20,7 @@ RewriteCond %{HTTP_REFERER} !^http://172.16.0.3 [NC]
 RewriteCond %{HTTP_REFERER} !^http://localhost [NC]
 RewriteCond %{HTTP_REFERER} !^http://xtienda.sagyc.com.mx [NC]
 RewriteCond %{HTTP_REFERER} !^https://xtienda.sagyc.com.mx [NC]
-RewriteCond %{HTTP_REFERER} !^https://http://tic-shop.com.mx [NC]
+RewriteCond %{HTTP_REFERER} !^https://tic-shop.com.mx [NC]
 RewriteRule .*\.(gif|jpg|png|js)$ - [NC,F]
 
 # Evitar escaneos y cualquier intento de manipulación malintencionada
