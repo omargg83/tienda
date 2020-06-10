@@ -61,7 +61,7 @@
 
 </body>
 	<!--   Core JS Files   -->
-	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+	<script src="librerias15/jquery-3.4.1.min.js" type="text/javascript"></script>
 
 	<!--   url   -->
 	<script src="librerias15/jquery/jquery-ui.js"></script>
