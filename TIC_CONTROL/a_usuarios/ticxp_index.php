@@ -1,11 +1,10 @@
 <?php
   require_once("db_.php");
-  
+
   if($_SESSION['nivel']!=1){
     echo "<h4>Página no encontrada</h4>";
     die();
   }
-
   $_SESSION['nivel_captura']=1;
  ?>
 
@@ -55,4 +54,4 @@
       }
     });
   }
-usuario</script>
+</script>

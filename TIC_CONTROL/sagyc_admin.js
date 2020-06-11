@@ -1,7 +1,8 @@
-	var intval="";
+
 	var cuenta="";
 	var notif="";
 	var monit="";
+	var intval="";
 
 	$(function(){
 		$("#cargando").removeClass("is-active");
@@ -22,29 +23,23 @@
 			success:  function (response) {
 				if (isJSON(response)){
 					var datos = JSON.parse(response);
-					if (datos.sess=="cerrada"){
-						$("#header").html("");
-						$("#bodyx").html("");
-						$("#modal_dispo").removeClass("modal-lg");
-						$("#modal_form").load("dash/login.php");
-						$('#myModal').modal({backdrop: 'static', keyboard: false})
-						$('#myModal').modal('show');
-					}
 					if (datos.sess=="abierta"){
 						$("#header").load("dash/header.php");
 						$("#bodyx").load("dash/menu.php");
 						$("#modal_dispo").addClass("modal-lg");
-						if(datos.fondo.length>0){
-							$("body").css("background-image","url('"+datos.fondo+"')");
-						}
-						else{
-							$("body").css("background-image","url('fondo/27A.jpg')");
-						}
-						setTimeout(fondos, 15000);
+
 						loadContent(location.hash.slice(1));
 						if(intval==""){
 							intval=window.setInterval("sesion_ver()",60000);
 						}
+					}
+					else{
+						$("#header").html("");
+						$("#bodyx").html("");
+						$("#modal_form").load("dash/login.php");
+						$("#modal_dispo").removeClass("modal-lg");
+						$('#myModal').modal({backdrop: 'static', keyboard: false})
+						$('#myModal').modal('show');
 					}
 				}
 				else{
@@ -73,13 +68,13 @@
 	var hash=url.substring(url.indexOf("#")+1);
 
 	if(hash===url || hash===''){
-		hash='dash/index';
+		hash='dash/tic_index';
 	}
 	function loadContent(hash){
 		$("#cargando").addClass("is-active");
 		var id=$(this).attr('id');
 		if(hash===''){
-			hash= 'dash/index';
+			hash= 'dash/tic_index';
 		}
 		$('html, body').animate({strollTop:0},'600','swing');
 
@@ -211,30 +206,33 @@
 	}
 	$(document).on('submit','#acceso',function(e){
 		e.preventDefault();
-		var dataString = $(this).serialize()+"&function=acceso&ctrl=control";
-		$.ajax({
-		  url: "control_db.php",
-			type: "POST",
-		  data:  dataString,
-		  success: function( response ) {
-				var data = JSON.parse(response);
-				if (data.acceso==1){
-					acceso();
-					$('#myModal').modal('hide');
-					$("#modal_dispo").addClass("modal-lg");
-				}
-				else{
-					Swal.fire({
-						  type: 'error',
-						  title: data.info,
-							allowOutsideClick: false,
-						  showConfirmButton: false,
-						  timer: 5000
-					})
-				}
-		  }
-		});
-
+		var user=$("#usuario").val();
+		var pass=$("#password").val();
+		if(user.length==0 && pass.length==0){
+			var dataString = $(this).serialize()+"&function=acceso&ctrl=control";
+			$.ajax({
+			  url: "control_db.php",
+				type: "POST",
+			  data:  dataString,
+			  success: function( response ) {
+					var data = JSON.parse(response);
+					if (data.acceso==1){
+						acceso();
+						$('#myModal').modal('hide');
+						$("#modal_dispo").addClass("modal-lg");
+					}
+					else{
+						Swal.fire({
+							  type: 'error',
+							  title: data.info,
+								allowOutsideClick: false,
+							  showConfirmButton: false,
+							  timer: 5000
+						})
+					}
+			  }
+			});
+		}
 	});
 	//////////////////////subir archivos
 	$(document).on("click","[id^='fileup_']",function(e){
@@ -539,7 +537,7 @@
 						$("#cargando").removeClass("is-active");
 						Swal.fire({
 							type: 'success',
-							title: "Se guardó correctamente #" + datos.id,
+							title: "Se guardó correctamente",
 							showConfirmButton: false,
 							timer: 1000
 						})
@@ -688,7 +686,7 @@
 			url:   "control_db.php",
 			type:  'post',
 			success:  function (response) {
-				$("#contenido").load('dash/index.php');
+				$("#contenido").load('dash/tic_index.php');
 				Swal.fire({
 				  type: 'success',
 				  title: response,

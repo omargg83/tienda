@@ -20,23 +20,19 @@
 	<link rel="stylesheet" href="librerias15/load/css-loader.css">
 </head>
 <?php
-	if(isset($_SESSION['idpersona']) and $_SESSION['autoriza'] == 1) {
-		$valor=$_SESSION['idfondo'];
-	}
-	else{
-		$arreglo=array();
-		$directory="fondo/";
-		$dirint = dir($directory);
-		$contar=0;
-		while (($archivo = $dirint->read()) !== false){
-			if ($archivo != "." && $archivo != ".." && $archivo != "" && substr($archivo,-4)==".jpg"){
-				$arreglo[$contar]=$directory.$archivo;
-				$contar++;
-			}
+	$arreglo=array();
+	$directory="fondo/";
+	$dirint = dir($directory);
+	$contar=0;
+	while (($archivo = $dirint->read()) !== false){
+		if ($archivo != "." && $archivo != ".." && $archivo != "" && substr($archivo,-4)==".jpg"){
+			$arreglo[$contar]=$directory.$archivo;
+			$contar++;
 		}
-		$valor=$arreglo[rand(1,$contar-1)];
-		$_SESSION['idfondo']=$valor;
 	}
+	$valor=$arreglo[rand(1,$contar-1)];
+
+
 	echo "<body style='background-image: url(\"$valor\")'>";
 ?>
 

@@ -5,6 +5,7 @@
 
 	error_reporting(E_ALL);
 	ini_set('display_errors', '1');
+
 	date_default_timezone_set("America/Mexico_City");
 	use PHPMailer\PHPMailer\PHPMailer;
 	use PHPMailer\PHPMailer\SMTP;
@@ -23,13 +24,11 @@
 				date_default_timezone_set("America/Mexico_City");
 				$ip=self::getRealIP();
         $clave=md5("tic%pika_$%&/()=".$ip);
-				if(isset($_SESSION['idsess'])){
-					if($_SESSION['idsess']==$clave){
-					}
-					else{
-						die();
-					}
+
+				if(!isset($_SESSION['idsess']) and $_SESSION['idsess']!=$clave){
+					die();
 				}
+
 				$mysqluser="ticshopc_admin";
 				$mysqlpass="admin123$%";
 				$servidor ="tic-shop.com.mx";
@@ -79,13 +78,15 @@
     }
 		public function baneada(){
 			try{
+				$banear=0;
 				$ip=self::getRealIP();
 				$sql="SELECT baneada FROM token_log where baneada=:baneada";
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(":baneada",$ip);
 				$sth->execute();
-				$contar=$sth->rowCount();
-				return $contar;
+				$banear=$sth->rowCount();
+
+				return $banear;
 			}
 			catch(PDOException $e){
 				return "Database access FAILED!";
@@ -94,7 +95,6 @@
 		public function acceso(){
 			try{
 				$ip=self::getRealIP();
-
 
 				$sql="SELECT baneada FROM token_log where baneada=:baneada";
 				$sth = $this->dbh->prepare($sql);
@@ -134,20 +134,21 @@
 					$sth->execute();
 
 					$userPOST=$user;
-					$passPOST=md5($pass);
+					$cadena=md5("tic%pika_$%&/()=").md5(trim($pass));
+					$passPOST=hash("sha512",$cadena);
 
-					$sql="SELECT nombre, correo, nivel, idpersona FROM usuarios where (correo=:usuario) and (UPPER(pass)=UPPER(:pass)) and autoriza=1";
+					$sql="SELECT nombre, nivel, idpersona, correo_xptic, pass_xptic as pxs FROM usuarios where correo_xptic=:usuario and pass_xptic=:pass and autoriza=1";
 					$sth = $this->dbh->prepare($sql);
 					$sth->bindValue(":usuario",$userPOST);
 					$sth->bindValue(":pass",$passPOST);
 					$sth->execute();
-					 if ($sth->rowCount()>0){
+					$CLAVE=$sth->fetch(PDO::FETCH_OBJ);
+					 if ($sth->rowCount()>0 and $CLAVE->correo_xptic==$userPOST and $CLAVE->pxs==$passPOST){
 						$suma=1;
-						$CLAVE=$sth->fetch();
 						$_SESSION['autoriza']=1;
-						$_SESSION['nombre']=$CLAVE['nombre'];
-						$_SESSION['nivel'] = $CLAVE['nivel'];
-						$_SESSION['idpersona'] = $CLAVE['idpersona'];
+						$_SESSION['nombre']=$CLAVE->nombre;
+						$_SESSION['nivel'] = $CLAVE->nivel;
+						$_SESSION['idpersona'] = $CLAVE->idpersona;
 						$_SESSION['pagnivel']=40;
 						$_SESSION['remoto']=0;
 						$_SESSION['cfondo']="white";
@@ -187,16 +188,11 @@
 
 		public function login(){
 			$arreglo=array();
-			if(!isset($_SESSION['idfondo'])){
-				$_SESSION['idfondo']="";
-			}
 			if(isset($_SESSION['idpersona']) and $_SESSION['autoriza'] == 1) {
-				$valor=$_SESSION['idfondo'];
-				$arreglo=array('sess'=>"abierta", 'fondo'=>$valor);
+				$arreglo=array('sess'=>"abierta");
 			}
 			else {
-				$valor=$_SESSION['idfondo'];
-				$arreglo=array('sess'=>"cerrada", 'fondo'=>$valor);
+				$arreglo=array('sess'=>"cerrada");
 			}
 			return json_encode($arreglo);
 		}
@@ -210,7 +206,7 @@
 				$_SESSION['autoriza'] = 0;
 				$_SESSION['idpersona']="";
 				$_SESSION['idsess']="";
-
+				session_unset();
 				session_destroy();
 			}
 			catch(PDOException $e){
@@ -476,7 +472,6 @@
 			$res=$this->general($sql);
 			if(count($res)>0){
 				if(strlen($res[0]['correo'])>0){
-
 
 					$pass=$this->genera_random(8);
 					$passg=md5(trim($pass));

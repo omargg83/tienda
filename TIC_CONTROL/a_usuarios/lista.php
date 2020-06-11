@@ -10,7 +10,6 @@
 			<thead>
 			<th>#</th>
 			<th>Nombre</th>
-			<th>Usuario</th>
 			<th>Correo</th>
 			</tr>
 			</thead>
@@ -27,8 +26,7 @@
 						echo "</td>";
 
 						echo "<td>".$key["nombre"]."</td>";
-						echo "<td>".$key["usuario"]."</td>";
-						echo "<td>".$key["correo"]."</td>";
+						echo "<td>".$key["correo_xptic"]."</td>";
 						echo "</tr>";
 					}
 				}

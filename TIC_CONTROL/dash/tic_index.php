@@ -62,13 +62,8 @@
               echo "</table>";
             echo "</div>";
           ?>
-
-
         </div>
         <div class="card-footer">
-
-
-
           <a class="btn btn-light btn-sm btn-lg btn-block" href='#a_pedidos/index'><i class="fas fa-shopping-basket"></i>Ver</a>
         </div>
       </div>
