@@ -31,7 +31,12 @@
 			    </div>
 					<div class="form-group col-md-4">
 			      <label>Usuario</label>
-			      <input type="text" class="form-control" id="correo_xptic" name='correo_xptic' placeholder="Usuario" value="<?php echo $correo_xptic; ?>" >
+			      <input type="text" class="form-control" id="correo_xptic" name='correo_xptic' placeholder="Usuario" value="<?php echo $correo_xptic; ?>"
+						<?php
+							
+
+						?>
+						>
 			    </div>
 
 
