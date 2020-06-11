@@ -25,12 +25,10 @@
 				$ip=self::getRealIP();
         $clave=md5("tic%pika_$%&/()=".$ip);
 
-				if(!isset($_SESSION['idsess']) and $_SESSION['idsess']==$clave){
-					echo "entra";
+				if(isset($_SESSION['idsess']) and $_SESSION['idsess']==$clave){
 				}
 				else{
-					echo "entra2";
-					die();
+					return 0;
 				}
 
 				$mysqluser="ticshopc_admin";
