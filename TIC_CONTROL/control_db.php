@@ -25,7 +25,10 @@
 				$ip=self::getRealIP();
         $clave=md5("tic%pika_$%&/()=".$ip);
 
-				if(!isset($_SESSION['idsess']) and $_SESSION['idsess']!=$clave){
+				if(isset($_SESSION['idsess']) and $_SESSION['idsess']==$clave){
+
+				}
+				else{
 					die();
 				}
 
