@@ -13,7 +13,16 @@
 		$correo_xptic=$per->correo_xptic;
 		$autoriza=$per->autoriza;
 		$nivel=$per->nivel;
-		$hash=$per->hash;
+
+		/////////////////////////////////////
+		$fecha=('dmYHis');
+		$cadena = $id.$fecha;
+		$cadena=md5($cadena);
+		$hash=hash("sha512",$cadena);
+
+		$sql="update usuarios set hash='$hash' where idpersona='$id' ";
+		$sth = $db->dbh->prepare($sql);
+		$sth->execute();
 	}
 ?>
 <div class='container'>
@@ -27,13 +36,15 @@
 			  <div class="form-row">
 			    <div class="form-group col-md-4">
 			      <label>Nombre</label>
-			      <input type="text" class="form-control" id="nombre" name='nombre' placeholder="Nombre" value="<?php echo $nombre; ?>" >
+			      <input type="text" class="form-control" id="nombre" name='nombre' placeholder="Nombre" value="<?php echo $nombre; ?>" required>
 			    </div>
 					<div class="form-group col-md-4">
 			      <label>Usuario</label>
-			      <input type="text" class="form-control" id="correo_xptic" name='correo_xptic' placeholder="Usuario" value="<?php echo $correo_xptic; ?>"
+			      <input type="email" class="form-control" id="correo_xptic" name='correo_xptic' placeholder="correo electrónico" required value="<?php echo $correo_xptic; ?>"
 						<?php
-							
+							if($id>0){
+								echo "disabled";
+							}
 
 						?>
 						>

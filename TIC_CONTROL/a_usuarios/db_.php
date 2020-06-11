@@ -7,7 +7,6 @@ class Usuarios extends Tienda{
 	public function __construct(){
 		parent::__construct();
 	}
-
 	public function usuarios_lista(){
 		try{
 			parent::set_names();
@@ -41,7 +40,6 @@ class Usuarios extends Tienda{
 	}
 	public function guardar_usuario(){
 		try{
-			parent::set_names();
 			$id=$_REQUEST['id'];
 			$arreglo =array();
 			$fecha=('dmYHis');
@@ -128,6 +126,15 @@ class Usuarios extends Tienda{
 		}
 		if (!preg_match('`[0-9]`',$clave)){
 		  return "La clave debe tener al menos un caracter numérico";
+		}
+	}
+	public function borrar_usuario(){
+		try{
+			if (isset($_POST['id'])){$id=$_REQUEST['id'];}
+			return $this->borrar('usuarios',"idpersona",$id);
+		}
+		catch(PDOException $e){
+			return "$a La contraseña no coincide";
 		}
 	}
 }
