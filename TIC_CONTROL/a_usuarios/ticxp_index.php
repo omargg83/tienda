@@ -24,6 +24,7 @@
 
  				<li class='nav-item active'><a class='nav-link barranav' title='Mostrar todo' id='new_poliza' data-lugar='a_usuarios/editar'><i class="fas fa-folder-plus"></i><span>Nuevo</span></a></li>
  				<li class='nav-item active'><a class='nav-link barranav' title='Mostrar todo' id='lista_prod' data-lugar='a_usuarios/lista'><i class="fas fa-list"></i><span>Lista</span></a></li>
+ 				<li class='nav-item active'><a class='nav-link barranav' title='Mostrar todo' id='lista_block' data-lugar='a_usuarios/lista_block'><i class="fas fa-list"></i><span>Bloqueos</span></a></li>
 
       </li>
 
@@ -33,11 +34,9 @@
  	</nav>
 
 <?php
-
    echo "<div id='trabajo' style='margin-top:5px;'>";
     include 'lista.php';
    echo "</div>";
-
  ?>
 <script type="text/javascript">
 

@@ -6,7 +6,7 @@
       <div class='input-group-prepend'>
         <span class='input-group-text'> <i class='fas fa-user-circle'></i> </span>
       </div>
-      <input class='form-control' placeholder='Introduzca usuario o correo' type='text'  id='userAcceso' name='userAcceso' required>
+      <input class='form-control' placeholder='Introduzca correo' type='text'  id='userAcceso' name='userAcceso' required>
     </div>
     <div class='row'>
       <div class='col-12 text-center'>

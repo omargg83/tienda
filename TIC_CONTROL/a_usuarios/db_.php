@@ -137,6 +137,18 @@ class Usuarios extends Tienda{
 			return "$a La contraseña no coincide";
 		}
 	}
+	public function bloqueos(){
+		try{
+			parent::set_names();
+			$sql="SELECT * from token_log";
+			$sth = $this->dbh->prepare($sql);
+			$sth->execute();
+			return $sth->fetchAll();
+		}
+		catch(PDOException $e){
+			return "Database access FAILED! ";
+		}
+	}
 }
 $db = new Usuarios();
 if(strlen($function)>0){

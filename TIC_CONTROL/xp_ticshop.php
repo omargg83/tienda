@@ -31,8 +31,6 @@
 		}
 	}
 	$valor=$arreglo[rand(1,$contar-1)];
-
-
 	echo "<body style='background-image: url(\"$valor\")'>";
 ?>
 

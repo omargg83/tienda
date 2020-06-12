@@ -23,13 +23,6 @@
 			try{
 				date_default_timezone_set("America/Mexico_City");
 				$ip=self::getRealIP();
-        $clave=md5("tic%pika_$%&/()=".$ip);
-
-				if(isset($_SESSION['idsess']) and $_SESSION['idsess']==$clave){
-				}
-				else{
-					return 0;
-				}
 
 				$mysqluser="ticshopc_admin";
 				$mysqlpass="admin123$%";
@@ -38,6 +31,19 @@
 
 				$this->dbh = new PDO("mysql:host=$servidor;dbname=$bdd", $mysqluser, $mysqlpass);
 				self::set_names();
+
+				$clave=md5("tic%pika_$%&/()=".$ip);
+				$clave=hash("sha512",$clave);
+
+				if(isset($_SESSION['idpersona']) and isset($_SESSION['idsess']) and isset($_SESSION['autoriza'])) {
+					//if()
+					//and $_SESSION['autoriza'] == 1
+					// AND $_SESSION['idsess']==$clave
+				}
+				else{
+					//$this->dbh=null;
+					return 0;
+				}
 
 				if($this->baneada()>0){
 					echo ".";
@@ -81,6 +87,7 @@
 		public function baneada(){
 			try{
 				$banear=0;
+
 				$ip=self::getRealIP();
 				$sql="SELECT baneada FROM token_log where baneada=:baneada";
 				$sth = $this->dbh->prepare($sql);
@@ -136,8 +143,8 @@
 					$sth->execute();
 
 					$userPOST=$user;
-					$cadena=md5("tic%pika_$%&/()=").md5(trim($pass));
-					$passPOST=hash("sha512",$cadena);
+					$encriptx=md5("tic%pika_$%&/()=").md5(trim($pass));
+					$passPOST=hash("sha512",$encriptx);
 
 					$sql="SELECT nombre, nivel, idpersona, correo_xptic, pass_xptic as pxs FROM usuarios where correo_xptic=:usuario and pass_xptic=:pass and autoriza=1";
 					$sth = $this->dbh->prepare($sql);
@@ -147,6 +154,13 @@
 					$CLAVE=$sth->fetch(PDO::FETCH_OBJ);
 					 if ($sth->rowCount()>0 and $CLAVE->correo_xptic==$userPOST and $CLAVE->pxs==$passPOST){
 						$suma=1;
+
+						/////////////////la llave
+						$clave=md5("tic%pika_$%&/()=".$ip);
+						$llave=hash("sha512",$clave);
+						$_SESSION['idsess']=$llave;
+
+
 						$_SESSION['autoriza']=1;
 						$_SESSION['nombre']=$CLAVE->nombre;
 						$_SESSION['nivel'] = $CLAVE->nivel;
@@ -189,8 +203,13 @@
 		}
 
 		public function login(){
+			$ip=self::getRealIP();
+
+			$clave=md5("tic%pika_$%&/()=".$ip);
+			$clave=hash("sha512",$clave);
+
 			$arreglo=array();
-			if(isset($_SESSION['idpersona']) and $_SESSION['autoriza'] == 1) {
+			if(isset($_SESSION['idpersona']) and $_SESSION['autoriza'] == 1 and isset($_SESSION['idsess']) AND $_SESSION['idsess']==$clave) {
 				$arreglo=array('sess'=>"abierta");
 			}
 			else {
@@ -200,16 +219,19 @@
 		}
 		public function salir(){
 			try{
+				$_SESSION['autoriza'] = 0;
+				$_SESSION['idpersona']="";
+				$_SESSION['idsess']="";
+				$_SESSION = array();
+				session_unset();
+				session_destroy();
+
 				$ip=$this->getRealIP();
 				$sql="delete from token_pikatic where ip=:ip";
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(":ip",$ip);
 				$sth->execute();
-				$_SESSION['autoriza'] = 0;
-				$_SESSION['idpersona']="";
-				$_SESSION['idsess']="";
-				session_unset();
-				session_destroy();
+				return 0;
 			}
 			catch(PDOException $e){
 				return "Database access FAILED!";
@@ -469,26 +491,32 @@
 		}
 		public function recuperar(){
 			$x="";
-			if (isset($_REQUEST['telefono'])){$texto=$_REQUEST['telefono'];}
-			$sql="select * from usuarios where usuario='$texto' or correo='$texto'";
-			$res=$this->general($sql);
-			if(count($res)>0){
-				if(strlen($res[0]['correo'])>0){
+			if (isset($_REQUEST['telefono'])){ $texto=trim($_REQUEST['telefono']); }
 
-					$pass=$this->genera_random(8);
-					$passg=md5(trim($pass));
+			$sql="select * from usuarios where correo_xptic=:texto";
+			$sth = $this->dbh->prepare($sql);
+			$sth->bindValue(":texto",$texto);
+			$sth->execute();
+			$res=$sth->fetch(PDO::FETCH_OBJ);
 
-					$sql="update usuarios set pass=:pass where idpersona=:id";
+			if($sth->rowCount()>0){
+				if(strlen($res->correo_xptic)>0){
+
+					$pass=$this->genera_random(16);
+					$encriptc=md5("tic%pika_$%&/()=").md5(trim($pass));
+					$passPOST=hash("sha512",$encriptc);
+
+					$sql="update usuarios set pass_xptic=:pass where idpersona=:id";
 					$sth = $this->dbh->prepare($sql);
-					$sth->bindValue(":pass",$passg);
-					$sth->bindValue(":id",$res[0]['idpersona']);
+					$sth->bindValue(":pass",$passPOST);
+					$sth->bindValue(":id",$res->idpersona);
 					$sth->execute();
 
 					$texto="La nueva contraseña es: <br> $pass";
 					$texto.="<br></a>";
 
 					$asunto= "Recuperar contraseña";
-					return $this->correo($res[0]['correo'], $texto, $asunto);
+					return $this->correo($res->correo_xptic, $texto, $asunto);
 				}
 				else{
 					$arreglo+=array('id'=>0);

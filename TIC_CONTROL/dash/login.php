@@ -55,8 +55,8 @@
       self::set_names();
       try{
         $ip=self::getRealIP();
-        $clave="tic%pika_$%&/()=".$ip;
-        $_SESSION['idsess']=md5($clave);
+        
+        $_SESSION['idsess']="";
 
         $random=substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
         $in=md5(substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 16));

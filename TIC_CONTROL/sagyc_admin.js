@@ -200,6 +200,9 @@
 			success:  function (response) {
 				acceso();
 				$("#cargando").removeClass("is-active");
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				console.log(entra);
 			}
 		});
 	}
@@ -214,6 +217,7 @@
 				type: "POST",
 			  data:  dataString,
 			  success: function( response ) {
+					console.log(response);
 					var data = JSON.parse(response);
 					if (data.acceso==1){
 						acceso();
@@ -778,7 +782,7 @@
 	$(document).on("click",'#recuperar',function(e){
 		e.preventDefault();
 		$.ajax({
-				url:   'dash/pass.php',
+				url:   'dash/restablecer_xtpika.php',
 			  beforeSend: function () {
 					$("#modal_form").html("Procesando, espere por favor...");
 			  },
@@ -790,6 +794,7 @@
 	});
 	$(document).on('submit','#passx',function(e){
 			e.preventDefault();
+
 			var telefono=document.getElementById("userAcceso").value;
 			telefono=telefono.trim();
 			if(telefono.length>2){
@@ -814,7 +819,6 @@
 						$(btn).children("i").addClass(tmp);
 					},
 					success:function(response){
-						console.log(response);
 						var datos = JSON.parse(response);
 			      if (datos.error==0){
 							Swal.fire({
