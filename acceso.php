@@ -108,12 +108,12 @@
 
 
 	}
-/*
-	$db = new Login();
-	$ar=$db->genera_random();
+
+	$loginx = new Login();
+	$ar=$loginx->genera_random();
 	$a=$ar[0];
 	$b=$ar[1];
-*/
+
 	?>
 	<!-- Cart -->
 	<form id='logintix' action=''>
