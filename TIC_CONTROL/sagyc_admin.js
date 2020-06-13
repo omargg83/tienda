@@ -860,8 +860,6 @@
 		$('#myModal').modal({backdrop: 'static', keyboard: false})
 		$('#myModal').modal('show');
 	});
-
-
 	function md5pass(){
 		var user=$("#usuario").val();
 		var pass=$("#password").val();

@@ -1,4 +1,5 @@
 RewriteEngine On
+RewriteBase /
 Options All -Indexes
 
 # inicia https
