@@ -1,36 +1,24 @@
 <?php
   session_start();
-  error_reporting(E_ALL);
-  ini_set('display_errors', '1');
   date_default_timezone_set("America/Mexico_City");
 
   class Login{
 		public function __construct(){
       try{
         date_default_timezone_set("America/Mexico_City");
-        /*
-          $mysqluser="sagyccom_esponda";
-          $mysqlpass="esponda123$";
-          $servidor ="sagyc.com.mx";
-          $bdd="sagycrmr_tienda";
-        */
-
 				$mysqluser="ticshopc_admin";
 				$mysqlpass="admin123$%";
 				$servidor ="tic-shop.com.mx";
 				$bdd="ticshopc_tienda";
 
 				$this->dbh = new PDO("mysql:host=$servidor;dbname=$bdd", $mysqluser, $mysqlpass);
-        self::set_names();
+        $this->dbh->query("SET NAMES 'utf8'");
 			}
 			catch(PDOException $e){
         die();
 				return "Database access FAILED!";
 			}
 		}
-    private function set_names(){
-      return $this->dbh->query("SET NAMES 'utf8'");
-    }
     private function getRealIP(){
       if (isset($_SERVER["HTTP_CLIENT_IP"])){
           return $_SERVER["HTTP_CLIENT_IP"];
@@ -52,16 +40,15 @@
       }
     }
     public function genera_random($length = 24) {
-      self::set_names();
       try{
         $ip=self::getRealIP();
-        
+
         $_SESSION['idsess']="";
+        $_SESSION['autoriza']=0;
 
         $random=substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
         $in=md5(substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 16));
         $pin=md5(substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 16));
-
         $encrip=password_hash($random, PASSWORD_DEFAULT);
 
         $date = new DateTime();

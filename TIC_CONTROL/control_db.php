@@ -3,14 +3,15 @@
 	if (isset($_REQUEST['function'])){$function=$_REQUEST['function'];}	else{ $function="";}
 	if (isset($_REQUEST['ctrl'])){$ctrl=$_REQUEST['ctrl'];}	else{ $ctrl="";}
 
-	error_reporting(E_ALL);
-	ini_set('display_errors', '1');
+	//error_reporting(E_ALL);
+	//ini_set('display_errors', '1');
 
 	date_default_timezone_set("America/Mexico_City");
 	use PHPMailer\PHPMailer\PHPMailer;
 	use PHPMailer\PHPMailer\SMTP;
 
 	class Tienda{
+		private $acceso="";
 		public $nivel_personal;
 		public $nivel_captura;
 		public $derecho=array();
@@ -24,6 +25,17 @@
 				date_default_timezone_set("America/Mexico_City");
 				$ip=self::getRealIP();
 
+				$clave=md5("tic%pika_$%&/()=".$ip);
+				$clave=hash("sha512",$clave);
+				if(isset($_SESSION['idpersona']) and isset($_SESSION['idsess']) and isset($_SESSION['autoriza']) and $_SESSION['autoriza'] == 1 AND
+				$_SESSION['idsess']==$clave) {
+
+				}
+				else{
+					$this->dbh=null;
+					return 0;
+				}
+
 				$mysqluser="ticshopc_admin";
 				$mysqlpass="admin123$%";
 				$servidor ="tic-shop.com.mx";
@@ -31,19 +43,6 @@
 
 				$this->dbh = new PDO("mysql:host=$servidor;dbname=$bdd", $mysqluser, $mysqlpass);
 				self::set_names();
-
-				$clave=md5("tic%pika_$%&/()=".$ip);
-				$clave=hash("sha512",$clave);
-
-				if(isset($_SESSION['idpersona']) and isset($_SESSION['idsess']) and isset($_SESSION['autoriza'])) {
-					//if()
-					//and $_SESSION['autoriza'] == 1
-					// AND $_SESSION['idsess']==$clave
-				}
-				else{
-					//$this->dbh=null;
-					return 0;
-				}
 
 				if($this->baneada()>0){
 					echo ".";
@@ -61,6 +60,7 @@
 				return "Database access FAILED!";
 			}
 		}
+
 		public function set_names(){
 			return $this->dbh->query("SET NAMES 'utf8'");
 		}
@@ -99,106 +99,6 @@
 			}
 			catch(PDOException $e){
 				return "Database access FAILED!";
-			}
-		}
-		public function acceso(){
-			try{
-				$ip=self::getRealIP();
-
-				$sql="SELECT baneada FROM token_log where baneada=:baneada";
-				$sth = $this->dbh->prepare($sql);
-				$sth->bindValue(":baneada",$ip);
-				$sth->execute();
-				$contar=$sth->rowCount();
-				if($contar>0){
-					$arr=array();
-					$arr=array('acceso'=>0);
-					$arr=array('info'=>"Error 1");
-					return json_encode($arr);
-				}
-				////////////////////////////los id y name de los input de login son variantes por lo que si no existen quiere decir que el usuario intento hackear y por lo tanto se banea la IP
-				$metodo=$_SERVER['REQUEST_METHOD'];
-				$keys=array_keys($_REQUEST);
-				$uno=$keys[0];
-				$dos=$keys[1];
-
-				$user=trim($_REQUEST[$uno]);
-				$pass=trim($_REQUEST[$dos]);
-
-				$sql="SELECT in_u, in_p, intentos FROM token_pikatic where in_u=:usuario and in_p=:pass";
-				$sth = $this->dbh->prepare($sql);
-				$sth->bindValue(":usuario",$uno);
-				$sth->bindValue(":pass",$dos);
-				$sth->execute();
-				$contar=$sth->rowCount();
-				$row=$sth->fetch(PDO::FETCH_OBJ);
-				if($contar and $row->intentos<3){
-					///////////////////////numero de intentos
-
-					$total=$row->intentos+1;
-					$sql="update token_pikatic set intentos=$total where in_u=:usuario and in_p=:pass";
-					$sth = $this->dbh->prepare($sql);
-					$sth->bindValue(":usuario",$uno);
-					$sth->bindValue(":pass",$dos);
-					$sth->execute();
-
-					$userPOST=$user;
-					$encriptx=md5("tic%pika_$%&/()=").md5(trim($pass));
-					$passPOST=hash("sha512",$encriptx);
-
-					$sql="SELECT nombre, nivel, idpersona, correo_xptic, pass_xptic as pxs FROM usuarios where correo_xptic=:usuario and pass_xptic=:pass and autoriza=1";
-					$sth = $this->dbh->prepare($sql);
-					$sth->bindValue(":usuario",$userPOST);
-					$sth->bindValue(":pass",$passPOST);
-					$sth->execute();
-					$CLAVE=$sth->fetch(PDO::FETCH_OBJ);
-					 if ($sth->rowCount()>0 and $CLAVE->correo_xptic==$userPOST and $CLAVE->pxs==$passPOST){
-						$suma=1;
-
-						/////////////////la llave
-						$clave=md5("tic%pika_$%&/()=".$ip);
-						$llave=hash("sha512",$clave);
-						$_SESSION['idsess']=$llave;
-
-
-						$_SESSION['autoriza']=1;
-						$_SESSION['nombre']=$CLAVE->nombre;
-						$_SESSION['nivel'] = $CLAVE->nivel;
-						$_SESSION['idpersona'] = $CLAVE->idpersona;
-						$_SESSION['pagnivel']=40;
-						$_SESSION['remoto']=0;
-						$_SESSION['cfondo']="white";
-						$arr=array();
-						$arr=array('acceso'=>1);
-						return json_encode($arr);
-					}
-					else {
-						$arr=array();
-						$arr=array('acceso'=>0);
-						$arr=array('info'=>"Usuario o contraseña incorrecta");
-						return json_encode($arr);
-					}
-					return $obj;
-				}
-				else{
-					if($contar==0){
-						$sql="insert into token_log (baneada) values (:ip)";
-						$sth = $this->dbh->prepare($sql);
-						$sth->bindValue(":ip",$ip);
-						$sth->execute();
-						$arr=array();
-						$arr=array('acceso'=>0);
-						$arr=array('info'=>"Error 1");
-						return json_encode($arr);
-					}
-					$arr=array();
-					$arr=array('acceso'=>0);
-					$arr=array('info'=>"Ha excedido el numero máximo de intentos permitido, espere unos minutos y vuelva a intentarlo");
-					return json_encode($arr);
-				}
-			}
-			catch(PDOException $e){
-				return "Database access FAILED!".$e->getMessage();
 			}
 		}
 
@@ -269,17 +169,13 @@
 				if ($sth->execute()){
 					$arreglo+=array('id'=>$this->lastId = $this->dbh->lastInsertId());
 					$arreglo+=array('error'=>0);
-					$arreglo+=array('terror'=>'');
-					$arreglo+=array('param1'=>'');
-					$arreglo+=array('param2'=>'');
-					$arreglo+=array('param3'=>'');
 					return json_encode($arreglo);
 				}
 			}
 			catch(PDOException $e){
 				$arreglo+=array('id'=>0);
 				$arreglo+=array('error'=>1);
-				$arreglo+=array('terror'=>$e->getMessage());
+				$arreglo+=array('terror'=>"");
 				return json_encode($arreglo);
 			}
 		}
@@ -323,11 +219,10 @@
 			catch(PDOException $e){
 				$arreglo+=array('id'=>0);
 				$arreglo+=array('error'=>1);
-				$arreglo+=array('terror'=>$e->getMessage());
+				$arreglo+=array('terror'=>"");
 				return json_encode($arreglo);
 			}
 		}
-
 		public function borrar($DbTableName, $key, $id){
 			$arreglo=array();
 			try{
@@ -338,26 +233,19 @@
 				if($a){
 					$arreglo+=array('id'=>$id);
 					$arreglo+=array('error'=>0);
-					$arreglo+=array('terror'=>'');
-					$arreglo+=array('param1'=>'');
-					$arreglo+=array('param2'=>'');
-					$arreglo+=array('param3'=>'');
 					return json_encode($arreglo);
 				}
 				else{
 					$arreglo+=array('id'=>$id);
 					$arreglo+=array('error'=>1);
-					$arreglo+=array('terror'=>$sql.$sth->errorInfo());
-					$arreglo+=array('param1'=>'');
-					$arreglo+=array('param2'=>'');
-					$arreglo+=array('param3'=>'');
+					$arreglo+=array('terror'=>"");
 					return json_encode($arreglo);
 				}
 			}
 			catch(PDOException $e){
 				$arreglo+=array('id'=>0);
 				$arreglo+=array('error'=>1);
-				$arreglo+=array('terror'=>$e->getMessage());
+				$arreglo+=array('terror'=>"");
 				return json_encode($arreglo);
 			}
 		}

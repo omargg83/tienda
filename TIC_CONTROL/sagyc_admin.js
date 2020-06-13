@@ -119,6 +119,7 @@
 				}
 			}
 		});
+		$("#cargando").removeClass("is-active");
 	}
 	function fondos(){
 		var parametros={
@@ -202,7 +203,7 @@
 				$("#cargando").removeClass("is-active");
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
-				console.log(entra);
+
 			}
 		});
 	}
@@ -213,11 +214,10 @@
 		if(user.length==0 && pass.length==0){
 			var dataString = $(this).serialize()+"&function=acceso&ctrl=control";
 			$.ajax({
-			  url: "control_db.php",
+			  url: "dash/log.php",
 				type: "POST",
 			  data:  dataString,
 			  success: function( response ) {
-					console.log(response);
 					var data = JSON.parse(response);
 					if (data.acceso==1){
 						acceso();
