@@ -32,7 +32,87 @@
 			include "a_header.php";
 		?>
 	</header>
+	<?php
 
+	class Login{
+		public function __construct(){
+			try{
+				date_default_timezone_set("America/Mexico_City");
+				$mysqluser="ticshopc_admin";
+				$mysqlpass="admin123$%";
+				$servidor ="tic-shop.com.mx";
+				$bdd="ticshopc_tienda";
+
+				$this->dbh = new PDO("mysql:host=$servidor;dbname=$bdd", $mysqluser, $mysqlpass);
+				$this->dbh->query("SET NAMES 'utf8'");
+			}
+			catch(PDOException $e){
+				die();
+				return "Database access FAILED!";
+			}
+		}
+		private function getRealIP(){
+			if (isset($_SERVER["HTTP_CLIENT_IP"])){
+					return $_SERVER["HTTP_CLIENT_IP"];
+			}
+			elseif (isset($_SERVER["HTTP_X_FORWARDED_FOR"])){
+					return $_SERVER["HTTP_X_FORWARDED_FOR"];
+			}
+			elseif (isset($_SERVER["HTTP_X_FORWARDED"])){
+					return $_SERVER["HTTP_X_FORWARDED"];
+			}
+			elseif (isset($_SERVER["HTTP_FORWARDED_FOR"])){
+					return $_SERVER["HTTP_FORWARDED_FOR"];
+			}
+			elseif (isset($_SERVER["HTTP_FORWARDED"])){
+					return $_SERVER["HTTP_FORWARDED"];
+			}
+			else{
+					return $_SERVER["REMOTE_ADDR"];
+			}
+		}
+		public function genera_random($length = 24) {
+			try{
+				$ip=self::getRealIP();
+
+				$_SESSION['idcli_sess']="";
+				$_SESSION['autoriza_sess']=0;
+
+				$random=substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
+				$in=md5(substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 16));
+				$pin=md5(substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 16));
+				$encrip=password_hash($random, PASSWORD_DEFAULT);
+
+				$date = new DateTime();
+				$date->modify('+3 hours');
+				$limite=$date->format('Y-m-d H:i:s');
+
+				$fecha=date('Y-m-d H:i:s');
+				$sql="insert into token_pikatic (token, cadena, in_u, in_p, expira, generado, ip, intentos) values (:token, :cadena, :inp, :pin, :expira, :genera, :ip, 0)";
+				$sth = $this->dbh->prepare($sql);
+
+				$sth->bindValue(":token",$random);
+				$sth->bindValue(":cadena",$encrip);
+				$sth->bindValue(":inp",$in);
+				$sth->bindValue(":pin",$pin);
+				$sth->bindValue(":expira",$limite);
+				$sth->bindValue(":genera",$fecha);
+				$sth->bindValue(":ip",$ip);
+				$sth->execute();
+				return array($in,$pin);
+			}
+			catch(PDOException $e){
+				echo "Database access FAILED!";
+			}
+		}
+	}
+
+	$db = new Login();
+	$ar=$db->genera_random();
+	$a=$ar[0];
+	$b=$ar[1];
+
+	?>
 	<!-- Cart -->
 	<form id='acceso' action=''>
 		<div class="cart_section">
@@ -41,11 +121,12 @@
 					<div class="col-12" >
 						<div class="col-4 offset-4 text-center">
 							<label>Correo</label>
-							<input type="text" class="form-control" id="userAcceso" name='userAcceso' placeholder="Correo" value="<?php echo $correo; ?>" required>
+							<input type="text" class="form-control" id="<?php echo $a; ?>" name='<?php echo $a; ?>' placeholder="Correo" value="" required>
 						</div>
 						<div class="col-4 offset-4 text-center">
 							<label>Contraseña</label>
-							<input type="password" class="form-control" id="passAcceso" name='passAcceso' placeholder="Contraseña" value="<?php echo $pass; ?>" required>
+							<input type="password" class="form-control" id="<?php echo $b; ?>" name='<?php echo $b; ?>' placeholder="Contraseña" value="" required>
+
 						</div>
 						<div class="col-4 offset-4 text-center"><br>
 
@@ -55,7 +136,6 @@
 							    color: black;
 							    cursor: pointer;
 							"><i class="fa fa-check"></i>Aceptar</button>
-
 							<br>
 							<p><a href='/recuperar/'>¿Olvidaste tu contraseña?</a></p>
 						</div>
@@ -63,6 +143,10 @@
 				</div>
 			</div>
 		</div>
+		<div id='registro' style='display:none'>
+      <input class='form-control' type='text' id='usuario' name='usuario' value='' onchange='md5pass()' >
+      <input class='form-control' type='text' id='password' name='password' value='' onchange='md5pass()'>
+    </div>
 	</form>
 
 
