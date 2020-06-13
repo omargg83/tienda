@@ -7,8 +7,6 @@ else{
   galletax(galleta);
 }
 
-
-
 $(function(){
 
 
@@ -424,9 +422,10 @@ $(document).on('submit','#log_intix',function(e){
   var dataString = $(this).serialize()+"&function=acceso&ctrl=control";
   $.ajax({
     url: "control_login.php",
-    type: "POST",
+    type: "post",
     data:  dataString,
     success: function( response ) {
+      console.log(response);
       var datos = JSON.parse(response);
       if (datos.acceso==1){
         Cookies.set('ticshop_x', datos.galleta);
