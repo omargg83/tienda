@@ -114,7 +114,7 @@
 
 	?>
 	<!-- Cart -->
-	<form id='log_intix' action=''>
+	<form id='logintix' action=''>
 		<div class="cart_section">
 			<div class="container">
 				<div class="row">

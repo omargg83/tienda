@@ -417,7 +417,7 @@ function select_factdir(){
 
 }
 
-$(document).on('submit','#log_intix',function(e){
+$(document).on('submit','#logintix',function(e){
   e.preventDefault();
   var dataString = $(this).serialize()+"&function=acceso&ctrl=control";
   $.ajax({
@@ -426,19 +426,20 @@ $(document).on('submit','#log_intix',function(e){
     data:  dataString,
     success: function( response ) {
       console.log(response);
-      var datos = JSON.parse(response);
-      if (datos.acceso==1){
-        Cookies.set('ticshop_x', datos.galleta);
-        window.location.href="/";
-      }
-      else{
-        Swal.fire({
-            type: 'error',
-            title: 'Usuario o contraseña incorrecta',
-            showConfirmButton: false,
-            timer: 5000
-        });
-      }
+
+      //var datos = JSON.parse(response);
+      //if (datos.acceso==1){
+      //  Cookies.set('ticshop_x', datos.galleta);
+      //  window.location.href="/";
+      //}
+      //else{
+      //  Swal.fire({
+      //      type: 'error',
+      //      title: 'Usuario o contraseña incorrecta',
+      //      showConfirmButton: false,
+      //      timer: 5000
+      //  });
+      //}
     }
   });
 });
