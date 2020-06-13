@@ -1,11 +1,8 @@
 <?php
   session_start();
   date_default_timezone_set("America/Mexico_City");
-  echo "hola mundo";
-  
 
-/*
-  class daasldjflks{
+  class fdasdasda{
 		public function __construct(){
       try{
         date_default_timezone_set("America/Mexico_City");
@@ -26,7 +23,7 @@
     public function acceso(){
 			try{
 				$ip=self::getRealIP();
-
+        return "entra";
 				////////////////////////////los id y name de los input de login son variantes
 				$metodo=$_SERVER['REQUEST_METHOD'];
 				$keys=array_keys($_REQUEST);
@@ -135,8 +132,8 @@
     }
   }
 
-  $db = new daasldjflks();
+  $db = new fdasdasda();
   echo $db->acceso();
-*/
+
 
  ?>
