@@ -33,7 +33,7 @@
 		?>
 	</header>
 	<?php
-/*
+
 	class Login{
 		public function __construct(){
 			try{
@@ -51,7 +51,7 @@
 				return "Database access FAILED!";
 			}
 		}
-		private function getRealIP(){
+		/*private function getRealIP(){
 			if (isset($_SERVER["HTTP_CLIENT_IP"])){
 					return $_SERVER["HTTP_CLIENT_IP"];
 			}
@@ -105,8 +105,10 @@
 				echo "Database access FAILED!";
 			}
 		}
-	}
 
+*/
+	}
+/*
 	$db = new Login();
 	$ar=$db->genera_random();
 	$a=$ar[0];
