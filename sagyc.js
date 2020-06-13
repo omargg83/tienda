@@ -419,20 +419,16 @@ function select_factdir(){
 
 }
 
-$(document).on('submit','#acceso',function(e){
+$(document).on('submit','#log_intix',function(e){
   e.preventDefault();
-  var userAcceso=document.getElementById("userAcceso").value;
-  var passAcceso=$.md5(document.getElementById("passAcceso").value);
+  var dataString = $(this).serialize()+"&function=acceso&ctrl=control";
+
   $.ajax({
-    url: "/control_db.php",
+    url: "control_login.php",
     type: "POST",
-    data: {
-      "ctrl":"control",
-      "function":"acceso",
-      "userAcceso":userAcceso,
-      "passAcceso":passAcceso
-    },
+    data:  dataString,
     success: function( response ) {
+      console.log(response);
       var datos = JSON.parse(response);
       if (datos.acceso==1){
         Cookies.set('ticshop_x', datos.galleta);
@@ -443,7 +439,7 @@ $(document).on('submit','#acceso',function(e){
             type: 'error',
             title: 'Usuario o contraseña incorrecta',
             showConfirmButton: false,
-            timer: 1000
+            timer: 5000
         });
       }
     }

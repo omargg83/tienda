@@ -24,18 +24,7 @@
 			try{
 				$ip=self::getRealIP();
 
-				$sql="SELECT baneada FROM token_log where baneada=:baneada";
-				$sth = $this->dbh->prepare($sql);
-				$sth->bindValue(":baneada",$ip);
-				$sth->execute();
-				$contar=$sth->rowCount();
-				if($contar>0){
-					$arr=array();
-					$arr=array('acceso'=>0);
-					$arr=array('info'=>"Error 1");
-					return json_encode($arr);
-				}
-				////////////////////////////los id y name de los input de login son variantes por lo que si no existen quiere decir que el usuario intento hackear y por lo tanto se banea la IP
+				////////////////////////////los id y name de los input de login son variantes
 				$metodo=$_SERVER['REQUEST_METHOD'];
 				$keys=array_keys($_REQUEST);
 				$uno=$keys[0];

@@ -114,7 +114,7 @@
 
 	?>
 	<!-- Cart -->
-	<form id='acceso' action=''>
+	<form id='log_intix' action=''>
 		<div class="cart_section">
 			<div class="container">
 				<div class="row">
@@ -126,10 +126,8 @@
 						<div class="col-4 offset-4 text-center">
 							<label>Contraseña</label>
 							<input type="password" class="form-control" id="<?php echo $b; ?>" name='<?php echo $b; ?>' placeholder="Contraseña" value="" required>
-
 						</div>
 						<div class="col-4 offset-4 text-center"><br>
-
 							<button class="btn btn-outline-primary btn-block btn-sm" type="submit" style="
 							    background-color: #b4f22f;
 							    border: none;
