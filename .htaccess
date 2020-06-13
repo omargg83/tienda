@@ -13,12 +13,10 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.php -f
 
 #BLOQUEAR EL ACCESO POR CONTRASEñA
-#AuthName "Restricted Area"
-#AuthType Basic
-#AuthUserFile /home1/sagycrmr/xtienda.sagyc.com.mx/.htpasswd
-#/home1/sagycrmr/xtienda.sagyc.com.mx/TIC_CONTROL/dash
-#require valid-user
-
+AuthName "Restricted Area"
+AuthType Basic
+AuthUserFile /home/ticshopcom/public_html/.htpasswd
+require valid-user
 
 #hasta aqui
 
