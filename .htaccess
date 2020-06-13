@@ -16,6 +16,7 @@ RewriteCond %{REQUEST_FILENAME}.php -f
 #AuthName "Restricted Area"
 #AuthType Basic
 #AuthUserFile /home1/sagycrmr/xtienda.sagyc.com.mx/.htpasswd
+#/home1/sagycrmr/xtienda.sagyc.com.mx/TIC_CONTROL/dash
 #require valid-user
 
 
@@ -39,6 +40,7 @@ RewriteCond %{HTTP_REFERER} !^http://172.16.0.3 [NC]
 RewriteCond %{HTTP_REFERER} !^http://localhost [NC]
 RewriteCond %{HTTP_REFERER} !^http://xtienda.sagyc.com.mx [NC]
 RewriteCond %{HTTP_REFERER} !^https://xtienda.sagyc.com.mx [NC]
+RewriteCond %{HTTP_REFERER} !^https://tic-shop.com.mx [NC]
 RewriteRule .*\.(gif|jpg|png|js)$ - [NC,F]
 
 # Evitar escaneos y cualquier intento de manipulación malintencionada

@@ -1,9 +1,6 @@
 <?php
   session_start();
   date_default_timezone_set("America/Mexico_City");
-  $path = getcwd();
-  echo "La ruta absoluta es: ";
-  echo $path;
   
   class Login{
 		public function __construct(){
