@@ -2,8 +2,8 @@
   session_start();
   date_default_timezone_set("America/Mexico_City");
   echo "hola mundo";
-
   
+
 /*
   class daasldjflks{
 		public function __construct(){
