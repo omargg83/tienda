@@ -1,8 +1,10 @@
 <?php
   session_start();
   date_default_timezone_set("America/Mexico_City");
-  return 0;
-  
+
+
+  echo "hola mundo";
+/*
   class daasldjflks{
 		public function __construct(){
       try{
@@ -135,6 +137,6 @@
 
   $db = new daasldjflks();
   echo $db->acceso();
-
+*/
 
  ?>

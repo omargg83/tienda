@@ -175,9 +175,6 @@
 <script src="/plugins/easing/easing.js"></script>
 <script src="/js/cart_custom.js"></script>
 
-
-<script src="/librerias15/jQuery-MD5-master/jquery.md5.js"></script>
-
 <!--   Alertas   -->
 <script src="/librerias15/swal/dist/sweetalert2.min.js"></script>
 <link rel="stylesheet" href="/librerias15/swal/dist/sweetalert2.min.css">
