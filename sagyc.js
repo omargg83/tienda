@@ -418,7 +418,7 @@ function select_factdir(){
 }
 
 $(document).on('submit','#logintix',function(e){
-  e.preventDefault();
+  //e.preventDefault();
   var dataString = $(this).serialize()+"&function=acceso&ctrl=control";
   console.log(dataString);
 });
