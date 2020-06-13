@@ -23,7 +23,7 @@
     public function acceso(){
 			try{
 				$ip=self::getRealIP();
-        return "entra";
+        r
 				////////////////////////////los id y name de los input de login son variantes
 				$metodo=$_SERVER['REQUEST_METHOD'];
 				$keys=array_keys($_REQUEST);
@@ -37,6 +37,7 @@
           return 0;
         }
 
+
 				$sql="SELECT in_u, in_p, intentos FROM token_pikatic where in_u=:usuario and in_p=:pass";
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(":usuario",$uno);
@@ -44,6 +45,9 @@
 				$sth->execute();
 				$contar=$sth->rowCount();
 				$row=$sth->fetch(PDO::FETCH_OBJ);
+
+        return "$contar $uno $dos";
+
 				if($contar and $row->intentos<3){
 					///////////////////////numero de intentos
 
