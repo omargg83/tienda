@@ -422,13 +422,11 @@ function select_factdir(){
 $(document).on('submit','#log_intix',function(e){
   e.preventDefault();
   var dataString = $(this).serialize()+"&function=acceso&ctrl=control";
-
   $.ajax({
     url: "control_login.php",
     type: "POST",
     data:  dataString,
     success: function( response ) {
-      console.log(response);
       var datos = JSON.parse(response);
       if (datos.acceso==1){
         Cookies.set('ticshop_x', datos.galleta);

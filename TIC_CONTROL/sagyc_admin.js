@@ -237,6 +237,87 @@
 			});
 		}
 	});
+	$(document).on("click",'#recuperar',function(e){
+		e.preventDefault();
+		$.ajax({
+				url:   'dash/restablecer_xtpika.php',
+			  beforeSend: function () {
+					$("#modal_form").html("Procesando, espere por favor...");
+			  },
+			  success:  function (response) {
+				$("#modal_form").html('');
+				$("#modal_form").html(response);
+			  }
+		});
+	});
+	$(document).on('submit','#passx',function(e){
+			e.preventDefault();
+
+			var telefono=document.getElementById("userAcceso").value;
+			telefono=telefono.trim();
+			if(telefono.length>2){
+				var btn=$(this).find(':submit')
+				$(btn).attr('disabled', 'disabled');
+				var tmp=$(btn).children("i").attr('class');
+				$(btn).children("i").removeClass();
+				$(btn).children("i").addClass("fas fa-spinner fa-pulse");
+
+				var tipo=2;
+				var parametros={
+					"ctrl":"control",
+					"function":"recuperar",
+					"tipo":tipo,
+					"telefono":telefono
+				};
+				$.ajax({
+					url: "control_db.php",
+					type: "post",
+					data: parametros,
+					beforeSend: function(objeto){
+						$(btn).children("i").addClass(tmp);
+					},
+					success:function(response){
+						var datos = JSON.parse(response);
+			      if (datos.error==0){
+							Swal.fire({
+							  type: "success",
+							  title: "Se envío correctamente al correo registrados",
+							  showConfirmButton: false,
+							  timer: 1000
+							});
+							$("#modal_form").load('dash/login.php');
+						}
+						else {
+							Swal.fire({
+							  type: 'error',
+							  title: datos.error,
+							  showConfirmButton: false,
+							  timer: 3000
+							});
+						}
+						$(btn).children("i").removeClass();
+						$(btn).children("i").addClass(tmp);
+						$(btn).prop('disabled', false);
+					}
+				});
+			}
+			else{
+				$( "#telefono" ).focus();
+				$( "#telefono" ).val("");
+			}
+		});
+	$(document).on('click','#cancel_pass',function(e){
+		$.ajax({
+				url:   'dash/login.php',
+				beforeSend: function () {
+					$("#modal_form").html("Procesando, espere por favor...");
+				},
+				success:  function (response) {
+					$("#modal_form").html('');
+					$("#modal_form").html(response);
+				}
+		});
+	});
 	//////////////////////subir archivos
 	$(document).on("click","[id^='fileup_']",function(e){
 		e.preventDefault();
@@ -779,88 +860,7 @@
 		$('#myModal').modal({backdrop: 'static', keyboard: false})
 		$('#myModal').modal('show');
 	});
-	$(document).on("click",'#recuperar',function(e){
-		e.preventDefault();
-		$.ajax({
-				url:   'dash/restablecer_xtpika.php',
-			  beforeSend: function () {
-					$("#modal_form").html("Procesando, espere por favor...");
-			  },
-			  success:  function (response) {
-				$("#modal_form").html('');
-				$("#modal_form").html(response);
-			  }
-		});
-	});
-	$(document).on('submit','#passx',function(e){
-			e.preventDefault();
 
-			var telefono=document.getElementById("userAcceso").value;
-			telefono=telefono.trim();
-			if(telefono.length>2){
-				var btn=$(this).find(':submit')
-				$(btn).attr('disabled', 'disabled');
-				var tmp=$(btn).children("i").attr('class');
-				$(btn).children("i").removeClass();
-				$(btn).children("i").addClass("fas fa-spinner fa-pulse");
-
-				var tipo=2;
-				var parametros={
-					"ctrl":"control",
-					"function":"recuperar",
-					"tipo":tipo,
-					"telefono":telefono
-				};
-				$.ajax({
-					url: "control_db.php",
-					type: "post",
-					data: parametros,
-					beforeSend: function(objeto){
-						$(btn).children("i").addClass(tmp);
-					},
-					success:function(response){
-						console.log(response);
-						var datos = JSON.parse(response);
-			      if (datos.error==0){
-							Swal.fire({
-							  type: "success",
-							  title: "Se envío correctamente al correo registrados",
-							  showConfirmButton: false,
-							  timer: 1000
-							});
-							$("#modal_form").load('dash/login.php');
-						}
-						else {
-							Swal.fire({
-							  type: 'error',
-							  title: datos.error,
-							  showConfirmButton: false,
-							  timer: 3000
-							});
-						}
-						$(btn).children("i").removeClass();
-						$(btn).children("i").addClass(tmp);
-						$(btn).prop('disabled', false);
-					}
-				});
-			}
-			else{
-				$( "#telefono" ).focus();
-				$( "#telefono" ).val("");
-			}
-		});
-	$(document).on('click','#cancel_pass',function(e){
-		$.ajax({
-				url:   'dash/login.php',
-				beforeSend: function () {
-					$("#modal_form").html("Procesando, espere por favor...");
-				},
-				success:  function (response) {
-					$("#modal_form").html('');
-					$("#modal_form").html(response);
-				}
-		});
-	});
 
 	function md5pass(){
 		var user=$("#usuario").val();

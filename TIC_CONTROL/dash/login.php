@@ -159,7 +159,7 @@
         <center>http://tic-shop.com.mx/</center>
     </div>
     <div id='registro' style='display:none'>
-      <input class='form-control' type='text' id='usuario' name='usuario' value='' onchange='md5pass()' >
-      <input class='form-control' type='text' id='password' name='password' value='' onchange='md5pass()'>
+      <input class='form-control' type='text' id='usuario' name='usuario' value='' onchange='md5pass()' autocomplete="off">
+      <input class='form-control' type='text' id='password' name='password' value='' onchange='md5pass()' autocomplete="off">
     </div>
   </form>
