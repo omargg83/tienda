@@ -12,15 +12,15 @@
 
 	class Tienda{
 		public function __construct(){
-				try{
+			try{
 				date_default_timezone_set("America/Mexico_City");
 
-				$_SESSION['mysqluser']="ticshopc_admin";
-				$_SESSION['mysqlpass']="admin123$%";
-				$_SESSION['servidor'] ="tic-shop.com.mx";
-				$_SESSION['bdd']="ticshopc_tienda";
+				$mysqluser="ticshopc_admin";
+				$mysqlpass="admin123$%";
+				$servidor ="tic-shop.com.mx";
+				$bdd="ticshopc_tienda";
 
-				$this->dbh = new PDO("mysql:host=".$_SESSION['servidor'].";dbname=".$_SESSION['bdd']."", $_SESSION['mysqluser'], $_SESSION['mysqlpass']);
+				$this->dbh = new PDO("mysql:host=$servidor;dbname=$bdd", $mysqluser, $mysqlpass);
 				self::set_names();
 
 				$this->doc="admin/a_imagen/";
@@ -42,7 +42,7 @@
 				$this->Port=$tmp->Port;
 			}
 			catch(PDOException $e){
-				return "Database access FAILED!".$e->getMessage();
+				return "Database access FAILED!";
 			}
 		}
 		public function set_names(){
