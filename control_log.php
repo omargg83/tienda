@@ -23,7 +23,7 @@
     public function acceso(){
 			try{
 				$ip=self::getRealIP();
-        r
+
 				////////////////////////////los id y name de los input de login son variantes
 				$metodo=$_SERVER['REQUEST_METHOD'];
 				$keys=array_keys($_REQUEST);

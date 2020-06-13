@@ -420,7 +420,6 @@ function select_factdir(){
 $(document).on('submit','#logintix',function(e){
   e.preventDefault();
   var dataString = $(this).serialize()+"&function=acceso&ctrl=control";
-  alert(dataString);
   $.ajax({
     url: "/control_log.php",
     type: "POST",
