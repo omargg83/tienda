@@ -1,7 +1,6 @@
 RewriteEngine On
 Options All -Indexes
 
-
 RewriteRule ^producto/(.*)$  ./producto.php?id=$1 [L]
 RewriteRule ^buscar/(.*)$  ./buscar.php?id=$1 [L,QSA]
 RewriteRule ^acceso/(.*)$  ./acceso.php?id=$1 [L,QSA]
