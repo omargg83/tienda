@@ -12,10 +12,10 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.php -f
 
-# AuthName "Restricted Area"
-# AuthType Basic
-# AuthUserFile /ruta/absoluta/a/.htpasswd
-# require valid-user
+AuthName "Restricted Area"
+AuthType Basic
+AuthUserFile /home1/sagycrmr/xtienda.sagyc.com.mx/.htpasswd
+require valid-user
 
 
 #hasta aqui
