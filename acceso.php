@@ -33,7 +33,7 @@
 		?>
 	</header>
 	<?php
-
+/*
 	class Login{
 		public function __construct(){
 			try{
@@ -111,7 +111,7 @@
 	$ar=$db->genera_random();
 	$a=$ar[0];
 	$b=$ar[1];
-
+*/
 	?>
 	<!-- Cart -->
 	<form id='logintix' action=''>
