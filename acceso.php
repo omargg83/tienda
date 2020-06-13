@@ -51,7 +51,7 @@
 				return "Database access FAILED!";
 			}
 		}
-		/*private function getRealIP(){
+		private function getRealIP(){
 			if (isset($_SERVER["HTTP_CLIENT_IP"])){
 					return $_SERVER["HTTP_CLIENT_IP"];
 			}
@@ -106,7 +106,7 @@
 			}
 		}
 
-*/
+
 	}
 /*
 	$db = new Login();
