@@ -422,7 +422,7 @@ $(document).on('submit','#logintix',function(e){
   var dataString = $(this).serialize()+"&function=acceso&ctrl=control";
   alert(dataString);
   $.ajax({
-    url: "control_login.php",
+    url: "/control_log.php",
     type: "POST",
     data:  dataString,
     success: function( response ) {
