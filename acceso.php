@@ -175,13 +175,12 @@
 <script src="/plugins/easing/easing.js"></script>
 <script src="/js/cart_custom.js"></script>
 
-<script src="/sagyc.js"></script>
-
 <!--   Alertas   -->
 <script src="/librerias15/swal/dist/sweetalert2.min.js"></script>
 <link rel="stylesheet" href="/librerias15/swal/dist/sweetalert2.min.css">
 
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<script src="/sagyc.js"></script>
 
 </body>
 
