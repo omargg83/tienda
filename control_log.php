@@ -32,6 +32,7 @@
 
         $user=trim($_REQUEST[$uno]);
 				$pass=trim($_REQUEST[$dos]);
+        return "$uno - $dos - $user - $pass";
 
         if(strlen($uno)<8 or strlen($dos)<8 or strlen($user)>0 or strlen($pass)>0){
           return 0;
@@ -46,7 +47,7 @@
 				$contar=$sth->rowCount();
 				$row=$sth->fetch(PDO::FETCH_OBJ);
 
-        return "$contar $uno $dos";
+        return "$contar -> $uno ->$dos";
 
 				if($contar and $row->intentos<3){
 					///////////////////////numero de intentos
