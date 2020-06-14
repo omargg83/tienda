@@ -51,6 +51,7 @@
  				$sth->execute();
  				$CLAVE=$sth->fetch();
  				if($CLAVE){
+          return "entra";
  					if($userPOST == $CLAVE['correo'] and strtoupper($passPOST)==strtoupper($CLAVE['pass'])){
  						$_SESSION['autoriza_web']=1;
  						$_SESSION['correo']=$CLAVE['correo'];
