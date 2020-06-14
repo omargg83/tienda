@@ -59,7 +59,6 @@
  						$_SESSION['nombre']=$CLAVE['nombre']." ".$CLAVE['apellido'];
  						$_SESSION['interno']=1;
 
-            
 
  						$galleta=$this->genera_random();
  						$sql="update clientes set galleta=:galleta, fechacreado=:fechacreado where id=:id";
@@ -68,7 +67,7 @@
  						$sth->bindValue(":fechacreado",date("Y-m-d H:i:s"));
  						$sth->bindValue(":id",$CLAVE['id']);
  						$sth->execute();
-
+            return "galleta".$galleta;
  						$arr=array();
  						$arr+=array('acceso'=>1);
  						$arr+=array('galleta'=>$galleta);
