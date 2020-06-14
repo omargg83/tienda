@@ -2,7 +2,7 @@
   session_start();
   date_default_timezone_set("America/Mexico_City");
 
-  class fdasdasda{
+  class daasldjflks{
 		public function __construct(){
       try{
         date_default_timezone_set("America/Mexico_City");
@@ -24,7 +24,19 @@
 			try{
 				$ip=self::getRealIP();
 
-				////////////////////////////los id y name de los input de login son variantes
+				$sql="SELECT baneada FROM token_log where baneada=:baneada";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(":baneada",$ip);
+				$sth->execute();
+				$contar=$sth->rowCount();
+				if($contar>0){
+					$arr=array();
+					$arr=array('acceso'=>0);
+					$arr=array('info'=>"Error 1");
+					return json_encode($arr);
+				}
+
+				////////////////////////////los id y name de los input de login son variantes por lo que si no existen quiere decir que el usuario intento hackear y por lo tanto se banea la IP
 				$metodo=$_SERVER['REQUEST_METHOD'];
 				$keys=array_keys($_REQUEST);
 				$uno=$keys[0];
@@ -32,12 +44,15 @@
 
         $user=trim($_REQUEST[$uno]);
 				$pass=trim($_REQUEST[$dos]);
-        return "$uno - $dos - $user - $pass";
 
-        if(strlen($uno)<8 or strlen($dos)<8 or strlen($user)>0 or strlen($pass)>0){
+        $us_fake=$_REQUEST['usuario'];
+        $pa_fake=$_REQUEST['password'];
+
+        if(strlen($uno)<8 or strlen($dos)<8 or strlen($us_fake)>0 or strlen($pa_fake)>0){
           return 0;
         }
 
+        return "algo";
 
 				$sql="SELECT in_u, in_p, intentos FROM token_pikatic where in_u=:usuario and in_p=:pass";
 				$sth = $this->dbh->prepare($sql);
@@ -46,9 +61,6 @@
 				$sth->execute();
 				$contar=$sth->rowCount();
 				$row=$sth->fetch(PDO::FETCH_OBJ);
-
-        return "$contar -> $uno ->$dos";
-
 				if($contar and $row->intentos<3){
 					///////////////////////numero de intentos
 
@@ -137,8 +149,6 @@
     }
   }
 
-  $db = new fdasdasda();
+  $db = new daasldjflks();
   echo $db->acceso();
-
-
  ?>
