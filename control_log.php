@@ -42,7 +42,7 @@
 				$userPOST=$user;
 				$encriptx=md5("tic%pika_$%&/()=").md5(trim($pass));
 				$passPOST=hash("sha512",$encriptx);
-        return $passPOST;
+
 			  ////////////////////////////////////////////////////////////////////////////
  				$sql="SELECT * FROM clientes where correo=:correo and pass=:pass";
  				$sth = $this->dbh->prepare($sql);
