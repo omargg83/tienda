@@ -51,13 +51,15 @@
  				$sth->execute();
  				$CLAVE=$sth->fetch();
  				if($CLAVE){
-          return "entra";
- 					if($userPOST == $CLAVE['correo'] and strtoupper($passPOST)==strtoupper($CLAVE['pass'])){
+
+ 					if($userPOST == $CLAVE['correo'] and $passPOST==$CLAVE['pass']){
  						$_SESSION['autoriza_web']=1;
  						$_SESSION['correo']=$CLAVE['correo'];
  						$_SESSION['idcliente']=$CLAVE['id'];
  						$_SESSION['nombre']=$CLAVE['nombre']." ".$CLAVE['apellido'];
  						$_SESSION['interno']=1;
+
+            return "entra";
 
  						$galleta=$this->genera_random();
  						$sql="update clientes set galleta=:galleta, fechacreado=:fechacreado where id=:id";
