@@ -59,7 +59,7 @@
  						$_SESSION['nombre']=$CLAVE['nombre']." ".$CLAVE['apellido'];
  						$_SESSION['interno']=1;
 
-            return "entra";
+            
 
  						$galleta=$this->genera_random();
  						$sql="update clientes set galleta=:galleta, fechacreado=:fechacreado where id=:id";
