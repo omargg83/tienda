@@ -427,19 +427,19 @@ $(document).on('submit','#logintix',function(e){
     success: function( response ) {
       console.log(response);
 
-      //var datos = JSON.parse(response);
-      //if (datos.acceso==1){
-      //  Cookies.set('ticshop_x', datos.galleta);
-      //  window.location.href="/";
-      //}
-      //else{
-      //  Swal.fire({
-      //      type: 'error',
-      //      title: 'Usuario o contraseña incorrecta',
-      //      showConfirmButton: false,
-      //      timer: 5000
-      //  });
-      //}
+      var datos = JSON.parse(response);
+      if (datos.acceso==1){
+       Cookies.set('ticshop_x', datos.galleta);
+       window.location.href="/";
+      }
+      else{
+       Swal.fire({
+           type: 'error',
+           title: 'Usuario o contraseña incorrecta',
+           showConfirmButton: false,
+           timer: 5000
+       });
+      }
     }
   });
 });

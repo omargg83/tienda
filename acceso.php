@@ -75,29 +75,17 @@
 				$ip=self::getRealIP();
 
 				$_SESSION['idcli_sess']="";
-				$_SESSION['autoriza_sess']=0;
+				$_SESSION['autocli_sess']=0;
+				$_SESSION['fecha']=date("YmdHis");
 
-				$random=substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
+				$clave=md5("tic%pika_$%&/()=".$ip);
+				$clave=hash("sha512",$clave);
+				$_SESSION['iduser']=$clave;
+				$_SESSION['numero']=0;
+
 				$in=md5(substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 16));
 				$pin=md5(substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 16));
-				$encrip=password_hash($random, PASSWORD_DEFAULT);
 
-				$date = new DateTime();
-				$date->modify('+3 hours');
-				$limite=$date->format('Y-m-d H:i:s');
-
-				$fecha=date('Y-m-d H:i:s');
-				$sql="insert into token_pikatic (token, cadena, in_u, in_p, expira, generado, ip, intentos) values (:token, :cadena, :inp, :pin, :expira, :genera, :ip, 0)";
-				$sth = $this->dbh->prepare($sql);
-
-				$sth->bindValue(":token",$random);
-				$sth->bindValue(":cadena",$encrip);
-				$sth->bindValue(":inp",$in);
-				$sth->bindValue(":pin",$pin);
-				$sth->bindValue(":expira",$limite);
-				$sth->bindValue(":genera",$fecha);
-				$sth->bindValue(":ip",$ip);
-				$sth->execute();
 				return array($in,$pin);
 			}
 			catch(PDOException $e){

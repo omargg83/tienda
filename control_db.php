@@ -257,57 +257,6 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
-		public function acceso(){
-			//Obtenemos los datos del formulario de acceso
-			try{
-				$userPOST = htmlspecialchars($_REQUEST["userAcceso"]);
-				$passPOST = $_REQUEST["passAcceso"];
-
-				$sql="SELECT * FROM clientes where correo=:correo and pass=:pass";
-				$sth = $this->dbh->prepare($sql);
-				$sth->bindValue(":correo",$userPOST);
-				$sth->bindValue(":pass",$passPOST);
-				$sth->execute();
-				$CLAVE=$sth->fetch();
-				if($CLAVE){
-					if($userPOST == $CLAVE['correo'] and strtoupper($passPOST)==strtoupper($CLAVE['pass'])){
-						$_SESSION['autoriza_web']=1;
-						$_SESSION['correo']=$CLAVE['correo'];
-						$_SESSION['idcliente']=$CLAVE['id'];
-						$_SESSION['nombre']=$CLAVE['nombre']." ".$CLAVE['apellido'];
-						$_SESSION['interno']=1;
-
-						$galleta=$this->genera_random();
-						$sql="update clientes set galleta=:galleta, fechacreado=:fechacreado where id=:id";
-						$sth = $this->dbh->prepare($sql);
-						$sth->bindValue(":galleta",$galleta);
-						$sth->bindValue(":fechacreado",date("Y-m-d H:i:s"));
-						$sth->bindValue(":id",$CLAVE['id']);
-						$sth->execute();
-
-
-						$arr=array();
-						$arr+=array('acceso'=>1);
-						$arr+=array('galleta'=>$galleta);
-						return json_encode($arr);
-					}
-					else {
-						$arr=array();
-						$arr=array('acceso'=>0);
-						return json_encode($arr);	return "Usuario o Contraseña incorrecta";
-					}
-				}
-				else {
-					$arr=array();
-					$arr=array('acceso'=>0);
-					return json_encode($arr);	return "Usuario o Contraseña incorrecta";
-				}
-
-			}
-			catch(PDOException $e){
-				return "Database access FAILED!".$e->getMessage();
-			}
-		}
 		public function recuperar(){
 			try{
 				$mail=trim(htmlspecialchars($_REQUEST['mail']));
@@ -770,7 +719,6 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
-
 
 		public function wish(){
 			try{

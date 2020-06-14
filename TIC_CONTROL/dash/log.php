@@ -23,8 +23,8 @@
     public function acceso(){
 			try{
 				$ip=self::getRealIP();
-
-				$sql="SELECT baneada FROM token_log where baneada=:baneada";
+        
+        $sql="SELECT baneada FROM token_log where baneada=:baneada";
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(":baneada",$ip);
 				$sth->execute();
@@ -47,7 +47,7 @@
 
         $us_fake=$_REQUEST['usuario'];
         $pa_fake=$_REQUEST['password'];
-        
+
         if(strlen($uno)<8 or strlen($dos)<8 or strlen($us_fake)>0 or strlen($pa_fake)>0){
           return 0;
         }
