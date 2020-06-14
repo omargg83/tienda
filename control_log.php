@@ -67,7 +67,7 @@
  						$sth->bindValue(":fechacreado",date("Y-m-d H:i:s"));
  						$sth->bindValue(":id",$CLAVE['id']);
  						$sth->execute();
-            return "galleta".$galleta;
+
  						$arr=array();
  						$arr+=array('acceso'=>1);
  						$arr+=array('galleta'=>$galleta);
@@ -109,6 +109,9 @@
           return $_SERVER["REMOTE_ADDR"];
       }
     }
+    public function genera_random($length = 15) {
+    	return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
+		}
   }
 
   $db = new daasldjflks();
