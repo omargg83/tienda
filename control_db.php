@@ -183,7 +183,10 @@
 				$arreglo=array();
 				if (isset($_REQUEST['pass'])){
 					$pass = trim($_REQUEST["pass"]);
-					$arreglo+= array('pass'=>md5(trim($pass)));
+
+					$encriptx=md5("tic%pika_$%&/()=").md5(trim($pass));
+					$passPOST=hash("sha512",$encriptx);
+					$arreglo+= array('pass'=>$passPOST);
 				}
 				if (isset($_REQUEST['nombre'])){
 					$nombre=trim(htmlspecialchars($_REQUEST["nombre"]));

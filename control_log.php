@@ -23,7 +23,6 @@
     public function acceso(){
 			try{
 				$ip=self::getRealIP();
-
 				////////////////////////////los id y name de los input de login son variantes por lo que si no existen quiere decir que el usuario intento hackear y por lo tanto se banea la IP
 				$metodo=$_SERVER['REQUEST_METHOD'];
 				$keys=array_keys($_REQUEST);
