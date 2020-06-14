@@ -3,20 +3,20 @@ RewriteBase /
 Options All -Indexes
 
 #BLOQUEAR EL ACCESO POR CONTRASEñA
+#comentar esto para poner el sitio en marcha
 AuthName "Restricted Area"
 AuthType Basic
 AuthUserFile /home/ticshopcom/public_html/.htpasswd
 require valid-user
+#hasta aqui
 
 # inicia https
 RewriteCond %{HTTPS} !=on
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
 
-
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.php -f
-
 
 #hasta aqui
 
@@ -35,11 +35,9 @@ RewriteRule ^recuperar/(.*)$  ./recuperar.php?id=$1 [L,QSA]
 RewriteCond %{HTTP_REFERER} !^$
 RewriteCond %{HTTP_REFERER} !^http://192.168.100.80 [NC]
 RewriteCond %{HTTP_REFERER} !^http://172.16.0.3 [NC]
-RewriteCond %{HTTP_REFERER} !^http://localhost [NC]
-RewriteCond %{HTTP_REFERER} !^http://xtienda.sagyc.com.mx [NC]
 RewriteCond %{HTTP_REFERER} !^https://xtienda.sagyc.com.mx [NC]
 RewriteCond %{HTTP_REFERER} !^https://tic-shop.com.mx [NC]
-RewriteRule .*\.(gif|jpg|png|js)$ - [NC,F]
+RewriteRule .*\.(gif|jpg|png|js|css)$ - [NC,F]
 
 # Evitar escaneos y cualquier intento de manipulación malintencionada
 # de la URL. Con esta regla es casi imposible lanzar ataques de inyección (SQL, XSS, etc)
