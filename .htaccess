@@ -11,7 +11,6 @@ require valid-user
 # inicia https
 RewriteCond %{HTTPS} !=on
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
-Strict-Transport-Security: max-age=31536000; includeSubDomains
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
