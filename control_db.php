@@ -263,6 +263,7 @@
 		public function recuperar(){
 			try{
 				$mail=trim(htmlspecialchars($_REQUEST['mail']));
+
 				$sql="select * from clientes where correo=:mail";
 				$sth_i = $this->dbh->prepare($sql);
 				$sth_i->bindValue(":mail",$mail);
@@ -271,7 +272,8 @@
 					$resp=$sth_i->fetch(PDO::FETCH_OBJ);
 
 					$pass=$this->genera_random(8);
-					$passg=md5(trim($pass));
+					$encriptx=md5("tic%pika_$%&/()=").md5(trim($pass));
+					$passg=hash("sha512",$encriptx);
 
 					$sql="update clientes set pass=:pass where id=:id";
 					$sth = $this->dbh->prepare($sql);
@@ -554,6 +556,7 @@
 				return "Database access FAILED!".$e->getMessage();
 			}
 		}
+
 		///////////////////////Productos destacados
 		public function productos_destacados(){
 			try{
