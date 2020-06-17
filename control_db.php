@@ -23,9 +23,9 @@
 				$this->dbh = new PDO("mysql:host=$servidor;dbname=$bdd", $mysqluser, $mysqlpass);
 				self::set_names();
 
-				$this->doc="admin/a_imagen/";
-				$this->extra="admin/a_imagenextra/";
-				$this->banner="admin/a_imagenpagina/";
+				$this->doc="TIC_CONTROL/a_imagen/";
+				$this->extra="TIC_CONTROL/a_imagenextra/";
+				$this->banner="TIC_CONTROL/a_imagenpagina/";
 
 				$sql="select * from ajustes";
 				$sth = $this->dbh->prepare($sql);

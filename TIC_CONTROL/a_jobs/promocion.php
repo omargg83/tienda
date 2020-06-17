@@ -7,11 +7,12 @@
     public function __construct(){
       $this->Salud = array();
       date_default_timezone_set("America/Mexico_City");
-      $_SESSION['mysqluser']="ticshopc_admin";
-      $_SESSION['mysqlpass']="admin123$%";
-      $_SESSION['servidor'] ="localhost";
-      $_SESSION['bdd']="ticshopc_tienda";
-      $this->dbh = new PDO("mysql:host=".$_SESSION['servidor'].";dbname=".$_SESSION['bdd']."", $_SESSION['mysqluser'], $_SESSION['mysqlpass']);
+      $mysqluser="ticshopc_admin";
+      $mysqlpass="admin123$%";
+      $servidor ="tic-shop.com.mx";
+      $bdd="ticshopc_tienda";
+
+      $this->dbh = new PDO("mysql:host=$servidor;dbname=$bdd", $mysqluser, $mysqlpass);
       self::set_names();
 
     }
