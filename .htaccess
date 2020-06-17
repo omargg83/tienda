@@ -37,7 +37,7 @@ RewriteCond %{HTTP_REFERER} !^http://192.168.100.80 [NC]
 RewriteCond %{HTTP_REFERER} !^http://172.16.0.3 [NC]
 RewriteCond %{HTTP_REFERER} !^https://xtienda.sagyc.com.mx [NC]
 RewriteCond %{HTTP_REFERER} !^https://tic-shop.com.mx [NC]
-RewriteRule .*\.(gif|jpg|png|js|css)$ - [NC,F]
+#RewriteRule .*\.(gif|jpg|png|js|css)$ - [NC,F]
 
 # Evitar escaneos y cualquier intento de manipulación malintencionada
 # de la URL. Con esta regla es casi imposible lanzar ataques de inyección (SQL, XSS, etc)
