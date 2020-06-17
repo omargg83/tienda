@@ -484,7 +484,7 @@
 				}
 			}
 			$.ajax({
-				data:  {"algo":"algo","padre":padre,"opcion":opcion,"id":xyId,"nombre":id,"funcion":funcion,"valor":valor},
+				data:  {"opcion":opcion,"id":xyId,"nombre":id,"funcion":funcion,"valor":valor},
 				url:   lugar,
 				type:  'post',
 				timeout:30000,

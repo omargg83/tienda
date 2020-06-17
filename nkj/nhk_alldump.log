@@ -1,0 +1,20 @@
+172.16.0.3|17/06/2020 15:00:26|POST|/tienda/tic_control/dash/log.php|http://172.16.0.3/tienda/tic_control/xp_ticshop.php|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36|Array
+(
+    [44d1c15863ecc4d868853bb324698353] => omargg83@gmail.com
+    [324d97a37635d2386ce2206da01d8b0f] => TEUFELOMAR123$o
+    [usuario] => 
+    [password] => 
+    [function] => acceso
+    [ctrl] => control
+)
+|
+172.16.0.3|17/06/2020 15:00:27|POST|/tienda/tic_control/control_db.php|http://172.16.0.3/tienda/tic_control/xp_ticshop.php|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36|Array
+(
+    [ctrl] => control
+    [function] => login
+)
+|
+172.16.0.3|17/06/2020 15:00:27|GET|/tienda/tic_control/dash/header.php|http://172.16.0.3/tienda/tic_control/xp_ticshop.php|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36||
+172.16.0.3|17/06/2020 15:00:27|GET|/tienda/tic_control/dash/menu.php|http://172.16.0.3/tienda/tic_control/xp_ticshop.php|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36||
+172.16.0.3|17/06/2020 15:00:27|POST|/tienda/tic_control/dash/tic_index.php|http://172.16.0.3/tienda/tic_control/xp_ticshop.php|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36||
+172.16.0.3|17/06/2020 15:01:01|POST|/tienda/tic_control/a_productos/ticxp_index.php|http://172.16.0.3/tienda/tic_control/xp_ticshop.php|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36||

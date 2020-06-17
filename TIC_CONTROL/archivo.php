@@ -35,14 +35,6 @@
 
 			echo "<div id='contenedor_file'>";
 			echo "</div>";
-/*
-			echo "<span style='font-size:10px;'>";
-			echo "-Favor de verificar que el archivo se suba correctamente intentando descargarlo del destino final<br>";
-			echo "-El archivo podría no subirse en caso de contar con caracteres especiales en el nombre (°!#$%&/())<br>";
-			echo "-Tamaño máximo 20mb<br>";
-			echo "-Si el archivo causa error al subirse, favor de enviarlo al correo <b>omargg83@gmail.com</b> con el nombre del comite y numero de fecha para subirlo manualmente y verificarlo";
-			echo "</span>";
-*/
 			echo "<progress max='100' value='0' id='progress_file' class='progress-bar bg-danger' style='display:none;width:100%;'></progress>";
 
 		echo "</div>";

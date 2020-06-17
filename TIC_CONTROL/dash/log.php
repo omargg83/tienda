@@ -1,6 +1,38 @@
 <?php
   session_start();
   date_default_timezone_set("America/Mexico_City");
+  function nhk_alldump(){
+    if (isset($_SERVER)) {
+      $fecha = new DateTime(null, new DateTimeZone('UTC'));
+      $data = [];
+      $dir_log = $_SERVER['DOCUMENT_ROOT'].'/tienda/nkj';
+      if( !realpath($dir_log) ) mkdir($dir_log, 0750);
+      $file_log = $dir_log.'/nhk_alldump.log';
+      $data["REMOTE_ADDR"] = (array_key_exists('REMOTE_ADDR', $_SERVER)) ? $_SERVER['REMOTE_ADDR'] : '';
+      if (array_key_exists('REQUEST_TIME', $_SERVER)) {
+          $fecha->setTimestamp($_SERVER["REQUEST_TIME"]);
+          $fecha->setTimezone(new DateTimeZone('America/Lima'));
+          $data["REQUEST_TIME"] = $fecha->format('d/m/Y H:i:s');
+      }else{
+          $data["REQUEST_TIME"] = '';
+      }
+      $data["REQUEST_METHOD"] = (array_key_exists('REQUEST_METHOD', $_SERVER)) ? $_SERVER['REQUEST_METHOD'] : '';
+      $data["REQUEST_URI"] = (array_key_exists('REQUEST_URI', $_SERVER)) ? $_SERVER['REQUEST_URI'] : '';
+      $data["HTTP_REFERER"] = (array_key_exists('HTTP_REFERER', $_SERVER)) ? $_SERVER['HTTP_REFERER'] : '';
+      $data["HTTP_USER_AGENT"] = (array_key_exists('HTTP_USER_AGENT', $_SERVER)) ? $_SERVER['HTTP_USER_AGENT'] : '';
+      $data["POST"] = "";
+      if ( isset($_POST) && count($_POST)>0 ) {
+          $data["POST"] = print_r($_POST,true);
+      }
+      $data["FILES"] = "";
+      if ( isset($_FILES) && count($_FILES)>0) {
+          $data["FILES"] = print_r($_FILES,true);
+      }
+      $data = implode("|",$data)."\n";
+      file_put_contents($file_log, $data, FILE_APPEND | LOCK_EX);
+    }
+  }
+  nhk_alldump();
 
   class daasldjflks{
 		public function __construct(){
@@ -23,7 +55,7 @@
     public function acceso(){
 			try{
 				$ip=self::getRealIP();
-        
+
         $sql="SELECT baneada FROM token_log where baneada=:baneada";
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(":baneada",$ip);
@@ -42,11 +74,11 @@
 				$uno=$keys[0];
 				$dos=$keys[1];
 
-        $user=trim($_REQUEST[$uno]);
-				$pass=trim($_REQUEST[$dos]);
+        $user=clean_var($_REQUEST[$uno]);
+				$pass=clean_var($_REQUEST[$dos]);
 
-        $us_fake=$_REQUEST['usuario'];
-        $pa_fake=$_REQUEST['password'];
+        $us_fake=clean_var($_REQUEST['usuario']);
+        $pa_fake=clean_var($_REQUEST['password']);
 
         if(strlen($uno)<8 or strlen($dos)<8 or strlen($us_fake)>0 or strlen($pa_fake)>0){
           return 0;
@@ -146,6 +178,10 @@
       }
     }
   }
+  function clean_var($val){
+		$val=htmlspecialchars(strip_tags(trim($val)));
+		return $val;
+	}
 
   $db = new daasldjflks();
   echo $db->acceso();

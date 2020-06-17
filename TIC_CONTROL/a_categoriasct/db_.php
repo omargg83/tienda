@@ -1,12 +1,6 @@
 <?php
-//error_reporting(0);
 require_once("../control_db.php");
-if (isset($_REQUEST['function'])){
-	$function=clean_var($_REQUEST['function']);
-}
-else{
-	die();
-}
+
 
 class Categorias extends Tienda{
 	public function __construct(){
