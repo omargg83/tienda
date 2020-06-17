@@ -1,0 +1,7 @@
+<Files *.php>
+Deny from all
+</Files>
+<FilesMatch "\.(php|php\.)(.+)(\w|\d)$">
+ Order Allow,Deny
+ Deny from all
+</FilesMatch>

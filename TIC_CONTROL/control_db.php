@@ -60,10 +60,10 @@
 				return "Database access FAILED!";
 			}
 		}
-
 		public function set_names(){
 			return $this->dbh->query("SET NAMES 'utf8'");
 		}
+
 		private function getRealIP(){
       if (isset($_SERVER["HTTP_CLIENT_IP"])){
           return $_SERVER["HTTP_CLIENT_IP"];
@@ -474,6 +474,12 @@
 			echo $db->$function();
 		}
 	}
+	function clean_var($val){
+		$val=htmlspecialchars(strip_tags(trim($val)));
+		return $val;
+	}
+
+
 	function moneda($valor){
 		return "$ ".number_format( $valor, 2, "." , "," );
 	}

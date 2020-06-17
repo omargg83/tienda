@@ -2,17 +2,16 @@ RewriteEngine On
 RewriteBase /
 Options All -Indexes
 
-#BLOQUEAR EL ACCESO POR CONTRASEñA
-#comentar esto para poner el sitio en marcha
-AuthName "Restricted Area"
-AuthType Basic
-AuthUserFile /home/ticshopcom/public_html/.htpasswd
-require valid-user
+#BLOQUEAR EL ACCESO POR CONTRASEñA comentar esto para poner el sitio en marcha
+  AuthName "Restricted Area"
+  AuthType Basic
+  AuthUserFile /home/ticshopcom/public_html/.htpasswd
+  require valid-user
 #hasta aqui
 
 # inicia https
-RewriteCond %{HTTPS} !=on
-RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
+#RewriteCond %{HTTPS} !=on
+#RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

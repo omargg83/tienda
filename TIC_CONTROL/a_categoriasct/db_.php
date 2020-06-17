@@ -1,9 +1,14 @@
 <?php
+//error_reporting(0);
 require_once("../control_db.php");
-if (isset($_REQUEST['function'])){$function=$_REQUEST['function'];}	else{ $function="";}
+if (isset($_REQUEST['function'])){
+	$function=clean_var($_REQUEST['function']);
+}
+else{
+	die();
+}
 
 class Categorias extends Tienda{
-
 	public function __construct(){
 		parent::__construct();
 	}
@@ -11,7 +16,7 @@ class Categorias extends Tienda{
 		try{
 			parent::set_names();
 			if (isset($_REQUEST['buscar']) and strlen(trim($_REQUEST['buscar']))>0){
-				$texto=trim(htmlspecialchars($_REQUEST['buscar']));
+				$texto=clean_var($_REQUEST['buscar']);
 				$sql="SELECT * from categoria_ct where categoria like '%$texto%'";
 			}
 			else{
@@ -69,7 +74,6 @@ class Categorias extends Tienda{
 		if (isset($_POST['id'])){$id=$_REQUEST['id'];}
 		return $this->borrar('categoria_ct',"id",$id);
 	}
-
 	public function edita_subcat($id){
 		try{
 			parent::set_names();
@@ -161,7 +165,6 @@ class Categorias extends Tienda{
 		if (isset($_POST['id'])){$id=$_REQUEST['id'];}
 		return $this->borrar('categoriasub_ct',"id",$id);
 	}
-
 }
 $db = new Categorias();
 if(strlen($function)>0){
