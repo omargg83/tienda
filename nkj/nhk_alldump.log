@@ -18,3 +18,192 @@
 172.16.0.3|17/06/2020 15:00:27|GET|/tienda/tic_control/dash/menu.php|http://172.16.0.3/tienda/tic_control/xp_ticshop.php|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36||
 172.16.0.3|17/06/2020 15:00:27|POST|/tienda/tic_control/dash/tic_index.php|http://172.16.0.3/tienda/tic_control/xp_ticshop.php|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36||
 172.16.0.3|17/06/2020 15:01:01|POST|/tienda/tic_control/a_productos/ticxp_index.php|http://172.16.0.3/tienda/tic_control/xp_ticshop.php|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36||
+192.168.100.80|17/06/2020 18:51:32|GET|/tienda/TIC_CONTROL/xp_ticshop.php||Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36||
+192.168.100.80|17/06/2020 18:51:33|POST|/tienda/TIC_CONTROL/control_db.php|http://192.168.100.80:8888/tienda/TIC_CONTROL/xp_ticshop.php|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36|Array
+(
+    [ctrl] => control
+    [function] => login
+)
+|
+192.168.100.80|17/06/2020 18:51:33|GET|/tienda/TIC_CONTROL/dash/header.php|http://192.168.100.80:8888/tienda/TIC_CONTROL/xp_ticshop.php|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36||
+192.168.100.80|17/06/2020 18:51:33|GET|/tienda/TIC_CONTROL/dash/menu.php|http://192.168.100.80:8888/tienda/TIC_CONTROL/xp_ticshop.php|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36||
+192.168.100.80|17/06/2020 18:51:33|POST|/tienda/TIC_CONTROL/dash/tic_index.php|http://192.168.100.80:8888/tienda/TIC_CONTROL/xp_ticshop.php|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36||
+192.168.100.80|17/06/2020 18:52:34|POST|/tienda/TIC_CONTROL/control_db.php|http://192.168.100.80:8888/tienda/TIC_CONTROL/xp_ticshop.php|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36|Array
+(
+    [ctrl] => control
+    [function] => ses
+)
+|
+192.168.100.80|17/06/2020 18:53:34|POST|/tienda/TIC_CONTROL/control_db.php|http://192.168.100.80:8888/tienda/TIC_CONTROL/xp_ticshop.php|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36|Array
+(
+    [ctrl] => control
+    [function] => ses
+)
+|
+192.168.100.80|17/06/2020 18:54:34|POST|/tienda/TIC_CONTROL/control_db.php|http://192.168.100.80:8888/tienda/TIC_CONTROL/xp_ticshop.php|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36|Array
+(
+    [ctrl] => control
+    [function] => ses
+)
+|
+192.168.100.80|17/06/2020 18:55:34|POST|/tienda/TIC_CONTROL/control_db.php|http://192.168.100.80:8888/tienda/TIC_CONTROL/xp_ticshop.php|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36|Array
+(
+    [ctrl] => control
+    [function] => ses
+)
+|
+192.168.100.80|17/06/2020 18:56:34|POST|/tienda/TIC_CONTROL/control_db.php|http://192.168.100.80:8888/tienda/TIC_CONTROL/xp_ticshop.php|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36|Array
+(
+    [ctrl] => control
+    [function] => ses
+)
+|
+192.168.100.80|17/06/2020 18:57:34|POST|/tienda/TIC_CONTROL/control_db.php|http://192.168.100.80:8888/tienda/TIC_CONTROL/xp_ticshop.php|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36|Array
+(
+    [ctrl] => control
+    [function] => ses
+)
+|
+192.168.100.80|17/06/2020 18:58:35|POST|/tienda/TIC_CONTROL/control_db.php|http://192.168.100.80:8888/tienda/TIC_CONTROL/xp_ticshop.php|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36|Array
+(
+    [ctrl] => control
+    [function] => ses
+)
+|
+192.168.100.80|17/06/2020 18:59:35|POST|/tienda/TIC_CONTROL/control_db.php|http://192.168.100.80:8888/tienda/TIC_CONTROL/xp_ticshop.php|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36|Array
+(
+    [ctrl] => control
+    [function] => ses
+)
+|
+192.168.100.80|17/06/2020 19:00:36|POST|/tienda/TIC_CONTROL/control_db.php|http://192.168.100.80:8888/tienda/TIC_CONTROL/xp_ticshop.php|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36|Array
+(
+    [ctrl] => control
+    [function] => ses
+)
+|
+192.168.100.80|17/06/2020 19:01:35|POST|/tienda/TIC_CONTROL/control_db.php|http://192.168.100.80:8888/tienda/TIC_CONTROL/xp_ticshop.php|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36|Array
+(
+    [ctrl] => control
+    [function] => ses
+)
+|
+192.168.100.80|17/06/2020 19:02:48|POST|/tienda/TIC_CONTROL/control_db.php|http://192.168.100.80:8888/tienda/TIC_CONTROL/xp_ticshop.php|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36|Array
+(
+    [ctrl] => control
+    [function] => ses
+)
+|
+192.168.100.80|17/06/2020 19:03:35|POST|/tienda/TIC_CONTROL/control_db.php|http://192.168.100.80:8888/tienda/TIC_CONTROL/xp_ticshop.php|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36|Array
+(
+    [ctrl] => control
+    [function] => ses
+)
+|
+192.168.100.80|17/06/2020 19:04:34|POST|/tienda/TIC_CONTROL/control_db.php|http://192.168.100.80:8888/tienda/TIC_CONTROL/xp_ticshop.php|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36|Array
+(
+    [ctrl] => control
+    [function] => ses
+)
+|
+192.168.100.80|17/06/2020 19:05:35|POST|/tienda/TIC_CONTROL/control_db.php|http://192.168.100.80:8888/tienda/TIC_CONTROL/xp_ticshop.php|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36|Array
+(
+    [ctrl] => control
+    [function] => ses
+)
+|
+192.168.100.80|17/06/2020 19:05:44|POST|/tienda/TIC_CONTROL/a_almacen/ticxp_index.php|http://192.168.100.80:8888/tienda/TIC_CONTROL/xp_ticshop.php|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36||
+192.168.100.80|17/06/2020 19:05:45|POST|/tienda/TIC_CONTROL/a_almacen/editar.php|http://192.168.100.80:8888/tienda/TIC_CONTROL/xp_ticshop.php|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36|Array
+(
+    [opcion] => comision
+    [id] => 1
+    [nombre] => edit_comision
+    [funcion] => 
+    [valor] => 
+)
+|
+192.168.100.80|17/06/2020 19:05:47|POST|/tienda/TIC_CONTROL/a_almacen/lista.php|http://192.168.100.80:8888/tienda/TIC_CONTROL/xp_ticshop.php|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36|Array
+(
+    [opcion] => cat
+    [id] => 0
+    [nombre] => lista_cat
+    [funcion] => 
+    [valor] => 
+)
+|
+192.168.100.80|17/06/2020 19:05:49|POST|/tienda/TIC_CONTROL/a_almacen/editar.php|http://192.168.100.80:8888/tienda/TIC_CONTROL/xp_ticshop.php|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36|Array
+(
+    [opcion] => comision
+    [id] => 2
+    [nombre] => edit_comision
+    [funcion] => 
+    [valor] => 
+)
+|
+192.168.100.80|17/06/2020 19:05:50|POST|/tienda/TIC_CONTROL/a_almacen/db_.php|http://192.168.100.80:8888/tienda/TIC_CONTROL/xp_ticshop.php|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36|Array
+(
+    [id] => 2
+    [numero] => 02A
+    [sucursal] => CIUDAD OBREGON
+    [homoclave] => OBR
+    [calle] => Zacatecas
+    [num] => 860
+    [referencia] => Entre Rodolfo Elias Calles Y 6 De Abril
+    [colonia] => Centro
+    [cp] => 85000
+    [ciudad] => Cd. Obregón
+    [estado] => Sonora
+    [telefono] => (644) 412-1501
+    [correog] => ecom@ctin.com.mx
+    [jefe] => Adrian Acosta Hurtado
+    [correo] => almacen.obr@ctin.com.mx
+    [function] => guardar_almacen
+)
+|
+192.168.100.80|17/06/2020 19:05:51|POST|/tienda/TIC_CONTROL/a_almacen/editar.php|http://192.168.100.80:8888/tienda/TIC_CONTROL/xp_ticshop.php|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36|Array
+(
+    [id] => 2
+    [param1] => 
+    [param2] => 
+    [param3] => 
+)
+|
+192.168.100.80|17/06/2020 19:05:52|POST|/tienda/TIC_CONTROL/a_almacen/lista.php|http://192.168.100.80:8888/tienda/TIC_CONTROL/xp_ticshop.php|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36|Array
+(
+    [opcion] => cat
+    [id] => 0
+    [nombre] => lista_cat
+    [funcion] => 
+    [valor] => 
+)
+|
+192.168.100.80|17/06/2020 19:06:34|POST|/tienda/TIC_CONTROL/control_db.php|http://192.168.100.80:8888/tienda/TIC_CONTROL/xp_ticshop.php|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36|Array
+(
+    [ctrl] => control
+    [function] => ses
+)
+|
+192.168.100.80|17/06/2020 19:07:35|POST|/tienda/TIC_CONTROL/control_db.php|http://192.168.100.80:8888/tienda/TIC_CONTROL/xp_ticshop.php|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36|Array
+(
+    [ctrl] => control
+    [function] => ses
+)
+|
+192.168.100.80|17/06/2020 19:08:34|POST|/tienda/TIC_CONTROL/control_db.php|http://192.168.100.80:8888/tienda/TIC_CONTROL/xp_ticshop.php|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36|Array
+(
+    [ctrl] => control
+    [function] => ses
+)
+|
+192.168.100.80|17/06/2020 19:09:34|POST|/tienda/TIC_CONTROL/control_db.php|http://192.168.100.80:8888/tienda/TIC_CONTROL/xp_ticshop.php|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36|Array
+(
+    [ctrl] => control
+    [function] => ses
+)
+|
+192.168.100.80|17/06/2020 19:10:34|POST|/tienda/TIC_CONTROL/control_db.php|http://192.168.100.80:8888/tienda/TIC_CONTROL/xp_ticshop.php|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36|Array
+(
+    [ctrl] => control
+    [function] => ses
+)
+|
