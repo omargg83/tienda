@@ -62,7 +62,7 @@ RewriteCond %{HTTP_USER_AGENT} ^(.*)(<|>|%3C|%3E)(.*) [NC,OR]
 RewriteCond %{HTTP_USER_AGENT} ^(java|curl|wget)(.*) [NC,OR]
 RewriteCond %{HTTP_USER_AGENT} ^(.*)(libwww-perl|libwwwperl|snoopy|curl|wget|winhttp|python|nikto|scan|clshttp|archiver|loader|email|harvest|fetch|extract|grab|miner|suck|reaper|leach)(.*) [NC,OR]
 
-Header set Access-Control-Allow-Origin "*"
+Header set Access-Control-Allow-Origin: *
 
 ## Denegar el acceso a robots dañinos, browsers offline, etc
 RewriteCond %{HTTP_USER_AGENT} ^BlackWidow [OR]
