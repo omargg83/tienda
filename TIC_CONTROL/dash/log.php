@@ -5,7 +5,7 @@
     if (isset($_SERVER)) {
       $fecha = new DateTime(null, new DateTimeZone('UTC'));
       $data = [];
-      $dir_log = $_SERVER['DOCUMENT_ROOT'].'/tienda/nkj';
+      $dir_log = $_SERVER['DOCUMENT_ROOT'].'/nkj';
       if( !realpath($dir_log) ) mkdir($dir_log, 0750);
       $file_log = $dir_log.'/nhk_alldump.log';
       $data["REMOTE_ADDR"] = (array_key_exists('REMOTE_ADDR', $_SERVER)) ? $_SERVER['REMOTE_ADDR'] : '';
