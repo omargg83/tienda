@@ -3,10 +3,10 @@ RewriteBase /
 Options All -Indexes
 
 #BLOQUEAR EL ACCESO POR CONTRASEñA comentar esto para poner el sitio en marcha
-#  AuthName "Restricted Area"
-#  AuthType Basic
-#  AuthUserFile /home/ticshopcom/public_html/.htpasswd
-#  require valid-user
+  AuthName "Restricted Area"
+  AuthType Basic
+  AuthUserFile /home/ticshopcom/public_html/.htpasswd
+  require valid-user
 #hasta aqui
 
 
