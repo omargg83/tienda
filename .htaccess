@@ -14,6 +14,7 @@ RewriteCond %{HTTPS} !=on
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
 Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" env=HTTPS
 #Header set Content-Security-Policy "default-src 'self'; img-src 'self' http: https: *.amazon.com;"
+Header always set X-Frame-Options: "sameorigin"
 Header set Content-Security-Policy-Report-Only "default-src 'self'; img-src 'self' http: https: *.amazon.com;"
 
 RewriteCond %{REQUEST_FILENAME} !-f
