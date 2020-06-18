@@ -207,3 +207,15 @@
     [function] => ses
 )
 |
+192.168.100.80|17/06/2020 19:11:34|POST|/tienda/TIC_CONTROL/control_db.php|http://192.168.100.80:8888/tienda/TIC_CONTROL/xp_ticshop.php|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36|Array
+(
+    [ctrl] => control
+    [function] => ses
+)
+|
+192.168.100.80|17/06/2020 19:12:34|POST|/tienda/TIC_CONTROL/control_db.php|http://192.168.100.80:8888/tienda/TIC_CONTROL/xp_ticshop.php|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36|Array
+(
+    [ctrl] => control
+    [function] => ses
+)
+|
