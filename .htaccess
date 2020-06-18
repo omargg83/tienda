@@ -21,7 +21,7 @@ Header always set X-XSS-Protection "1; mode=block"
 Header always set Referrer-Policy "same-origin"
 Header set Feature-Policy "geolocation 'none'; vibrate 'none'"
 Header set Content-Security-Policy-Report-Only "default-src 'self'; img-src 'self' http: https: *.amazon.com;"
-Header set Content-Security-Policy: script-src 'font-src' https://fonts.googleapis.com/
+Header set Content-Security-Policy: "script-src 'font-src' https://fonts.googleapis.com"
 
 
 
