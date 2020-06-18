@@ -23,6 +23,7 @@ Header set Feature-Policy "geolocation 'none'; vibrate 'none'"
 #Header set Content-Security-Policy-Report-Only "default-src 'self'; img-src 'self' http: https: *.amazon.com;"
 
 Header set Content-Security-Policy: "default-src https://xtienda.sagyc.com.mx:443"
+Header set Content-Security-Policy: "style-src 'self' https://xtienda.sagyc.com.mx:443"
 Header set Content-Security-Policy: "font-src https://fonts.googleapis.com"
 
 
