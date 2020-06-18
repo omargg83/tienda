@@ -22,8 +22,6 @@ Header always set Referrer-Policy "same-origin"
 Header set Feature-Policy "geolocation 'none'; vibrate 'none'"
 Header set Content-Security-Policy-Report-Only "default-src 'self'; img-src 'self' http: https: *.amazon.com;"
 
-php_value session.cookie_httponly = 1
-php_value session.cookie_secure = 1
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

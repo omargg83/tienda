@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	header("Strict-Transport-Security:max-age=63072000");
+	ini_set("session.cookie_secure", "True");
 	
 	require_once("control_db.php");
 	$bdd = new Tienda();
