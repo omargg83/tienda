@@ -144,4 +144,4 @@ RewriteCond %{HTTP_USER_AGENT} ^Zeus
 RewriteRule .* - [F]
 
 
-Header set Access-Control-Allow-Origin: *
+Header set Access-Control-Allow-Origin: "*"
