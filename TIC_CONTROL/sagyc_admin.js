@@ -218,6 +218,7 @@
 				type: "POST",
 			  data:  dataString,
 			  success: function( response ) {
+					console.log(response);
 					var data = JSON.parse(response);
 					if (data.acceso==1){
 						acceso();
