@@ -25,9 +25,7 @@ Header set Feature-Policy "geolocation 'none'; vibrate 'none'"
 Header set Content-Security-Policy: "default-src https:"
 Header set Content-Security-Policy: "style-src https:"
 Header set Content-Security-Policy: "font-src https:"
-Header set Content-Security-Policy: "script-src https: 'unsafe-inline'"
-
-
+Header set Content-Security-Policy: "script-src https:"
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
@@ -142,6 +140,3 @@ RewriteCond %{HTTP_USER_AGENT} ^WWWOFFLE [OR]
 RewriteCond %{HTTP_USER_AGENT} ^Xaldon\ WebSpider [OR]
 RewriteCond %{HTTP_USER_AGENT} ^Zeus
 RewriteRule .* - [F]
-
-
-Header set Access-Control-Allow-Origin: "*"
