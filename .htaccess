@@ -26,7 +26,7 @@ Header set Content-Security-Policy: "default-src https:"
 Header set Content-Security-Policy: "style-src https:"
 Header set Content-Security-Policy: "font-src https:"
 Header set Content-Security-Policy: "script-src https: 'unsafe-inline'"
-
+Header set Access-Control-Allow-Origin "*"
 
 
 RewriteCond %{REQUEST_FILENAME} !-f
