@@ -9,6 +9,7 @@ Options All -Indexes
 #  require valid-user
 #hasta aqui
 
+
 # inicia https
 RewriteCond %{HTTPS} !=on
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
@@ -18,9 +19,10 @@ Header always set X-Frame-Options: "sameorigin"
 Header always set X-Content-Type-Options nosniff
 Header always set X-XSS-Protection "1; mode=block"
 Header always set Referrer-Policy "same-origin"
-Header set Feature-Policy "geolocation 'self'; vibrate 'none'"
-
+Header set Feature-Policy "geolocation 'none'; vibrate 'none'"
 Header set Content-Security-Policy-Report-Only "default-src 'self'; img-src 'self' http: https: *.amazon.com;"
+
+php_value session.cookie_httponly 1 
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
