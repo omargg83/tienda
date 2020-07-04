@@ -9,23 +9,31 @@ Options All -Indexes
 #  require valid-user
 #hasta aqui
 
-
-# inicia https
+RewriteCond %{HTTP_HOST} !=localhost
+RewriteCond %{HTTP_HOST} !=127.0.0.1
+RewriteCond %{REMOTE_ADDR} !=127.0.0.1
+RewriteCond %{REMOTE_ADDR} !=::1
 RewriteCond %{HTTPS} !=on
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
 
-Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" env=HTTPS
+Header always set Strict-Transport-Security "max-age=2592000; includeSubDomains; preload" env=HTTPS
 Header always set X-Frame-Options: "sameorigin"
 Header always set X-Content-Type-Options nosniff
 Header always set X-XSS-Protection "1; mode=block"
 Header always set Referrer-Policy "same-origin"
 Header set Feature-Policy "geolocation 'none'; vibrate 'none'"
+Header set Content-Security-Policy: "script-src 'self' https: https://code.jquery.com"
+Header set Content-Security-Policy: "default-src 'self' https: https://code.jquery.com"
+Header set Content-Security-Policy: "style-src 'self' https:"
+Header set Content-Security-Policy: "font-src 'self' data: https: https://fonts.googleapis.com fonts.gstatic.com"
+
+#reporteador mostrar warnings
 Header set Content-Security-Policy-Report-Only "default-src 'self'; img-src 'self' http: https: *.amazon.com;"
 
-Header set Content-Security-Policy: "default-src https:"
-Header set Content-Security-Policy: "style-src https:"
-Header set Content-Security-Policy: "font-src https:"
-Header set Content-Security-Policy: "script-src https:"
+
+
+
+
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
