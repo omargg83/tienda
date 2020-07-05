@@ -256,27 +256,19 @@
 			var telefono=document.getElementById("userAcceso").value;
 			telefono=telefono.trim();
 			if(telefono.length>2){
-				var btn=$(this).find(':submit')
-				$(btn).attr('disabled', 'disabled');
-				var tmp=$(btn).children("i").attr('class');
-				$(btn).children("i").removeClass();
-				$(btn).children("i").addClass("fas fa-spinner fa-pulse");
 
-				var tipo=2;
 				var parametros={
-					"ctrl":"control",
 					"function":"recuperar",
-					"tipo":tipo,
 					"telefono":telefono
 				};
 				$.ajax({
-					url: "control_db.php",
+					url: "log0.php",
 					type: "post",
 					data: parametros,
 					beforeSend: function(objeto){
-						$(btn).children("i").addClass(tmp);
 					},
 					success:function(response){
+						console.log(response);
 						var datos = JSON.parse(response);
 			      if (datos.error==0){
 							Swal.fire({
@@ -295,9 +287,6 @@
 							  timer: 3000
 							});
 						}
-						$(btn).children("i").removeClass();
-						$(btn).children("i").addClass(tmp);
-						$(btn).prop('disabled', false);
 					}
 				});
 			}

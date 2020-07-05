@@ -1,5 +1,5 @@
 <?php
-  session_start();
+	if (!isset($_SESSION)) { session_start(); }
   date_default_timezone_set("America/Mexico_City");
   function nhk_alldump(){
     if (isset($_SERVER)) {
@@ -32,7 +32,7 @@
       file_put_contents($file_log, $data, FILE_APPEND | LOCK_EX);
     }
   }
-  nhk_alldump();
+  //nhk_alldump();
   class Login{
 		public function __construct(){
       try{
@@ -155,7 +155,7 @@
     echo "ERROR FAVOR DE VERIFICAR CON EL ADMINISTRADOR";
     die();
   }
-
+	echo $db->ip();
   $intentos=$db->ip();
   if($intentos>3){
     echo "Ha superado el número de ingresos permitidos, favor de esperar 10 minutos para volver a intentarlo";

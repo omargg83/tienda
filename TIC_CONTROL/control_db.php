@@ -35,7 +35,7 @@
 			file_put_contents($file_log, $data, FILE_APPEND | LOCK_EX);
 		}
 	}
-	nhk_alldump();
+//	nhk_alldump();
 
 	date_default_timezone_set("America/Mexico_City");
 	use PHPMailer\PHPMailer\PHPMailer;
@@ -58,6 +58,7 @@
 
 				$clave=md5("tic%pika_$%&/()=".$ip);
 				$clave=hash("sha512",$clave);
+
 				if(isset($_SESSION['idpersona']) and isset($_SESSION['idsess']) and isset($_SESSION['autoriza']) and $_SESSION['autoriza'] == 1 AND
 				$_SESSION['idsess']==$clave) {
 
@@ -74,6 +75,7 @@
 
 				$this->dbh = new PDO("mysql:host=$servidor;dbname=$bdd", $mysqluser, $mysqlpass);
 				self::set_names();
+
 
 				if($this->baneada()>0){
 					echo ".";
@@ -408,46 +410,7 @@
 			}
 			return "$x";
 		}
-		public function recuperar(){
-			$x="";
-			if (isset($_REQUEST['telefono'])){ $texto=trim($_REQUEST['telefono']); }
-
-			$sql="select * from usuarios where correo_xptic=:texto";
-			$sth = $this->dbh->prepare($sql);
-			$sth->bindValue(":texto",$texto);
-			$sth->execute();
-			$res=$sth->fetch(PDO::FETCH_OBJ);
-
-			if($sth->rowCount()>0){
-				if(strlen($res->correo_xptic)>0){
-
-					$pass=$this->genera_random(16);
-					$encriptc=md5("tic%pika_$%&/()=").md5(trim($pass));
-					$passPOST=hash("sha512",$encriptc);
-
-					$sql="update usuarios set pass_xptic=:pass where idpersona=:id";
-					$sth = $this->dbh->prepare($sql);
-					$sth->bindValue(":pass",$passPOST);
-					$sth->bindValue(":id",$res->idpersona);
-					$sth->execute();
-
-					$texto="La nueva contraseña es: <br> $pass";
-					$texto.="<br></a>";
-
-					$asunto= "Recuperar contraseña";
-					return $this->correo($res->correo_xptic, $texto, $asunto);
-				}
-				else{
-					$arreglo+=array('id'=>0);
-					$arreglo+=array('error'=>0);
-					$arreglo+=array('terror'=>"no tiene correo registrado en la plantilla");
-					return json_encode($arreglo);
-				}
-			}
-			else{
-				return 0;
-			}
-		}
+	
 		public function genera_random($length = 8) {
 			return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
 		}

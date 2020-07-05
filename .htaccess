@@ -50,7 +50,7 @@ RewriteRule ^recuperar/(.*)$  ./recuperar.php?id=$1 [L,QSA]
 #seguridad avanzada
 
 RewriteCond %{HTTP_REFERER} !^$
-RewriteCond %{HTTP_REFERER} !^http://192.168.100.80 [NC]
+RewriteCond %{HTTP_REFERER} !^http://192.168.100.15 [NC]
 RewriteCond %{HTTP_REFERER} !^http://172.16.0.3 [NC]
 RewriteCond %{HTTP_REFERER} !^https://xtienda.sagyc.com.mx [NC]
 RewriteCond %{HTTP_REFERER} !^https://tic-shop.com.mx [NC]

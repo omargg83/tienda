@@ -3,10 +3,6 @@
 	if (isset($_REQUEST['function'])){$function=$_REQUEST['function'];}	else{ $function="";}
 	if (isset($_REQUEST['ctrl'])){$ctrl=$_REQUEST['ctrl'];}	else{ $ctrl="";}
 
-	error_reporting(E_ALL);
-	ini_set('display_errors', '1');
-	date_default_timezone_set("America/Mexico_City");
-
 	use PHPMailer\PHPMailer\PHPMailer;
 	use PHPMailer\PHPMailer\SMTP;
 

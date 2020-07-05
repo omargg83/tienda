@@ -1,6 +1,6 @@
 <?php
-	session_start();
-	ini_set("session.cookie_secure", "True");
+		if (!isset($_SESSION)) { session_start(); }
+//	ini_set("session.cookie_secure", "True");
 
 	require_once("control_db.php");
 	$bdd = new Tienda();
