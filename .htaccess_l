@@ -1,0 +1,17 @@
+RewriteEngine On
+RewriteBase /
+Options -Indexes
+
+RewriteRule ^producto/(.*)$  ./producto.php?id=$1 [L]
+RewriteRule ^buscar/(.*)$  ./buscar.php?id=$1 [L,QSA]
+RewriteRule ^acceso/(.*)$  ./acceso.php?id=$1 [L,QSA]
+RewriteRule ^registro/(.*)$  ./registro.php?id=$1 [L,QSA]
+RewriteRule ^carrito/(.*)$  ./cart.php?id=$1 [L,QSA]
+RewriteRule ^deseos/(.*)$  ./wish.php?id=$1 [L,QSA]
+RewriteRule ^finalizar/(.*)$  ./finalizar.php?id=$1 [L,QSA]
+RewriteRule ^pago/(.*)$  ./pago.php?id=$1 [L,QSA]
+RewriteRule ^recuperar/(.*)$  ./recuperar.php?id=$1 [L,QSA]
+RewriteRule ^clientes/(.*)$  ./clientes.php?id=$1 [L,QSA]
+RewriteRule ^direcciones/(.*)$  ./cli_direcciones.php?id=$1 [L,QSA]
+RewriteRule ^datos/(.*)$  ./cli_datos.php?id=$1 [L,QSA]
+RewriteRule ^editar_direccion/(.*)$  ./cli_diredit.php?id=$1 [L,QSA]
