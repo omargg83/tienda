@@ -11,18 +11,18 @@
 		public function __construct(){
 			try{
 				date_default_timezone_set("America/Mexico_City");
-				/*
+				
 				$mysqluser="ticshopc_admin";
 				$mysqlpass="admin123$%";
 				$servidor ="tic-shop.com.mx";
 				$bdd="ticshopc_tienda";
-				*/
 
+				/*
 				$mysqluser="root";
 				$mysqlpass="root";
 				$servidor ="localhost";
 				$bdd="ticshopc_tienda";
-
+				*/
 				$this->dbh = new PDO("mysql:host=$servidor;dbname=$bdd", $mysqluser, $mysqlpass);
 				$this->dbh->query("SET NAMES 'utf8'");
 
