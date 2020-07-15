@@ -109,7 +109,8 @@
 						if (strlen($_SESSION['correo'])==0){
 							echo "<div class='col-4'>";
 								echo "<label class='text-center'>Contraseña</label>";
-								echo "<input type='password' class='form-control' id='pass' name='pass' placeholder='Contraseña' value='' required>";
+								echo "<input type='password' class='form-control' id='pass' name='pass' placeholder='Contraseña' value='' required pattern='[A-Za-z0-9]{8,15}'>";
+								echo "<small>De 8 a 15 caracteres</small>";
 							echo "</div>";
 
 							echo "<div class='col-4'>";

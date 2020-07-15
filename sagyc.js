@@ -1,31 +1,8 @@
-if (Cookies.get('ticshop_x')==undefined){
-  var galleta="";
-  galletax(galleta);
-}
-else{
-  var galleta=Cookies.get('ticshop_x');
-  galletax(galleta);
-}
-
 $(function(){
 
 
 });
 
-function galletax(galleta){
-  $.ajax({
-    url: "/control_db.php",
-    type: "POST",
-    data: {
-      "ctrl":"control",
-      "galleta":galleta,
-      "function":"galleta"
-    },
-    success: function( response ) {
-      Cookies.set('ticshop_x', response);
-    }
-  });
-}
 function salir(){
   $.ajax({
     url: "/control_db.php",
@@ -35,9 +12,6 @@ function salir(){
       "function":"salir"
     },
     success: function( response ) {
-      Cookies.remove('ticshop_x');
-      var galleta="";
-      galletax(galleta);
       window.location.href="/";
     }
   });
@@ -414,7 +388,6 @@ function select_factdir(){
       }
     });
   }
-
 }
 
 $(document).on('submit','#logintix',function(e){
@@ -427,7 +400,6 @@ $(document).on('submit','#logintix',function(e){
     success: function( response ) {
       var datos = JSON.parse(response);
       if (datos.acceso==1){
-       Cookies.set('ticshop_x', datos.galleta);
        window.location.href="/";
       }
       else{
@@ -443,7 +415,6 @@ $(document).on('submit','#logintix',function(e){
 });
 $(document).on('submit','#registro',function(e){
   e.preventDefault();
-
   var pass=document.getElementById("pass").value;
   var pass2=document.getElementById("pass2").value;
   var dataString = $(this).serialize()+"&function=registro&ctrl=control";
@@ -590,7 +561,7 @@ $(document).on('submit','#direccion',function(e){
     type: "POST",
     data:  dataString,
     success: function( response ) {
-      console.log(response);
+
       var datos = JSON.parse(response);
       if (datos.error==0){
         Swal.fire({
@@ -623,6 +594,7 @@ $(document).on('submit','#pedido_form',function(e){
               url: "/control_db.php",
               type: "POST",
               data:  dataString,
+              timeout:60000,
               beforeSend: function () {
                 Swal.fire({
                     type: 'info',
@@ -643,6 +615,9 @@ $(document).on('submit','#pedido_form',function(e){
                       timer: 1000
                   });
                 }
+              },
+              error: function(jqXHR, textStatus, errorThrown) {
+
               }
             });
         },
@@ -688,7 +663,7 @@ $(document).on('submit','#cotizacion_form',function(e){
     type: "POST",
     data:  dataString,
     success: function( response ) {
-      console.log(response);
+
       var datos = JSON.parse(response);
       if (datos.error==0){
         Swal.fire({

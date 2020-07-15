@@ -1,16 +1,22 @@
-<?php
-  session_start();
+<?php @session_start();
+
   date_default_timezone_set("America/Mexico_City");
 
   class daasldjflks{
 		public function __construct(){
       try{
         date_default_timezone_set("America/Mexico_City");
+        /*
+          $mysqluser="ticshopc_admin";
+          $mysqlpass="admin123$%";
+          $servidor ="tic-shop.com.mx";
+          $bdd="ticshopc_tienda";
+        */
 
-				$mysqluser="ticshopc_admin";
-				$mysqlpass="admin123$%";
-				$servidor ="tic-shop.com.mx";
-				$bdd="ticshopc_tienda";
+        $mysqluser="root";
+        $mysqlpass="root";
+        $servidor ="localhost";
+        $bdd="ticshopc_tienda";
 
 				$this->dbh = new PDO("mysql:host=$servidor;dbname=$bdd", $mysqluser, $mysqlpass);
         $this->dbh->query("SET NAMES 'utf8'");
@@ -44,33 +50,34 @@
 				$passPOST=hash("sha512",$encriptx);
 
 			  ////////////////////////////////////////////////////////////////////////////
- 				$sql="SELECT * FROM clientes where correo=:correo and pass=:pass";
+ 				$sql="select * from clientes where correo=:correo and pass=:pass";
  				$sth = $this->dbh->prepare($sql);
  				$sth->bindValue(":correo",$userPOST);
  				$sth->bindValue(":pass",$passPOST);
  				$sth->execute();
  				$CLAVE=$sth->fetch();
- 				if($CLAVE){
 
+ 				if($CLAVE){
  					if($userPOST == $CLAVE['correo'] and $passPOST==$CLAVE['pass']){
+            $sql="update clientes set galleta='' where galleta=:galleta";
+            $sth = $this->dbh->prepare($sql);
+            $sth->bindValue(":galleta",$_SESSION['gt']);
+            $sth->execute();
+
  						$_SESSION['autoriza_web']=1;
  						$_SESSION['correo']=$CLAVE['correo'];
  						$_SESSION['idcliente']=$CLAVE['id'];
  						$_SESSION['nombre']=$CLAVE['nombre']." ".$CLAVE['apellido'];
  						$_SESSION['interno']=1;
 
-
- 						$galleta=$this->genera_random();
- 						$sql="update clientes set galleta=:galleta, fechacreado=:fechacreado where id=:id";
+ 						$sql="update clientes set galleta=:galleta where id=:id";
  						$sth = $this->dbh->prepare($sql);
- 						$sth->bindValue(":galleta",$galleta);
- 						$sth->bindValue(":fechacreado",date("Y-m-d H:i:s"));
+ 						$sth->bindValue(":galleta",$_SESSION['gt']);
  						$sth->bindValue(":id",$CLAVE['id']);
  						$sth->execute();
 
  						$arr=array();
  						$arr+=array('acceso'=>1);
- 						$arr+=array('galleta'=>$galleta);
  						return json_encode($arr);
  					}
  					else {

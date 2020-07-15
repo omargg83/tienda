@@ -2,16 +2,10 @@
 	require_once("control_db.php");
 	$db = new Tienda();
 
-	if(isset($_SESSION['autoriza_web']) and $_SESSION['autoriza_web']==1 and strlen($_SESSION['idcliente'])>0 and $_SESSION['interno']==1){
-		header('Location: /clientes.php');
-	}
-	else{
-	}
 	$nombre="";
 	$apellido="";
 	$correo="";
 	$pass="";
-
 ?>
 
 <!DOCTYPE html>
@@ -104,7 +98,8 @@
 				<div class="row">
 					<div class="col-4 offset-4">
 			      <label class='text-center'>Contraseña</label>
-			      <input type="password" class="form-control" id="pass" name='pass' placeholder="" value="<?php echo $pass; ?>" required autocomplete="off">
+			      <input type="password" class="form-control" id="pass" name='pass' placeholder="" value="<?php echo $pass; ?>" required autocomplete="off"  pattern='[A-Za-z0-9]{8,15}'>
+						<small>De 8 a 15 caracteres</small>
 					</div>
 				</div>
 				<div class="row">
@@ -118,11 +113,11 @@
 				<div class="row">
 					<div class="col-4 offset-4">
 						<button type="submit" class="btn btn-primary btn-block" style="
-    margin-top: 20px;
-    background-color: #b4f22f;
-    border: none;
-    color: black;
-    cursor: pointer;">Registrar</button>
+					    margin-top: 20px;
+					    background-color: #b4f22f;
+					    border: none;
+					    color: black;
+					    cursor: pointer;">Registrar</button>
 					</div>
 				</div>
 				<div class="row">

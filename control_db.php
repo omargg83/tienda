@@ -1,7 +1,8 @@
-<?php
-	if (!isset($_SESSION)) { session_start(); }
-	if (isset($_REQUEST['function'])){$function=$_REQUEST['function'];}	else{ $function="";}
-	if (isset($_REQUEST['ctrl'])){$ctrl=$_REQUEST['ctrl'];}	else{ $ctrl="";}
+<?php @session_start();
+	if (isset($_REQUEST['function'])){$function=clean_var($_REQUEST['function']);}else{ $function=""; }
+	if (isset($_REQUEST['ctrl'])){$ctrl=clean_var($_REQUEST['ctrl']);} else{ $ctrl=""; }
+
+	ini_set('include_path', 'tienda/');
 
 	use PHPMailer\PHPMailer\PHPMailer;
 	use PHPMailer\PHPMailer\SMTP;
@@ -10,14 +11,20 @@
 		public function __construct(){
 			try{
 				date_default_timezone_set("America/Mexico_City");
-
+				/*
 				$mysqluser="ticshopc_admin";
 				$mysqlpass="admin123$%";
 				$servidor ="tic-shop.com.mx";
 				$bdd="ticshopc_tienda";
+				*/
+
+				$mysqluser="root";
+				$mysqlpass="root";
+				$servidor ="localhost";
+				$bdd="ticshopc_tienda";
 
 				$this->dbh = new PDO("mysql:host=$servidor;dbname=$bdd", $mysqluser, $mysqlpass);
-				self::set_names();
+				$this->dbh->query("SET NAMES 'utf8'");
 
 				$this->doc="TIC_CONTROL/a_imagen/";
 				$this->extra="TIC_CONTROL/a_imagenextra/";
@@ -36,21 +43,57 @@
 				$this->Password=$tmp->Password;
 				$this->SMTPSecure=$tmp->SMTPSecure;
 				$this->Port=$tmp->Port;
+
+				$galleta="";
+				$contar=0;
+				if(isset($_COOKIE["tickshop"])){
+					$galleta=trim($_COOKIE["tickshop"]);
+					$sql="SELECT * FROM clientes where galleta=:galleta";
+					$sth_i = $this->dbh->prepare($sql);
+					$sth_i->bindValue(":galleta",$galleta);
+					$sth_i->execute();
+					$contar=$sth_i->rowCount();
+				}
+
+				if($contar==1){
+					$CLAVE=$sth_i->fetch(PDO::FETCH_OBJ);
+					$_SESSION['autoriza_web']=1;
+					$_SESSION['interno']=1;
+					$_SESSION['correo']=$CLAVE->correo;
+					$_SESSION['nombre']=$CLAVE->nombre." ".$CLAVE->apellido;
+					$_SESSION['idcliente']=$CLAVE->id;
+					$_SESSION['gt']=$galleta;
+				}
+				else{
+					$_SESSION['autoriza_web']=1;
+					$_SESSION['interno']=0;
+					$_SESSION['correo']="";
+					$_SESSION['nombre']="";
+					$_SESSION['idcliente']=0;
+
+					$azr=$this->genera_random(8);
+					$ip=getRealIP();
+					$clave=md5($azr."tic%cookie_$%&/()=".$ip);
+					$clave=hash("sha512",$clave);
+					$_SESSION['gt']=$clave;
+
+					$secure=false;
+					$domain = ($_SERVER['HTTP_HOST'] != 'localhost') ? $_SERVER['HTTP_HOST'] : false;
+					if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
+						$secure=true;
+					}
+					setcookie("tickshop",$clave, strtotime( '+15 days' ),"/", $domain, $secure, true);
+				}
 			}
 			catch(PDOException $e){
 				return "Database access FAILED!";
 			}
 		}
-		public function set_names(){
-			return $this->dbh->query("SET NAMES 'utf8'");
-		}
 
 		public function insert($DbTableName, $values = array()){
 			$arreglo=array();
 			try{
-				self::set_names();
 				$this->dbh->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-
 				foreach ($values as $field => $v)
 				$ins[] = ':' . $field;
 
@@ -81,7 +124,7 @@
 		public function update($DbTableName, $id = array(), $values = array()){
 			$arreglo=array();
 			try{
-				self::set_names();
+
 				$this->dbh->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 				$x="";
 				$idx="";
@@ -123,134 +166,86 @@
 			}
 		}
 
-		public function galleta(){
-			try{
-				$galleta=$_REQUEST['galleta'];
-				$contar=0;
-				if(strlen($galleta)>0){
-					$sql="SELECT * FROM clientes where galleta=:galleta";
-					$sth_i = $this->dbh->prepare($sql);
-					$sth_i->bindValue(":galleta",$galleta);
-					$sth_i->execute();
-					$contar=$sth_i->rowCount();
-				}
-
-				if($contar==0){
-					$galleta=$this->genera_random();
-					$sql="insert into clientes (galleta, fechacreado) values (:galleta, :fechacreado)";
-					$sth = $this->dbh->prepare($sql);
-					$sth->bindValue(":galleta",$galleta);
-					$sth->bindValue(":fechacreado",date("Y-m-d H:i:s"));
-					if($sth->execute()){
-						$sql="SELECT * FROM clientes where galleta=:galleta";
-						$sth_i = $this->dbh->prepare($sql);
-						$sth_i->bindValue(":galleta",$galleta);
-						$sth_i->execute();
-						$contar=$sth_i->rowCount();
-					}
-				}
-				$CLAVE=$sth_i->fetch(PDO::FETCH_OBJ);
-				if(strlen($CLAVE->correo)>0){
-					$_SESSION['autoriza_web']=1;
-					$_SESSION['interno']=1;
-					$_SESSION['correo']=$CLAVE->correo;
-					$_SESSION['nombre']=$CLAVE->nombre." ".$CLAVE->apellido;
-				}
-				else{
-					$_SESSION['autoriza_web']=1;
-					$_SESSION['interno']=0;
-					$_SESSION['correo']="";
-					$_SESSION['nombre']="";
-				}
-				$_SESSION['idcliente']=$CLAVE->id;
-				return $galleta;
-			}
-			catch(PDOException $e){
-				return "Database access FAILED!".$e->getMessage();
-			}
-		}
 		public function genera_random($length = 15) {
     	return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
 		}
-
 		public function registro(){
 			//Obtenemos los datos del formulario de acceso
 			try{
 				$arreglo=array();
 				if (isset($_REQUEST['pass'])){
 					$pass = trim($_REQUEST["pass"]);
-
 					$encriptx=md5("tic%pika_$%&/()=").md5(trim($pass));
 					$passPOST=hash("sha512",$encriptx);
 					$arreglo+= array('pass'=>$passPOST);
 				}
 				if (isset($_REQUEST['nombre'])){
-					$nombre=trim(htmlspecialchars($_REQUEST["nombre"]));
+					$nombre=clean_var($_REQUEST["nombre"]);
 					$arreglo+= array('nombre'=>$nombre);
 				}
 				if (isset($_REQUEST['apellido'])){
-					$apellido=trim(htmlspecialchars($_REQUEST["apellido"]));
+					$apellido=clean_var($_REQUEST["apellido"]);
 					$arreglo+= array('apellido'=>$apellido);
 				}
 				if (isset($_REQUEST['correo'])){
-					$correo=trim(htmlspecialchars($_REQUEST["correo"]));
+					$correo=clean_var($_REQUEST["correo"]);
 					$arreglo+= array('correo'=>$correo);
 				}
 				if (isset($_REQUEST['direccion1'])){
-					$arreglo+= array('direccion1'=>trim(htmlspecialchars($_REQUEST["direccion1"])));
+					$arreglo+= array('direccion1'=>clean_var($_REQUEST["direccion1"]));
 				}
 				if (isset($_REQUEST['entrecalles'])){
-					$arreglo+= array('entrecalles'=>trim(htmlspecialchars($_REQUEST["entrecalles"])));
+					$arreglo+= array('entrecalles'=>clean_var($_REQUEST["entrecalles"]));
 				}
 				if (isset($_REQUEST['colonia'])){
-					$arreglo+= array('colonia'=>trim(htmlspecialchars($_REQUEST["colonia"])));
+					$arreglo+= array('colonia'=>clean_var($_REQUEST["colonia"]));
 				}
 				if (isset($_REQUEST['numero'])){
-					$arreglo+= array('numero'=>trim(htmlspecialchars($_REQUEST["numero"])));
+					$arreglo+= array('numero'=>clean_var($_REQUEST["numero"]));
 				}
 				if (isset($_REQUEST['ciudad'])){
-					$arreglo+= array('ciudad'=>trim(htmlspecialchars($_REQUEST["ciudad"])));
+					$arreglo+= array('ciudad'=>clean_var($_REQUEST["ciudad"]));
 				}
 				if (isset($_REQUEST['cp'])){
-					$arreglo+= array('cp'=>trim(htmlspecialchars($_REQUEST["cp"])));
+					$arreglo+= array('cp'=>clean_var($_REQUEST["cp"]));
 				}
 				if (isset($_REQUEST['pais'])){
-					$arreglo+= array('pais'=>trim(htmlspecialchars($_REQUEST["pais"])));
+					$arreglo+= array('pais'=>clean_var($_REQUEST["pais"]));
 				}
 				if (isset($_REQUEST['estado'])){
-					$arreglo+= array('estado'=>trim(htmlspecialchars($_REQUEST["estado"])));
+					$arreglo+= array('estado'=>clean_var($_REQUEST["estado"]));
 				}
 				if (isset($_REQUEST['telefono'])){
-					$arreglo+= array('telefono'=>trim(htmlspecialchars($_REQUEST["telefono"])));
+					$arreglo+= array('telefono'=>clean_var($_REQUEST["telefono"]));
 				}
+
 				$sql="select * from clientes where correo='$correo'";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
-				if($sth->rowCount()==0){
-					$sql="SELECT * FROM clientes where id=:id";
-					$sth = $this->dbh->prepare($sql);
-					$sth->bindValue(":id",$_SESSION['idcliente']);
-					$sth->execute();
-					$CLAVE=$sth->fetch();
-					if($CLAVE){
-						$x=$this->update('clientes',array('id'=>$_SESSION['idcliente']), $arreglo);
-					}
-					else {
-						$x=$this->insert('clientes', $arreglo);
-					}
-					$_SESSION['autoriza_web']=1;
-					$_SESSION['correo']=$correo;
-					$_SESSION['nombre']=$nombre." ".$apellido;
-					$_SESSION['idcliente']=$_SESSION['idcliente'];
-					$_SESSION['interno']=1;
-					return $x;
-				}
-				else{
+				if($sth->rowCount()>0){
 					$arreglo+=array('id'=>0);
 					$arreglo+=array('error'=>1);
 					$arreglo+=array('terror'=>"Correo electrónico ya registrado");
 					return json_encode($arreglo);
 				}
+
+				$sql="SELECT * FROM clientes where id=:id and galleta=:galleta";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindValue(":id",$_SESSION['idcliente']);
+				$sth->bindValue(":galleta",$_SESSION['gt']);
+				$sth->execute();
+				$CLAVE=$sth->fetch();
+				if($CLAVE){
+					$x=$this->update('clientes',array('id'=>$_SESSION['idcliente']), $arreglo);
+				}
+				else {
+					$x=$this->insert('clientes', $arreglo);
+				}
+				$_SESSION['autoriza_web']=1;
+				$_SESSION['correo']=$correo;
+				$_SESSION['nombre']=$nombre." ".$apellido;
+				$_SESSION['interno']=1;
+				return $x;
 			}
 			catch(PDOException $e){
 				return "Database access FAILED!".$e->getMessage();
@@ -258,7 +253,7 @@
 		}
 		public function recuperar(){
 			try{
-				$mail=trim(htmlspecialchars($_REQUEST['mail']));
+				$mail=clean_var($_REQUEST['mail']);
 
 				$sql="select * from clientes where correo=:mail";
 				$sth_i = $this->dbh->prepare($sql);
@@ -299,6 +294,27 @@
 			}
 		}
 		public function salir(){
+
+			$NewDate=Date('y:m:d', strtotime('-30 days'));
+			$sql="delete from clientes where correo is null and fechacreado<:fecha";
+			$sth1 = $this->dbh->prepare($sql);
+			$sth1->bindValue(":fecha",$NewDate);
+			$sth1->execute();
+
+			$sql="delete from cliente_carro where fechaagrega<:fecha";
+			$sth1 = $this->dbh->prepare($sql);
+			$sth1->bindValue(":fecha",$NewDate);
+			$sth1->execute();
+
+			$sql="delete from cliente_wish where fechaagrega<:fecha";
+			$sth1 = $this->dbh->prepare($sql);
+			$sth1->bindValue(":fecha",$NewDate);
+			$sth1->execute();
+
+			$sql="update clientes set galleta='' where galleta=:galleta";
+			$sth = $this->dbh->prepare($sql);
+			$sth->bindValue(":galleta",$_SESSION['gt']);
+			$sth->execute();
 			$_SESSION['interno']=0;
 			$_SESSION['autoriza_web']=0;
 			$_SESSION['correo']="";
@@ -307,7 +323,7 @@
 
 		public function categorias(){															///////////  HEADER
 			try{
-				self::set_names();
+
 				$sql="select * from categorias order by orden asc";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
@@ -319,7 +335,7 @@
 		}
 		public function cat_ct($id){															/////////////  HEADER
 			try{
-				self::set_names();
+
 				$sql="SELECT categoria_ct.id, categoria_ct.categoria, categoria_ct.heredado from producto_cat left outer join categoria_ct on categoria_ct.id=producto_cat.idcategoria_ct where producto_cat.idcategoria=:id";
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(':id', "$id");
@@ -332,7 +348,7 @@
 		}
 		public function sub_cat($id){															////////////   HEADER
 			try{
-				self::set_names();
+
 				$sql="SELECT * from categoriasub_ct where idcategoria=:id";
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(':id', "$id");
@@ -346,7 +362,7 @@
 
 		public function cfdi(){
 			try{
-				self::set_names();
+
 				$sql="select * from cfdi";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
@@ -359,7 +375,7 @@
 
 		public function categorias_name($id){
 			try{
-				self::set_names();
+
 				$sql="select * from categorias where idcategoria='$id'";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
@@ -372,7 +388,7 @@
 		}
 		public function cat_categoria_name($cat){									//////////////nivel 2
 			try{
-				self::set_names();
+
 				$sql="select * from categoria_ct where id='$cat'";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
@@ -385,7 +401,7 @@
 		}
 		public function sub_categoria_name($cat){									//////////////nivel 3
 			try{
-				self::set_names();
+
 				$sql="select * from categoriasub_ct where id='$cat'";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
@@ -398,7 +414,7 @@
 
 		public function n1_productos_marcas($cat,$marca){
 			try{
-				self::set_names();
+
 				$sql="select productos.* from producto_cat
 							left outer join categoria_ct on categoria_ct.id=producto_cat.idcategoria_ct
 							left outer join productos on productos.categoria=categoria_ct.categoria
@@ -417,7 +433,7 @@
 		}
 		public function n2_productos_marcas($cat,$marca){
 			try{
-				self::set_names();
+
 				$sql="select * from productos where categoria='$cat'";
 				if(strlen($marca)>0){
 					$sql.=" and productos.marca='$marca'";
@@ -433,7 +449,7 @@
 		}
 		public function n3_productos_marcas($cat,$marca){
 			try{
-				self::set_names();
+
 				$sql="select * from productos where subcategoria='$cat'";
 				if(strlen($marca)>0){
 					$sql.=" and productos.marca='$marca'";
@@ -449,7 +465,7 @@
 		}
 		public function n4_productos_marcas($marca){
 			try{
-				self::set_names();
+
 				$sql="select * from productos where activo=1";
 				if(strlen($marca)>0){
 					$sql.=" and productos.marca='$marca'";
@@ -466,7 +482,7 @@
 
 		public function producto_ver($id){
 			try{
-				self::set_names();
+
 				$sql="select * from productos where clave=:id";
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(':id', "$id");
@@ -479,7 +495,7 @@
 		}
 		public function estrellas($id){
 			try{
-				self::set_names();
+
 				$sql="select producto_estrella.*, clientes.nombre from producto_estrella
 				left outer join clientes on clientes.id=producto_estrella.idcliente
 				where idproducto=:id and producto_estrella.publico=1";
@@ -494,7 +510,7 @@
 		}
 		public function producto_imagen($id){
 			try{
-				self::set_names();
+
 				$sql="select * from producto_img where id=:id";
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(':id', "$id");
@@ -507,7 +523,7 @@
 		}
 		public function producto_exist($id,$tipo=0){
 			try{
-				self::set_names();
+
 				if($tipo==0){
 					$sql="select * from producto_exist where id=$id";
 				}
@@ -528,7 +544,7 @@
 		}
 		public function producto_espe($id){
 			try{
-				self::set_names();
+
 				$sql="select * from producto_espe where id=:id";
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(':id', "$id");
@@ -541,7 +557,7 @@
 		}
 		public function almacen_busca($clave){
 			try{
-				self::set_names();
+
 				$sql="select * from almacen where homoclave=:id";
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(':id', "$clave");
@@ -556,7 +572,7 @@
 		///////////////////////Productos destacados
 		public function productos_destacados(){
 			try{
-				self::set_names();
+
 				$sql="SELECT * from productos where cb_destacados=1 and activo=1 and existencia>0";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
@@ -569,7 +585,7 @@
 		/////////////////////ofertas de la semana
 		public function productos_semana(){
 			try{
-				self::set_names();
+
 				$sql="SELECT * from productos where cb_prodsemana=1 and activo=1 and existencia>0";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
@@ -583,7 +599,7 @@
 		////////////////////productos ofertas
 		public function ofertas(){
 			try{
-				self::set_names();
+
 				$sql="SELECT * from productos where cb_ofertasemana=1 and activo=1 and existencia>0";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
@@ -595,7 +611,7 @@
 		}
 		public function relacionados($subcategoria){
 			try{
-				self::set_names();
+
 				$sql="SELECT * from productos where subcategoria='$subcategoria' and activo=1 and existencia>0 limit 20";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
@@ -608,14 +624,15 @@
 
 		public function carro_list(){
 			try{
-				self::set_names();
-				$sql="select cliente_carro.id, cliente_carro.cantidad, productos.id, productos.img, productos.nombre, productos.preciof, productos.precio_tipo, productos.precio_tic, productos.envio_costo, productos.envio_tipo, productos.idProducto, productos.clave, productos.numParte, productos.modelo, productos.marca, productos.categoria, productos.descripcion_corta, productos.interno from cliente_carro
-				left outer join productos on productos.id=cliente_carro.idproducto
-				where cliente_carro.idcliente=:id";
-				$sth = $this->dbh->prepare($sql);
-				$sth->bindValue(":id",$_SESSION['idcliente']);
-				$sth->execute();
-				return $sth->fetchAll(PDO::FETCH_OBJ);
+				if(isset($_SESSION['idcliente'])){
+					$sql="select cliente_carro.id, cliente_carro.cantidad, productos.id, productos.img, productos.nombre, productos.preciof, productos.precio_tipo, productos.precio_tic, productos.envio_costo, productos.envio_tipo, productos.idProducto, productos.clave, productos.numParte, productos.modelo, productos.marca, productos.categoria, productos.descripcion_corta, productos.interno from cliente_carro
+					left outer join productos on productos.id=cliente_carro.idproducto
+					where cliente_carro.idcliente=:id";
+					$sth = $this->dbh->prepare($sql);
+					$sth->bindValue(":id",$_SESSION['idcliente']);
+					$sth->execute();
+					return $sth->fetchAll(PDO::FETCH_OBJ);
+				}
 			}
 			catch(PDOException $e){
 				return "Database access FAILED!".$e->getMessage();
@@ -623,9 +640,32 @@
 		}
 		public function carrito(){
 			try{
-				self::set_names();
 				$id=$_REQUEST['id'];
 				$cantidad=$_REQUEST['cantidad'];
+
+				if($_SESSION['idcliente']==0){
+					$sql="update clientes set galleta='' where galleta=:galleta";
+					$sth = $this->dbh->prepare($sql);
+					$sth->bindValue(":galleta",$_SESSION['gt']);
+					$sth->execute();
+
+					$sql="insert into clientes (galleta, fechacreado) values (:galleta, :fechacreado)";
+					$sth = $this->dbh->prepare($sql);
+					$sth->bindValue(":galleta",$_SESSION['gt']);
+					$sth->bindValue(":fechacreado",date("Y-m-d H:i:s"));
+					if($sth->execute()){
+						$sql="SELECT * FROM clientes where galleta=:galleta limit 1";
+						$sth_i = $this->dbh->prepare($sql);
+						$sth_i->bindValue(":galleta",$_SESSION['gt']);
+						$sth_i->execute();
+						$CLAVE=$sth_i->fetch(PDO::FETCH_OBJ);
+						$_SESSION['autoriza_web']=1;
+						$_SESSION['interno']=1;
+						$_SESSION['correo']="";
+						$_SESSION['nombre']="";
+						$_SESSION['idcliente']=$CLAVE->id;
+					}
+				}
 
 				if(isset($_SESSION['autoriza_web']) and $_SESSION['autoriza_web']==1 and strlen($_SESSION['idcliente'])>0){
 					$cantidad_carro=0;
@@ -696,7 +736,6 @@
 		}
 		public function borra_carrito(){
 			try{
-				self::set_names();
 				$id=$_REQUEST['id'];
 				$sql="delete from cliente_carro where idproducto=:id and idcliente=:cli";
 				$sth = $this->dbh->prepare($sql);
@@ -710,7 +749,6 @@
 		}
 		public function limpia_carrito(){
 			try{
-				self::set_names();
 				$id=$_REQUEST['id'];
 				$sql="delete from cliente_carro where idcliente=:cli";
 				$sth = $this->dbh->prepare($sql);
@@ -724,7 +762,7 @@
 
 		public function wish(){
 			try{
-				self::set_names();
+
 				$id=$_REQUEST['id'];
 				if(isset($_SESSION['autoriza_web']) and $_SESSION['autoriza_web']==1 and strlen($_SESSION['idcliente'])>0){
 					$sql="insert into cliente_wish (idcliente, idproducto, fechaagrega) values (:idcliente, :idproducto, :fecha)";
@@ -743,7 +781,7 @@
 		}
 		public function borra_wish(){
 			try{
-				self::set_names();
+
 				$id=$_REQUEST['id'];
 				$sql="delete from cliente_wish where id=:id";
 				$sth = $this->dbh->prepare($sql);
@@ -756,7 +794,7 @@
 		}
 		public function wish_list(){
 			try{
-				self::set_names();
+
 				$sql="select productos.id, productos.img, productos.nombre, productos.preciof, cliente_wish.id as cliid, productos.precio_tipo, productos.envio_tipo, productos.precio_tic from cliente_wish
 				left outer join productos on productos.id=cliente_wish.idproducto
 				where cliente_wish.idcliente=:id";
@@ -771,9 +809,7 @@
 		}
 
 		public function carrito_sum(){
-
 			try{
-				self::set_names();
 				$sql="select count(productos.id) as contar, sum(productos.preciof) as sumar from cliente_carro
 				left outer join productos on productos.id=cliente_carro.idproducto
 				where cliente_carro.idcliente=:id";
@@ -788,7 +824,7 @@
 		}
 		public function wish_sum(){
 			try{
-				self::set_names();
+
 				$sql="select count(id) as contar from cliente_wish where cliente_wish.idcliente=:id";
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(":id",$_SESSION['idcliente']);
@@ -802,8 +838,8 @@
 
 		public function busca() {
 			try{
-				self::set_names();
-				$texto=trim(htmlspecialchars($_REQUEST['id']));
+
+				$texto=clean_var($_REQUEST['id']);
 				$sql="SELECT * from productos where activo=1 and existencia>0 and
 				(clave like :texto or nombre like :texto or modelo like :texto or marca like :texto or idProducto like :texto) limit 100";
 				$sth = $this->dbh->prepare($sql);
@@ -819,7 +855,7 @@
 
 		public function datos(){
 			try{
-				self::set_names();
+
 				$sql="SELECT * FROM clientes where id=:id";
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(":id",$_SESSION['idcliente']);
@@ -832,19 +868,19 @@
 		}
 		public function datos_update(){
 			try{
-				$nombre = trim(htmlspecialchars($_REQUEST["nombre"]));
-				$apellido = trim(htmlspecialchars($_REQUEST["apellido"]));
-				$rfc = trim(htmlspecialchars($_REQUEST["rfc"]));
-				$cfdi = trim(htmlspecialchars($_REQUEST["cfdi"]));
-				$direccion1 = trim(htmlspecialchars($_REQUEST["direccion1"]));
-				$entrecalles = trim(htmlspecialchars($_REQUEST["entrecalles"]));
-				$colonia = trim(htmlspecialchars($_REQUEST["colonia"]));
-				$numero = trim(htmlspecialchars($_REQUEST["numero"]));
-				$ciudad = trim(htmlspecialchars($_REQUEST["ciudad"]));
-				$cp = trim(htmlspecialchars($_REQUEST["cp"]));
-				$pais = trim(htmlspecialchars($_REQUEST["pais"]));
-				$estado = trim(htmlspecialchars($_REQUEST["estado"]));
-				$telefono = trim(htmlspecialchars($_REQUEST["telefono"]));
+				$nombre = clean_var($_REQUEST["nombre"]);
+				$apellido = clean_var($_REQUEST["apellido"]);
+				$rfc = clean_var($_REQUEST["rfc"]);
+				$cfdi = clean_var($_REQUEST["cfdi"]);
+				$direccion1 = clean_var($_REQUEST["direccion1"]);
+				$entrecalles = clean_var($_REQUEST["entrecalles"]);
+				$colonia = clean_var($_REQUEST["colonia"]);
+				$numero = clean_var($_REQUEST["numero"]);
+				$ciudad = clean_var($_REQUEST["ciudad"]);
+				$cp = clean_var($_REQUEST["cp"]);
+				$pais = clean_var($_REQUEST["pais"]);
+				$estado = clean_var($_REQUEST["estado"]);
+				$telefono = clean_var($_REQUEST["telefono"]);
 
 				$sql="update clientes set nombre=:nombre, apellido=:apellido, rfc=:rfc, cfdi=:cfdi, direccion1=:direccion1, entrecalles=:entrecalles, colonia=:colonia, numero=:numero, ciudad=:ciudad, cp=:cp, pais=:pais, estado=:estado, telefono=:telefono  where id=:id";
 				$sth = $this->dbh->prepare($sql);
@@ -887,7 +923,7 @@
 
 		public function direcciones(){
 			try{
-				self::set_names();
+
 				$sql="SELECT * from clientes_direccion where idcliente=:id";
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(':id',$_SESSION['idcliente']);
@@ -900,7 +936,7 @@
 		}
 		public function direccion_editar($id){
 			try{
-				self::set_names();
+
 				$sql="select * from clientes_direccion where iddireccion=:id and idcliente=:idcliente";
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(':id', "$id");
@@ -915,7 +951,7 @@
 		}
 		public function guardar_direccion(){
 			try{
-				self::set_names();
+
 				$id=$_REQUEST['id'];
 				$arreglo =array();
 				$arreglo = array('idcliente'=>$_SESSION['idcliente']);
@@ -961,7 +997,7 @@
 
 		public function ajustes_editar(){
 			try{
-				self::set_names();
+
 				$sql="select * from ajustes where id=1";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
@@ -991,40 +1027,43 @@
 				}
 
 				//////////////////////////////////actualiza datos
-				$nombre = trim(htmlspecialchars($_REQUEST["nombre"]));
-				$apellido = trim(htmlspecialchars($_REQUEST["apellido"]));
-				$rfc = trim(htmlspecialchars($_REQUEST["rfc"]));
-				$cfdi = trim(htmlspecialchars($_REQUEST["cfdi"]));
+				$nombre = clean_var($_REQUEST["nombre"]);
+				$apellido = clean_var($_REQUEST["apellido"]);
+				$rfc = clean_var($_REQUEST["rfc"]);
+				$cfdi = clean_var($_REQUEST["cfdi"]);
 
 				////////////////////direccion normal
-				$direccion1 = trim(htmlspecialchars($_REQUEST["direccion1"]));
-				$entrecalles = trim(htmlspecialchars($_REQUEST["entrecalles"]));
-				$numero = trim(htmlspecialchars($_REQUEST["numero"]));
-				$colonia = trim(htmlspecialchars($_REQUEST["colonia"]));
-				$ciudad = trim(htmlspecialchars($_REQUEST["ciudad"]));
-				$cp = trim(htmlspecialchars($_REQUEST["cp"]));
-				$pais = trim(htmlspecialchars($_REQUEST["pais"]));
-				$pais = trim(htmlspecialchars($_REQUEST["pais"]));
-				$estado = trim(htmlspecialchars($_REQUEST["estado"]));
-				$dir_factfin = $_REQUEST["dir_factfin"];
+				$direccion1 = clean_var($_REQUEST["direccion1"]);
+				$entrecalles = clean_var($_REQUEST["entrecalles"]);
+				$numero = clean_var($_REQUEST["numero"]);
+				$colonia = clean_var($_REQUEST["colonia"]);
+				$ciudad = clean_var($_REQUEST["ciudad"]);
+				$cp = clean_var($_REQUEST["cp"]);
+				$pais = clean_var($_REQUEST["pais"]);
+				$pais = clean_var($_REQUEST["pais"]);
+				$estado = clean_var($_REQUEST["estado"]);
+				$dir_factfin = clean_var($_REQUEST["dir_factfin"]);
 
 				if($dir_factfin!="0"){
 					////////////////////direccion factura
-					$fact_direccion1 = trim(htmlspecialchars($_REQUEST["fact_direccion1"]));
-					$fact_entrecalles = trim(htmlspecialchars($_REQUEST["fact_entrecalles"]));
-					$fact_numero = trim(htmlspecialchars($_REQUEST["fact_numero"]));
-					$fact_colonia = trim(htmlspecialchars($_REQUEST["fact_colonia"]));
-					$fact_ciudad = trim(htmlspecialchars($_REQUEST["fact_ciudad"]));
-					$fact_cp = trim(htmlspecialchars($_REQUEST["fact_cp"]));
-					$fact_pais = trim(htmlspecialchars($_REQUEST["fact_pais"]));
-					$fact_estado = trim(htmlspecialchars($_REQUEST["fact_estado"]));
+					$fact_direccion1 = clean_var($_REQUEST["fact_direccion1"]);
+					$fact_entrecalles = clean_var($_REQUEST["fact_entrecalles"]);
+					$fact_numero = clean_var($_REQUEST["fact_numero"]);
+					$fact_colonia = clean_var($_REQUEST["fact_colonia"]);
+					$fact_ciudad = clean_var($_REQUEST["fact_ciudad"]);
+					$fact_cp = clean_var($_REQUEST["fact_cp"]);
+					$fact_pais = clean_var($_REQUEST["fact_pais"]);
+					$fact_estado = clean_var($_REQUEST["fact_estado"]);
 				}
 
 				$telefono = trim($_REQUEST["tele_x"]);
-				$correo = trim(htmlspecialchars($_REQUEST["correo"]));
-				$notas = trim(htmlspecialchars($_REQUEST["notas"]));
+				$correo = clean_var($_REQUEST["correo"]);
+				$notas = clean_var($_REQUEST["notas"]);
+				$dir_fin="";
 
-				$dir_fin = $_REQUEST["dir_fin"];
+				if(isset($_REQUEST["dir_fin"])){
+					$dir_fin = $_REQUEST["dir_fin"];
+				}
 				if(isset($_REQUEST["pass"])){
 					$pass = trim($_REQUEST["pass"]);
 				}
@@ -1099,7 +1138,6 @@
 
 				///////////////////////////se genera el pedido
 				try{
-					self::set_names();
 					$id=0;
 					$arreglo =array();
 					$arreglo+=array('fecha'=>date("Y-m-d H:i:s"));
@@ -1608,7 +1646,7 @@
 
 		public function contacto(){
 			try{
-				self::set_names();
+
 				$arreglo =array();
 				if (isset($_REQUEST['nombre'])){
 					$arreglo+= array('nombre'=>$_REQUEST['nombre']);
@@ -1631,7 +1669,6 @@
 		}
 		public function pedidos_lista(){
 			try{
-				self::set_names();
 				$sql="select * from pedidos where idcliente=:id";
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(":id",$_SESSION['idcliente']);
@@ -1644,7 +1681,7 @@
 		}
 		public function pedido_ver($id){
 			try{
-				self::set_names();
+
 				$sql="select * from pedidos where id=:id";
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(":id",$id);
@@ -1657,7 +1694,7 @@
 		}
 		public function datos_pedido($id){
 			try{
-				self::set_names();
+
 				$sql="select * from pedidos_prod where idpedido=:id";
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(":id",$id);
@@ -1671,7 +1708,7 @@
 
 		public function baner_lista(){
 			try{
-				self::set_names();
+
 				$sql="select * from baner";
 				$sth = $this->dbh->prepare($sql);
 				$sth->execute();
@@ -1683,7 +1720,7 @@
 		}
 		public function baner2($id){
 			try{
-				self::set_names();
+
 				$sql="select * from baner2 where id=:id";
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(':id', "$id");
@@ -1697,11 +1734,9 @@
 
 		public function estrella(){
 			try{
-				self::set_names();
-
-				$estrella=$_REQUEST['estrella'];
-				$idproducto=$_REQUEST['idproducto'];
-				$texto=trim(htmlspecialchars($_REQUEST['texto']));
+				$estrella=clean_var($_REQUEST['estrella']);
+				$idproducto=clean_var($_REQUEST['idproducto']);
+				$texto=clean_var($_REQUEST['texto']);
 
 				$sql="insert into producto_estrella (idcliente, idproducto, estrella, texto, fecha) values (:idcliente, :idproducto, :estrella, :texto, :fecha)";
 				$sth = $this->dbh->prepare($sql);
@@ -1718,9 +1753,9 @@
 		}
 		public function cupon_busca(){
 			try{
-				self::set_names();
-				$idpedido=$_REQUEST['idpedido'];
-				$cupon=trim(htmlspecialchars($_REQUEST['cupon']));
+
+				$idpedido=clean_var($_REQUEST['idpedido']);
+				$cupon=clean_var($_REQUEST['cupon']);
 
 				$sql="select * from pedidos_cupon where codigo='$cupon' and idpedido='$idpedido'";
 				$sth_i = $this->dbh->prepare($sql);
@@ -1786,7 +1821,7 @@
 		}
 		public function elimina_cupon(){
 			try{
-				self::set_names();
+
 				$id=$_REQUEST['id'];
 				$sql="delete from pedidos_cupon where id=:id";
 				$sth = $this->dbh->prepare($sql);
@@ -1800,7 +1835,7 @@
 
 		public function pedido_cupones($id){
 			try{
-				self::set_names();
+
 				$sql="select * from pedidos_cupon where idpedido=:id";
 				$sth = $this->dbh->prepare($sql);
 				$sth->bindValue(":id",$id);
@@ -1922,6 +1957,30 @@
 			}
 		}
 }
+	function clean_var($val){
+		$val=htmlspecialchars(strip_tags(trim($val)));
+		return $val;
+	}
+	function getRealIP(){
+		if (isset($_SERVER["HTTP_CLIENT_IP"])){
+				return $_SERVER["HTTP_CLIENT_IP"];
+		}
+		elseif (isset($_SERVER["HTTP_X_FORWARDED_FOR"])){
+				return $_SERVER["HTTP_X_FORWARDED_FOR"];
+		}
+		elseif (isset($_SERVER["HTTP_X_FORWARDED"])){
+				return $_SERVER["HTTP_X_FORWARDED"];
+		}
+		elseif (isset($_SERVER["HTTP_FORWARDED_FOR"])){
+				return $_SERVER["HTTP_FORWARDED_FOR"];
+		}
+		elseif (isset($_SERVER["HTTP_FORWARDED"])){
+				return $_SERVER["HTTP_FORWARDED"];
+		}
+		else{
+				return $_SERVER["REMOTE_ADDR"];
+		}
+	}
 
 	if(strlen($ctrl)>0){
 		$db = new Tienda();
