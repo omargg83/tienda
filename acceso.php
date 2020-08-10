@@ -108,15 +108,15 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-12" >
-						<div class="col-4 offset-4 text-center">
+						<div class="col-4 offset-4 text-center" style="min-width: 300px;display: table;margin: 0 auto;">
 							<label>Correo</label>
 							<input type="text" class="form-control" id="<?php echo $a; ?>" name='<?php echo $a; ?>' placeholder="Correo" value="" required>
 						</div>
-						<div class="col-4 offset-4 text-center">
+						<div class="col-4 offset-4 text-center" style="min-width: 300px;display: table;margin: 0 auto;">
 							<label>Contraseña</label>
 							<input type="password" class="form-control" id="<?php echo $b; ?>" name='<?php echo $b; ?>' placeholder="Contraseña" value="" required>
 						</div>
-						<div class="col-4 offset-4 text-center"><br>
+						<div class="col-4 offset-4 text-center" style="min-width: 300px;display: table;margin: 0 auto;"><br>
 							<button class="btn btn-outline-primary btn-block btn-sm" type="submit" style="
 							    background-color: #b4f22f;
 							    border: none;
