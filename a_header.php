@@ -252,6 +252,14 @@
               <li class="page_menu_item">
                 <a href="/contact.php">Contacto<i class="fa fa-angle-down"></i></a>
               </li>
+              <li class="page_menu_item">
+                <a href="/acceso.php">Ingresar<i class="fa fa-angle-down"></i></a>
+              </li>
+
+              <li class="page_menu_item">
+                <a href="/registro.php">Registro<i class="fa fa-angle-down"></i></a>
+              </li>
+
             </ul>
 
 
