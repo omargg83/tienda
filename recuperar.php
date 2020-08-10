@@ -40,11 +40,11 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-12" >
-						<div class="col-4 offset-4 text-center">
+						<div class="col-4 offset-4 text-center" style="min-width: 300px;display: table;margin: 0 auto;">
 							<label>Correo</label>
 							<input type="mail" class="form-control" id="mail" name='mail' placeholder="Correo" value="<?php echo $correo; ?>" required>
 						</div>
-						<div class="col-4 offset-4 text-center"><br>
+						<div class="col-4 offset-4 text-center" style="min-width: 300px;display: table;margin: 0 auto;"><br>
 							<button id='submit_rec' disabled class="btn btn-outline-primary btn-block btn-sm" type="submit" style="
 							    background-color: #b4f22f;
 							    border: none;
