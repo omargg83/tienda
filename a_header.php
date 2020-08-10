@@ -254,6 +254,7 @@
               </li>
             </ul>
 
+
             <div class="menu_contact">
               <div class="menu_contact_item"><div class="menu_contact_icon"><img src="images/phone_white.png" alt=""></div>771 702 8040</div>
               <div class="menu_contact_item"><div class="menu_contact_icon"><img src="images/mail_white.png" alt=""></div><a href="mailto:ventas@tic-shop.com.mx">ventas@tic-shop.com.mx</a></div>
